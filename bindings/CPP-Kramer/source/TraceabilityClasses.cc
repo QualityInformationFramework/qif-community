@@ -4,10 +4,12 @@
 #include <string.h>            // for strdup
 #include <stdlib.h>            // for exit
 #include <list>
+#include  <map>
 #include <xmlSchemaInstance.hh>
 #include "TraceabilityClasses.hh"
 
 #define INDENT 2
+extern std::map<unsigned int, XmlSchemaInstanceBase *> idMap;
 
 /* ***************************************************************** */
 /* ***************************************************************** */
@@ -334,8 +336,8 @@ CheckStatusEnumType::CheckStatusEnumType(
   XmlNMTOKEN(
     valIn)
 {
-  if (!bad)
-    bad = (strcmp(val.c_str(), "PASS") &&
+  if (!getbad())
+    setbad(strcmp(val.c_str(), "PASS") &&
            strcmp(val.c_str(), "FAIL") &&
            strcmp(val.c_str(), "PENDING"));
 }
@@ -648,7 +650,7 @@ bool EnvironmentsType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -657,12 +659,12 @@ bool EnvironmentsType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in EnvironmentsType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -812,7 +814,7 @@ bool ErrorsType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -821,12 +823,12 @@ bool ErrorsType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in ErrorsType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -886,8 +888,8 @@ InspectionModeEnumType::InspectionModeEnumType(
   XmlString(
     valIn)
 {
-  if (!bad)
-    bad = (strcmp(val.c_str(), "FAI_Full") &&
+  if (!getbad())
+    setbad(strcmp(val.c_str(), "FAI_Full") &&
            strcmp(val.c_str(), "FAI_Partial") &&
            strcmp(val.c_str(), "100Percent") &&
            strcmp(val.c_str(), "APQP") &&
@@ -1040,8 +1042,8 @@ InspectionScopeEnumType::InspectionScopeEnumType(
   XmlNMTOKEN(
     valIn)
 {
-  if (!bad)
-    bad = (strcmp(val.c_str(), "DETAIL") &&
+  if (!getbad())
+    setbad(strcmp(val.c_str(), "DETAIL") &&
            strcmp(val.c_str(), "ASSEMBLY"));
 }
 
@@ -1751,7 +1753,7 @@ bool ManufacturingProcessTraceabilitiesType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -1760,12 +1762,12 @@ bool ManufacturingProcessTraceabilitiesType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in ManufacturingProcessTraceabilitiesType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -2078,7 +2080,7 @@ bool ManufacturingProcessTraceabilityType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -2087,12 +2089,12 @@ bool ManufacturingProcessTraceabilityType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in ManufacturingProcessTraceabilityType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -2106,7 +2108,11 @@ bool ManufacturingProcessTraceabilityType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in ManufacturingProcessTraceabilityType\n");
       returnValue = true;
@@ -2861,7 +2867,7 @@ bool ProcessParametersType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -2870,12 +2876,12 @@ bool ProcessParametersType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in ProcessParametersType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -2935,8 +2941,8 @@ ProductDataQualityAreaEnumType::ProductDataQualityAreaEnumType(
   XmlNMTOKEN(
     valIn)
 {
-  if (!bad)
-    bad = (strcmp(val.c_str(), "OVERALL") &&
+  if (!getbad())
+    setbad(strcmp(val.c_str(), "OVERALL") &&
            strcmp(val.c_str(), "PRODUCT_GEOMETRIC_DATA") &&
            strcmp(val.c_str(), "PRODUCT_MANUFACTURING_INFORMATION") &&
            strcmp(val.c_str(), "BUSINESS_PRACTICE") &&
@@ -3354,7 +3360,7 @@ bool ProductDataQualityChecksType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -3363,12 +3369,12 @@ bool ProductDataQualityChecksType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in ProductDataQualityChecksType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -3683,8 +3689,8 @@ TimeDescriptionEnumType::TimeDescriptionEnumType(
   XmlNMTOKEN(
     valIn)
 {
-  if (!bad)
-    bad = (strcmp(val.c_str(), "INSPECTION_START") &&
+  if (!getbad())
+    setbad(strcmp(val.c_str(), "INSPECTION_START") &&
            strcmp(val.c_str(), "INSPECTION_END") &&
            strcmp(val.c_str(), "INTERMEDIATE"));
 }

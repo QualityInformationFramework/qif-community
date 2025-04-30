@@ -4,10 +4,12 @@
 #include <string.h>            // for strdup
 #include <stdlib.h>            // for exit
 #include <list>
+#include  <map>
 #include <xmlSchemaInstance.hh>
 #include "StatisticsClasses.hh"
 
 #define INDENT 2
+extern std::map<unsigned int, XmlSchemaInstanceBase *> idMap;
 
 /* ***************************************************************** */
 /* ***************************************************************** */
@@ -26,8 +28,8 @@ ActionToTakeEnumType::ActionToTakeEnumType(
   XmlNMTOKEN(
     valIn)
 {
-  if (!bad)
-    bad = (strcmp(val.c_str(), "HALT_PRODUCTION") &&
+  if (!getbad())
+    setbad(strcmp(val.c_str(), "HALT_PRODUCTION") &&
            strcmp(val.c_str(), "CONTAINMENT") &&
            strcmp(val.c_str(), "NEW_MATERIAL_BATCH") &&
            strcmp(val.c_str(), "NEW_TOOLING") &&
@@ -686,8 +688,8 @@ AssignableCauseEnumType::AssignableCauseEnumType(
   XmlNMTOKEN(
     valIn)
 {
-  if (!bad)
-    bad = (strcmp(val.c_str(), "POWER_FAILURE") &&
+  if (!getbad())
+    setbad(strcmp(val.c_str(), "POWER_FAILURE") &&
            strcmp(val.c_str(), "BROKEN_TOOL") &&
            strcmp(val.c_str(), "COMPUTER_CRASH") &&
            strcmp(val.c_str(), "WEATHER_EVENT") &&
@@ -841,7 +843,7 @@ bool AssignableCauseType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -850,12 +852,12 @@ bool AssignableCauseType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in AssignableCauseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -869,7 +871,11 @@ bool AssignableCauseType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in AssignableCauseType\n");
       returnValue = true;
@@ -1053,7 +1059,7 @@ bool AssignableCausesType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -1062,12 +1068,12 @@ bool AssignableCausesType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in AssignableCausesType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -1145,12 +1151,12 @@ void AverageFeatureType::printSelf(FILE * outFile)
   doSpaces(+INDENT, outFile);
   {
     doSpaces(0, outFile);
-    if (FeatureMeasurement->printElement == 0)
+    if (FeatureMeasurement->getprintElement() == 0)
       {
         fprintf(stderr, "element name missing\n");
         exit(1);
       }
-    else if (strcmp(FeatureMeasurement->printElement, "CircleFeatureMeasurement") == 0)
+    else if (strcmp(FeatureMeasurement->getprintElement(), "CircleFeatureMeasurement") == 0)
       {
         CircleFeatureMeasurementType * typ;
         if ((typ = dynamic_cast<CircleFeatureMeasurementType *>(FeatureMeasurement)))
@@ -1166,7 +1172,7 @@ void AverageFeatureType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(FeatureMeasurement->printElement, "CircularArcFeatureMeasurement") == 0)
+    else if (strcmp(FeatureMeasurement->getprintElement(), "CircularArcFeatureMeasurement") == 0)
       {
         CircularArcFeatureMeasurementType * typ;
         if ((typ = dynamic_cast<CircularArcFeatureMeasurementType *>(FeatureMeasurement)))
@@ -1182,7 +1188,7 @@ void AverageFeatureType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(FeatureMeasurement->printElement, "ConeFeatureMeasurement") == 0)
+    else if (strcmp(FeatureMeasurement->getprintElement(), "ConeFeatureMeasurement") == 0)
       {
         ConeFeatureMeasurementType * typ;
         if ((typ = dynamic_cast<ConeFeatureMeasurementType *>(FeatureMeasurement)))
@@ -1198,7 +1204,7 @@ void AverageFeatureType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(FeatureMeasurement->printElement, "ConicalSegmentFeatureMeasurement") == 0)
+    else if (strcmp(FeatureMeasurement->getprintElement(), "ConicalSegmentFeatureMeasurement") == 0)
       {
         ConicalSegmentFeatureMeasurementType * typ;
         if ((typ = dynamic_cast<ConicalSegmentFeatureMeasurementType *>(FeatureMeasurement)))
@@ -1214,7 +1220,7 @@ void AverageFeatureType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(FeatureMeasurement->printElement, "CylinderFeatureMeasurement") == 0)
+    else if (strcmp(FeatureMeasurement->getprintElement(), "CylinderFeatureMeasurement") == 0)
       {
         CylinderFeatureMeasurementType * typ;
         if ((typ = dynamic_cast<CylinderFeatureMeasurementType *>(FeatureMeasurement)))
@@ -1230,7 +1236,7 @@ void AverageFeatureType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(FeatureMeasurement->printElement, "CylindricalSegmentFeatureMeasurement") == 0)
+    else if (strcmp(FeatureMeasurement->getprintElement(), "CylindricalSegmentFeatureMeasurement") == 0)
       {
         CylindricalSegmentFeatureMeasurementType * typ;
         if ((typ = dynamic_cast<CylindricalSegmentFeatureMeasurementType *>(FeatureMeasurement)))
@@ -1246,7 +1252,7 @@ void AverageFeatureType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(FeatureMeasurement->printElement, "EdgePointFeatureMeasurement") == 0)
+    else if (strcmp(FeatureMeasurement->getprintElement(), "EdgePointFeatureMeasurement") == 0)
       {
         EdgePointFeatureMeasurementType * typ;
         if ((typ = dynamic_cast<EdgePointFeatureMeasurementType *>(FeatureMeasurement)))
@@ -1262,7 +1268,7 @@ void AverageFeatureType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(FeatureMeasurement->printElement, "EllipseFeatureMeasurement") == 0)
+    else if (strcmp(FeatureMeasurement->getprintElement(), "EllipseFeatureMeasurement") == 0)
       {
         EllipseFeatureMeasurementType * typ;
         if ((typ = dynamic_cast<EllipseFeatureMeasurementType *>(FeatureMeasurement)))
@@ -1278,7 +1284,7 @@ void AverageFeatureType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(FeatureMeasurement->printElement, "EllipticalArcFeatureMeasurement") == 0)
+    else if (strcmp(FeatureMeasurement->getprintElement(), "EllipticalArcFeatureMeasurement") == 0)
       {
         EllipticalArcFeatureMeasurementType * typ;
         if ((typ = dynamic_cast<EllipticalArcFeatureMeasurementType *>(FeatureMeasurement)))
@@ -1294,7 +1300,7 @@ void AverageFeatureType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(FeatureMeasurement->printElement, "ElongatedCircleFeatureMeasurement") == 0)
+    else if (strcmp(FeatureMeasurement->getprintElement(), "ElongatedCircleFeatureMeasurement") == 0)
       {
         ElongatedCircleFeatureMeasurementType * typ;
         if ((typ = dynamic_cast<ElongatedCircleFeatureMeasurementType *>(FeatureMeasurement)))
@@ -1310,7 +1316,7 @@ void AverageFeatureType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(FeatureMeasurement->printElement, "ElongatedCylinderFeatureMeasurement") == 0)
+    else if (strcmp(FeatureMeasurement->getprintElement(), "ElongatedCylinderFeatureMeasurement") == 0)
       {
         ElongatedCylinderFeatureMeasurementType * typ;
         if ((typ = dynamic_cast<ElongatedCylinderFeatureMeasurementType *>(FeatureMeasurement)))
@@ -1326,7 +1332,7 @@ void AverageFeatureType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(FeatureMeasurement->printElement, "ExtrudedCrossSectionFeatureMeasurement") == 0)
+    else if (strcmp(FeatureMeasurement->getprintElement(), "ExtrudedCrossSectionFeatureMeasurement") == 0)
       {
         ExtrudedCrossSectionFeatureMeasurementType * typ;
         if ((typ = dynamic_cast<ExtrudedCrossSectionFeatureMeasurementType *>(FeatureMeasurement)))
@@ -1342,7 +1348,7 @@ void AverageFeatureType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(FeatureMeasurement->printElement, "GroupFeatureMeasurement") == 0)
+    else if (strcmp(FeatureMeasurement->getprintElement(), "GroupFeatureMeasurement") == 0)
       {
         GroupFeatureMeasurementType * typ;
         if ((typ = dynamic_cast<GroupFeatureMeasurementType *>(FeatureMeasurement)))
@@ -1358,7 +1364,7 @@ void AverageFeatureType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(FeatureMeasurement->printElement, "LineFeatureMeasurement") == 0)
+    else if (strcmp(FeatureMeasurement->getprintElement(), "LineFeatureMeasurement") == 0)
       {
         LineFeatureMeasurementType * typ;
         if ((typ = dynamic_cast<LineFeatureMeasurementType *>(FeatureMeasurement)))
@@ -1374,7 +1380,7 @@ void AverageFeatureType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(FeatureMeasurement->printElement, "MarkingFeatureMeasurement") == 0)
+    else if (strcmp(FeatureMeasurement->getprintElement(), "MarkingFeatureMeasurement") == 0)
       {
         MarkingFeatureMeasurementType * typ;
         if ((typ = dynamic_cast<MarkingFeatureMeasurementType *>(FeatureMeasurement)))
@@ -1390,7 +1396,7 @@ void AverageFeatureType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(FeatureMeasurement->printElement, "OppositeAngledLinesFeatureMeasurement") == 0)
+    else if (strcmp(FeatureMeasurement->getprintElement(), "OppositeAngledLinesFeatureMeasurement") == 0)
       {
         OppositeAngledLinesFeatureMeasurementType * typ;
         if ((typ = dynamic_cast<OppositeAngledLinesFeatureMeasurementType *>(FeatureMeasurement)))
@@ -1406,7 +1412,7 @@ void AverageFeatureType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(FeatureMeasurement->printElement, "OppositeAngledPlanesFeatureMeasurement") == 0)
+    else if (strcmp(FeatureMeasurement->getprintElement(), "OppositeAngledPlanesFeatureMeasurement") == 0)
       {
         OppositeAngledPlanesFeatureMeasurementType * typ;
         if ((typ = dynamic_cast<OppositeAngledPlanesFeatureMeasurementType *>(FeatureMeasurement)))
@@ -1422,7 +1428,7 @@ void AverageFeatureType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(FeatureMeasurement->printElement, "OppositeParallelLinesFeatureMeasurement") == 0)
+    else if (strcmp(FeatureMeasurement->getprintElement(), "OppositeParallelLinesFeatureMeasurement") == 0)
       {
         OppositeParallelLinesFeatureMeasurementType * typ;
         if ((typ = dynamic_cast<OppositeParallelLinesFeatureMeasurementType *>(FeatureMeasurement)))
@@ -1438,7 +1444,7 @@ void AverageFeatureType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(FeatureMeasurement->printElement, "OppositeParallelPlanesFeatureMeasurement") == 0)
+    else if (strcmp(FeatureMeasurement->getprintElement(), "OppositeParallelPlanesFeatureMeasurement") == 0)
       {
         OppositeParallelPlanesFeatureMeasurementType * typ;
         if ((typ = dynamic_cast<OppositeParallelPlanesFeatureMeasurementType *>(FeatureMeasurement)))
@@ -1454,7 +1460,7 @@ void AverageFeatureType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(FeatureMeasurement->printElement, "OtherCurveFeatureMeasurement") == 0)
+    else if (strcmp(FeatureMeasurement->getprintElement(), "OtherCurveFeatureMeasurement") == 0)
       {
         OtherCurveFeatureMeasurementType * typ;
         if ((typ = dynamic_cast<OtherCurveFeatureMeasurementType *>(FeatureMeasurement)))
@@ -1470,7 +1476,7 @@ void AverageFeatureType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(FeatureMeasurement->printElement, "OtherNonShapeFeatureMeasurement") == 0)
+    else if (strcmp(FeatureMeasurement->getprintElement(), "OtherNonShapeFeatureMeasurement") == 0)
       {
         OtherNonShapeFeatureMeasurementType * typ;
         if ((typ = dynamic_cast<OtherNonShapeFeatureMeasurementType *>(FeatureMeasurement)))
@@ -1486,7 +1492,7 @@ void AverageFeatureType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(FeatureMeasurement->printElement, "OtherShapeFeatureMeasurement") == 0)
+    else if (strcmp(FeatureMeasurement->getprintElement(), "OtherShapeFeatureMeasurement") == 0)
       {
         OtherShapeFeatureMeasurementType * typ;
         if ((typ = dynamic_cast<OtherShapeFeatureMeasurementType *>(FeatureMeasurement)))
@@ -1502,7 +1508,7 @@ void AverageFeatureType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(FeatureMeasurement->printElement, "OtherSurfaceFeatureMeasurement") == 0)
+    else if (strcmp(FeatureMeasurement->getprintElement(), "OtherSurfaceFeatureMeasurement") == 0)
       {
         OtherSurfaceFeatureMeasurementType * typ;
         if ((typ = dynamic_cast<OtherSurfaceFeatureMeasurementType *>(FeatureMeasurement)))
@@ -1518,7 +1524,7 @@ void AverageFeatureType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(FeatureMeasurement->printElement, "PlaneFeatureMeasurement") == 0)
+    else if (strcmp(FeatureMeasurement->getprintElement(), "PlaneFeatureMeasurement") == 0)
       {
         PlaneFeatureMeasurementType * typ;
         if ((typ = dynamic_cast<PlaneFeatureMeasurementType *>(FeatureMeasurement)))
@@ -1534,7 +1540,7 @@ void AverageFeatureType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(FeatureMeasurement->printElement, "PointDefinedCurveFeatureMeasurement") == 0)
+    else if (strcmp(FeatureMeasurement->getprintElement(), "PointDefinedCurveFeatureMeasurement") == 0)
       {
         PointDefinedCurveFeatureMeasurementType * typ;
         if ((typ = dynamic_cast<PointDefinedCurveFeatureMeasurementType *>(FeatureMeasurement)))
@@ -1550,7 +1556,7 @@ void AverageFeatureType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(FeatureMeasurement->printElement, "PointDefinedSurfaceFeatureMeasurement") == 0)
+    else if (strcmp(FeatureMeasurement->getprintElement(), "PointDefinedSurfaceFeatureMeasurement") == 0)
       {
         PointDefinedSurfaceFeatureMeasurementType * typ;
         if ((typ = dynamic_cast<PointDefinedSurfaceFeatureMeasurementType *>(FeatureMeasurement)))
@@ -1566,7 +1572,7 @@ void AverageFeatureType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(FeatureMeasurement->printElement, "PointFeatureMeasurement") == 0)
+    else if (strcmp(FeatureMeasurement->getprintElement(), "PointFeatureMeasurement") == 0)
       {
         PointFeatureMeasurementType * typ;
         if ((typ = dynamic_cast<PointFeatureMeasurementType *>(FeatureMeasurement)))
@@ -1582,7 +1588,7 @@ void AverageFeatureType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(FeatureMeasurement->printElement, "SphereFeatureMeasurement") == 0)
+    else if (strcmp(FeatureMeasurement->getprintElement(), "SphereFeatureMeasurement") == 0)
       {
         SphereFeatureMeasurementType * typ;
         if ((typ = dynamic_cast<SphereFeatureMeasurementType *>(FeatureMeasurement)))
@@ -1598,7 +1604,7 @@ void AverageFeatureType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(FeatureMeasurement->printElement, "SphericalSegmentFeatureMeasurement") == 0)
+    else if (strcmp(FeatureMeasurement->getprintElement(), "SphericalSegmentFeatureMeasurement") == 0)
       {
         SphericalSegmentFeatureMeasurementType * typ;
         if ((typ = dynamic_cast<SphericalSegmentFeatureMeasurementType *>(FeatureMeasurement)))
@@ -1614,7 +1620,7 @@ void AverageFeatureType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(FeatureMeasurement->printElement, "SurfaceOfRevolutionFeatureMeasurement") == 0)
+    else if (strcmp(FeatureMeasurement->getprintElement(), "SurfaceOfRevolutionFeatureMeasurement") == 0)
       {
         SurfaceOfRevolutionFeatureMeasurementType * typ;
         if ((typ = dynamic_cast<SurfaceOfRevolutionFeatureMeasurementType *>(FeatureMeasurement)))
@@ -1630,7 +1636,7 @@ void AverageFeatureType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(FeatureMeasurement->printElement, "ThreadedFeatureMeasurement") == 0)
+    else if (strcmp(FeatureMeasurement->getprintElement(), "ThreadedFeatureMeasurement") == 0)
       {
         ThreadedFeatureMeasurementType * typ;
         if ((typ = dynamic_cast<ThreadedFeatureMeasurementType *>(FeatureMeasurement)))
@@ -1646,7 +1652,7 @@ void AverageFeatureType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(FeatureMeasurement->printElement, "ToroidalSegmentFeatureMeasurement") == 0)
+    else if (strcmp(FeatureMeasurement->getprintElement(), "ToroidalSegmentFeatureMeasurement") == 0)
       {
         ToroidalSegmentFeatureMeasurementType * typ;
         if ((typ = dynamic_cast<ToroidalSegmentFeatureMeasurementType *>(FeatureMeasurement)))
@@ -1662,7 +1668,7 @@ void AverageFeatureType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(FeatureMeasurement->printElement, "TorusFeatureMeasurement") == 0)
+    else if (strcmp(FeatureMeasurement->getprintElement(), "TorusFeatureMeasurement") == 0)
       {
         TorusFeatureMeasurementType * typ;
         if ((typ = dynamic_cast<TorusFeatureMeasurementType *>(FeatureMeasurement)))
@@ -1847,7 +1853,7 @@ bool AverageFeaturesType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -1856,12 +1862,12 @@ bool AverageFeaturesType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in AverageFeaturesType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -2153,12 +2159,12 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
         CharacteristicStatsEvalBaseType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "AngleBetweenCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "AngleBetweenCharacteristicStats") == 0)
           {
             AngleBetweenCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<AngleBetweenCharacteristicStatsEvalType *>(basie)))
@@ -2174,7 +2180,7 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "AngleCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "AngleCharacteristicStats") == 0)
           {
             AngleCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<AngleCharacteristicStatsEvalType *>(basie)))
@@ -2190,7 +2196,7 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "AngularCoordinateCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "AngularCoordinateCharacteristicStats") == 0)
           {
             AngularCoordinateCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<AngularCoordinateCharacteristicStatsEvalType *>(basie)))
@@ -2206,7 +2212,7 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "AngleFromCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "AngleFromCharacteristicStats") == 0)
           {
             AngleFromCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<AngleFromCharacteristicStatsEvalType *>(basie)))
@@ -2222,7 +2228,7 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "AngularCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "AngularCharacteristicStats") == 0)
           {
             AngularCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<AngularCharacteristicStatsEvalType *>(basie)))
@@ -2238,7 +2244,7 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "AngularityCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "AngularityCharacteristicStats") == 0)
           {
             AngularityCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<AngularityCharacteristicStatsEvalType *>(basie)))
@@ -2254,7 +2260,7 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ChordCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "ChordCharacteristicStats") == 0)
           {
             ChordCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<ChordCharacteristicStatsEvalType *>(basie)))
@@ -2270,7 +2276,7 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "CircularityCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "CircularityCharacteristicStats") == 0)
           {
             CircularityCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<CircularityCharacteristicStatsEvalType *>(basie)))
@@ -2286,7 +2292,7 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "CircularRunoutCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "CircularRunoutCharacteristicStats") == 0)
           {
             CircularRunoutCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<CircularRunoutCharacteristicStatsEvalType *>(basie)))
@@ -2302,7 +2308,7 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "CoaxialityCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "CoaxialityCharacteristicStats") == 0)
           {
             CoaxialityCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<CoaxialityCharacteristicStatsEvalType *>(basie)))
@@ -2318,7 +2324,7 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ConcentricityCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "ConcentricityCharacteristicStats") == 0)
           {
             ConcentricityCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<ConcentricityCharacteristicStatsEvalType *>(basie)))
@@ -2334,7 +2340,7 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ConicalTaperCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "ConicalTaperCharacteristicStats") == 0)
           {
             ConicalTaperCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<ConicalTaperCharacteristicStatsEvalType *>(basie)))
@@ -2350,7 +2356,7 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ConicityCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "ConicityCharacteristicStats") == 0)
           {
             ConicityCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<ConicityCharacteristicStatsEvalType *>(basie)))
@@ -2366,7 +2372,7 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "CurveLengthCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "CurveLengthCharacteristicStats") == 0)
           {
             CurveLengthCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<CurveLengthCharacteristicStatsEvalType *>(basie)))
@@ -2382,7 +2388,7 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "CylindricityCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "CylindricityCharacteristicStats") == 0)
           {
             CylindricityCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<CylindricityCharacteristicStatsEvalType *>(basie)))
@@ -2398,7 +2404,7 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "DepthCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "DepthCharacteristicStats") == 0)
           {
             DepthCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<DepthCharacteristicStatsEvalType *>(basie)))
@@ -2414,7 +2420,7 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "DiameterCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "DiameterCharacteristicStats") == 0)
           {
             DiameterCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<DiameterCharacteristicStatsEvalType *>(basie)))
@@ -2430,7 +2436,7 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "DistanceBetweenCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "DistanceBetweenCharacteristicStats") == 0)
           {
             DistanceBetweenCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<DistanceBetweenCharacteristicStatsEvalType *>(basie)))
@@ -2446,7 +2452,7 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "DistanceFromCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "DistanceFromCharacteristicStats") == 0)
           {
             DistanceFromCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<DistanceFromCharacteristicStatsEvalType *>(basie)))
@@ -2462,7 +2468,7 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EllipticityCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "EllipticityCharacteristicStats") == 0)
           {
             EllipticityCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<EllipticityCharacteristicStatsEvalType *>(basie)))
@@ -2478,7 +2484,7 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "FlatnessCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "FlatnessCharacteristicStats") == 0)
           {
             FlatnessCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<FlatnessCharacteristicStatsEvalType *>(basie)))
@@ -2494,7 +2500,7 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "FlatTaperCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "FlatTaperCharacteristicStats") == 0)
           {
             FlatTaperCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<FlatTaperCharacteristicStatsEvalType *>(basie)))
@@ -2510,7 +2516,7 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "GeometricCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "GeometricCharacteristicStats") == 0)
           {
             GeometricCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<GeometricCharacteristicStatsEvalType *>(basie)))
@@ -2526,7 +2532,7 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "HeightCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "HeightCharacteristicStats") == 0)
           {
             HeightCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<HeightCharacteristicStatsEvalType *>(basie)))
@@ -2542,7 +2548,7 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LengthCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "LengthCharacteristicStats") == 0)
           {
             LengthCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<LengthCharacteristicStatsEvalType *>(basie)))
@@ -2558,7 +2564,7 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LinearCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "LinearCharacteristicStats") == 0)
           {
             LinearCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<LinearCharacteristicStatsEvalType *>(basie)))
@@ -2574,7 +2580,7 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LinearCoordinateCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "LinearCoordinateCharacteristicStats") == 0)
           {
             LinearCoordinateCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<LinearCoordinateCharacteristicStatsEvalType *>(basie)))
@@ -2590,7 +2596,7 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LocationCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "LocationCharacteristicStats") == 0)
           {
             LocationCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<LocationCharacteristicStatsEvalType *>(basie)))
@@ -2606,7 +2612,7 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LineProfileCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "LineProfileCharacteristicStats") == 0)
           {
             LineProfileCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<LineProfileCharacteristicStatsEvalType *>(basie)))
@@ -2622,7 +2628,7 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "OtherFormCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "OtherFormCharacteristicStats") == 0)
           {
             OtherFormCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<OtherFormCharacteristicStatsEvalType *>(basie)))
@@ -2638,7 +2644,7 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "OrientationCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "OrientationCharacteristicStats") == 0)
           {
             OrientationCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<OrientationCharacteristicStatsEvalType *>(basie)))
@@ -2654,7 +2660,7 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ParallelismCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "ParallelismCharacteristicStats") == 0)
           {
             ParallelismCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<ParallelismCharacteristicStatsEvalType *>(basie)))
@@ -2670,7 +2676,7 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "PerpendicularityCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "PerpendicularityCharacteristicStats") == 0)
           {
             PerpendicularityCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<PerpendicularityCharacteristicStatsEvalType *>(basie)))
@@ -2686,7 +2692,7 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "PointProfileCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "PointProfileCharacteristicStats") == 0)
           {
             PointProfileCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<PointProfileCharacteristicStatsEvalType *>(basie)))
@@ -2702,7 +2708,7 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "PositionCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "PositionCharacteristicStats") == 0)
           {
             PositionCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<PositionCharacteristicStatsEvalType *>(basie)))
@@ -2718,7 +2724,7 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RadiusCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "RadiusCharacteristicStats") == 0)
           {
             RadiusCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<RadiusCharacteristicStatsEvalType *>(basie)))
@@ -2734,7 +2740,7 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SphericalDiameterCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "SphericalDiameterCharacteristicStats") == 0)
           {
             SphericalDiameterCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<SphericalDiameterCharacteristicStatsEvalType *>(basie)))
@@ -2750,7 +2756,7 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SphericalRadiusCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "SphericalRadiusCharacteristicStats") == 0)
           {
             SphericalRadiusCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<SphericalRadiusCharacteristicStatsEvalType *>(basie)))
@@ -2766,7 +2772,7 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SphericityCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "SphericityCharacteristicStats") == 0)
           {
             SphericityCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<SphericityCharacteristicStatsEvalType *>(basie)))
@@ -2782,7 +2788,7 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SquareCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "SquareCharacteristicStats") == 0)
           {
             SquareCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<SquareCharacteristicStatsEvalType *>(basie)))
@@ -2798,7 +2804,7 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "StraightnessCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "StraightnessCharacteristicStats") == 0)
           {
             StraightnessCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<StraightnessCharacteristicStatsEvalType *>(basie)))
@@ -2814,7 +2820,7 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SurfaceProfileCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "SurfaceProfileCharacteristicStats") == 0)
           {
             SurfaceProfileCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<SurfaceProfileCharacteristicStatsEvalType *>(basie)))
@@ -2830,7 +2836,7 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SurfaceProfileNonUniformCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "SurfaceProfileNonUniformCharacteristicStats") == 0)
           {
             SurfaceProfileNonUniformCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<SurfaceProfileNonUniformCharacteristicStatsEvalType *>(basie)))
@@ -2846,7 +2852,7 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SurfaceTextureCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "SurfaceTextureCharacteristicStats") == 0)
           {
             SurfaceTextureCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<SurfaceTextureCharacteristicStatsEvalType *>(basie)))
@@ -2862,7 +2868,7 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SymmetryCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "SymmetryCharacteristicStats") == 0)
           {
             SymmetryCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<SymmetryCharacteristicStatsEvalType *>(basie)))
@@ -2878,7 +2884,7 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ThicknessCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "ThicknessCharacteristicStats") == 0)
           {
             ThicknessCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<ThicknessCharacteristicStatsEvalType *>(basie)))
@@ -2894,7 +2900,7 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ThreadCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "ThreadCharacteristicStats") == 0)
           {
             ThreadCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<ThreadCharacteristicStatsEvalType *>(basie)))
@@ -2910,7 +2916,7 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ToroidicityCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "ToroidicityCharacteristicStats") == 0)
           {
             ToroidicityCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<ToroidicityCharacteristicStatsEvalType *>(basie)))
@@ -2926,7 +2932,7 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TotalRunoutCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "TotalRunoutCharacteristicStats") == 0)
           {
             TotalRunoutCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<TotalRunoutCharacteristicStatsEvalType *>(basie)))
@@ -2942,7 +2948,7 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UserDefinedAttributeCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "UserDefinedAttributeCharacteristicStats") == 0)
           {
             UserDefinedAttributeCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<UserDefinedAttributeCharacteristicStatsEvalType *>(basie)))
@@ -2958,7 +2964,7 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UserDefinedLinearCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "UserDefinedLinearCharacteristicStats") == 0)
           {
             UserDefinedLinearCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<UserDefinedLinearCharacteristicStatsEvalType *>(basie)))
@@ -2974,7 +2980,7 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UserDefinedAngularCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "UserDefinedAngularCharacteristicStats") == 0)
           {
             UserDefinedAngularCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<UserDefinedAngularCharacteristicStatsEvalType *>(basie)))
@@ -2990,7 +2996,7 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UserDefinedAreaCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "UserDefinedAreaCharacteristicStats") == 0)
           {
             UserDefinedAreaCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<UserDefinedAreaCharacteristicStatsEvalType *>(basie)))
@@ -3006,7 +3012,7 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UserDefinedForceCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "UserDefinedForceCharacteristicStats") == 0)
           {
             UserDefinedForceCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<UserDefinedForceCharacteristicStatsEvalType *>(basie)))
@@ -3022,7 +3028,7 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UserDefinedMassCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "UserDefinedMassCharacteristicStats") == 0)
           {
             UserDefinedMassCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<UserDefinedMassCharacteristicStatsEvalType *>(basie)))
@@ -3038,7 +3044,7 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UserDefinedPressureCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "UserDefinedPressureCharacteristicStats") == 0)
           {
             UserDefinedPressureCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<UserDefinedPressureCharacteristicStatsEvalType *>(basie)))
@@ -3054,7 +3060,7 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UserDefinedSpeedCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "UserDefinedSpeedCharacteristicStats") == 0)
           {
             UserDefinedSpeedCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<UserDefinedSpeedCharacteristicStatsEvalType *>(basie)))
@@ -3070,7 +3076,7 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UserDefinedTemperatureCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "UserDefinedTemperatureCharacteristicStats") == 0)
           {
             UserDefinedTemperatureCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<UserDefinedTemperatureCharacteristicStatsEvalType *>(basie)))
@@ -3086,7 +3092,7 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UserDefinedTimeCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "UserDefinedTimeCharacteristicStats") == 0)
           {
             UserDefinedTimeCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<UserDefinedTimeCharacteristicStatsEvalType *>(basie)))
@@ -3102,7 +3108,7 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UserDefinedUnitCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "UserDefinedUnitCharacteristicStats") == 0)
           {
             UserDefinedUnitCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<UserDefinedUnitCharacteristicStatsEvalType *>(basie)))
@@ -3118,7 +3124,7 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "WidthCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "WidthCharacteristicStats") == 0)
           {
             WidthCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<WidthCharacteristicStatsEvalType *>(basie)))
@@ -3134,7 +3140,7 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "WeldFilletCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "WeldFilletCharacteristicStats") == 0)
           {
             WeldFilletCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<WeldFilletCharacteristicStatsEvalType *>(basie)))
@@ -3150,7 +3156,7 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "WeldPlugCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "WeldPlugCharacteristicStats") == 0)
           {
             WeldPlugCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<WeldPlugCharacteristicStatsEvalType *>(basie)))
@@ -3166,7 +3172,7 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "WeldSlotCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "WeldSlotCharacteristicStats") == 0)
           {
             WeldSlotCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<WeldSlotCharacteristicStatsEvalType *>(basie)))
@@ -3182,7 +3188,7 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "WeldSpotCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "WeldSpotCharacteristicStats") == 0)
           {
             WeldSpotCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<WeldSpotCharacteristicStatsEvalType *>(basie)))
@@ -3198,7 +3204,7 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "WeldStudCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "WeldStudCharacteristicStats") == 0)
           {
             WeldStudCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<WeldStudCharacteristicStatsEvalType *>(basie)))
@@ -3214,7 +3220,7 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "WeldSeamCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "WeldSeamCharacteristicStats") == 0)
           {
             WeldSeamCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<WeldSeamCharacteristicStatsEvalType *>(basie)))
@@ -3230,7 +3236,7 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "WeldSurfacingCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "WeldSurfacingCharacteristicStats") == 0)
           {
             WeldSurfacingCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<WeldSurfacingCharacteristicStatsEvalType *>(basie)))
@@ -3246,7 +3252,7 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "WeldEdgeCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "WeldEdgeCharacteristicStats") == 0)
           {
             WeldEdgeCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<WeldEdgeCharacteristicStatsEvalType *>(basie)))
@@ -3262,7 +3268,7 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "WeldSquareCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "WeldSquareCharacteristicStats") == 0)
           {
             WeldSquareCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<WeldSquareCharacteristicStatsEvalType *>(basie)))
@@ -3278,7 +3284,7 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "WeldBevelCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "WeldBevelCharacteristicStats") == 0)
           {
             WeldBevelCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<WeldBevelCharacteristicStatsEvalType *>(basie)))
@@ -3294,7 +3300,7 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "WeldVCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "WeldVCharacteristicStats") == 0)
           {
             WeldVCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<WeldVCharacteristicStatsEvalType *>(basie)))
@@ -3310,7 +3316,7 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "WeldUCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "WeldUCharacteristicStats") == 0)
           {
             WeldUCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<WeldUCharacteristicStatsEvalType *>(basie)))
@@ -3326,7 +3332,7 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "WeldJCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "WeldJCharacteristicStats") == 0)
           {
             WeldJCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<WeldJCharacteristicStatsEvalType *>(basie)))
@@ -3342,7 +3348,7 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "WeldFlareVCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "WeldFlareVCharacteristicStats") == 0)
           {
             WeldFlareVCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<WeldFlareVCharacteristicStatsEvalType *>(basie)))
@@ -3358,7 +3364,7 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "WeldFlareBevelCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "WeldFlareBevelCharacteristicStats") == 0)
           {
             WeldFlareBevelCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<WeldFlareBevelCharacteristicStatsEvalType *>(basie)))
@@ -3374,7 +3380,7 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "WeldScarfCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "WeldScarfCharacteristicStats") == 0)
           {
             WeldScarfCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<WeldScarfCharacteristicStatsEvalType *>(basie)))
@@ -3390,7 +3396,7 @@ void CharacteristicsStatsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "WeldCompoundCharacteristicStats") == 0)
+        else if (strcmp(basie->getprintElement(), "WeldCompoundCharacteristicStats") == 0)
           {
             WeldCompoundCharacteristicStatsEvalType * typ;
             if ((typ = dynamic_cast<WeldCompoundCharacteristicStatsEvalType *>(basie)))
@@ -3428,7 +3434,7 @@ bool CharacteristicsStatsType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -3437,12 +3443,12 @@ bool CharacteristicsStatsType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in CharacteristicsStatsType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -4829,7 +4835,7 @@ bool ControlIssueDetailsListType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -4838,12 +4844,12 @@ bool ControlIssueDetailsListType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in ControlIssueDetailsListType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -5049,8 +5055,8 @@ ControlIssueEnumType::ControlIssueEnumType(
   XmlNMTOKEN(
     valIn)
 {
-  if (!bad)
-    bad = (strcmp(val.c_str(), "OOT") &&
+  if (!getbad())
+    setbad(strcmp(val.c_str(), "OOT") &&
            strcmp(val.c_str(), "CP") &&
            strcmp(val.c_str(), "CPK") &&
            strcmp(val.c_str(), "PP") &&
@@ -5283,7 +5289,7 @@ bool CorrectiveActionType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -5292,12 +5298,12 @@ bool CorrectiveActionType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in CorrectiveActionType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -5311,7 +5317,11 @@ bool CorrectiveActionType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in CorrectiveActionType\n");
       returnValue = true;
@@ -5489,7 +5499,7 @@ bool CorrectiveActionsType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -5498,12 +5508,12 @@ bool CorrectiveActionsType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in CorrectiveActionsType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -5633,7 +5643,7 @@ bool CriterionAngularType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "angularUnit")
+      if (decl->getname() == "angularUnit")
         {
           XmlToken * angularUnitVal;
           if (this->angularUnit)
@@ -5642,12 +5652,12 @@ bool CriterionAngularType::badAttributes(
               returnValue = true;
               break;
             }
-          angularUnitVal = new XmlToken(decl->val.c_str());
-          if (angularUnitVal->bad)
+          angularUnitVal = new XmlToken(decl->getval().c_str());
+          if (angularUnitVal->getbad())
             {
               delete angularUnitVal;
               fprintf(stderr, "bad value %s for angularUnit in CriterionAngularType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -5766,7 +5776,7 @@ bool CriterionAreaType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "areaUnit")
+      if (decl->getname() == "areaUnit")
         {
           XmlToken * areaUnitVal;
           if (this->areaUnit)
@@ -5775,12 +5785,12 @@ bool CriterionAreaType::badAttributes(
               returnValue = true;
               break;
             }
-          areaUnitVal = new XmlToken(decl->val.c_str());
-          if (areaUnitVal->bad)
+          areaUnitVal = new XmlToken(decl->getval().c_str());
+          if (areaUnitVal->getbad())
             {
               delete areaUnitVal;
               fprintf(stderr, "bad value %s for areaUnit in CriterionAreaType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -5954,7 +5964,7 @@ bool CriterionForceType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "forceUnit")
+      if (decl->getname() == "forceUnit")
         {
           XmlToken * forceUnitVal;
           if (this->forceUnit)
@@ -5963,12 +5973,12 @@ bool CriterionForceType::badAttributes(
               returnValue = true;
               break;
             }
-          forceUnitVal = new XmlToken(decl->val.c_str());
-          if (forceUnitVal->bad)
+          forceUnitVal = new XmlToken(decl->getval().c_str());
+          if (forceUnitVal->getbad())
             {
               delete forceUnitVal;
               fprintf(stderr, "bad value %s for forceUnit in CriterionForceType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -6142,7 +6152,7 @@ bool CriterionLinearType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "linearUnit")
+      if (decl->getname() == "linearUnit")
         {
           XmlToken * linearUnitVal;
           if (this->linearUnit)
@@ -6151,12 +6161,12 @@ bool CriterionLinearType::badAttributes(
               returnValue = true;
               break;
             }
-          linearUnitVal = new XmlToken(decl->val.c_str());
-          if (linearUnitVal->bad)
+          linearUnitVal = new XmlToken(decl->getval().c_str());
+          if (linearUnitVal->getbad())
             {
               delete linearUnitVal;
               fprintf(stderr, "bad value %s for linearUnit in CriterionLinearType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -6275,7 +6285,7 @@ bool CriterionMassType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "massUnit")
+      if (decl->getname() == "massUnit")
         {
           XmlToken * massUnitVal;
           if (this->massUnit)
@@ -6284,12 +6294,12 @@ bool CriterionMassType::badAttributes(
               returnValue = true;
               break;
             }
-          massUnitVal = new XmlToken(decl->val.c_str());
-          if (massUnitVal->bad)
+          massUnitVal = new XmlToken(decl->getval().c_str());
+          if (massUnitVal->getbad())
             {
               delete massUnitVal;
               fprintf(stderr, "bad value %s for massUnit in CriterionMassType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -6481,7 +6491,7 @@ bool CriterionPressureType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "pressureUnit")
+      if (decl->getname() == "pressureUnit")
         {
           XmlToken * pressureUnitVal;
           if (this->pressureUnit)
@@ -6490,12 +6500,12 @@ bool CriterionPressureType::badAttributes(
               returnValue = true;
               break;
             }
-          pressureUnitVal = new XmlToken(decl->val.c_str());
-          if (pressureUnitVal->bad)
+          pressureUnitVal = new XmlToken(decl->getval().c_str());
+          if (pressureUnitVal->getbad())
             {
               delete pressureUnitVal;
               fprintf(stderr, "bad value %s for pressureUnit in CriterionPressureType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -6614,7 +6624,7 @@ bool CriterionSpeedType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "speedUnit")
+      if (decl->getname() == "speedUnit")
         {
           XmlToken * speedUnitVal;
           if (this->speedUnit)
@@ -6623,12 +6633,12 @@ bool CriterionSpeedType::badAttributes(
               returnValue = true;
               break;
             }
-          speedUnitVal = new XmlToken(decl->val.c_str());
-          if (speedUnitVal->bad)
+          speedUnitVal = new XmlToken(decl->getval().c_str());
+          if (speedUnitVal->getbad())
             {
               delete speedUnitVal;
               fprintf(stderr, "bad value %s for speedUnit in CriterionSpeedType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -6747,7 +6757,7 @@ bool CriterionTemperatureType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "temperatureUnit")
+      if (decl->getname() == "temperatureUnit")
         {
           XmlToken * temperatureUnitVal;
           if (this->temperatureUnit)
@@ -6756,12 +6766,12 @@ bool CriterionTemperatureType::badAttributes(
               returnValue = true;
               break;
             }
-          temperatureUnitVal = new XmlToken(decl->val.c_str());
-          if (temperatureUnitVal->bad)
+          temperatureUnitVal = new XmlToken(decl->getval().c_str());
+          if (temperatureUnitVal->getbad())
             {
               delete temperatureUnitVal;
               fprintf(stderr, "bad value %s for temperatureUnit in CriterionTemperatureType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -6880,7 +6890,7 @@ bool CriterionTimeType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "timeUnit")
+      if (decl->getname() == "timeUnit")
         {
           XmlToken * timeUnitVal;
           if (this->timeUnit)
@@ -6889,12 +6899,12 @@ bool CriterionTimeType::badAttributes(
               returnValue = true;
               break;
             }
-          timeUnitVal = new XmlToken(decl->val.c_str());
-          if (timeUnitVal->bad)
+          timeUnitVal = new XmlToken(decl->getval().c_str());
+          if (timeUnitVal->getbad())
             {
               delete timeUnitVal;
               fprintf(stderr, "bad value %s for timeUnit in CriterionTimeType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -7018,7 +7028,7 @@ bool CriterionUserDefinedUnitType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "unitName")
+      if (decl->getname() == "unitName")
         {
           XmlToken * unitNameVal;
           if (this->unitName)
@@ -7027,12 +7037,12 @@ bool CriterionUserDefinedUnitType::badAttributes(
               returnValue = true;
               break;
             }
-          unitNameVal = new XmlToken(decl->val.c_str());
-          if (unitNameVal->bad)
+          unitNameVal = new XmlToken(decl->getval().c_str());
+          if (unitNameVal->getbad())
             {
               delete unitNameVal;
               fprintf(stderr, "bad value %s for unitName in CriterionUserDefinedUnitType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -7626,8 +7636,8 @@ DistributionTransformationEnumType::DistributionTransformationEnumType(
   XmlNMTOKEN(
     valIn)
 {
-  if (!bad)
-    bad = (strcmp(val.c_str(), "LOGNORMAL") &&
+  if (!getbad())
+    setbad(strcmp(val.c_str(), "LOGNORMAL") &&
            strcmp(val.c_str(), "BOUNDED") &&
            strcmp(val.c_str(), "UNBOUNDED"));
 }
@@ -7880,8 +7890,8 @@ ExclusionEnumType::ExclusionEnumType(
   XmlNMTOKEN(
     valIn)
 {
-  if (!bad)
-    bad = (strcmp(val.c_str(), "FLIER") &&
+  if (!getbad())
+    setbad(strcmp(val.c_str(), "FLIER") &&
            strcmp(val.c_str(), "EQUIPERROR") &&
            strcmp(val.c_str(), "REWORK") &&
            strcmp(val.c_str(), "KNOWNCAUSE"));
@@ -8290,7 +8300,7 @@ bool ExclusionsIdType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -8299,12 +8309,12 @@ bool ExclusionsIdType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in ExclusionsIdType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -8455,7 +8465,7 @@ bool ExclusionsIndexType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -8464,12 +8474,12 @@ bool ExclusionsIndexType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in ExclusionsIndexType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -9750,8 +9760,8 @@ OneSidedCapabilityCalculationEnumType::OneSidedCapabilityCalculationEnumType(
   XmlNMTOKEN(
     valIn)
 {
-  if (!bad)
-    bad = (strcmp(val.c_str(), "THREE_SIGMA") &&
+  if (!getbad())
+    setbad(strcmp(val.c_str(), "THREE_SIGMA") &&
            strcmp(val.c_str(), "SIX_SIGMA"));
 }
 
@@ -10560,7 +10570,7 @@ bool PointDeviationsStatsEvalType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -10569,12 +10579,12 @@ bool PointDeviationsStatsEvalType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in PointDeviationsStatsEvalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -10794,8 +10804,8 @@ PositionCapabilityCalculationEnumType::PositionCapabilityCalculationEnumType(
   XmlNMTOKEN(
     valIn)
 {
-  if (!bad)
-    bad = (strcmp(val.c_str(), "THREE_SIGMA") &&
+  if (!getbad())
+    setbad(strcmp(val.c_str(), "THREE_SIGMA") &&
            strcmp(val.c_str(), "SIX_SIGMA") &&
            strcmp(val.c_str(), "BIVARIATE") &&
            strcmp(val.c_str(), "TRIVARIATE"));
@@ -11459,8 +11469,8 @@ SamplingIntervalEnumType::SamplingIntervalEnumType(
   XmlNMTOKEN(
     valIn)
 {
-  if (!bad)
-    bad = (strcmp(val.c_str(), "SHIFT") &&
+  if (!getbad())
+    setbad(strcmp(val.c_str(), "SHIFT") &&
            strcmp(val.c_str(), "DAY") &&
            strcmp(val.c_str(), "HOUR") &&
            strcmp(val.c_str(), "WEEK") &&
@@ -12067,12 +12077,12 @@ void StatsAngularType::printSelf(FILE * outFile)
         StatsWithReferenceBaseType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "CommonStatsValue") == 0)
+        else if (strcmp(basie->getprintElement(), "CommonStatsValue") == 0)
           {
             StatsWithReferenceBaseType * typ;
             if ((typ = dynamic_cast<StatsWithReferenceBaseType *>(basie)))
@@ -12088,7 +12098,7 @@ void StatsAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Average") == 0)
+        else if (strcmp(basie->getprintElement(), "Average") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -12104,7 +12114,7 @@ void StatsAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupAverages") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupAverages") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -12120,7 +12130,7 @@ void StatsAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Difference") == 0)
+        else if (strcmp(basie->getprintElement(), "Difference") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -12136,7 +12146,7 @@ void StatsAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupDifferences") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupDifferences") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -12152,7 +12162,7 @@ void StatsAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RootMeanSquare") == 0)
+        else if (strcmp(basie->getprintElement(), "RootMeanSquare") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -12168,7 +12178,7 @@ void StatsAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Maximum") == 0)
+        else if (strcmp(basie->getprintElement(), "Maximum") == 0)
           {
             StatsMeasuredDecimalWithReferenceType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalWithReferenceType *>(basie)))
@@ -12184,7 +12194,7 @@ void StatsAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupMaxima") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupMaxima") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -12200,7 +12210,7 @@ void StatsAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Minimum") == 0)
+        else if (strcmp(basie->getprintElement(), "Minimum") == 0)
           {
             StatsMeasuredDecimalWithReferenceType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalWithReferenceType *>(basie)))
@@ -12216,7 +12226,7 @@ void StatsAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupMinima") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupMinima") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -12232,7 +12242,7 @@ void StatsAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Range") == 0)
+        else if (strcmp(basie->getprintElement(), "Range") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -12248,7 +12258,7 @@ void StatsAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupRanges") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupRanges") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -12264,7 +12274,7 @@ void StatsAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "AverageRange") == 0)
+        else if (strcmp(basie->getprintElement(), "AverageRange") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -12280,7 +12290,7 @@ void StatsAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "StandardDeviation") == 0)
+        else if (strcmp(basie->getprintElement(), "StandardDeviation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -12296,7 +12306,7 @@ void StatsAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Skew") == 0)
+        else if (strcmp(basie->getprintElement(), "Skew") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -12312,7 +12322,7 @@ void StatsAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Kurtosis") == 0)
+        else if (strcmp(basie->getprintElement(), "Kurtosis") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -12328,7 +12338,7 @@ void StatsAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Normality") == 0)
+        else if (strcmp(basie->getprintElement(), "Normality") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -12344,7 +12354,7 @@ void StatsAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ProcessVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "ProcessVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -12360,7 +12370,7 @@ void StatsAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EstimatedStandardDeviation") == 0)
+        else if (strcmp(basie->getprintElement(), "EstimatedStandardDeviation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -12376,7 +12386,7 @@ void StatsAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UpperControlLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "UpperControlLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -12392,7 +12402,7 @@ void StatsAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LowerControlLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "LowerControlLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -12408,7 +12418,7 @@ void StatsAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UpperControlLimitRange") == 0)
+        else if (strcmp(basie->getprintElement(), "UpperControlLimitRange") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -12424,7 +12434,7 @@ void StatsAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LowerControlLimitRange") == 0)
+        else if (strcmp(basie->getprintElement(), "LowerControlLimitRange") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -12440,7 +12450,7 @@ void StatsAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberOutOfControl") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberOutOfControl") == 0)
           {
             StatsNonNegativeIntegerWithReferencesType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerWithReferencesType *>(basie)))
@@ -12456,7 +12466,7 @@ void StatsAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "AppraiserVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "AppraiserVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -12472,7 +12482,7 @@ void StatsAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EquipmentVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "EquipmentVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -12488,7 +12498,7 @@ void StatsAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Interaction") == 0)
+        else if (strcmp(basie->getprintElement(), "Interaction") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -12504,7 +12514,7 @@ void StatsAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "GageRandR") == 0)
+        else if (strcmp(basie->getprintElement(), "GageRandR") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -12520,7 +12530,7 @@ void StatsAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "PartVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "PartVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -12536,7 +12546,7 @@ void StatsAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TotalVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "TotalVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -12552,7 +12562,7 @@ void StatsAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Linearity") == 0)
+        else if (strcmp(basie->getprintElement(), "Linearity") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -12568,7 +12578,7 @@ void StatsAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Bias") == 0)
+        else if (strcmp(basie->getprintElement(), "Bias") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -12584,7 +12594,7 @@ void StatsAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeLinearity") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeLinearity") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -12600,7 +12610,7 @@ void StatsAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeBias") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeBias") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -12616,7 +12626,7 @@ void StatsAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "GoodnessOfFit") == 0)
+        else if (strcmp(basie->getprintElement(), "GoodnessOfFit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -12632,7 +12642,7 @@ void StatsAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RegressionSlope") == 0)
+        else if (strcmp(basie->getprintElement(), "RegressionSlope") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -12648,7 +12658,7 @@ void StatsAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RegressionIntercept") == 0)
+        else if (strcmp(basie->getprintElement(), "RegressionIntercept") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -12664,7 +12674,7 @@ void StatsAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UpperConfidenceLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "UpperConfidenceLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -12680,7 +12690,7 @@ void StatsAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LowerConfidenceLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "LowerConfidenceLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -12696,7 +12706,7 @@ void StatsAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TDistribution") == 0)
+        else if (strcmp(basie->getprintElement(), "TDistribution") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -12712,7 +12722,7 @@ void StatsAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TotalNumber") == 0)
+        else if (strcmp(basie->getprintElement(), "TotalNumber") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -12728,7 +12738,7 @@ void StatsAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupTotalNumbers") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupTotalNumbers") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -12744,7 +12754,7 @@ void StatsAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EffectiveNumber") == 0)
+        else if (strcmp(basie->getprintElement(), "EffectiveNumber") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -12760,7 +12770,7 @@ void StatsAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupEffectiveNumbers") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupEffectiveNumbers") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -12776,7 +12786,7 @@ void StatsAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberSubgroups") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberSubgroups") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -12814,7 +12824,7 @@ bool StatsAngularType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "angularUnit")
+      if (decl->getname() == "angularUnit")
         {
           XmlToken * angularUnitVal;
           if (this->angularUnit)
@@ -12823,12 +12833,12 @@ bool StatsAngularType::badAttributes(
               returnValue = true;
               break;
             }
-          angularUnitVal = new XmlToken(decl->val.c_str());
-          if (angularUnitVal->bad)
+          angularUnitVal = new XmlToken(decl->getval().c_str());
+          if (angularUnitVal->getbad())
             {
               delete angularUnitVal;
               fprintf(stderr, "bad value %s for angularUnit in StatsAngularType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -12958,12 +12968,12 @@ void StatsAreaType::printSelf(FILE * outFile)
         StatsWithReferenceBaseType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "CommonStatsValue") == 0)
+        else if (strcmp(basie->getprintElement(), "CommonStatsValue") == 0)
           {
             StatsWithReferenceBaseType * typ;
             if ((typ = dynamic_cast<StatsWithReferenceBaseType *>(basie)))
@@ -12979,7 +12989,7 @@ void StatsAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Average") == 0)
+        else if (strcmp(basie->getprintElement(), "Average") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -12995,7 +13005,7 @@ void StatsAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupAverages") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupAverages") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -13011,7 +13021,7 @@ void StatsAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Difference") == 0)
+        else if (strcmp(basie->getprintElement(), "Difference") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -13027,7 +13037,7 @@ void StatsAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupDifferences") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupDifferences") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -13043,7 +13053,7 @@ void StatsAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RootMeanSquare") == 0)
+        else if (strcmp(basie->getprintElement(), "RootMeanSquare") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -13059,7 +13069,7 @@ void StatsAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Maximum") == 0)
+        else if (strcmp(basie->getprintElement(), "Maximum") == 0)
           {
             StatsMeasuredDecimalWithReferenceType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalWithReferenceType *>(basie)))
@@ -13075,7 +13085,7 @@ void StatsAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupMaxima") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupMaxima") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -13091,7 +13101,7 @@ void StatsAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Minimum") == 0)
+        else if (strcmp(basie->getprintElement(), "Minimum") == 0)
           {
             StatsMeasuredDecimalWithReferenceType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalWithReferenceType *>(basie)))
@@ -13107,7 +13117,7 @@ void StatsAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupMinima") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupMinima") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -13123,7 +13133,7 @@ void StatsAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Range") == 0)
+        else if (strcmp(basie->getprintElement(), "Range") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -13139,7 +13149,7 @@ void StatsAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupRanges") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupRanges") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -13155,7 +13165,7 @@ void StatsAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "AverageRange") == 0)
+        else if (strcmp(basie->getprintElement(), "AverageRange") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -13171,7 +13181,7 @@ void StatsAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "StandardDeviation") == 0)
+        else if (strcmp(basie->getprintElement(), "StandardDeviation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -13187,7 +13197,7 @@ void StatsAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Skew") == 0)
+        else if (strcmp(basie->getprintElement(), "Skew") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -13203,7 +13213,7 @@ void StatsAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Kurtosis") == 0)
+        else if (strcmp(basie->getprintElement(), "Kurtosis") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -13219,7 +13229,7 @@ void StatsAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Normality") == 0)
+        else if (strcmp(basie->getprintElement(), "Normality") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -13235,7 +13245,7 @@ void StatsAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ProcessVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "ProcessVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -13251,7 +13261,7 @@ void StatsAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EstimatedStandardDeviation") == 0)
+        else if (strcmp(basie->getprintElement(), "EstimatedStandardDeviation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -13267,7 +13277,7 @@ void StatsAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UpperControlLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "UpperControlLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -13283,7 +13293,7 @@ void StatsAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LowerControlLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "LowerControlLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -13299,7 +13309,7 @@ void StatsAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UpperControlLimitRange") == 0)
+        else if (strcmp(basie->getprintElement(), "UpperControlLimitRange") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -13315,7 +13325,7 @@ void StatsAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LowerControlLimitRange") == 0)
+        else if (strcmp(basie->getprintElement(), "LowerControlLimitRange") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -13331,7 +13341,7 @@ void StatsAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberOutOfControl") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberOutOfControl") == 0)
           {
             StatsNonNegativeIntegerWithReferencesType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerWithReferencesType *>(basie)))
@@ -13347,7 +13357,7 @@ void StatsAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "AppraiserVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "AppraiserVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -13363,7 +13373,7 @@ void StatsAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EquipmentVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "EquipmentVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -13379,7 +13389,7 @@ void StatsAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Interaction") == 0)
+        else if (strcmp(basie->getprintElement(), "Interaction") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -13395,7 +13405,7 @@ void StatsAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "GageRandR") == 0)
+        else if (strcmp(basie->getprintElement(), "GageRandR") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -13411,7 +13421,7 @@ void StatsAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "PartVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "PartVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -13427,7 +13437,7 @@ void StatsAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TotalVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "TotalVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -13443,7 +13453,7 @@ void StatsAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Linearity") == 0)
+        else if (strcmp(basie->getprintElement(), "Linearity") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -13459,7 +13469,7 @@ void StatsAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Bias") == 0)
+        else if (strcmp(basie->getprintElement(), "Bias") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -13475,7 +13485,7 @@ void StatsAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeLinearity") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeLinearity") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -13491,7 +13501,7 @@ void StatsAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeBias") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeBias") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -13507,7 +13517,7 @@ void StatsAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "GoodnessOfFit") == 0)
+        else if (strcmp(basie->getprintElement(), "GoodnessOfFit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -13523,7 +13533,7 @@ void StatsAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RegressionSlope") == 0)
+        else if (strcmp(basie->getprintElement(), "RegressionSlope") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -13539,7 +13549,7 @@ void StatsAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RegressionIntercept") == 0)
+        else if (strcmp(basie->getprintElement(), "RegressionIntercept") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -13555,7 +13565,7 @@ void StatsAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UpperConfidenceLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "UpperConfidenceLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -13571,7 +13581,7 @@ void StatsAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LowerConfidenceLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "LowerConfidenceLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -13587,7 +13597,7 @@ void StatsAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TDistribution") == 0)
+        else if (strcmp(basie->getprintElement(), "TDistribution") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -13603,7 +13613,7 @@ void StatsAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TotalNumber") == 0)
+        else if (strcmp(basie->getprintElement(), "TotalNumber") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -13619,7 +13629,7 @@ void StatsAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupTotalNumbers") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupTotalNumbers") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -13635,7 +13645,7 @@ void StatsAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EffectiveNumber") == 0)
+        else if (strcmp(basie->getprintElement(), "EffectiveNumber") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -13651,7 +13661,7 @@ void StatsAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupEffectiveNumbers") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupEffectiveNumbers") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -13667,7 +13677,7 @@ void StatsAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberSubgroups") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberSubgroups") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -13705,7 +13715,7 @@ bool StatsAreaType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "areaUnit")
+      if (decl->getname() == "areaUnit")
         {
           XmlToken * areaUnitVal;
           if (this->areaUnit)
@@ -13714,12 +13724,12 @@ bool StatsAreaType::badAttributes(
               returnValue = true;
               break;
             }
-          areaUnitVal = new XmlToken(decl->val.c_str());
-          if (areaUnitVal->bad)
+          areaUnitVal = new XmlToken(decl->getval().c_str());
+          if (areaUnitVal->getbad())
             {
               delete areaUnitVal;
               fprintf(stderr, "bad value %s for areaUnit in StatsAreaType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -13877,12 +13887,12 @@ void StatsBaseType::printSelf(FILE * outFile)
         StatsWithReferenceBaseType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "TotalNumber") == 0)
+        else if (strcmp(basie->getprintElement(), "TotalNumber") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -13898,7 +13908,7 @@ void StatsBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupTotalNumbers") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupTotalNumbers") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -13914,7 +13924,7 @@ void StatsBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EffectiveNumber") == 0)
+        else if (strcmp(basie->getprintElement(), "EffectiveNumber") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -13930,7 +13940,7 @@ void StatsBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupEffectiveNumbers") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupEffectiveNumbers") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -13946,7 +13956,7 @@ void StatsBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberSubgroups") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberSubgroups") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -14001,8 +14011,8 @@ StatsEvalStatusEnumType::StatsEvalStatusEnumType(
   XmlNMTOKEN(
     valIn)
 {
-  if (!bad)
-    bad = (strcmp(val.c_str(), "PASS") &&
+  if (!getbad())
+    setbad(strcmp(val.c_str(), "PASS") &&
            strcmp(val.c_str(), "FAIL") &&
            strcmp(val.c_str(), "INFORMATIONAL") &&
            strcmp(val.c_str(), "UNDEFINED"));
@@ -14219,12 +14229,12 @@ void StatsForceType::printSelf(FILE * outFile)
         StatsWithReferenceBaseType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "CommonStatsValue") == 0)
+        else if (strcmp(basie->getprintElement(), "CommonStatsValue") == 0)
           {
             StatsWithReferenceBaseType * typ;
             if ((typ = dynamic_cast<StatsWithReferenceBaseType *>(basie)))
@@ -14240,7 +14250,7 @@ void StatsForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Average") == 0)
+        else if (strcmp(basie->getprintElement(), "Average") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -14256,7 +14266,7 @@ void StatsForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupAverages") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupAverages") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -14272,7 +14282,7 @@ void StatsForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Difference") == 0)
+        else if (strcmp(basie->getprintElement(), "Difference") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -14288,7 +14298,7 @@ void StatsForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupDifferences") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupDifferences") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -14304,7 +14314,7 @@ void StatsForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RootMeanSquare") == 0)
+        else if (strcmp(basie->getprintElement(), "RootMeanSquare") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -14320,7 +14330,7 @@ void StatsForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Maximum") == 0)
+        else if (strcmp(basie->getprintElement(), "Maximum") == 0)
           {
             StatsMeasuredDecimalWithReferenceType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalWithReferenceType *>(basie)))
@@ -14336,7 +14346,7 @@ void StatsForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupMaxima") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupMaxima") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -14352,7 +14362,7 @@ void StatsForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Minimum") == 0)
+        else if (strcmp(basie->getprintElement(), "Minimum") == 0)
           {
             StatsMeasuredDecimalWithReferenceType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalWithReferenceType *>(basie)))
@@ -14368,7 +14378,7 @@ void StatsForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupMinima") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupMinima") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -14384,7 +14394,7 @@ void StatsForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Range") == 0)
+        else if (strcmp(basie->getprintElement(), "Range") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -14400,7 +14410,7 @@ void StatsForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupRanges") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupRanges") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -14416,7 +14426,7 @@ void StatsForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "AverageRange") == 0)
+        else if (strcmp(basie->getprintElement(), "AverageRange") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -14432,7 +14442,7 @@ void StatsForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "StandardDeviation") == 0)
+        else if (strcmp(basie->getprintElement(), "StandardDeviation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -14448,7 +14458,7 @@ void StatsForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Skew") == 0)
+        else if (strcmp(basie->getprintElement(), "Skew") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -14464,7 +14474,7 @@ void StatsForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Kurtosis") == 0)
+        else if (strcmp(basie->getprintElement(), "Kurtosis") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -14480,7 +14490,7 @@ void StatsForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Normality") == 0)
+        else if (strcmp(basie->getprintElement(), "Normality") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -14496,7 +14506,7 @@ void StatsForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ProcessVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "ProcessVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -14512,7 +14522,7 @@ void StatsForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EstimatedStandardDeviation") == 0)
+        else if (strcmp(basie->getprintElement(), "EstimatedStandardDeviation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -14528,7 +14538,7 @@ void StatsForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UpperControlLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "UpperControlLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -14544,7 +14554,7 @@ void StatsForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LowerControlLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "LowerControlLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -14560,7 +14570,7 @@ void StatsForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UpperControlLimitRange") == 0)
+        else if (strcmp(basie->getprintElement(), "UpperControlLimitRange") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -14576,7 +14586,7 @@ void StatsForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LowerControlLimitRange") == 0)
+        else if (strcmp(basie->getprintElement(), "LowerControlLimitRange") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -14592,7 +14602,7 @@ void StatsForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberOutOfControl") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberOutOfControl") == 0)
           {
             StatsNonNegativeIntegerWithReferencesType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerWithReferencesType *>(basie)))
@@ -14608,7 +14618,7 @@ void StatsForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "AppraiserVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "AppraiserVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -14624,7 +14634,7 @@ void StatsForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EquipmentVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "EquipmentVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -14640,7 +14650,7 @@ void StatsForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Interaction") == 0)
+        else if (strcmp(basie->getprintElement(), "Interaction") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -14656,7 +14666,7 @@ void StatsForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "GageRandR") == 0)
+        else if (strcmp(basie->getprintElement(), "GageRandR") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -14672,7 +14682,7 @@ void StatsForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "PartVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "PartVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -14688,7 +14698,7 @@ void StatsForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TotalVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "TotalVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -14704,7 +14714,7 @@ void StatsForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Linearity") == 0)
+        else if (strcmp(basie->getprintElement(), "Linearity") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -14720,7 +14730,7 @@ void StatsForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Bias") == 0)
+        else if (strcmp(basie->getprintElement(), "Bias") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -14736,7 +14746,7 @@ void StatsForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeLinearity") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeLinearity") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -14752,7 +14762,7 @@ void StatsForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeBias") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeBias") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -14768,7 +14778,7 @@ void StatsForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "GoodnessOfFit") == 0)
+        else if (strcmp(basie->getprintElement(), "GoodnessOfFit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -14784,7 +14794,7 @@ void StatsForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RegressionSlope") == 0)
+        else if (strcmp(basie->getprintElement(), "RegressionSlope") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -14800,7 +14810,7 @@ void StatsForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RegressionIntercept") == 0)
+        else if (strcmp(basie->getprintElement(), "RegressionIntercept") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -14816,7 +14826,7 @@ void StatsForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UpperConfidenceLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "UpperConfidenceLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -14832,7 +14842,7 @@ void StatsForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LowerConfidenceLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "LowerConfidenceLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -14848,7 +14858,7 @@ void StatsForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TDistribution") == 0)
+        else if (strcmp(basie->getprintElement(), "TDistribution") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -14864,7 +14874,7 @@ void StatsForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TotalNumber") == 0)
+        else if (strcmp(basie->getprintElement(), "TotalNumber") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -14880,7 +14890,7 @@ void StatsForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupTotalNumbers") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupTotalNumbers") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -14896,7 +14906,7 @@ void StatsForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EffectiveNumber") == 0)
+        else if (strcmp(basie->getprintElement(), "EffectiveNumber") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -14912,7 +14922,7 @@ void StatsForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupEffectiveNumbers") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupEffectiveNumbers") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -14928,7 +14938,7 @@ void StatsForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberSubgroups") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberSubgroups") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -14966,7 +14976,7 @@ bool StatsForceType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "forceUnit")
+      if (decl->getname() == "forceUnit")
         {
           XmlToken * forceUnitVal;
           if (this->forceUnit)
@@ -14975,12 +14985,12 @@ bool StatsForceType::badAttributes(
               returnValue = true;
               break;
             }
-          forceUnitVal = new XmlToken(decl->val.c_str());
-          if (forceUnitVal->bad)
+          forceUnitVal = new XmlToken(decl->getval().c_str());
+          if (forceUnitVal->getbad())
             {
               delete forceUnitVal;
               fprintf(stderr, "bad value %s for forceUnit in StatsForceType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -15110,12 +15120,12 @@ void StatsLinearType::printSelf(FILE * outFile)
         StatsWithReferenceBaseType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "CommonStatsValue") == 0)
+        else if (strcmp(basie->getprintElement(), "CommonStatsValue") == 0)
           {
             StatsWithReferenceBaseType * typ;
             if ((typ = dynamic_cast<StatsWithReferenceBaseType *>(basie)))
@@ -15131,7 +15141,7 @@ void StatsLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Average") == 0)
+        else if (strcmp(basie->getprintElement(), "Average") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -15147,7 +15157,7 @@ void StatsLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupAverages") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupAverages") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -15163,7 +15173,7 @@ void StatsLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Difference") == 0)
+        else if (strcmp(basie->getprintElement(), "Difference") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -15179,7 +15189,7 @@ void StatsLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupDifferences") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupDifferences") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -15195,7 +15205,7 @@ void StatsLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RootMeanSquare") == 0)
+        else if (strcmp(basie->getprintElement(), "RootMeanSquare") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -15211,7 +15221,7 @@ void StatsLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Maximum") == 0)
+        else if (strcmp(basie->getprintElement(), "Maximum") == 0)
           {
             StatsMeasuredDecimalWithReferenceType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalWithReferenceType *>(basie)))
@@ -15227,7 +15237,7 @@ void StatsLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupMaxima") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupMaxima") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -15243,7 +15253,7 @@ void StatsLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Minimum") == 0)
+        else if (strcmp(basie->getprintElement(), "Minimum") == 0)
           {
             StatsMeasuredDecimalWithReferenceType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalWithReferenceType *>(basie)))
@@ -15259,7 +15269,7 @@ void StatsLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupMinima") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupMinima") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -15275,7 +15285,7 @@ void StatsLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Range") == 0)
+        else if (strcmp(basie->getprintElement(), "Range") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -15291,7 +15301,7 @@ void StatsLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupRanges") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupRanges") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -15307,7 +15317,7 @@ void StatsLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "AverageRange") == 0)
+        else if (strcmp(basie->getprintElement(), "AverageRange") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -15323,7 +15333,7 @@ void StatsLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "StandardDeviation") == 0)
+        else if (strcmp(basie->getprintElement(), "StandardDeviation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -15339,7 +15349,7 @@ void StatsLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Skew") == 0)
+        else if (strcmp(basie->getprintElement(), "Skew") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -15355,7 +15365,7 @@ void StatsLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Kurtosis") == 0)
+        else if (strcmp(basie->getprintElement(), "Kurtosis") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -15371,7 +15381,7 @@ void StatsLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Normality") == 0)
+        else if (strcmp(basie->getprintElement(), "Normality") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -15387,7 +15397,7 @@ void StatsLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ProcessVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "ProcessVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -15403,7 +15413,7 @@ void StatsLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EstimatedStandardDeviation") == 0)
+        else if (strcmp(basie->getprintElement(), "EstimatedStandardDeviation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -15419,7 +15429,7 @@ void StatsLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UpperControlLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "UpperControlLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -15435,7 +15445,7 @@ void StatsLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LowerControlLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "LowerControlLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -15451,7 +15461,7 @@ void StatsLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UpperControlLimitRange") == 0)
+        else if (strcmp(basie->getprintElement(), "UpperControlLimitRange") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -15467,7 +15477,7 @@ void StatsLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LowerControlLimitRange") == 0)
+        else if (strcmp(basie->getprintElement(), "LowerControlLimitRange") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -15483,7 +15493,7 @@ void StatsLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberOutOfControl") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberOutOfControl") == 0)
           {
             StatsNonNegativeIntegerWithReferencesType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerWithReferencesType *>(basie)))
@@ -15499,7 +15509,7 @@ void StatsLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "AppraiserVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "AppraiserVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -15515,7 +15525,7 @@ void StatsLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EquipmentVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "EquipmentVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -15531,7 +15541,7 @@ void StatsLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Interaction") == 0)
+        else if (strcmp(basie->getprintElement(), "Interaction") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -15547,7 +15557,7 @@ void StatsLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "GageRandR") == 0)
+        else if (strcmp(basie->getprintElement(), "GageRandR") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -15563,7 +15573,7 @@ void StatsLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "PartVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "PartVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -15579,7 +15589,7 @@ void StatsLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TotalVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "TotalVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -15595,7 +15605,7 @@ void StatsLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Linearity") == 0)
+        else if (strcmp(basie->getprintElement(), "Linearity") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -15611,7 +15621,7 @@ void StatsLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Bias") == 0)
+        else if (strcmp(basie->getprintElement(), "Bias") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -15627,7 +15637,7 @@ void StatsLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeLinearity") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeLinearity") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -15643,7 +15653,7 @@ void StatsLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeBias") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeBias") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -15659,7 +15669,7 @@ void StatsLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "GoodnessOfFit") == 0)
+        else if (strcmp(basie->getprintElement(), "GoodnessOfFit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -15675,7 +15685,7 @@ void StatsLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RegressionSlope") == 0)
+        else if (strcmp(basie->getprintElement(), "RegressionSlope") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -15691,7 +15701,7 @@ void StatsLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RegressionIntercept") == 0)
+        else if (strcmp(basie->getprintElement(), "RegressionIntercept") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -15707,7 +15717,7 @@ void StatsLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UpperConfidenceLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "UpperConfidenceLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -15723,7 +15733,7 @@ void StatsLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LowerConfidenceLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "LowerConfidenceLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -15739,7 +15749,7 @@ void StatsLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TDistribution") == 0)
+        else if (strcmp(basie->getprintElement(), "TDistribution") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -15755,7 +15765,7 @@ void StatsLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TotalNumber") == 0)
+        else if (strcmp(basie->getprintElement(), "TotalNumber") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -15771,7 +15781,7 @@ void StatsLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupTotalNumbers") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupTotalNumbers") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -15787,7 +15797,7 @@ void StatsLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EffectiveNumber") == 0)
+        else if (strcmp(basie->getprintElement(), "EffectiveNumber") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -15803,7 +15813,7 @@ void StatsLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupEffectiveNumbers") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupEffectiveNumbers") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -15819,7 +15829,7 @@ void StatsLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberSubgroups") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberSubgroups") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -15857,7 +15867,7 @@ bool StatsLinearType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "linearUnit")
+      if (decl->getname() == "linearUnit")
         {
           XmlToken * linearUnitVal;
           if (this->linearUnit)
@@ -15866,12 +15876,12 @@ bool StatsLinearType::badAttributes(
               returnValue = true;
               break;
             }
-          linearUnitVal = new XmlToken(decl->val.c_str());
-          if (linearUnitVal->bad)
+          linearUnitVal = new XmlToken(decl->getval().c_str());
+          if (linearUnitVal->getbad())
             {
               delete linearUnitVal;
               fprintf(stderr, "bad value %s for linearUnit in StatsLinearType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -16001,12 +16011,12 @@ void StatsMassType::printSelf(FILE * outFile)
         StatsWithReferenceBaseType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "CommonStatsValue") == 0)
+        else if (strcmp(basie->getprintElement(), "CommonStatsValue") == 0)
           {
             StatsWithReferenceBaseType * typ;
             if ((typ = dynamic_cast<StatsWithReferenceBaseType *>(basie)))
@@ -16022,7 +16032,7 @@ void StatsMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Average") == 0)
+        else if (strcmp(basie->getprintElement(), "Average") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -16038,7 +16048,7 @@ void StatsMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupAverages") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupAverages") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -16054,7 +16064,7 @@ void StatsMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Difference") == 0)
+        else if (strcmp(basie->getprintElement(), "Difference") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -16070,7 +16080,7 @@ void StatsMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupDifferences") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupDifferences") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -16086,7 +16096,7 @@ void StatsMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RootMeanSquare") == 0)
+        else if (strcmp(basie->getprintElement(), "RootMeanSquare") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -16102,7 +16112,7 @@ void StatsMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Maximum") == 0)
+        else if (strcmp(basie->getprintElement(), "Maximum") == 0)
           {
             StatsMeasuredDecimalWithReferenceType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalWithReferenceType *>(basie)))
@@ -16118,7 +16128,7 @@ void StatsMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupMaxima") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupMaxima") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -16134,7 +16144,7 @@ void StatsMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Minimum") == 0)
+        else if (strcmp(basie->getprintElement(), "Minimum") == 0)
           {
             StatsMeasuredDecimalWithReferenceType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalWithReferenceType *>(basie)))
@@ -16150,7 +16160,7 @@ void StatsMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupMinima") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupMinima") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -16166,7 +16176,7 @@ void StatsMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Range") == 0)
+        else if (strcmp(basie->getprintElement(), "Range") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -16182,7 +16192,7 @@ void StatsMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupRanges") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupRanges") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -16198,7 +16208,7 @@ void StatsMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "AverageRange") == 0)
+        else if (strcmp(basie->getprintElement(), "AverageRange") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -16214,7 +16224,7 @@ void StatsMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "StandardDeviation") == 0)
+        else if (strcmp(basie->getprintElement(), "StandardDeviation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -16230,7 +16240,7 @@ void StatsMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Skew") == 0)
+        else if (strcmp(basie->getprintElement(), "Skew") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -16246,7 +16256,7 @@ void StatsMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Kurtosis") == 0)
+        else if (strcmp(basie->getprintElement(), "Kurtosis") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -16262,7 +16272,7 @@ void StatsMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Normality") == 0)
+        else if (strcmp(basie->getprintElement(), "Normality") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -16278,7 +16288,7 @@ void StatsMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ProcessVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "ProcessVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -16294,7 +16304,7 @@ void StatsMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EstimatedStandardDeviation") == 0)
+        else if (strcmp(basie->getprintElement(), "EstimatedStandardDeviation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -16310,7 +16320,7 @@ void StatsMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UpperControlLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "UpperControlLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -16326,7 +16336,7 @@ void StatsMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LowerControlLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "LowerControlLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -16342,7 +16352,7 @@ void StatsMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UpperControlLimitRange") == 0)
+        else if (strcmp(basie->getprintElement(), "UpperControlLimitRange") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -16358,7 +16368,7 @@ void StatsMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LowerControlLimitRange") == 0)
+        else if (strcmp(basie->getprintElement(), "LowerControlLimitRange") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -16374,7 +16384,7 @@ void StatsMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberOutOfControl") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberOutOfControl") == 0)
           {
             StatsNonNegativeIntegerWithReferencesType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerWithReferencesType *>(basie)))
@@ -16390,7 +16400,7 @@ void StatsMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "AppraiserVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "AppraiserVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -16406,7 +16416,7 @@ void StatsMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EquipmentVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "EquipmentVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -16422,7 +16432,7 @@ void StatsMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Interaction") == 0)
+        else if (strcmp(basie->getprintElement(), "Interaction") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -16438,7 +16448,7 @@ void StatsMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "GageRandR") == 0)
+        else if (strcmp(basie->getprintElement(), "GageRandR") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -16454,7 +16464,7 @@ void StatsMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "PartVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "PartVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -16470,7 +16480,7 @@ void StatsMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TotalVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "TotalVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -16486,7 +16496,7 @@ void StatsMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Linearity") == 0)
+        else if (strcmp(basie->getprintElement(), "Linearity") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -16502,7 +16512,7 @@ void StatsMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Bias") == 0)
+        else if (strcmp(basie->getprintElement(), "Bias") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -16518,7 +16528,7 @@ void StatsMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeLinearity") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeLinearity") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -16534,7 +16544,7 @@ void StatsMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeBias") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeBias") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -16550,7 +16560,7 @@ void StatsMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "GoodnessOfFit") == 0)
+        else if (strcmp(basie->getprintElement(), "GoodnessOfFit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -16566,7 +16576,7 @@ void StatsMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RegressionSlope") == 0)
+        else if (strcmp(basie->getprintElement(), "RegressionSlope") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -16582,7 +16592,7 @@ void StatsMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RegressionIntercept") == 0)
+        else if (strcmp(basie->getprintElement(), "RegressionIntercept") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -16598,7 +16608,7 @@ void StatsMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UpperConfidenceLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "UpperConfidenceLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -16614,7 +16624,7 @@ void StatsMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LowerConfidenceLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "LowerConfidenceLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -16630,7 +16640,7 @@ void StatsMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TDistribution") == 0)
+        else if (strcmp(basie->getprintElement(), "TDistribution") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -16646,7 +16656,7 @@ void StatsMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TotalNumber") == 0)
+        else if (strcmp(basie->getprintElement(), "TotalNumber") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -16662,7 +16672,7 @@ void StatsMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupTotalNumbers") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupTotalNumbers") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -16678,7 +16688,7 @@ void StatsMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EffectiveNumber") == 0)
+        else if (strcmp(basie->getprintElement(), "EffectiveNumber") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -16694,7 +16704,7 @@ void StatsMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupEffectiveNumbers") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupEffectiveNumbers") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -16710,7 +16720,7 @@ void StatsMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberSubgroups") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberSubgroups") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -16748,7 +16758,7 @@ bool StatsMassType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "massUnit")
+      if (decl->getname() == "massUnit")
         {
           XmlToken * massUnitVal;
           if (this->massUnit)
@@ -16757,12 +16767,12 @@ bool StatsMassType::badAttributes(
               returnValue = true;
               break;
             }
-          massUnitVal = new XmlToken(decl->val.c_str());
-          if (massUnitVal->bad)
+          massUnitVal = new XmlToken(decl->getval().c_str());
+          if (massUnitVal->getbad())
             {
               delete massUnitVal;
               fprintf(stderr, "bad value %s for massUnit in StatsMassType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -16860,12 +16870,12 @@ void StatsNumericalBaseType::printSelf(FILE * outFile)
         StatsWithReferenceBaseType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "CommonStatsValue") == 0)
+        else if (strcmp(basie->getprintElement(), "CommonStatsValue") == 0)
           {
             StatsWithReferenceBaseType * typ;
             if ((typ = dynamic_cast<StatsWithReferenceBaseType *>(basie)))
@@ -16881,7 +16891,7 @@ void StatsNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Average") == 0)
+        else if (strcmp(basie->getprintElement(), "Average") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -16897,7 +16907,7 @@ void StatsNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupAverages") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupAverages") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -16913,7 +16923,7 @@ void StatsNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Difference") == 0)
+        else if (strcmp(basie->getprintElement(), "Difference") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -16929,7 +16939,7 @@ void StatsNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupDifferences") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupDifferences") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -16945,7 +16955,7 @@ void StatsNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RootMeanSquare") == 0)
+        else if (strcmp(basie->getprintElement(), "RootMeanSquare") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -16961,7 +16971,7 @@ void StatsNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Maximum") == 0)
+        else if (strcmp(basie->getprintElement(), "Maximum") == 0)
           {
             StatsMeasuredDecimalWithReferenceType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalWithReferenceType *>(basie)))
@@ -16977,7 +16987,7 @@ void StatsNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupMaxima") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupMaxima") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -16993,7 +17003,7 @@ void StatsNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Minimum") == 0)
+        else if (strcmp(basie->getprintElement(), "Minimum") == 0)
           {
             StatsMeasuredDecimalWithReferenceType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalWithReferenceType *>(basie)))
@@ -17009,7 +17019,7 @@ void StatsNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupMinima") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupMinima") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -17025,7 +17035,7 @@ void StatsNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Range") == 0)
+        else if (strcmp(basie->getprintElement(), "Range") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -17041,7 +17051,7 @@ void StatsNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupRanges") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupRanges") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -17057,7 +17067,7 @@ void StatsNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "AverageRange") == 0)
+        else if (strcmp(basie->getprintElement(), "AverageRange") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -17073,7 +17083,7 @@ void StatsNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "StandardDeviation") == 0)
+        else if (strcmp(basie->getprintElement(), "StandardDeviation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -17089,7 +17099,7 @@ void StatsNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Skew") == 0)
+        else if (strcmp(basie->getprintElement(), "Skew") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -17105,7 +17115,7 @@ void StatsNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Kurtosis") == 0)
+        else if (strcmp(basie->getprintElement(), "Kurtosis") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -17121,7 +17131,7 @@ void StatsNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Normality") == 0)
+        else if (strcmp(basie->getprintElement(), "Normality") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -17137,7 +17147,7 @@ void StatsNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ProcessVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "ProcessVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -17153,7 +17163,7 @@ void StatsNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EstimatedStandardDeviation") == 0)
+        else if (strcmp(basie->getprintElement(), "EstimatedStandardDeviation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -17169,7 +17179,7 @@ void StatsNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UpperControlLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "UpperControlLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -17185,7 +17195,7 @@ void StatsNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LowerControlLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "LowerControlLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -17201,7 +17211,7 @@ void StatsNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UpperControlLimitRange") == 0)
+        else if (strcmp(basie->getprintElement(), "UpperControlLimitRange") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -17217,7 +17227,7 @@ void StatsNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LowerControlLimitRange") == 0)
+        else if (strcmp(basie->getprintElement(), "LowerControlLimitRange") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -17233,7 +17243,7 @@ void StatsNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberOutOfControl") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberOutOfControl") == 0)
           {
             StatsNonNegativeIntegerWithReferencesType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerWithReferencesType *>(basie)))
@@ -17249,7 +17259,7 @@ void StatsNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "AppraiserVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "AppraiserVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -17265,7 +17275,7 @@ void StatsNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EquipmentVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "EquipmentVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -17281,7 +17291,7 @@ void StatsNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Interaction") == 0)
+        else if (strcmp(basie->getprintElement(), "Interaction") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -17297,7 +17307,7 @@ void StatsNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "GageRandR") == 0)
+        else if (strcmp(basie->getprintElement(), "GageRandR") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -17313,7 +17323,7 @@ void StatsNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "PartVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "PartVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -17329,7 +17339,7 @@ void StatsNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TotalVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "TotalVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -17345,7 +17355,7 @@ void StatsNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Linearity") == 0)
+        else if (strcmp(basie->getprintElement(), "Linearity") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -17361,7 +17371,7 @@ void StatsNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Bias") == 0)
+        else if (strcmp(basie->getprintElement(), "Bias") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -17377,7 +17387,7 @@ void StatsNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeLinearity") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeLinearity") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -17393,7 +17403,7 @@ void StatsNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeBias") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeBias") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -17409,7 +17419,7 @@ void StatsNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "GoodnessOfFit") == 0)
+        else if (strcmp(basie->getprintElement(), "GoodnessOfFit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -17425,7 +17435,7 @@ void StatsNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RegressionSlope") == 0)
+        else if (strcmp(basie->getprintElement(), "RegressionSlope") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -17441,7 +17451,7 @@ void StatsNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RegressionIntercept") == 0)
+        else if (strcmp(basie->getprintElement(), "RegressionIntercept") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -17457,7 +17467,7 @@ void StatsNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UpperConfidenceLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "UpperConfidenceLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -17473,7 +17483,7 @@ void StatsNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LowerConfidenceLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "LowerConfidenceLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -17489,7 +17499,7 @@ void StatsNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TDistribution") == 0)
+        else if (strcmp(basie->getprintElement(), "TDistribution") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -17505,7 +17515,7 @@ void StatsNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TotalNumber") == 0)
+        else if (strcmp(basie->getprintElement(), "TotalNumber") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -17521,7 +17531,7 @@ void StatsNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupTotalNumbers") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupTotalNumbers") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -17537,7 +17547,7 @@ void StatsNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EffectiveNumber") == 0)
+        else if (strcmp(basie->getprintElement(), "EffectiveNumber") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -17553,7 +17563,7 @@ void StatsNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupEffectiveNumbers") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupEffectiveNumbers") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -17569,7 +17579,7 @@ void StatsNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberSubgroups") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberSubgroups") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -17675,12 +17685,12 @@ void StatsPassFailType::printSelf(FILE * outFile)
         StatsWithReferenceBaseType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "TotalNumber") == 0)
+        else if (strcmp(basie->getprintElement(), "TotalNumber") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -17696,7 +17706,7 @@ void StatsPassFailType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupTotalNumbers") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupTotalNumbers") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -17712,7 +17722,7 @@ void StatsPassFailType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EffectiveNumber") == 0)
+        else if (strcmp(basie->getprintElement(), "EffectiveNumber") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -17728,7 +17738,7 @@ void StatsPassFailType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupEffectiveNumbers") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupEffectiveNumbers") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -17744,7 +17754,7 @@ void StatsPassFailType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberSubgroups") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberSubgroups") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -17793,12 +17803,12 @@ void StatsPassFailType::printSelf(FILE * outFile)
         StatsWithReferenceBaseType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "FailurePercentage") == 0)
+        else if (strcmp(basie->getprintElement(), "FailurePercentage") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -17814,7 +17824,7 @@ void StatsPassFailType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberFailures") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberFailures") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -17944,12 +17954,12 @@ void StatsPressureType::printSelf(FILE * outFile)
         StatsWithReferenceBaseType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "CommonStatsValue") == 0)
+        else if (strcmp(basie->getprintElement(), "CommonStatsValue") == 0)
           {
             StatsWithReferenceBaseType * typ;
             if ((typ = dynamic_cast<StatsWithReferenceBaseType *>(basie)))
@@ -17965,7 +17975,7 @@ void StatsPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Average") == 0)
+        else if (strcmp(basie->getprintElement(), "Average") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -17981,7 +17991,7 @@ void StatsPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupAverages") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupAverages") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -17997,7 +18007,7 @@ void StatsPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Difference") == 0)
+        else if (strcmp(basie->getprintElement(), "Difference") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -18013,7 +18023,7 @@ void StatsPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupDifferences") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupDifferences") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -18029,7 +18039,7 @@ void StatsPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RootMeanSquare") == 0)
+        else if (strcmp(basie->getprintElement(), "RootMeanSquare") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -18045,7 +18055,7 @@ void StatsPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Maximum") == 0)
+        else if (strcmp(basie->getprintElement(), "Maximum") == 0)
           {
             StatsMeasuredDecimalWithReferenceType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalWithReferenceType *>(basie)))
@@ -18061,7 +18071,7 @@ void StatsPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupMaxima") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupMaxima") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -18077,7 +18087,7 @@ void StatsPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Minimum") == 0)
+        else if (strcmp(basie->getprintElement(), "Minimum") == 0)
           {
             StatsMeasuredDecimalWithReferenceType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalWithReferenceType *>(basie)))
@@ -18093,7 +18103,7 @@ void StatsPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupMinima") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupMinima") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -18109,7 +18119,7 @@ void StatsPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Range") == 0)
+        else if (strcmp(basie->getprintElement(), "Range") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -18125,7 +18135,7 @@ void StatsPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupRanges") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupRanges") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -18141,7 +18151,7 @@ void StatsPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "AverageRange") == 0)
+        else if (strcmp(basie->getprintElement(), "AverageRange") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -18157,7 +18167,7 @@ void StatsPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "StandardDeviation") == 0)
+        else if (strcmp(basie->getprintElement(), "StandardDeviation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -18173,7 +18183,7 @@ void StatsPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Skew") == 0)
+        else if (strcmp(basie->getprintElement(), "Skew") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -18189,7 +18199,7 @@ void StatsPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Kurtosis") == 0)
+        else if (strcmp(basie->getprintElement(), "Kurtosis") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -18205,7 +18215,7 @@ void StatsPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Normality") == 0)
+        else if (strcmp(basie->getprintElement(), "Normality") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -18221,7 +18231,7 @@ void StatsPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ProcessVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "ProcessVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -18237,7 +18247,7 @@ void StatsPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EstimatedStandardDeviation") == 0)
+        else if (strcmp(basie->getprintElement(), "EstimatedStandardDeviation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -18253,7 +18263,7 @@ void StatsPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UpperControlLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "UpperControlLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -18269,7 +18279,7 @@ void StatsPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LowerControlLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "LowerControlLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -18285,7 +18295,7 @@ void StatsPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UpperControlLimitRange") == 0)
+        else if (strcmp(basie->getprintElement(), "UpperControlLimitRange") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -18301,7 +18311,7 @@ void StatsPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LowerControlLimitRange") == 0)
+        else if (strcmp(basie->getprintElement(), "LowerControlLimitRange") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -18317,7 +18327,7 @@ void StatsPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberOutOfControl") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberOutOfControl") == 0)
           {
             StatsNonNegativeIntegerWithReferencesType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerWithReferencesType *>(basie)))
@@ -18333,7 +18343,7 @@ void StatsPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "AppraiserVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "AppraiserVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -18349,7 +18359,7 @@ void StatsPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EquipmentVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "EquipmentVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -18365,7 +18375,7 @@ void StatsPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Interaction") == 0)
+        else if (strcmp(basie->getprintElement(), "Interaction") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -18381,7 +18391,7 @@ void StatsPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "GageRandR") == 0)
+        else if (strcmp(basie->getprintElement(), "GageRandR") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -18397,7 +18407,7 @@ void StatsPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "PartVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "PartVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -18413,7 +18423,7 @@ void StatsPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TotalVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "TotalVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -18429,7 +18439,7 @@ void StatsPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Linearity") == 0)
+        else if (strcmp(basie->getprintElement(), "Linearity") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -18445,7 +18455,7 @@ void StatsPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Bias") == 0)
+        else if (strcmp(basie->getprintElement(), "Bias") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -18461,7 +18471,7 @@ void StatsPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeLinearity") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeLinearity") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -18477,7 +18487,7 @@ void StatsPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeBias") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeBias") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -18493,7 +18503,7 @@ void StatsPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "GoodnessOfFit") == 0)
+        else if (strcmp(basie->getprintElement(), "GoodnessOfFit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -18509,7 +18519,7 @@ void StatsPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RegressionSlope") == 0)
+        else if (strcmp(basie->getprintElement(), "RegressionSlope") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -18525,7 +18535,7 @@ void StatsPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RegressionIntercept") == 0)
+        else if (strcmp(basie->getprintElement(), "RegressionIntercept") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -18541,7 +18551,7 @@ void StatsPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UpperConfidenceLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "UpperConfidenceLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -18557,7 +18567,7 @@ void StatsPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LowerConfidenceLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "LowerConfidenceLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -18573,7 +18583,7 @@ void StatsPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TDistribution") == 0)
+        else if (strcmp(basie->getprintElement(), "TDistribution") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -18589,7 +18599,7 @@ void StatsPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TotalNumber") == 0)
+        else if (strcmp(basie->getprintElement(), "TotalNumber") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -18605,7 +18615,7 @@ void StatsPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupTotalNumbers") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupTotalNumbers") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -18621,7 +18631,7 @@ void StatsPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EffectiveNumber") == 0)
+        else if (strcmp(basie->getprintElement(), "EffectiveNumber") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -18637,7 +18647,7 @@ void StatsPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupEffectiveNumbers") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupEffectiveNumbers") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -18653,7 +18663,7 @@ void StatsPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberSubgroups") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberSubgroups") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -18691,7 +18701,7 @@ bool StatsPressureType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "pressureUnit")
+      if (decl->getname() == "pressureUnit")
         {
           XmlToken * pressureUnitVal;
           if (this->pressureUnit)
@@ -18700,12 +18710,12 @@ bool StatsPressureType::badAttributes(
               returnValue = true;
               break;
             }
-          pressureUnitVal = new XmlToken(decl->val.c_str());
-          if (pressureUnitVal->bad)
+          pressureUnitVal = new XmlToken(decl->getval().c_str());
+          if (pressureUnitVal->getbad())
             {
               delete pressureUnitVal;
               fprintf(stderr, "bad value %s for pressureUnit in StatsPressureType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -18835,12 +18845,12 @@ void StatsSpeedType::printSelf(FILE * outFile)
         StatsWithReferenceBaseType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "CommonStatsValue") == 0)
+        else if (strcmp(basie->getprintElement(), "CommonStatsValue") == 0)
           {
             StatsWithReferenceBaseType * typ;
             if ((typ = dynamic_cast<StatsWithReferenceBaseType *>(basie)))
@@ -18856,7 +18866,7 @@ void StatsSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Average") == 0)
+        else if (strcmp(basie->getprintElement(), "Average") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -18872,7 +18882,7 @@ void StatsSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupAverages") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupAverages") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -18888,7 +18898,7 @@ void StatsSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Difference") == 0)
+        else if (strcmp(basie->getprintElement(), "Difference") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -18904,7 +18914,7 @@ void StatsSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupDifferences") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupDifferences") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -18920,7 +18930,7 @@ void StatsSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RootMeanSquare") == 0)
+        else if (strcmp(basie->getprintElement(), "RootMeanSquare") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -18936,7 +18946,7 @@ void StatsSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Maximum") == 0)
+        else if (strcmp(basie->getprintElement(), "Maximum") == 0)
           {
             StatsMeasuredDecimalWithReferenceType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalWithReferenceType *>(basie)))
@@ -18952,7 +18962,7 @@ void StatsSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupMaxima") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupMaxima") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -18968,7 +18978,7 @@ void StatsSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Minimum") == 0)
+        else if (strcmp(basie->getprintElement(), "Minimum") == 0)
           {
             StatsMeasuredDecimalWithReferenceType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalWithReferenceType *>(basie)))
@@ -18984,7 +18994,7 @@ void StatsSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupMinima") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupMinima") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -19000,7 +19010,7 @@ void StatsSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Range") == 0)
+        else if (strcmp(basie->getprintElement(), "Range") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -19016,7 +19026,7 @@ void StatsSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupRanges") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupRanges") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -19032,7 +19042,7 @@ void StatsSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "AverageRange") == 0)
+        else if (strcmp(basie->getprintElement(), "AverageRange") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -19048,7 +19058,7 @@ void StatsSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "StandardDeviation") == 0)
+        else if (strcmp(basie->getprintElement(), "StandardDeviation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -19064,7 +19074,7 @@ void StatsSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Skew") == 0)
+        else if (strcmp(basie->getprintElement(), "Skew") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -19080,7 +19090,7 @@ void StatsSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Kurtosis") == 0)
+        else if (strcmp(basie->getprintElement(), "Kurtosis") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -19096,7 +19106,7 @@ void StatsSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Normality") == 0)
+        else if (strcmp(basie->getprintElement(), "Normality") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -19112,7 +19122,7 @@ void StatsSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ProcessVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "ProcessVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -19128,7 +19138,7 @@ void StatsSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EstimatedStandardDeviation") == 0)
+        else if (strcmp(basie->getprintElement(), "EstimatedStandardDeviation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -19144,7 +19154,7 @@ void StatsSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UpperControlLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "UpperControlLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -19160,7 +19170,7 @@ void StatsSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LowerControlLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "LowerControlLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -19176,7 +19186,7 @@ void StatsSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UpperControlLimitRange") == 0)
+        else if (strcmp(basie->getprintElement(), "UpperControlLimitRange") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -19192,7 +19202,7 @@ void StatsSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LowerControlLimitRange") == 0)
+        else if (strcmp(basie->getprintElement(), "LowerControlLimitRange") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -19208,7 +19218,7 @@ void StatsSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberOutOfControl") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberOutOfControl") == 0)
           {
             StatsNonNegativeIntegerWithReferencesType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerWithReferencesType *>(basie)))
@@ -19224,7 +19234,7 @@ void StatsSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "AppraiserVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "AppraiserVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -19240,7 +19250,7 @@ void StatsSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EquipmentVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "EquipmentVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -19256,7 +19266,7 @@ void StatsSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Interaction") == 0)
+        else if (strcmp(basie->getprintElement(), "Interaction") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -19272,7 +19282,7 @@ void StatsSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "GageRandR") == 0)
+        else if (strcmp(basie->getprintElement(), "GageRandR") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -19288,7 +19298,7 @@ void StatsSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "PartVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "PartVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -19304,7 +19314,7 @@ void StatsSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TotalVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "TotalVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -19320,7 +19330,7 @@ void StatsSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Linearity") == 0)
+        else if (strcmp(basie->getprintElement(), "Linearity") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -19336,7 +19346,7 @@ void StatsSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Bias") == 0)
+        else if (strcmp(basie->getprintElement(), "Bias") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -19352,7 +19362,7 @@ void StatsSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeLinearity") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeLinearity") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -19368,7 +19378,7 @@ void StatsSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeBias") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeBias") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -19384,7 +19394,7 @@ void StatsSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "GoodnessOfFit") == 0)
+        else if (strcmp(basie->getprintElement(), "GoodnessOfFit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -19400,7 +19410,7 @@ void StatsSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RegressionSlope") == 0)
+        else if (strcmp(basie->getprintElement(), "RegressionSlope") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -19416,7 +19426,7 @@ void StatsSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RegressionIntercept") == 0)
+        else if (strcmp(basie->getprintElement(), "RegressionIntercept") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -19432,7 +19442,7 @@ void StatsSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UpperConfidenceLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "UpperConfidenceLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -19448,7 +19458,7 @@ void StatsSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LowerConfidenceLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "LowerConfidenceLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -19464,7 +19474,7 @@ void StatsSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TDistribution") == 0)
+        else if (strcmp(basie->getprintElement(), "TDistribution") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -19480,7 +19490,7 @@ void StatsSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TotalNumber") == 0)
+        else if (strcmp(basie->getprintElement(), "TotalNumber") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -19496,7 +19506,7 @@ void StatsSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupTotalNumbers") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupTotalNumbers") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -19512,7 +19522,7 @@ void StatsSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EffectiveNumber") == 0)
+        else if (strcmp(basie->getprintElement(), "EffectiveNumber") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -19528,7 +19538,7 @@ void StatsSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupEffectiveNumbers") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupEffectiveNumbers") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -19544,7 +19554,7 @@ void StatsSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberSubgroups") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberSubgroups") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -19582,7 +19592,7 @@ bool StatsSpeedType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "speedUnit")
+      if (decl->getname() == "speedUnit")
         {
           XmlToken * speedUnitVal;
           if (this->speedUnit)
@@ -19591,12 +19601,12 @@ bool StatsSpeedType::badAttributes(
               returnValue = true;
               break;
             }
-          speedUnitVal = new XmlToken(decl->val.c_str());
-          if (speedUnitVal->bad)
+          speedUnitVal = new XmlToken(decl->getval().c_str());
+          if (speedUnitVal->getbad())
             {
               delete speedUnitVal;
               fprintf(stderr, "bad value %s for speedUnit in StatsSpeedType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -19726,12 +19736,12 @@ void StatsTemperatureType::printSelf(FILE * outFile)
         StatsWithReferenceBaseType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "CommonStatsValue") == 0)
+        else if (strcmp(basie->getprintElement(), "CommonStatsValue") == 0)
           {
             StatsWithReferenceBaseType * typ;
             if ((typ = dynamic_cast<StatsWithReferenceBaseType *>(basie)))
@@ -19747,7 +19757,7 @@ void StatsTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Average") == 0)
+        else if (strcmp(basie->getprintElement(), "Average") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -19763,7 +19773,7 @@ void StatsTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupAverages") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupAverages") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -19779,7 +19789,7 @@ void StatsTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Difference") == 0)
+        else if (strcmp(basie->getprintElement(), "Difference") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -19795,7 +19805,7 @@ void StatsTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupDifferences") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupDifferences") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -19811,7 +19821,7 @@ void StatsTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RootMeanSquare") == 0)
+        else if (strcmp(basie->getprintElement(), "RootMeanSquare") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -19827,7 +19837,7 @@ void StatsTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Maximum") == 0)
+        else if (strcmp(basie->getprintElement(), "Maximum") == 0)
           {
             StatsMeasuredDecimalWithReferenceType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalWithReferenceType *>(basie)))
@@ -19843,7 +19853,7 @@ void StatsTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupMaxima") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupMaxima") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -19859,7 +19869,7 @@ void StatsTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Minimum") == 0)
+        else if (strcmp(basie->getprintElement(), "Minimum") == 0)
           {
             StatsMeasuredDecimalWithReferenceType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalWithReferenceType *>(basie)))
@@ -19875,7 +19885,7 @@ void StatsTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupMinima") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupMinima") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -19891,7 +19901,7 @@ void StatsTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Range") == 0)
+        else if (strcmp(basie->getprintElement(), "Range") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -19907,7 +19917,7 @@ void StatsTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupRanges") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupRanges") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -19923,7 +19933,7 @@ void StatsTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "AverageRange") == 0)
+        else if (strcmp(basie->getprintElement(), "AverageRange") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -19939,7 +19949,7 @@ void StatsTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "StandardDeviation") == 0)
+        else if (strcmp(basie->getprintElement(), "StandardDeviation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -19955,7 +19965,7 @@ void StatsTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Skew") == 0)
+        else if (strcmp(basie->getprintElement(), "Skew") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -19971,7 +19981,7 @@ void StatsTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Kurtosis") == 0)
+        else if (strcmp(basie->getprintElement(), "Kurtosis") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -19987,7 +19997,7 @@ void StatsTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Normality") == 0)
+        else if (strcmp(basie->getprintElement(), "Normality") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -20003,7 +20013,7 @@ void StatsTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ProcessVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "ProcessVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -20019,7 +20029,7 @@ void StatsTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EstimatedStandardDeviation") == 0)
+        else if (strcmp(basie->getprintElement(), "EstimatedStandardDeviation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -20035,7 +20045,7 @@ void StatsTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UpperControlLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "UpperControlLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -20051,7 +20061,7 @@ void StatsTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LowerControlLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "LowerControlLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -20067,7 +20077,7 @@ void StatsTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UpperControlLimitRange") == 0)
+        else if (strcmp(basie->getprintElement(), "UpperControlLimitRange") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -20083,7 +20093,7 @@ void StatsTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LowerControlLimitRange") == 0)
+        else if (strcmp(basie->getprintElement(), "LowerControlLimitRange") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -20099,7 +20109,7 @@ void StatsTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberOutOfControl") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberOutOfControl") == 0)
           {
             StatsNonNegativeIntegerWithReferencesType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerWithReferencesType *>(basie)))
@@ -20115,7 +20125,7 @@ void StatsTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "AppraiserVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "AppraiserVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -20131,7 +20141,7 @@ void StatsTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EquipmentVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "EquipmentVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -20147,7 +20157,7 @@ void StatsTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Interaction") == 0)
+        else if (strcmp(basie->getprintElement(), "Interaction") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -20163,7 +20173,7 @@ void StatsTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "GageRandR") == 0)
+        else if (strcmp(basie->getprintElement(), "GageRandR") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -20179,7 +20189,7 @@ void StatsTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "PartVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "PartVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -20195,7 +20205,7 @@ void StatsTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TotalVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "TotalVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -20211,7 +20221,7 @@ void StatsTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Linearity") == 0)
+        else if (strcmp(basie->getprintElement(), "Linearity") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -20227,7 +20237,7 @@ void StatsTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Bias") == 0)
+        else if (strcmp(basie->getprintElement(), "Bias") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -20243,7 +20253,7 @@ void StatsTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeLinearity") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeLinearity") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -20259,7 +20269,7 @@ void StatsTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeBias") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeBias") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -20275,7 +20285,7 @@ void StatsTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "GoodnessOfFit") == 0)
+        else if (strcmp(basie->getprintElement(), "GoodnessOfFit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -20291,7 +20301,7 @@ void StatsTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RegressionSlope") == 0)
+        else if (strcmp(basie->getprintElement(), "RegressionSlope") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -20307,7 +20317,7 @@ void StatsTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RegressionIntercept") == 0)
+        else if (strcmp(basie->getprintElement(), "RegressionIntercept") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -20323,7 +20333,7 @@ void StatsTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UpperConfidenceLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "UpperConfidenceLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -20339,7 +20349,7 @@ void StatsTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LowerConfidenceLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "LowerConfidenceLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -20355,7 +20365,7 @@ void StatsTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TDistribution") == 0)
+        else if (strcmp(basie->getprintElement(), "TDistribution") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -20371,7 +20381,7 @@ void StatsTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TotalNumber") == 0)
+        else if (strcmp(basie->getprintElement(), "TotalNumber") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -20387,7 +20397,7 @@ void StatsTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupTotalNumbers") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupTotalNumbers") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -20403,7 +20413,7 @@ void StatsTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EffectiveNumber") == 0)
+        else if (strcmp(basie->getprintElement(), "EffectiveNumber") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -20419,7 +20429,7 @@ void StatsTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupEffectiveNumbers") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupEffectiveNumbers") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -20435,7 +20445,7 @@ void StatsTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberSubgroups") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberSubgroups") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -20473,7 +20483,7 @@ bool StatsTemperatureType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "temperatureUnit")
+      if (decl->getname() == "temperatureUnit")
         {
           XmlToken * temperatureUnitVal;
           if (this->temperatureUnit)
@@ -20482,12 +20492,12 @@ bool StatsTemperatureType::badAttributes(
               returnValue = true;
               break;
             }
-          temperatureUnitVal = new XmlToken(decl->val.c_str());
-          if (temperatureUnitVal->bad)
+          temperatureUnitVal = new XmlToken(decl->getval().c_str());
+          if (temperatureUnitVal->getbad())
             {
               delete temperatureUnitVal;
               fprintf(stderr, "bad value %s for temperatureUnit in StatsTemperatureType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -20617,12 +20627,12 @@ void StatsTimeType::printSelf(FILE * outFile)
         StatsWithReferenceBaseType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "CommonStatsValue") == 0)
+        else if (strcmp(basie->getprintElement(), "CommonStatsValue") == 0)
           {
             StatsWithReferenceBaseType * typ;
             if ((typ = dynamic_cast<StatsWithReferenceBaseType *>(basie)))
@@ -20638,7 +20648,7 @@ void StatsTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Average") == 0)
+        else if (strcmp(basie->getprintElement(), "Average") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -20654,7 +20664,7 @@ void StatsTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupAverages") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupAverages") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -20670,7 +20680,7 @@ void StatsTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Difference") == 0)
+        else if (strcmp(basie->getprintElement(), "Difference") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -20686,7 +20696,7 @@ void StatsTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupDifferences") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupDifferences") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -20702,7 +20712,7 @@ void StatsTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RootMeanSquare") == 0)
+        else if (strcmp(basie->getprintElement(), "RootMeanSquare") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -20718,7 +20728,7 @@ void StatsTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Maximum") == 0)
+        else if (strcmp(basie->getprintElement(), "Maximum") == 0)
           {
             StatsMeasuredDecimalWithReferenceType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalWithReferenceType *>(basie)))
@@ -20734,7 +20744,7 @@ void StatsTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupMaxima") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupMaxima") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -20750,7 +20760,7 @@ void StatsTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Minimum") == 0)
+        else if (strcmp(basie->getprintElement(), "Minimum") == 0)
           {
             StatsMeasuredDecimalWithReferenceType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalWithReferenceType *>(basie)))
@@ -20766,7 +20776,7 @@ void StatsTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupMinima") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupMinima") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -20782,7 +20792,7 @@ void StatsTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Range") == 0)
+        else if (strcmp(basie->getprintElement(), "Range") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -20798,7 +20808,7 @@ void StatsTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupRanges") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupRanges") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -20814,7 +20824,7 @@ void StatsTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "AverageRange") == 0)
+        else if (strcmp(basie->getprintElement(), "AverageRange") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -20830,7 +20840,7 @@ void StatsTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "StandardDeviation") == 0)
+        else if (strcmp(basie->getprintElement(), "StandardDeviation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -20846,7 +20856,7 @@ void StatsTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Skew") == 0)
+        else if (strcmp(basie->getprintElement(), "Skew") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -20862,7 +20872,7 @@ void StatsTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Kurtosis") == 0)
+        else if (strcmp(basie->getprintElement(), "Kurtosis") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -20878,7 +20888,7 @@ void StatsTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Normality") == 0)
+        else if (strcmp(basie->getprintElement(), "Normality") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -20894,7 +20904,7 @@ void StatsTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ProcessVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "ProcessVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -20910,7 +20920,7 @@ void StatsTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EstimatedStandardDeviation") == 0)
+        else if (strcmp(basie->getprintElement(), "EstimatedStandardDeviation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -20926,7 +20936,7 @@ void StatsTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UpperControlLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "UpperControlLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -20942,7 +20952,7 @@ void StatsTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LowerControlLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "LowerControlLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -20958,7 +20968,7 @@ void StatsTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UpperControlLimitRange") == 0)
+        else if (strcmp(basie->getprintElement(), "UpperControlLimitRange") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -20974,7 +20984,7 @@ void StatsTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LowerControlLimitRange") == 0)
+        else if (strcmp(basie->getprintElement(), "LowerControlLimitRange") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -20990,7 +21000,7 @@ void StatsTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberOutOfControl") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberOutOfControl") == 0)
           {
             StatsNonNegativeIntegerWithReferencesType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerWithReferencesType *>(basie)))
@@ -21006,7 +21016,7 @@ void StatsTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "AppraiserVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "AppraiserVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -21022,7 +21032,7 @@ void StatsTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EquipmentVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "EquipmentVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -21038,7 +21048,7 @@ void StatsTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Interaction") == 0)
+        else if (strcmp(basie->getprintElement(), "Interaction") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -21054,7 +21064,7 @@ void StatsTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "GageRandR") == 0)
+        else if (strcmp(basie->getprintElement(), "GageRandR") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -21070,7 +21080,7 @@ void StatsTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "PartVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "PartVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -21086,7 +21096,7 @@ void StatsTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TotalVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "TotalVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -21102,7 +21112,7 @@ void StatsTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Linearity") == 0)
+        else if (strcmp(basie->getprintElement(), "Linearity") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -21118,7 +21128,7 @@ void StatsTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Bias") == 0)
+        else if (strcmp(basie->getprintElement(), "Bias") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -21134,7 +21144,7 @@ void StatsTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeLinearity") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeLinearity") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -21150,7 +21160,7 @@ void StatsTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeBias") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeBias") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -21166,7 +21176,7 @@ void StatsTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "GoodnessOfFit") == 0)
+        else if (strcmp(basie->getprintElement(), "GoodnessOfFit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -21182,7 +21192,7 @@ void StatsTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RegressionSlope") == 0)
+        else if (strcmp(basie->getprintElement(), "RegressionSlope") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -21198,7 +21208,7 @@ void StatsTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RegressionIntercept") == 0)
+        else if (strcmp(basie->getprintElement(), "RegressionIntercept") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -21214,7 +21224,7 @@ void StatsTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UpperConfidenceLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "UpperConfidenceLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -21230,7 +21240,7 @@ void StatsTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LowerConfidenceLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "LowerConfidenceLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -21246,7 +21256,7 @@ void StatsTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TDistribution") == 0)
+        else if (strcmp(basie->getprintElement(), "TDistribution") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -21262,7 +21272,7 @@ void StatsTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TotalNumber") == 0)
+        else if (strcmp(basie->getprintElement(), "TotalNumber") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -21278,7 +21288,7 @@ void StatsTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupTotalNumbers") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupTotalNumbers") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -21294,7 +21304,7 @@ void StatsTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EffectiveNumber") == 0)
+        else if (strcmp(basie->getprintElement(), "EffectiveNumber") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -21310,7 +21320,7 @@ void StatsTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupEffectiveNumbers") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupEffectiveNumbers") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -21326,7 +21336,7 @@ void StatsTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberSubgroups") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberSubgroups") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -21364,7 +21374,7 @@ bool StatsTimeType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "timeUnit")
+      if (decl->getname() == "timeUnit")
         {
           XmlToken * timeUnitVal;
           if (this->timeUnit)
@@ -21373,12 +21383,12 @@ bool StatsTimeType::badAttributes(
               returnValue = true;
               break;
             }
-          timeUnitVal = new XmlToken(decl->val.c_str());
-          if (timeUnitVal->bad)
+          timeUnitVal = new XmlToken(decl->getval().c_str());
+          if (timeUnitVal->getbad())
             {
               delete timeUnitVal;
               fprintf(stderr, "bad value %s for timeUnit in StatsTimeType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -21513,12 +21523,12 @@ void StatsUserDefinedUnitType::printSelf(FILE * outFile)
         StatsWithReferenceBaseType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "CommonStatsValue") == 0)
+        else if (strcmp(basie->getprintElement(), "CommonStatsValue") == 0)
           {
             StatsWithReferenceBaseType * typ;
             if ((typ = dynamic_cast<StatsWithReferenceBaseType *>(basie)))
@@ -21534,7 +21544,7 @@ void StatsUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Average") == 0)
+        else if (strcmp(basie->getprintElement(), "Average") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -21550,7 +21560,7 @@ void StatsUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupAverages") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupAverages") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -21566,7 +21576,7 @@ void StatsUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Difference") == 0)
+        else if (strcmp(basie->getprintElement(), "Difference") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -21582,7 +21592,7 @@ void StatsUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupDifferences") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupDifferences") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -21598,7 +21608,7 @@ void StatsUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RootMeanSquare") == 0)
+        else if (strcmp(basie->getprintElement(), "RootMeanSquare") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -21614,7 +21624,7 @@ void StatsUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Maximum") == 0)
+        else if (strcmp(basie->getprintElement(), "Maximum") == 0)
           {
             StatsMeasuredDecimalWithReferenceType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalWithReferenceType *>(basie)))
@@ -21630,7 +21640,7 @@ void StatsUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupMaxima") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupMaxima") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -21646,7 +21656,7 @@ void StatsUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Minimum") == 0)
+        else if (strcmp(basie->getprintElement(), "Minimum") == 0)
           {
             StatsMeasuredDecimalWithReferenceType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalWithReferenceType *>(basie)))
@@ -21662,7 +21672,7 @@ void StatsUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupMinima") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupMinima") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -21678,7 +21688,7 @@ void StatsUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Range") == 0)
+        else if (strcmp(basie->getprintElement(), "Range") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -21694,7 +21704,7 @@ void StatsUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupRanges") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupRanges") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -21710,7 +21720,7 @@ void StatsUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "AverageRange") == 0)
+        else if (strcmp(basie->getprintElement(), "AverageRange") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -21726,7 +21736,7 @@ void StatsUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "StandardDeviation") == 0)
+        else if (strcmp(basie->getprintElement(), "StandardDeviation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -21742,7 +21752,7 @@ void StatsUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Skew") == 0)
+        else if (strcmp(basie->getprintElement(), "Skew") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -21758,7 +21768,7 @@ void StatsUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Kurtosis") == 0)
+        else if (strcmp(basie->getprintElement(), "Kurtosis") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -21774,7 +21784,7 @@ void StatsUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Normality") == 0)
+        else if (strcmp(basie->getprintElement(), "Normality") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -21790,7 +21800,7 @@ void StatsUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ProcessVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "ProcessVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -21806,7 +21816,7 @@ void StatsUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EstimatedStandardDeviation") == 0)
+        else if (strcmp(basie->getprintElement(), "EstimatedStandardDeviation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -21822,7 +21832,7 @@ void StatsUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UpperControlLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "UpperControlLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -21838,7 +21848,7 @@ void StatsUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LowerControlLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "LowerControlLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -21854,7 +21864,7 @@ void StatsUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UpperControlLimitRange") == 0)
+        else if (strcmp(basie->getprintElement(), "UpperControlLimitRange") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -21870,7 +21880,7 @@ void StatsUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LowerControlLimitRange") == 0)
+        else if (strcmp(basie->getprintElement(), "LowerControlLimitRange") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -21886,7 +21896,7 @@ void StatsUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberOutOfControl") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberOutOfControl") == 0)
           {
             StatsNonNegativeIntegerWithReferencesType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerWithReferencesType *>(basie)))
@@ -21902,7 +21912,7 @@ void StatsUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "AppraiserVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "AppraiserVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -21918,7 +21928,7 @@ void StatsUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EquipmentVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "EquipmentVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -21934,7 +21944,7 @@ void StatsUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Interaction") == 0)
+        else if (strcmp(basie->getprintElement(), "Interaction") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -21950,7 +21960,7 @@ void StatsUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "GageRandR") == 0)
+        else if (strcmp(basie->getprintElement(), "GageRandR") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -21966,7 +21976,7 @@ void StatsUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "PartVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "PartVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -21982,7 +21992,7 @@ void StatsUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TotalVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "TotalVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -21998,7 +22008,7 @@ void StatsUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Linearity") == 0)
+        else if (strcmp(basie->getprintElement(), "Linearity") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -22014,7 +22024,7 @@ void StatsUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Bias") == 0)
+        else if (strcmp(basie->getprintElement(), "Bias") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -22030,7 +22040,7 @@ void StatsUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeLinearity") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeLinearity") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -22046,7 +22056,7 @@ void StatsUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeBias") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeBias") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -22062,7 +22072,7 @@ void StatsUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "GoodnessOfFit") == 0)
+        else if (strcmp(basie->getprintElement(), "GoodnessOfFit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -22078,7 +22088,7 @@ void StatsUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RegressionSlope") == 0)
+        else if (strcmp(basie->getprintElement(), "RegressionSlope") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -22094,7 +22104,7 @@ void StatsUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RegressionIntercept") == 0)
+        else if (strcmp(basie->getprintElement(), "RegressionIntercept") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -22110,7 +22120,7 @@ void StatsUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UpperConfidenceLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "UpperConfidenceLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -22126,7 +22136,7 @@ void StatsUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LowerConfidenceLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "LowerConfidenceLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -22142,7 +22152,7 @@ void StatsUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TDistribution") == 0)
+        else if (strcmp(basie->getprintElement(), "TDistribution") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -22158,7 +22168,7 @@ void StatsUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TotalNumber") == 0)
+        else if (strcmp(basie->getprintElement(), "TotalNumber") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -22174,7 +22184,7 @@ void StatsUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupTotalNumbers") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupTotalNumbers") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -22190,7 +22200,7 @@ void StatsUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EffectiveNumber") == 0)
+        else if (strcmp(basie->getprintElement(), "EffectiveNumber") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -22206,7 +22216,7 @@ void StatsUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupEffectiveNumbers") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupEffectiveNumbers") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -22222,7 +22232,7 @@ void StatsUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberSubgroups") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberSubgroups") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -22260,7 +22270,7 @@ bool StatsUserDefinedUnitType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "unitName")
+      if (decl->getname() == "unitName")
         {
           XmlToken * unitNameVal;
           if (this->unitName)
@@ -22269,12 +22279,12 @@ bool StatsUserDefinedUnitType::badAttributes(
               returnValue = true;
               break;
             }
-          unitNameVal = new XmlToken(decl->val.c_str());
-          if (unitNameVal->bad)
+          unitNameVal = new XmlToken(decl->getval().c_str());
+          if (unitNameVal->getbad())
             {
               delete unitNameVal;
               fprintf(stderr, "bad value %s for unitName in StatsUserDefinedUnitType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -22503,12 +22513,12 @@ void StatsWithTolAngularType::printSelf(FILE * outFile)
         StatsWithReferenceBaseType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "NumericCharacteristicStatsValue") == 0)
+        else if (strcmp(basie->getprintElement(), "NumericCharacteristicStatsValue") == 0)
           {
             StatsWithReferenceBaseType * typ;
             if ((typ = dynamic_cast<StatsWithReferenceBaseType *>(basie)))
@@ -22524,7 +22534,7 @@ void StatsWithTolAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberOutOfTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberOutOfTolerance") == 0)
           {
             StatsNonNegativeIntegerWithReferencesType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerWithReferencesType *>(basie)))
@@ -22540,7 +22550,7 @@ void StatsWithTolAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupNumbersOutOfTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupNumbersOutOfTolerance") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -22556,7 +22566,7 @@ void StatsWithTolAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberOverUpperTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberOverUpperTolerance") == 0)
           {
             StatsNonNegativeIntegerWithReferencesType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerWithReferencesType *>(basie)))
@@ -22572,7 +22582,7 @@ void StatsWithTolAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupNumbersOverUpperTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupNumbersOverUpperTolerance") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -22588,7 +22598,7 @@ void StatsWithTolAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberUnderLowerTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberUnderLowerTolerance") == 0)
           {
             StatsNonNegativeIntegerWithReferencesType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerWithReferencesType *>(basie)))
@@ -22604,7 +22614,7 @@ void StatsWithTolAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupNumbersUnderLowerTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupNumbersUnderLowerTolerance") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -22620,7 +22630,7 @@ void StatsWithTolAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Cp") == 0)
+        else if (strcmp(basie->getprintElement(), "Cp") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -22636,7 +22646,7 @@ void StatsWithTolAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Cpk") == 0)
+        else if (strcmp(basie->getprintElement(), "Cpk") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -22652,7 +22662,7 @@ void StatsWithTolAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Pp") == 0)
+        else if (strcmp(basie->getprintElement(), "Pp") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -22668,7 +22678,7 @@ void StatsWithTolAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Ppk") == 0)
+        else if (strcmp(basie->getprintElement(), "Ppk") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -22684,7 +22694,7 @@ void StatsWithTolAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Cm") == 0)
+        else if (strcmp(basie->getprintElement(), "Cm") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -22700,7 +22710,7 @@ void StatsWithTolAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Cmk") == 0)
+        else if (strcmp(basie->getprintElement(), "Cmk") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -22716,7 +22726,7 @@ void StatsWithTolAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Cpm") == 0)
+        else if (strcmp(basie->getprintElement(), "Cpm") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -22732,7 +22742,7 @@ void StatsWithTolAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeAppraiserVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeAppraiserVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -22748,7 +22758,7 @@ void StatsWithTolAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeEquipmentVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeEquipmentVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -22764,7 +22774,7 @@ void StatsWithTolAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeInteraction") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeInteraction") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -22780,7 +22790,7 @@ void StatsWithTolAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeGageRandR") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeGageRandR") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -22796,7 +22806,7 @@ void StatsWithTolAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativePartVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativePartVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -22812,7 +22822,7 @@ void StatsWithTolAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeTotalVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeTotalVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -22828,7 +22838,7 @@ void StatsWithTolAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "CommonStatsValue") == 0)
+        else if (strcmp(basie->getprintElement(), "CommonStatsValue") == 0)
           {
             StatsWithReferenceBaseType * typ;
             if ((typ = dynamic_cast<StatsWithReferenceBaseType *>(basie)))
@@ -22844,7 +22854,7 @@ void StatsWithTolAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Average") == 0)
+        else if (strcmp(basie->getprintElement(), "Average") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -22860,7 +22870,7 @@ void StatsWithTolAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupAverages") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupAverages") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -22876,7 +22886,7 @@ void StatsWithTolAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Difference") == 0)
+        else if (strcmp(basie->getprintElement(), "Difference") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -22892,7 +22902,7 @@ void StatsWithTolAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupDifferences") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupDifferences") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -22908,7 +22918,7 @@ void StatsWithTolAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RootMeanSquare") == 0)
+        else if (strcmp(basie->getprintElement(), "RootMeanSquare") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -22924,7 +22934,7 @@ void StatsWithTolAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Maximum") == 0)
+        else if (strcmp(basie->getprintElement(), "Maximum") == 0)
           {
             StatsMeasuredDecimalWithReferenceType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalWithReferenceType *>(basie)))
@@ -22940,7 +22950,7 @@ void StatsWithTolAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupMaxima") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupMaxima") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -22956,7 +22966,7 @@ void StatsWithTolAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Minimum") == 0)
+        else if (strcmp(basie->getprintElement(), "Minimum") == 0)
           {
             StatsMeasuredDecimalWithReferenceType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalWithReferenceType *>(basie)))
@@ -22972,7 +22982,7 @@ void StatsWithTolAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupMinima") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupMinima") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -22988,7 +22998,7 @@ void StatsWithTolAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Range") == 0)
+        else if (strcmp(basie->getprintElement(), "Range") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -23004,7 +23014,7 @@ void StatsWithTolAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupRanges") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupRanges") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -23020,7 +23030,7 @@ void StatsWithTolAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "AverageRange") == 0)
+        else if (strcmp(basie->getprintElement(), "AverageRange") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -23036,7 +23046,7 @@ void StatsWithTolAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "StandardDeviation") == 0)
+        else if (strcmp(basie->getprintElement(), "StandardDeviation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -23052,7 +23062,7 @@ void StatsWithTolAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Skew") == 0)
+        else if (strcmp(basie->getprintElement(), "Skew") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -23068,7 +23078,7 @@ void StatsWithTolAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Kurtosis") == 0)
+        else if (strcmp(basie->getprintElement(), "Kurtosis") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -23084,7 +23094,7 @@ void StatsWithTolAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Normality") == 0)
+        else if (strcmp(basie->getprintElement(), "Normality") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -23100,7 +23110,7 @@ void StatsWithTolAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ProcessVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "ProcessVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -23116,7 +23126,7 @@ void StatsWithTolAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EstimatedStandardDeviation") == 0)
+        else if (strcmp(basie->getprintElement(), "EstimatedStandardDeviation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -23132,7 +23142,7 @@ void StatsWithTolAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UpperControlLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "UpperControlLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -23148,7 +23158,7 @@ void StatsWithTolAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LowerControlLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "LowerControlLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -23164,7 +23174,7 @@ void StatsWithTolAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UpperControlLimitRange") == 0)
+        else if (strcmp(basie->getprintElement(), "UpperControlLimitRange") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -23180,7 +23190,7 @@ void StatsWithTolAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LowerControlLimitRange") == 0)
+        else if (strcmp(basie->getprintElement(), "LowerControlLimitRange") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -23196,7 +23206,7 @@ void StatsWithTolAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberOutOfControl") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberOutOfControl") == 0)
           {
             StatsNonNegativeIntegerWithReferencesType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerWithReferencesType *>(basie)))
@@ -23212,7 +23222,7 @@ void StatsWithTolAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "AppraiserVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "AppraiserVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -23228,7 +23238,7 @@ void StatsWithTolAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EquipmentVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "EquipmentVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -23244,7 +23254,7 @@ void StatsWithTolAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Interaction") == 0)
+        else if (strcmp(basie->getprintElement(), "Interaction") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -23260,7 +23270,7 @@ void StatsWithTolAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "GageRandR") == 0)
+        else if (strcmp(basie->getprintElement(), "GageRandR") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -23276,7 +23286,7 @@ void StatsWithTolAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "PartVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "PartVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -23292,7 +23302,7 @@ void StatsWithTolAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TotalVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "TotalVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -23308,7 +23318,7 @@ void StatsWithTolAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Linearity") == 0)
+        else if (strcmp(basie->getprintElement(), "Linearity") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -23324,7 +23334,7 @@ void StatsWithTolAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Bias") == 0)
+        else if (strcmp(basie->getprintElement(), "Bias") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -23340,7 +23350,7 @@ void StatsWithTolAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeLinearity") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeLinearity") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -23356,7 +23366,7 @@ void StatsWithTolAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeBias") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeBias") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -23372,7 +23382,7 @@ void StatsWithTolAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "GoodnessOfFit") == 0)
+        else if (strcmp(basie->getprintElement(), "GoodnessOfFit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -23388,7 +23398,7 @@ void StatsWithTolAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RegressionSlope") == 0)
+        else if (strcmp(basie->getprintElement(), "RegressionSlope") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -23404,7 +23414,7 @@ void StatsWithTolAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RegressionIntercept") == 0)
+        else if (strcmp(basie->getprintElement(), "RegressionIntercept") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -23420,7 +23430,7 @@ void StatsWithTolAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UpperConfidenceLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "UpperConfidenceLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -23436,7 +23446,7 @@ void StatsWithTolAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LowerConfidenceLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "LowerConfidenceLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -23452,7 +23462,7 @@ void StatsWithTolAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TDistribution") == 0)
+        else if (strcmp(basie->getprintElement(), "TDistribution") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -23468,7 +23478,7 @@ void StatsWithTolAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TotalNumber") == 0)
+        else if (strcmp(basie->getprintElement(), "TotalNumber") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -23484,7 +23494,7 @@ void StatsWithTolAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupTotalNumbers") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupTotalNumbers") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -23500,7 +23510,7 @@ void StatsWithTolAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EffectiveNumber") == 0)
+        else if (strcmp(basie->getprintElement(), "EffectiveNumber") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -23516,7 +23526,7 @@ void StatsWithTolAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupEffectiveNumbers") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupEffectiveNumbers") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -23532,7 +23542,7 @@ void StatsWithTolAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberSubgroups") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberSubgroups") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -23548,7 +23558,7 @@ void StatsWithTolAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TotalNumber") == 0)
+        else if (strcmp(basie->getprintElement(), "TotalNumber") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -23564,7 +23574,7 @@ void StatsWithTolAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupTotalNumbers") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupTotalNumbers") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -23580,7 +23590,7 @@ void StatsWithTolAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EffectiveNumber") == 0)
+        else if (strcmp(basie->getprintElement(), "EffectiveNumber") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -23596,7 +23606,7 @@ void StatsWithTolAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupEffectiveNumbers") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupEffectiveNumbers") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -23612,7 +23622,7 @@ void StatsWithTolAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberSubgroups") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberSubgroups") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -23650,7 +23660,7 @@ bool StatsWithTolAngularType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "angularUnit")
+      if (decl->getname() == "angularUnit")
         {
           XmlToken * angularUnitVal;
           if (this->angularUnit)
@@ -23659,12 +23669,12 @@ bool StatsWithTolAngularType::badAttributes(
               returnValue = true;
               break;
             }
-          angularUnitVal = new XmlToken(decl->val.c_str());
-          if (angularUnitVal->bad)
+          angularUnitVal = new XmlToken(decl->getval().c_str());
+          if (angularUnitVal->getbad())
             {
               delete angularUnitVal;
               fprintf(stderr, "bad value %s for angularUnit in StatsWithTolAngularType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -23794,12 +23804,12 @@ void StatsWithTolAreaType::printSelf(FILE * outFile)
         StatsWithReferenceBaseType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "NumericCharacteristicStatsValue") == 0)
+        else if (strcmp(basie->getprintElement(), "NumericCharacteristicStatsValue") == 0)
           {
             StatsWithReferenceBaseType * typ;
             if ((typ = dynamic_cast<StatsWithReferenceBaseType *>(basie)))
@@ -23815,7 +23825,7 @@ void StatsWithTolAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberOutOfTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberOutOfTolerance") == 0)
           {
             StatsNonNegativeIntegerWithReferencesType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerWithReferencesType *>(basie)))
@@ -23831,7 +23841,7 @@ void StatsWithTolAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupNumbersOutOfTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupNumbersOutOfTolerance") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -23847,7 +23857,7 @@ void StatsWithTolAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberOverUpperTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberOverUpperTolerance") == 0)
           {
             StatsNonNegativeIntegerWithReferencesType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerWithReferencesType *>(basie)))
@@ -23863,7 +23873,7 @@ void StatsWithTolAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupNumbersOverUpperTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupNumbersOverUpperTolerance") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -23879,7 +23889,7 @@ void StatsWithTolAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberUnderLowerTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberUnderLowerTolerance") == 0)
           {
             StatsNonNegativeIntegerWithReferencesType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerWithReferencesType *>(basie)))
@@ -23895,7 +23905,7 @@ void StatsWithTolAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupNumbersUnderLowerTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupNumbersUnderLowerTolerance") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -23911,7 +23921,7 @@ void StatsWithTolAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Cp") == 0)
+        else if (strcmp(basie->getprintElement(), "Cp") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -23927,7 +23937,7 @@ void StatsWithTolAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Cpk") == 0)
+        else if (strcmp(basie->getprintElement(), "Cpk") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -23943,7 +23953,7 @@ void StatsWithTolAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Pp") == 0)
+        else if (strcmp(basie->getprintElement(), "Pp") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -23959,7 +23969,7 @@ void StatsWithTolAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Ppk") == 0)
+        else if (strcmp(basie->getprintElement(), "Ppk") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -23975,7 +23985,7 @@ void StatsWithTolAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Cm") == 0)
+        else if (strcmp(basie->getprintElement(), "Cm") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -23991,7 +24001,7 @@ void StatsWithTolAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Cmk") == 0)
+        else if (strcmp(basie->getprintElement(), "Cmk") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -24007,7 +24017,7 @@ void StatsWithTolAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Cpm") == 0)
+        else if (strcmp(basie->getprintElement(), "Cpm") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -24023,7 +24033,7 @@ void StatsWithTolAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeAppraiserVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeAppraiserVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -24039,7 +24049,7 @@ void StatsWithTolAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeEquipmentVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeEquipmentVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -24055,7 +24065,7 @@ void StatsWithTolAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeInteraction") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeInteraction") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -24071,7 +24081,7 @@ void StatsWithTolAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeGageRandR") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeGageRandR") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -24087,7 +24097,7 @@ void StatsWithTolAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativePartVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativePartVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -24103,7 +24113,7 @@ void StatsWithTolAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeTotalVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeTotalVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -24119,7 +24129,7 @@ void StatsWithTolAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "CommonStatsValue") == 0)
+        else if (strcmp(basie->getprintElement(), "CommonStatsValue") == 0)
           {
             StatsWithReferenceBaseType * typ;
             if ((typ = dynamic_cast<StatsWithReferenceBaseType *>(basie)))
@@ -24135,7 +24145,7 @@ void StatsWithTolAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Average") == 0)
+        else if (strcmp(basie->getprintElement(), "Average") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -24151,7 +24161,7 @@ void StatsWithTolAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupAverages") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupAverages") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -24167,7 +24177,7 @@ void StatsWithTolAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Difference") == 0)
+        else if (strcmp(basie->getprintElement(), "Difference") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -24183,7 +24193,7 @@ void StatsWithTolAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupDifferences") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupDifferences") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -24199,7 +24209,7 @@ void StatsWithTolAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RootMeanSquare") == 0)
+        else if (strcmp(basie->getprintElement(), "RootMeanSquare") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -24215,7 +24225,7 @@ void StatsWithTolAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Maximum") == 0)
+        else if (strcmp(basie->getprintElement(), "Maximum") == 0)
           {
             StatsMeasuredDecimalWithReferenceType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalWithReferenceType *>(basie)))
@@ -24231,7 +24241,7 @@ void StatsWithTolAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupMaxima") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupMaxima") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -24247,7 +24257,7 @@ void StatsWithTolAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Minimum") == 0)
+        else if (strcmp(basie->getprintElement(), "Minimum") == 0)
           {
             StatsMeasuredDecimalWithReferenceType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalWithReferenceType *>(basie)))
@@ -24263,7 +24273,7 @@ void StatsWithTolAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupMinima") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupMinima") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -24279,7 +24289,7 @@ void StatsWithTolAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Range") == 0)
+        else if (strcmp(basie->getprintElement(), "Range") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -24295,7 +24305,7 @@ void StatsWithTolAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupRanges") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupRanges") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -24311,7 +24321,7 @@ void StatsWithTolAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "AverageRange") == 0)
+        else if (strcmp(basie->getprintElement(), "AverageRange") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -24327,7 +24337,7 @@ void StatsWithTolAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "StandardDeviation") == 0)
+        else if (strcmp(basie->getprintElement(), "StandardDeviation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -24343,7 +24353,7 @@ void StatsWithTolAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Skew") == 0)
+        else if (strcmp(basie->getprintElement(), "Skew") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -24359,7 +24369,7 @@ void StatsWithTolAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Kurtosis") == 0)
+        else if (strcmp(basie->getprintElement(), "Kurtosis") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -24375,7 +24385,7 @@ void StatsWithTolAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Normality") == 0)
+        else if (strcmp(basie->getprintElement(), "Normality") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -24391,7 +24401,7 @@ void StatsWithTolAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ProcessVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "ProcessVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -24407,7 +24417,7 @@ void StatsWithTolAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EstimatedStandardDeviation") == 0)
+        else if (strcmp(basie->getprintElement(), "EstimatedStandardDeviation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -24423,7 +24433,7 @@ void StatsWithTolAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UpperControlLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "UpperControlLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -24439,7 +24449,7 @@ void StatsWithTolAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LowerControlLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "LowerControlLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -24455,7 +24465,7 @@ void StatsWithTolAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UpperControlLimitRange") == 0)
+        else if (strcmp(basie->getprintElement(), "UpperControlLimitRange") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -24471,7 +24481,7 @@ void StatsWithTolAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LowerControlLimitRange") == 0)
+        else if (strcmp(basie->getprintElement(), "LowerControlLimitRange") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -24487,7 +24497,7 @@ void StatsWithTolAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberOutOfControl") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberOutOfControl") == 0)
           {
             StatsNonNegativeIntegerWithReferencesType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerWithReferencesType *>(basie)))
@@ -24503,7 +24513,7 @@ void StatsWithTolAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "AppraiserVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "AppraiserVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -24519,7 +24529,7 @@ void StatsWithTolAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EquipmentVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "EquipmentVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -24535,7 +24545,7 @@ void StatsWithTolAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Interaction") == 0)
+        else if (strcmp(basie->getprintElement(), "Interaction") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -24551,7 +24561,7 @@ void StatsWithTolAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "GageRandR") == 0)
+        else if (strcmp(basie->getprintElement(), "GageRandR") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -24567,7 +24577,7 @@ void StatsWithTolAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "PartVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "PartVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -24583,7 +24593,7 @@ void StatsWithTolAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TotalVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "TotalVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -24599,7 +24609,7 @@ void StatsWithTolAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Linearity") == 0)
+        else if (strcmp(basie->getprintElement(), "Linearity") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -24615,7 +24625,7 @@ void StatsWithTolAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Bias") == 0)
+        else if (strcmp(basie->getprintElement(), "Bias") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -24631,7 +24641,7 @@ void StatsWithTolAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeLinearity") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeLinearity") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -24647,7 +24657,7 @@ void StatsWithTolAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeBias") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeBias") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -24663,7 +24673,7 @@ void StatsWithTolAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "GoodnessOfFit") == 0)
+        else if (strcmp(basie->getprintElement(), "GoodnessOfFit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -24679,7 +24689,7 @@ void StatsWithTolAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RegressionSlope") == 0)
+        else if (strcmp(basie->getprintElement(), "RegressionSlope") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -24695,7 +24705,7 @@ void StatsWithTolAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RegressionIntercept") == 0)
+        else if (strcmp(basie->getprintElement(), "RegressionIntercept") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -24711,7 +24721,7 @@ void StatsWithTolAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UpperConfidenceLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "UpperConfidenceLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -24727,7 +24737,7 @@ void StatsWithTolAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LowerConfidenceLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "LowerConfidenceLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -24743,7 +24753,7 @@ void StatsWithTolAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TDistribution") == 0)
+        else if (strcmp(basie->getprintElement(), "TDistribution") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -24759,7 +24769,7 @@ void StatsWithTolAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TotalNumber") == 0)
+        else if (strcmp(basie->getprintElement(), "TotalNumber") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -24775,7 +24785,7 @@ void StatsWithTolAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupTotalNumbers") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupTotalNumbers") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -24791,7 +24801,7 @@ void StatsWithTolAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EffectiveNumber") == 0)
+        else if (strcmp(basie->getprintElement(), "EffectiveNumber") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -24807,7 +24817,7 @@ void StatsWithTolAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupEffectiveNumbers") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupEffectiveNumbers") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -24823,7 +24833,7 @@ void StatsWithTolAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberSubgroups") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberSubgroups") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -24839,7 +24849,7 @@ void StatsWithTolAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TotalNumber") == 0)
+        else if (strcmp(basie->getprintElement(), "TotalNumber") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -24855,7 +24865,7 @@ void StatsWithTolAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupTotalNumbers") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupTotalNumbers") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -24871,7 +24881,7 @@ void StatsWithTolAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EffectiveNumber") == 0)
+        else if (strcmp(basie->getprintElement(), "EffectiveNumber") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -24887,7 +24897,7 @@ void StatsWithTolAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupEffectiveNumbers") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupEffectiveNumbers") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -24903,7 +24913,7 @@ void StatsWithTolAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberSubgroups") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberSubgroups") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -24941,7 +24951,7 @@ bool StatsWithTolAreaType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "areaUnit")
+      if (decl->getname() == "areaUnit")
         {
           XmlToken * areaUnitVal;
           if (this->areaUnit)
@@ -24950,12 +24960,12 @@ bool StatsWithTolAreaType::badAttributes(
               returnValue = true;
               break;
             }
-          areaUnitVal = new XmlToken(decl->val.c_str());
-          if (areaUnitVal->bad)
+          areaUnitVal = new XmlToken(decl->getval().c_str());
+          if (areaUnitVal->getbad())
             {
               delete areaUnitVal;
               fprintf(stderr, "bad value %s for areaUnit in StatsWithTolAreaType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -25085,12 +25095,12 @@ void StatsWithTolForceType::printSelf(FILE * outFile)
         StatsWithReferenceBaseType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "NumericCharacteristicStatsValue") == 0)
+        else if (strcmp(basie->getprintElement(), "NumericCharacteristicStatsValue") == 0)
           {
             StatsWithReferenceBaseType * typ;
             if ((typ = dynamic_cast<StatsWithReferenceBaseType *>(basie)))
@@ -25106,7 +25116,7 @@ void StatsWithTolForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberOutOfTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberOutOfTolerance") == 0)
           {
             StatsNonNegativeIntegerWithReferencesType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerWithReferencesType *>(basie)))
@@ -25122,7 +25132,7 @@ void StatsWithTolForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupNumbersOutOfTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupNumbersOutOfTolerance") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -25138,7 +25148,7 @@ void StatsWithTolForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberOverUpperTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberOverUpperTolerance") == 0)
           {
             StatsNonNegativeIntegerWithReferencesType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerWithReferencesType *>(basie)))
@@ -25154,7 +25164,7 @@ void StatsWithTolForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupNumbersOverUpperTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupNumbersOverUpperTolerance") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -25170,7 +25180,7 @@ void StatsWithTolForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberUnderLowerTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberUnderLowerTolerance") == 0)
           {
             StatsNonNegativeIntegerWithReferencesType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerWithReferencesType *>(basie)))
@@ -25186,7 +25196,7 @@ void StatsWithTolForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupNumbersUnderLowerTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupNumbersUnderLowerTolerance") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -25202,7 +25212,7 @@ void StatsWithTolForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Cp") == 0)
+        else if (strcmp(basie->getprintElement(), "Cp") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -25218,7 +25228,7 @@ void StatsWithTolForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Cpk") == 0)
+        else if (strcmp(basie->getprintElement(), "Cpk") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -25234,7 +25244,7 @@ void StatsWithTolForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Pp") == 0)
+        else if (strcmp(basie->getprintElement(), "Pp") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -25250,7 +25260,7 @@ void StatsWithTolForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Ppk") == 0)
+        else if (strcmp(basie->getprintElement(), "Ppk") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -25266,7 +25276,7 @@ void StatsWithTolForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Cm") == 0)
+        else if (strcmp(basie->getprintElement(), "Cm") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -25282,7 +25292,7 @@ void StatsWithTolForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Cmk") == 0)
+        else if (strcmp(basie->getprintElement(), "Cmk") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -25298,7 +25308,7 @@ void StatsWithTolForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Cpm") == 0)
+        else if (strcmp(basie->getprintElement(), "Cpm") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -25314,7 +25324,7 @@ void StatsWithTolForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeAppraiserVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeAppraiserVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -25330,7 +25340,7 @@ void StatsWithTolForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeEquipmentVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeEquipmentVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -25346,7 +25356,7 @@ void StatsWithTolForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeInteraction") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeInteraction") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -25362,7 +25372,7 @@ void StatsWithTolForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeGageRandR") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeGageRandR") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -25378,7 +25388,7 @@ void StatsWithTolForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativePartVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativePartVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -25394,7 +25404,7 @@ void StatsWithTolForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeTotalVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeTotalVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -25410,7 +25420,7 @@ void StatsWithTolForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "CommonStatsValue") == 0)
+        else if (strcmp(basie->getprintElement(), "CommonStatsValue") == 0)
           {
             StatsWithReferenceBaseType * typ;
             if ((typ = dynamic_cast<StatsWithReferenceBaseType *>(basie)))
@@ -25426,7 +25436,7 @@ void StatsWithTolForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Average") == 0)
+        else if (strcmp(basie->getprintElement(), "Average") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -25442,7 +25452,7 @@ void StatsWithTolForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupAverages") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupAverages") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -25458,7 +25468,7 @@ void StatsWithTolForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Difference") == 0)
+        else if (strcmp(basie->getprintElement(), "Difference") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -25474,7 +25484,7 @@ void StatsWithTolForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupDifferences") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupDifferences") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -25490,7 +25500,7 @@ void StatsWithTolForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RootMeanSquare") == 0)
+        else if (strcmp(basie->getprintElement(), "RootMeanSquare") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -25506,7 +25516,7 @@ void StatsWithTolForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Maximum") == 0)
+        else if (strcmp(basie->getprintElement(), "Maximum") == 0)
           {
             StatsMeasuredDecimalWithReferenceType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalWithReferenceType *>(basie)))
@@ -25522,7 +25532,7 @@ void StatsWithTolForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupMaxima") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupMaxima") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -25538,7 +25548,7 @@ void StatsWithTolForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Minimum") == 0)
+        else if (strcmp(basie->getprintElement(), "Minimum") == 0)
           {
             StatsMeasuredDecimalWithReferenceType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalWithReferenceType *>(basie)))
@@ -25554,7 +25564,7 @@ void StatsWithTolForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupMinima") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupMinima") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -25570,7 +25580,7 @@ void StatsWithTolForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Range") == 0)
+        else if (strcmp(basie->getprintElement(), "Range") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -25586,7 +25596,7 @@ void StatsWithTolForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupRanges") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupRanges") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -25602,7 +25612,7 @@ void StatsWithTolForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "AverageRange") == 0)
+        else if (strcmp(basie->getprintElement(), "AverageRange") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -25618,7 +25628,7 @@ void StatsWithTolForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "StandardDeviation") == 0)
+        else if (strcmp(basie->getprintElement(), "StandardDeviation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -25634,7 +25644,7 @@ void StatsWithTolForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Skew") == 0)
+        else if (strcmp(basie->getprintElement(), "Skew") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -25650,7 +25660,7 @@ void StatsWithTolForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Kurtosis") == 0)
+        else if (strcmp(basie->getprintElement(), "Kurtosis") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -25666,7 +25676,7 @@ void StatsWithTolForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Normality") == 0)
+        else if (strcmp(basie->getprintElement(), "Normality") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -25682,7 +25692,7 @@ void StatsWithTolForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ProcessVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "ProcessVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -25698,7 +25708,7 @@ void StatsWithTolForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EstimatedStandardDeviation") == 0)
+        else if (strcmp(basie->getprintElement(), "EstimatedStandardDeviation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -25714,7 +25724,7 @@ void StatsWithTolForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UpperControlLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "UpperControlLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -25730,7 +25740,7 @@ void StatsWithTolForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LowerControlLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "LowerControlLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -25746,7 +25756,7 @@ void StatsWithTolForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UpperControlLimitRange") == 0)
+        else if (strcmp(basie->getprintElement(), "UpperControlLimitRange") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -25762,7 +25772,7 @@ void StatsWithTolForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LowerControlLimitRange") == 0)
+        else if (strcmp(basie->getprintElement(), "LowerControlLimitRange") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -25778,7 +25788,7 @@ void StatsWithTolForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberOutOfControl") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberOutOfControl") == 0)
           {
             StatsNonNegativeIntegerWithReferencesType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerWithReferencesType *>(basie)))
@@ -25794,7 +25804,7 @@ void StatsWithTolForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "AppraiserVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "AppraiserVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -25810,7 +25820,7 @@ void StatsWithTolForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EquipmentVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "EquipmentVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -25826,7 +25836,7 @@ void StatsWithTolForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Interaction") == 0)
+        else if (strcmp(basie->getprintElement(), "Interaction") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -25842,7 +25852,7 @@ void StatsWithTolForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "GageRandR") == 0)
+        else if (strcmp(basie->getprintElement(), "GageRandR") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -25858,7 +25868,7 @@ void StatsWithTolForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "PartVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "PartVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -25874,7 +25884,7 @@ void StatsWithTolForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TotalVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "TotalVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -25890,7 +25900,7 @@ void StatsWithTolForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Linearity") == 0)
+        else if (strcmp(basie->getprintElement(), "Linearity") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -25906,7 +25916,7 @@ void StatsWithTolForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Bias") == 0)
+        else if (strcmp(basie->getprintElement(), "Bias") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -25922,7 +25932,7 @@ void StatsWithTolForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeLinearity") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeLinearity") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -25938,7 +25948,7 @@ void StatsWithTolForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeBias") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeBias") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -25954,7 +25964,7 @@ void StatsWithTolForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "GoodnessOfFit") == 0)
+        else if (strcmp(basie->getprintElement(), "GoodnessOfFit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -25970,7 +25980,7 @@ void StatsWithTolForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RegressionSlope") == 0)
+        else if (strcmp(basie->getprintElement(), "RegressionSlope") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -25986,7 +25996,7 @@ void StatsWithTolForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RegressionIntercept") == 0)
+        else if (strcmp(basie->getprintElement(), "RegressionIntercept") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -26002,7 +26012,7 @@ void StatsWithTolForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UpperConfidenceLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "UpperConfidenceLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -26018,7 +26028,7 @@ void StatsWithTolForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LowerConfidenceLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "LowerConfidenceLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -26034,7 +26044,7 @@ void StatsWithTolForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TDistribution") == 0)
+        else if (strcmp(basie->getprintElement(), "TDistribution") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -26050,7 +26060,7 @@ void StatsWithTolForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TotalNumber") == 0)
+        else if (strcmp(basie->getprintElement(), "TotalNumber") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -26066,7 +26076,7 @@ void StatsWithTolForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupTotalNumbers") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupTotalNumbers") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -26082,7 +26092,7 @@ void StatsWithTolForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EffectiveNumber") == 0)
+        else if (strcmp(basie->getprintElement(), "EffectiveNumber") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -26098,7 +26108,7 @@ void StatsWithTolForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupEffectiveNumbers") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupEffectiveNumbers") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -26114,7 +26124,7 @@ void StatsWithTolForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberSubgroups") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberSubgroups") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -26130,7 +26140,7 @@ void StatsWithTolForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TotalNumber") == 0)
+        else if (strcmp(basie->getprintElement(), "TotalNumber") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -26146,7 +26156,7 @@ void StatsWithTolForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupTotalNumbers") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupTotalNumbers") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -26162,7 +26172,7 @@ void StatsWithTolForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EffectiveNumber") == 0)
+        else if (strcmp(basie->getprintElement(), "EffectiveNumber") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -26178,7 +26188,7 @@ void StatsWithTolForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupEffectiveNumbers") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupEffectiveNumbers") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -26194,7 +26204,7 @@ void StatsWithTolForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberSubgroups") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberSubgroups") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -26232,7 +26242,7 @@ bool StatsWithTolForceType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "forceUnit")
+      if (decl->getname() == "forceUnit")
         {
           XmlToken * forceUnitVal;
           if (this->forceUnit)
@@ -26241,12 +26251,12 @@ bool StatsWithTolForceType::badAttributes(
               returnValue = true;
               break;
             }
-          forceUnitVal = new XmlToken(decl->val.c_str());
-          if (forceUnitVal->bad)
+          forceUnitVal = new XmlToken(decl->getval().c_str());
+          if (forceUnitVal->getbad())
             {
               delete forceUnitVal;
               fprintf(stderr, "bad value %s for forceUnit in StatsWithTolForceType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -26376,12 +26386,12 @@ void StatsWithTolLinearType::printSelf(FILE * outFile)
         StatsWithReferenceBaseType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "NumericCharacteristicStatsValue") == 0)
+        else if (strcmp(basie->getprintElement(), "NumericCharacteristicStatsValue") == 0)
           {
             StatsWithReferenceBaseType * typ;
             if ((typ = dynamic_cast<StatsWithReferenceBaseType *>(basie)))
@@ -26397,7 +26407,7 @@ void StatsWithTolLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberOutOfTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberOutOfTolerance") == 0)
           {
             StatsNonNegativeIntegerWithReferencesType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerWithReferencesType *>(basie)))
@@ -26413,7 +26423,7 @@ void StatsWithTolLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupNumbersOutOfTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupNumbersOutOfTolerance") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -26429,7 +26439,7 @@ void StatsWithTolLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberOverUpperTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberOverUpperTolerance") == 0)
           {
             StatsNonNegativeIntegerWithReferencesType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerWithReferencesType *>(basie)))
@@ -26445,7 +26455,7 @@ void StatsWithTolLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupNumbersOverUpperTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupNumbersOverUpperTolerance") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -26461,7 +26471,7 @@ void StatsWithTolLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberUnderLowerTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberUnderLowerTolerance") == 0)
           {
             StatsNonNegativeIntegerWithReferencesType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerWithReferencesType *>(basie)))
@@ -26477,7 +26487,7 @@ void StatsWithTolLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupNumbersUnderLowerTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupNumbersUnderLowerTolerance") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -26493,7 +26503,7 @@ void StatsWithTolLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Cp") == 0)
+        else if (strcmp(basie->getprintElement(), "Cp") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -26509,7 +26519,7 @@ void StatsWithTolLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Cpk") == 0)
+        else if (strcmp(basie->getprintElement(), "Cpk") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -26525,7 +26535,7 @@ void StatsWithTolLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Pp") == 0)
+        else if (strcmp(basie->getprintElement(), "Pp") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -26541,7 +26551,7 @@ void StatsWithTolLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Ppk") == 0)
+        else if (strcmp(basie->getprintElement(), "Ppk") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -26557,7 +26567,7 @@ void StatsWithTolLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Cm") == 0)
+        else if (strcmp(basie->getprintElement(), "Cm") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -26573,7 +26583,7 @@ void StatsWithTolLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Cmk") == 0)
+        else if (strcmp(basie->getprintElement(), "Cmk") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -26589,7 +26599,7 @@ void StatsWithTolLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Cpm") == 0)
+        else if (strcmp(basie->getprintElement(), "Cpm") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -26605,7 +26615,7 @@ void StatsWithTolLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeAppraiserVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeAppraiserVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -26621,7 +26631,7 @@ void StatsWithTolLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeEquipmentVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeEquipmentVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -26637,7 +26647,7 @@ void StatsWithTolLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeInteraction") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeInteraction") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -26653,7 +26663,7 @@ void StatsWithTolLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeGageRandR") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeGageRandR") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -26669,7 +26679,7 @@ void StatsWithTolLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativePartVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativePartVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -26685,7 +26695,7 @@ void StatsWithTolLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeTotalVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeTotalVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -26701,7 +26711,7 @@ void StatsWithTolLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "CommonStatsValue") == 0)
+        else if (strcmp(basie->getprintElement(), "CommonStatsValue") == 0)
           {
             StatsWithReferenceBaseType * typ;
             if ((typ = dynamic_cast<StatsWithReferenceBaseType *>(basie)))
@@ -26717,7 +26727,7 @@ void StatsWithTolLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Average") == 0)
+        else if (strcmp(basie->getprintElement(), "Average") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -26733,7 +26743,7 @@ void StatsWithTolLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupAverages") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupAverages") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -26749,7 +26759,7 @@ void StatsWithTolLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Difference") == 0)
+        else if (strcmp(basie->getprintElement(), "Difference") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -26765,7 +26775,7 @@ void StatsWithTolLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupDifferences") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupDifferences") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -26781,7 +26791,7 @@ void StatsWithTolLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RootMeanSquare") == 0)
+        else if (strcmp(basie->getprintElement(), "RootMeanSquare") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -26797,7 +26807,7 @@ void StatsWithTolLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Maximum") == 0)
+        else if (strcmp(basie->getprintElement(), "Maximum") == 0)
           {
             StatsMeasuredDecimalWithReferenceType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalWithReferenceType *>(basie)))
@@ -26813,7 +26823,7 @@ void StatsWithTolLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupMaxima") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupMaxima") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -26829,7 +26839,7 @@ void StatsWithTolLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Minimum") == 0)
+        else if (strcmp(basie->getprintElement(), "Minimum") == 0)
           {
             StatsMeasuredDecimalWithReferenceType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalWithReferenceType *>(basie)))
@@ -26845,7 +26855,7 @@ void StatsWithTolLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupMinima") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupMinima") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -26861,7 +26871,7 @@ void StatsWithTolLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Range") == 0)
+        else if (strcmp(basie->getprintElement(), "Range") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -26877,7 +26887,7 @@ void StatsWithTolLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupRanges") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupRanges") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -26893,7 +26903,7 @@ void StatsWithTolLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "AverageRange") == 0)
+        else if (strcmp(basie->getprintElement(), "AverageRange") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -26909,7 +26919,7 @@ void StatsWithTolLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "StandardDeviation") == 0)
+        else if (strcmp(basie->getprintElement(), "StandardDeviation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -26925,7 +26935,7 @@ void StatsWithTolLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Skew") == 0)
+        else if (strcmp(basie->getprintElement(), "Skew") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -26941,7 +26951,7 @@ void StatsWithTolLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Kurtosis") == 0)
+        else if (strcmp(basie->getprintElement(), "Kurtosis") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -26957,7 +26967,7 @@ void StatsWithTolLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Normality") == 0)
+        else if (strcmp(basie->getprintElement(), "Normality") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -26973,7 +26983,7 @@ void StatsWithTolLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ProcessVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "ProcessVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -26989,7 +26999,7 @@ void StatsWithTolLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EstimatedStandardDeviation") == 0)
+        else if (strcmp(basie->getprintElement(), "EstimatedStandardDeviation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -27005,7 +27015,7 @@ void StatsWithTolLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UpperControlLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "UpperControlLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -27021,7 +27031,7 @@ void StatsWithTolLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LowerControlLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "LowerControlLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -27037,7 +27047,7 @@ void StatsWithTolLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UpperControlLimitRange") == 0)
+        else if (strcmp(basie->getprintElement(), "UpperControlLimitRange") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -27053,7 +27063,7 @@ void StatsWithTolLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LowerControlLimitRange") == 0)
+        else if (strcmp(basie->getprintElement(), "LowerControlLimitRange") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -27069,7 +27079,7 @@ void StatsWithTolLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberOutOfControl") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberOutOfControl") == 0)
           {
             StatsNonNegativeIntegerWithReferencesType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerWithReferencesType *>(basie)))
@@ -27085,7 +27095,7 @@ void StatsWithTolLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "AppraiserVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "AppraiserVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -27101,7 +27111,7 @@ void StatsWithTolLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EquipmentVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "EquipmentVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -27117,7 +27127,7 @@ void StatsWithTolLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Interaction") == 0)
+        else if (strcmp(basie->getprintElement(), "Interaction") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -27133,7 +27143,7 @@ void StatsWithTolLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "GageRandR") == 0)
+        else if (strcmp(basie->getprintElement(), "GageRandR") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -27149,7 +27159,7 @@ void StatsWithTolLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "PartVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "PartVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -27165,7 +27175,7 @@ void StatsWithTolLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TotalVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "TotalVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -27181,7 +27191,7 @@ void StatsWithTolLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Linearity") == 0)
+        else if (strcmp(basie->getprintElement(), "Linearity") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -27197,7 +27207,7 @@ void StatsWithTolLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Bias") == 0)
+        else if (strcmp(basie->getprintElement(), "Bias") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -27213,7 +27223,7 @@ void StatsWithTolLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeLinearity") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeLinearity") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -27229,7 +27239,7 @@ void StatsWithTolLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeBias") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeBias") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -27245,7 +27255,7 @@ void StatsWithTolLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "GoodnessOfFit") == 0)
+        else if (strcmp(basie->getprintElement(), "GoodnessOfFit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -27261,7 +27271,7 @@ void StatsWithTolLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RegressionSlope") == 0)
+        else if (strcmp(basie->getprintElement(), "RegressionSlope") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -27277,7 +27287,7 @@ void StatsWithTolLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RegressionIntercept") == 0)
+        else if (strcmp(basie->getprintElement(), "RegressionIntercept") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -27293,7 +27303,7 @@ void StatsWithTolLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UpperConfidenceLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "UpperConfidenceLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -27309,7 +27319,7 @@ void StatsWithTolLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LowerConfidenceLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "LowerConfidenceLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -27325,7 +27335,7 @@ void StatsWithTolLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TDistribution") == 0)
+        else if (strcmp(basie->getprintElement(), "TDistribution") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -27341,7 +27351,7 @@ void StatsWithTolLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TotalNumber") == 0)
+        else if (strcmp(basie->getprintElement(), "TotalNumber") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -27357,7 +27367,7 @@ void StatsWithTolLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupTotalNumbers") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupTotalNumbers") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -27373,7 +27383,7 @@ void StatsWithTolLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EffectiveNumber") == 0)
+        else if (strcmp(basie->getprintElement(), "EffectiveNumber") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -27389,7 +27399,7 @@ void StatsWithTolLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupEffectiveNumbers") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupEffectiveNumbers") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -27405,7 +27415,7 @@ void StatsWithTolLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberSubgroups") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberSubgroups") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -27421,7 +27431,7 @@ void StatsWithTolLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TotalNumber") == 0)
+        else if (strcmp(basie->getprintElement(), "TotalNumber") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -27437,7 +27447,7 @@ void StatsWithTolLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupTotalNumbers") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupTotalNumbers") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -27453,7 +27463,7 @@ void StatsWithTolLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EffectiveNumber") == 0)
+        else if (strcmp(basie->getprintElement(), "EffectiveNumber") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -27469,7 +27479,7 @@ void StatsWithTolLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupEffectiveNumbers") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupEffectiveNumbers") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -27485,7 +27495,7 @@ void StatsWithTolLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberSubgroups") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberSubgroups") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -27523,7 +27533,7 @@ bool StatsWithTolLinearType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "linearUnit")
+      if (decl->getname() == "linearUnit")
         {
           XmlToken * linearUnitVal;
           if (this->linearUnit)
@@ -27532,12 +27542,12 @@ bool StatsWithTolLinearType::badAttributes(
               returnValue = true;
               break;
             }
-          linearUnitVal = new XmlToken(decl->val.c_str());
-          if (linearUnitVal->bad)
+          linearUnitVal = new XmlToken(decl->getval().c_str());
+          if (linearUnitVal->getbad())
             {
               delete linearUnitVal;
               fprintf(stderr, "bad value %s for linearUnit in StatsWithTolLinearType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -27667,12 +27677,12 @@ void StatsWithTolMassType::printSelf(FILE * outFile)
         StatsWithReferenceBaseType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "NumericCharacteristicStatsValue") == 0)
+        else if (strcmp(basie->getprintElement(), "NumericCharacteristicStatsValue") == 0)
           {
             StatsWithReferenceBaseType * typ;
             if ((typ = dynamic_cast<StatsWithReferenceBaseType *>(basie)))
@@ -27688,7 +27698,7 @@ void StatsWithTolMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberOutOfTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberOutOfTolerance") == 0)
           {
             StatsNonNegativeIntegerWithReferencesType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerWithReferencesType *>(basie)))
@@ -27704,7 +27714,7 @@ void StatsWithTolMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupNumbersOutOfTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupNumbersOutOfTolerance") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -27720,7 +27730,7 @@ void StatsWithTolMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberOverUpperTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberOverUpperTolerance") == 0)
           {
             StatsNonNegativeIntegerWithReferencesType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerWithReferencesType *>(basie)))
@@ -27736,7 +27746,7 @@ void StatsWithTolMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupNumbersOverUpperTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupNumbersOverUpperTolerance") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -27752,7 +27762,7 @@ void StatsWithTolMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberUnderLowerTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberUnderLowerTolerance") == 0)
           {
             StatsNonNegativeIntegerWithReferencesType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerWithReferencesType *>(basie)))
@@ -27768,7 +27778,7 @@ void StatsWithTolMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupNumbersUnderLowerTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupNumbersUnderLowerTolerance") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -27784,7 +27794,7 @@ void StatsWithTolMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Cp") == 0)
+        else if (strcmp(basie->getprintElement(), "Cp") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -27800,7 +27810,7 @@ void StatsWithTolMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Cpk") == 0)
+        else if (strcmp(basie->getprintElement(), "Cpk") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -27816,7 +27826,7 @@ void StatsWithTolMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Pp") == 0)
+        else if (strcmp(basie->getprintElement(), "Pp") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -27832,7 +27842,7 @@ void StatsWithTolMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Ppk") == 0)
+        else if (strcmp(basie->getprintElement(), "Ppk") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -27848,7 +27858,7 @@ void StatsWithTolMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Cm") == 0)
+        else if (strcmp(basie->getprintElement(), "Cm") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -27864,7 +27874,7 @@ void StatsWithTolMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Cmk") == 0)
+        else if (strcmp(basie->getprintElement(), "Cmk") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -27880,7 +27890,7 @@ void StatsWithTolMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Cpm") == 0)
+        else if (strcmp(basie->getprintElement(), "Cpm") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -27896,7 +27906,7 @@ void StatsWithTolMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeAppraiserVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeAppraiserVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -27912,7 +27922,7 @@ void StatsWithTolMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeEquipmentVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeEquipmentVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -27928,7 +27938,7 @@ void StatsWithTolMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeInteraction") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeInteraction") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -27944,7 +27954,7 @@ void StatsWithTolMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeGageRandR") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeGageRandR") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -27960,7 +27970,7 @@ void StatsWithTolMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativePartVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativePartVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -27976,7 +27986,7 @@ void StatsWithTolMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeTotalVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeTotalVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -27992,7 +28002,7 @@ void StatsWithTolMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "CommonStatsValue") == 0)
+        else if (strcmp(basie->getprintElement(), "CommonStatsValue") == 0)
           {
             StatsWithReferenceBaseType * typ;
             if ((typ = dynamic_cast<StatsWithReferenceBaseType *>(basie)))
@@ -28008,7 +28018,7 @@ void StatsWithTolMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Average") == 0)
+        else if (strcmp(basie->getprintElement(), "Average") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -28024,7 +28034,7 @@ void StatsWithTolMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupAverages") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupAverages") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -28040,7 +28050,7 @@ void StatsWithTolMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Difference") == 0)
+        else if (strcmp(basie->getprintElement(), "Difference") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -28056,7 +28066,7 @@ void StatsWithTolMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupDifferences") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupDifferences") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -28072,7 +28082,7 @@ void StatsWithTolMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RootMeanSquare") == 0)
+        else if (strcmp(basie->getprintElement(), "RootMeanSquare") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -28088,7 +28098,7 @@ void StatsWithTolMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Maximum") == 0)
+        else if (strcmp(basie->getprintElement(), "Maximum") == 0)
           {
             StatsMeasuredDecimalWithReferenceType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalWithReferenceType *>(basie)))
@@ -28104,7 +28114,7 @@ void StatsWithTolMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupMaxima") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupMaxima") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -28120,7 +28130,7 @@ void StatsWithTolMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Minimum") == 0)
+        else if (strcmp(basie->getprintElement(), "Minimum") == 0)
           {
             StatsMeasuredDecimalWithReferenceType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalWithReferenceType *>(basie)))
@@ -28136,7 +28146,7 @@ void StatsWithTolMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupMinima") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupMinima") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -28152,7 +28162,7 @@ void StatsWithTolMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Range") == 0)
+        else if (strcmp(basie->getprintElement(), "Range") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -28168,7 +28178,7 @@ void StatsWithTolMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupRanges") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupRanges") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -28184,7 +28194,7 @@ void StatsWithTolMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "AverageRange") == 0)
+        else if (strcmp(basie->getprintElement(), "AverageRange") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -28200,7 +28210,7 @@ void StatsWithTolMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "StandardDeviation") == 0)
+        else if (strcmp(basie->getprintElement(), "StandardDeviation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -28216,7 +28226,7 @@ void StatsWithTolMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Skew") == 0)
+        else if (strcmp(basie->getprintElement(), "Skew") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -28232,7 +28242,7 @@ void StatsWithTolMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Kurtosis") == 0)
+        else if (strcmp(basie->getprintElement(), "Kurtosis") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -28248,7 +28258,7 @@ void StatsWithTolMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Normality") == 0)
+        else if (strcmp(basie->getprintElement(), "Normality") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -28264,7 +28274,7 @@ void StatsWithTolMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ProcessVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "ProcessVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -28280,7 +28290,7 @@ void StatsWithTolMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EstimatedStandardDeviation") == 0)
+        else if (strcmp(basie->getprintElement(), "EstimatedStandardDeviation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -28296,7 +28306,7 @@ void StatsWithTolMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UpperControlLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "UpperControlLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -28312,7 +28322,7 @@ void StatsWithTolMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LowerControlLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "LowerControlLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -28328,7 +28338,7 @@ void StatsWithTolMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UpperControlLimitRange") == 0)
+        else if (strcmp(basie->getprintElement(), "UpperControlLimitRange") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -28344,7 +28354,7 @@ void StatsWithTolMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LowerControlLimitRange") == 0)
+        else if (strcmp(basie->getprintElement(), "LowerControlLimitRange") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -28360,7 +28370,7 @@ void StatsWithTolMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberOutOfControl") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberOutOfControl") == 0)
           {
             StatsNonNegativeIntegerWithReferencesType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerWithReferencesType *>(basie)))
@@ -28376,7 +28386,7 @@ void StatsWithTolMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "AppraiserVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "AppraiserVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -28392,7 +28402,7 @@ void StatsWithTolMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EquipmentVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "EquipmentVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -28408,7 +28418,7 @@ void StatsWithTolMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Interaction") == 0)
+        else if (strcmp(basie->getprintElement(), "Interaction") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -28424,7 +28434,7 @@ void StatsWithTolMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "GageRandR") == 0)
+        else if (strcmp(basie->getprintElement(), "GageRandR") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -28440,7 +28450,7 @@ void StatsWithTolMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "PartVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "PartVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -28456,7 +28466,7 @@ void StatsWithTolMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TotalVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "TotalVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -28472,7 +28482,7 @@ void StatsWithTolMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Linearity") == 0)
+        else if (strcmp(basie->getprintElement(), "Linearity") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -28488,7 +28498,7 @@ void StatsWithTolMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Bias") == 0)
+        else if (strcmp(basie->getprintElement(), "Bias") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -28504,7 +28514,7 @@ void StatsWithTolMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeLinearity") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeLinearity") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -28520,7 +28530,7 @@ void StatsWithTolMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeBias") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeBias") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -28536,7 +28546,7 @@ void StatsWithTolMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "GoodnessOfFit") == 0)
+        else if (strcmp(basie->getprintElement(), "GoodnessOfFit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -28552,7 +28562,7 @@ void StatsWithTolMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RegressionSlope") == 0)
+        else if (strcmp(basie->getprintElement(), "RegressionSlope") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -28568,7 +28578,7 @@ void StatsWithTolMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RegressionIntercept") == 0)
+        else if (strcmp(basie->getprintElement(), "RegressionIntercept") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -28584,7 +28594,7 @@ void StatsWithTolMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UpperConfidenceLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "UpperConfidenceLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -28600,7 +28610,7 @@ void StatsWithTolMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LowerConfidenceLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "LowerConfidenceLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -28616,7 +28626,7 @@ void StatsWithTolMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TDistribution") == 0)
+        else if (strcmp(basie->getprintElement(), "TDistribution") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -28632,7 +28642,7 @@ void StatsWithTolMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TotalNumber") == 0)
+        else if (strcmp(basie->getprintElement(), "TotalNumber") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -28648,7 +28658,7 @@ void StatsWithTolMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupTotalNumbers") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupTotalNumbers") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -28664,7 +28674,7 @@ void StatsWithTolMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EffectiveNumber") == 0)
+        else if (strcmp(basie->getprintElement(), "EffectiveNumber") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -28680,7 +28690,7 @@ void StatsWithTolMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupEffectiveNumbers") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupEffectiveNumbers") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -28696,7 +28706,7 @@ void StatsWithTolMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberSubgroups") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberSubgroups") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -28712,7 +28722,7 @@ void StatsWithTolMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TotalNumber") == 0)
+        else if (strcmp(basie->getprintElement(), "TotalNumber") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -28728,7 +28738,7 @@ void StatsWithTolMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupTotalNumbers") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupTotalNumbers") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -28744,7 +28754,7 @@ void StatsWithTolMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EffectiveNumber") == 0)
+        else if (strcmp(basie->getprintElement(), "EffectiveNumber") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -28760,7 +28770,7 @@ void StatsWithTolMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupEffectiveNumbers") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupEffectiveNumbers") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -28776,7 +28786,7 @@ void StatsWithTolMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberSubgroups") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberSubgroups") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -28814,7 +28824,7 @@ bool StatsWithTolMassType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "massUnit")
+      if (decl->getname() == "massUnit")
         {
           XmlToken * massUnitVal;
           if (this->massUnit)
@@ -28823,12 +28833,12 @@ bool StatsWithTolMassType::badAttributes(
               returnValue = true;
               break;
             }
-          massUnitVal = new XmlToken(decl->val.c_str());
-          if (massUnitVal->bad)
+          massUnitVal = new XmlToken(decl->getval().c_str());
+          if (massUnitVal->getbad())
             {
               delete massUnitVal;
               fprintf(stderr, "bad value %s for massUnit in StatsWithTolMassType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -28926,12 +28936,12 @@ void StatsWithTolNumericalBaseType::printSelf(FILE * outFile)
         StatsWithReferenceBaseType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "NumericCharacteristicStatsValue") == 0)
+        else if (strcmp(basie->getprintElement(), "NumericCharacteristicStatsValue") == 0)
           {
             StatsWithReferenceBaseType * typ;
             if ((typ = dynamic_cast<StatsWithReferenceBaseType *>(basie)))
@@ -28947,7 +28957,7 @@ void StatsWithTolNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberOutOfTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberOutOfTolerance") == 0)
           {
             StatsNonNegativeIntegerWithReferencesType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerWithReferencesType *>(basie)))
@@ -28963,7 +28973,7 @@ void StatsWithTolNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupNumbersOutOfTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupNumbersOutOfTolerance") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -28979,7 +28989,7 @@ void StatsWithTolNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberOverUpperTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberOverUpperTolerance") == 0)
           {
             StatsNonNegativeIntegerWithReferencesType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerWithReferencesType *>(basie)))
@@ -28995,7 +29005,7 @@ void StatsWithTolNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupNumbersOverUpperTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupNumbersOverUpperTolerance") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -29011,7 +29021,7 @@ void StatsWithTolNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberUnderLowerTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberUnderLowerTolerance") == 0)
           {
             StatsNonNegativeIntegerWithReferencesType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerWithReferencesType *>(basie)))
@@ -29027,7 +29037,7 @@ void StatsWithTolNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupNumbersUnderLowerTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupNumbersUnderLowerTolerance") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -29043,7 +29053,7 @@ void StatsWithTolNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Cp") == 0)
+        else if (strcmp(basie->getprintElement(), "Cp") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -29059,7 +29069,7 @@ void StatsWithTolNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Cpk") == 0)
+        else if (strcmp(basie->getprintElement(), "Cpk") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -29075,7 +29085,7 @@ void StatsWithTolNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Pp") == 0)
+        else if (strcmp(basie->getprintElement(), "Pp") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -29091,7 +29101,7 @@ void StatsWithTolNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Ppk") == 0)
+        else if (strcmp(basie->getprintElement(), "Ppk") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -29107,7 +29117,7 @@ void StatsWithTolNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Cm") == 0)
+        else if (strcmp(basie->getprintElement(), "Cm") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -29123,7 +29133,7 @@ void StatsWithTolNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Cmk") == 0)
+        else if (strcmp(basie->getprintElement(), "Cmk") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -29139,7 +29149,7 @@ void StatsWithTolNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Cpm") == 0)
+        else if (strcmp(basie->getprintElement(), "Cpm") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -29155,7 +29165,7 @@ void StatsWithTolNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeAppraiserVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeAppraiserVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -29171,7 +29181,7 @@ void StatsWithTolNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeEquipmentVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeEquipmentVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -29187,7 +29197,7 @@ void StatsWithTolNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeInteraction") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeInteraction") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -29203,7 +29213,7 @@ void StatsWithTolNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeGageRandR") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeGageRandR") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -29219,7 +29229,7 @@ void StatsWithTolNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativePartVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativePartVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -29235,7 +29245,7 @@ void StatsWithTolNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeTotalVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeTotalVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -29251,7 +29261,7 @@ void StatsWithTolNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "CommonStatsValue") == 0)
+        else if (strcmp(basie->getprintElement(), "CommonStatsValue") == 0)
           {
             StatsWithReferenceBaseType * typ;
             if ((typ = dynamic_cast<StatsWithReferenceBaseType *>(basie)))
@@ -29267,7 +29277,7 @@ void StatsWithTolNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Average") == 0)
+        else if (strcmp(basie->getprintElement(), "Average") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -29283,7 +29293,7 @@ void StatsWithTolNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupAverages") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupAverages") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -29299,7 +29309,7 @@ void StatsWithTolNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Difference") == 0)
+        else if (strcmp(basie->getprintElement(), "Difference") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -29315,7 +29325,7 @@ void StatsWithTolNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupDifferences") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupDifferences") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -29331,7 +29341,7 @@ void StatsWithTolNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RootMeanSquare") == 0)
+        else if (strcmp(basie->getprintElement(), "RootMeanSquare") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -29347,7 +29357,7 @@ void StatsWithTolNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Maximum") == 0)
+        else if (strcmp(basie->getprintElement(), "Maximum") == 0)
           {
             StatsMeasuredDecimalWithReferenceType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalWithReferenceType *>(basie)))
@@ -29363,7 +29373,7 @@ void StatsWithTolNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupMaxima") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupMaxima") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -29379,7 +29389,7 @@ void StatsWithTolNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Minimum") == 0)
+        else if (strcmp(basie->getprintElement(), "Minimum") == 0)
           {
             StatsMeasuredDecimalWithReferenceType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalWithReferenceType *>(basie)))
@@ -29395,7 +29405,7 @@ void StatsWithTolNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupMinima") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupMinima") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -29411,7 +29421,7 @@ void StatsWithTolNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Range") == 0)
+        else if (strcmp(basie->getprintElement(), "Range") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -29427,7 +29437,7 @@ void StatsWithTolNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupRanges") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupRanges") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -29443,7 +29453,7 @@ void StatsWithTolNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "AverageRange") == 0)
+        else if (strcmp(basie->getprintElement(), "AverageRange") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -29459,7 +29469,7 @@ void StatsWithTolNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "StandardDeviation") == 0)
+        else if (strcmp(basie->getprintElement(), "StandardDeviation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -29475,7 +29485,7 @@ void StatsWithTolNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Skew") == 0)
+        else if (strcmp(basie->getprintElement(), "Skew") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -29491,7 +29501,7 @@ void StatsWithTolNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Kurtosis") == 0)
+        else if (strcmp(basie->getprintElement(), "Kurtosis") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -29507,7 +29517,7 @@ void StatsWithTolNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Normality") == 0)
+        else if (strcmp(basie->getprintElement(), "Normality") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -29523,7 +29533,7 @@ void StatsWithTolNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ProcessVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "ProcessVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -29539,7 +29549,7 @@ void StatsWithTolNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EstimatedStandardDeviation") == 0)
+        else if (strcmp(basie->getprintElement(), "EstimatedStandardDeviation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -29555,7 +29565,7 @@ void StatsWithTolNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UpperControlLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "UpperControlLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -29571,7 +29581,7 @@ void StatsWithTolNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LowerControlLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "LowerControlLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -29587,7 +29597,7 @@ void StatsWithTolNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UpperControlLimitRange") == 0)
+        else if (strcmp(basie->getprintElement(), "UpperControlLimitRange") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -29603,7 +29613,7 @@ void StatsWithTolNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LowerControlLimitRange") == 0)
+        else if (strcmp(basie->getprintElement(), "LowerControlLimitRange") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -29619,7 +29629,7 @@ void StatsWithTolNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberOutOfControl") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberOutOfControl") == 0)
           {
             StatsNonNegativeIntegerWithReferencesType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerWithReferencesType *>(basie)))
@@ -29635,7 +29645,7 @@ void StatsWithTolNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "AppraiserVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "AppraiserVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -29651,7 +29661,7 @@ void StatsWithTolNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EquipmentVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "EquipmentVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -29667,7 +29677,7 @@ void StatsWithTolNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Interaction") == 0)
+        else if (strcmp(basie->getprintElement(), "Interaction") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -29683,7 +29693,7 @@ void StatsWithTolNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "GageRandR") == 0)
+        else if (strcmp(basie->getprintElement(), "GageRandR") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -29699,7 +29709,7 @@ void StatsWithTolNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "PartVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "PartVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -29715,7 +29725,7 @@ void StatsWithTolNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TotalVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "TotalVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -29731,7 +29741,7 @@ void StatsWithTolNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Linearity") == 0)
+        else if (strcmp(basie->getprintElement(), "Linearity") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -29747,7 +29757,7 @@ void StatsWithTolNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Bias") == 0)
+        else if (strcmp(basie->getprintElement(), "Bias") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -29763,7 +29773,7 @@ void StatsWithTolNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeLinearity") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeLinearity") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -29779,7 +29789,7 @@ void StatsWithTolNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeBias") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeBias") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -29795,7 +29805,7 @@ void StatsWithTolNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "GoodnessOfFit") == 0)
+        else if (strcmp(basie->getprintElement(), "GoodnessOfFit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -29811,7 +29821,7 @@ void StatsWithTolNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RegressionSlope") == 0)
+        else if (strcmp(basie->getprintElement(), "RegressionSlope") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -29827,7 +29837,7 @@ void StatsWithTolNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RegressionIntercept") == 0)
+        else if (strcmp(basie->getprintElement(), "RegressionIntercept") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -29843,7 +29853,7 @@ void StatsWithTolNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UpperConfidenceLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "UpperConfidenceLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -29859,7 +29869,7 @@ void StatsWithTolNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LowerConfidenceLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "LowerConfidenceLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -29875,7 +29885,7 @@ void StatsWithTolNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TDistribution") == 0)
+        else if (strcmp(basie->getprintElement(), "TDistribution") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -29891,7 +29901,7 @@ void StatsWithTolNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TotalNumber") == 0)
+        else if (strcmp(basie->getprintElement(), "TotalNumber") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -29907,7 +29917,7 @@ void StatsWithTolNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupTotalNumbers") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupTotalNumbers") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -29923,7 +29933,7 @@ void StatsWithTolNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EffectiveNumber") == 0)
+        else if (strcmp(basie->getprintElement(), "EffectiveNumber") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -29939,7 +29949,7 @@ void StatsWithTolNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupEffectiveNumbers") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupEffectiveNumbers") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -29955,7 +29965,7 @@ void StatsWithTolNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberSubgroups") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberSubgroups") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -29971,7 +29981,7 @@ void StatsWithTolNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TotalNumber") == 0)
+        else if (strcmp(basie->getprintElement(), "TotalNumber") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -29987,7 +29997,7 @@ void StatsWithTolNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupTotalNumbers") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupTotalNumbers") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -30003,7 +30013,7 @@ void StatsWithTolNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EffectiveNumber") == 0)
+        else if (strcmp(basie->getprintElement(), "EffectiveNumber") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -30019,7 +30029,7 @@ void StatsWithTolNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupEffectiveNumbers") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupEffectiveNumbers") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -30035,7 +30045,7 @@ void StatsWithTolNumericalBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberSubgroups") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberSubgroups") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -30171,12 +30181,12 @@ void StatsWithTolPressureType::printSelf(FILE * outFile)
         StatsWithReferenceBaseType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "NumericCharacteristicStatsValue") == 0)
+        else if (strcmp(basie->getprintElement(), "NumericCharacteristicStatsValue") == 0)
           {
             StatsWithReferenceBaseType * typ;
             if ((typ = dynamic_cast<StatsWithReferenceBaseType *>(basie)))
@@ -30192,7 +30202,7 @@ void StatsWithTolPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberOutOfTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberOutOfTolerance") == 0)
           {
             StatsNonNegativeIntegerWithReferencesType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerWithReferencesType *>(basie)))
@@ -30208,7 +30218,7 @@ void StatsWithTolPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupNumbersOutOfTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupNumbersOutOfTolerance") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -30224,7 +30234,7 @@ void StatsWithTolPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberOverUpperTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberOverUpperTolerance") == 0)
           {
             StatsNonNegativeIntegerWithReferencesType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerWithReferencesType *>(basie)))
@@ -30240,7 +30250,7 @@ void StatsWithTolPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupNumbersOverUpperTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupNumbersOverUpperTolerance") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -30256,7 +30266,7 @@ void StatsWithTolPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberUnderLowerTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberUnderLowerTolerance") == 0)
           {
             StatsNonNegativeIntegerWithReferencesType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerWithReferencesType *>(basie)))
@@ -30272,7 +30282,7 @@ void StatsWithTolPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupNumbersUnderLowerTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupNumbersUnderLowerTolerance") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -30288,7 +30298,7 @@ void StatsWithTolPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Cp") == 0)
+        else if (strcmp(basie->getprintElement(), "Cp") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -30304,7 +30314,7 @@ void StatsWithTolPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Cpk") == 0)
+        else if (strcmp(basie->getprintElement(), "Cpk") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -30320,7 +30330,7 @@ void StatsWithTolPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Pp") == 0)
+        else if (strcmp(basie->getprintElement(), "Pp") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -30336,7 +30346,7 @@ void StatsWithTolPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Ppk") == 0)
+        else if (strcmp(basie->getprintElement(), "Ppk") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -30352,7 +30362,7 @@ void StatsWithTolPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Cm") == 0)
+        else if (strcmp(basie->getprintElement(), "Cm") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -30368,7 +30378,7 @@ void StatsWithTolPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Cmk") == 0)
+        else if (strcmp(basie->getprintElement(), "Cmk") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -30384,7 +30394,7 @@ void StatsWithTolPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Cpm") == 0)
+        else if (strcmp(basie->getprintElement(), "Cpm") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -30400,7 +30410,7 @@ void StatsWithTolPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeAppraiserVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeAppraiserVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -30416,7 +30426,7 @@ void StatsWithTolPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeEquipmentVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeEquipmentVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -30432,7 +30442,7 @@ void StatsWithTolPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeInteraction") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeInteraction") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -30448,7 +30458,7 @@ void StatsWithTolPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeGageRandR") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeGageRandR") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -30464,7 +30474,7 @@ void StatsWithTolPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativePartVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativePartVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -30480,7 +30490,7 @@ void StatsWithTolPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeTotalVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeTotalVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -30496,7 +30506,7 @@ void StatsWithTolPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "CommonStatsValue") == 0)
+        else if (strcmp(basie->getprintElement(), "CommonStatsValue") == 0)
           {
             StatsWithReferenceBaseType * typ;
             if ((typ = dynamic_cast<StatsWithReferenceBaseType *>(basie)))
@@ -30512,7 +30522,7 @@ void StatsWithTolPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Average") == 0)
+        else if (strcmp(basie->getprintElement(), "Average") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -30528,7 +30538,7 @@ void StatsWithTolPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupAverages") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupAverages") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -30544,7 +30554,7 @@ void StatsWithTolPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Difference") == 0)
+        else if (strcmp(basie->getprintElement(), "Difference") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -30560,7 +30570,7 @@ void StatsWithTolPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupDifferences") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupDifferences") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -30576,7 +30586,7 @@ void StatsWithTolPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RootMeanSquare") == 0)
+        else if (strcmp(basie->getprintElement(), "RootMeanSquare") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -30592,7 +30602,7 @@ void StatsWithTolPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Maximum") == 0)
+        else if (strcmp(basie->getprintElement(), "Maximum") == 0)
           {
             StatsMeasuredDecimalWithReferenceType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalWithReferenceType *>(basie)))
@@ -30608,7 +30618,7 @@ void StatsWithTolPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupMaxima") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupMaxima") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -30624,7 +30634,7 @@ void StatsWithTolPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Minimum") == 0)
+        else if (strcmp(basie->getprintElement(), "Minimum") == 0)
           {
             StatsMeasuredDecimalWithReferenceType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalWithReferenceType *>(basie)))
@@ -30640,7 +30650,7 @@ void StatsWithTolPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupMinima") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupMinima") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -30656,7 +30666,7 @@ void StatsWithTolPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Range") == 0)
+        else if (strcmp(basie->getprintElement(), "Range") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -30672,7 +30682,7 @@ void StatsWithTolPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupRanges") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupRanges") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -30688,7 +30698,7 @@ void StatsWithTolPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "AverageRange") == 0)
+        else if (strcmp(basie->getprintElement(), "AverageRange") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -30704,7 +30714,7 @@ void StatsWithTolPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "StandardDeviation") == 0)
+        else if (strcmp(basie->getprintElement(), "StandardDeviation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -30720,7 +30730,7 @@ void StatsWithTolPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Skew") == 0)
+        else if (strcmp(basie->getprintElement(), "Skew") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -30736,7 +30746,7 @@ void StatsWithTolPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Kurtosis") == 0)
+        else if (strcmp(basie->getprintElement(), "Kurtosis") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -30752,7 +30762,7 @@ void StatsWithTolPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Normality") == 0)
+        else if (strcmp(basie->getprintElement(), "Normality") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -30768,7 +30778,7 @@ void StatsWithTolPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ProcessVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "ProcessVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -30784,7 +30794,7 @@ void StatsWithTolPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EstimatedStandardDeviation") == 0)
+        else if (strcmp(basie->getprintElement(), "EstimatedStandardDeviation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -30800,7 +30810,7 @@ void StatsWithTolPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UpperControlLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "UpperControlLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -30816,7 +30826,7 @@ void StatsWithTolPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LowerControlLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "LowerControlLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -30832,7 +30842,7 @@ void StatsWithTolPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UpperControlLimitRange") == 0)
+        else if (strcmp(basie->getprintElement(), "UpperControlLimitRange") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -30848,7 +30858,7 @@ void StatsWithTolPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LowerControlLimitRange") == 0)
+        else if (strcmp(basie->getprintElement(), "LowerControlLimitRange") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -30864,7 +30874,7 @@ void StatsWithTolPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberOutOfControl") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberOutOfControl") == 0)
           {
             StatsNonNegativeIntegerWithReferencesType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerWithReferencesType *>(basie)))
@@ -30880,7 +30890,7 @@ void StatsWithTolPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "AppraiserVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "AppraiserVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -30896,7 +30906,7 @@ void StatsWithTolPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EquipmentVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "EquipmentVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -30912,7 +30922,7 @@ void StatsWithTolPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Interaction") == 0)
+        else if (strcmp(basie->getprintElement(), "Interaction") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -30928,7 +30938,7 @@ void StatsWithTolPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "GageRandR") == 0)
+        else if (strcmp(basie->getprintElement(), "GageRandR") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -30944,7 +30954,7 @@ void StatsWithTolPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "PartVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "PartVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -30960,7 +30970,7 @@ void StatsWithTolPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TotalVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "TotalVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -30976,7 +30986,7 @@ void StatsWithTolPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Linearity") == 0)
+        else if (strcmp(basie->getprintElement(), "Linearity") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -30992,7 +31002,7 @@ void StatsWithTolPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Bias") == 0)
+        else if (strcmp(basie->getprintElement(), "Bias") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -31008,7 +31018,7 @@ void StatsWithTolPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeLinearity") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeLinearity") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -31024,7 +31034,7 @@ void StatsWithTolPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeBias") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeBias") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -31040,7 +31050,7 @@ void StatsWithTolPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "GoodnessOfFit") == 0)
+        else if (strcmp(basie->getprintElement(), "GoodnessOfFit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -31056,7 +31066,7 @@ void StatsWithTolPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RegressionSlope") == 0)
+        else if (strcmp(basie->getprintElement(), "RegressionSlope") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -31072,7 +31082,7 @@ void StatsWithTolPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RegressionIntercept") == 0)
+        else if (strcmp(basie->getprintElement(), "RegressionIntercept") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -31088,7 +31098,7 @@ void StatsWithTolPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UpperConfidenceLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "UpperConfidenceLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -31104,7 +31114,7 @@ void StatsWithTolPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LowerConfidenceLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "LowerConfidenceLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -31120,7 +31130,7 @@ void StatsWithTolPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TDistribution") == 0)
+        else if (strcmp(basie->getprintElement(), "TDistribution") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -31136,7 +31146,7 @@ void StatsWithTolPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TotalNumber") == 0)
+        else if (strcmp(basie->getprintElement(), "TotalNumber") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -31152,7 +31162,7 @@ void StatsWithTolPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupTotalNumbers") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupTotalNumbers") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -31168,7 +31178,7 @@ void StatsWithTolPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EffectiveNumber") == 0)
+        else if (strcmp(basie->getprintElement(), "EffectiveNumber") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -31184,7 +31194,7 @@ void StatsWithTolPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupEffectiveNumbers") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupEffectiveNumbers") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -31200,7 +31210,7 @@ void StatsWithTolPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberSubgroups") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberSubgroups") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -31216,7 +31226,7 @@ void StatsWithTolPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TotalNumber") == 0)
+        else if (strcmp(basie->getprintElement(), "TotalNumber") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -31232,7 +31242,7 @@ void StatsWithTolPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupTotalNumbers") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupTotalNumbers") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -31248,7 +31258,7 @@ void StatsWithTolPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EffectiveNumber") == 0)
+        else if (strcmp(basie->getprintElement(), "EffectiveNumber") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -31264,7 +31274,7 @@ void StatsWithTolPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupEffectiveNumbers") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupEffectiveNumbers") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -31280,7 +31290,7 @@ void StatsWithTolPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberSubgroups") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberSubgroups") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -31318,7 +31328,7 @@ bool StatsWithTolPressureType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "pressureUnit")
+      if (decl->getname() == "pressureUnit")
         {
           XmlToken * pressureUnitVal;
           if (this->pressureUnit)
@@ -31327,12 +31337,12 @@ bool StatsWithTolPressureType::badAttributes(
               returnValue = true;
               break;
             }
-          pressureUnitVal = new XmlToken(decl->val.c_str());
-          if (pressureUnitVal->bad)
+          pressureUnitVal = new XmlToken(decl->getval().c_str());
+          if (pressureUnitVal->getbad())
             {
               delete pressureUnitVal;
               fprintf(stderr, "bad value %s for pressureUnit in StatsWithTolPressureType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -31462,12 +31472,12 @@ void StatsWithTolSpeedType::printSelf(FILE * outFile)
         StatsWithReferenceBaseType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "NumericCharacteristicStatsValue") == 0)
+        else if (strcmp(basie->getprintElement(), "NumericCharacteristicStatsValue") == 0)
           {
             StatsWithReferenceBaseType * typ;
             if ((typ = dynamic_cast<StatsWithReferenceBaseType *>(basie)))
@@ -31483,7 +31493,7 @@ void StatsWithTolSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberOutOfTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberOutOfTolerance") == 0)
           {
             StatsNonNegativeIntegerWithReferencesType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerWithReferencesType *>(basie)))
@@ -31499,7 +31509,7 @@ void StatsWithTolSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupNumbersOutOfTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupNumbersOutOfTolerance") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -31515,7 +31525,7 @@ void StatsWithTolSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberOverUpperTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberOverUpperTolerance") == 0)
           {
             StatsNonNegativeIntegerWithReferencesType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerWithReferencesType *>(basie)))
@@ -31531,7 +31541,7 @@ void StatsWithTolSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupNumbersOverUpperTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupNumbersOverUpperTolerance") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -31547,7 +31557,7 @@ void StatsWithTolSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberUnderLowerTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberUnderLowerTolerance") == 0)
           {
             StatsNonNegativeIntegerWithReferencesType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerWithReferencesType *>(basie)))
@@ -31563,7 +31573,7 @@ void StatsWithTolSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupNumbersUnderLowerTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupNumbersUnderLowerTolerance") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -31579,7 +31589,7 @@ void StatsWithTolSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Cp") == 0)
+        else if (strcmp(basie->getprintElement(), "Cp") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -31595,7 +31605,7 @@ void StatsWithTolSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Cpk") == 0)
+        else if (strcmp(basie->getprintElement(), "Cpk") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -31611,7 +31621,7 @@ void StatsWithTolSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Pp") == 0)
+        else if (strcmp(basie->getprintElement(), "Pp") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -31627,7 +31637,7 @@ void StatsWithTolSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Ppk") == 0)
+        else if (strcmp(basie->getprintElement(), "Ppk") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -31643,7 +31653,7 @@ void StatsWithTolSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Cm") == 0)
+        else if (strcmp(basie->getprintElement(), "Cm") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -31659,7 +31669,7 @@ void StatsWithTolSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Cmk") == 0)
+        else if (strcmp(basie->getprintElement(), "Cmk") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -31675,7 +31685,7 @@ void StatsWithTolSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Cpm") == 0)
+        else if (strcmp(basie->getprintElement(), "Cpm") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -31691,7 +31701,7 @@ void StatsWithTolSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeAppraiserVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeAppraiserVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -31707,7 +31717,7 @@ void StatsWithTolSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeEquipmentVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeEquipmentVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -31723,7 +31733,7 @@ void StatsWithTolSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeInteraction") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeInteraction") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -31739,7 +31749,7 @@ void StatsWithTolSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeGageRandR") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeGageRandR") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -31755,7 +31765,7 @@ void StatsWithTolSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativePartVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativePartVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -31771,7 +31781,7 @@ void StatsWithTolSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeTotalVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeTotalVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -31787,7 +31797,7 @@ void StatsWithTolSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "CommonStatsValue") == 0)
+        else if (strcmp(basie->getprintElement(), "CommonStatsValue") == 0)
           {
             StatsWithReferenceBaseType * typ;
             if ((typ = dynamic_cast<StatsWithReferenceBaseType *>(basie)))
@@ -31803,7 +31813,7 @@ void StatsWithTolSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Average") == 0)
+        else if (strcmp(basie->getprintElement(), "Average") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -31819,7 +31829,7 @@ void StatsWithTolSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupAverages") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupAverages") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -31835,7 +31845,7 @@ void StatsWithTolSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Difference") == 0)
+        else if (strcmp(basie->getprintElement(), "Difference") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -31851,7 +31861,7 @@ void StatsWithTolSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupDifferences") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupDifferences") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -31867,7 +31877,7 @@ void StatsWithTolSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RootMeanSquare") == 0)
+        else if (strcmp(basie->getprintElement(), "RootMeanSquare") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -31883,7 +31893,7 @@ void StatsWithTolSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Maximum") == 0)
+        else if (strcmp(basie->getprintElement(), "Maximum") == 0)
           {
             StatsMeasuredDecimalWithReferenceType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalWithReferenceType *>(basie)))
@@ -31899,7 +31909,7 @@ void StatsWithTolSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupMaxima") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupMaxima") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -31915,7 +31925,7 @@ void StatsWithTolSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Minimum") == 0)
+        else if (strcmp(basie->getprintElement(), "Minimum") == 0)
           {
             StatsMeasuredDecimalWithReferenceType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalWithReferenceType *>(basie)))
@@ -31931,7 +31941,7 @@ void StatsWithTolSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupMinima") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupMinima") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -31947,7 +31957,7 @@ void StatsWithTolSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Range") == 0)
+        else if (strcmp(basie->getprintElement(), "Range") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -31963,7 +31973,7 @@ void StatsWithTolSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupRanges") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupRanges") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -31979,7 +31989,7 @@ void StatsWithTolSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "AverageRange") == 0)
+        else if (strcmp(basie->getprintElement(), "AverageRange") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -31995,7 +32005,7 @@ void StatsWithTolSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "StandardDeviation") == 0)
+        else if (strcmp(basie->getprintElement(), "StandardDeviation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -32011,7 +32021,7 @@ void StatsWithTolSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Skew") == 0)
+        else if (strcmp(basie->getprintElement(), "Skew") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -32027,7 +32037,7 @@ void StatsWithTolSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Kurtosis") == 0)
+        else if (strcmp(basie->getprintElement(), "Kurtosis") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -32043,7 +32053,7 @@ void StatsWithTolSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Normality") == 0)
+        else if (strcmp(basie->getprintElement(), "Normality") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -32059,7 +32069,7 @@ void StatsWithTolSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ProcessVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "ProcessVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -32075,7 +32085,7 @@ void StatsWithTolSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EstimatedStandardDeviation") == 0)
+        else if (strcmp(basie->getprintElement(), "EstimatedStandardDeviation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -32091,7 +32101,7 @@ void StatsWithTolSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UpperControlLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "UpperControlLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -32107,7 +32117,7 @@ void StatsWithTolSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LowerControlLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "LowerControlLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -32123,7 +32133,7 @@ void StatsWithTolSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UpperControlLimitRange") == 0)
+        else if (strcmp(basie->getprintElement(), "UpperControlLimitRange") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -32139,7 +32149,7 @@ void StatsWithTolSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LowerControlLimitRange") == 0)
+        else if (strcmp(basie->getprintElement(), "LowerControlLimitRange") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -32155,7 +32165,7 @@ void StatsWithTolSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberOutOfControl") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberOutOfControl") == 0)
           {
             StatsNonNegativeIntegerWithReferencesType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerWithReferencesType *>(basie)))
@@ -32171,7 +32181,7 @@ void StatsWithTolSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "AppraiserVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "AppraiserVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -32187,7 +32197,7 @@ void StatsWithTolSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EquipmentVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "EquipmentVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -32203,7 +32213,7 @@ void StatsWithTolSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Interaction") == 0)
+        else if (strcmp(basie->getprintElement(), "Interaction") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -32219,7 +32229,7 @@ void StatsWithTolSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "GageRandR") == 0)
+        else if (strcmp(basie->getprintElement(), "GageRandR") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -32235,7 +32245,7 @@ void StatsWithTolSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "PartVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "PartVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -32251,7 +32261,7 @@ void StatsWithTolSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TotalVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "TotalVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -32267,7 +32277,7 @@ void StatsWithTolSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Linearity") == 0)
+        else if (strcmp(basie->getprintElement(), "Linearity") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -32283,7 +32293,7 @@ void StatsWithTolSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Bias") == 0)
+        else if (strcmp(basie->getprintElement(), "Bias") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -32299,7 +32309,7 @@ void StatsWithTolSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeLinearity") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeLinearity") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -32315,7 +32325,7 @@ void StatsWithTolSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeBias") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeBias") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -32331,7 +32341,7 @@ void StatsWithTolSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "GoodnessOfFit") == 0)
+        else if (strcmp(basie->getprintElement(), "GoodnessOfFit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -32347,7 +32357,7 @@ void StatsWithTolSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RegressionSlope") == 0)
+        else if (strcmp(basie->getprintElement(), "RegressionSlope") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -32363,7 +32373,7 @@ void StatsWithTolSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RegressionIntercept") == 0)
+        else if (strcmp(basie->getprintElement(), "RegressionIntercept") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -32379,7 +32389,7 @@ void StatsWithTolSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UpperConfidenceLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "UpperConfidenceLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -32395,7 +32405,7 @@ void StatsWithTolSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LowerConfidenceLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "LowerConfidenceLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -32411,7 +32421,7 @@ void StatsWithTolSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TDistribution") == 0)
+        else if (strcmp(basie->getprintElement(), "TDistribution") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -32427,7 +32437,7 @@ void StatsWithTolSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TotalNumber") == 0)
+        else if (strcmp(basie->getprintElement(), "TotalNumber") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -32443,7 +32453,7 @@ void StatsWithTolSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupTotalNumbers") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupTotalNumbers") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -32459,7 +32469,7 @@ void StatsWithTolSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EffectiveNumber") == 0)
+        else if (strcmp(basie->getprintElement(), "EffectiveNumber") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -32475,7 +32485,7 @@ void StatsWithTolSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupEffectiveNumbers") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupEffectiveNumbers") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -32491,7 +32501,7 @@ void StatsWithTolSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberSubgroups") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberSubgroups") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -32507,7 +32517,7 @@ void StatsWithTolSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TotalNumber") == 0)
+        else if (strcmp(basie->getprintElement(), "TotalNumber") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -32523,7 +32533,7 @@ void StatsWithTolSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupTotalNumbers") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupTotalNumbers") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -32539,7 +32549,7 @@ void StatsWithTolSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EffectiveNumber") == 0)
+        else if (strcmp(basie->getprintElement(), "EffectiveNumber") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -32555,7 +32565,7 @@ void StatsWithTolSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupEffectiveNumbers") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupEffectiveNumbers") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -32571,7 +32581,7 @@ void StatsWithTolSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberSubgroups") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberSubgroups") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -32609,7 +32619,7 @@ bool StatsWithTolSpeedType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "speedUnit")
+      if (decl->getname() == "speedUnit")
         {
           XmlToken * speedUnitVal;
           if (this->speedUnit)
@@ -32618,12 +32628,12 @@ bool StatsWithTolSpeedType::badAttributes(
               returnValue = true;
               break;
             }
-          speedUnitVal = new XmlToken(decl->val.c_str());
-          if (speedUnitVal->bad)
+          speedUnitVal = new XmlToken(decl->getval().c_str());
+          if (speedUnitVal->getbad())
             {
               delete speedUnitVal;
               fprintf(stderr, "bad value %s for speedUnit in StatsWithTolSpeedType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -32753,12 +32763,12 @@ void StatsWithTolTemperatureType::printSelf(FILE * outFile)
         StatsWithReferenceBaseType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "NumericCharacteristicStatsValue") == 0)
+        else if (strcmp(basie->getprintElement(), "NumericCharacteristicStatsValue") == 0)
           {
             StatsWithReferenceBaseType * typ;
             if ((typ = dynamic_cast<StatsWithReferenceBaseType *>(basie)))
@@ -32774,7 +32784,7 @@ void StatsWithTolTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberOutOfTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberOutOfTolerance") == 0)
           {
             StatsNonNegativeIntegerWithReferencesType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerWithReferencesType *>(basie)))
@@ -32790,7 +32800,7 @@ void StatsWithTolTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupNumbersOutOfTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupNumbersOutOfTolerance") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -32806,7 +32816,7 @@ void StatsWithTolTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberOverUpperTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberOverUpperTolerance") == 0)
           {
             StatsNonNegativeIntegerWithReferencesType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerWithReferencesType *>(basie)))
@@ -32822,7 +32832,7 @@ void StatsWithTolTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupNumbersOverUpperTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupNumbersOverUpperTolerance") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -32838,7 +32848,7 @@ void StatsWithTolTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberUnderLowerTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberUnderLowerTolerance") == 0)
           {
             StatsNonNegativeIntegerWithReferencesType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerWithReferencesType *>(basie)))
@@ -32854,7 +32864,7 @@ void StatsWithTolTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupNumbersUnderLowerTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupNumbersUnderLowerTolerance") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -32870,7 +32880,7 @@ void StatsWithTolTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Cp") == 0)
+        else if (strcmp(basie->getprintElement(), "Cp") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -32886,7 +32896,7 @@ void StatsWithTolTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Cpk") == 0)
+        else if (strcmp(basie->getprintElement(), "Cpk") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -32902,7 +32912,7 @@ void StatsWithTolTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Pp") == 0)
+        else if (strcmp(basie->getprintElement(), "Pp") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -32918,7 +32928,7 @@ void StatsWithTolTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Ppk") == 0)
+        else if (strcmp(basie->getprintElement(), "Ppk") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -32934,7 +32944,7 @@ void StatsWithTolTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Cm") == 0)
+        else if (strcmp(basie->getprintElement(), "Cm") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -32950,7 +32960,7 @@ void StatsWithTolTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Cmk") == 0)
+        else if (strcmp(basie->getprintElement(), "Cmk") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -32966,7 +32976,7 @@ void StatsWithTolTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Cpm") == 0)
+        else if (strcmp(basie->getprintElement(), "Cpm") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -32982,7 +32992,7 @@ void StatsWithTolTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeAppraiserVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeAppraiserVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -32998,7 +33008,7 @@ void StatsWithTolTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeEquipmentVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeEquipmentVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -33014,7 +33024,7 @@ void StatsWithTolTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeInteraction") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeInteraction") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -33030,7 +33040,7 @@ void StatsWithTolTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeGageRandR") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeGageRandR") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -33046,7 +33056,7 @@ void StatsWithTolTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativePartVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativePartVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -33062,7 +33072,7 @@ void StatsWithTolTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeTotalVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeTotalVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -33078,7 +33088,7 @@ void StatsWithTolTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "CommonStatsValue") == 0)
+        else if (strcmp(basie->getprintElement(), "CommonStatsValue") == 0)
           {
             StatsWithReferenceBaseType * typ;
             if ((typ = dynamic_cast<StatsWithReferenceBaseType *>(basie)))
@@ -33094,7 +33104,7 @@ void StatsWithTolTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Average") == 0)
+        else if (strcmp(basie->getprintElement(), "Average") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -33110,7 +33120,7 @@ void StatsWithTolTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupAverages") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupAverages") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -33126,7 +33136,7 @@ void StatsWithTolTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Difference") == 0)
+        else if (strcmp(basie->getprintElement(), "Difference") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -33142,7 +33152,7 @@ void StatsWithTolTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupDifferences") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupDifferences") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -33158,7 +33168,7 @@ void StatsWithTolTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RootMeanSquare") == 0)
+        else if (strcmp(basie->getprintElement(), "RootMeanSquare") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -33174,7 +33184,7 @@ void StatsWithTolTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Maximum") == 0)
+        else if (strcmp(basie->getprintElement(), "Maximum") == 0)
           {
             StatsMeasuredDecimalWithReferenceType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalWithReferenceType *>(basie)))
@@ -33190,7 +33200,7 @@ void StatsWithTolTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupMaxima") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupMaxima") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -33206,7 +33216,7 @@ void StatsWithTolTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Minimum") == 0)
+        else if (strcmp(basie->getprintElement(), "Minimum") == 0)
           {
             StatsMeasuredDecimalWithReferenceType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalWithReferenceType *>(basie)))
@@ -33222,7 +33232,7 @@ void StatsWithTolTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupMinima") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupMinima") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -33238,7 +33248,7 @@ void StatsWithTolTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Range") == 0)
+        else if (strcmp(basie->getprintElement(), "Range") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -33254,7 +33264,7 @@ void StatsWithTolTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupRanges") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupRanges") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -33270,7 +33280,7 @@ void StatsWithTolTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "AverageRange") == 0)
+        else if (strcmp(basie->getprintElement(), "AverageRange") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -33286,7 +33296,7 @@ void StatsWithTolTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "StandardDeviation") == 0)
+        else if (strcmp(basie->getprintElement(), "StandardDeviation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -33302,7 +33312,7 @@ void StatsWithTolTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Skew") == 0)
+        else if (strcmp(basie->getprintElement(), "Skew") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -33318,7 +33328,7 @@ void StatsWithTolTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Kurtosis") == 0)
+        else if (strcmp(basie->getprintElement(), "Kurtosis") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -33334,7 +33344,7 @@ void StatsWithTolTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Normality") == 0)
+        else if (strcmp(basie->getprintElement(), "Normality") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -33350,7 +33360,7 @@ void StatsWithTolTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ProcessVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "ProcessVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -33366,7 +33376,7 @@ void StatsWithTolTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EstimatedStandardDeviation") == 0)
+        else if (strcmp(basie->getprintElement(), "EstimatedStandardDeviation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -33382,7 +33392,7 @@ void StatsWithTolTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UpperControlLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "UpperControlLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -33398,7 +33408,7 @@ void StatsWithTolTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LowerControlLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "LowerControlLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -33414,7 +33424,7 @@ void StatsWithTolTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UpperControlLimitRange") == 0)
+        else if (strcmp(basie->getprintElement(), "UpperControlLimitRange") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -33430,7 +33440,7 @@ void StatsWithTolTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LowerControlLimitRange") == 0)
+        else if (strcmp(basie->getprintElement(), "LowerControlLimitRange") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -33446,7 +33456,7 @@ void StatsWithTolTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberOutOfControl") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberOutOfControl") == 0)
           {
             StatsNonNegativeIntegerWithReferencesType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerWithReferencesType *>(basie)))
@@ -33462,7 +33472,7 @@ void StatsWithTolTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "AppraiserVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "AppraiserVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -33478,7 +33488,7 @@ void StatsWithTolTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EquipmentVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "EquipmentVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -33494,7 +33504,7 @@ void StatsWithTolTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Interaction") == 0)
+        else if (strcmp(basie->getprintElement(), "Interaction") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -33510,7 +33520,7 @@ void StatsWithTolTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "GageRandR") == 0)
+        else if (strcmp(basie->getprintElement(), "GageRandR") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -33526,7 +33536,7 @@ void StatsWithTolTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "PartVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "PartVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -33542,7 +33552,7 @@ void StatsWithTolTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TotalVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "TotalVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -33558,7 +33568,7 @@ void StatsWithTolTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Linearity") == 0)
+        else if (strcmp(basie->getprintElement(), "Linearity") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -33574,7 +33584,7 @@ void StatsWithTolTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Bias") == 0)
+        else if (strcmp(basie->getprintElement(), "Bias") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -33590,7 +33600,7 @@ void StatsWithTolTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeLinearity") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeLinearity") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -33606,7 +33616,7 @@ void StatsWithTolTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeBias") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeBias") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -33622,7 +33632,7 @@ void StatsWithTolTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "GoodnessOfFit") == 0)
+        else if (strcmp(basie->getprintElement(), "GoodnessOfFit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -33638,7 +33648,7 @@ void StatsWithTolTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RegressionSlope") == 0)
+        else if (strcmp(basie->getprintElement(), "RegressionSlope") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -33654,7 +33664,7 @@ void StatsWithTolTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RegressionIntercept") == 0)
+        else if (strcmp(basie->getprintElement(), "RegressionIntercept") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -33670,7 +33680,7 @@ void StatsWithTolTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UpperConfidenceLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "UpperConfidenceLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -33686,7 +33696,7 @@ void StatsWithTolTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LowerConfidenceLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "LowerConfidenceLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -33702,7 +33712,7 @@ void StatsWithTolTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TDistribution") == 0)
+        else if (strcmp(basie->getprintElement(), "TDistribution") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -33718,7 +33728,7 @@ void StatsWithTolTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TotalNumber") == 0)
+        else if (strcmp(basie->getprintElement(), "TotalNumber") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -33734,7 +33744,7 @@ void StatsWithTolTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupTotalNumbers") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupTotalNumbers") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -33750,7 +33760,7 @@ void StatsWithTolTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EffectiveNumber") == 0)
+        else if (strcmp(basie->getprintElement(), "EffectiveNumber") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -33766,7 +33776,7 @@ void StatsWithTolTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupEffectiveNumbers") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupEffectiveNumbers") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -33782,7 +33792,7 @@ void StatsWithTolTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberSubgroups") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberSubgroups") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -33798,7 +33808,7 @@ void StatsWithTolTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TotalNumber") == 0)
+        else if (strcmp(basie->getprintElement(), "TotalNumber") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -33814,7 +33824,7 @@ void StatsWithTolTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupTotalNumbers") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupTotalNumbers") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -33830,7 +33840,7 @@ void StatsWithTolTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EffectiveNumber") == 0)
+        else if (strcmp(basie->getprintElement(), "EffectiveNumber") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -33846,7 +33856,7 @@ void StatsWithTolTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupEffectiveNumbers") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupEffectiveNumbers") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -33862,7 +33872,7 @@ void StatsWithTolTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberSubgroups") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberSubgroups") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -33900,7 +33910,7 @@ bool StatsWithTolTemperatureType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "temperatureUnit")
+      if (decl->getname() == "temperatureUnit")
         {
           XmlToken * temperatureUnitVal;
           if (this->temperatureUnit)
@@ -33909,12 +33919,12 @@ bool StatsWithTolTemperatureType::badAttributes(
               returnValue = true;
               break;
             }
-          temperatureUnitVal = new XmlToken(decl->val.c_str());
-          if (temperatureUnitVal->bad)
+          temperatureUnitVal = new XmlToken(decl->getval().c_str());
+          if (temperatureUnitVal->getbad())
             {
               delete temperatureUnitVal;
               fprintf(stderr, "bad value %s for temperatureUnit in StatsWithTolTemperatureType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -34044,12 +34054,12 @@ void StatsWithTolTimeType::printSelf(FILE * outFile)
         StatsWithReferenceBaseType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "NumericCharacteristicStatsValue") == 0)
+        else if (strcmp(basie->getprintElement(), "NumericCharacteristicStatsValue") == 0)
           {
             StatsWithReferenceBaseType * typ;
             if ((typ = dynamic_cast<StatsWithReferenceBaseType *>(basie)))
@@ -34065,7 +34075,7 @@ void StatsWithTolTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberOutOfTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberOutOfTolerance") == 0)
           {
             StatsNonNegativeIntegerWithReferencesType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerWithReferencesType *>(basie)))
@@ -34081,7 +34091,7 @@ void StatsWithTolTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupNumbersOutOfTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupNumbersOutOfTolerance") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -34097,7 +34107,7 @@ void StatsWithTolTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberOverUpperTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberOverUpperTolerance") == 0)
           {
             StatsNonNegativeIntegerWithReferencesType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerWithReferencesType *>(basie)))
@@ -34113,7 +34123,7 @@ void StatsWithTolTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupNumbersOverUpperTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupNumbersOverUpperTolerance") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -34129,7 +34139,7 @@ void StatsWithTolTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberUnderLowerTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberUnderLowerTolerance") == 0)
           {
             StatsNonNegativeIntegerWithReferencesType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerWithReferencesType *>(basie)))
@@ -34145,7 +34155,7 @@ void StatsWithTolTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupNumbersUnderLowerTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupNumbersUnderLowerTolerance") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -34161,7 +34171,7 @@ void StatsWithTolTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Cp") == 0)
+        else if (strcmp(basie->getprintElement(), "Cp") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -34177,7 +34187,7 @@ void StatsWithTolTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Cpk") == 0)
+        else if (strcmp(basie->getprintElement(), "Cpk") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -34193,7 +34203,7 @@ void StatsWithTolTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Pp") == 0)
+        else if (strcmp(basie->getprintElement(), "Pp") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -34209,7 +34219,7 @@ void StatsWithTolTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Ppk") == 0)
+        else if (strcmp(basie->getprintElement(), "Ppk") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -34225,7 +34235,7 @@ void StatsWithTolTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Cm") == 0)
+        else if (strcmp(basie->getprintElement(), "Cm") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -34241,7 +34251,7 @@ void StatsWithTolTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Cmk") == 0)
+        else if (strcmp(basie->getprintElement(), "Cmk") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -34257,7 +34267,7 @@ void StatsWithTolTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Cpm") == 0)
+        else if (strcmp(basie->getprintElement(), "Cpm") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -34273,7 +34283,7 @@ void StatsWithTolTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeAppraiserVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeAppraiserVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -34289,7 +34299,7 @@ void StatsWithTolTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeEquipmentVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeEquipmentVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -34305,7 +34315,7 @@ void StatsWithTolTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeInteraction") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeInteraction") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -34321,7 +34331,7 @@ void StatsWithTolTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeGageRandR") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeGageRandR") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -34337,7 +34347,7 @@ void StatsWithTolTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativePartVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativePartVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -34353,7 +34363,7 @@ void StatsWithTolTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeTotalVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeTotalVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -34369,7 +34379,7 @@ void StatsWithTolTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "CommonStatsValue") == 0)
+        else if (strcmp(basie->getprintElement(), "CommonStatsValue") == 0)
           {
             StatsWithReferenceBaseType * typ;
             if ((typ = dynamic_cast<StatsWithReferenceBaseType *>(basie)))
@@ -34385,7 +34395,7 @@ void StatsWithTolTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Average") == 0)
+        else if (strcmp(basie->getprintElement(), "Average") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -34401,7 +34411,7 @@ void StatsWithTolTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupAverages") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupAverages") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -34417,7 +34427,7 @@ void StatsWithTolTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Difference") == 0)
+        else if (strcmp(basie->getprintElement(), "Difference") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -34433,7 +34443,7 @@ void StatsWithTolTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupDifferences") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupDifferences") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -34449,7 +34459,7 @@ void StatsWithTolTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RootMeanSquare") == 0)
+        else if (strcmp(basie->getprintElement(), "RootMeanSquare") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -34465,7 +34475,7 @@ void StatsWithTolTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Maximum") == 0)
+        else if (strcmp(basie->getprintElement(), "Maximum") == 0)
           {
             StatsMeasuredDecimalWithReferenceType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalWithReferenceType *>(basie)))
@@ -34481,7 +34491,7 @@ void StatsWithTolTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupMaxima") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupMaxima") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -34497,7 +34507,7 @@ void StatsWithTolTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Minimum") == 0)
+        else if (strcmp(basie->getprintElement(), "Minimum") == 0)
           {
             StatsMeasuredDecimalWithReferenceType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalWithReferenceType *>(basie)))
@@ -34513,7 +34523,7 @@ void StatsWithTolTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupMinima") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupMinima") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -34529,7 +34539,7 @@ void StatsWithTolTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Range") == 0)
+        else if (strcmp(basie->getprintElement(), "Range") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -34545,7 +34555,7 @@ void StatsWithTolTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupRanges") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupRanges") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -34561,7 +34571,7 @@ void StatsWithTolTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "AverageRange") == 0)
+        else if (strcmp(basie->getprintElement(), "AverageRange") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -34577,7 +34587,7 @@ void StatsWithTolTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "StandardDeviation") == 0)
+        else if (strcmp(basie->getprintElement(), "StandardDeviation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -34593,7 +34603,7 @@ void StatsWithTolTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Skew") == 0)
+        else if (strcmp(basie->getprintElement(), "Skew") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -34609,7 +34619,7 @@ void StatsWithTolTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Kurtosis") == 0)
+        else if (strcmp(basie->getprintElement(), "Kurtosis") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -34625,7 +34635,7 @@ void StatsWithTolTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Normality") == 0)
+        else if (strcmp(basie->getprintElement(), "Normality") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -34641,7 +34651,7 @@ void StatsWithTolTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ProcessVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "ProcessVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -34657,7 +34667,7 @@ void StatsWithTolTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EstimatedStandardDeviation") == 0)
+        else if (strcmp(basie->getprintElement(), "EstimatedStandardDeviation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -34673,7 +34683,7 @@ void StatsWithTolTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UpperControlLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "UpperControlLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -34689,7 +34699,7 @@ void StatsWithTolTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LowerControlLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "LowerControlLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -34705,7 +34715,7 @@ void StatsWithTolTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UpperControlLimitRange") == 0)
+        else if (strcmp(basie->getprintElement(), "UpperControlLimitRange") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -34721,7 +34731,7 @@ void StatsWithTolTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LowerControlLimitRange") == 0)
+        else if (strcmp(basie->getprintElement(), "LowerControlLimitRange") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -34737,7 +34747,7 @@ void StatsWithTolTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberOutOfControl") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberOutOfControl") == 0)
           {
             StatsNonNegativeIntegerWithReferencesType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerWithReferencesType *>(basie)))
@@ -34753,7 +34763,7 @@ void StatsWithTolTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "AppraiserVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "AppraiserVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -34769,7 +34779,7 @@ void StatsWithTolTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EquipmentVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "EquipmentVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -34785,7 +34795,7 @@ void StatsWithTolTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Interaction") == 0)
+        else if (strcmp(basie->getprintElement(), "Interaction") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -34801,7 +34811,7 @@ void StatsWithTolTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "GageRandR") == 0)
+        else if (strcmp(basie->getprintElement(), "GageRandR") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -34817,7 +34827,7 @@ void StatsWithTolTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "PartVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "PartVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -34833,7 +34843,7 @@ void StatsWithTolTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TotalVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "TotalVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -34849,7 +34859,7 @@ void StatsWithTolTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Linearity") == 0)
+        else if (strcmp(basie->getprintElement(), "Linearity") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -34865,7 +34875,7 @@ void StatsWithTolTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Bias") == 0)
+        else if (strcmp(basie->getprintElement(), "Bias") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -34881,7 +34891,7 @@ void StatsWithTolTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeLinearity") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeLinearity") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -34897,7 +34907,7 @@ void StatsWithTolTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeBias") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeBias") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -34913,7 +34923,7 @@ void StatsWithTolTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "GoodnessOfFit") == 0)
+        else if (strcmp(basie->getprintElement(), "GoodnessOfFit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -34929,7 +34939,7 @@ void StatsWithTolTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RegressionSlope") == 0)
+        else if (strcmp(basie->getprintElement(), "RegressionSlope") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -34945,7 +34955,7 @@ void StatsWithTolTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RegressionIntercept") == 0)
+        else if (strcmp(basie->getprintElement(), "RegressionIntercept") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -34961,7 +34971,7 @@ void StatsWithTolTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UpperConfidenceLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "UpperConfidenceLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -34977,7 +34987,7 @@ void StatsWithTolTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LowerConfidenceLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "LowerConfidenceLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -34993,7 +35003,7 @@ void StatsWithTolTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TDistribution") == 0)
+        else if (strcmp(basie->getprintElement(), "TDistribution") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -35009,7 +35019,7 @@ void StatsWithTolTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TotalNumber") == 0)
+        else if (strcmp(basie->getprintElement(), "TotalNumber") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -35025,7 +35035,7 @@ void StatsWithTolTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupTotalNumbers") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupTotalNumbers") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -35041,7 +35051,7 @@ void StatsWithTolTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EffectiveNumber") == 0)
+        else if (strcmp(basie->getprintElement(), "EffectiveNumber") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -35057,7 +35067,7 @@ void StatsWithTolTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupEffectiveNumbers") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupEffectiveNumbers") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -35073,7 +35083,7 @@ void StatsWithTolTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberSubgroups") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberSubgroups") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -35089,7 +35099,7 @@ void StatsWithTolTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TotalNumber") == 0)
+        else if (strcmp(basie->getprintElement(), "TotalNumber") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -35105,7 +35115,7 @@ void StatsWithTolTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupTotalNumbers") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupTotalNumbers") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -35121,7 +35131,7 @@ void StatsWithTolTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EffectiveNumber") == 0)
+        else if (strcmp(basie->getprintElement(), "EffectiveNumber") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -35137,7 +35147,7 @@ void StatsWithTolTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupEffectiveNumbers") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupEffectiveNumbers") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -35153,7 +35163,7 @@ void StatsWithTolTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberSubgroups") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberSubgroups") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -35191,7 +35201,7 @@ bool StatsWithTolTimeType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "timeUnit")
+      if (decl->getname() == "timeUnit")
         {
           XmlToken * timeUnitVal;
           if (this->timeUnit)
@@ -35200,12 +35210,12 @@ bool StatsWithTolTimeType::badAttributes(
               returnValue = true;
               break;
             }
-          timeUnitVal = new XmlToken(decl->val.c_str());
-          if (timeUnitVal->bad)
+          timeUnitVal = new XmlToken(decl->getval().c_str());
+          if (timeUnitVal->getbad())
             {
               delete timeUnitVal;
               fprintf(stderr, "bad value %s for timeUnit in StatsWithTolTimeType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -35340,12 +35350,12 @@ void StatsWithTolUserDefinedUnitType::printSelf(FILE * outFile)
         StatsWithReferenceBaseType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "NumericCharacteristicStatsValue") == 0)
+        else if (strcmp(basie->getprintElement(), "NumericCharacteristicStatsValue") == 0)
           {
             StatsWithReferenceBaseType * typ;
             if ((typ = dynamic_cast<StatsWithReferenceBaseType *>(basie)))
@@ -35361,7 +35371,7 @@ void StatsWithTolUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberOutOfTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberOutOfTolerance") == 0)
           {
             StatsNonNegativeIntegerWithReferencesType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerWithReferencesType *>(basie)))
@@ -35377,7 +35387,7 @@ void StatsWithTolUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupNumbersOutOfTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupNumbersOutOfTolerance") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -35393,7 +35403,7 @@ void StatsWithTolUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberOverUpperTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberOverUpperTolerance") == 0)
           {
             StatsNonNegativeIntegerWithReferencesType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerWithReferencesType *>(basie)))
@@ -35409,7 +35419,7 @@ void StatsWithTolUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupNumbersOverUpperTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupNumbersOverUpperTolerance") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -35425,7 +35435,7 @@ void StatsWithTolUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberUnderLowerTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberUnderLowerTolerance") == 0)
           {
             StatsNonNegativeIntegerWithReferencesType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerWithReferencesType *>(basie)))
@@ -35441,7 +35451,7 @@ void StatsWithTolUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupNumbersUnderLowerTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupNumbersUnderLowerTolerance") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -35457,7 +35467,7 @@ void StatsWithTolUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Cp") == 0)
+        else if (strcmp(basie->getprintElement(), "Cp") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -35473,7 +35483,7 @@ void StatsWithTolUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Cpk") == 0)
+        else if (strcmp(basie->getprintElement(), "Cpk") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -35489,7 +35499,7 @@ void StatsWithTolUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Pp") == 0)
+        else if (strcmp(basie->getprintElement(), "Pp") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -35505,7 +35515,7 @@ void StatsWithTolUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Ppk") == 0)
+        else if (strcmp(basie->getprintElement(), "Ppk") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -35521,7 +35531,7 @@ void StatsWithTolUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Cm") == 0)
+        else if (strcmp(basie->getprintElement(), "Cm") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -35537,7 +35547,7 @@ void StatsWithTolUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Cmk") == 0)
+        else if (strcmp(basie->getprintElement(), "Cmk") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -35553,7 +35563,7 @@ void StatsWithTolUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Cpm") == 0)
+        else if (strcmp(basie->getprintElement(), "Cpm") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -35569,7 +35579,7 @@ void StatsWithTolUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeAppraiserVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeAppraiserVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -35585,7 +35595,7 @@ void StatsWithTolUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeEquipmentVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeEquipmentVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -35601,7 +35611,7 @@ void StatsWithTolUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeInteraction") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeInteraction") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -35617,7 +35627,7 @@ void StatsWithTolUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeGageRandR") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeGageRandR") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -35633,7 +35643,7 @@ void StatsWithTolUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativePartVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativePartVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -35649,7 +35659,7 @@ void StatsWithTolUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeTotalVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeTotalVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -35665,7 +35675,7 @@ void StatsWithTolUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "CommonStatsValue") == 0)
+        else if (strcmp(basie->getprintElement(), "CommonStatsValue") == 0)
           {
             StatsWithReferenceBaseType * typ;
             if ((typ = dynamic_cast<StatsWithReferenceBaseType *>(basie)))
@@ -35681,7 +35691,7 @@ void StatsWithTolUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Average") == 0)
+        else if (strcmp(basie->getprintElement(), "Average") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -35697,7 +35707,7 @@ void StatsWithTolUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupAverages") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupAverages") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -35713,7 +35723,7 @@ void StatsWithTolUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Difference") == 0)
+        else if (strcmp(basie->getprintElement(), "Difference") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -35729,7 +35739,7 @@ void StatsWithTolUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupDifferences") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupDifferences") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -35745,7 +35755,7 @@ void StatsWithTolUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RootMeanSquare") == 0)
+        else if (strcmp(basie->getprintElement(), "RootMeanSquare") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -35761,7 +35771,7 @@ void StatsWithTolUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Maximum") == 0)
+        else if (strcmp(basie->getprintElement(), "Maximum") == 0)
           {
             StatsMeasuredDecimalWithReferenceType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalWithReferenceType *>(basie)))
@@ -35777,7 +35787,7 @@ void StatsWithTolUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupMaxima") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupMaxima") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -35793,7 +35803,7 @@ void StatsWithTolUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Minimum") == 0)
+        else if (strcmp(basie->getprintElement(), "Minimum") == 0)
           {
             StatsMeasuredDecimalWithReferenceType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalWithReferenceType *>(basie)))
@@ -35809,7 +35819,7 @@ void StatsWithTolUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupMinima") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupMinima") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -35825,7 +35835,7 @@ void StatsWithTolUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Range") == 0)
+        else if (strcmp(basie->getprintElement(), "Range") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -35841,7 +35851,7 @@ void StatsWithTolUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupRanges") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupRanges") == 0)
           {
             SubgroupDecimalsType * typ;
             if ((typ = dynamic_cast<SubgroupDecimalsType *>(basie)))
@@ -35857,7 +35867,7 @@ void StatsWithTolUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "AverageRange") == 0)
+        else if (strcmp(basie->getprintElement(), "AverageRange") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -35873,7 +35883,7 @@ void StatsWithTolUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "StandardDeviation") == 0)
+        else if (strcmp(basie->getprintElement(), "StandardDeviation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -35889,7 +35899,7 @@ void StatsWithTolUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Skew") == 0)
+        else if (strcmp(basie->getprintElement(), "Skew") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -35905,7 +35915,7 @@ void StatsWithTolUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Kurtosis") == 0)
+        else if (strcmp(basie->getprintElement(), "Kurtosis") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -35921,7 +35931,7 @@ void StatsWithTolUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Normality") == 0)
+        else if (strcmp(basie->getprintElement(), "Normality") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -35937,7 +35947,7 @@ void StatsWithTolUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ProcessVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "ProcessVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -35953,7 +35963,7 @@ void StatsWithTolUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EstimatedStandardDeviation") == 0)
+        else if (strcmp(basie->getprintElement(), "EstimatedStandardDeviation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -35969,7 +35979,7 @@ void StatsWithTolUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UpperControlLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "UpperControlLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -35985,7 +35995,7 @@ void StatsWithTolUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LowerControlLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "LowerControlLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -36001,7 +36011,7 @@ void StatsWithTolUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UpperControlLimitRange") == 0)
+        else if (strcmp(basie->getprintElement(), "UpperControlLimitRange") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -36017,7 +36027,7 @@ void StatsWithTolUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LowerControlLimitRange") == 0)
+        else if (strcmp(basie->getprintElement(), "LowerControlLimitRange") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -36033,7 +36043,7 @@ void StatsWithTolUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberOutOfControl") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberOutOfControl") == 0)
           {
             StatsNonNegativeIntegerWithReferencesType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerWithReferencesType *>(basie)))
@@ -36049,7 +36059,7 @@ void StatsWithTolUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "AppraiserVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "AppraiserVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -36065,7 +36075,7 @@ void StatsWithTolUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EquipmentVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "EquipmentVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -36081,7 +36091,7 @@ void StatsWithTolUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Interaction") == 0)
+        else if (strcmp(basie->getprintElement(), "Interaction") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -36097,7 +36107,7 @@ void StatsWithTolUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "GageRandR") == 0)
+        else if (strcmp(basie->getprintElement(), "GageRandR") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -36113,7 +36123,7 @@ void StatsWithTolUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "PartVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "PartVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -36129,7 +36139,7 @@ void StatsWithTolUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TotalVariation") == 0)
+        else if (strcmp(basie->getprintElement(), "TotalVariation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -36145,7 +36155,7 @@ void StatsWithTolUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Linearity") == 0)
+        else if (strcmp(basie->getprintElement(), "Linearity") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -36161,7 +36171,7 @@ void StatsWithTolUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Bias") == 0)
+        else if (strcmp(basie->getprintElement(), "Bias") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -36177,7 +36187,7 @@ void StatsWithTolUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeLinearity") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeLinearity") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -36193,7 +36203,7 @@ void StatsWithTolUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RelativeBias") == 0)
+        else if (strcmp(basie->getprintElement(), "RelativeBias") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -36209,7 +36219,7 @@ void StatsWithTolUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "GoodnessOfFit") == 0)
+        else if (strcmp(basie->getprintElement(), "GoodnessOfFit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -36225,7 +36235,7 @@ void StatsWithTolUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RegressionSlope") == 0)
+        else if (strcmp(basie->getprintElement(), "RegressionSlope") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -36241,7 +36251,7 @@ void StatsWithTolUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RegressionIntercept") == 0)
+        else if (strcmp(basie->getprintElement(), "RegressionIntercept") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -36257,7 +36267,7 @@ void StatsWithTolUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UpperConfidenceLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "UpperConfidenceLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -36273,7 +36283,7 @@ void StatsWithTolUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LowerConfidenceLimit") == 0)
+        else if (strcmp(basie->getprintElement(), "LowerConfidenceLimit") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -36289,7 +36299,7 @@ void StatsWithTolUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TDistribution") == 0)
+        else if (strcmp(basie->getprintElement(), "TDistribution") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -36305,7 +36315,7 @@ void StatsWithTolUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TotalNumber") == 0)
+        else if (strcmp(basie->getprintElement(), "TotalNumber") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -36321,7 +36331,7 @@ void StatsWithTolUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupTotalNumbers") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupTotalNumbers") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -36337,7 +36347,7 @@ void StatsWithTolUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EffectiveNumber") == 0)
+        else if (strcmp(basie->getprintElement(), "EffectiveNumber") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -36353,7 +36363,7 @@ void StatsWithTolUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupEffectiveNumbers") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupEffectiveNumbers") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -36369,7 +36379,7 @@ void StatsWithTolUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberSubgroups") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberSubgroups") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -36385,7 +36395,7 @@ void StatsWithTolUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TotalNumber") == 0)
+        else if (strcmp(basie->getprintElement(), "TotalNumber") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -36401,7 +36411,7 @@ void StatsWithTolUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupTotalNumbers") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupTotalNumbers") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -36417,7 +36427,7 @@ void StatsWithTolUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EffectiveNumber") == 0)
+        else if (strcmp(basie->getprintElement(), "EffectiveNumber") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -36433,7 +36443,7 @@ void StatsWithTolUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SubgroupEffectiveNumbers") == 0)
+        else if (strcmp(basie->getprintElement(), "SubgroupEffectiveNumbers") == 0)
           {
             SubgroupIntegersType * typ;
             if ((typ = dynamic_cast<SubgroupIntegersType *>(basie)))
@@ -36449,7 +36459,7 @@ void StatsWithTolUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "NumberSubgroups") == 0)
+        else if (strcmp(basie->getprintElement(), "NumberSubgroups") == 0)
           {
             StatsNonNegativeIntegerType * typ;
             if ((typ = dynamic_cast<StatsNonNegativeIntegerType *>(basie)))
@@ -36487,7 +36497,7 @@ bool StatsWithTolUserDefinedUnitType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "unitName")
+      if (decl->getname() == "unitName")
         {
           XmlToken * unitNameVal;
           if (this->unitName)
@@ -36496,12 +36506,12 @@ bool StatsWithTolUserDefinedUnitType::badAttributes(
               returnValue = true;
               break;
             }
-          unitNameVal = new XmlToken(decl->val.c_str());
-          if (unitNameVal->bad)
+          unitNameVal = new XmlToken(decl->getval().c_str());
+          if (unitNameVal->getbad())
             {
               delete unitNameVal;
               fprintf(stderr, "bad value %s for unitName in StatsWithTolUserDefinedUnitType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -36829,7 +36839,7 @@ bool StudyIssueType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -36838,12 +36848,12 @@ bool StudyIssueType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in StudyIssueType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -36857,7 +36867,11 @@ bool StudyIssueType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in StudyIssueType\n");
       returnValue = true;
@@ -37053,7 +37067,7 @@ bool StudyIssuesType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -37062,12 +37076,12 @@ bool StudyIssuesType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in StudyIssuesType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -37194,7 +37208,7 @@ bool SubgroupType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -37203,12 +37217,12 @@ bool SubgroupType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in SubgroupType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -37222,7 +37236,11 @@ bool SubgroupType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in SubgroupType\n");
       returnValue = true;
@@ -37394,7 +37412,7 @@ bool SubgroupValuesType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -37403,12 +37421,12 @@ bool SubgroupValuesType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in SubgroupValuesType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -37559,7 +37577,7 @@ bool SubgroupsType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -37568,12 +37586,12 @@ bool SubgroupsType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in SubgroupsType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -37724,7 +37742,7 @@ bool SummariesStatisticsAngularType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -37733,12 +37751,12 @@ bool SummariesStatisticsAngularType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in SummariesStatisticsAngularType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -37889,7 +37907,7 @@ bool SummariesStatisticsAreaType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -37898,12 +37916,12 @@ bool SummariesStatisticsAreaType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in SummariesStatisticsAreaType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -38054,7 +38072,7 @@ bool SummariesStatisticsForceType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -38063,12 +38081,12 @@ bool SummariesStatisticsForceType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in SummariesStatisticsForceType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -38219,7 +38237,7 @@ bool SummariesStatisticsLinearType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -38228,12 +38246,12 @@ bool SummariesStatisticsLinearType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in SummariesStatisticsLinearType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -38384,7 +38402,7 @@ bool SummariesStatisticsMassType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -38393,12 +38411,12 @@ bool SummariesStatisticsMassType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in SummariesStatisticsMassType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -38549,7 +38567,7 @@ bool SummariesStatisticsPressureType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -38558,12 +38576,12 @@ bool SummariesStatisticsPressureType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in SummariesStatisticsPressureType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -38714,7 +38732,7 @@ bool SummariesStatisticsSpeedType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -38723,12 +38741,12 @@ bool SummariesStatisticsSpeedType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in SummariesStatisticsSpeedType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -38879,7 +38897,7 @@ bool SummariesStatisticsTemperatureType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -38888,12 +38906,12 @@ bool SummariesStatisticsTemperatureType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in SummariesStatisticsTemperatureType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -39044,7 +39062,7 @@ bool SummariesStatisticsTimeType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -39053,12 +39071,12 @@ bool SummariesStatisticsTimeType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in SummariesStatisticsTimeType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -39209,7 +39227,7 @@ bool SummariesStatisticsType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -39218,12 +39236,12 @@ bool SummariesStatisticsType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in SummariesStatisticsType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -39374,7 +39392,7 @@ bool SummariesStatisticsUserDefinedUnitType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -39383,12 +39401,12 @@ bool SummariesStatisticsUserDefinedUnitType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in SummariesStatisticsUserDefinedUnitType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -39537,12 +39555,12 @@ void SummaryStatisticsAngularType::printSelf(FILE * outFile)
         StatsWithReferenceBaseType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "SummaryAverage") == 0)
+        else if (strcmp(basie->getprintElement(), "SummaryAverage") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -39558,7 +39576,7 @@ void SummaryStatisticsAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SummaryMaximum") == 0)
+        else if (strcmp(basie->getprintElement(), "SummaryMaximum") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -39574,7 +39592,7 @@ void SummaryStatisticsAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SummaryMinimum") == 0)
+        else if (strcmp(basie->getprintElement(), "SummaryMinimum") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -39590,7 +39608,7 @@ void SummaryStatisticsAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SummaryRange") == 0)
+        else if (strcmp(basie->getprintElement(), "SummaryRange") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -39606,7 +39624,7 @@ void SummaryStatisticsAngularType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SummaryStandardDeviation") == 0)
+        else if (strcmp(basie->getprintElement(), "SummaryStandardDeviation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -39644,7 +39662,7 @@ bool SummaryStatisticsAngularType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "angularUnit")
+      if (decl->getname() == "angularUnit")
         {
           XmlToken * angularUnitVal;
           if (this->angularUnit)
@@ -39653,12 +39671,12 @@ bool SummaryStatisticsAngularType::badAttributes(
               returnValue = true;
               break;
             }
-          angularUnitVal = new XmlToken(decl->val.c_str());
-          if (angularUnitVal->bad)
+          angularUnitVal = new XmlToken(decl->getval().c_str());
+          if (angularUnitVal->getbad())
             {
               delete angularUnitVal;
               fprintf(stderr, "bad value %s for angularUnit in SummaryStatisticsAngularType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -39831,12 +39849,12 @@ void SummaryStatisticsAreaType::printSelf(FILE * outFile)
         StatsWithReferenceBaseType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "SummaryAverage") == 0)
+        else if (strcmp(basie->getprintElement(), "SummaryAverage") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -39852,7 +39870,7 @@ void SummaryStatisticsAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SummaryMaximum") == 0)
+        else if (strcmp(basie->getprintElement(), "SummaryMaximum") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -39868,7 +39886,7 @@ void SummaryStatisticsAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SummaryMinimum") == 0)
+        else if (strcmp(basie->getprintElement(), "SummaryMinimum") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -39884,7 +39902,7 @@ void SummaryStatisticsAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SummaryRange") == 0)
+        else if (strcmp(basie->getprintElement(), "SummaryRange") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -39900,7 +39918,7 @@ void SummaryStatisticsAreaType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SummaryStandardDeviation") == 0)
+        else if (strcmp(basie->getprintElement(), "SummaryStandardDeviation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -39938,7 +39956,7 @@ bool SummaryStatisticsAreaType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "areaUnit")
+      if (decl->getname() == "areaUnit")
         {
           XmlToken * areaUnitVal;
           if (this->areaUnit)
@@ -39947,12 +39965,12 @@ bool SummaryStatisticsAreaType::badAttributes(
               returnValue = true;
               break;
             }
-          areaUnitVal = new XmlToken(decl->val.c_str());
-          if (areaUnitVal->bad)
+          areaUnitVal = new XmlToken(decl->getval().c_str());
+          if (areaUnitVal->getbad())
             {
               delete areaUnitVal;
               fprintf(stderr, "bad value %s for areaUnit in SummaryStatisticsAreaType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -40125,12 +40143,12 @@ void SummaryStatisticsForceType::printSelf(FILE * outFile)
         StatsWithReferenceBaseType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "SummaryAverage") == 0)
+        else if (strcmp(basie->getprintElement(), "SummaryAverage") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -40146,7 +40164,7 @@ void SummaryStatisticsForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SummaryMaximum") == 0)
+        else if (strcmp(basie->getprintElement(), "SummaryMaximum") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -40162,7 +40180,7 @@ void SummaryStatisticsForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SummaryMinimum") == 0)
+        else if (strcmp(basie->getprintElement(), "SummaryMinimum") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -40178,7 +40196,7 @@ void SummaryStatisticsForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SummaryRange") == 0)
+        else if (strcmp(basie->getprintElement(), "SummaryRange") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -40194,7 +40212,7 @@ void SummaryStatisticsForceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SummaryStandardDeviation") == 0)
+        else if (strcmp(basie->getprintElement(), "SummaryStandardDeviation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -40232,7 +40250,7 @@ bool SummaryStatisticsForceType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "forceUnit")
+      if (decl->getname() == "forceUnit")
         {
           XmlToken * forceUnitVal;
           if (this->forceUnit)
@@ -40241,12 +40259,12 @@ bool SummaryStatisticsForceType::badAttributes(
               returnValue = true;
               break;
             }
-          forceUnitVal = new XmlToken(decl->val.c_str());
-          if (forceUnitVal->bad)
+          forceUnitVal = new XmlToken(decl->getval().c_str());
+          if (forceUnitVal->getbad())
             {
               delete forceUnitVal;
               fprintf(stderr, "bad value %s for forceUnit in SummaryStatisticsForceType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -40419,12 +40437,12 @@ void SummaryStatisticsLinearType::printSelf(FILE * outFile)
         StatsWithReferenceBaseType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "SummaryAverage") == 0)
+        else if (strcmp(basie->getprintElement(), "SummaryAverage") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -40440,7 +40458,7 @@ void SummaryStatisticsLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SummaryMaximum") == 0)
+        else if (strcmp(basie->getprintElement(), "SummaryMaximum") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -40456,7 +40474,7 @@ void SummaryStatisticsLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SummaryMinimum") == 0)
+        else if (strcmp(basie->getprintElement(), "SummaryMinimum") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -40472,7 +40490,7 @@ void SummaryStatisticsLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SummaryRange") == 0)
+        else if (strcmp(basie->getprintElement(), "SummaryRange") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -40488,7 +40506,7 @@ void SummaryStatisticsLinearType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SummaryStandardDeviation") == 0)
+        else if (strcmp(basie->getprintElement(), "SummaryStandardDeviation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -40526,7 +40544,7 @@ bool SummaryStatisticsLinearType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "linearUnit")
+      if (decl->getname() == "linearUnit")
         {
           XmlToken * linearUnitVal;
           if (this->linearUnit)
@@ -40535,12 +40553,12 @@ bool SummaryStatisticsLinearType::badAttributes(
               returnValue = true;
               break;
             }
-          linearUnitVal = new XmlToken(decl->val.c_str());
-          if (linearUnitVal->bad)
+          linearUnitVal = new XmlToken(decl->getval().c_str());
+          if (linearUnitVal->getbad())
             {
               delete linearUnitVal;
               fprintf(stderr, "bad value %s for linearUnit in SummaryStatisticsLinearType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -40713,12 +40731,12 @@ void SummaryStatisticsMassType::printSelf(FILE * outFile)
         StatsWithReferenceBaseType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "SummaryAverage") == 0)
+        else if (strcmp(basie->getprintElement(), "SummaryAverage") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -40734,7 +40752,7 @@ void SummaryStatisticsMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SummaryMaximum") == 0)
+        else if (strcmp(basie->getprintElement(), "SummaryMaximum") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -40750,7 +40768,7 @@ void SummaryStatisticsMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SummaryMinimum") == 0)
+        else if (strcmp(basie->getprintElement(), "SummaryMinimum") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -40766,7 +40784,7 @@ void SummaryStatisticsMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SummaryRange") == 0)
+        else if (strcmp(basie->getprintElement(), "SummaryRange") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -40782,7 +40800,7 @@ void SummaryStatisticsMassType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SummaryStandardDeviation") == 0)
+        else if (strcmp(basie->getprintElement(), "SummaryStandardDeviation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -40820,7 +40838,7 @@ bool SummaryStatisticsMassType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "massUnit")
+      if (decl->getname() == "massUnit")
         {
           XmlToken * massUnitVal;
           if (this->massUnit)
@@ -40829,12 +40847,12 @@ bool SummaryStatisticsMassType::badAttributes(
               returnValue = true;
               break;
             }
-          massUnitVal = new XmlToken(decl->val.c_str());
-          if (massUnitVal->bad)
+          massUnitVal = new XmlToken(decl->getval().c_str());
+          if (massUnitVal->getbad())
             {
               delete massUnitVal;
               fprintf(stderr, "bad value %s for massUnit in SummaryStatisticsMassType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -41007,12 +41025,12 @@ void SummaryStatisticsPressureType::printSelf(FILE * outFile)
         StatsWithReferenceBaseType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "SummaryAverage") == 0)
+        else if (strcmp(basie->getprintElement(), "SummaryAverage") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -41028,7 +41046,7 @@ void SummaryStatisticsPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SummaryMaximum") == 0)
+        else if (strcmp(basie->getprintElement(), "SummaryMaximum") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -41044,7 +41062,7 @@ void SummaryStatisticsPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SummaryMinimum") == 0)
+        else if (strcmp(basie->getprintElement(), "SummaryMinimum") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -41060,7 +41078,7 @@ void SummaryStatisticsPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SummaryRange") == 0)
+        else if (strcmp(basie->getprintElement(), "SummaryRange") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -41076,7 +41094,7 @@ void SummaryStatisticsPressureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SummaryStandardDeviation") == 0)
+        else if (strcmp(basie->getprintElement(), "SummaryStandardDeviation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -41114,7 +41132,7 @@ bool SummaryStatisticsPressureType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "pressureUnit")
+      if (decl->getname() == "pressureUnit")
         {
           XmlToken * pressureUnitVal;
           if (this->pressureUnit)
@@ -41123,12 +41141,12 @@ bool SummaryStatisticsPressureType::badAttributes(
               returnValue = true;
               break;
             }
-          pressureUnitVal = new XmlToken(decl->val.c_str());
-          if (pressureUnitVal->bad)
+          pressureUnitVal = new XmlToken(decl->getval().c_str());
+          if (pressureUnitVal->getbad())
             {
               delete pressureUnitVal;
               fprintf(stderr, "bad value %s for pressureUnit in SummaryStatisticsPressureType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -41301,12 +41319,12 @@ void SummaryStatisticsSpeedType::printSelf(FILE * outFile)
         StatsWithReferenceBaseType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "SummaryAverage") == 0)
+        else if (strcmp(basie->getprintElement(), "SummaryAverage") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -41322,7 +41340,7 @@ void SummaryStatisticsSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SummaryMaximum") == 0)
+        else if (strcmp(basie->getprintElement(), "SummaryMaximum") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -41338,7 +41356,7 @@ void SummaryStatisticsSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SummaryMinimum") == 0)
+        else if (strcmp(basie->getprintElement(), "SummaryMinimum") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -41354,7 +41372,7 @@ void SummaryStatisticsSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SummaryRange") == 0)
+        else if (strcmp(basie->getprintElement(), "SummaryRange") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -41370,7 +41388,7 @@ void SummaryStatisticsSpeedType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SummaryStandardDeviation") == 0)
+        else if (strcmp(basie->getprintElement(), "SummaryStandardDeviation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -41408,7 +41426,7 @@ bool SummaryStatisticsSpeedType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "speedUnit")
+      if (decl->getname() == "speedUnit")
         {
           XmlToken * speedUnitVal;
           if (this->speedUnit)
@@ -41417,12 +41435,12 @@ bool SummaryStatisticsSpeedType::badAttributes(
               returnValue = true;
               break;
             }
-          speedUnitVal = new XmlToken(decl->val.c_str());
-          if (speedUnitVal->bad)
+          speedUnitVal = new XmlToken(decl->getval().c_str());
+          if (speedUnitVal->getbad())
             {
               delete speedUnitVal;
               fprintf(stderr, "bad value %s for speedUnit in SummaryStatisticsSpeedType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -41595,12 +41613,12 @@ void SummaryStatisticsTemperatureType::printSelf(FILE * outFile)
         StatsWithReferenceBaseType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "SummaryAverage") == 0)
+        else if (strcmp(basie->getprintElement(), "SummaryAverage") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -41616,7 +41634,7 @@ void SummaryStatisticsTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SummaryMaximum") == 0)
+        else if (strcmp(basie->getprintElement(), "SummaryMaximum") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -41632,7 +41650,7 @@ void SummaryStatisticsTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SummaryMinimum") == 0)
+        else if (strcmp(basie->getprintElement(), "SummaryMinimum") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -41648,7 +41666,7 @@ void SummaryStatisticsTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SummaryRange") == 0)
+        else if (strcmp(basie->getprintElement(), "SummaryRange") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -41664,7 +41682,7 @@ void SummaryStatisticsTemperatureType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SummaryStandardDeviation") == 0)
+        else if (strcmp(basie->getprintElement(), "SummaryStandardDeviation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -41702,7 +41720,7 @@ bool SummaryStatisticsTemperatureType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "temperatureUnit")
+      if (decl->getname() == "temperatureUnit")
         {
           XmlToken * temperatureUnitVal;
           if (this->temperatureUnit)
@@ -41711,12 +41729,12 @@ bool SummaryStatisticsTemperatureType::badAttributes(
               returnValue = true;
               break;
             }
-          temperatureUnitVal = new XmlToken(decl->val.c_str());
-          if (temperatureUnitVal->bad)
+          temperatureUnitVal = new XmlToken(decl->getval().c_str());
+          if (temperatureUnitVal->getbad())
             {
               delete temperatureUnitVal;
               fprintf(stderr, "bad value %s for temperatureUnit in SummaryStatisticsTemperatureType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -41889,12 +41907,12 @@ void SummaryStatisticsTimeType::printSelf(FILE * outFile)
         StatsWithReferenceBaseType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "SummaryAverage") == 0)
+        else if (strcmp(basie->getprintElement(), "SummaryAverage") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -41910,7 +41928,7 @@ void SummaryStatisticsTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SummaryMaximum") == 0)
+        else if (strcmp(basie->getprintElement(), "SummaryMaximum") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -41926,7 +41944,7 @@ void SummaryStatisticsTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SummaryMinimum") == 0)
+        else if (strcmp(basie->getprintElement(), "SummaryMinimum") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -41942,7 +41960,7 @@ void SummaryStatisticsTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SummaryRange") == 0)
+        else if (strcmp(basie->getprintElement(), "SummaryRange") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -41958,7 +41976,7 @@ void SummaryStatisticsTimeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SummaryStandardDeviation") == 0)
+        else if (strcmp(basie->getprintElement(), "SummaryStandardDeviation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -41996,7 +42014,7 @@ bool SummaryStatisticsTimeType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "timeUnit")
+      if (decl->getname() == "timeUnit")
         {
           XmlToken * timeUnitVal;
           if (this->timeUnit)
@@ -42005,12 +42023,12 @@ bool SummaryStatisticsTimeType::badAttributes(
               returnValue = true;
               break;
             }
-          timeUnitVal = new XmlToken(decl->val.c_str());
-          if (timeUnitVal->bad)
+          timeUnitVal = new XmlToken(decl->getval().c_str());
+          if (timeUnitVal->getbad())
             {
               delete timeUnitVal;
               fprintf(stderr, "bad value %s for timeUnit in SummaryStatisticsTimeType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -42151,12 +42169,12 @@ void SummaryStatisticsType::printSelf(FILE * outFile)
         StatsWithReferenceBaseType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "SummaryAverage") == 0)
+        else if (strcmp(basie->getprintElement(), "SummaryAverage") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -42172,7 +42190,7 @@ void SummaryStatisticsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SummaryMaximum") == 0)
+        else if (strcmp(basie->getprintElement(), "SummaryMaximum") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -42188,7 +42206,7 @@ void SummaryStatisticsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SummaryMinimum") == 0)
+        else if (strcmp(basie->getprintElement(), "SummaryMinimum") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -42204,7 +42222,7 @@ void SummaryStatisticsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SummaryRange") == 0)
+        else if (strcmp(basie->getprintElement(), "SummaryRange") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -42220,7 +42238,7 @@ void SummaryStatisticsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SummaryStandardDeviation") == 0)
+        else if (strcmp(basie->getprintElement(), "SummaryStandardDeviation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -42410,12 +42428,12 @@ void SummaryStatisticsUserDefinedUnitType::printSelf(FILE * outFile)
         StatsWithReferenceBaseType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "SummaryAverage") == 0)
+        else if (strcmp(basie->getprintElement(), "SummaryAverage") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -42431,7 +42449,7 @@ void SummaryStatisticsUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SummaryMaximum") == 0)
+        else if (strcmp(basie->getprintElement(), "SummaryMaximum") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -42447,7 +42465,7 @@ void SummaryStatisticsUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SummaryMinimum") == 0)
+        else if (strcmp(basie->getprintElement(), "SummaryMinimum") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -42463,7 +42481,7 @@ void SummaryStatisticsUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SummaryRange") == 0)
+        else if (strcmp(basie->getprintElement(), "SummaryRange") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -42479,7 +42497,7 @@ void SummaryStatisticsUserDefinedUnitType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SummaryStandardDeviation") == 0)
+        else if (strcmp(basie->getprintElement(), "SummaryStandardDeviation") == 0)
           {
             StatsMeasuredDecimalType * typ;
             if ((typ = dynamic_cast<StatsMeasuredDecimalType *>(basie)))
@@ -42517,7 +42535,7 @@ bool SummaryStatisticsUserDefinedUnitType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "unitName")
+      if (decl->getname() == "unitName")
         {
           XmlToken * unitNameVal;
           if (this->unitName)
@@ -42526,12 +42544,12 @@ bool SummaryStatisticsUserDefinedUnitType::badAttributes(
               returnValue = true;
               break;
             }
-          unitNameVal = new XmlToken(decl->val.c_str());
-          if (unitNameVal->bad)
+          unitNameVal = new XmlToken(decl->getval().c_str());
+          if (unitNameVal->getbad())
             {
               delete unitNameVal;
               fprintf(stderr, "bad value %s for unitName in SummaryStatisticsUserDefinedUnitType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }

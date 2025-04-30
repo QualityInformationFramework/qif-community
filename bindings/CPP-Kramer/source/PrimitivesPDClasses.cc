@@ -4,10 +4,12 @@
 #include <string.h>            // for strdup
 #include <stdlib.h>            // for exit
 #include <list>
+#include  <map>
 #include <xmlSchemaInstance.hh>
 #include "PrimitivesPDClasses.hh"
 
 #define INDENT 2
+extern std::map<unsigned int, XmlSchemaInstanceBase *> idMap;
 
 /* ***************************************************************** */
 /* ***************************************************************** */
@@ -213,7 +215,7 @@ void ColorType::printSelf(FILE * outFile)
 void ColorType::oPrintSelf(FILE * outFile)
 {
   ColorTypeCheck();
-  if (bad)
+  if (getbad())
     {
       fprintf(stderr, "ColorTypeCheck failed\n");
       exit(1);
@@ -223,7 +225,7 @@ void ColorType::oPrintSelf(FILE * outFile)
 
 bool ColorType::ColorTypeCheck()
 {
-  bad = ((size() != 3));
+  setbad((size() != 3));
   return bad;
 }
 
@@ -418,7 +420,7 @@ bool DrawableBaseType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "color")
+      if (decl->getname() == "color")
         {
           ColorType * colorVal;
           if (this->color)
@@ -427,19 +429,19 @@ bool DrawableBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          colorVal = new ColorType(decl->val.c_str());
-          if (colorVal->bad)
+          colorVal = new ColorType(decl->getval().c_str());
+          if (colorVal->getbad())
             {
               delete colorVal;
               fprintf(stderr, "bad value %s for color in DrawableBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->color = colorVal;
         }
-      else if (decl->name == "hidden")
+      else if (decl->getname() == "hidden")
         {
           XmlBoolean * hiddenVal;
           if (this->hidden)
@@ -448,19 +450,19 @@ bool DrawableBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          hiddenVal = new XmlBoolean(decl->val.c_str());
-          if (hiddenVal->bad)
+          hiddenVal = new XmlBoolean(decl->getval().c_str());
+          if (hiddenVal->getbad())
             {
               delete hiddenVal;
               fprintf(stderr, "bad value %s for hidden in DrawableBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->hidden = hiddenVal;
         }
-      else if (decl->name == "id")
+      else if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -469,19 +471,19 @@ bool DrawableBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in DrawableBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->id = idVal;
         }
-      else if (decl->name == "label")
+      else if (decl->getname() == "label")
         {
           XmlString * labelVal;
           if (this->label)
@@ -490,19 +492,19 @@ bool DrawableBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          labelVal = new XmlString(decl->val.c_str());
-          if (labelVal->bad)
+          labelVal = new XmlString(decl->getval().c_str());
+          if (labelVal->getbad())
             {
               delete labelVal;
               fprintf(stderr, "bad value %s for label in DrawableBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->label = labelVal;
         }
-      else if (decl->name == "size")
+      else if (decl->getname() == "size")
         {
           DoublePositiveType * sizeVal;
           if (this->size)
@@ -511,19 +513,19 @@ bool DrawableBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          sizeVal = new DoublePositiveType(decl->val.c_str());
-          if (sizeVal->bad)
+          sizeVal = new DoublePositiveType(decl->getval().c_str());
+          if (sizeVal->getbad())
             {
               delete sizeVal;
               fprintf(stderr, "bad value %s for size in DrawableBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->size = sizeVal;
         }
-      else if (decl->name == "transparency")
+      else if (decl->getname() == "transparency")
         {
           TransparencyType * transparencyVal;
           if (this->transparency)
@@ -532,12 +534,12 @@ bool DrawableBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          transparencyVal = new TransparencyType(decl->val.c_str());
-          if (transparencyVal->bad)
+          transparencyVal = new TransparencyType(decl->getval().c_str());
+          if (transparencyVal->getbad())
             {
               delete transparencyVal;
               fprintf(stderr, "bad value %s for transparency in DrawableBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -551,7 +553,11 @@ bool DrawableBaseType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in DrawableBaseType\n");
       returnValue = true;
@@ -681,7 +687,7 @@ bool EdgeOrientedType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "turned")
+      if (decl->getname() == "turned")
         {
           XmlBoolean * turnedVal;
           if (this->turned)
@@ -690,12 +696,12 @@ bool EdgeOrientedType::badAttributes(
               returnValue = true;
               break;
             }
-          turnedVal = new XmlBoolean(decl->val.c_str());
-          if (turnedVal->bad)
+          turnedVal = new XmlBoolean(decl->getval().c_str());
+          if (turnedVal->getbad())
             {
               delete turnedVal;
               fprintf(stderr, "bad value %s for turned in EdgeOrientedType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -779,8 +785,8 @@ LineStyleEnumType::LineStyleEnumType(
   XmlString(
     valIn)
 {
-  if (!bad)
-    bad = (strcmp(val.c_str(), "SOLID") &&
+  if (!getbad())
+    setbad(strcmp(val.c_str(), "SOLID") &&
            strcmp(val.c_str(), "DOT") &&
            strcmp(val.c_str(), "DASH") &&
            strcmp(val.c_str(), "DASH_DOT") &&
@@ -947,7 +953,7 @@ bool LineStyleType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "thickness")
+      if (decl->getname() == "thickness")
         {
           XmlPositiveInteger * thicknessVal;
           if (this->thickness)
@@ -956,12 +962,12 @@ bool LineStyleType::badAttributes(
               returnValue = true;
               break;
             }
-          thicknessVal = new XmlPositiveInteger(decl->val.c_str());
-          if (thicknessVal->bad)
+          thicknessVal = new XmlPositiveInteger(decl->getval().c_str());
+          if (thicknessVal->getbad())
             {
               delete thicknessVal;
               fprintf(stderr, "bad value %s for thickness in LineStyleType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -1052,7 +1058,7 @@ bool NodeBaseType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "label")
+      if (decl->getname() == "label")
         {
           XmlString * labelVal;
           if (this->label)
@@ -1061,12 +1067,12 @@ bool NodeBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          labelVal = new XmlString(decl->val.c_str());
-          if (labelVal->bad)
+          labelVal = new XmlString(decl->getval().c_str());
+          if (labelVal->getbad())
             {
               delete labelVal;
               fprintf(stderr, "bad value %s for label in NodeBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -1207,7 +1213,7 @@ bool NodeWithIdBaseType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -1216,19 +1222,19 @@ bool NodeWithIdBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in NodeWithIdBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->id = idVal;
         }
-      else if (decl->name == "label")
+      else if (decl->getname() == "label")
         {
           XmlString * labelVal;
           if (this->label)
@@ -1237,12 +1243,12 @@ bool NodeWithIdBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          labelVal = new XmlString(decl->val.c_str());
-          if (labelVal->bad)
+          labelVal = new XmlString(decl->getval().c_str());
+          if (labelVal->getbad())
             {
               delete labelVal;
               fprintf(stderr, "bad value %s for label in NodeWithIdBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -1256,7 +1262,11 @@ bool NodeWithIdBaseType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in NodeWithIdBaseType\n");
       returnValue = true;
@@ -1345,8 +1355,8 @@ TransparencyType::TransparencyType(
   XmlDouble(
     valIn)
 {
-  if (!bad)
-    bad = ((val < 0) ||
+  if (!getbad())
+    setbad((val < 0) ||
           (val >= 1));
 }
 

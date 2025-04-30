@@ -4,10 +4,12 @@
 #include <string.h>            // for strdup
 #include <stdlib.h>            // for exit
 #include <list>
+#include  <map>
 #include <xmlSchemaInstance.hh>
 #include "GeometryClasses.hh"
 
 #define INDENT 2
+extern std::map<unsigned int, XmlSchemaInstanceBase *> idMap;
 
 /* ***************************************************************** */
 /* ***************************************************************** */
@@ -93,7 +95,7 @@ bool Aggregate12CoreType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "domain")
+      if (decl->getname() == "domain")
         {
           ParameterRangeType * domainVal;
           if (this->domain)
@@ -102,12 +104,12 @@ bool Aggregate12CoreType::badAttributes(
               returnValue = true;
               break;
             }
-          domainVal = new ParameterRangeType(decl->val.c_str());
-          if (domainVal->bad)
+          domainVal = new ParameterRangeType(decl->getval().c_str());
+          if (domainVal->getbad())
             {
               delete domainVal;
               fprintf(stderr, "bad value %s for domain in Aggregate12CoreType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -259,7 +261,7 @@ bool Aggregate12Type::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -268,19 +270,19 @@ bool Aggregate12Type::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in Aggregate12Type\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->id = idVal;
         }
-      else if (decl->name == "label")
+      else if (decl->getname() == "label")
         {
           XmlString * labelVal;
           if (this->label)
@@ -289,12 +291,12 @@ bool Aggregate12Type::badAttributes(
               returnValue = true;
               break;
             }
-          labelVal = new XmlString(decl->val.c_str());
-          if (labelVal->bad)
+          labelVal = new XmlString(decl->getval().c_str());
+          if (labelVal->getbad())
             {
               delete labelVal;
               fprintf(stderr, "bad value %s for label in Aggregate12Type\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -308,7 +310,11 @@ bool Aggregate12Type::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in Aggregate12Type\n");
       returnValue = true;
@@ -417,7 +423,7 @@ bool Aggregate13CoreType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "domain")
+      if (decl->getname() == "domain")
         {
           ParameterRangeType * domainVal;
           if (this->domain)
@@ -426,12 +432,12 @@ bool Aggregate13CoreType::badAttributes(
               returnValue = true;
               break;
             }
-          domainVal = new ParameterRangeType(decl->val.c_str());
-          if (domainVal->bad)
+          domainVal = new ParameterRangeType(decl->getval().c_str());
+          if (domainVal->getbad())
             {
               delete domainVal;
               fprintf(stderr, "bad value %s for domain in Aggregate13CoreType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -597,7 +603,7 @@ bool Aggregate13Type::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -606,19 +612,19 @@ bool Aggregate13Type::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in Aggregate13Type\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->id = idVal;
         }
-      else if (decl->name == "label")
+      else if (decl->getname() == "label")
         {
           XmlString * labelVal;
           if (this->label)
@@ -627,12 +633,12 @@ bool Aggregate13Type::badAttributes(
               returnValue = true;
               break;
             }
-          labelVal = new XmlString(decl->val.c_str());
-          if (labelVal->bad)
+          labelVal = new XmlString(decl->getval().c_str());
+          if (labelVal->getbad())
             {
               delete labelVal;
               fprintf(stderr, "bad value %s for label in Aggregate13Type\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -646,7 +652,11 @@ bool Aggregate13Type::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in Aggregate13Type\n");
       returnValue = true;
@@ -802,7 +812,7 @@ bool ArcCircular12CoreType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "domain")
+      if (decl->getname() == "domain")
         {
           ParameterRangeType * domainVal;
           if (this->domain)
@@ -811,19 +821,19 @@ bool ArcCircular12CoreType::badAttributes(
               returnValue = true;
               break;
             }
-          domainVal = new ParameterRangeType(decl->val.c_str());
-          if (domainVal->bad)
+          domainVal = new ParameterRangeType(decl->getval().c_str());
+          if (domainVal->getbad())
             {
               delete domainVal;
               fprintf(stderr, "bad value %s for domain in ArcCircular12CoreType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->domain = domainVal;
         }
-      else if (decl->name == "turned")
+      else if (decl->getname() == "turned")
         {
           XmlBoolean * turnedVal;
           if (this->turned)
@@ -832,12 +842,12 @@ bool ArcCircular12CoreType::badAttributes(
               returnValue = true;
               break;
             }
-          turnedVal = new XmlBoolean(decl->val.c_str());
-          if (turnedVal->bad)
+          turnedVal = new XmlBoolean(decl->getval().c_str());
+          if (turnedVal->getbad())
             {
               delete turnedVal;
               fprintf(stderr, "bad value %s for turned in ArcCircular12CoreType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -1009,7 +1019,7 @@ bool ArcCircular12Type::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -1018,19 +1028,19 @@ bool ArcCircular12Type::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in ArcCircular12Type\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->id = idVal;
         }
-      else if (decl->name == "label")
+      else if (decl->getname() == "label")
         {
           XmlString * labelVal;
           if (this->label)
@@ -1039,12 +1049,12 @@ bool ArcCircular12Type::badAttributes(
               returnValue = true;
               break;
             }
-          labelVal = new XmlString(decl->val.c_str());
-          if (labelVal->bad)
+          labelVal = new XmlString(decl->getval().c_str());
+          if (labelVal->getbad())
             {
               delete labelVal;
               fprintf(stderr, "bad value %s for label in ArcCircular12Type\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -1058,7 +1068,11 @@ bool ArcCircular12Type::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in ArcCircular12Type\n");
       returnValue = true;
@@ -1196,7 +1210,7 @@ bool ArcCircular13CoreType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "domain")
+      if (decl->getname() == "domain")
         {
           ParameterRangeType * domainVal;
           if (this->domain)
@@ -1205,12 +1219,12 @@ bool ArcCircular13CoreType::badAttributes(
               returnValue = true;
               break;
             }
-          domainVal = new ParameterRangeType(decl->val.c_str());
-          if (domainVal->bad)
+          domainVal = new ParameterRangeType(decl->getval().c_str());
+          if (domainVal->getbad())
             {
               delete domainVal;
               fprintf(stderr, "bad value %s for domain in ArcCircular13CoreType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -1394,7 +1408,7 @@ bool ArcCircular13Type::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -1403,19 +1417,19 @@ bool ArcCircular13Type::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in ArcCircular13Type\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->id = idVal;
         }
-      else if (decl->name == "label")
+      else if (decl->getname() == "label")
         {
           XmlString * labelVal;
           if (this->label)
@@ -1424,12 +1438,12 @@ bool ArcCircular13Type::badAttributes(
               returnValue = true;
               break;
             }
-          labelVal = new XmlString(decl->val.c_str());
-          if (labelVal->bad)
+          labelVal = new XmlString(decl->getval().c_str());
+          if (labelVal->getbad())
             {
               delete labelVal;
               fprintf(stderr, "bad value %s for label in ArcCircular13Type\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -1443,7 +1457,11 @@ bool ArcCircular13Type::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in ArcCircular13Type\n");
       returnValue = true;
@@ -1636,7 +1654,7 @@ bool ArcConic12CoreType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "domain")
+      if (decl->getname() == "domain")
         {
           ParameterRangeType * domainVal;
           if (this->domain)
@@ -1645,19 +1663,19 @@ bool ArcConic12CoreType::badAttributes(
               returnValue = true;
               break;
             }
-          domainVal = new ParameterRangeType(decl->val.c_str());
-          if (domainVal->bad)
+          domainVal = new ParameterRangeType(decl->getval().c_str());
+          if (domainVal->getbad())
             {
               delete domainVal;
               fprintf(stderr, "bad value %s for domain in ArcConic12CoreType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->domain = domainVal;
         }
-      else if (decl->name == "form")
+      else if (decl->getname() == "form")
         {
           ArcConicFormEnumType * formVal;
           if (this->form)
@@ -1666,19 +1684,19 @@ bool ArcConic12CoreType::badAttributes(
               returnValue = true;
               break;
             }
-          formVal = new ArcConicFormEnumType(decl->val.c_str());
-          if (formVal->bad)
+          formVal = new ArcConicFormEnumType(decl->getval().c_str());
+          if (formVal->getbad())
             {
               delete formVal;
               fprintf(stderr, "bad value %s for form in ArcConic12CoreType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->form = formVal;
         }
-      else if (decl->name == "turned")
+      else if (decl->getname() == "turned")
         {
           XmlBoolean * turnedVal;
           if (this->turned)
@@ -1687,12 +1705,12 @@ bool ArcConic12CoreType::badAttributes(
               returnValue = true;
               break;
             }
-          turnedVal = new XmlBoolean(decl->val.c_str());
-          if (turnedVal->bad)
+          turnedVal = new XmlBoolean(decl->getval().c_str());
+          if (turnedVal->getbad())
             {
               delete turnedVal;
               fprintf(stderr, "bad value %s for turned in ArcConic12CoreType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -1883,7 +1901,7 @@ bool ArcConic12Type::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -1892,19 +1910,19 @@ bool ArcConic12Type::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in ArcConic12Type\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->id = idVal;
         }
-      else if (decl->name == "label")
+      else if (decl->getname() == "label")
         {
           XmlString * labelVal;
           if (this->label)
@@ -1913,12 +1931,12 @@ bool ArcConic12Type::badAttributes(
               returnValue = true;
               break;
             }
-          labelVal = new XmlString(decl->val.c_str());
-          if (labelVal->bad)
+          labelVal = new XmlString(decl->getval().c_str());
+          if (labelVal->getbad())
             {
               delete labelVal;
               fprintf(stderr, "bad value %s for label in ArcConic12Type\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -1932,7 +1950,11 @@ bool ArcConic12Type::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in ArcConic12Type\n");
       returnValue = true;
@@ -2107,7 +2129,7 @@ bool ArcConic13CoreType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "domain")
+      if (decl->getname() == "domain")
         {
           ParameterRangeType * domainVal;
           if (this->domain)
@@ -2116,19 +2138,19 @@ bool ArcConic13CoreType::badAttributes(
               returnValue = true;
               break;
             }
-          domainVal = new ParameterRangeType(decl->val.c_str());
-          if (domainVal->bad)
+          domainVal = new ParameterRangeType(decl->getval().c_str());
+          if (domainVal->getbad())
             {
               delete domainVal;
               fprintf(stderr, "bad value %s for domain in ArcConic13CoreType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->domain = domainVal;
         }
-      else if (decl->name == "form")
+      else if (decl->getname() == "form")
         {
           ArcConicFormEnumType * formVal;
           if (this->form)
@@ -2137,12 +2159,12 @@ bool ArcConic13CoreType::badAttributes(
               returnValue = true;
               break;
             }
-          formVal = new ArcConicFormEnumType(decl->val.c_str());
-          if (formVal->bad)
+          formVal = new ArcConicFormEnumType(decl->getval().c_str());
+          if (formVal->getbad())
             {
               delete formVal;
               fprintf(stderr, "bad value %s for form in ArcConic13CoreType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -2345,7 +2367,7 @@ bool ArcConic13Type::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -2354,19 +2376,19 @@ bool ArcConic13Type::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in ArcConic13Type\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->id = idVal;
         }
-      else if (decl->name == "label")
+      else if (decl->getname() == "label")
         {
           XmlString * labelVal;
           if (this->label)
@@ -2375,12 +2397,12 @@ bool ArcConic13Type::badAttributes(
               returnValue = true;
               break;
             }
-          labelVal = new XmlString(decl->val.c_str());
-          if (labelVal->bad)
+          labelVal = new XmlString(decl->getval().c_str());
+          if (labelVal->getbad())
             {
               delete labelVal;
               fprintf(stderr, "bad value %s for label in ArcConic13Type\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -2394,7 +2416,11 @@ bool ArcConic13Type::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in ArcConic13Type\n");
       returnValue = true;
@@ -2442,8 +2468,8 @@ ArcConicFormEnumType::ArcConicFormEnumType(
   XmlString(
     valIn)
 {
-  if (!bad)
-    bad = (strcmp(val.c_str(), "PARABOLA") &&
+  if (!getbad())
+    setbad(strcmp(val.c_str(), "PARABOLA") &&
            strcmp(val.c_str(), "ELLIPSE") &&
            strcmp(val.c_str(), "HYPERBOLA"));
 }
@@ -2593,7 +2619,7 @@ bool ArraySubCurve12Type::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -2602,12 +2628,12 @@ bool ArraySubCurve12Type::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in ArraySubCurve12Type\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -2758,7 +2784,7 @@ bool ArraySubCurve13Type::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -2767,12 +2793,12 @@ bool ArraySubCurve13Type::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in ArraySubCurve13Type\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -2922,7 +2948,7 @@ bool ArrayTriangleVertexNormalType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -2931,12 +2957,12 @@ bool ArrayTriangleVertexNormalType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in ArrayTriangleVertexNormalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -2996,8 +3022,8 @@ Attr23CoreEnumType::Attr23CoreEnumType(
   XmlString(
     valIn)
 {
-  if (!bad)
-    bad = (strcmp(val.c_str(), "FREEFORM") &&
+  if (!getbad())
+    setbad(strcmp(val.c_str(), "FREEFORM") &&
            strcmp(val.c_str(), "CYLINDER") &&
            strcmp(val.c_str(), "CONE") &&
            strcmp(val.c_str(), "TORUS") &&
@@ -3231,7 +3257,7 @@ bool Cone23CoreType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "form")
+      if (decl->getname() == "form")
         {
           Attr23CoreEnumType * formVal;
           if (this->form)
@@ -3240,19 +3266,19 @@ bool Cone23CoreType::badAttributes(
               returnValue = true;
               break;
             }
-          formVal = new Attr23CoreEnumType(decl->val.c_str());
-          if (formVal->bad)
+          formVal = new Attr23CoreEnumType(decl->getval().c_str());
+          if (formVal->getbad())
             {
               delete formVal;
               fprintf(stderr, "bad value %s for form in Cone23CoreType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->form = formVal;
         }
-      else if (decl->name == "scaleU")
+      else if (decl->getname() == "scaleU")
         {
           DoublePositiveType * scaleUVal;
           if (this->scaleU)
@@ -3261,19 +3287,19 @@ bool Cone23CoreType::badAttributes(
               returnValue = true;
               break;
             }
-          scaleUVal = new DoublePositiveType(decl->val.c_str());
-          if (scaleUVal->bad)
+          scaleUVal = new DoublePositiveType(decl->getval().c_str());
+          if (scaleUVal->getbad())
             {
               delete scaleUVal;
               fprintf(stderr, "bad value %s for scaleU in Cone23CoreType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->scaleU = scaleUVal;
         }
-      else if (decl->name == "scaleV")
+      else if (decl->getname() == "scaleV")
         {
           DoublePositiveType * scaleVVal;
           if (this->scaleV)
@@ -3282,19 +3308,19 @@ bool Cone23CoreType::badAttributes(
               returnValue = true;
               break;
             }
-          scaleVVal = new DoublePositiveType(decl->val.c_str());
-          if (scaleVVal->bad)
+          scaleVVal = new DoublePositiveType(decl->getval().c_str());
+          if (scaleVVal->getbad())
             {
               delete scaleVVal;
               fprintf(stderr, "bad value %s for scaleV in Cone23CoreType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->scaleV = scaleVVal;
         }
-      else if (decl->name == "turnedV")
+      else if (decl->getname() == "turnedV")
         {
           XmlBoolean * turnedVVal;
           if (this->turnedV)
@@ -3303,12 +3329,12 @@ bool Cone23CoreType::badAttributes(
               returnValue = true;
               break;
             }
-          turnedVVal = new XmlBoolean(decl->val.c_str());
-          if (turnedVVal->bad)
+          turnedVVal = new XmlBoolean(decl->getval().c_str());
+          if (turnedVVal->getbad())
             {
               delete turnedVVal;
               fprintf(stderr, "bad value %s for turnedV in Cone23CoreType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -3517,7 +3543,7 @@ bool Cone23Type::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -3526,19 +3552,19 @@ bool Cone23Type::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in Cone23Type\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->id = idVal;
         }
-      else if (decl->name == "label")
+      else if (decl->getname() == "label")
         {
           XmlString * labelVal;
           if (this->label)
@@ -3547,12 +3573,12 @@ bool Cone23Type::badAttributes(
               returnValue = true;
               break;
             }
-          labelVal = new XmlString(decl->val.c_str());
-          if (labelVal->bad)
+          labelVal = new XmlString(decl->getval().c_str());
+          if (labelVal->getbad())
             {
               delete labelVal;
               fprintf(stderr, "bad value %s for label in Cone23Type\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -3566,7 +3592,11 @@ bool Cone23Type::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in Cone23Type\n");
       returnValue = true;
@@ -3701,7 +3731,7 @@ bool Curve12BaseType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -3710,19 +3740,19 @@ bool Curve12BaseType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in Curve12BaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->id = idVal;
         }
-      else if (decl->name == "label")
+      else if (decl->getname() == "label")
         {
           XmlString * labelVal;
           if (this->label)
@@ -3731,12 +3761,12 @@ bool Curve12BaseType::badAttributes(
               returnValue = true;
               break;
             }
-          labelVal = new XmlString(decl->val.c_str());
-          if (labelVal->bad)
+          labelVal = new XmlString(decl->getval().c_str());
+          if (labelVal->getbad())
             {
               delete labelVal;
               fprintf(stderr, "bad value %s for label in Curve12BaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -3750,7 +3780,11 @@ bool Curve12BaseType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in Curve12BaseType\n");
       returnValue = true;
@@ -3866,12 +3900,12 @@ void Curve12OrientedType::printSelf(FILE * outFile)
   doSpaces(+INDENT, outFile);
   {
     doSpaces(0, outFile);
-    if (Curve12Core->printElement == 0)
+    if (Curve12Core->getprintElement() == 0)
       {
         fprintf(stderr, "element name missing\n");
         exit(1);
       }
-    else if (strcmp(Curve12Core->printElement, "Segment12Core") == 0)
+    else if (strcmp(Curve12Core->getprintElement(), "Segment12Core") == 0)
       {
         Segment12CoreType * typ;
         if ((typ = dynamic_cast<Segment12CoreType *>(Curve12Core)))
@@ -3887,7 +3921,7 @@ void Curve12OrientedType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(Curve12Core->printElement, "ArcConic12Core") == 0)
+    else if (strcmp(Curve12Core->getprintElement(), "ArcConic12Core") == 0)
       {
         ArcConic12CoreType * typ;
         if ((typ = dynamic_cast<ArcConic12CoreType *>(Curve12Core)))
@@ -3903,7 +3937,7 @@ void Curve12OrientedType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(Curve12Core->printElement, "ArcCircular12Core") == 0)
+    else if (strcmp(Curve12Core->getprintElement(), "ArcCircular12Core") == 0)
       {
         ArcCircular12CoreType * typ;
         if ((typ = dynamic_cast<ArcCircular12CoreType *>(Curve12Core)))
@@ -3919,7 +3953,7 @@ void Curve12OrientedType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(Curve12Core->printElement, "Nurbs12Core") == 0)
+    else if (strcmp(Curve12Core->getprintElement(), "Nurbs12Core") == 0)
       {
         Nurbs12CoreType * typ;
         if ((typ = dynamic_cast<Nurbs12CoreType *>(Curve12Core)))
@@ -3935,7 +3969,7 @@ void Curve12OrientedType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(Curve12Core->printElement, "Spline12Core") == 0)
+    else if (strcmp(Curve12Core->getprintElement(), "Spline12Core") == 0)
       {
         Spline12CoreType * typ;
         if ((typ = dynamic_cast<Spline12CoreType *>(Curve12Core)))
@@ -3951,7 +3985,7 @@ void Curve12OrientedType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(Curve12Core->printElement, "Aggregate12Core") == 0)
+    else if (strcmp(Curve12Core->getprintElement(), "Aggregate12Core") == 0)
       {
         Aggregate12CoreType * typ;
         if ((typ = dynamic_cast<Aggregate12CoreType *>(Curve12Core)))
@@ -3967,7 +4001,7 @@ void Curve12OrientedType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(Curve12Core->printElement, "Polyline12Core") == 0)
+    else if (strcmp(Curve12Core->getprintElement(), "Polyline12Core") == 0)
       {
         Polyline12CoreType * typ;
         if ((typ = dynamic_cast<Polyline12CoreType *>(Curve12Core)))
@@ -4004,7 +4038,7 @@ bool Curve12OrientedType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "turned")
+      if (decl->getname() == "turned")
         {
           XmlBoolean * turnedVal;
           if (this->turned)
@@ -4013,12 +4047,12 @@ bool Curve12OrientedType::badAttributes(
               returnValue = true;
               break;
             }
-          turnedVal = new XmlBoolean(decl->val.c_str());
-          if (turnedVal->bad)
+          turnedVal = new XmlBoolean(decl->getval().c_str());
+          if (turnedVal->getbad())
             {
               delete turnedVal;
               fprintf(stderr, "bad value %s for turned in Curve12OrientedType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -4181,12 +4215,12 @@ void Curve12SetType::printSelf(FILE * outFile)
         Curve12BaseType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "Segment12") == 0)
+        else if (strcmp(basie->getprintElement(), "Segment12") == 0)
           {
             Segment12Type * typ;
             if ((typ = dynamic_cast<Segment12Type *>(basie)))
@@ -4202,7 +4236,7 @@ void Curve12SetType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArcConic12") == 0)
+        else if (strcmp(basie->getprintElement(), "ArcConic12") == 0)
           {
             ArcConic12Type * typ;
             if ((typ = dynamic_cast<ArcConic12Type *>(basie)))
@@ -4218,7 +4252,7 @@ void Curve12SetType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArcCircular12") == 0)
+        else if (strcmp(basie->getprintElement(), "ArcCircular12") == 0)
           {
             ArcCircular12Type * typ;
             if ((typ = dynamic_cast<ArcCircular12Type *>(basie)))
@@ -4234,7 +4268,7 @@ void Curve12SetType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Nurbs12") == 0)
+        else if (strcmp(basie->getprintElement(), "Nurbs12") == 0)
           {
             Nurbs12Type * typ;
             if ((typ = dynamic_cast<Nurbs12Type *>(basie)))
@@ -4250,7 +4284,7 @@ void Curve12SetType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Spline12") == 0)
+        else if (strcmp(basie->getprintElement(), "Spline12") == 0)
           {
             Spline12Type * typ;
             if ((typ = dynamic_cast<Spline12Type *>(basie)))
@@ -4266,7 +4300,7 @@ void Curve12SetType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Aggregate12") == 0)
+        else if (strcmp(basie->getprintElement(), "Aggregate12") == 0)
           {
             Aggregate12Type * typ;
             if ((typ = dynamic_cast<Aggregate12Type *>(basie)))
@@ -4282,7 +4316,7 @@ void Curve12SetType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Polyline12") == 0)
+        else if (strcmp(basie->getprintElement(), "Polyline12") == 0)
           {
             Polyline12Type * typ;
             if ((typ = dynamic_cast<Polyline12Type *>(basie)))
@@ -4320,7 +4354,7 @@ bool Curve12SetType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -4329,12 +4363,12 @@ bool Curve12SetType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in Curve12SetType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -4481,7 +4515,7 @@ bool Curve13BaseType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -4490,19 +4524,19 @@ bool Curve13BaseType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in Curve13BaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->id = idVal;
         }
-      else if (decl->name == "label")
+      else if (decl->getname() == "label")
         {
           XmlString * labelVal;
           if (this->label)
@@ -4511,12 +4545,12 @@ bool Curve13BaseType::badAttributes(
               returnValue = true;
               break;
             }
-          labelVal = new XmlString(decl->val.c_str());
-          if (labelVal->bad)
+          labelVal = new XmlString(decl->getval().c_str());
+          if (labelVal->getbad())
             {
               delete labelVal;
               fprintf(stderr, "bad value %s for label in Curve13BaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -4530,7 +4564,11 @@ bool Curve13BaseType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in Curve13BaseType\n");
       returnValue = true;
@@ -4615,12 +4653,12 @@ void Curve13CoreType::printSelf(FILE * outFile)
   doSpaces(+INDENT, outFile);
   {
     doSpaces(0, outFile);
-    if (Curve13Core->printElement == 0)
+    if (Curve13Core->getprintElement() == 0)
       {
         fprintf(stderr, "element name missing\n");
         exit(1);
       }
-    else if (strcmp(Curve13Core->printElement, "Segment13Core") == 0)
+    else if (strcmp(Curve13Core->getprintElement(), "Segment13Core") == 0)
       {
         Segment13CoreType * typ;
         if ((typ = dynamic_cast<Segment13CoreType *>(Curve13Core)))
@@ -4636,7 +4674,7 @@ void Curve13CoreType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(Curve13Core->printElement, "ArcConic13Core") == 0)
+    else if (strcmp(Curve13Core->getprintElement(), "ArcConic13Core") == 0)
       {
         ArcConic13CoreType * typ;
         if ((typ = dynamic_cast<ArcConic13CoreType *>(Curve13Core)))
@@ -4652,7 +4690,7 @@ void Curve13CoreType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(Curve13Core->printElement, "ArcCircular13Core") == 0)
+    else if (strcmp(Curve13Core->getprintElement(), "ArcCircular13Core") == 0)
       {
         ArcCircular13CoreType * typ;
         if ((typ = dynamic_cast<ArcCircular13CoreType *>(Curve13Core)))
@@ -4668,7 +4706,7 @@ void Curve13CoreType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(Curve13Core->printElement, "Nurbs13Core") == 0)
+    else if (strcmp(Curve13Core->getprintElement(), "Nurbs13Core") == 0)
       {
         Nurbs13CoreType * typ;
         if ((typ = dynamic_cast<Nurbs13CoreType *>(Curve13Core)))
@@ -4684,7 +4722,7 @@ void Curve13CoreType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(Curve13Core->printElement, "Spline13Core") == 0)
+    else if (strcmp(Curve13Core->getprintElement(), "Spline13Core") == 0)
       {
         Spline13CoreType * typ;
         if ((typ = dynamic_cast<Spline13CoreType *>(Curve13Core)))
@@ -4700,7 +4738,7 @@ void Curve13CoreType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(Curve13Core->printElement, "Aggregate13Core") == 0)
+    else if (strcmp(Curve13Core->getprintElement(), "Aggregate13Core") == 0)
       {
         Aggregate13CoreType * typ;
         if ((typ = dynamic_cast<Aggregate13CoreType *>(Curve13Core)))
@@ -4716,7 +4754,7 @@ void Curve13CoreType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(Curve13Core->printElement, "Polyline13Core") == 0)
+    else if (strcmp(Curve13Core->getprintElement(), "Polyline13Core") == 0)
       {
         Polyline13CoreType * typ;
         if ((typ = dynamic_cast<Polyline13CoreType *>(Curve13Core)))
@@ -4844,12 +4882,12 @@ void Curve13OrientedType::printSelf(FILE * outFile)
   doSpaces(+INDENT, outFile);
   {
     doSpaces(0, outFile);
-    if (Curve13Core->printElement == 0)
+    if (Curve13Core->getprintElement() == 0)
       {
         fprintf(stderr, "element name missing\n");
         exit(1);
       }
-    else if (strcmp(Curve13Core->printElement, "Segment13Core") == 0)
+    else if (strcmp(Curve13Core->getprintElement(), "Segment13Core") == 0)
       {
         Segment13CoreType * typ;
         if ((typ = dynamic_cast<Segment13CoreType *>(Curve13Core)))
@@ -4865,7 +4903,7 @@ void Curve13OrientedType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(Curve13Core->printElement, "ArcConic13Core") == 0)
+    else if (strcmp(Curve13Core->getprintElement(), "ArcConic13Core") == 0)
       {
         ArcConic13CoreType * typ;
         if ((typ = dynamic_cast<ArcConic13CoreType *>(Curve13Core)))
@@ -4881,7 +4919,7 @@ void Curve13OrientedType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(Curve13Core->printElement, "ArcCircular13Core") == 0)
+    else if (strcmp(Curve13Core->getprintElement(), "ArcCircular13Core") == 0)
       {
         ArcCircular13CoreType * typ;
         if ((typ = dynamic_cast<ArcCircular13CoreType *>(Curve13Core)))
@@ -4897,7 +4935,7 @@ void Curve13OrientedType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(Curve13Core->printElement, "Nurbs13Core") == 0)
+    else if (strcmp(Curve13Core->getprintElement(), "Nurbs13Core") == 0)
       {
         Nurbs13CoreType * typ;
         if ((typ = dynamic_cast<Nurbs13CoreType *>(Curve13Core)))
@@ -4913,7 +4951,7 @@ void Curve13OrientedType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(Curve13Core->printElement, "Spline13Core") == 0)
+    else if (strcmp(Curve13Core->getprintElement(), "Spline13Core") == 0)
       {
         Spline13CoreType * typ;
         if ((typ = dynamic_cast<Spline13CoreType *>(Curve13Core)))
@@ -4929,7 +4967,7 @@ void Curve13OrientedType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(Curve13Core->printElement, "Aggregate13Core") == 0)
+    else if (strcmp(Curve13Core->getprintElement(), "Aggregate13Core") == 0)
       {
         Aggregate13CoreType * typ;
         if ((typ = dynamic_cast<Aggregate13CoreType *>(Curve13Core)))
@@ -4945,7 +4983,7 @@ void Curve13OrientedType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(Curve13Core->printElement, "Polyline13Core") == 0)
+    else if (strcmp(Curve13Core->getprintElement(), "Polyline13Core") == 0)
       {
         Polyline13CoreType * typ;
         if ((typ = dynamic_cast<Polyline13CoreType *>(Curve13Core)))
@@ -4982,7 +5020,7 @@ bool Curve13OrientedType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "turned")
+      if (decl->getname() == "turned")
         {
           XmlBoolean * turnedVal;
           if (this->turned)
@@ -4991,12 +5029,12 @@ bool Curve13OrientedType::badAttributes(
               returnValue = true;
               break;
             }
-          turnedVal = new XmlBoolean(decl->val.c_str());
-          if (turnedVal->bad)
+          turnedVal = new XmlBoolean(decl->getval().c_str());
+          if (turnedVal->getbad())
             {
               delete turnedVal;
               fprintf(stderr, "bad value %s for turned in Curve13OrientedType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -5159,12 +5197,12 @@ void Curve13SetType::printSelf(FILE * outFile)
         Curve13BaseType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "Segment13") == 0)
+        else if (strcmp(basie->getprintElement(), "Segment13") == 0)
           {
             Segment13Type * typ;
             if ((typ = dynamic_cast<Segment13Type *>(basie)))
@@ -5180,7 +5218,7 @@ void Curve13SetType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArcConic13") == 0)
+        else if (strcmp(basie->getprintElement(), "ArcConic13") == 0)
           {
             ArcConic13Type * typ;
             if ((typ = dynamic_cast<ArcConic13Type *>(basie)))
@@ -5196,7 +5234,7 @@ void Curve13SetType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArcCircular13") == 0)
+        else if (strcmp(basie->getprintElement(), "ArcCircular13") == 0)
           {
             ArcCircular13Type * typ;
             if ((typ = dynamic_cast<ArcCircular13Type *>(basie)))
@@ -5212,7 +5250,7 @@ void Curve13SetType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Nurbs13") == 0)
+        else if (strcmp(basie->getprintElement(), "Nurbs13") == 0)
           {
             Nurbs13Type * typ;
             if ((typ = dynamic_cast<Nurbs13Type *>(basie)))
@@ -5228,7 +5266,7 @@ void Curve13SetType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Spline13") == 0)
+        else if (strcmp(basie->getprintElement(), "Spline13") == 0)
           {
             Spline13Type * typ;
             if ((typ = dynamic_cast<Spline13Type *>(basie)))
@@ -5244,7 +5282,7 @@ void Curve13SetType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Aggregate13") == 0)
+        else if (strcmp(basie->getprintElement(), "Aggregate13") == 0)
           {
             Aggregate13Type * typ;
             if ((typ = dynamic_cast<Aggregate13Type *>(basie)))
@@ -5260,7 +5298,7 @@ void Curve13SetType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Polyline13") == 0)
+        else if (strcmp(basie->getprintElement(), "Polyline13") == 0)
           {
             Polyline13Type * typ;
             if ((typ = dynamic_cast<Polyline13Type *>(basie)))
@@ -5298,7 +5336,7 @@ bool Curve13SetType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -5307,12 +5345,12 @@ bool Curve13SetType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in Curve13SetType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -5419,7 +5457,7 @@ bool CurveCoreBaseType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "domain")
+      if (decl->getname() == "domain")
         {
           ParameterRangeType * domainVal;
           if (this->domain)
@@ -5428,12 +5466,12 @@ bool CurveCoreBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          domainVal = new ParameterRangeType(decl->val.c_str());
-          if (domainVal->bad)
+          domainVal = new ParameterRangeType(decl->getval().c_str());
+          if (domainVal->getbad())
             {
               delete domainVal;
               fprintf(stderr, "bad value %s for domain in CurveCoreBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -5578,7 +5616,7 @@ bool CurveMeshSetType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -5587,12 +5625,12 @@ bool CurveMeshSetType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in CurveMeshSetType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -5811,7 +5849,7 @@ bool Cylinder23CoreType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "form")
+      if (decl->getname() == "form")
         {
           Attr23CoreEnumType * formVal;
           if (this->form)
@@ -5820,19 +5858,19 @@ bool Cylinder23CoreType::badAttributes(
               returnValue = true;
               break;
             }
-          formVal = new Attr23CoreEnumType(decl->val.c_str());
-          if (formVal->bad)
+          formVal = new Attr23CoreEnumType(decl->getval().c_str());
+          if (formVal->getbad())
             {
               delete formVal;
               fprintf(stderr, "bad value %s for form in Cylinder23CoreType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->form = formVal;
         }
-      else if (decl->name == "scaleU")
+      else if (decl->getname() == "scaleU")
         {
           DoublePositiveType * scaleUVal;
           if (this->scaleU)
@@ -5841,19 +5879,19 @@ bool Cylinder23CoreType::badAttributes(
               returnValue = true;
               break;
             }
-          scaleUVal = new DoublePositiveType(decl->val.c_str());
-          if (scaleUVal->bad)
+          scaleUVal = new DoublePositiveType(decl->getval().c_str());
+          if (scaleUVal->getbad())
             {
               delete scaleUVal;
               fprintf(stderr, "bad value %s for scaleU in Cylinder23CoreType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->scaleU = scaleUVal;
         }
-      else if (decl->name == "scaleV")
+      else if (decl->getname() == "scaleV")
         {
           DoublePositiveType * scaleVVal;
           if (this->scaleV)
@@ -5862,19 +5900,19 @@ bool Cylinder23CoreType::badAttributes(
               returnValue = true;
               break;
             }
-          scaleVVal = new DoublePositiveType(decl->val.c_str());
-          if (scaleVVal->bad)
+          scaleVVal = new DoublePositiveType(decl->getval().c_str());
+          if (scaleVVal->getbad())
             {
               delete scaleVVal;
               fprintf(stderr, "bad value %s for scaleV in Cylinder23CoreType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->scaleV = scaleVVal;
         }
-      else if (decl->name == "turnedV")
+      else if (decl->getname() == "turnedV")
         {
           XmlBoolean * turnedVVal;
           if (this->turnedV)
@@ -5883,12 +5921,12 @@ bool Cylinder23CoreType::badAttributes(
               returnValue = true;
               break;
             }
-          turnedVVal = new XmlBoolean(decl->val.c_str());
-          if (turnedVVal->bad)
+          turnedVVal = new XmlBoolean(decl->getval().c_str());
+          if (turnedVVal->getbad())
             {
               delete turnedVVal;
               fprintf(stderr, "bad value %s for turnedV in Cylinder23CoreType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -6091,7 +6129,7 @@ bool Cylinder23Type::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -6100,19 +6138,19 @@ bool Cylinder23Type::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in Cylinder23Type\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->id = idVal;
         }
-      else if (decl->name == "label")
+      else if (decl->getname() == "label")
         {
           XmlString * labelVal;
           if (this->label)
@@ -6121,12 +6159,12 @@ bool Cylinder23Type::badAttributes(
               returnValue = true;
               break;
             }
-          labelVal = new XmlString(decl->val.c_str());
-          if (labelVal->bad)
+          labelVal = new XmlString(decl->getval().c_str());
+          if (labelVal->getbad())
             {
               delete labelVal;
               fprintf(stderr, "bad value %s for label in Cylinder23Type\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -6140,7 +6178,11 @@ bool Cylinder23Type::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in Cylinder23Type\n");
       returnValue = true;
@@ -6260,7 +6302,7 @@ bool Extrude23CoreType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "form")
+      if (decl->getname() == "form")
         {
           Attr23CoreEnumType * formVal;
           if (this->form)
@@ -6269,12 +6311,12 @@ bool Extrude23CoreType::badAttributes(
               returnValue = true;
               break;
             }
-          formVal = new Attr23CoreEnumType(decl->val.c_str());
-          if (formVal->bad)
+          formVal = new Attr23CoreEnumType(decl->getval().c_str());
+          if (formVal->getbad())
             {
               delete formVal;
               fprintf(stderr, "bad value %s for form in Extrude23CoreType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -6441,7 +6483,7 @@ bool Extrude23Type::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -6450,19 +6492,19 @@ bool Extrude23Type::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in Extrude23Type\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->id = idVal;
         }
-      else if (decl->name == "label")
+      else if (decl->getname() == "label")
         {
           XmlString * labelVal;
           if (this->label)
@@ -6471,12 +6513,12 @@ bool Extrude23Type::badAttributes(
               returnValue = true;
               break;
             }
-          labelVal = new XmlString(decl->val.c_str());
-          if (labelVal->bad)
+          labelVal = new XmlString(decl->getval().c_str());
+          if (labelVal->getbad())
             {
               delete labelVal;
               fprintf(stderr, "bad value %s for label in Extrude23Type\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -6490,7 +6532,11 @@ bool Extrude23Type::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in Extrude23Type\n");
       returnValue = true;
@@ -6625,7 +6671,7 @@ bool GeometryBaseType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -6634,19 +6680,19 @@ bool GeometryBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in GeometryBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->id = idVal;
         }
-      else if (decl->name == "label")
+      else if (decl->getname() == "label")
         {
           XmlString * labelVal;
           if (this->label)
@@ -6655,12 +6701,12 @@ bool GeometryBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          labelVal = new XmlString(decl->val.c_str());
-          if (labelVal->bad)
+          labelVal = new XmlString(decl->getval().c_str());
+          if (labelVal->getbad())
             {
               delete labelVal;
               fprintf(stderr, "bad value %s for label in GeometryBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -6674,7 +6720,11 @@ bool GeometryBaseType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in GeometryBaseType\n");
       returnValue = true;
@@ -7030,7 +7080,7 @@ bool MeshTriangleType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -7039,19 +7089,19 @@ bool MeshTriangleType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in MeshTriangleType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->id = idVal;
         }
-      else if (decl->name == "label")
+      else if (decl->getname() == "label")
         {
           XmlString * labelVal;
           if (this->label)
@@ -7060,12 +7110,12 @@ bool MeshTriangleType::badAttributes(
               returnValue = true;
               break;
             }
-          labelVal = new XmlString(decl->val.c_str());
-          if (labelVal->bad)
+          labelVal = new XmlString(decl->getval().c_str());
+          if (labelVal->getbad())
             {
               delete labelVal;
               fprintf(stderr, "bad value %s for label in MeshTriangleType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -7079,7 +7129,11 @@ bool MeshTriangleType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in MeshTriangleType\n");
       returnValue = true;
@@ -7258,7 +7312,7 @@ bool Nurbs12CoreType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "domain")
+      if (decl->getname() == "domain")
         {
           ParameterRangeType * domainVal;
           if (this->domain)
@@ -7267,12 +7321,12 @@ bool Nurbs12CoreType::badAttributes(
               returnValue = true;
               break;
             }
-          domainVal = new ParameterRangeType(decl->val.c_str());
-          if (domainVal->bad)
+          domainVal = new ParameterRangeType(decl->getval().c_str());
+          if (domainVal->getbad())
             {
               delete domainVal;
               fprintf(stderr, "bad value %s for domain in Nurbs12CoreType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -7442,7 +7496,7 @@ bool Nurbs12Type::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -7451,19 +7505,19 @@ bool Nurbs12Type::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in Nurbs12Type\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->id = idVal;
         }
-      else if (decl->name == "label")
+      else if (decl->getname() == "label")
         {
           XmlString * labelVal;
           if (this->label)
@@ -7472,12 +7526,12 @@ bool Nurbs12Type::badAttributes(
               returnValue = true;
               break;
             }
-          labelVal = new XmlString(decl->val.c_str());
-          if (labelVal->bad)
+          labelVal = new XmlString(decl->getval().c_str());
+          if (labelVal->getbad())
             {
               delete labelVal;
               fprintf(stderr, "bad value %s for label in Nurbs12Type\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -7491,7 +7545,11 @@ bool Nurbs12Type::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in Nurbs12Type\n");
       returnValue = true;
@@ -7629,7 +7687,7 @@ bool Nurbs13CoreType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "domain")
+      if (decl->getname() == "domain")
         {
           ParameterRangeType * domainVal;
           if (this->domain)
@@ -7638,12 +7696,12 @@ bool Nurbs13CoreType::badAttributes(
               returnValue = true;
               break;
             }
-          domainVal = new ParameterRangeType(decl->val.c_str());
-          if (domainVal->bad)
+          domainVal = new ParameterRangeType(decl->getval().c_str());
+          if (domainVal->getbad())
             {
               delete domainVal;
               fprintf(stderr, "bad value %s for domain in Nurbs13CoreType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -7827,7 +7885,7 @@ bool Nurbs13Type::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -7836,19 +7894,19 @@ bool Nurbs13Type::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in Nurbs13Type\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->id = idVal;
         }
-      else if (decl->name == "label")
+      else if (decl->getname() == "label")
         {
           XmlString * labelVal;
           if (this->label)
@@ -7857,12 +7915,12 @@ bool Nurbs13Type::badAttributes(
               returnValue = true;
               break;
             }
-          labelVal = new XmlString(decl->val.c_str());
-          if (labelVal->bad)
+          labelVal = new XmlString(decl->getval().c_str());
+          if (labelVal->getbad())
             {
               delete labelVal;
               fprintf(stderr, "bad value %s for label in Nurbs13Type\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -7876,7 +7934,11 @@ bool Nurbs13Type::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in Nurbs13Type\n");
       returnValue = true;
@@ -8035,7 +8097,7 @@ bool Nurbs23CoreType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "form")
+      if (decl->getname() == "form")
         {
           Attr23CoreEnumType * formVal;
           if (this->form)
@@ -8044,12 +8106,12 @@ bool Nurbs23CoreType::badAttributes(
               returnValue = true;
               break;
             }
-          formVal = new Attr23CoreEnumType(decl->val.c_str());
-          if (formVal->bad)
+          formVal = new Attr23CoreEnumType(decl->getval().c_str());
+          if (formVal->getbad())
             {
               delete formVal;
               fprintf(stderr, "bad value %s for form in Nurbs23CoreType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -8240,7 +8302,7 @@ bool Nurbs23Type::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -8249,19 +8311,19 @@ bool Nurbs23Type::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in Nurbs23Type\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->id = idVal;
         }
-      else if (decl->name == "label")
+      else if (decl->getname() == "label")
         {
           XmlString * labelVal;
           if (this->label)
@@ -8270,12 +8332,12 @@ bool Nurbs23Type::badAttributes(
               returnValue = true;
               break;
             }
-          labelVal = new XmlString(decl->val.c_str());
-          if (labelVal->bad)
+          labelVal = new XmlString(decl->getval().c_str());
+          if (labelVal->getbad())
             {
               delete labelVal;
               fprintf(stderr, "bad value %s for label in Nurbs23Type\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -8289,7 +8351,11 @@ bool Nurbs23Type::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in Nurbs23Type\n");
       returnValue = true;
@@ -8409,7 +8475,7 @@ bool Offset23CoreType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "form")
+      if (decl->getname() == "form")
         {
           Attr23CoreEnumType * formVal;
           if (this->form)
@@ -8418,12 +8484,12 @@ bool Offset23CoreType::badAttributes(
               returnValue = true;
               break;
             }
-          formVal = new Attr23CoreEnumType(decl->val.c_str());
-          if (formVal->bad)
+          formVal = new Attr23CoreEnumType(decl->getval().c_str());
+          if (formVal->getbad())
             {
               delete formVal;
               fprintf(stderr, "bad value %s for form in Offset23CoreType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -8590,7 +8656,7 @@ bool Offset23Type::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -8599,19 +8665,19 @@ bool Offset23Type::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in Offset23Type\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->id = idVal;
         }
-      else if (decl->name == "label")
+      else if (decl->getname() == "label")
         {
           XmlString * labelVal;
           if (this->label)
@@ -8620,12 +8686,12 @@ bool Offset23Type::badAttributes(
               returnValue = true;
               break;
             }
-          labelVal = new XmlString(decl->val.c_str());
-          if (labelVal->bad)
+          labelVal = new XmlString(decl->getval().c_str());
+          if (labelVal->getbad())
             {
               delete labelVal;
               fprintf(stderr, "bad value %s for label in Offset23Type\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -8639,7 +8705,11 @@ bool Offset23Type::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in Offset23Type\n");
       returnValue = true;
@@ -8871,7 +8941,7 @@ bool PathTriangulationType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -8880,19 +8950,19 @@ bool PathTriangulationType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in PathTriangulationType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->id = idVal;
         }
-      else if (decl->name == "label")
+      else if (decl->getname() == "label")
         {
           XmlString * labelVal;
           if (this->label)
@@ -8901,12 +8971,12 @@ bool PathTriangulationType::badAttributes(
               returnValue = true;
               break;
             }
-          labelVal = new XmlString(decl->val.c_str());
-          if (labelVal->bad)
+          labelVal = new XmlString(decl->getval().c_str());
+          if (labelVal->getbad())
             {
               delete labelVal;
               fprintf(stderr, "bad value %s for label in PathTriangulationType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -8920,7 +8990,11 @@ bool PathTriangulationType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in PathTriangulationType\n");
       returnValue = true;
@@ -9138,7 +9212,7 @@ bool Plane23CoreType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "domainU")
+      if (decl->getname() == "domainU")
         {
           ParameterRangeType * domainUVal;
           if (this->domainU)
@@ -9147,19 +9221,19 @@ bool Plane23CoreType::badAttributes(
               returnValue = true;
               break;
             }
-          domainUVal = new ParameterRangeType(decl->val.c_str());
-          if (domainUVal->bad)
+          domainUVal = new ParameterRangeType(decl->getval().c_str());
+          if (domainUVal->getbad())
             {
               delete domainUVal;
               fprintf(stderr, "bad value %s for domainU in Plane23CoreType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->domainU = domainUVal;
         }
-      else if (decl->name == "domainV")
+      else if (decl->getname() == "domainV")
         {
           ParameterRangeType * domainVVal;
           if (this->domainV)
@@ -9168,19 +9242,19 @@ bool Plane23CoreType::badAttributes(
               returnValue = true;
               break;
             }
-          domainVVal = new ParameterRangeType(decl->val.c_str());
-          if (domainVVal->bad)
+          domainVVal = new ParameterRangeType(decl->getval().c_str());
+          if (domainVVal->getbad())
             {
               delete domainVVal;
               fprintf(stderr, "bad value %s for domainV in Plane23CoreType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->domainV = domainVVal;
         }
-      else if (decl->name == "form")
+      else if (decl->getname() == "form")
         {
           Attr23CoreEnumType * formVal;
           if (this->form)
@@ -9189,12 +9263,12 @@ bool Plane23CoreType::badAttributes(
               returnValue = true;
               break;
             }
-          formVal = new Attr23CoreEnumType(decl->val.c_str());
-          if (formVal->bad)
+          formVal = new Attr23CoreEnumType(decl->getval().c_str());
+          if (formVal->getbad())
             {
               delete formVal;
               fprintf(stderr, "bad value %s for form in Plane23CoreType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -9393,7 +9467,7 @@ bool Plane23Type::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -9402,19 +9476,19 @@ bool Plane23Type::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in Plane23Type\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->id = idVal;
         }
-      else if (decl->name == "label")
+      else if (decl->getname() == "label")
         {
           XmlString * labelVal;
           if (this->label)
@@ -9423,12 +9497,12 @@ bool Plane23Type::badAttributes(
               returnValue = true;
               break;
             }
-          labelVal = new XmlString(decl->val.c_str());
-          if (labelVal->bad)
+          labelVal = new XmlString(decl->getval().c_str());
+          if (labelVal->getbad())
             {
               delete labelVal;
               fprintf(stderr, "bad value %s for label in Plane23Type\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -9442,7 +9516,11 @@ bool Plane23Type::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in Plane23Type\n");
       returnValue = true;
@@ -9587,7 +9665,7 @@ bool PointEntityType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -9596,19 +9674,19 @@ bool PointEntityType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in PointEntityType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->id = idVal;
         }
-      else if (decl->name == "label")
+      else if (decl->getname() == "label")
         {
           XmlString * labelVal;
           if (this->label)
@@ -9617,12 +9695,12 @@ bool PointEntityType::badAttributes(
               returnValue = true;
               break;
             }
-          labelVal = new XmlString(decl->val.c_str());
-          if (labelVal->bad)
+          labelVal = new XmlString(decl->getval().c_str());
+          if (labelVal->getbad())
             {
               delete labelVal;
               fprintf(stderr, "bad value %s for label in PointEntityType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -9636,7 +9714,11 @@ bool PointEntityType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in PointEntityType\n");
       returnValue = true;
@@ -9804,7 +9886,7 @@ bool PointSetType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -9813,12 +9895,12 @@ bool PointSetType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in PointSetType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -9986,7 +10068,7 @@ bool Polyline12CoreType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "domain")
+      if (decl->getname() == "domain")
         {
           ParameterRangeType * domainVal;
           if (this->domain)
@@ -9995,12 +10077,12 @@ bool Polyline12CoreType::badAttributes(
               returnValue = true;
               break;
             }
-          domainVal = new ParameterRangeType(decl->val.c_str());
-          if (domainVal->bad)
+          domainVal = new ParameterRangeType(decl->getval().c_str());
+          if (domainVal->getbad())
             {
               delete domainVal;
               fprintf(stderr, "bad value %s for domain in Polyline12CoreType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -10146,7 +10228,7 @@ bool Polyline12Type::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -10155,19 +10237,19 @@ bool Polyline12Type::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in Polyline12Type\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->id = idVal;
         }
-      else if (decl->name == "label")
+      else if (decl->getname() == "label")
         {
           XmlString * labelVal;
           if (this->label)
@@ -10176,12 +10258,12 @@ bool Polyline12Type::badAttributes(
               returnValue = true;
               break;
             }
-          labelVal = new XmlString(decl->val.c_str());
-          if (labelVal->bad)
+          labelVal = new XmlString(decl->getval().c_str());
+          if (labelVal->getbad())
             {
               delete labelVal;
               fprintf(stderr, "bad value %s for label in Polyline12Type\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -10195,7 +10277,11 @@ bool Polyline12Type::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in Polyline12Type\n");
       returnValue = true;
@@ -10345,7 +10431,7 @@ bool Polyline13CoreType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "domain")
+      if (decl->getname() == "domain")
         {
           ParameterRangeType * domainVal;
           if (this->domain)
@@ -10354,12 +10440,12 @@ bool Polyline13CoreType::badAttributes(
               returnValue = true;
               break;
             }
-          domainVal = new ParameterRangeType(decl->val.c_str());
-          if (domainVal->bad)
+          domainVal = new ParameterRangeType(decl->getval().c_str());
+          if (domainVal->getbad())
             {
               delete domainVal;
               fprintf(stderr, "bad value %s for domain in Polyline13CoreType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -10519,7 +10605,7 @@ bool Polyline13Type::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -10528,19 +10614,19 @@ bool Polyline13Type::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in Polyline13Type\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->id = idVal;
         }
-      else if (decl->name == "label")
+      else if (decl->getname() == "label")
         {
           XmlString * labelVal;
           if (this->label)
@@ -10549,12 +10635,12 @@ bool Polyline13Type::badAttributes(
               returnValue = true;
               break;
             }
-          labelVal = new XmlString(decl->val.c_str());
-          if (labelVal->bad)
+          labelVal = new XmlString(decl->getval().c_str());
+          if (labelVal->getbad())
             {
               delete labelVal;
               fprintf(stderr, "bad value %s for label in Polyline13Type\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -10568,7 +10654,11 @@ bool Polyline13Type::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in Polyline13Type\n");
       returnValue = true;
@@ -10716,7 +10806,7 @@ bool Revolution23CoreType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "angle")
+      if (decl->getname() == "angle")
         {
           ParameterRangeType * angleVal;
           if (this->angle)
@@ -10725,19 +10815,19 @@ bool Revolution23CoreType::badAttributes(
               returnValue = true;
               break;
             }
-          angleVal = new ParameterRangeType(decl->val.c_str());
-          if (angleVal->bad)
+          angleVal = new ParameterRangeType(decl->getval().c_str());
+          if (angleVal->getbad())
             {
               delete angleVal;
               fprintf(stderr, "bad value %s for angle in Revolution23CoreType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->angle = angleVal;
         }
-      else if (decl->name == "form")
+      else if (decl->getname() == "form")
         {
           Attr23CoreEnumType * formVal;
           if (this->form)
@@ -10746,12 +10836,12 @@ bool Revolution23CoreType::badAttributes(
               returnValue = true;
               break;
             }
-          formVal = new Attr23CoreEnumType(decl->val.c_str());
-          if (formVal->bad)
+          formVal = new Attr23CoreEnumType(decl->getval().c_str());
+          if (formVal->getbad())
             {
               delete formVal;
               fprintf(stderr, "bad value %s for form in Revolution23CoreType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -10931,7 +11021,7 @@ bool Revolution23Type::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -10940,19 +11030,19 @@ bool Revolution23Type::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in Revolution23Type\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->id = idVal;
         }
-      else if (decl->name == "label")
+      else if (decl->getname() == "label")
         {
           XmlString * labelVal;
           if (this->label)
@@ -10961,12 +11051,12 @@ bool Revolution23Type::badAttributes(
               returnValue = true;
               break;
             }
-          labelVal = new XmlString(decl->val.c_str());
-          if (labelVal->bad)
+          labelVal = new XmlString(decl->getval().c_str());
+          if (labelVal->getbad())
             {
               delete labelVal;
               fprintf(stderr, "bad value %s for label in Revolution23Type\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -10980,7 +11070,11 @@ bool Revolution23Type::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in Revolution23Type\n");
       returnValue = true;
@@ -11143,7 +11237,7 @@ bool Ruled23CoreType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "form")
+      if (decl->getname() == "form")
         {
           Attr23CoreEnumType * formVal;
           if (this->form)
@@ -11152,19 +11246,19 @@ bool Ruled23CoreType::badAttributes(
               returnValue = true;
               break;
             }
-          formVal = new Attr23CoreEnumType(decl->val.c_str());
-          if (formVal->bad)
+          formVal = new Attr23CoreEnumType(decl->getval().c_str());
+          if (formVal->getbad())
             {
               delete formVal;
               fprintf(stderr, "bad value %s for form in Ruled23CoreType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->form = formVal;
         }
-      else if (decl->name == "turnedSecondCurve")
+      else if (decl->getname() == "turnedSecondCurve")
         {
           XmlBoolean * turnedSecondCurveVal;
           if (this->turnedSecondCurve)
@@ -11173,12 +11267,12 @@ bool Ruled23CoreType::badAttributes(
               returnValue = true;
               break;
             }
-          turnedSecondCurveVal = new XmlBoolean(decl->val.c_str());
-          if (turnedSecondCurveVal->bad)
+          turnedSecondCurveVal = new XmlBoolean(decl->getval().c_str());
+          if (turnedSecondCurveVal->getbad())
             {
               delete turnedSecondCurveVal;
               fprintf(stderr, "bad value %s for turnedSecondCurve in Ruled23CoreType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -11347,7 +11441,7 @@ bool Ruled23Type::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -11356,19 +11450,19 @@ bool Ruled23Type::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in Ruled23Type\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->id = idVal;
         }
-      else if (decl->name == "label")
+      else if (decl->getname() == "label")
         {
           XmlString * labelVal;
           if (this->label)
@@ -11377,12 +11471,12 @@ bool Ruled23Type::badAttributes(
               returnValue = true;
               break;
             }
-          labelVal = new XmlString(decl->val.c_str());
-          if (labelVal->bad)
+          labelVal = new XmlString(decl->getval().c_str());
+          if (labelVal->getbad())
             {
               delete labelVal;
               fprintf(stderr, "bad value %s for label in Ruled23Type\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -11396,7 +11490,11 @@ bool Ruled23Type::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in Ruled23Type\n");
       returnValue = true;
@@ -11520,7 +11618,7 @@ bool Segment12CoreType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "domain")
+      if (decl->getname() == "domain")
         {
           ParameterRangeType * domainVal;
           if (this->domain)
@@ -11529,12 +11627,12 @@ bool Segment12CoreType::badAttributes(
               returnValue = true;
               break;
             }
-          domainVal = new ParameterRangeType(decl->val.c_str());
-          if (domainVal->bad)
+          domainVal = new ParameterRangeType(decl->getval().c_str());
+          if (domainVal->getbad())
             {
               delete domainVal;
               fprintf(stderr, "bad value %s for domain in Segment12CoreType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -11692,7 +11790,7 @@ bool Segment12Type::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -11701,19 +11799,19 @@ bool Segment12Type::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in Segment12Type\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->id = idVal;
         }
-      else if (decl->name == "label")
+      else if (decl->getname() == "label")
         {
           XmlString * labelVal;
           if (this->label)
@@ -11722,12 +11820,12 @@ bool Segment12Type::badAttributes(
               returnValue = true;
               break;
             }
-          labelVal = new XmlString(decl->val.c_str());
-          if (labelVal->bad)
+          labelVal = new XmlString(decl->getval().c_str());
+          if (labelVal->getbad())
             {
               delete labelVal;
               fprintf(stderr, "bad value %s for label in Segment12Type\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -11741,7 +11839,11 @@ bool Segment12Type::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in Segment12Type\n");
       returnValue = true;
@@ -11859,7 +11961,7 @@ bool Segment13CoreType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "domain")
+      if (decl->getname() == "domain")
         {
           ParameterRangeType * domainVal;
           if (this->domain)
@@ -11868,12 +11970,12 @@ bool Segment13CoreType::badAttributes(
               returnValue = true;
               break;
             }
-          domainVal = new ParameterRangeType(decl->val.c_str());
-          if (domainVal->bad)
+          domainVal = new ParameterRangeType(decl->getval().c_str());
+          if (domainVal->getbad())
             {
               delete domainVal;
               fprintf(stderr, "bad value %s for domain in Segment13CoreType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -12045,7 +12147,7 @@ bool Segment13Type::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -12054,19 +12156,19 @@ bool Segment13Type::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in Segment13Type\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->id = idVal;
         }
-      else if (decl->name == "label")
+      else if (decl->getname() == "label")
         {
           XmlString * labelVal;
           if (this->label)
@@ -12075,12 +12177,12 @@ bool Segment13Type::badAttributes(
               returnValue = true;
               break;
             }
-          labelVal = new XmlString(decl->val.c_str());
-          if (labelVal->bad)
+          labelVal = new XmlString(decl->getval().c_str());
+          if (labelVal->getbad())
             {
               delete labelVal;
               fprintf(stderr, "bad value %s for label in Segment13Type\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -12094,7 +12196,11 @@ bool Segment13Type::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in Segment13Type\n");
       returnValue = true;
@@ -12290,7 +12396,7 @@ bool Sphere23CoreType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "form")
+      if (decl->getname() == "form")
         {
           Attr23CoreEnumType * formVal;
           if (this->form)
@@ -12299,19 +12405,19 @@ bool Sphere23CoreType::badAttributes(
               returnValue = true;
               break;
             }
-          formVal = new Attr23CoreEnumType(decl->val.c_str());
-          if (formVal->bad)
+          formVal = new Attr23CoreEnumType(decl->getval().c_str());
+          if (formVal->getbad())
             {
               delete formVal;
               fprintf(stderr, "bad value %s for form in Sphere23CoreType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->form = formVal;
         }
-      else if (decl->name == "scaleU")
+      else if (decl->getname() == "scaleU")
         {
           DoublePositiveType * scaleUVal;
           if (this->scaleU)
@@ -12320,19 +12426,19 @@ bool Sphere23CoreType::badAttributes(
               returnValue = true;
               break;
             }
-          scaleUVal = new DoublePositiveType(decl->val.c_str());
-          if (scaleUVal->bad)
+          scaleUVal = new DoublePositiveType(decl->getval().c_str());
+          if (scaleUVal->getbad())
             {
               delete scaleUVal;
               fprintf(stderr, "bad value %s for scaleU in Sphere23CoreType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->scaleU = scaleUVal;
         }
-      else if (decl->name == "scaleV")
+      else if (decl->getname() == "scaleV")
         {
           DoublePositiveType * scaleVVal;
           if (this->scaleV)
@@ -12341,19 +12447,19 @@ bool Sphere23CoreType::badAttributes(
               returnValue = true;
               break;
             }
-          scaleVVal = new DoublePositiveType(decl->val.c_str());
-          if (scaleVVal->bad)
+          scaleVVal = new DoublePositiveType(decl->getval().c_str());
+          if (scaleVVal->getbad())
             {
               delete scaleVVal;
               fprintf(stderr, "bad value %s for scaleV in Sphere23CoreType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->scaleV = scaleVVal;
         }
-      else if (decl->name == "turnedV")
+      else if (decl->getname() == "turnedV")
         {
           XmlBoolean * turnedVVal;
           if (this->turnedV)
@@ -12362,12 +12468,12 @@ bool Sphere23CoreType::badAttributes(
               returnValue = true;
               break;
             }
-          turnedVVal = new XmlBoolean(decl->val.c_str());
-          if (turnedVVal->bad)
+          turnedVVal = new XmlBoolean(decl->getval().c_str());
+          if (turnedVVal->getbad())
             {
               delete turnedVVal;
               fprintf(stderr, "bad value %s for turnedV in Sphere23CoreType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -12564,7 +12670,7 @@ bool Sphere23Type::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -12573,19 +12679,19 @@ bool Sphere23Type::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in Sphere23Type\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->id = idVal;
         }
-      else if (decl->name == "label")
+      else if (decl->getname() == "label")
         {
           XmlString * labelVal;
           if (this->label)
@@ -12594,12 +12700,12 @@ bool Sphere23Type::badAttributes(
               returnValue = true;
               break;
             }
-          labelVal = new XmlString(decl->val.c_str());
-          if (labelVal->bad)
+          labelVal = new XmlString(decl->getval().c_str());
+          if (labelVal->getbad())
             {
               delete labelVal;
               fprintf(stderr, "bad value %s for label in Sphere23Type\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -12613,7 +12719,11 @@ bool Sphere23Type::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in Sphere23Type\n");
       returnValue = true;
@@ -12769,7 +12879,7 @@ bool Spline12CoreType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "domain")
+      if (decl->getname() == "domain")
         {
           ParameterRangeType * domainVal;
           if (this->domain)
@@ -12778,19 +12888,19 @@ bool Spline12CoreType::badAttributes(
               returnValue = true;
               break;
             }
-          domainVal = new ParameterRangeType(decl->val.c_str());
-          if (domainVal->bad)
+          domainVal = new ParameterRangeType(decl->getval().c_str());
+          if (domainVal->getbad())
             {
               delete domainVal;
               fprintf(stderr, "bad value %s for domain in Spline12CoreType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->domain = domainVal;
         }
-      else if (decl->name == "normalized")
+      else if (decl->getname() == "normalized")
         {
           XmlBoolean * normalizedVal;
           if (this->normalized)
@@ -12799,12 +12909,12 @@ bool Spline12CoreType::badAttributes(
               returnValue = true;
               break;
             }
-          normalizedVal = new XmlBoolean(decl->val.c_str());
-          if (normalizedVal->bad)
+          normalizedVal = new XmlBoolean(decl->getval().c_str());
+          if (normalizedVal->getbad())
             {
               delete normalizedVal;
               fprintf(stderr, "bad value %s for normalized in Spline12CoreType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -12976,7 +13086,7 @@ bool Spline12Type::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -12985,19 +13095,19 @@ bool Spline12Type::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in Spline12Type\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->id = idVal;
         }
-      else if (decl->name == "label")
+      else if (decl->getname() == "label")
         {
           XmlString * labelVal;
           if (this->label)
@@ -13006,12 +13116,12 @@ bool Spline12Type::badAttributes(
               returnValue = true;
               break;
             }
-          labelVal = new XmlString(decl->val.c_str());
-          if (labelVal->bad)
+          labelVal = new XmlString(decl->getval().c_str());
+          if (labelVal->getbad())
             {
               delete labelVal;
               fprintf(stderr, "bad value %s for label in Spline12Type\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -13025,7 +13135,11 @@ bool Spline12Type::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in Spline12Type\n");
       returnValue = true;
@@ -13175,7 +13289,7 @@ bool Spline13CoreType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "domain")
+      if (decl->getname() == "domain")
         {
           ParameterRangeType * domainVal;
           if (this->domain)
@@ -13184,19 +13298,19 @@ bool Spline13CoreType::badAttributes(
               returnValue = true;
               break;
             }
-          domainVal = new ParameterRangeType(decl->val.c_str());
-          if (domainVal->bad)
+          domainVal = new ParameterRangeType(decl->getval().c_str());
+          if (domainVal->getbad())
             {
               delete domainVal;
               fprintf(stderr, "bad value %s for domain in Spline13CoreType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->domain = domainVal;
         }
-      else if (decl->name == "normalized")
+      else if (decl->getname() == "normalized")
         {
           XmlBoolean * normalizedVal;
           if (this->normalized)
@@ -13205,12 +13319,12 @@ bool Spline13CoreType::badAttributes(
               returnValue = true;
               break;
             }
-          normalizedVal = new XmlBoolean(decl->val.c_str());
-          if (normalizedVal->bad)
+          normalizedVal = new XmlBoolean(decl->getval().c_str());
+          if (normalizedVal->getbad())
             {
               delete normalizedVal;
               fprintf(stderr, "bad value %s for normalized in Spline13CoreType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -13396,7 +13510,7 @@ bool Spline13Type::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -13405,19 +13519,19 @@ bool Spline13Type::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in Spline13Type\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->id = idVal;
         }
-      else if (decl->name == "label")
+      else if (decl->getname() == "label")
         {
           XmlString * labelVal;
           if (this->label)
@@ -13426,12 +13540,12 @@ bool Spline13Type::badAttributes(
               returnValue = true;
               break;
             }
-          labelVal = new XmlString(decl->val.c_str());
-          if (labelVal->bad)
+          labelVal = new XmlString(decl->getval().c_str());
+          if (labelVal->getbad())
             {
               delete labelVal;
               fprintf(stderr, "bad value %s for label in Spline13Type\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -13445,7 +13559,11 @@ bool Spline13Type::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in Spline13Type\n");
       returnValue = true;
@@ -13616,7 +13734,7 @@ bool Spline23CoreType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "form")
+      if (decl->getname() == "form")
         {
           Attr23CoreEnumType * formVal;
           if (this->form)
@@ -13625,19 +13743,19 @@ bool Spline23CoreType::badAttributes(
               returnValue = true;
               break;
             }
-          formVal = new Attr23CoreEnumType(decl->val.c_str());
-          if (formVal->bad)
+          formVal = new Attr23CoreEnumType(decl->getval().c_str());
+          if (formVal->getbad())
             {
               delete formVal;
               fprintf(stderr, "bad value %s for form in Spline23CoreType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->form = formVal;
         }
-      else if (decl->name == "normalized")
+      else if (decl->getname() == "normalized")
         {
           XmlBoolean * normalizedVal;
           if (this->normalized)
@@ -13646,12 +13764,12 @@ bool Spline23CoreType::badAttributes(
               returnValue = true;
               break;
             }
-          normalizedVal = new XmlBoolean(decl->val.c_str());
-          if (normalizedVal->bad)
+          normalizedVal = new XmlBoolean(decl->getval().c_str());
+          if (normalizedVal->getbad())
             {
               delete normalizedVal;
               fprintf(stderr, "bad value %s for normalized in Spline23CoreType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -13844,7 +13962,7 @@ bool Spline23Type::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -13853,19 +13971,19 @@ bool Spline23Type::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in Spline23Type\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->id = idVal;
         }
-      else if (decl->name == "label")
+      else if (decl->getname() == "label")
         {
           XmlString * labelVal;
           if (this->label)
@@ -13874,12 +13992,12 @@ bool Spline23Type::badAttributes(
               returnValue = true;
               break;
             }
-          labelVal = new XmlString(decl->val.c_str());
-          if (labelVal->bad)
+          labelVal = new XmlString(decl->getval().c_str());
+          if (labelVal->getbad())
             {
               delete labelVal;
               fprintf(stderr, "bad value %s for label in Spline23Type\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -13893,7 +14011,11 @@ bool Spline23Type::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in Spline23Type\n");
       returnValue = true;
@@ -14028,7 +14150,7 @@ bool SurfaceBaseType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -14037,19 +14159,19 @@ bool SurfaceBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in SurfaceBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->id = idVal;
         }
-      else if (decl->name == "label")
+      else if (decl->getname() == "label")
         {
           XmlString * labelVal;
           if (this->label)
@@ -14058,12 +14180,12 @@ bool SurfaceBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          labelVal = new XmlString(decl->val.c_str());
-          if (labelVal->bad)
+          labelVal = new XmlString(decl->getval().c_str());
+          if (labelVal->getbad())
             {
               delete labelVal;
               fprintf(stderr, "bad value %s for label in SurfaceBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -14077,7 +14199,11 @@ bool SurfaceBaseType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in SurfaceBaseType\n");
       returnValue = true;
@@ -14190,7 +14316,7 @@ bool SurfaceCoreBaseType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "form")
+      if (decl->getname() == "form")
         {
           Attr23CoreEnumType * formVal;
           if (this->form)
@@ -14199,12 +14325,12 @@ bool SurfaceCoreBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          formVal = new Attr23CoreEnumType(decl->val.c_str());
-          if (formVal->bad)
+          formVal = new Attr23CoreEnumType(decl->getval().c_str());
+          if (formVal->getbad())
             {
               delete formVal;
               fprintf(stderr, "bad value %s for form in SurfaceCoreBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -14267,12 +14393,12 @@ void SurfaceCoreType::printSelf(FILE * outFile)
   doSpaces(+INDENT, outFile);
   {
     doSpaces(0, outFile);
-    if (SurfaceCore->printElement == 0)
+    if (SurfaceCore->getprintElement() == 0)
       {
         fprintf(stderr, "element name missing\n");
         exit(1);
       }
-    else if (strcmp(SurfaceCore->printElement, "Nurbs23Core") == 0)
+    else if (strcmp(SurfaceCore->getprintElement(), "Nurbs23Core") == 0)
       {
         Nurbs23CoreType * typ;
         if ((typ = dynamic_cast<Nurbs23CoreType *>(SurfaceCore)))
@@ -14288,7 +14414,7 @@ void SurfaceCoreType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(SurfaceCore->printElement, "Spline23Core") == 0)
+    else if (strcmp(SurfaceCore->getprintElement(), "Spline23Core") == 0)
       {
         Spline23CoreType * typ;
         if ((typ = dynamic_cast<Spline23CoreType *>(SurfaceCore)))
@@ -14304,7 +14430,7 @@ void SurfaceCoreType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(SurfaceCore->printElement, "Revolution23Core") == 0)
+    else if (strcmp(SurfaceCore->getprintElement(), "Revolution23Core") == 0)
       {
         Revolution23CoreType * typ;
         if ((typ = dynamic_cast<Revolution23CoreType *>(SurfaceCore)))
@@ -14320,7 +14446,7 @@ void SurfaceCoreType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(SurfaceCore->printElement, "Extrude23Core") == 0)
+    else if (strcmp(SurfaceCore->getprintElement(), "Extrude23Core") == 0)
       {
         Extrude23CoreType * typ;
         if ((typ = dynamic_cast<Extrude23CoreType *>(SurfaceCore)))
@@ -14336,7 +14462,7 @@ void SurfaceCoreType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(SurfaceCore->printElement, "Ruled23Core") == 0)
+    else if (strcmp(SurfaceCore->getprintElement(), "Ruled23Core") == 0)
       {
         Ruled23CoreType * typ;
         if ((typ = dynamic_cast<Ruled23CoreType *>(SurfaceCore)))
@@ -14352,7 +14478,7 @@ void SurfaceCoreType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(SurfaceCore->printElement, "Offset23Core") == 0)
+    else if (strcmp(SurfaceCore->getprintElement(), "Offset23Core") == 0)
       {
         Offset23CoreType * typ;
         if ((typ = dynamic_cast<Offset23CoreType *>(SurfaceCore)))
@@ -14368,7 +14494,7 @@ void SurfaceCoreType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(SurfaceCore->printElement, "Plane23Core") == 0)
+    else if (strcmp(SurfaceCore->getprintElement(), "Plane23Core") == 0)
       {
         Plane23CoreType * typ;
         if ((typ = dynamic_cast<Plane23CoreType *>(SurfaceCore)))
@@ -14384,7 +14510,7 @@ void SurfaceCoreType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(SurfaceCore->printElement, "Cone23Core") == 0)
+    else if (strcmp(SurfaceCore->getprintElement(), "Cone23Core") == 0)
       {
         Cone23CoreType * typ;
         if ((typ = dynamic_cast<Cone23CoreType *>(SurfaceCore)))
@@ -14400,7 +14526,7 @@ void SurfaceCoreType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(SurfaceCore->printElement, "Cylinder23Core") == 0)
+    else if (strcmp(SurfaceCore->getprintElement(), "Cylinder23Core") == 0)
       {
         Cylinder23CoreType * typ;
         if ((typ = dynamic_cast<Cylinder23CoreType *>(SurfaceCore)))
@@ -14416,7 +14542,7 @@ void SurfaceCoreType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(SurfaceCore->printElement, "Sphere23Core") == 0)
+    else if (strcmp(SurfaceCore->getprintElement(), "Sphere23Core") == 0)
       {
         Sphere23CoreType * typ;
         if ((typ = dynamic_cast<Sphere23CoreType *>(SurfaceCore)))
@@ -14432,7 +14558,7 @@ void SurfaceCoreType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(SurfaceCore->printElement, "Torus23Core") == 0)
+    else if (strcmp(SurfaceCore->getprintElement(), "Torus23Core") == 0)
       {
         Torus23CoreType * typ;
         if ((typ = dynamic_cast<Torus23CoreType *>(SurfaceCore)))
@@ -14571,7 +14697,7 @@ bool SurfaceMeshSetType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -14580,12 +14706,12 @@ bool SurfaceMeshSetType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in SurfaceMeshSetType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -14718,12 +14844,12 @@ void SurfaceSetType::printSelf(FILE * outFile)
         SurfaceBaseType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "Nurbs23") == 0)
+        else if (strcmp(basie->getprintElement(), "Nurbs23") == 0)
           {
             Nurbs23Type * typ;
             if ((typ = dynamic_cast<Nurbs23Type *>(basie)))
@@ -14739,7 +14865,7 @@ void SurfaceSetType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Spline23") == 0)
+        else if (strcmp(basie->getprintElement(), "Spline23") == 0)
           {
             Spline23Type * typ;
             if ((typ = dynamic_cast<Spline23Type *>(basie)))
@@ -14755,7 +14881,7 @@ void SurfaceSetType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Revolution23") == 0)
+        else if (strcmp(basie->getprintElement(), "Revolution23") == 0)
           {
             Revolution23Type * typ;
             if ((typ = dynamic_cast<Revolution23Type *>(basie)))
@@ -14771,7 +14897,7 @@ void SurfaceSetType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Extrude23") == 0)
+        else if (strcmp(basie->getprintElement(), "Extrude23") == 0)
           {
             Extrude23Type * typ;
             if ((typ = dynamic_cast<Extrude23Type *>(basie)))
@@ -14787,7 +14913,7 @@ void SurfaceSetType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Ruled23") == 0)
+        else if (strcmp(basie->getprintElement(), "Ruled23") == 0)
           {
             Ruled23Type * typ;
             if ((typ = dynamic_cast<Ruled23Type *>(basie)))
@@ -14803,7 +14929,7 @@ void SurfaceSetType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Offset23") == 0)
+        else if (strcmp(basie->getprintElement(), "Offset23") == 0)
           {
             Offset23Type * typ;
             if ((typ = dynamic_cast<Offset23Type *>(basie)))
@@ -14819,7 +14945,7 @@ void SurfaceSetType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Plane23") == 0)
+        else if (strcmp(basie->getprintElement(), "Plane23") == 0)
           {
             Plane23Type * typ;
             if ((typ = dynamic_cast<Plane23Type *>(basie)))
@@ -14835,7 +14961,7 @@ void SurfaceSetType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Cone23") == 0)
+        else if (strcmp(basie->getprintElement(), "Cone23") == 0)
           {
             Cone23Type * typ;
             if ((typ = dynamic_cast<Cone23Type *>(basie)))
@@ -14851,7 +14977,7 @@ void SurfaceSetType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Cylinder23") == 0)
+        else if (strcmp(basie->getprintElement(), "Cylinder23") == 0)
           {
             Cylinder23Type * typ;
             if ((typ = dynamic_cast<Cylinder23Type *>(basie)))
@@ -14867,7 +14993,7 @@ void SurfaceSetType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Sphere23") == 0)
+        else if (strcmp(basie->getprintElement(), "Sphere23") == 0)
           {
             Sphere23Type * typ;
             if ((typ = dynamic_cast<Sphere23Type *>(basie)))
@@ -14883,7 +15009,7 @@ void SurfaceSetType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Torus23") == 0)
+        else if (strcmp(basie->getprintElement(), "Torus23") == 0)
           {
             Torus23Type * typ;
             if ((typ = dynamic_cast<Torus23Type *>(basie)))
@@ -14921,7 +15047,7 @@ bool SurfaceSetType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -14930,12 +15056,12 @@ bool SurfaceSetType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in SurfaceSetType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -15176,7 +15302,7 @@ bool Torus23CoreType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "form")
+      if (decl->getname() == "form")
         {
           Attr23CoreEnumType * formVal;
           if (this->form)
@@ -15185,19 +15311,19 @@ bool Torus23CoreType::badAttributes(
               returnValue = true;
               break;
             }
-          formVal = new Attr23CoreEnumType(decl->val.c_str());
-          if (formVal->bad)
+          formVal = new Attr23CoreEnumType(decl->getval().c_str());
+          if (formVal->getbad())
             {
               delete formVal;
               fprintf(stderr, "bad value %s for form in Torus23CoreType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->form = formVal;
         }
-      else if (decl->name == "offsetV")
+      else if (decl->getname() == "offsetV")
         {
           XmlDouble * offsetVVal;
           if (this->offsetV)
@@ -15206,19 +15332,19 @@ bool Torus23CoreType::badAttributes(
               returnValue = true;
               break;
             }
-          offsetVVal = new XmlDouble(decl->val.c_str());
-          if (offsetVVal->bad)
+          offsetVVal = new XmlDouble(decl->getval().c_str());
+          if (offsetVVal->getbad())
             {
               delete offsetVVal;
               fprintf(stderr, "bad value %s for offsetV in Torus23CoreType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->offsetV = offsetVVal;
         }
-      else if (decl->name == "scaleU")
+      else if (decl->getname() == "scaleU")
         {
           DoublePositiveType * scaleUVal;
           if (this->scaleU)
@@ -15227,19 +15353,19 @@ bool Torus23CoreType::badAttributes(
               returnValue = true;
               break;
             }
-          scaleUVal = new DoublePositiveType(decl->val.c_str());
-          if (scaleUVal->bad)
+          scaleUVal = new DoublePositiveType(decl->getval().c_str());
+          if (scaleUVal->getbad())
             {
               delete scaleUVal;
               fprintf(stderr, "bad value %s for scaleU in Torus23CoreType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->scaleU = scaleUVal;
         }
-      else if (decl->name == "scaleV")
+      else if (decl->getname() == "scaleV")
         {
           DoublePositiveType * scaleVVal;
           if (this->scaleV)
@@ -15248,19 +15374,19 @@ bool Torus23CoreType::badAttributes(
               returnValue = true;
               break;
             }
-          scaleVVal = new DoublePositiveType(decl->val.c_str());
-          if (scaleVVal->bad)
+          scaleVVal = new DoublePositiveType(decl->getval().c_str());
+          if (scaleVVal->getbad())
             {
               delete scaleVVal;
               fprintf(stderr, "bad value %s for scaleV in Torus23CoreType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->scaleV = scaleVVal;
         }
-      else if (decl->name == "turnedV")
+      else if (decl->getname() == "turnedV")
         {
           XmlBoolean * turnedVVal;
           if (this->turnedV)
@@ -15269,12 +15395,12 @@ bool Torus23CoreType::badAttributes(
               returnValue = true;
               break;
             }
-          turnedVVal = new XmlBoolean(decl->val.c_str());
-          if (turnedVVal->bad)
+          turnedVVal = new XmlBoolean(decl->getval().c_str());
+          if (turnedVVal->getbad())
             {
               delete turnedVVal;
               fprintf(stderr, "bad value %s for turnedV in Torus23CoreType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -15485,7 +15611,7 @@ bool Torus23Type::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -15494,19 +15620,19 @@ bool Torus23Type::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in Torus23Type\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->id = idVal;
         }
-      else if (decl->name == "label")
+      else if (decl->getname() == "label")
         {
           XmlString * labelVal;
           if (this->label)
@@ -15515,12 +15641,12 @@ bool Torus23Type::badAttributes(
               returnValue = true;
               break;
             }
-          labelVal = new XmlString(decl->val.c_str());
-          if (labelVal->bad)
+          labelVal = new XmlString(decl->getval().c_str());
+          if (labelVal->getbad())
             {
               delete labelVal;
               fprintf(stderr, "bad value %s for label in Torus23Type\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -15534,7 +15660,11 @@ bool Torus23Type::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in Torus23Type\n");
       returnValue = true;
@@ -15905,7 +16035,7 @@ bool TriangleVertexNormalType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "decimalPlaces")
+      if (decl->getname() == "decimalPlaces")
         {
           XmlNonNegativeInteger * decimalPlacesVal;
           if (this->decimalPlaces)
@@ -15914,19 +16044,19 @@ bool TriangleVertexNormalType::badAttributes(
               returnValue = true;
               break;
             }
-          decimalPlacesVal = new XmlNonNegativeInteger(decl->val.c_str());
-          if (decimalPlacesVal->bad)
+          decimalPlacesVal = new XmlNonNegativeInteger(decl->getval().c_str());
+          if (decimalPlacesVal->getbad())
             {
               delete decimalPlacesVal;
               fprintf(stderr, "bad value %s for decimalPlaces in TriangleVertexNormalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->decimalPlaces = decimalPlacesVal;
         }
-      else if (decl->name == "linearUnit")
+      else if (decl->getname() == "linearUnit")
         {
           XmlToken * linearUnitVal;
           if (this->linearUnit)
@@ -15935,19 +16065,19 @@ bool TriangleVertexNormalType::badAttributes(
               returnValue = true;
               break;
             }
-          linearUnitVal = new XmlToken(decl->val.c_str());
-          if (linearUnitVal->bad)
+          linearUnitVal = new XmlToken(decl->getval().c_str());
+          if (linearUnitVal->getbad())
             {
               delete linearUnitVal;
               fprintf(stderr, "bad value %s for linearUnit in TriangleVertexNormalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->linearUnit = linearUnitVal;
         }
-      else if (decl->name == "significantFigures")
+      else if (decl->getname() == "significantFigures")
         {
           XmlNonNegativeInteger * significantFiguresVal;
           if (this->significantFigures)
@@ -15956,19 +16086,19 @@ bool TriangleVertexNormalType::badAttributes(
               returnValue = true;
               break;
             }
-          significantFiguresVal = new XmlNonNegativeInteger(decl->val.c_str());
-          if (significantFiguresVal->bad)
+          significantFiguresVal = new XmlNonNegativeInteger(decl->getval().c_str());
+          if (significantFiguresVal->getbad())
             {
               delete significantFiguresVal;
               fprintf(stderr, "bad value %s for significantFigures in TriangleVertexNormalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->significantFigures = significantFiguresVal;
         }
-      else if (decl->name == "validity")
+      else if (decl->getname() == "validity")
         {
           ValidityEnumType * validityVal;
           if (this->validity)
@@ -15977,19 +16107,19 @@ bool TriangleVertexNormalType::badAttributes(
               returnValue = true;
               break;
             }
-          validityVal = new ValidityEnumType(decl->val.c_str());
-          if (validityVal->bad)
+          validityVal = new ValidityEnumType(decl->getval().c_str());
+          if (validityVal->getbad())
             {
               delete validityVal;
               fprintf(stderr, "bad value %s for validity in TriangleVertexNormalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->validity = validityVal;
         }
-      else if (decl->name == "vertex")
+      else if (decl->getname() == "vertex")
         {
           I2Type * vertexVal;
           if (this->vertex)
@@ -15998,19 +16128,19 @@ bool TriangleVertexNormalType::badAttributes(
               returnValue = true;
               break;
             }
-          vertexVal = new I2Type(decl->val.c_str());
-          if (vertexVal->bad)
+          vertexVal = new I2Type(decl->getval().c_str());
+          if (vertexVal->getbad())
             {
               delete vertexVal;
               fprintf(stderr, "bad value %s for vertex in TriangleVertexNormalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->vertex = vertexVal;
         }
-      else if (decl->name == "xDecimalPlaces")
+      else if (decl->getname() == "xDecimalPlaces")
         {
           XmlNonNegativeInteger * xDecimalPlacesVal;
           if (this->xDecimalPlaces)
@@ -16019,19 +16149,19 @@ bool TriangleVertexNormalType::badAttributes(
               returnValue = true;
               break;
             }
-          xDecimalPlacesVal = new XmlNonNegativeInteger(decl->val.c_str());
-          if (xDecimalPlacesVal->bad)
+          xDecimalPlacesVal = new XmlNonNegativeInteger(decl->getval().c_str());
+          if (xDecimalPlacesVal->getbad())
             {
               delete xDecimalPlacesVal;
               fprintf(stderr, "bad value %s for xDecimalPlaces in TriangleVertexNormalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->xDecimalPlaces = xDecimalPlacesVal;
         }
-      else if (decl->name == "xSignificantFigures")
+      else if (decl->getname() == "xSignificantFigures")
         {
           XmlNonNegativeInteger * xSignificantFiguresVal;
           if (this->xSignificantFigures)
@@ -16040,19 +16170,19 @@ bool TriangleVertexNormalType::badAttributes(
               returnValue = true;
               break;
             }
-          xSignificantFiguresVal = new XmlNonNegativeInteger(decl->val.c_str());
-          if (xSignificantFiguresVal->bad)
+          xSignificantFiguresVal = new XmlNonNegativeInteger(decl->getval().c_str());
+          if (xSignificantFiguresVal->getbad())
             {
               delete xSignificantFiguresVal;
               fprintf(stderr, "bad value %s for xSignificantFigures in TriangleVertexNormalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->xSignificantFigures = xSignificantFiguresVal;
         }
-      else if (decl->name == "xValidity")
+      else if (decl->getname() == "xValidity")
         {
           ValidityEnumType * xValidityVal;
           if (this->xValidity)
@@ -16061,19 +16191,19 @@ bool TriangleVertexNormalType::badAttributes(
               returnValue = true;
               break;
             }
-          xValidityVal = new ValidityEnumType(decl->val.c_str());
-          if (xValidityVal->bad)
+          xValidityVal = new ValidityEnumType(decl->getval().c_str());
+          if (xValidityVal->getbad())
             {
               delete xValidityVal;
               fprintf(stderr, "bad value %s for xValidity in TriangleVertexNormalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->xValidity = xValidityVal;
         }
-      else if (decl->name == "yDecimalPlaces")
+      else if (decl->getname() == "yDecimalPlaces")
         {
           XmlNonNegativeInteger * yDecimalPlacesVal;
           if (this->yDecimalPlaces)
@@ -16082,19 +16212,19 @@ bool TriangleVertexNormalType::badAttributes(
               returnValue = true;
               break;
             }
-          yDecimalPlacesVal = new XmlNonNegativeInteger(decl->val.c_str());
-          if (yDecimalPlacesVal->bad)
+          yDecimalPlacesVal = new XmlNonNegativeInteger(decl->getval().c_str());
+          if (yDecimalPlacesVal->getbad())
             {
               delete yDecimalPlacesVal;
               fprintf(stderr, "bad value %s for yDecimalPlaces in TriangleVertexNormalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->yDecimalPlaces = yDecimalPlacesVal;
         }
-      else if (decl->name == "ySignificantFigures")
+      else if (decl->getname() == "ySignificantFigures")
         {
           XmlNonNegativeInteger * ySignificantFiguresVal;
           if (this->ySignificantFigures)
@@ -16103,19 +16233,19 @@ bool TriangleVertexNormalType::badAttributes(
               returnValue = true;
               break;
             }
-          ySignificantFiguresVal = new XmlNonNegativeInteger(decl->val.c_str());
-          if (ySignificantFiguresVal->bad)
+          ySignificantFiguresVal = new XmlNonNegativeInteger(decl->getval().c_str());
+          if (ySignificantFiguresVal->getbad())
             {
               delete ySignificantFiguresVal;
               fprintf(stderr, "bad value %s for ySignificantFigures in TriangleVertexNormalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->ySignificantFigures = ySignificantFiguresVal;
         }
-      else if (decl->name == "yValidity")
+      else if (decl->getname() == "yValidity")
         {
           ValidityEnumType * yValidityVal;
           if (this->yValidity)
@@ -16124,19 +16254,19 @@ bool TriangleVertexNormalType::badAttributes(
               returnValue = true;
               break;
             }
-          yValidityVal = new ValidityEnumType(decl->val.c_str());
-          if (yValidityVal->bad)
+          yValidityVal = new ValidityEnumType(decl->getval().c_str());
+          if (yValidityVal->getbad())
             {
               delete yValidityVal;
               fprintf(stderr, "bad value %s for yValidity in TriangleVertexNormalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->yValidity = yValidityVal;
         }
-      else if (decl->name == "zDecimalPlaces")
+      else if (decl->getname() == "zDecimalPlaces")
         {
           XmlNonNegativeInteger * zDecimalPlacesVal;
           if (this->zDecimalPlaces)
@@ -16145,19 +16275,19 @@ bool TriangleVertexNormalType::badAttributes(
               returnValue = true;
               break;
             }
-          zDecimalPlacesVal = new XmlNonNegativeInteger(decl->val.c_str());
-          if (zDecimalPlacesVal->bad)
+          zDecimalPlacesVal = new XmlNonNegativeInteger(decl->getval().c_str());
+          if (zDecimalPlacesVal->getbad())
             {
               delete zDecimalPlacesVal;
               fprintf(stderr, "bad value %s for zDecimalPlaces in TriangleVertexNormalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->zDecimalPlaces = zDecimalPlacesVal;
         }
-      else if (decl->name == "zSignificantFigures")
+      else if (decl->getname() == "zSignificantFigures")
         {
           XmlNonNegativeInteger * zSignificantFiguresVal;
           if (this->zSignificantFigures)
@@ -16166,19 +16296,19 @@ bool TriangleVertexNormalType::badAttributes(
               returnValue = true;
               break;
             }
-          zSignificantFiguresVal = new XmlNonNegativeInteger(decl->val.c_str());
-          if (zSignificantFiguresVal->bad)
+          zSignificantFiguresVal = new XmlNonNegativeInteger(decl->getval().c_str());
+          if (zSignificantFiguresVal->getbad())
             {
               delete zSignificantFiguresVal;
               fprintf(stderr, "bad value %s for zSignificantFigures in TriangleVertexNormalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->zSignificantFigures = zSignificantFiguresVal;
         }
-      else if (decl->name == "zValidity")
+      else if (decl->getname() == "zValidity")
         {
           ValidityEnumType * zValidityVal;
           if (this->zValidity)
@@ -16187,12 +16317,12 @@ bool TriangleVertexNormalType::badAttributes(
               returnValue = true;
               break;
             }
-          zValidityVal = new ValidityEnumType(decl->val.c_str());
-          if (zValidityVal->bad)
+          zValidityVal = new ValidityEnumType(decl->getval().c_str());
+          if (zValidityVal->getbad())
             {
               delete zValidityVal;
               fprintf(stderr, "bad value %s for zValidity in TriangleVertexNormalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }

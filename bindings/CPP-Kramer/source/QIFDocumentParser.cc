@@ -66,6 +66,7 @@ For STRINGIN, the lex file must also be compiled with STRINGIN defined.
 #include <string.h>  // strlen
 #include <stdlib.h>  // exit
 #include "QIFDocumentClasses.hh"
+#include <map>       // idMap
 #if defined(STRINGIN) || defined(STRINGOUT)
 #define MAX_SIZE 10000000
 #endif
@@ -83,6 +84,7 @@ extern char * yyStringInputEnd;
 int XmlSchemaInstanceBase::format;
 int XmlSchemaInstanceBase::places;
 int yyStartAnew;
+std::map<unsigned int, XmlSchemaInstanceBase *> idMap;
 
 void usageMessage(char * call) /* NO ARGUMENTS */
 {

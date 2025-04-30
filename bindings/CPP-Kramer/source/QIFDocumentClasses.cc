@@ -4,10 +4,12 @@
 #include <string.h>            // for strdup
 #include <stdlib.h>            // for exit
 #include <list>
+#include  <map>
 #include <xmlSchemaInstance.hh>
 #include "QIFDocumentClasses.hh"
 
 #define INDENT 2
+extern std::map<unsigned int, XmlSchemaInstanceBase *> idMap;
 
 /* ***************************************************************** */
 /* ***************************************************************** */
@@ -177,7 +179,7 @@ bool ExternalQIFDocumentReferenceType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -186,12 +188,12 @@ bool ExternalQIFDocumentReferenceType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in ExternalQIFDocumentReferenceType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -205,7 +207,11 @@ bool ExternalQIFDocumentReferenceType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in ExternalQIFDocumentReferenceType\n");
       returnValue = true;
@@ -389,7 +395,7 @@ bool ExternalQIFReferencesType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -398,12 +404,12 @@ bool ExternalQIFReferencesType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in ExternalQIFReferencesType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -1068,7 +1074,7 @@ bool QIFDocumentType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "idMax")
+      if (decl->getname() == "idMax")
         {
           XmlUnsignedInt * idMaxVal;
           if (this->idMax)
@@ -1077,19 +1083,19 @@ bool QIFDocumentType::badAttributes(
               returnValue = true;
               break;
             }
-          idMaxVal = new XmlUnsignedInt(decl->val.c_str());
-          if (idMaxVal->bad)
+          idMaxVal = new XmlUnsignedInt(decl->getval().c_str());
+          if (idMaxVal->getbad())
             {
               delete idMaxVal;
               fprintf(stderr, "bad value %s for idMax in QIFDocumentType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->idMax = idMaxVal;
         }
-      else if (decl->name == "versionQIF")
+      else if (decl->getname() == "versionQIF")
         {
           XmlNMTOKEN * versionQIFVal;
           if (this->versionQIF)
@@ -1098,12 +1104,12 @@ bool QIFDocumentType::badAttributes(
               returnValue = true;
               break;
             }
-          versionQIFVal = new XmlNMTOKEN(decl->val.c_str());
-          if (versionQIFVal->bad)
+          versionQIFVal = new XmlNMTOKEN(decl->getval().c_str());
+          if (versionQIFVal->getbad())
             {
               delete versionQIFVal;
               fprintf(stderr, "bad value %s for versionQIF in QIFDocumentType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -1383,14 +1389,14 @@ void XmlHeaderForQIFDocument::printSelf(FILE * outFile)
 
   if (XmlnsNoPrefix)
     {
-      fprintf(outFile, "  xmlns=\"%s\"\n", XmlnsNoPrefix->val.c_str());
+      fprintf(outFile, "  xmlns=\"%s\"\n", XmlnsNoPrefix->getval().c_str());
     }
   if (XmlnsiWithPrefix)
     {
       for (iter = XmlnsiWithPrefix->begin();
            iter != XmlnsiWithPrefix->end(); iter++)
         {
-          fprintf(outFile, "  xmlns:%s\"\n", (*iter)->val.c_str());
+          fprintf(outFile, "  xmlns:%s\"\n", (*iter)->getval().c_str());
         }
     }
   if (location)
@@ -1417,7 +1423,7 @@ bool XmlHeaderForQIFDocument::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "xmlns")
+      if (decl->getname() == "xmlns")
         {
           if (XmlnsNoPrefix)
             {
@@ -1426,11 +1432,11 @@ bool XmlHeaderForQIFDocument::badAttributes(
               returnValue = true;
               break;
             }
-          XmlnsNoPrefix = new XmlString(decl->val.c_str());
+          XmlnsNoPrefix = new XmlString(decl->getval().c_str());
         }
-      else if (decl->name == "xmlns:")
+      else if (decl->getname() == "xmlns:")
         {
-          strncpy(buffer, decl->val.c_str(), NAMESIZE);
+          strncpy(buffer, decl->getval().c_str(), NAMESIZE);
           if ((buffer[0] == 'x') &&
               (buffer[1] == 's') && 
               (buffer[2] == 'i') &&
@@ -1471,7 +1477,7 @@ bool XmlHeaderForQIFDocument::badAttributes(
               XmlnsiWithPrefix->push_back(new XmlString(buffer));
             }
         }
-      else if (decl->name == "xsi:schemaLocation")
+      else if (decl->getname() == "xsi:schemaLocation")
         {
           if (location)
             {
@@ -1480,9 +1486,9 @@ bool XmlHeaderForQIFDocument::badAttributes(
               returnValue = true;
               break;
             }
-          location = new SchemaLocation("xsi", decl->val.c_str(), true);
+          location = new SchemaLocation("xsi", decl->getval().c_str(), true);
         }
-      else if (decl->name == "xsi:noNamespaceSchemaLocation")
+      else if (decl->getname() == "xsi:noNamespaceSchemaLocation")
         {
           if (location)
             {
@@ -1491,9 +1497,9 @@ bool XmlHeaderForQIFDocument::badAttributes(
               returnValue = true;
               break;
             }
-          location = new SchemaLocation("xsi", decl->val.c_str(), false);
+          location = new SchemaLocation("xsi", decl->getval().c_str(), false);
         }
-      else if (decl->name == "idMax")
+      else if (decl->getname() == "idMax")
         {
           XmlUnsignedInt * idMaxVal;
           if (this->idMax)
@@ -1502,19 +1508,19 @@ bool XmlHeaderForQIFDocument::badAttributes(
               returnValue = true;
               break;
             }
-          idMaxVal = new XmlUnsignedInt(decl->val.c_str());
-          if (idMaxVal->bad)
+          idMaxVal = new XmlUnsignedInt(decl->getval().c_str());
+          if (idMaxVal->getbad())
             {
               delete idMaxVal;
               fprintf(stderr, "bad value %s for idMax in XmlHeaderForQIFDocument\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->idMax = idMaxVal;
         }
-      else if (decl->name == "versionQIF")
+      else if (decl->getname() == "versionQIF")
         {
           XmlNMTOKEN * versionQIFVal;
           if (this->versionQIF)
@@ -1523,12 +1529,12 @@ bool XmlHeaderForQIFDocument::badAttributes(
               returnValue = true;
               break;
             }
-          versionQIFVal = new XmlNMTOKEN(decl->val.c_str());
-          if (versionQIFVal->bad)
+          versionQIFVal = new XmlNMTOKEN(decl->getval().c_str());
+          if (versionQIFVal->getbad())
             {
               delete versionQIFVal;
               fprintf(stderr, "bad value %s for versionQIF in XmlHeaderForQIFDocument\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }

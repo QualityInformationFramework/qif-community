@@ -4,10 +4,12 @@
 #include <string.h>            // for strdup
 #include <stdlib.h>            // for exit
 #include <list>
+#include  <map>
 #include <xmlSchemaInstance.hh>
 #include "QIFStatisticsClasses.hh"
 
 #define INDENT 2
+extern std::map<unsigned int, XmlSchemaInstanceBase *> idMap;
 
 /* ***************************************************************** */
 /* ***************************************************************** */
@@ -220,7 +222,7 @@ bool AbsoluteLimitsByUnitType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -229,12 +231,12 @@ bool AbsoluteLimitsByUnitType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in AbsoluteLimitsByUnitType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -542,7 +544,7 @@ bool AbsoluteMeasurementsByUnitType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -551,12 +553,12 @@ bool AbsoluteMeasurementsByUnitType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in AbsoluteMeasurementsByUnitType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -883,7 +885,7 @@ bool BiasStudyPlanType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -892,12 +894,12 @@ bool BiasStudyPlanType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in BiasStudyPlanType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -911,7 +913,11 @@ bool BiasStudyPlanType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in BiasStudyPlanType\n");
       returnValue = true;
@@ -1292,7 +1298,7 @@ bool BiasStudyResultsType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -1301,12 +1307,12 @@ bool BiasStudyResultsType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in BiasStudyResultsType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -1320,7 +1326,11 @@ bool BiasStudyResultsType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in BiasStudyResultsType\n");
       returnValue = true;
@@ -1619,7 +1629,7 @@ bool CapabilityStudyPlanType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -1628,12 +1638,12 @@ bool CapabilityStudyPlanType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in CapabilityStudyPlanType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -1647,7 +1657,11 @@ bool CapabilityStudyPlanType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in CapabilityStudyPlanType\n");
       returnValue = true;
@@ -2017,7 +2031,7 @@ bool CapabilityStudyResultsType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -2026,12 +2040,12 @@ bool CapabilityStudyResultsType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in CapabilityStudyResultsType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -2045,7 +2059,11 @@ bool CapabilityStudyResultsType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in CapabilityStudyResultsType\n");
       returnValue = true;
@@ -2170,7 +2188,7 @@ bool ControlMethodType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -2179,12 +2197,12 @@ bool ControlMethodType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in ControlMethodType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -2198,7 +2216,11 @@ bool ControlMethodType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in ControlMethodType\n");
       returnValue = true;
@@ -2382,7 +2404,7 @@ bool ControlMethodsType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -2391,12 +2413,12 @@ bool ControlMethodsType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in ControlMethodsType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -2562,7 +2584,7 @@ bool CorrectiveActionPlanType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -2571,12 +2593,12 @@ bool CorrectiveActionPlanType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in CorrectiveActionPlanType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -2590,7 +2612,11 @@ bool CorrectiveActionPlanType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in CorrectiveActionPlanType\n");
       returnValue = true;
@@ -2780,7 +2806,7 @@ bool CorrectiveActionPlansType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -2789,12 +2815,12 @@ bool CorrectiveActionPlansType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in CorrectiveActionPlansType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -3058,7 +3084,7 @@ bool CriteriaByUnitType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -3067,12 +3093,12 @@ bool CriteriaByUnitType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in CriteriaByUnitType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -3383,7 +3409,7 @@ bool FirstArticleStudyPlanType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -3392,12 +3418,12 @@ bool FirstArticleStudyPlanType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in FirstArticleStudyPlanType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -3411,7 +3437,11 @@ bool FirstArticleStudyPlanType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in FirstArticleStudyPlanType\n");
       returnValue = true;
@@ -3814,7 +3844,7 @@ bool FirstArticleStudyResultsType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -3823,12 +3853,12 @@ bool FirstArticleStudyResultsType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in FirstArticleStudyResultsType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -3842,7 +3872,11 @@ bool FirstArticleStudyResultsType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in FirstArticleStudyResultsType\n");
       returnValue = true;
@@ -3894,8 +3928,8 @@ GageRandRStudyEnumType::GageRandRStudyEnumType(
   XmlNMTOKEN(
     valIn)
 {
-  if (!bad)
-    bad = (strcmp(val.c_str(), "RANGE") &&
+  if (!getbad())
+    setbad(strcmp(val.c_str(), "RANGE") &&
            strcmp(val.c_str(), "AVGANDRANGE") &&
            strcmp(val.c_str(), "ANOVA"));
 }
@@ -4218,7 +4252,7 @@ bool GageRandRStudyPlanType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -4227,12 +4261,12 @@ bool GageRandRStudyPlanType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in GageRandRStudyPlanType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -4246,7 +4280,11 @@ bool GageRandRStudyPlanType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in GageRandRStudyPlanType\n");
       returnValue = true;
@@ -4689,7 +4727,7 @@ bool GageRandRStudyResultsType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -4698,12 +4736,12 @@ bool GageRandRStudyResultsType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in GageRandRStudyResultsType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -4717,7 +4755,11 @@ bool GageRandRStudyResultsType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in GageRandRStudyResultsType\n");
       returnValue = true;
@@ -4989,7 +5031,7 @@ bool LinearityStudyPlanType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -4998,12 +5040,12 @@ bool LinearityStudyPlanType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in LinearityStudyPlanType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -5017,7 +5059,11 @@ bool LinearityStudyPlanType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in LinearityStudyPlanType\n");
       returnValue = true;
@@ -5446,7 +5492,7 @@ bool LinearityStudyResultsType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -5455,12 +5501,12 @@ bool LinearityStudyResultsType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in LinearityStudyResultsType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -5474,7 +5520,11 @@ bool LinearityStudyResultsType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in LinearityStudyResultsType\n");
       returnValue = true;
@@ -5741,7 +5791,7 @@ bool MultipleProductInstanceStudyPlanBaseType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -5750,12 +5800,12 @@ bool MultipleProductInstanceStudyPlanBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in MultipleProductInstanceStudyPlanBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -5769,7 +5819,11 @@ bool MultipleProductInstanceStudyPlanBaseType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in MultipleProductInstanceStudyPlanBaseType\n");
       returnValue = true;
@@ -6155,7 +6209,7 @@ bool MultipleProductInstanceStudyResultsBaseType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -6164,12 +6218,12 @@ bool MultipleProductInstanceStudyResultsBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in MultipleProductInstanceStudyResultsBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -6183,7 +6237,11 @@ bool MultipleProductInstanceStudyResultsBaseType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in MultipleProductInstanceStudyResultsBaseType\n");
       returnValue = true;
@@ -6449,7 +6507,7 @@ bool ProcessDifferenceStudyPlanType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -6458,12 +6516,12 @@ bool ProcessDifferenceStudyPlanType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in ProcessDifferenceStudyPlanType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -6477,7 +6535,11 @@ bool ProcessDifferenceStudyPlanType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in ProcessDifferenceStudyPlanType\n");
       returnValue = true;
@@ -6912,7 +6974,7 @@ bool ProcessDifferenceStudyResultsType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -6921,12 +6983,12 @@ bool ProcessDifferenceStudyResultsType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in ProcessDifferenceStudyResultsType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -6940,7 +7002,11 @@ bool ProcessDifferenceStudyResultsType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in ProcessDifferenceStudyResultsType\n");
       returnValue = true;
@@ -7225,7 +7291,7 @@ bool ProductionStudyPlanType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -7234,12 +7300,12 @@ bool ProductionStudyPlanType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in ProductionStudyPlanType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -7253,7 +7319,11 @@ bool ProductionStudyPlanType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in ProductionStudyPlanType\n");
       returnValue = true;
@@ -7670,7 +7740,7 @@ bool ProductionStudyResultsType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -7679,12 +7749,12 @@ bool ProductionStudyResultsType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in ProductionStudyResultsType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -7698,7 +7768,11 @@ bool ProductionStudyResultsType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in ProductionStudyResultsType\n");
       returnValue = true;
@@ -7937,7 +8011,7 @@ bool SimpleStudyPlanType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -7946,12 +8020,12 @@ bool SimpleStudyPlanType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in SimpleStudyPlanType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -7965,7 +8039,11 @@ bool SimpleStudyPlanType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in SimpleStudyPlanType\n");
       returnValue = true;
@@ -8335,7 +8413,7 @@ bool SimpleStudyResultsType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -8344,12 +8422,12 @@ bool SimpleStudyResultsType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in SimpleStudyResultsType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -8363,7 +8441,11 @@ bool SimpleStudyResultsType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in SimpleStudyResultsType\n");
       returnValue = true;
@@ -8622,7 +8704,7 @@ bool StabilityStudyPlanType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -8631,12 +8713,12 @@ bool StabilityStudyPlanType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in StabilityStudyPlanType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -8650,7 +8732,11 @@ bool StabilityStudyPlanType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in StabilityStudyPlanType\n");
       returnValue = true;
@@ -9049,7 +9135,7 @@ bool StabilityStudyResultsType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -9058,12 +9144,12 @@ bool StabilityStudyResultsType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in StabilityStudyResultsType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -9077,7 +9163,11 @@ bool StabilityStudyResultsType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in StabilityStudyResultsType\n");
       returnValue = true;
@@ -9196,12 +9286,12 @@ void StatisticalStudiesResultsType::printSelf(FILE * outFile)
         StatisticalStudyResultsBaseType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "FirstArticleStudyResults") == 0)
+        else if (strcmp(basie->getprintElement(), "FirstArticleStudyResults") == 0)
           {
             FirstArticleStudyResultsType * typ;
             if ((typ = dynamic_cast<FirstArticleStudyResultsType *>(basie)))
@@ -9217,7 +9307,7 @@ void StatisticalStudiesResultsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LinearityStudyResults") == 0)
+        else if (strcmp(basie->getprintElement(), "LinearityStudyResults") == 0)
           {
             LinearityStudyResultsType * typ;
             if ((typ = dynamic_cast<LinearityStudyResultsType *>(basie)))
@@ -9233,7 +9323,7 @@ void StatisticalStudiesResultsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SimpleStudyResults") == 0)
+        else if (strcmp(basie->getprintElement(), "SimpleStudyResults") == 0)
           {
             SimpleStudyResultsType * typ;
             if ((typ = dynamic_cast<SimpleStudyResultsType *>(basie)))
@@ -9249,7 +9339,7 @@ void StatisticalStudiesResultsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "BiasStudyResults") == 0)
+        else if (strcmp(basie->getprintElement(), "BiasStudyResults") == 0)
           {
             BiasStudyResultsType * typ;
             if ((typ = dynamic_cast<BiasStudyResultsType *>(basie)))
@@ -9265,7 +9355,7 @@ void StatisticalStudiesResultsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "StabilityStudyResults") == 0)
+        else if (strcmp(basie->getprintElement(), "StabilityStudyResults") == 0)
           {
             StabilityStudyResultsType * typ;
             if ((typ = dynamic_cast<StabilityStudyResultsType *>(basie)))
@@ -9281,7 +9371,7 @@ void StatisticalStudiesResultsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "CapabilityStudyResults") == 0)
+        else if (strcmp(basie->getprintElement(), "CapabilityStudyResults") == 0)
           {
             CapabilityStudyResultsType * typ;
             if ((typ = dynamic_cast<CapabilityStudyResultsType *>(basie)))
@@ -9297,7 +9387,7 @@ void StatisticalStudiesResultsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ProcessDifferenceStudyResults") == 0)
+        else if (strcmp(basie->getprintElement(), "ProcessDifferenceStudyResults") == 0)
           {
             ProcessDifferenceStudyResultsType * typ;
             if ((typ = dynamic_cast<ProcessDifferenceStudyResultsType *>(basie)))
@@ -9313,7 +9403,7 @@ void StatisticalStudiesResultsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "GageRandRStudyResults") == 0)
+        else if (strcmp(basie->getprintElement(), "GageRandRStudyResults") == 0)
           {
             GageRandRStudyResultsType * typ;
             if ((typ = dynamic_cast<GageRandRStudyResultsType *>(basie)))
@@ -9329,7 +9419,7 @@ void StatisticalStudiesResultsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ProductionStudyResults") == 0)
+        else if (strcmp(basie->getprintElement(), "ProductionStudyResults") == 0)
           {
             ProductionStudyResultsType * typ;
             if ((typ = dynamic_cast<ProductionStudyResultsType *>(basie)))
@@ -9367,7 +9457,7 @@ bool StatisticalStudiesResultsType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -9376,12 +9466,12 @@ bool StatisticalStudiesResultsType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in StatisticalStudiesResultsType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -9643,7 +9733,7 @@ bool StatisticalStudyPlanBaseType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -9652,12 +9742,12 @@ bool StatisticalStudyPlanBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in StatisticalStudyPlanBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -9671,7 +9761,11 @@ bool StatisticalStudyPlanBaseType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in StatisticalStudyPlanBaseType\n");
       returnValue = true;
@@ -9885,12 +9979,12 @@ void StatisticalStudyPlansType::printSelf(FILE * outFile)
         StatisticalStudyPlanBaseType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "FirstArticleStudyPlan") == 0)
+        else if (strcmp(basie->getprintElement(), "FirstArticleStudyPlan") == 0)
           {
             FirstArticleStudyPlanType * typ;
             if ((typ = dynamic_cast<FirstArticleStudyPlanType *>(basie)))
@@ -9906,7 +10000,7 @@ void StatisticalStudyPlansType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LinearityStudyPlan") == 0)
+        else if (strcmp(basie->getprintElement(), "LinearityStudyPlan") == 0)
           {
             LinearityStudyPlanType * typ;
             if ((typ = dynamic_cast<LinearityStudyPlanType *>(basie)))
@@ -9922,7 +10016,7 @@ void StatisticalStudyPlansType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SimpleStudyPlan") == 0)
+        else if (strcmp(basie->getprintElement(), "SimpleStudyPlan") == 0)
           {
             SimpleStudyPlanType * typ;
             if ((typ = dynamic_cast<SimpleStudyPlanType *>(basie)))
@@ -9938,7 +10032,7 @@ void StatisticalStudyPlansType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "BiasStudyPlan") == 0)
+        else if (strcmp(basie->getprintElement(), "BiasStudyPlan") == 0)
           {
             BiasStudyPlanType * typ;
             if ((typ = dynamic_cast<BiasStudyPlanType *>(basie)))
@@ -9954,7 +10048,7 @@ void StatisticalStudyPlansType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "StabilityStudyPlan") == 0)
+        else if (strcmp(basie->getprintElement(), "StabilityStudyPlan") == 0)
           {
             StabilityStudyPlanType * typ;
             if ((typ = dynamic_cast<StabilityStudyPlanType *>(basie)))
@@ -9970,7 +10064,7 @@ void StatisticalStudyPlansType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ProcessDifferenceStudyPlan") == 0)
+        else if (strcmp(basie->getprintElement(), "ProcessDifferenceStudyPlan") == 0)
           {
             ProcessDifferenceStudyPlanType * typ;
             if ((typ = dynamic_cast<ProcessDifferenceStudyPlanType *>(basie)))
@@ -9986,7 +10080,7 @@ void StatisticalStudyPlansType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "CapabilityStudyPlan") == 0)
+        else if (strcmp(basie->getprintElement(), "CapabilityStudyPlan") == 0)
           {
             CapabilityStudyPlanType * typ;
             if ((typ = dynamic_cast<CapabilityStudyPlanType *>(basie)))
@@ -10002,7 +10096,7 @@ void StatisticalStudyPlansType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "GageRandRStudyPlan") == 0)
+        else if (strcmp(basie->getprintElement(), "GageRandRStudyPlan") == 0)
           {
             GageRandRStudyPlanType * typ;
             if ((typ = dynamic_cast<GageRandRStudyPlanType *>(basie)))
@@ -10018,7 +10112,7 @@ void StatisticalStudyPlansType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ProductionStudyPlan") == 0)
+        else if (strcmp(basie->getprintElement(), "ProductionStudyPlan") == 0)
           {
             ProductionStudyPlanType * typ;
             if ((typ = dynamic_cast<ProductionStudyPlanType *>(basie)))
@@ -10056,7 +10150,7 @@ bool StatisticalStudyPlansType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -10065,12 +10159,12 @@ bool StatisticalStudyPlansType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in StatisticalStudyPlansType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -10493,7 +10587,7 @@ bool StatisticalStudyResultsBaseType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -10502,12 +10596,12 @@ bool StatisticalStudyResultsBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in StatisticalStudyResultsBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -10521,7 +10615,11 @@ bool StatisticalStudyResultsBaseType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in StatisticalStudyResultsBaseType\n");
       returnValue = true;

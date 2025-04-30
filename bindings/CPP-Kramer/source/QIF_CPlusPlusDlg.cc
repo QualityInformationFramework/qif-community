@@ -2,10 +2,12 @@
 #include "xmlSchemaInstance.hh"
 #include <stdio.h> 
 #include <string.h>
+#include <map>       // idMap
 
 int XmlSchemaInstanceBase::format = 0;
 int XmlSchemaInstanceBase::places = 6;
 int yyStartAnew = 0;
+std::map<unsigned int, XmlSchemaInstanceBase *> idMap;
 
 char * idString(unsigned int id)
 {

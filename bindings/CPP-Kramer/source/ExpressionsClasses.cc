@@ -4,10 +4,12 @@
 #include <string.h>            // for strdup
 #include <stdlib.h>            // for exit
 #include <list>
+#include  <map>
 #include <xmlSchemaInstance.hh>
 #include "ExpressionsClasses.hh"
 
 #define INDENT 2
+extern std::map<unsigned int, XmlSchemaInstanceBase *> idMap;
 
 /* ***************************************************************** */
 /* ***************************************************************** */
@@ -102,12 +104,12 @@ void AndType::printSelf(FILE * outFile)
         BooleanExpressionBaseType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "Not") == 0)
+        else if (strcmp(basie->getprintElement(), "Not") == 0)
           {
             NotType * typ;
             if ((typ = dynamic_cast<NotType *>(basie)))
@@ -123,7 +125,7 @@ void AndType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ConstantIs") == 0)
+        else if (strcmp(basie->getprintElement(), "ConstantIs") == 0)
           {
             ConstantIsType * typ;
             if ((typ = dynamic_cast<ConstantIsType *>(basie)))
@@ -137,7 +139,7 @@ void AndType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "And") == 0)
+        else if (strcmp(basie->getprintElement(), "And") == 0)
           {
             AndType * typ;
             if ((typ = dynamic_cast<AndType *>(basie)))
@@ -153,7 +155,7 @@ void AndType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Or") == 0)
+        else if (strcmp(basie->getprintElement(), "Or") == 0)
           {
             OrType * typ;
             if ((typ = dynamic_cast<OrType *>(basie)))
@@ -169,7 +171,7 @@ void AndType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "BooleanEqual") == 0)
+        else if (strcmp(basie->getprintElement(), "BooleanEqual") == 0)
           {
             BooleanEqualType * typ;
             if ((typ = dynamic_cast<BooleanEqualType *>(basie)))
@@ -185,7 +187,7 @@ void AndType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArithmeticEqual") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticEqual") == 0)
           {
             ArithmeticEqualType * typ;
             if ((typ = dynamic_cast<ArithmeticEqualType *>(basie)))
@@ -201,7 +203,7 @@ void AndType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "GreaterThan") == 0)
+        else if (strcmp(basie->getprintElement(), "GreaterThan") == 0)
           {
             GreaterThanType * typ;
             if ((typ = dynamic_cast<GreaterThanType *>(basie)))
@@ -217,7 +219,7 @@ void AndType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "GreaterOrEqual") == 0)
+        else if (strcmp(basie->getprintElement(), "GreaterOrEqual") == 0)
           {
             GreaterOrEqualType * typ;
             if ((typ = dynamic_cast<GreaterOrEqualType *>(basie)))
@@ -233,7 +235,7 @@ void AndType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LessThan") == 0)
+        else if (strcmp(basie->getprintElement(), "LessThan") == 0)
           {
             LessThanType * typ;
             if ((typ = dynamic_cast<LessThanType *>(basie)))
@@ -249,7 +251,7 @@ void AndType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LessOrEqual") == 0)
+        else if (strcmp(basie->getprintElement(), "LessOrEqual") == 0)
           {
             LessOrEqualType * typ;
             if ((typ = dynamic_cast<LessOrEqualType *>(basie)))
@@ -265,7 +267,7 @@ void AndType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TokenEqual") == 0)
+        else if (strcmp(basie->getprintElement(), "TokenEqual") == 0)
           {
             TokenEqualType * typ;
             if ((typ = dynamic_cast<TokenEqualType *>(basie)))
@@ -281,7 +283,7 @@ void AndType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "CharacteristicIs") == 0)
+        else if (strcmp(basie->getprintElement(), "CharacteristicIs") == 0)
           {
             CharacteristicIsType * typ;
             if ((typ = dynamic_cast<CharacteristicIsType *>(basie)))
@@ -295,7 +297,7 @@ void AndType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "FeatureIsDatum") == 0)
+        else if (strcmp(basie->getprintElement(), "FeatureIsDatum") == 0)
           {
             FeatureIsDatumType * typ;
             if ((typ = dynamic_cast<FeatureIsDatumType *>(basie)))
@@ -309,7 +311,7 @@ void AndType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "FeatureIsInternal") == 0)
+        else if (strcmp(basie->getprintElement(), "FeatureIsInternal") == 0)
           {
             FeatureIsInternalType * typ;
             if ((typ = dynamic_cast<FeatureIsInternalType *>(basie)))
@@ -323,7 +325,7 @@ void AndType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "FeatureTypeIs") == 0)
+        else if (strcmp(basie->getprintElement(), "FeatureTypeIs") == 0)
           {
             FeatureTypeIsType * typ;
             if ((typ = dynamic_cast<FeatureTypeIsType *>(basie)))
@@ -337,7 +339,7 @@ void AndType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SamplingCategoryIs") == 0)
+        else if (strcmp(basie->getprintElement(), "SamplingCategoryIs") == 0)
           {
             SamplingCategoryIsType * typ;
             if ((typ = dynamic_cast<SamplingCategoryIsType *>(basie)))
@@ -351,7 +353,7 @@ void AndType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ShapeClassIs") == 0)
+        else if (strcmp(basie->getprintElement(), "ShapeClassIs") == 0)
           {
             ShapeClassIsType * typ;
             if ((typ = dynamic_cast<ShapeClassIsType *>(basie)))
@@ -387,7 +389,7 @@ bool AndType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -396,12 +398,12 @@ bool AndType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in AndType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -559,12 +561,12 @@ void ArithmeticComparisonBaseType::printSelf(FILE * outFile)
         ArithmeticExpressionBaseType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "ArithmeticConstant") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticConstant") == 0)
           {
             ArithmeticConstantType * typ;
             if ((typ = dynamic_cast<ArithmeticConstantType *>(basie)))
@@ -578,7 +580,7 @@ void ArithmeticComparisonBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Plus") == 0)
+        else if (strcmp(basie->getprintElement(), "Plus") == 0)
           {
             PlusType * typ;
             if ((typ = dynamic_cast<PlusType *>(basie)))
@@ -594,7 +596,7 @@ void ArithmeticComparisonBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Max") == 0)
+        else if (strcmp(basie->getprintElement(), "Max") == 0)
           {
             MaxType * typ;
             if ((typ = dynamic_cast<MaxType *>(basie)))
@@ -610,7 +612,7 @@ void ArithmeticComparisonBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Min") == 0)
+        else if (strcmp(basie->getprintElement(), "Min") == 0)
           {
             MinType * typ;
             if ((typ = dynamic_cast<MinType *>(basie)))
@@ -626,7 +628,7 @@ void ArithmeticComparisonBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Minus") == 0)
+        else if (strcmp(basie->getprintElement(), "Minus") == 0)
           {
             MinusType * typ;
             if ((typ = dynamic_cast<MinusType *>(basie)))
@@ -642,7 +644,7 @@ void ArithmeticComparisonBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Negate") == 0)
+        else if (strcmp(basie->getprintElement(), "Negate") == 0)
           {
             NegateType * typ;
             if ((typ = dynamic_cast<NegateType *>(basie)))
@@ -658,7 +660,7 @@ void ArithmeticComparisonBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Times") == 0)
+        else if (strcmp(basie->getprintElement(), "Times") == 0)
           {
             TimesType * typ;
             if ((typ = dynamic_cast<TimesType *>(basie)))
@@ -674,7 +676,7 @@ void ArithmeticComparisonBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "DividedBy") == 0)
+        else if (strcmp(basie->getprintElement(), "DividedBy") == 0)
           {
             DividedByType * typ;
             if ((typ = dynamic_cast<DividedByType *>(basie)))
@@ -690,7 +692,7 @@ void ArithmeticComparisonBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArithmeticFeatureParameter") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticFeatureParameter") == 0)
           {
             ArithmeticFeatureParameterType * typ;
             if ((typ = dynamic_cast<ArithmeticFeatureParameterType *>(basie)))
@@ -706,7 +708,7 @@ void ArithmeticComparisonBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArithmeticCharacteristicParameter") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticCharacteristicParameter") == 0)
           {
             ArithmeticCharacteristicParameterType * typ;
             if ((typ = dynamic_cast<ArithmeticCharacteristicParameterType *>(basie)))
@@ -722,7 +724,7 @@ void ArithmeticComparisonBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArithmeticDMEParameter") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticDMEParameter") == 0)
           {
             ArithmeticDMEParameterType * typ;
             if ((typ = dynamic_cast<ArithmeticDMEParameterType *>(basie)))
@@ -738,7 +740,7 @@ void ArithmeticComparisonBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArithmeticParameterValue") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticParameterValue") == 0)
           {
             ArithmeticParameterValueType * typ;
             if ((typ = dynamic_cast<ArithmeticParameterValueType *>(basie)))
@@ -754,7 +756,7 @@ void ArithmeticComparisonBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArithmeticPartParameter") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticPartParameter") == 0)
           {
             ArithmeticPartParameterType * typ;
             if ((typ = dynamic_cast<ArithmeticPartParameterType *>(basie)))
@@ -770,7 +772,7 @@ void ArithmeticComparisonBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "CharacteristicTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "CharacteristicTolerance") == 0)
           {
             CharacteristicToleranceType * typ;
             if ((typ = dynamic_cast<CharacteristicToleranceType *>(basie)))
@@ -784,7 +786,7 @@ void ArithmeticComparisonBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "FeatureLength") == 0)
+        else if (strcmp(basie->getprintElement(), "FeatureLength") == 0)
           {
             FeatureLengthType * typ;
             if ((typ = dynamic_cast<FeatureLengthType *>(basie)))
@@ -798,7 +800,7 @@ void ArithmeticComparisonBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "FeatureArea") == 0)
+        else if (strcmp(basie->getprintElement(), "FeatureArea") == 0)
           {
             FeatureAreaType * typ;
             if ((typ = dynamic_cast<FeatureAreaType *>(basie)))
@@ -812,7 +814,7 @@ void ArithmeticComparisonBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "FeatureSize") == 0)
+        else if (strcmp(basie->getprintElement(), "FeatureSize") == 0)
           {
             FeatureSizeType * typ;
             if ((typ = dynamic_cast<FeatureSizeType *>(basie)))
@@ -826,7 +828,7 @@ void ArithmeticComparisonBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "VariableValue") == 0)
+        else if (strcmp(basie->getprintElement(), "VariableValue") == 0)
           {
             VariableValueType * typ;
             if ((typ = dynamic_cast<VariableValueType *>(basie)))
@@ -875,8 +877,8 @@ ArithmeticComparisonEnumType::ArithmeticComparisonEnumType(
   XmlNMTOKEN(
     valIn)
 {
-  if (!bad)
-    bad = (strcmp(val.c_str(), "EQUAL") &&
+  if (!getbad())
+    setbad(strcmp(val.c_str(), "EQUAL") &&
            strcmp(val.c_str(), "GREATER") &&
            strcmp(val.c_str(), "GREATEROREQUAL") &&
            strcmp(val.c_str(), "LESS") &&
@@ -990,7 +992,7 @@ bool ArithmeticConstantType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "val")
+      if (decl->getname() == "val")
         {
           XmlDecimal * valVal;
           if (this->val)
@@ -999,12 +1001,12 @@ bool ArithmeticConstantType::badAttributes(
               returnValue = true;
               break;
             }
-          valVal = new XmlDecimal(decl->val.c_str());
-          if (valVal->bad)
+          valVal = new XmlDecimal(decl->getval().c_str());
+          if (valVal->getbad())
             {
               delete valVal;
               fprintf(stderr, "bad value %s for val in ArithmeticConstantType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -1144,12 +1146,12 @@ void ArithmeticEqualType::printSelf(FILE * outFile)
         ArithmeticExpressionBaseType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "ArithmeticConstant") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticConstant") == 0)
           {
             ArithmeticConstantType * typ;
             if ((typ = dynamic_cast<ArithmeticConstantType *>(basie)))
@@ -1163,7 +1165,7 @@ void ArithmeticEqualType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Plus") == 0)
+        else if (strcmp(basie->getprintElement(), "Plus") == 0)
           {
             PlusType * typ;
             if ((typ = dynamic_cast<PlusType *>(basie)))
@@ -1179,7 +1181,7 @@ void ArithmeticEqualType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Max") == 0)
+        else if (strcmp(basie->getprintElement(), "Max") == 0)
           {
             MaxType * typ;
             if ((typ = dynamic_cast<MaxType *>(basie)))
@@ -1195,7 +1197,7 @@ void ArithmeticEqualType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Min") == 0)
+        else if (strcmp(basie->getprintElement(), "Min") == 0)
           {
             MinType * typ;
             if ((typ = dynamic_cast<MinType *>(basie)))
@@ -1211,7 +1213,7 @@ void ArithmeticEqualType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Minus") == 0)
+        else if (strcmp(basie->getprintElement(), "Minus") == 0)
           {
             MinusType * typ;
             if ((typ = dynamic_cast<MinusType *>(basie)))
@@ -1227,7 +1229,7 @@ void ArithmeticEqualType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Negate") == 0)
+        else if (strcmp(basie->getprintElement(), "Negate") == 0)
           {
             NegateType * typ;
             if ((typ = dynamic_cast<NegateType *>(basie)))
@@ -1243,7 +1245,7 @@ void ArithmeticEqualType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Times") == 0)
+        else if (strcmp(basie->getprintElement(), "Times") == 0)
           {
             TimesType * typ;
             if ((typ = dynamic_cast<TimesType *>(basie)))
@@ -1259,7 +1261,7 @@ void ArithmeticEqualType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "DividedBy") == 0)
+        else if (strcmp(basie->getprintElement(), "DividedBy") == 0)
           {
             DividedByType * typ;
             if ((typ = dynamic_cast<DividedByType *>(basie)))
@@ -1275,7 +1277,7 @@ void ArithmeticEqualType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArithmeticFeatureParameter") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticFeatureParameter") == 0)
           {
             ArithmeticFeatureParameterType * typ;
             if ((typ = dynamic_cast<ArithmeticFeatureParameterType *>(basie)))
@@ -1291,7 +1293,7 @@ void ArithmeticEqualType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArithmeticCharacteristicParameter") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticCharacteristicParameter") == 0)
           {
             ArithmeticCharacteristicParameterType * typ;
             if ((typ = dynamic_cast<ArithmeticCharacteristicParameterType *>(basie)))
@@ -1307,7 +1309,7 @@ void ArithmeticEqualType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArithmeticDMEParameter") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticDMEParameter") == 0)
           {
             ArithmeticDMEParameterType * typ;
             if ((typ = dynamic_cast<ArithmeticDMEParameterType *>(basie)))
@@ -1323,7 +1325,7 @@ void ArithmeticEqualType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArithmeticParameterValue") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticParameterValue") == 0)
           {
             ArithmeticParameterValueType * typ;
             if ((typ = dynamic_cast<ArithmeticParameterValueType *>(basie)))
@@ -1339,7 +1341,7 @@ void ArithmeticEqualType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArithmeticPartParameter") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticPartParameter") == 0)
           {
             ArithmeticPartParameterType * typ;
             if ((typ = dynamic_cast<ArithmeticPartParameterType *>(basie)))
@@ -1355,7 +1357,7 @@ void ArithmeticEqualType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "CharacteristicTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "CharacteristicTolerance") == 0)
           {
             CharacteristicToleranceType * typ;
             if ((typ = dynamic_cast<CharacteristicToleranceType *>(basie)))
@@ -1369,7 +1371,7 @@ void ArithmeticEqualType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "FeatureLength") == 0)
+        else if (strcmp(basie->getprintElement(), "FeatureLength") == 0)
           {
             FeatureLengthType * typ;
             if ((typ = dynamic_cast<FeatureLengthType *>(basie)))
@@ -1383,7 +1385,7 @@ void ArithmeticEqualType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "FeatureArea") == 0)
+        else if (strcmp(basie->getprintElement(), "FeatureArea") == 0)
           {
             FeatureAreaType * typ;
             if ((typ = dynamic_cast<FeatureAreaType *>(basie)))
@@ -1397,7 +1399,7 @@ void ArithmeticEqualType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "FeatureSize") == 0)
+        else if (strcmp(basie->getprintElement(), "FeatureSize") == 0)
           {
             FeatureSizeType * typ;
             if ((typ = dynamic_cast<FeatureSizeType *>(basie)))
@@ -1411,7 +1413,7 @@ void ArithmeticEqualType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "VariableValue") == 0)
+        else if (strcmp(basie->getprintElement(), "VariableValue") == 0)
           {
             VariableValueType * typ;
             if ((typ = dynamic_cast<VariableValueType *>(basie)))
@@ -1731,12 +1733,12 @@ void BinaryArithmeticExpressionBaseType::printSelf(FILE * outFile)
         ArithmeticExpressionBaseType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "ArithmeticConstant") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticConstant") == 0)
           {
             ArithmeticConstantType * typ;
             if ((typ = dynamic_cast<ArithmeticConstantType *>(basie)))
@@ -1750,7 +1752,7 @@ void BinaryArithmeticExpressionBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Plus") == 0)
+        else if (strcmp(basie->getprintElement(), "Plus") == 0)
           {
             PlusType * typ;
             if ((typ = dynamic_cast<PlusType *>(basie)))
@@ -1766,7 +1768,7 @@ void BinaryArithmeticExpressionBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Max") == 0)
+        else if (strcmp(basie->getprintElement(), "Max") == 0)
           {
             MaxType * typ;
             if ((typ = dynamic_cast<MaxType *>(basie)))
@@ -1782,7 +1784,7 @@ void BinaryArithmeticExpressionBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Min") == 0)
+        else if (strcmp(basie->getprintElement(), "Min") == 0)
           {
             MinType * typ;
             if ((typ = dynamic_cast<MinType *>(basie)))
@@ -1798,7 +1800,7 @@ void BinaryArithmeticExpressionBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Minus") == 0)
+        else if (strcmp(basie->getprintElement(), "Minus") == 0)
           {
             MinusType * typ;
             if ((typ = dynamic_cast<MinusType *>(basie)))
@@ -1814,7 +1816,7 @@ void BinaryArithmeticExpressionBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Negate") == 0)
+        else if (strcmp(basie->getprintElement(), "Negate") == 0)
           {
             NegateType * typ;
             if ((typ = dynamic_cast<NegateType *>(basie)))
@@ -1830,7 +1832,7 @@ void BinaryArithmeticExpressionBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Times") == 0)
+        else if (strcmp(basie->getprintElement(), "Times") == 0)
           {
             TimesType * typ;
             if ((typ = dynamic_cast<TimesType *>(basie)))
@@ -1846,7 +1848,7 @@ void BinaryArithmeticExpressionBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "DividedBy") == 0)
+        else if (strcmp(basie->getprintElement(), "DividedBy") == 0)
           {
             DividedByType * typ;
             if ((typ = dynamic_cast<DividedByType *>(basie)))
@@ -1862,7 +1864,7 @@ void BinaryArithmeticExpressionBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArithmeticFeatureParameter") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticFeatureParameter") == 0)
           {
             ArithmeticFeatureParameterType * typ;
             if ((typ = dynamic_cast<ArithmeticFeatureParameterType *>(basie)))
@@ -1878,7 +1880,7 @@ void BinaryArithmeticExpressionBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArithmeticCharacteristicParameter") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticCharacteristicParameter") == 0)
           {
             ArithmeticCharacteristicParameterType * typ;
             if ((typ = dynamic_cast<ArithmeticCharacteristicParameterType *>(basie)))
@@ -1894,7 +1896,7 @@ void BinaryArithmeticExpressionBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArithmeticDMEParameter") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticDMEParameter") == 0)
           {
             ArithmeticDMEParameterType * typ;
             if ((typ = dynamic_cast<ArithmeticDMEParameterType *>(basie)))
@@ -1910,7 +1912,7 @@ void BinaryArithmeticExpressionBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArithmeticParameterValue") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticParameterValue") == 0)
           {
             ArithmeticParameterValueType * typ;
             if ((typ = dynamic_cast<ArithmeticParameterValueType *>(basie)))
@@ -1926,7 +1928,7 @@ void BinaryArithmeticExpressionBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArithmeticPartParameter") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticPartParameter") == 0)
           {
             ArithmeticPartParameterType * typ;
             if ((typ = dynamic_cast<ArithmeticPartParameterType *>(basie)))
@@ -1942,7 +1944,7 @@ void BinaryArithmeticExpressionBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "CharacteristicTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "CharacteristicTolerance") == 0)
           {
             CharacteristicToleranceType * typ;
             if ((typ = dynamic_cast<CharacteristicToleranceType *>(basie)))
@@ -1956,7 +1958,7 @@ void BinaryArithmeticExpressionBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "FeatureLength") == 0)
+        else if (strcmp(basie->getprintElement(), "FeatureLength") == 0)
           {
             FeatureLengthType * typ;
             if ((typ = dynamic_cast<FeatureLengthType *>(basie)))
@@ -1970,7 +1972,7 @@ void BinaryArithmeticExpressionBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "FeatureArea") == 0)
+        else if (strcmp(basie->getprintElement(), "FeatureArea") == 0)
           {
             FeatureAreaType * typ;
             if ((typ = dynamic_cast<FeatureAreaType *>(basie)))
@@ -1984,7 +1986,7 @@ void BinaryArithmeticExpressionBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "FeatureSize") == 0)
+        else if (strcmp(basie->getprintElement(), "FeatureSize") == 0)
           {
             FeatureSizeType * typ;
             if ((typ = dynamic_cast<FeatureSizeType *>(basie)))
@@ -1998,7 +2000,7 @@ void BinaryArithmeticExpressionBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "VariableValue") == 0)
+        else if (strcmp(basie->getprintElement(), "VariableValue") == 0)
           {
             VariableValueType * typ;
             if ((typ = dynamic_cast<VariableValueType *>(basie)))
@@ -2093,12 +2095,12 @@ void BinaryBooleanExpressionBaseType::printSelf(FILE * outFile)
         BooleanExpressionBaseType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "Not") == 0)
+        else if (strcmp(basie->getprintElement(), "Not") == 0)
           {
             NotType * typ;
             if ((typ = dynamic_cast<NotType *>(basie)))
@@ -2114,7 +2116,7 @@ void BinaryBooleanExpressionBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ConstantIs") == 0)
+        else if (strcmp(basie->getprintElement(), "ConstantIs") == 0)
           {
             ConstantIsType * typ;
             if ((typ = dynamic_cast<ConstantIsType *>(basie)))
@@ -2128,7 +2130,7 @@ void BinaryBooleanExpressionBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "And") == 0)
+        else if (strcmp(basie->getprintElement(), "And") == 0)
           {
             AndType * typ;
             if ((typ = dynamic_cast<AndType *>(basie)))
@@ -2144,7 +2146,7 @@ void BinaryBooleanExpressionBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Or") == 0)
+        else if (strcmp(basie->getprintElement(), "Or") == 0)
           {
             OrType * typ;
             if ((typ = dynamic_cast<OrType *>(basie)))
@@ -2160,7 +2162,7 @@ void BinaryBooleanExpressionBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "BooleanEqual") == 0)
+        else if (strcmp(basie->getprintElement(), "BooleanEqual") == 0)
           {
             BooleanEqualType * typ;
             if ((typ = dynamic_cast<BooleanEqualType *>(basie)))
@@ -2176,7 +2178,7 @@ void BinaryBooleanExpressionBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArithmeticEqual") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticEqual") == 0)
           {
             ArithmeticEqualType * typ;
             if ((typ = dynamic_cast<ArithmeticEqualType *>(basie)))
@@ -2192,7 +2194,7 @@ void BinaryBooleanExpressionBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "GreaterThan") == 0)
+        else if (strcmp(basie->getprintElement(), "GreaterThan") == 0)
           {
             GreaterThanType * typ;
             if ((typ = dynamic_cast<GreaterThanType *>(basie)))
@@ -2208,7 +2210,7 @@ void BinaryBooleanExpressionBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "GreaterOrEqual") == 0)
+        else if (strcmp(basie->getprintElement(), "GreaterOrEqual") == 0)
           {
             GreaterOrEqualType * typ;
             if ((typ = dynamic_cast<GreaterOrEqualType *>(basie)))
@@ -2224,7 +2226,7 @@ void BinaryBooleanExpressionBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LessThan") == 0)
+        else if (strcmp(basie->getprintElement(), "LessThan") == 0)
           {
             LessThanType * typ;
             if ((typ = dynamic_cast<LessThanType *>(basie)))
@@ -2240,7 +2242,7 @@ void BinaryBooleanExpressionBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LessOrEqual") == 0)
+        else if (strcmp(basie->getprintElement(), "LessOrEqual") == 0)
           {
             LessOrEqualType * typ;
             if ((typ = dynamic_cast<LessOrEqualType *>(basie)))
@@ -2256,7 +2258,7 @@ void BinaryBooleanExpressionBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TokenEqual") == 0)
+        else if (strcmp(basie->getprintElement(), "TokenEqual") == 0)
           {
             TokenEqualType * typ;
             if ((typ = dynamic_cast<TokenEqualType *>(basie)))
@@ -2272,7 +2274,7 @@ void BinaryBooleanExpressionBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "CharacteristicIs") == 0)
+        else if (strcmp(basie->getprintElement(), "CharacteristicIs") == 0)
           {
             CharacteristicIsType * typ;
             if ((typ = dynamic_cast<CharacteristicIsType *>(basie)))
@@ -2286,7 +2288,7 @@ void BinaryBooleanExpressionBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "FeatureIsDatum") == 0)
+        else if (strcmp(basie->getprintElement(), "FeatureIsDatum") == 0)
           {
             FeatureIsDatumType * typ;
             if ((typ = dynamic_cast<FeatureIsDatumType *>(basie)))
@@ -2300,7 +2302,7 @@ void BinaryBooleanExpressionBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "FeatureIsInternal") == 0)
+        else if (strcmp(basie->getprintElement(), "FeatureIsInternal") == 0)
           {
             FeatureIsInternalType * typ;
             if ((typ = dynamic_cast<FeatureIsInternalType *>(basie)))
@@ -2314,7 +2316,7 @@ void BinaryBooleanExpressionBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "FeatureTypeIs") == 0)
+        else if (strcmp(basie->getprintElement(), "FeatureTypeIs") == 0)
           {
             FeatureTypeIsType * typ;
             if ((typ = dynamic_cast<FeatureTypeIsType *>(basie)))
@@ -2328,7 +2330,7 @@ void BinaryBooleanExpressionBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SamplingCategoryIs") == 0)
+        else if (strcmp(basie->getprintElement(), "SamplingCategoryIs") == 0)
           {
             SamplingCategoryIsType * typ;
             if ((typ = dynamic_cast<SamplingCategoryIsType *>(basie)))
@@ -2342,7 +2344,7 @@ void BinaryBooleanExpressionBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ShapeClassIs") == 0)
+        else if (strcmp(basie->getprintElement(), "ShapeClassIs") == 0)
           {
             ShapeClassIsType * typ;
             if ((typ = dynamic_cast<ShapeClassIsType *>(basie)))
@@ -2389,8 +2391,8 @@ BooleanConstantEnumType::BooleanConstantEnumType(
   XmlNMTOKEN(
     valIn)
 {
-  if (!bad)
-    bad = (strcmp(val.c_str(), "QIF_TRUE") &&
+  if (!getbad())
+    setbad(strcmp(val.c_str(), "QIF_TRUE") &&
            strcmp(val.c_str(), "QIF_FALSE"));
 }
 
@@ -2484,12 +2486,12 @@ void BooleanEqualType::printSelf(FILE * outFile)
         BooleanExpressionBaseType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "Not") == 0)
+        else if (strcmp(basie->getprintElement(), "Not") == 0)
           {
             NotType * typ;
             if ((typ = dynamic_cast<NotType *>(basie)))
@@ -2505,7 +2507,7 @@ void BooleanEqualType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ConstantIs") == 0)
+        else if (strcmp(basie->getprintElement(), "ConstantIs") == 0)
           {
             ConstantIsType * typ;
             if ((typ = dynamic_cast<ConstantIsType *>(basie)))
@@ -2519,7 +2521,7 @@ void BooleanEqualType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "And") == 0)
+        else if (strcmp(basie->getprintElement(), "And") == 0)
           {
             AndType * typ;
             if ((typ = dynamic_cast<AndType *>(basie)))
@@ -2535,7 +2537,7 @@ void BooleanEqualType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Or") == 0)
+        else if (strcmp(basie->getprintElement(), "Or") == 0)
           {
             OrType * typ;
             if ((typ = dynamic_cast<OrType *>(basie)))
@@ -2551,7 +2553,7 @@ void BooleanEqualType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "BooleanEqual") == 0)
+        else if (strcmp(basie->getprintElement(), "BooleanEqual") == 0)
           {
             BooleanEqualType * typ;
             if ((typ = dynamic_cast<BooleanEqualType *>(basie)))
@@ -2567,7 +2569,7 @@ void BooleanEqualType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArithmeticEqual") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticEqual") == 0)
           {
             ArithmeticEqualType * typ;
             if ((typ = dynamic_cast<ArithmeticEqualType *>(basie)))
@@ -2583,7 +2585,7 @@ void BooleanEqualType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "GreaterThan") == 0)
+        else if (strcmp(basie->getprintElement(), "GreaterThan") == 0)
           {
             GreaterThanType * typ;
             if ((typ = dynamic_cast<GreaterThanType *>(basie)))
@@ -2599,7 +2601,7 @@ void BooleanEqualType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "GreaterOrEqual") == 0)
+        else if (strcmp(basie->getprintElement(), "GreaterOrEqual") == 0)
           {
             GreaterOrEqualType * typ;
             if ((typ = dynamic_cast<GreaterOrEqualType *>(basie)))
@@ -2615,7 +2617,7 @@ void BooleanEqualType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LessThan") == 0)
+        else if (strcmp(basie->getprintElement(), "LessThan") == 0)
           {
             LessThanType * typ;
             if ((typ = dynamic_cast<LessThanType *>(basie)))
@@ -2631,7 +2633,7 @@ void BooleanEqualType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LessOrEqual") == 0)
+        else if (strcmp(basie->getprintElement(), "LessOrEqual") == 0)
           {
             LessOrEqualType * typ;
             if ((typ = dynamic_cast<LessOrEqualType *>(basie)))
@@ -2647,7 +2649,7 @@ void BooleanEqualType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TokenEqual") == 0)
+        else if (strcmp(basie->getprintElement(), "TokenEqual") == 0)
           {
             TokenEqualType * typ;
             if ((typ = dynamic_cast<TokenEqualType *>(basie)))
@@ -2663,7 +2665,7 @@ void BooleanEqualType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "CharacteristicIs") == 0)
+        else if (strcmp(basie->getprintElement(), "CharacteristicIs") == 0)
           {
             CharacteristicIsType * typ;
             if ((typ = dynamic_cast<CharacteristicIsType *>(basie)))
@@ -2677,7 +2679,7 @@ void BooleanEqualType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "FeatureIsDatum") == 0)
+        else if (strcmp(basie->getprintElement(), "FeatureIsDatum") == 0)
           {
             FeatureIsDatumType * typ;
             if ((typ = dynamic_cast<FeatureIsDatumType *>(basie)))
@@ -2691,7 +2693,7 @@ void BooleanEqualType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "FeatureIsInternal") == 0)
+        else if (strcmp(basie->getprintElement(), "FeatureIsInternal") == 0)
           {
             FeatureIsInternalType * typ;
             if ((typ = dynamic_cast<FeatureIsInternalType *>(basie)))
@@ -2705,7 +2707,7 @@ void BooleanEqualType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "FeatureTypeIs") == 0)
+        else if (strcmp(basie->getprintElement(), "FeatureTypeIs") == 0)
           {
             FeatureTypeIsType * typ;
             if ((typ = dynamic_cast<FeatureTypeIsType *>(basie)))
@@ -2719,7 +2721,7 @@ void BooleanEqualType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SamplingCategoryIs") == 0)
+        else if (strcmp(basie->getprintElement(), "SamplingCategoryIs") == 0)
           {
             SamplingCategoryIsType * typ;
             if ((typ = dynamic_cast<SamplingCategoryIsType *>(basie)))
@@ -2733,7 +2735,7 @@ void BooleanEqualType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ShapeClassIs") == 0)
+        else if (strcmp(basie->getprintElement(), "ShapeClassIs") == 0)
           {
             ShapeClassIsType * typ;
             if ((typ = dynamic_cast<ShapeClassIsType *>(basie)))
@@ -2876,7 +2878,7 @@ bool CharacteristicIsType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "val")
+      if (decl->getname() == "val")
         {
           CharacteristicTypeEnumType * valVal;
           if (this->val)
@@ -2885,12 +2887,12 @@ bool CharacteristicIsType::badAttributes(
               returnValue = true;
               break;
             }
-          valVal = new CharacteristicTypeEnumType(decl->val.c_str());
-          if (valVal->bad)
+          valVal = new CharacteristicTypeEnumType(decl->getval().c_str());
+          if (valVal->getbad())
             {
               delete valVal;
               fprintf(stderr, "bad value %s for val in CharacteristicIsType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -2960,8 +2962,8 @@ CharacteristicTypeEnumType::CharacteristicTypeEnumType(
   XmlNMTOKEN(
     valIn)
 {
-  if (!bad)
-    bad = (strcmp(val.c_str(), "ANGLE") &&
+  if (!getbad())
+    setbad(strcmp(val.c_str(), "ANGLE") &&
            strcmp(val.c_str(), "ANGLEBETWEEN") &&
            strcmp(val.c_str(), "ANGLECOORDINATE") &&
            strcmp(val.c_str(), "ANGLEFROM") &&
@@ -3132,8 +3134,8 @@ ClosedCurvePointSamplingStrategyEnumType::ClosedCurvePointSamplingStrategyEnumTy
   XmlNMTOKEN(
     valIn)
 {
-  if (!bad)
-    bad = (strcmp(val.c_str(), "POINTS") &&
+  if (!getbad())
+    setbad(strcmp(val.c_str(), "POINTS") &&
            strcmp(val.c_str(), "EQUIDISTANT"));
 }
 
@@ -3188,8 +3190,8 @@ ConePointSamplingStrategyEnumType::ConePointSamplingStrategyEnumType(
   PointSamplingStrategyEnumBaseType(
     valIn)
 {
-  if (!bad)
-    bad = (strcmp(val.c_str(), "POLARGRID") &&
+  if (!getbad())
+    setbad(strcmp(val.c_str(), "POLARGRID") &&
            strcmp(val.c_str(), "STRATIFIED") &&
            strcmp(val.c_str(), "SPIRAL") &&
            strcmp(val.c_str(), "SPIDERWEB") &&
@@ -3303,7 +3305,7 @@ bool ConstantIsType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "val")
+      if (decl->getname() == "val")
         {
           BooleanConstantEnumType * valVal;
           if (this->val)
@@ -3312,12 +3314,12 @@ bool ConstantIsType::badAttributes(
               returnValue = true;
               break;
             }
-          valVal = new BooleanConstantEnumType(decl->val.c_str());
-          if (valVal->bad)
+          valVal = new BooleanConstantEnumType(decl->getval().c_str());
+          if (valVal->getbad())
             {
               delete valVal;
               fprintf(stderr, "bad value %s for val in ConstantIsType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -3371,8 +3373,8 @@ DMEClassNameEnumType::DMEClassNameEnumType(
   XmlNMTOKEN(
     valIn)
 {
-  if (!bad)
-    bad = (strcmp(val.c_str(), "AACMM") &&
+  if (!getbad())
+    setbad(strcmp(val.c_str(), "AACMM") &&
            strcmp(val.c_str(), "ALLDMES") &&
            strcmp(val.c_str(), "ANALOG_MICROMETER") &&
            strcmp(val.c_str(), "AUTOCOLLIMATOR") &&
@@ -3572,12 +3574,12 @@ void DividedByType::printSelf(FILE * outFile)
         ArithmeticExpressionBaseType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "ArithmeticConstant") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticConstant") == 0)
           {
             ArithmeticConstantType * typ;
             if ((typ = dynamic_cast<ArithmeticConstantType *>(basie)))
@@ -3591,7 +3593,7 @@ void DividedByType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Plus") == 0)
+        else if (strcmp(basie->getprintElement(), "Plus") == 0)
           {
             PlusType * typ;
             if ((typ = dynamic_cast<PlusType *>(basie)))
@@ -3607,7 +3609,7 @@ void DividedByType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Max") == 0)
+        else if (strcmp(basie->getprintElement(), "Max") == 0)
           {
             MaxType * typ;
             if ((typ = dynamic_cast<MaxType *>(basie)))
@@ -3623,7 +3625,7 @@ void DividedByType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Min") == 0)
+        else if (strcmp(basie->getprintElement(), "Min") == 0)
           {
             MinType * typ;
             if ((typ = dynamic_cast<MinType *>(basie)))
@@ -3639,7 +3641,7 @@ void DividedByType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Minus") == 0)
+        else if (strcmp(basie->getprintElement(), "Minus") == 0)
           {
             MinusType * typ;
             if ((typ = dynamic_cast<MinusType *>(basie)))
@@ -3655,7 +3657,7 @@ void DividedByType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Negate") == 0)
+        else if (strcmp(basie->getprintElement(), "Negate") == 0)
           {
             NegateType * typ;
             if ((typ = dynamic_cast<NegateType *>(basie)))
@@ -3671,7 +3673,7 @@ void DividedByType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Times") == 0)
+        else if (strcmp(basie->getprintElement(), "Times") == 0)
           {
             TimesType * typ;
             if ((typ = dynamic_cast<TimesType *>(basie)))
@@ -3687,7 +3689,7 @@ void DividedByType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "DividedBy") == 0)
+        else if (strcmp(basie->getprintElement(), "DividedBy") == 0)
           {
             DividedByType * typ;
             if ((typ = dynamic_cast<DividedByType *>(basie)))
@@ -3703,7 +3705,7 @@ void DividedByType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArithmeticFeatureParameter") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticFeatureParameter") == 0)
           {
             ArithmeticFeatureParameterType * typ;
             if ((typ = dynamic_cast<ArithmeticFeatureParameterType *>(basie)))
@@ -3719,7 +3721,7 @@ void DividedByType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArithmeticCharacteristicParameter") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticCharacteristicParameter") == 0)
           {
             ArithmeticCharacteristicParameterType * typ;
             if ((typ = dynamic_cast<ArithmeticCharacteristicParameterType *>(basie)))
@@ -3735,7 +3737,7 @@ void DividedByType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArithmeticDMEParameter") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticDMEParameter") == 0)
           {
             ArithmeticDMEParameterType * typ;
             if ((typ = dynamic_cast<ArithmeticDMEParameterType *>(basie)))
@@ -3751,7 +3753,7 @@ void DividedByType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArithmeticParameterValue") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticParameterValue") == 0)
           {
             ArithmeticParameterValueType * typ;
             if ((typ = dynamic_cast<ArithmeticParameterValueType *>(basie)))
@@ -3767,7 +3769,7 @@ void DividedByType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArithmeticPartParameter") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticPartParameter") == 0)
           {
             ArithmeticPartParameterType * typ;
             if ((typ = dynamic_cast<ArithmeticPartParameterType *>(basie)))
@@ -3783,7 +3785,7 @@ void DividedByType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "CharacteristicTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "CharacteristicTolerance") == 0)
           {
             CharacteristicToleranceType * typ;
             if ((typ = dynamic_cast<CharacteristicToleranceType *>(basie)))
@@ -3797,7 +3799,7 @@ void DividedByType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "FeatureLength") == 0)
+        else if (strcmp(basie->getprintElement(), "FeatureLength") == 0)
           {
             FeatureLengthType * typ;
             if ((typ = dynamic_cast<FeatureLengthType *>(basie)))
@@ -3811,7 +3813,7 @@ void DividedByType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "FeatureArea") == 0)
+        else if (strcmp(basie->getprintElement(), "FeatureArea") == 0)
           {
             FeatureAreaType * typ;
             if ((typ = dynamic_cast<FeatureAreaType *>(basie)))
@@ -3825,7 +3827,7 @@ void DividedByType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "FeatureSize") == 0)
+        else if (strcmp(basie->getprintElement(), "FeatureSize") == 0)
           {
             FeatureSizeType * typ;
             if ((typ = dynamic_cast<FeatureSizeType *>(basie)))
@@ -3839,7 +3841,7 @@ void DividedByType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "VariableValue") == 0)
+        else if (strcmp(basie->getprintElement(), "VariableValue") == 0)
           {
             VariableValueType * typ;
             if ((typ = dynamic_cast<VariableValueType *>(basie)))
@@ -3880,8 +3882,8 @@ ElongatedCylinderPointSamplingStrategyEnumType::ElongatedCylinderPointSamplingSt
   PointSamplingStrategyEnumBaseType(
     valIn)
 {
-  if (!bad)
-    bad = (strcmp(val.c_str(), "ORTHOGONALGRID") &&
+  if (!getbad())
+    setbad(strcmp(val.c_str(), "ORTHOGONALGRID") &&
            strcmp(val.c_str(), "BIRDCAGE") &&
            strcmp(val.c_str(), "SPECIFIEDGRID") &&
            strcmp(val.c_str(), "STRATIFIED") &&
@@ -3944,8 +3946,8 @@ ExtrudedCrossSectionPointSamplingStrategyEnumType::ExtrudedCrossSectionPointSamp
   PointSamplingStrategyEnumBaseType(
     valIn)
 {
-  if (!bad)
-    bad = (strcmp(val.c_str(), "BIRDCAGE") &&
+  if (!getbad())
+    setbad(strcmp(val.c_str(), "BIRDCAGE") &&
            strcmp(val.c_str(), "STRATIFIED") &&
            strcmp(val.c_str(), "POINTS"));
 }
@@ -4084,8 +4086,8 @@ FeatureTypeEnumType::FeatureTypeEnumType(
   XmlNMTOKEN(
     valIn)
 {
-  if (!bad)
-    bad = (strcmp(val.c_str(), "CIRCLE") &&
+  if (!getbad())
+    setbad(strcmp(val.c_str(), "CIRCLE") &&
            strcmp(val.c_str(), "CIRCULARARC") &&
            strcmp(val.c_str(), "CONE") &&
            strcmp(val.c_str(), "CONICALSEGMENT") &&
@@ -4265,7 +4267,7 @@ bool FeatureTypeIsType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "val")
+      if (decl->getname() == "val")
         {
           FeatureTypeEnumType * valVal;
           if (this->val)
@@ -4274,12 +4276,12 @@ bool FeatureTypeIsType::badAttributes(
               returnValue = true;
               break;
             }
-          valVal = new FeatureTypeEnumType(decl->val.c_str());
-          if (valVal->bad)
+          valVal = new FeatureTypeEnumType(decl->getval().c_str());
+          if (valVal->getbad())
             {
               delete valVal;
               fprintf(stderr, "bad value %s for val in FeatureTypeIsType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -4370,12 +4372,12 @@ void GreaterOrEqualType::printSelf(FILE * outFile)
         ArithmeticExpressionBaseType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "ArithmeticConstant") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticConstant") == 0)
           {
             ArithmeticConstantType * typ;
             if ((typ = dynamic_cast<ArithmeticConstantType *>(basie)))
@@ -4389,7 +4391,7 @@ void GreaterOrEqualType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Plus") == 0)
+        else if (strcmp(basie->getprintElement(), "Plus") == 0)
           {
             PlusType * typ;
             if ((typ = dynamic_cast<PlusType *>(basie)))
@@ -4405,7 +4407,7 @@ void GreaterOrEqualType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Max") == 0)
+        else if (strcmp(basie->getprintElement(), "Max") == 0)
           {
             MaxType * typ;
             if ((typ = dynamic_cast<MaxType *>(basie)))
@@ -4421,7 +4423,7 @@ void GreaterOrEqualType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Min") == 0)
+        else if (strcmp(basie->getprintElement(), "Min") == 0)
           {
             MinType * typ;
             if ((typ = dynamic_cast<MinType *>(basie)))
@@ -4437,7 +4439,7 @@ void GreaterOrEqualType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Minus") == 0)
+        else if (strcmp(basie->getprintElement(), "Minus") == 0)
           {
             MinusType * typ;
             if ((typ = dynamic_cast<MinusType *>(basie)))
@@ -4453,7 +4455,7 @@ void GreaterOrEqualType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Negate") == 0)
+        else if (strcmp(basie->getprintElement(), "Negate") == 0)
           {
             NegateType * typ;
             if ((typ = dynamic_cast<NegateType *>(basie)))
@@ -4469,7 +4471,7 @@ void GreaterOrEqualType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Times") == 0)
+        else if (strcmp(basie->getprintElement(), "Times") == 0)
           {
             TimesType * typ;
             if ((typ = dynamic_cast<TimesType *>(basie)))
@@ -4485,7 +4487,7 @@ void GreaterOrEqualType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "DividedBy") == 0)
+        else if (strcmp(basie->getprintElement(), "DividedBy") == 0)
           {
             DividedByType * typ;
             if ((typ = dynamic_cast<DividedByType *>(basie)))
@@ -4501,7 +4503,7 @@ void GreaterOrEqualType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArithmeticFeatureParameter") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticFeatureParameter") == 0)
           {
             ArithmeticFeatureParameterType * typ;
             if ((typ = dynamic_cast<ArithmeticFeatureParameterType *>(basie)))
@@ -4517,7 +4519,7 @@ void GreaterOrEqualType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArithmeticCharacteristicParameter") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticCharacteristicParameter") == 0)
           {
             ArithmeticCharacteristicParameterType * typ;
             if ((typ = dynamic_cast<ArithmeticCharacteristicParameterType *>(basie)))
@@ -4533,7 +4535,7 @@ void GreaterOrEqualType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArithmeticDMEParameter") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticDMEParameter") == 0)
           {
             ArithmeticDMEParameterType * typ;
             if ((typ = dynamic_cast<ArithmeticDMEParameterType *>(basie)))
@@ -4549,7 +4551,7 @@ void GreaterOrEqualType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArithmeticParameterValue") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticParameterValue") == 0)
           {
             ArithmeticParameterValueType * typ;
             if ((typ = dynamic_cast<ArithmeticParameterValueType *>(basie)))
@@ -4565,7 +4567,7 @@ void GreaterOrEqualType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArithmeticPartParameter") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticPartParameter") == 0)
           {
             ArithmeticPartParameterType * typ;
             if ((typ = dynamic_cast<ArithmeticPartParameterType *>(basie)))
@@ -4581,7 +4583,7 @@ void GreaterOrEqualType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "CharacteristicTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "CharacteristicTolerance") == 0)
           {
             CharacteristicToleranceType * typ;
             if ((typ = dynamic_cast<CharacteristicToleranceType *>(basie)))
@@ -4595,7 +4597,7 @@ void GreaterOrEqualType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "FeatureLength") == 0)
+        else if (strcmp(basie->getprintElement(), "FeatureLength") == 0)
           {
             FeatureLengthType * typ;
             if ((typ = dynamic_cast<FeatureLengthType *>(basie)))
@@ -4609,7 +4611,7 @@ void GreaterOrEqualType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "FeatureArea") == 0)
+        else if (strcmp(basie->getprintElement(), "FeatureArea") == 0)
           {
             FeatureAreaType * typ;
             if ((typ = dynamic_cast<FeatureAreaType *>(basie)))
@@ -4623,7 +4625,7 @@ void GreaterOrEqualType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "FeatureSize") == 0)
+        else if (strcmp(basie->getprintElement(), "FeatureSize") == 0)
           {
             FeatureSizeType * typ;
             if ((typ = dynamic_cast<FeatureSizeType *>(basie)))
@@ -4637,7 +4639,7 @@ void GreaterOrEqualType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "VariableValue") == 0)
+        else if (strcmp(basie->getprintElement(), "VariableValue") == 0)
           {
             VariableValueType * typ;
             if ((typ = dynamic_cast<VariableValueType *>(basie)))
@@ -4717,12 +4719,12 @@ void GreaterThanType::printSelf(FILE * outFile)
         ArithmeticExpressionBaseType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "ArithmeticConstant") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticConstant") == 0)
           {
             ArithmeticConstantType * typ;
             if ((typ = dynamic_cast<ArithmeticConstantType *>(basie)))
@@ -4736,7 +4738,7 @@ void GreaterThanType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Plus") == 0)
+        else if (strcmp(basie->getprintElement(), "Plus") == 0)
           {
             PlusType * typ;
             if ((typ = dynamic_cast<PlusType *>(basie)))
@@ -4752,7 +4754,7 @@ void GreaterThanType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Max") == 0)
+        else if (strcmp(basie->getprintElement(), "Max") == 0)
           {
             MaxType * typ;
             if ((typ = dynamic_cast<MaxType *>(basie)))
@@ -4768,7 +4770,7 @@ void GreaterThanType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Min") == 0)
+        else if (strcmp(basie->getprintElement(), "Min") == 0)
           {
             MinType * typ;
             if ((typ = dynamic_cast<MinType *>(basie)))
@@ -4784,7 +4786,7 @@ void GreaterThanType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Minus") == 0)
+        else if (strcmp(basie->getprintElement(), "Minus") == 0)
           {
             MinusType * typ;
             if ((typ = dynamic_cast<MinusType *>(basie)))
@@ -4800,7 +4802,7 @@ void GreaterThanType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Negate") == 0)
+        else if (strcmp(basie->getprintElement(), "Negate") == 0)
           {
             NegateType * typ;
             if ((typ = dynamic_cast<NegateType *>(basie)))
@@ -4816,7 +4818,7 @@ void GreaterThanType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Times") == 0)
+        else if (strcmp(basie->getprintElement(), "Times") == 0)
           {
             TimesType * typ;
             if ((typ = dynamic_cast<TimesType *>(basie)))
@@ -4832,7 +4834,7 @@ void GreaterThanType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "DividedBy") == 0)
+        else if (strcmp(basie->getprintElement(), "DividedBy") == 0)
           {
             DividedByType * typ;
             if ((typ = dynamic_cast<DividedByType *>(basie)))
@@ -4848,7 +4850,7 @@ void GreaterThanType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArithmeticFeatureParameter") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticFeatureParameter") == 0)
           {
             ArithmeticFeatureParameterType * typ;
             if ((typ = dynamic_cast<ArithmeticFeatureParameterType *>(basie)))
@@ -4864,7 +4866,7 @@ void GreaterThanType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArithmeticCharacteristicParameter") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticCharacteristicParameter") == 0)
           {
             ArithmeticCharacteristicParameterType * typ;
             if ((typ = dynamic_cast<ArithmeticCharacteristicParameterType *>(basie)))
@@ -4880,7 +4882,7 @@ void GreaterThanType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArithmeticDMEParameter") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticDMEParameter") == 0)
           {
             ArithmeticDMEParameterType * typ;
             if ((typ = dynamic_cast<ArithmeticDMEParameterType *>(basie)))
@@ -4896,7 +4898,7 @@ void GreaterThanType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArithmeticParameterValue") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticParameterValue") == 0)
           {
             ArithmeticParameterValueType * typ;
             if ((typ = dynamic_cast<ArithmeticParameterValueType *>(basie)))
@@ -4912,7 +4914,7 @@ void GreaterThanType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArithmeticPartParameter") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticPartParameter") == 0)
           {
             ArithmeticPartParameterType * typ;
             if ((typ = dynamic_cast<ArithmeticPartParameterType *>(basie)))
@@ -4928,7 +4930,7 @@ void GreaterThanType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "CharacteristicTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "CharacteristicTolerance") == 0)
           {
             CharacteristicToleranceType * typ;
             if ((typ = dynamic_cast<CharacteristicToleranceType *>(basie)))
@@ -4942,7 +4944,7 @@ void GreaterThanType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "FeatureLength") == 0)
+        else if (strcmp(basie->getprintElement(), "FeatureLength") == 0)
           {
             FeatureLengthType * typ;
             if ((typ = dynamic_cast<FeatureLengthType *>(basie)))
@@ -4956,7 +4958,7 @@ void GreaterThanType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "FeatureArea") == 0)
+        else if (strcmp(basie->getprintElement(), "FeatureArea") == 0)
           {
             FeatureAreaType * typ;
             if ((typ = dynamic_cast<FeatureAreaType *>(basie)))
@@ -4970,7 +4972,7 @@ void GreaterThanType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "FeatureSize") == 0)
+        else if (strcmp(basie->getprintElement(), "FeatureSize") == 0)
           {
             FeatureSizeType * typ;
             if ((typ = dynamic_cast<FeatureSizeType *>(basie)))
@@ -4984,7 +4986,7 @@ void GreaterThanType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "VariableValue") == 0)
+        else if (strcmp(basie->getprintElement(), "VariableValue") == 0)
           {
             VariableValueType * typ;
             if ((typ = dynamic_cast<VariableValueType *>(basie)))
@@ -5064,12 +5066,12 @@ void LessOrEqualType::printSelf(FILE * outFile)
         ArithmeticExpressionBaseType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "ArithmeticConstant") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticConstant") == 0)
           {
             ArithmeticConstantType * typ;
             if ((typ = dynamic_cast<ArithmeticConstantType *>(basie)))
@@ -5083,7 +5085,7 @@ void LessOrEqualType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Plus") == 0)
+        else if (strcmp(basie->getprintElement(), "Plus") == 0)
           {
             PlusType * typ;
             if ((typ = dynamic_cast<PlusType *>(basie)))
@@ -5099,7 +5101,7 @@ void LessOrEqualType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Max") == 0)
+        else if (strcmp(basie->getprintElement(), "Max") == 0)
           {
             MaxType * typ;
             if ((typ = dynamic_cast<MaxType *>(basie)))
@@ -5115,7 +5117,7 @@ void LessOrEqualType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Min") == 0)
+        else if (strcmp(basie->getprintElement(), "Min") == 0)
           {
             MinType * typ;
             if ((typ = dynamic_cast<MinType *>(basie)))
@@ -5131,7 +5133,7 @@ void LessOrEqualType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Minus") == 0)
+        else if (strcmp(basie->getprintElement(), "Minus") == 0)
           {
             MinusType * typ;
             if ((typ = dynamic_cast<MinusType *>(basie)))
@@ -5147,7 +5149,7 @@ void LessOrEqualType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Negate") == 0)
+        else if (strcmp(basie->getprintElement(), "Negate") == 0)
           {
             NegateType * typ;
             if ((typ = dynamic_cast<NegateType *>(basie)))
@@ -5163,7 +5165,7 @@ void LessOrEqualType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Times") == 0)
+        else if (strcmp(basie->getprintElement(), "Times") == 0)
           {
             TimesType * typ;
             if ((typ = dynamic_cast<TimesType *>(basie)))
@@ -5179,7 +5181,7 @@ void LessOrEqualType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "DividedBy") == 0)
+        else if (strcmp(basie->getprintElement(), "DividedBy") == 0)
           {
             DividedByType * typ;
             if ((typ = dynamic_cast<DividedByType *>(basie)))
@@ -5195,7 +5197,7 @@ void LessOrEqualType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArithmeticFeatureParameter") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticFeatureParameter") == 0)
           {
             ArithmeticFeatureParameterType * typ;
             if ((typ = dynamic_cast<ArithmeticFeatureParameterType *>(basie)))
@@ -5211,7 +5213,7 @@ void LessOrEqualType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArithmeticCharacteristicParameter") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticCharacteristicParameter") == 0)
           {
             ArithmeticCharacteristicParameterType * typ;
             if ((typ = dynamic_cast<ArithmeticCharacteristicParameterType *>(basie)))
@@ -5227,7 +5229,7 @@ void LessOrEqualType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArithmeticDMEParameter") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticDMEParameter") == 0)
           {
             ArithmeticDMEParameterType * typ;
             if ((typ = dynamic_cast<ArithmeticDMEParameterType *>(basie)))
@@ -5243,7 +5245,7 @@ void LessOrEqualType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArithmeticParameterValue") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticParameterValue") == 0)
           {
             ArithmeticParameterValueType * typ;
             if ((typ = dynamic_cast<ArithmeticParameterValueType *>(basie)))
@@ -5259,7 +5261,7 @@ void LessOrEqualType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArithmeticPartParameter") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticPartParameter") == 0)
           {
             ArithmeticPartParameterType * typ;
             if ((typ = dynamic_cast<ArithmeticPartParameterType *>(basie)))
@@ -5275,7 +5277,7 @@ void LessOrEqualType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "CharacteristicTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "CharacteristicTolerance") == 0)
           {
             CharacteristicToleranceType * typ;
             if ((typ = dynamic_cast<CharacteristicToleranceType *>(basie)))
@@ -5289,7 +5291,7 @@ void LessOrEqualType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "FeatureLength") == 0)
+        else if (strcmp(basie->getprintElement(), "FeatureLength") == 0)
           {
             FeatureLengthType * typ;
             if ((typ = dynamic_cast<FeatureLengthType *>(basie)))
@@ -5303,7 +5305,7 @@ void LessOrEqualType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "FeatureArea") == 0)
+        else if (strcmp(basie->getprintElement(), "FeatureArea") == 0)
           {
             FeatureAreaType * typ;
             if ((typ = dynamic_cast<FeatureAreaType *>(basie)))
@@ -5317,7 +5319,7 @@ void LessOrEqualType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "FeatureSize") == 0)
+        else if (strcmp(basie->getprintElement(), "FeatureSize") == 0)
           {
             FeatureSizeType * typ;
             if ((typ = dynamic_cast<FeatureSizeType *>(basie)))
@@ -5331,7 +5333,7 @@ void LessOrEqualType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "VariableValue") == 0)
+        else if (strcmp(basie->getprintElement(), "VariableValue") == 0)
           {
             VariableValueType * typ;
             if ((typ = dynamic_cast<VariableValueType *>(basie)))
@@ -5411,12 +5413,12 @@ void LessThanType::printSelf(FILE * outFile)
         ArithmeticExpressionBaseType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "ArithmeticConstant") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticConstant") == 0)
           {
             ArithmeticConstantType * typ;
             if ((typ = dynamic_cast<ArithmeticConstantType *>(basie)))
@@ -5430,7 +5432,7 @@ void LessThanType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Plus") == 0)
+        else if (strcmp(basie->getprintElement(), "Plus") == 0)
           {
             PlusType * typ;
             if ((typ = dynamic_cast<PlusType *>(basie)))
@@ -5446,7 +5448,7 @@ void LessThanType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Max") == 0)
+        else if (strcmp(basie->getprintElement(), "Max") == 0)
           {
             MaxType * typ;
             if ((typ = dynamic_cast<MaxType *>(basie)))
@@ -5462,7 +5464,7 @@ void LessThanType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Min") == 0)
+        else if (strcmp(basie->getprintElement(), "Min") == 0)
           {
             MinType * typ;
             if ((typ = dynamic_cast<MinType *>(basie)))
@@ -5478,7 +5480,7 @@ void LessThanType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Minus") == 0)
+        else if (strcmp(basie->getprintElement(), "Minus") == 0)
           {
             MinusType * typ;
             if ((typ = dynamic_cast<MinusType *>(basie)))
@@ -5494,7 +5496,7 @@ void LessThanType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Negate") == 0)
+        else if (strcmp(basie->getprintElement(), "Negate") == 0)
           {
             NegateType * typ;
             if ((typ = dynamic_cast<NegateType *>(basie)))
@@ -5510,7 +5512,7 @@ void LessThanType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Times") == 0)
+        else if (strcmp(basie->getprintElement(), "Times") == 0)
           {
             TimesType * typ;
             if ((typ = dynamic_cast<TimesType *>(basie)))
@@ -5526,7 +5528,7 @@ void LessThanType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "DividedBy") == 0)
+        else if (strcmp(basie->getprintElement(), "DividedBy") == 0)
           {
             DividedByType * typ;
             if ((typ = dynamic_cast<DividedByType *>(basie)))
@@ -5542,7 +5544,7 @@ void LessThanType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArithmeticFeatureParameter") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticFeatureParameter") == 0)
           {
             ArithmeticFeatureParameterType * typ;
             if ((typ = dynamic_cast<ArithmeticFeatureParameterType *>(basie)))
@@ -5558,7 +5560,7 @@ void LessThanType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArithmeticCharacteristicParameter") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticCharacteristicParameter") == 0)
           {
             ArithmeticCharacteristicParameterType * typ;
             if ((typ = dynamic_cast<ArithmeticCharacteristicParameterType *>(basie)))
@@ -5574,7 +5576,7 @@ void LessThanType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArithmeticDMEParameter") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticDMEParameter") == 0)
           {
             ArithmeticDMEParameterType * typ;
             if ((typ = dynamic_cast<ArithmeticDMEParameterType *>(basie)))
@@ -5590,7 +5592,7 @@ void LessThanType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArithmeticParameterValue") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticParameterValue") == 0)
           {
             ArithmeticParameterValueType * typ;
             if ((typ = dynamic_cast<ArithmeticParameterValueType *>(basie)))
@@ -5606,7 +5608,7 @@ void LessThanType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArithmeticPartParameter") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticPartParameter") == 0)
           {
             ArithmeticPartParameterType * typ;
             if ((typ = dynamic_cast<ArithmeticPartParameterType *>(basie)))
@@ -5622,7 +5624,7 @@ void LessThanType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "CharacteristicTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "CharacteristicTolerance") == 0)
           {
             CharacteristicToleranceType * typ;
             if ((typ = dynamic_cast<CharacteristicToleranceType *>(basie)))
@@ -5636,7 +5638,7 @@ void LessThanType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "FeatureLength") == 0)
+        else if (strcmp(basie->getprintElement(), "FeatureLength") == 0)
           {
             FeatureLengthType * typ;
             if ((typ = dynamic_cast<FeatureLengthType *>(basie)))
@@ -5650,7 +5652,7 @@ void LessThanType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "FeatureArea") == 0)
+        else if (strcmp(basie->getprintElement(), "FeatureArea") == 0)
           {
             FeatureAreaType * typ;
             if ((typ = dynamic_cast<FeatureAreaType *>(basie)))
@@ -5664,7 +5666,7 @@ void LessThanType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "FeatureSize") == 0)
+        else if (strcmp(basie->getprintElement(), "FeatureSize") == 0)
           {
             FeatureSizeType * typ;
             if ((typ = dynamic_cast<FeatureSizeType *>(basie)))
@@ -5678,7 +5680,7 @@ void LessThanType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "VariableValue") == 0)
+        else if (strcmp(basie->getprintElement(), "VariableValue") == 0)
           {
             VariableValueType * typ;
             if ((typ = dynamic_cast<VariableValueType *>(basie)))
@@ -5751,12 +5753,12 @@ void MaxType::printSelf(FILE * outFile)
         ArithmeticExpressionBaseType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "ArithmeticConstant") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticConstant") == 0)
           {
             ArithmeticConstantType * typ;
             if ((typ = dynamic_cast<ArithmeticConstantType *>(basie)))
@@ -5770,7 +5772,7 @@ void MaxType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Plus") == 0)
+        else if (strcmp(basie->getprintElement(), "Plus") == 0)
           {
             PlusType * typ;
             if ((typ = dynamic_cast<PlusType *>(basie)))
@@ -5786,7 +5788,7 @@ void MaxType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Max") == 0)
+        else if (strcmp(basie->getprintElement(), "Max") == 0)
           {
             MaxType * typ;
             if ((typ = dynamic_cast<MaxType *>(basie)))
@@ -5802,7 +5804,7 @@ void MaxType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Min") == 0)
+        else if (strcmp(basie->getprintElement(), "Min") == 0)
           {
             MinType * typ;
             if ((typ = dynamic_cast<MinType *>(basie)))
@@ -5818,7 +5820,7 @@ void MaxType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Minus") == 0)
+        else if (strcmp(basie->getprintElement(), "Minus") == 0)
           {
             MinusType * typ;
             if ((typ = dynamic_cast<MinusType *>(basie)))
@@ -5834,7 +5836,7 @@ void MaxType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Negate") == 0)
+        else if (strcmp(basie->getprintElement(), "Negate") == 0)
           {
             NegateType * typ;
             if ((typ = dynamic_cast<NegateType *>(basie)))
@@ -5850,7 +5852,7 @@ void MaxType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Times") == 0)
+        else if (strcmp(basie->getprintElement(), "Times") == 0)
           {
             TimesType * typ;
             if ((typ = dynamic_cast<TimesType *>(basie)))
@@ -5866,7 +5868,7 @@ void MaxType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "DividedBy") == 0)
+        else if (strcmp(basie->getprintElement(), "DividedBy") == 0)
           {
             DividedByType * typ;
             if ((typ = dynamic_cast<DividedByType *>(basie)))
@@ -5882,7 +5884,7 @@ void MaxType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArithmeticFeatureParameter") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticFeatureParameter") == 0)
           {
             ArithmeticFeatureParameterType * typ;
             if ((typ = dynamic_cast<ArithmeticFeatureParameterType *>(basie)))
@@ -5898,7 +5900,7 @@ void MaxType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArithmeticCharacteristicParameter") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticCharacteristicParameter") == 0)
           {
             ArithmeticCharacteristicParameterType * typ;
             if ((typ = dynamic_cast<ArithmeticCharacteristicParameterType *>(basie)))
@@ -5914,7 +5916,7 @@ void MaxType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArithmeticDMEParameter") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticDMEParameter") == 0)
           {
             ArithmeticDMEParameterType * typ;
             if ((typ = dynamic_cast<ArithmeticDMEParameterType *>(basie)))
@@ -5930,7 +5932,7 @@ void MaxType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArithmeticParameterValue") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticParameterValue") == 0)
           {
             ArithmeticParameterValueType * typ;
             if ((typ = dynamic_cast<ArithmeticParameterValueType *>(basie)))
@@ -5946,7 +5948,7 @@ void MaxType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArithmeticPartParameter") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticPartParameter") == 0)
           {
             ArithmeticPartParameterType * typ;
             if ((typ = dynamic_cast<ArithmeticPartParameterType *>(basie)))
@@ -5962,7 +5964,7 @@ void MaxType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "CharacteristicTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "CharacteristicTolerance") == 0)
           {
             CharacteristicToleranceType * typ;
             if ((typ = dynamic_cast<CharacteristicToleranceType *>(basie)))
@@ -5976,7 +5978,7 @@ void MaxType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "FeatureLength") == 0)
+        else if (strcmp(basie->getprintElement(), "FeatureLength") == 0)
           {
             FeatureLengthType * typ;
             if ((typ = dynamic_cast<FeatureLengthType *>(basie)))
@@ -5990,7 +5992,7 @@ void MaxType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "FeatureArea") == 0)
+        else if (strcmp(basie->getprintElement(), "FeatureArea") == 0)
           {
             FeatureAreaType * typ;
             if ((typ = dynamic_cast<FeatureAreaType *>(basie)))
@@ -6004,7 +6006,7 @@ void MaxType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "FeatureSize") == 0)
+        else if (strcmp(basie->getprintElement(), "FeatureSize") == 0)
           {
             FeatureSizeType * typ;
             if ((typ = dynamic_cast<FeatureSizeType *>(basie)))
@@ -6018,7 +6020,7 @@ void MaxType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "VariableValue") == 0)
+        else if (strcmp(basie->getprintElement(), "VariableValue") == 0)
           {
             VariableValueType * typ;
             if ((typ = dynamic_cast<VariableValueType *>(basie)))
@@ -6091,12 +6093,12 @@ void MinType::printSelf(FILE * outFile)
         ArithmeticExpressionBaseType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "ArithmeticConstant") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticConstant") == 0)
           {
             ArithmeticConstantType * typ;
             if ((typ = dynamic_cast<ArithmeticConstantType *>(basie)))
@@ -6110,7 +6112,7 @@ void MinType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Plus") == 0)
+        else if (strcmp(basie->getprintElement(), "Plus") == 0)
           {
             PlusType * typ;
             if ((typ = dynamic_cast<PlusType *>(basie)))
@@ -6126,7 +6128,7 @@ void MinType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Max") == 0)
+        else if (strcmp(basie->getprintElement(), "Max") == 0)
           {
             MaxType * typ;
             if ((typ = dynamic_cast<MaxType *>(basie)))
@@ -6142,7 +6144,7 @@ void MinType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Min") == 0)
+        else if (strcmp(basie->getprintElement(), "Min") == 0)
           {
             MinType * typ;
             if ((typ = dynamic_cast<MinType *>(basie)))
@@ -6158,7 +6160,7 @@ void MinType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Minus") == 0)
+        else if (strcmp(basie->getprintElement(), "Minus") == 0)
           {
             MinusType * typ;
             if ((typ = dynamic_cast<MinusType *>(basie)))
@@ -6174,7 +6176,7 @@ void MinType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Negate") == 0)
+        else if (strcmp(basie->getprintElement(), "Negate") == 0)
           {
             NegateType * typ;
             if ((typ = dynamic_cast<NegateType *>(basie)))
@@ -6190,7 +6192,7 @@ void MinType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Times") == 0)
+        else if (strcmp(basie->getprintElement(), "Times") == 0)
           {
             TimesType * typ;
             if ((typ = dynamic_cast<TimesType *>(basie)))
@@ -6206,7 +6208,7 @@ void MinType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "DividedBy") == 0)
+        else if (strcmp(basie->getprintElement(), "DividedBy") == 0)
           {
             DividedByType * typ;
             if ((typ = dynamic_cast<DividedByType *>(basie)))
@@ -6222,7 +6224,7 @@ void MinType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArithmeticFeatureParameter") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticFeatureParameter") == 0)
           {
             ArithmeticFeatureParameterType * typ;
             if ((typ = dynamic_cast<ArithmeticFeatureParameterType *>(basie)))
@@ -6238,7 +6240,7 @@ void MinType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArithmeticCharacteristicParameter") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticCharacteristicParameter") == 0)
           {
             ArithmeticCharacteristicParameterType * typ;
             if ((typ = dynamic_cast<ArithmeticCharacteristicParameterType *>(basie)))
@@ -6254,7 +6256,7 @@ void MinType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArithmeticDMEParameter") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticDMEParameter") == 0)
           {
             ArithmeticDMEParameterType * typ;
             if ((typ = dynamic_cast<ArithmeticDMEParameterType *>(basie)))
@@ -6270,7 +6272,7 @@ void MinType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArithmeticParameterValue") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticParameterValue") == 0)
           {
             ArithmeticParameterValueType * typ;
             if ((typ = dynamic_cast<ArithmeticParameterValueType *>(basie)))
@@ -6286,7 +6288,7 @@ void MinType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArithmeticPartParameter") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticPartParameter") == 0)
           {
             ArithmeticPartParameterType * typ;
             if ((typ = dynamic_cast<ArithmeticPartParameterType *>(basie)))
@@ -6302,7 +6304,7 @@ void MinType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "CharacteristicTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "CharacteristicTolerance") == 0)
           {
             CharacteristicToleranceType * typ;
             if ((typ = dynamic_cast<CharacteristicToleranceType *>(basie)))
@@ -6316,7 +6318,7 @@ void MinType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "FeatureLength") == 0)
+        else if (strcmp(basie->getprintElement(), "FeatureLength") == 0)
           {
             FeatureLengthType * typ;
             if ((typ = dynamic_cast<FeatureLengthType *>(basie)))
@@ -6330,7 +6332,7 @@ void MinType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "FeatureArea") == 0)
+        else if (strcmp(basie->getprintElement(), "FeatureArea") == 0)
           {
             FeatureAreaType * typ;
             if ((typ = dynamic_cast<FeatureAreaType *>(basie)))
@@ -6344,7 +6346,7 @@ void MinType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "FeatureSize") == 0)
+        else if (strcmp(basie->getprintElement(), "FeatureSize") == 0)
           {
             FeatureSizeType * typ;
             if ((typ = dynamic_cast<FeatureSizeType *>(basie)))
@@ -6358,7 +6360,7 @@ void MinType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "VariableValue") == 0)
+        else if (strcmp(basie->getprintElement(), "VariableValue") == 0)
           {
             VariableValueType * typ;
             if ((typ = dynamic_cast<VariableValueType *>(basie)))
@@ -6438,12 +6440,12 @@ void MinusType::printSelf(FILE * outFile)
         ArithmeticExpressionBaseType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "ArithmeticConstant") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticConstant") == 0)
           {
             ArithmeticConstantType * typ;
             if ((typ = dynamic_cast<ArithmeticConstantType *>(basie)))
@@ -6457,7 +6459,7 @@ void MinusType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Plus") == 0)
+        else if (strcmp(basie->getprintElement(), "Plus") == 0)
           {
             PlusType * typ;
             if ((typ = dynamic_cast<PlusType *>(basie)))
@@ -6473,7 +6475,7 @@ void MinusType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Max") == 0)
+        else if (strcmp(basie->getprintElement(), "Max") == 0)
           {
             MaxType * typ;
             if ((typ = dynamic_cast<MaxType *>(basie)))
@@ -6489,7 +6491,7 @@ void MinusType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Min") == 0)
+        else if (strcmp(basie->getprintElement(), "Min") == 0)
           {
             MinType * typ;
             if ((typ = dynamic_cast<MinType *>(basie)))
@@ -6505,7 +6507,7 @@ void MinusType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Minus") == 0)
+        else if (strcmp(basie->getprintElement(), "Minus") == 0)
           {
             MinusType * typ;
             if ((typ = dynamic_cast<MinusType *>(basie)))
@@ -6521,7 +6523,7 @@ void MinusType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Negate") == 0)
+        else if (strcmp(basie->getprintElement(), "Negate") == 0)
           {
             NegateType * typ;
             if ((typ = dynamic_cast<NegateType *>(basie)))
@@ -6537,7 +6539,7 @@ void MinusType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Times") == 0)
+        else if (strcmp(basie->getprintElement(), "Times") == 0)
           {
             TimesType * typ;
             if ((typ = dynamic_cast<TimesType *>(basie)))
@@ -6553,7 +6555,7 @@ void MinusType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "DividedBy") == 0)
+        else if (strcmp(basie->getprintElement(), "DividedBy") == 0)
           {
             DividedByType * typ;
             if ((typ = dynamic_cast<DividedByType *>(basie)))
@@ -6569,7 +6571,7 @@ void MinusType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArithmeticFeatureParameter") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticFeatureParameter") == 0)
           {
             ArithmeticFeatureParameterType * typ;
             if ((typ = dynamic_cast<ArithmeticFeatureParameterType *>(basie)))
@@ -6585,7 +6587,7 @@ void MinusType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArithmeticCharacteristicParameter") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticCharacteristicParameter") == 0)
           {
             ArithmeticCharacteristicParameterType * typ;
             if ((typ = dynamic_cast<ArithmeticCharacteristicParameterType *>(basie)))
@@ -6601,7 +6603,7 @@ void MinusType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArithmeticDMEParameter") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticDMEParameter") == 0)
           {
             ArithmeticDMEParameterType * typ;
             if ((typ = dynamic_cast<ArithmeticDMEParameterType *>(basie)))
@@ -6617,7 +6619,7 @@ void MinusType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArithmeticParameterValue") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticParameterValue") == 0)
           {
             ArithmeticParameterValueType * typ;
             if ((typ = dynamic_cast<ArithmeticParameterValueType *>(basie)))
@@ -6633,7 +6635,7 @@ void MinusType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArithmeticPartParameter") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticPartParameter") == 0)
           {
             ArithmeticPartParameterType * typ;
             if ((typ = dynamic_cast<ArithmeticPartParameterType *>(basie)))
@@ -6649,7 +6651,7 @@ void MinusType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "CharacteristicTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "CharacteristicTolerance") == 0)
           {
             CharacteristicToleranceType * typ;
             if ((typ = dynamic_cast<CharacteristicToleranceType *>(basie)))
@@ -6663,7 +6665,7 @@ void MinusType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "FeatureLength") == 0)
+        else if (strcmp(basie->getprintElement(), "FeatureLength") == 0)
           {
             FeatureLengthType * typ;
             if ((typ = dynamic_cast<FeatureLengthType *>(basie)))
@@ -6677,7 +6679,7 @@ void MinusType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "FeatureArea") == 0)
+        else if (strcmp(basie->getprintElement(), "FeatureArea") == 0)
           {
             FeatureAreaType * typ;
             if ((typ = dynamic_cast<FeatureAreaType *>(basie)))
@@ -6691,7 +6693,7 @@ void MinusType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "FeatureSize") == 0)
+        else if (strcmp(basie->getprintElement(), "FeatureSize") == 0)
           {
             FeatureSizeType * typ;
             if ((typ = dynamic_cast<FeatureSizeType *>(basie)))
@@ -6705,7 +6707,7 @@ void MinusType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "VariableValue") == 0)
+        else if (strcmp(basie->getprintElement(), "VariableValue") == 0)
           {
             VariableValueType * typ;
             if ((typ = dynamic_cast<VariableValueType *>(basie)))
@@ -6764,12 +6766,12 @@ void NegateType::printSelf(FILE * outFile)
   doSpaces(+INDENT, outFile);
   {
     doSpaces(0, outFile);
-    if (ArithmeticExpression->printElement == 0)
+    if (ArithmeticExpression->getprintElement() == 0)
       {
         fprintf(stderr, "element name missing\n");
         exit(1);
       }
-    else if (strcmp(ArithmeticExpression->printElement, "ArithmeticConstant") == 0)
+    else if (strcmp(ArithmeticExpression->getprintElement(), "ArithmeticConstant") == 0)
       {
         ArithmeticConstantType * typ;
         if ((typ = dynamic_cast<ArithmeticConstantType *>(ArithmeticExpression)))
@@ -6783,7 +6785,7 @@ void NegateType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(ArithmeticExpression->printElement, "Plus") == 0)
+    else if (strcmp(ArithmeticExpression->getprintElement(), "Plus") == 0)
       {
         PlusType * typ;
         if ((typ = dynamic_cast<PlusType *>(ArithmeticExpression)))
@@ -6799,7 +6801,7 @@ void NegateType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(ArithmeticExpression->printElement, "Max") == 0)
+    else if (strcmp(ArithmeticExpression->getprintElement(), "Max") == 0)
       {
         MaxType * typ;
         if ((typ = dynamic_cast<MaxType *>(ArithmeticExpression)))
@@ -6815,7 +6817,7 @@ void NegateType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(ArithmeticExpression->printElement, "Min") == 0)
+    else if (strcmp(ArithmeticExpression->getprintElement(), "Min") == 0)
       {
         MinType * typ;
         if ((typ = dynamic_cast<MinType *>(ArithmeticExpression)))
@@ -6831,7 +6833,7 @@ void NegateType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(ArithmeticExpression->printElement, "Minus") == 0)
+    else if (strcmp(ArithmeticExpression->getprintElement(), "Minus") == 0)
       {
         MinusType * typ;
         if ((typ = dynamic_cast<MinusType *>(ArithmeticExpression)))
@@ -6847,7 +6849,7 @@ void NegateType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(ArithmeticExpression->printElement, "Negate") == 0)
+    else if (strcmp(ArithmeticExpression->getprintElement(), "Negate") == 0)
       {
         NegateType * typ;
         if ((typ = dynamic_cast<NegateType *>(ArithmeticExpression)))
@@ -6863,7 +6865,7 @@ void NegateType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(ArithmeticExpression->printElement, "Times") == 0)
+    else if (strcmp(ArithmeticExpression->getprintElement(), "Times") == 0)
       {
         TimesType * typ;
         if ((typ = dynamic_cast<TimesType *>(ArithmeticExpression)))
@@ -6879,7 +6881,7 @@ void NegateType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(ArithmeticExpression->printElement, "DividedBy") == 0)
+    else if (strcmp(ArithmeticExpression->getprintElement(), "DividedBy") == 0)
       {
         DividedByType * typ;
         if ((typ = dynamic_cast<DividedByType *>(ArithmeticExpression)))
@@ -6895,7 +6897,7 @@ void NegateType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(ArithmeticExpression->printElement, "ArithmeticFeatureParameter") == 0)
+    else if (strcmp(ArithmeticExpression->getprintElement(), "ArithmeticFeatureParameter") == 0)
       {
         ArithmeticFeatureParameterType * typ;
         if ((typ = dynamic_cast<ArithmeticFeatureParameterType *>(ArithmeticExpression)))
@@ -6911,7 +6913,7 @@ void NegateType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(ArithmeticExpression->printElement, "ArithmeticCharacteristicParameter") == 0)
+    else if (strcmp(ArithmeticExpression->getprintElement(), "ArithmeticCharacteristicParameter") == 0)
       {
         ArithmeticCharacteristicParameterType * typ;
         if ((typ = dynamic_cast<ArithmeticCharacteristicParameterType *>(ArithmeticExpression)))
@@ -6927,7 +6929,7 @@ void NegateType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(ArithmeticExpression->printElement, "ArithmeticDMEParameter") == 0)
+    else if (strcmp(ArithmeticExpression->getprintElement(), "ArithmeticDMEParameter") == 0)
       {
         ArithmeticDMEParameterType * typ;
         if ((typ = dynamic_cast<ArithmeticDMEParameterType *>(ArithmeticExpression)))
@@ -6943,7 +6945,7 @@ void NegateType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(ArithmeticExpression->printElement, "ArithmeticParameterValue") == 0)
+    else if (strcmp(ArithmeticExpression->getprintElement(), "ArithmeticParameterValue") == 0)
       {
         ArithmeticParameterValueType * typ;
         if ((typ = dynamic_cast<ArithmeticParameterValueType *>(ArithmeticExpression)))
@@ -6959,7 +6961,7 @@ void NegateType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(ArithmeticExpression->printElement, "ArithmeticPartParameter") == 0)
+    else if (strcmp(ArithmeticExpression->getprintElement(), "ArithmeticPartParameter") == 0)
       {
         ArithmeticPartParameterType * typ;
         if ((typ = dynamic_cast<ArithmeticPartParameterType *>(ArithmeticExpression)))
@@ -6975,7 +6977,7 @@ void NegateType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(ArithmeticExpression->printElement, "CharacteristicTolerance") == 0)
+    else if (strcmp(ArithmeticExpression->getprintElement(), "CharacteristicTolerance") == 0)
       {
         CharacteristicToleranceType * typ;
         if ((typ = dynamic_cast<CharacteristicToleranceType *>(ArithmeticExpression)))
@@ -6989,7 +6991,7 @@ void NegateType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(ArithmeticExpression->printElement, "FeatureLength") == 0)
+    else if (strcmp(ArithmeticExpression->getprintElement(), "FeatureLength") == 0)
       {
         FeatureLengthType * typ;
         if ((typ = dynamic_cast<FeatureLengthType *>(ArithmeticExpression)))
@@ -7003,7 +7005,7 @@ void NegateType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(ArithmeticExpression->printElement, "FeatureArea") == 0)
+    else if (strcmp(ArithmeticExpression->getprintElement(), "FeatureArea") == 0)
       {
         FeatureAreaType * typ;
         if ((typ = dynamic_cast<FeatureAreaType *>(ArithmeticExpression)))
@@ -7017,7 +7019,7 @@ void NegateType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(ArithmeticExpression->printElement, "FeatureSize") == 0)
+    else if (strcmp(ArithmeticExpression->getprintElement(), "FeatureSize") == 0)
       {
         FeatureSizeType * typ;
         if ((typ = dynamic_cast<FeatureSizeType *>(ArithmeticExpression)))
@@ -7031,7 +7033,7 @@ void NegateType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(ArithmeticExpression->printElement, "VariableValue") == 0)
+    else if (strcmp(ArithmeticExpression->getprintElement(), "VariableValue") == 0)
       {
         VariableValueType * typ;
         if ((typ = dynamic_cast<VariableValueType *>(ArithmeticExpression)))
@@ -7095,12 +7097,12 @@ void NotType::printSelf(FILE * outFile)
   doSpaces(+INDENT, outFile);
   {
     doSpaces(0, outFile);
-    if (BooleanExpression->printElement == 0)
+    if (BooleanExpression->getprintElement() == 0)
       {
         fprintf(stderr, "element name missing\n");
         exit(1);
       }
-    else if (strcmp(BooleanExpression->printElement, "Not") == 0)
+    else if (strcmp(BooleanExpression->getprintElement(), "Not") == 0)
       {
         NotType * typ;
         if ((typ = dynamic_cast<NotType *>(BooleanExpression)))
@@ -7116,7 +7118,7 @@ void NotType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(BooleanExpression->printElement, "ConstantIs") == 0)
+    else if (strcmp(BooleanExpression->getprintElement(), "ConstantIs") == 0)
       {
         ConstantIsType * typ;
         if ((typ = dynamic_cast<ConstantIsType *>(BooleanExpression)))
@@ -7130,7 +7132,7 @@ void NotType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(BooleanExpression->printElement, "And") == 0)
+    else if (strcmp(BooleanExpression->getprintElement(), "And") == 0)
       {
         AndType * typ;
         if ((typ = dynamic_cast<AndType *>(BooleanExpression)))
@@ -7146,7 +7148,7 @@ void NotType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(BooleanExpression->printElement, "Or") == 0)
+    else if (strcmp(BooleanExpression->getprintElement(), "Or") == 0)
       {
         OrType * typ;
         if ((typ = dynamic_cast<OrType *>(BooleanExpression)))
@@ -7162,7 +7164,7 @@ void NotType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(BooleanExpression->printElement, "BooleanEqual") == 0)
+    else if (strcmp(BooleanExpression->getprintElement(), "BooleanEqual") == 0)
       {
         BooleanEqualType * typ;
         if ((typ = dynamic_cast<BooleanEqualType *>(BooleanExpression)))
@@ -7178,7 +7180,7 @@ void NotType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(BooleanExpression->printElement, "ArithmeticEqual") == 0)
+    else if (strcmp(BooleanExpression->getprintElement(), "ArithmeticEqual") == 0)
       {
         ArithmeticEqualType * typ;
         if ((typ = dynamic_cast<ArithmeticEqualType *>(BooleanExpression)))
@@ -7194,7 +7196,7 @@ void NotType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(BooleanExpression->printElement, "GreaterThan") == 0)
+    else if (strcmp(BooleanExpression->getprintElement(), "GreaterThan") == 0)
       {
         GreaterThanType * typ;
         if ((typ = dynamic_cast<GreaterThanType *>(BooleanExpression)))
@@ -7210,7 +7212,7 @@ void NotType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(BooleanExpression->printElement, "GreaterOrEqual") == 0)
+    else if (strcmp(BooleanExpression->getprintElement(), "GreaterOrEqual") == 0)
       {
         GreaterOrEqualType * typ;
         if ((typ = dynamic_cast<GreaterOrEqualType *>(BooleanExpression)))
@@ -7226,7 +7228,7 @@ void NotType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(BooleanExpression->printElement, "LessThan") == 0)
+    else if (strcmp(BooleanExpression->getprintElement(), "LessThan") == 0)
       {
         LessThanType * typ;
         if ((typ = dynamic_cast<LessThanType *>(BooleanExpression)))
@@ -7242,7 +7244,7 @@ void NotType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(BooleanExpression->printElement, "LessOrEqual") == 0)
+    else if (strcmp(BooleanExpression->getprintElement(), "LessOrEqual") == 0)
       {
         LessOrEqualType * typ;
         if ((typ = dynamic_cast<LessOrEqualType *>(BooleanExpression)))
@@ -7258,7 +7260,7 @@ void NotType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(BooleanExpression->printElement, "TokenEqual") == 0)
+    else if (strcmp(BooleanExpression->getprintElement(), "TokenEqual") == 0)
       {
         TokenEqualType * typ;
         if ((typ = dynamic_cast<TokenEqualType *>(BooleanExpression)))
@@ -7274,7 +7276,7 @@ void NotType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(BooleanExpression->printElement, "CharacteristicIs") == 0)
+    else if (strcmp(BooleanExpression->getprintElement(), "CharacteristicIs") == 0)
       {
         CharacteristicIsType * typ;
         if ((typ = dynamic_cast<CharacteristicIsType *>(BooleanExpression)))
@@ -7288,7 +7290,7 @@ void NotType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(BooleanExpression->printElement, "FeatureIsDatum") == 0)
+    else if (strcmp(BooleanExpression->getprintElement(), "FeatureIsDatum") == 0)
       {
         FeatureIsDatumType * typ;
         if ((typ = dynamic_cast<FeatureIsDatumType *>(BooleanExpression)))
@@ -7302,7 +7304,7 @@ void NotType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(BooleanExpression->printElement, "FeatureIsInternal") == 0)
+    else if (strcmp(BooleanExpression->getprintElement(), "FeatureIsInternal") == 0)
       {
         FeatureIsInternalType * typ;
         if ((typ = dynamic_cast<FeatureIsInternalType *>(BooleanExpression)))
@@ -7316,7 +7318,7 @@ void NotType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(BooleanExpression->printElement, "FeatureTypeIs") == 0)
+    else if (strcmp(BooleanExpression->getprintElement(), "FeatureTypeIs") == 0)
       {
         FeatureTypeIsType * typ;
         if ((typ = dynamic_cast<FeatureTypeIsType *>(BooleanExpression)))
@@ -7330,7 +7332,7 @@ void NotType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(BooleanExpression->printElement, "SamplingCategoryIs") == 0)
+    else if (strcmp(BooleanExpression->getprintElement(), "SamplingCategoryIs") == 0)
       {
         SamplingCategoryIsType * typ;
         if ((typ = dynamic_cast<SamplingCategoryIsType *>(BooleanExpression)))
@@ -7344,7 +7346,7 @@ void NotType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(BooleanExpression->printElement, "ShapeClassIs") == 0)
+    else if (strcmp(BooleanExpression->getprintElement(), "ShapeClassIs") == 0)
       {
         ShapeClassIsType * typ;
         if ((typ = dynamic_cast<ShapeClassIsType *>(BooleanExpression)))
@@ -7388,8 +7390,8 @@ OpenCurvePointSamplingStrategyEnumType::OpenCurvePointSamplingStrategyEnumType(
   PointSamplingStrategyEnumBaseType(
     valIn)
 {
-  if (!bad)
-    bad = (strcmp(val.c_str(), "POINTS"));
+  if (!getbad())
+    setbad(strcmp(val.c_str(), "POINTS"));
 }
 
 OpenCurvePointSamplingStrategyEnumType::~OpenCurvePointSamplingStrategyEnumType() {}
@@ -7520,12 +7522,12 @@ void OrType::printSelf(FILE * outFile)
         BooleanExpressionBaseType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "Not") == 0)
+        else if (strcmp(basie->getprintElement(), "Not") == 0)
           {
             NotType * typ;
             if ((typ = dynamic_cast<NotType *>(basie)))
@@ -7541,7 +7543,7 @@ void OrType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ConstantIs") == 0)
+        else if (strcmp(basie->getprintElement(), "ConstantIs") == 0)
           {
             ConstantIsType * typ;
             if ((typ = dynamic_cast<ConstantIsType *>(basie)))
@@ -7555,7 +7557,7 @@ void OrType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "And") == 0)
+        else if (strcmp(basie->getprintElement(), "And") == 0)
           {
             AndType * typ;
             if ((typ = dynamic_cast<AndType *>(basie)))
@@ -7571,7 +7573,7 @@ void OrType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Or") == 0)
+        else if (strcmp(basie->getprintElement(), "Or") == 0)
           {
             OrType * typ;
             if ((typ = dynamic_cast<OrType *>(basie)))
@@ -7587,7 +7589,7 @@ void OrType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "BooleanEqual") == 0)
+        else if (strcmp(basie->getprintElement(), "BooleanEqual") == 0)
           {
             BooleanEqualType * typ;
             if ((typ = dynamic_cast<BooleanEqualType *>(basie)))
@@ -7603,7 +7605,7 @@ void OrType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArithmeticEqual") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticEqual") == 0)
           {
             ArithmeticEqualType * typ;
             if ((typ = dynamic_cast<ArithmeticEqualType *>(basie)))
@@ -7619,7 +7621,7 @@ void OrType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "GreaterThan") == 0)
+        else if (strcmp(basie->getprintElement(), "GreaterThan") == 0)
           {
             GreaterThanType * typ;
             if ((typ = dynamic_cast<GreaterThanType *>(basie)))
@@ -7635,7 +7637,7 @@ void OrType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "GreaterOrEqual") == 0)
+        else if (strcmp(basie->getprintElement(), "GreaterOrEqual") == 0)
           {
             GreaterOrEqualType * typ;
             if ((typ = dynamic_cast<GreaterOrEqualType *>(basie)))
@@ -7651,7 +7653,7 @@ void OrType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LessThan") == 0)
+        else if (strcmp(basie->getprintElement(), "LessThan") == 0)
           {
             LessThanType * typ;
             if ((typ = dynamic_cast<LessThanType *>(basie)))
@@ -7667,7 +7669,7 @@ void OrType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LessOrEqual") == 0)
+        else if (strcmp(basie->getprintElement(), "LessOrEqual") == 0)
           {
             LessOrEqualType * typ;
             if ((typ = dynamic_cast<LessOrEqualType *>(basie)))
@@ -7683,7 +7685,7 @@ void OrType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TokenEqual") == 0)
+        else if (strcmp(basie->getprintElement(), "TokenEqual") == 0)
           {
             TokenEqualType * typ;
             if ((typ = dynamic_cast<TokenEqualType *>(basie)))
@@ -7699,7 +7701,7 @@ void OrType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "CharacteristicIs") == 0)
+        else if (strcmp(basie->getprintElement(), "CharacteristicIs") == 0)
           {
             CharacteristicIsType * typ;
             if ((typ = dynamic_cast<CharacteristicIsType *>(basie)))
@@ -7713,7 +7715,7 @@ void OrType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "FeatureIsDatum") == 0)
+        else if (strcmp(basie->getprintElement(), "FeatureIsDatum") == 0)
           {
             FeatureIsDatumType * typ;
             if ((typ = dynamic_cast<FeatureIsDatumType *>(basie)))
@@ -7727,7 +7729,7 @@ void OrType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "FeatureIsInternal") == 0)
+        else if (strcmp(basie->getprintElement(), "FeatureIsInternal") == 0)
           {
             FeatureIsInternalType * typ;
             if ((typ = dynamic_cast<FeatureIsInternalType *>(basie)))
@@ -7741,7 +7743,7 @@ void OrType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "FeatureTypeIs") == 0)
+        else if (strcmp(basie->getprintElement(), "FeatureTypeIs") == 0)
           {
             FeatureTypeIsType * typ;
             if ((typ = dynamic_cast<FeatureTypeIsType *>(basie)))
@@ -7755,7 +7757,7 @@ void OrType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SamplingCategoryIs") == 0)
+        else if (strcmp(basie->getprintElement(), "SamplingCategoryIs") == 0)
           {
             SamplingCategoryIsType * typ;
             if ((typ = dynamic_cast<SamplingCategoryIsType *>(basie)))
@@ -7769,7 +7771,7 @@ void OrType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ShapeClassIs") == 0)
+        else if (strcmp(basie->getprintElement(), "ShapeClassIs") == 0)
           {
             ShapeClassIsType * typ;
             if ((typ = dynamic_cast<ShapeClassIsType *>(basie)))
@@ -7805,7 +7807,7 @@ bool OrType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -7814,12 +7816,12 @@ bool OrType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in OrType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -7877,8 +7879,8 @@ PlanePointSamplingStrategyEnumType::PlanePointSamplingStrategyEnumType(
   PointSamplingStrategyEnumBaseType(
     valIn)
 {
-  if (!bad)
-    bad = (strcmp(val.c_str(), "ORTHOGONALGRID") &&
+  if (!getbad())
+    setbad(strcmp(val.c_str(), "ORTHOGONALGRID") &&
            strcmp(val.c_str(), "POLARGRID") &&
            strcmp(val.c_str(), "SPECIFIEDGRID") &&
            strcmp(val.c_str(), "STRATIFIED") &&
@@ -7975,12 +7977,12 @@ void PlusType::printSelf(FILE * outFile)
         ArithmeticExpressionBaseType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "ArithmeticConstant") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticConstant") == 0)
           {
             ArithmeticConstantType * typ;
             if ((typ = dynamic_cast<ArithmeticConstantType *>(basie)))
@@ -7994,7 +7996,7 @@ void PlusType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Plus") == 0)
+        else if (strcmp(basie->getprintElement(), "Plus") == 0)
           {
             PlusType * typ;
             if ((typ = dynamic_cast<PlusType *>(basie)))
@@ -8010,7 +8012,7 @@ void PlusType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Max") == 0)
+        else if (strcmp(basie->getprintElement(), "Max") == 0)
           {
             MaxType * typ;
             if ((typ = dynamic_cast<MaxType *>(basie)))
@@ -8026,7 +8028,7 @@ void PlusType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Min") == 0)
+        else if (strcmp(basie->getprintElement(), "Min") == 0)
           {
             MinType * typ;
             if ((typ = dynamic_cast<MinType *>(basie)))
@@ -8042,7 +8044,7 @@ void PlusType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Minus") == 0)
+        else if (strcmp(basie->getprintElement(), "Minus") == 0)
           {
             MinusType * typ;
             if ((typ = dynamic_cast<MinusType *>(basie)))
@@ -8058,7 +8060,7 @@ void PlusType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Negate") == 0)
+        else if (strcmp(basie->getprintElement(), "Negate") == 0)
           {
             NegateType * typ;
             if ((typ = dynamic_cast<NegateType *>(basie)))
@@ -8074,7 +8076,7 @@ void PlusType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Times") == 0)
+        else if (strcmp(basie->getprintElement(), "Times") == 0)
           {
             TimesType * typ;
             if ((typ = dynamic_cast<TimesType *>(basie)))
@@ -8090,7 +8092,7 @@ void PlusType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "DividedBy") == 0)
+        else if (strcmp(basie->getprintElement(), "DividedBy") == 0)
           {
             DividedByType * typ;
             if ((typ = dynamic_cast<DividedByType *>(basie)))
@@ -8106,7 +8108,7 @@ void PlusType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArithmeticFeatureParameter") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticFeatureParameter") == 0)
           {
             ArithmeticFeatureParameterType * typ;
             if ((typ = dynamic_cast<ArithmeticFeatureParameterType *>(basie)))
@@ -8122,7 +8124,7 @@ void PlusType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArithmeticCharacteristicParameter") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticCharacteristicParameter") == 0)
           {
             ArithmeticCharacteristicParameterType * typ;
             if ((typ = dynamic_cast<ArithmeticCharacteristicParameterType *>(basie)))
@@ -8138,7 +8140,7 @@ void PlusType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArithmeticDMEParameter") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticDMEParameter") == 0)
           {
             ArithmeticDMEParameterType * typ;
             if ((typ = dynamic_cast<ArithmeticDMEParameterType *>(basie)))
@@ -8154,7 +8156,7 @@ void PlusType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArithmeticParameterValue") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticParameterValue") == 0)
           {
             ArithmeticParameterValueType * typ;
             if ((typ = dynamic_cast<ArithmeticParameterValueType *>(basie)))
@@ -8170,7 +8172,7 @@ void PlusType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArithmeticPartParameter") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticPartParameter") == 0)
           {
             ArithmeticPartParameterType * typ;
             if ((typ = dynamic_cast<ArithmeticPartParameterType *>(basie)))
@@ -8186,7 +8188,7 @@ void PlusType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "CharacteristicTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "CharacteristicTolerance") == 0)
           {
             CharacteristicToleranceType * typ;
             if ((typ = dynamic_cast<CharacteristicToleranceType *>(basie)))
@@ -8200,7 +8202,7 @@ void PlusType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "FeatureLength") == 0)
+        else if (strcmp(basie->getprintElement(), "FeatureLength") == 0)
           {
             FeatureLengthType * typ;
             if ((typ = dynamic_cast<FeatureLengthType *>(basie)))
@@ -8214,7 +8216,7 @@ void PlusType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "FeatureArea") == 0)
+        else if (strcmp(basie->getprintElement(), "FeatureArea") == 0)
           {
             FeatureAreaType * typ;
             if ((typ = dynamic_cast<FeatureAreaType *>(basie)))
@@ -8228,7 +8230,7 @@ void PlusType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "FeatureSize") == 0)
+        else if (strcmp(basie->getprintElement(), "FeatureSize") == 0)
           {
             FeatureSizeType * typ;
             if ((typ = dynamic_cast<FeatureSizeType *>(basie)))
@@ -8242,7 +8244,7 @@ void PlusType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "VariableValue") == 0)
+        else if (strcmp(basie->getprintElement(), "VariableValue") == 0)
           {
             VariableValueType * typ;
             if ((typ = dynamic_cast<VariableValueType *>(basie)))
@@ -8285,8 +8287,8 @@ PointDefinedPointSamplingStrategyEnumType::PointDefinedPointSamplingStrategyEnum
   XmlNMTOKEN(
     valIn)
 {
-  if (!bad)
-    bad = (strcmp(val.c_str(), "GIVENPOINTS") &&
+  if (!getbad())
+    setbad(strcmp(val.c_str(), "GIVENPOINTS") &&
            strcmp(val.c_str(), "POINTS"));
 }
 
@@ -8341,8 +8343,8 @@ PointPointSamplingStrategyEnumType::PointPointSamplingStrategyEnumType(
   PointSamplingStrategyEnumBaseType(
     valIn)
 {
-  if (!bad)
-    bad = (strcmp(val.c_str(), "POINTS"));
+  if (!getbad())
+    setbad(strcmp(val.c_str(), "POINTS"));
 }
 
 PointPointSamplingStrategyEnumType::~PointPointSamplingStrategyEnumType() {}
@@ -8397,8 +8399,8 @@ PointSamplingStrategyEnumBaseType::PointSamplingStrategyEnumBaseType(
   XmlNMTOKEN(
     valIn)
 {
-  if (!bad)
-    bad = (strcmp(val.c_str(), "ORTHOGONALGRID") &&
+  if (!getbad())
+    setbad(strcmp(val.c_str(), "ORTHOGONALGRID") &&
            strcmp(val.c_str(), "BIRDCAGE") &&
            strcmp(val.c_str(), "POLARGRID") &&
            strcmp(val.c_str(), "SPECIFIEDGRID") &&
@@ -8508,12 +8510,12 @@ void PolyadicArithmeticExpressionBaseType::printSelf(FILE * outFile)
         ArithmeticExpressionBaseType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "ArithmeticConstant") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticConstant") == 0)
           {
             ArithmeticConstantType * typ;
             if ((typ = dynamic_cast<ArithmeticConstantType *>(basie)))
@@ -8527,7 +8529,7 @@ void PolyadicArithmeticExpressionBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Plus") == 0)
+        else if (strcmp(basie->getprintElement(), "Plus") == 0)
           {
             PlusType * typ;
             if ((typ = dynamic_cast<PlusType *>(basie)))
@@ -8543,7 +8545,7 @@ void PolyadicArithmeticExpressionBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Max") == 0)
+        else if (strcmp(basie->getprintElement(), "Max") == 0)
           {
             MaxType * typ;
             if ((typ = dynamic_cast<MaxType *>(basie)))
@@ -8559,7 +8561,7 @@ void PolyadicArithmeticExpressionBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Min") == 0)
+        else if (strcmp(basie->getprintElement(), "Min") == 0)
           {
             MinType * typ;
             if ((typ = dynamic_cast<MinType *>(basie)))
@@ -8575,7 +8577,7 @@ void PolyadicArithmeticExpressionBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Minus") == 0)
+        else if (strcmp(basie->getprintElement(), "Minus") == 0)
           {
             MinusType * typ;
             if ((typ = dynamic_cast<MinusType *>(basie)))
@@ -8591,7 +8593,7 @@ void PolyadicArithmeticExpressionBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Negate") == 0)
+        else if (strcmp(basie->getprintElement(), "Negate") == 0)
           {
             NegateType * typ;
             if ((typ = dynamic_cast<NegateType *>(basie)))
@@ -8607,7 +8609,7 @@ void PolyadicArithmeticExpressionBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Times") == 0)
+        else if (strcmp(basie->getprintElement(), "Times") == 0)
           {
             TimesType * typ;
             if ((typ = dynamic_cast<TimesType *>(basie)))
@@ -8623,7 +8625,7 @@ void PolyadicArithmeticExpressionBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "DividedBy") == 0)
+        else if (strcmp(basie->getprintElement(), "DividedBy") == 0)
           {
             DividedByType * typ;
             if ((typ = dynamic_cast<DividedByType *>(basie)))
@@ -8639,7 +8641,7 @@ void PolyadicArithmeticExpressionBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArithmeticFeatureParameter") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticFeatureParameter") == 0)
           {
             ArithmeticFeatureParameterType * typ;
             if ((typ = dynamic_cast<ArithmeticFeatureParameterType *>(basie)))
@@ -8655,7 +8657,7 @@ void PolyadicArithmeticExpressionBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArithmeticCharacteristicParameter") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticCharacteristicParameter") == 0)
           {
             ArithmeticCharacteristicParameterType * typ;
             if ((typ = dynamic_cast<ArithmeticCharacteristicParameterType *>(basie)))
@@ -8671,7 +8673,7 @@ void PolyadicArithmeticExpressionBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArithmeticDMEParameter") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticDMEParameter") == 0)
           {
             ArithmeticDMEParameterType * typ;
             if ((typ = dynamic_cast<ArithmeticDMEParameterType *>(basie)))
@@ -8687,7 +8689,7 @@ void PolyadicArithmeticExpressionBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArithmeticParameterValue") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticParameterValue") == 0)
           {
             ArithmeticParameterValueType * typ;
             if ((typ = dynamic_cast<ArithmeticParameterValueType *>(basie)))
@@ -8703,7 +8705,7 @@ void PolyadicArithmeticExpressionBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArithmeticPartParameter") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticPartParameter") == 0)
           {
             ArithmeticPartParameterType * typ;
             if ((typ = dynamic_cast<ArithmeticPartParameterType *>(basie)))
@@ -8719,7 +8721,7 @@ void PolyadicArithmeticExpressionBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "CharacteristicTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "CharacteristicTolerance") == 0)
           {
             CharacteristicToleranceType * typ;
             if ((typ = dynamic_cast<CharacteristicToleranceType *>(basie)))
@@ -8733,7 +8735,7 @@ void PolyadicArithmeticExpressionBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "FeatureLength") == 0)
+        else if (strcmp(basie->getprintElement(), "FeatureLength") == 0)
           {
             FeatureLengthType * typ;
             if ((typ = dynamic_cast<FeatureLengthType *>(basie)))
@@ -8747,7 +8749,7 @@ void PolyadicArithmeticExpressionBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "FeatureArea") == 0)
+        else if (strcmp(basie->getprintElement(), "FeatureArea") == 0)
           {
             FeatureAreaType * typ;
             if ((typ = dynamic_cast<FeatureAreaType *>(basie)))
@@ -8761,7 +8763,7 @@ void PolyadicArithmeticExpressionBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "FeatureSize") == 0)
+        else if (strcmp(basie->getprintElement(), "FeatureSize") == 0)
           {
             FeatureSizeType * typ;
             if ((typ = dynamic_cast<FeatureSizeType *>(basie)))
@@ -8775,7 +8777,7 @@ void PolyadicArithmeticExpressionBaseType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "VariableValue") == 0)
+        else if (strcmp(basie->getprintElement(), "VariableValue") == 0)
           {
             VariableValueType * typ;
             if ((typ = dynamic_cast<VariableValueType *>(basie)))
@@ -8875,7 +8877,7 @@ bool SamplingCategoryIsType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "val")
+      if (decl->getname() == "val")
         {
           XmlUnsignedInt * valVal;
           if (this->val)
@@ -8884,12 +8886,12 @@ bool SamplingCategoryIsType::badAttributes(
               returnValue = true;
               break;
             }
-          valVal = new XmlUnsignedInt(decl->val.c_str());
-          if (valVal->bad)
+          valVal = new XmlUnsignedInt(decl->getval().c_str());
+          if (valVal->getbad())
             {
               delete valVal;
               fprintf(stderr, "bad value %s for val in SamplingCategoryIsType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -8994,7 +8996,7 @@ bool ShapeClassIsType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "val")
+      if (decl->getname() == "val")
         {
           ShapeClassEnumType * valVal;
           if (this->val)
@@ -9003,12 +9005,12 @@ bool ShapeClassIsType::badAttributes(
               returnValue = true;
               break;
             }
-          valVal = new ShapeClassEnumType(decl->val.c_str());
-          if (valVal->bad)
+          valVal = new ShapeClassEnumType(decl->getval().c_str());
+          if (valVal->getbad())
             {
               delete valVal;
               fprintf(stderr, "bad value %s for val in ShapeClassIsType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -9060,8 +9062,8 @@ SpherePointSamplingStrategyEnumType::SpherePointSamplingStrategyEnumType(
   PointSamplingStrategyEnumBaseType(
     valIn)
 {
-  if (!bad)
-    bad = (strcmp(val.c_str(), "ORTHOGONALGRID") &&
+  if (!getbad())
+    setbad(strcmp(val.c_str(), "ORTHOGONALGRID") &&
            strcmp(val.c_str(), "SPECIFIEDGRID") &&
            strcmp(val.c_str(), "STRATIFIED") &&
            strcmp(val.c_str(), "HELIX") &&
@@ -9122,8 +9124,8 @@ SurfaceOfRevolutionPointSamplingStrategyEnumType::SurfaceOfRevolutionPointSampli
   PointSamplingStrategyEnumBaseType(
     valIn)
 {
-  if (!bad)
-    bad = (strcmp(val.c_str(), "ORTHOGONALGRID") &&
+  if (!getbad())
+    setbad(strcmp(val.c_str(), "ORTHOGONALGRID") &&
            strcmp(val.c_str(), "BIRDCAGE") &&
            strcmp(val.c_str(), "SPECIFIEDGRID") &&
            strcmp(val.c_str(), "STRATIFIED") &&
@@ -9218,12 +9220,12 @@ void TimesType::printSelf(FILE * outFile)
         ArithmeticExpressionBaseType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "ArithmeticConstant") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticConstant") == 0)
           {
             ArithmeticConstantType * typ;
             if ((typ = dynamic_cast<ArithmeticConstantType *>(basie)))
@@ -9237,7 +9239,7 @@ void TimesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Plus") == 0)
+        else if (strcmp(basie->getprintElement(), "Plus") == 0)
           {
             PlusType * typ;
             if ((typ = dynamic_cast<PlusType *>(basie)))
@@ -9253,7 +9255,7 @@ void TimesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Max") == 0)
+        else if (strcmp(basie->getprintElement(), "Max") == 0)
           {
             MaxType * typ;
             if ((typ = dynamic_cast<MaxType *>(basie)))
@@ -9269,7 +9271,7 @@ void TimesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Min") == 0)
+        else if (strcmp(basie->getprintElement(), "Min") == 0)
           {
             MinType * typ;
             if ((typ = dynamic_cast<MinType *>(basie)))
@@ -9285,7 +9287,7 @@ void TimesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Minus") == 0)
+        else if (strcmp(basie->getprintElement(), "Minus") == 0)
           {
             MinusType * typ;
             if ((typ = dynamic_cast<MinusType *>(basie)))
@@ -9301,7 +9303,7 @@ void TimesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Negate") == 0)
+        else if (strcmp(basie->getprintElement(), "Negate") == 0)
           {
             NegateType * typ;
             if ((typ = dynamic_cast<NegateType *>(basie)))
@@ -9317,7 +9319,7 @@ void TimesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Times") == 0)
+        else if (strcmp(basie->getprintElement(), "Times") == 0)
           {
             TimesType * typ;
             if ((typ = dynamic_cast<TimesType *>(basie)))
@@ -9333,7 +9335,7 @@ void TimesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "DividedBy") == 0)
+        else if (strcmp(basie->getprintElement(), "DividedBy") == 0)
           {
             DividedByType * typ;
             if ((typ = dynamic_cast<DividedByType *>(basie)))
@@ -9349,7 +9351,7 @@ void TimesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArithmeticFeatureParameter") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticFeatureParameter") == 0)
           {
             ArithmeticFeatureParameterType * typ;
             if ((typ = dynamic_cast<ArithmeticFeatureParameterType *>(basie)))
@@ -9365,7 +9367,7 @@ void TimesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArithmeticCharacteristicParameter") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticCharacteristicParameter") == 0)
           {
             ArithmeticCharacteristicParameterType * typ;
             if ((typ = dynamic_cast<ArithmeticCharacteristicParameterType *>(basie)))
@@ -9381,7 +9383,7 @@ void TimesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArithmeticDMEParameter") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticDMEParameter") == 0)
           {
             ArithmeticDMEParameterType * typ;
             if ((typ = dynamic_cast<ArithmeticDMEParameterType *>(basie)))
@@ -9397,7 +9399,7 @@ void TimesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArithmeticParameterValue") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticParameterValue") == 0)
           {
             ArithmeticParameterValueType * typ;
             if ((typ = dynamic_cast<ArithmeticParameterValueType *>(basie)))
@@ -9413,7 +9415,7 @@ void TimesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ArithmeticPartParameter") == 0)
+        else if (strcmp(basie->getprintElement(), "ArithmeticPartParameter") == 0)
           {
             ArithmeticPartParameterType * typ;
             if ((typ = dynamic_cast<ArithmeticPartParameterType *>(basie)))
@@ -9429,7 +9431,7 @@ void TimesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "CharacteristicTolerance") == 0)
+        else if (strcmp(basie->getprintElement(), "CharacteristicTolerance") == 0)
           {
             CharacteristicToleranceType * typ;
             if ((typ = dynamic_cast<CharacteristicToleranceType *>(basie)))
@@ -9443,7 +9445,7 @@ void TimesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "FeatureLength") == 0)
+        else if (strcmp(basie->getprintElement(), "FeatureLength") == 0)
           {
             FeatureLengthType * typ;
             if ((typ = dynamic_cast<FeatureLengthType *>(basie)))
@@ -9457,7 +9459,7 @@ void TimesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "FeatureArea") == 0)
+        else if (strcmp(basie->getprintElement(), "FeatureArea") == 0)
           {
             FeatureAreaType * typ;
             if ((typ = dynamic_cast<FeatureAreaType *>(basie)))
@@ -9471,7 +9473,7 @@ void TimesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "FeatureSize") == 0)
+        else if (strcmp(basie->getprintElement(), "FeatureSize") == 0)
           {
             FeatureSizeType * typ;
             if ((typ = dynamic_cast<FeatureSizeType *>(basie)))
@@ -9485,7 +9487,7 @@ void TimesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "VariableValue") == 0)
+        else if (strcmp(basie->getprintElement(), "VariableValue") == 0)
           {
             VariableValueType * typ;
             if ((typ = dynamic_cast<VariableValueType *>(basie)))
@@ -9579,7 +9581,7 @@ bool TokenConstantType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "val")
+      if (decl->getname() == "val")
         {
           XmlToken * valVal;
           if (this->val)
@@ -9588,12 +9590,12 @@ bool TokenConstantType::badAttributes(
               returnValue = true;
               break;
             }
-          valVal = new XmlToken(decl->val.c_str());
-          if (valVal->bad)
+          valVal = new XmlToken(decl->getval().c_str());
+          if (valVal->getbad())
             {
               delete valVal;
               fprintf(stderr, "bad value %s for val in TokenConstantType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -9693,12 +9695,12 @@ void TokenEqualType::printSelf(FILE * outFile)
         TokenExpressionBaseType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "TokenConstant") == 0)
+        else if (strcmp(basie->getprintElement(), "TokenConstant") == 0)
           {
             TokenConstantType * typ;
             if ((typ = dynamic_cast<TokenConstantType *>(basie)))
@@ -9712,7 +9714,7 @@ void TokenEqualType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TokenParameterValue") == 0)
+        else if (strcmp(basie->getprintElement(), "TokenParameterValue") == 0)
           {
             TokenParameterValueType * typ;
             if ((typ = dynamic_cast<TokenParameterValueType *>(basie)))

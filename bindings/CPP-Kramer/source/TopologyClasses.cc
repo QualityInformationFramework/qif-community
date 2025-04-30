@@ -4,10 +4,12 @@
 #include <string.h>            // for strdup
 #include <stdlib.h>            // for exit
 #include <list>
+#include  <map>
 #include <xmlSchemaInstance.hh>
 #include "TopologyClasses.hh"
 
 #define INDENT 2
+extern std::map<unsigned int, XmlSchemaInstanceBase *> idMap;
 
 /* ***************************************************************** */
 /* ***************************************************************** */
@@ -26,8 +28,8 @@ BodyFormEnumType::BodyFormEnumType(
   XmlNMTOKEN(
     valIn)
 {
-  if (!bad)
-    bad = (strcmp(val.c_str(), "UNDEFINED") &&
+  if (!getbad())
+    setbad(strcmp(val.c_str(), "UNDEFINED") &&
            strcmp(val.c_str(), "TRIMMED_SURFACE") &&
            strcmp(val.c_str(), "WIRE") &&
            strcmp(val.c_str(), "SOLID") &&
@@ -183,7 +185,7 @@ bool BodySetType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -192,12 +194,12 @@ bool BodySetType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in BodySetType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -562,7 +564,7 @@ bool BodyType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "color")
+      if (decl->getname() == "color")
         {
           ColorType * colorVal;
           if (this->color)
@@ -571,19 +573,19 @@ bool BodyType::badAttributes(
               returnValue = true;
               break;
             }
-          colorVal = new ColorType(decl->val.c_str());
-          if (colorVal->bad)
+          colorVal = new ColorType(decl->getval().c_str());
+          if (colorVal->getbad())
             {
               delete colorVal;
               fprintf(stderr, "bad value %s for color in BodyType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->color = colorVal;
         }
-      else if (decl->name == "form")
+      else if (decl->getname() == "form")
         {
           BodyFormEnumType * formVal;
           if (this->form)
@@ -592,19 +594,19 @@ bool BodyType::badAttributes(
               returnValue = true;
               break;
             }
-          formVal = new BodyFormEnumType(decl->val.c_str());
-          if (formVal->bad)
+          formVal = new BodyFormEnumType(decl->getval().c_str());
+          if (formVal->getbad())
             {
               delete formVal;
               fprintf(stderr, "bad value %s for form in BodyType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->form = formVal;
         }
-      else if (decl->name == "hidden")
+      else if (decl->getname() == "hidden")
         {
           XmlBoolean * hiddenVal;
           if (this->hidden)
@@ -613,19 +615,19 @@ bool BodyType::badAttributes(
               returnValue = true;
               break;
             }
-          hiddenVal = new XmlBoolean(decl->val.c_str());
-          if (hiddenVal->bad)
+          hiddenVal = new XmlBoolean(decl->getval().c_str());
+          if (hiddenVal->getbad())
             {
               delete hiddenVal;
               fprintf(stderr, "bad value %s for hidden in BodyType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->hidden = hiddenVal;
         }
-      else if (decl->name == "id")
+      else if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -634,19 +636,19 @@ bool BodyType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in BodyType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->id = idVal;
         }
-      else if (decl->name == "label")
+      else if (decl->getname() == "label")
         {
           XmlString * labelVal;
           if (this->label)
@@ -655,19 +657,19 @@ bool BodyType::badAttributes(
               returnValue = true;
               break;
             }
-          labelVal = new XmlString(decl->val.c_str());
-          if (labelVal->bad)
+          labelVal = new XmlString(decl->getval().c_str());
+          if (labelVal->getbad())
             {
               delete labelVal;
               fprintf(stderr, "bad value %s for label in BodyType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->label = labelVal;
         }
-      else if (decl->name == "materialIndex")
+      else if (decl->getname() == "materialIndex")
         {
           NaturalType * materialIndexVal;
           if (this->materialIndex)
@@ -676,19 +678,19 @@ bool BodyType::badAttributes(
               returnValue = true;
               break;
             }
-          materialIndexVal = new NaturalType(decl->val.c_str());
-          if (materialIndexVal->bad)
+          materialIndexVal = new NaturalType(decl->getval().c_str());
+          if (materialIndexVal->getbad())
             {
               delete materialIndexVal;
               fprintf(stderr, "bad value %s for materialIndex in BodyType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->materialIndex = materialIndexVal;
         }
-      else if (decl->name == "size")
+      else if (decl->getname() == "size")
         {
           DoublePositiveType * sizeVal;
           if (this->size)
@@ -697,19 +699,19 @@ bool BodyType::badAttributes(
               returnValue = true;
               break;
             }
-          sizeVal = new DoublePositiveType(decl->val.c_str());
-          if (sizeVal->bad)
+          sizeVal = new DoublePositiveType(decl->getval().c_str());
+          if (sizeVal->getbad())
             {
               delete sizeVal;
               fprintf(stderr, "bad value %s for size in BodyType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->size = sizeVal;
         }
-      else if (decl->name == "transparency")
+      else if (decl->getname() == "transparency")
         {
           TransparencyType * transparencyVal;
           if (this->transparency)
@@ -718,12 +720,12 @@ bool BodyType::badAttributes(
               returnValue = true;
               break;
             }
-          transparencyVal = new TransparencyType(decl->val.c_str());
-          if (transparencyVal->bad)
+          transparencyVal = new TransparencyType(decl->getval().c_str());
+          if (transparencyVal->getbad())
             {
               delete transparencyVal;
               fprintf(stderr, "bad value %s for transparency in BodyType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -737,7 +739,11 @@ bool BodyType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in BodyType\n");
       returnValue = true;
@@ -1155,7 +1161,7 @@ bool CoEdgesMeshType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -1164,12 +1170,12 @@ bool CoEdgesMeshType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in CoEdgesMeshType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -1320,7 +1326,7 @@ bool CoEdgesType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -1329,12 +1335,12 @@ bool CoEdgesType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in CoEdgesType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -1485,7 +1491,7 @@ bool EdgeSetType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -1494,12 +1500,12 @@ bool EdgeSetType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in EdgeSetType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -1791,7 +1797,7 @@ bool EdgeType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "color")
+      if (decl->getname() == "color")
         {
           ColorType * colorVal;
           if (this->color)
@@ -1800,19 +1806,19 @@ bool EdgeType::badAttributes(
               returnValue = true;
               break;
             }
-          colorVal = new ColorType(decl->val.c_str());
-          if (colorVal->bad)
+          colorVal = new ColorType(decl->getval().c_str());
+          if (colorVal->getbad())
             {
               delete colorVal;
               fprintf(stderr, "bad value %s for color in EdgeType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->color = colorVal;
         }
-      else if (decl->name == "hidden")
+      else if (decl->getname() == "hidden")
         {
           XmlBoolean * hiddenVal;
           if (this->hidden)
@@ -1821,19 +1827,19 @@ bool EdgeType::badAttributes(
               returnValue = true;
               break;
             }
-          hiddenVal = new XmlBoolean(decl->val.c_str());
-          if (hiddenVal->bad)
+          hiddenVal = new XmlBoolean(decl->getval().c_str());
+          if (hiddenVal->getbad())
             {
               delete hiddenVal;
               fprintf(stderr, "bad value %s for hidden in EdgeType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->hidden = hiddenVal;
         }
-      else if (decl->name == "id")
+      else if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -1842,19 +1848,19 @@ bool EdgeType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in EdgeType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->id = idVal;
         }
-      else if (decl->name == "label")
+      else if (decl->getname() == "label")
         {
           XmlString * labelVal;
           if (this->label)
@@ -1863,19 +1869,19 @@ bool EdgeType::badAttributes(
               returnValue = true;
               break;
             }
-          labelVal = new XmlString(decl->val.c_str());
-          if (labelVal->bad)
+          labelVal = new XmlString(decl->getval().c_str());
+          if (labelVal->getbad())
             {
               delete labelVal;
               fprintf(stderr, "bad value %s for label in EdgeType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->label = labelVal;
         }
-      else if (decl->name == "size")
+      else if (decl->getname() == "size")
         {
           DoublePositiveType * sizeVal;
           if (this->size)
@@ -1884,19 +1890,19 @@ bool EdgeType::badAttributes(
               returnValue = true;
               break;
             }
-          sizeVal = new DoublePositiveType(decl->val.c_str());
-          if (sizeVal->bad)
+          sizeVal = new DoublePositiveType(decl->getval().c_str());
+          if (sizeVal->getbad())
             {
               delete sizeVal;
               fprintf(stderr, "bad value %s for size in EdgeType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->size = sizeVal;
         }
-      else if (decl->name == "tolerance")
+      else if (decl->getname() == "tolerance")
         {
           XmlDouble * toleranceVal;
           if (this->tolerance)
@@ -1905,19 +1911,19 @@ bool EdgeType::badAttributes(
               returnValue = true;
               break;
             }
-          toleranceVal = new XmlDouble(decl->val.c_str());
-          if (toleranceVal->bad)
+          toleranceVal = new XmlDouble(decl->getval().c_str());
+          if (toleranceVal->getbad())
             {
               delete toleranceVal;
               fprintf(stderr, "bad value %s for tolerance in EdgeType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->tolerance = toleranceVal;
         }
-      else if (decl->name == "transparency")
+      else if (decl->getname() == "transparency")
         {
           TransparencyType * transparencyVal;
           if (this->transparency)
@@ -1926,12 +1932,12 @@ bool EdgeType::badAttributes(
               returnValue = true;
               break;
             }
-          transparencyVal = new TransparencyType(decl->val.c_str());
-          if (transparencyVal->bad)
+          transparencyVal = new TransparencyType(decl->getval().c_str());
+          if (transparencyVal->getbad())
             {
               delete transparencyVal;
               fprintf(stderr, "bad value %s for transparency in EdgeType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -1945,7 +1951,11 @@ bool EdgeType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in EdgeType\n");
       returnValue = true;
@@ -2255,7 +2265,7 @@ bool FaceBaseType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "color")
+      if (decl->getname() == "color")
         {
           ColorType * colorVal;
           if (this->color)
@@ -2264,19 +2274,19 @@ bool FaceBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          colorVal = new ColorType(decl->val.c_str());
-          if (colorVal->bad)
+          colorVal = new ColorType(decl->getval().c_str());
+          if (colorVal->getbad())
             {
               delete colorVal;
               fprintf(stderr, "bad value %s for color in FaceBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->color = colorVal;
         }
-      else if (decl->name == "hidden")
+      else if (decl->getname() == "hidden")
         {
           XmlBoolean * hiddenVal;
           if (this->hidden)
@@ -2285,19 +2295,19 @@ bool FaceBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          hiddenVal = new XmlBoolean(decl->val.c_str());
-          if (hiddenVal->bad)
+          hiddenVal = new XmlBoolean(decl->getval().c_str());
+          if (hiddenVal->getbad())
             {
               delete hiddenVal;
               fprintf(stderr, "bad value %s for hidden in FaceBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->hidden = hiddenVal;
         }
-      else if (decl->name == "id")
+      else if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -2306,19 +2316,19 @@ bool FaceBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in FaceBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->id = idVal;
         }
-      else if (decl->name == "label")
+      else if (decl->getname() == "label")
         {
           XmlString * labelVal;
           if (this->label)
@@ -2327,19 +2337,19 @@ bool FaceBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          labelVal = new XmlString(decl->val.c_str());
-          if (labelVal->bad)
+          labelVal = new XmlString(decl->getval().c_str());
+          if (labelVal->getbad())
             {
               delete labelVal;
               fprintf(stderr, "bad value %s for label in FaceBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->label = labelVal;
         }
-      else if (decl->name == "size")
+      else if (decl->getname() == "size")
         {
           DoublePositiveType * sizeVal;
           if (this->size)
@@ -2348,19 +2358,19 @@ bool FaceBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          sizeVal = new DoublePositiveType(decl->val.c_str());
-          if (sizeVal->bad)
+          sizeVal = new DoublePositiveType(decl->getval().c_str());
+          if (sizeVal->getbad())
             {
               delete sizeVal;
               fprintf(stderr, "bad value %s for size in FaceBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->size = sizeVal;
         }
-      else if (decl->name == "transparency")
+      else if (decl->getname() == "transparency")
         {
           TransparencyType * transparencyVal;
           if (this->transparency)
@@ -2369,19 +2379,19 @@ bool FaceBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          transparencyVal = new TransparencyType(decl->val.c_str());
-          if (transparencyVal->bad)
+          transparencyVal = new TransparencyType(decl->getval().c_str());
+          if (transparencyVal->getbad())
             {
               delete transparencyVal;
               fprintf(stderr, "bad value %s for transparency in FaceBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->transparency = transparencyVal;
         }
-      else if (decl->name == "turned")
+      else if (decl->getname() == "turned")
         {
           XmlBoolean * turnedVal;
           if (this->turned)
@@ -2390,12 +2400,12 @@ bool FaceBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          turnedVal = new XmlBoolean(decl->val.c_str());
-          if (turnedVal->bad)
+          turnedVal = new XmlBoolean(decl->getval().c_str());
+          if (turnedVal->getbad())
             {
               delete turnedVal;
               fprintf(stderr, "bad value %s for turned in FaceBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -2409,7 +2419,11 @@ bool FaceBaseType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in FaceBaseType\n");
       returnValue = true;
@@ -2751,7 +2765,7 @@ bool FaceMeshType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "color")
+      if (decl->getname() == "color")
         {
           ColorType * colorVal;
           if (this->color)
@@ -2760,19 +2774,19 @@ bool FaceMeshType::badAttributes(
               returnValue = true;
               break;
             }
-          colorVal = new ColorType(decl->val.c_str());
-          if (colorVal->bad)
+          colorVal = new ColorType(decl->getval().c_str());
+          if (colorVal->getbad())
             {
               delete colorVal;
               fprintf(stderr, "bad value %s for color in FaceMeshType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->color = colorVal;
         }
-      else if (decl->name == "hidden")
+      else if (decl->getname() == "hidden")
         {
           XmlBoolean * hiddenVal;
           if (this->hidden)
@@ -2781,19 +2795,19 @@ bool FaceMeshType::badAttributes(
               returnValue = true;
               break;
             }
-          hiddenVal = new XmlBoolean(decl->val.c_str());
-          if (hiddenVal->bad)
+          hiddenVal = new XmlBoolean(decl->getval().c_str());
+          if (hiddenVal->getbad())
             {
               delete hiddenVal;
               fprintf(stderr, "bad value %s for hidden in FaceMeshType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->hidden = hiddenVal;
         }
-      else if (decl->name == "id")
+      else if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -2802,19 +2816,19 @@ bool FaceMeshType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in FaceMeshType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->id = idVal;
         }
-      else if (decl->name == "label")
+      else if (decl->getname() == "label")
         {
           XmlString * labelVal;
           if (this->label)
@@ -2823,19 +2837,19 @@ bool FaceMeshType::badAttributes(
               returnValue = true;
               break;
             }
-          labelVal = new XmlString(decl->val.c_str());
-          if (labelVal->bad)
+          labelVal = new XmlString(decl->getval().c_str());
+          if (labelVal->getbad())
             {
               delete labelVal;
               fprintf(stderr, "bad value %s for label in FaceMeshType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->label = labelVal;
         }
-      else if (decl->name == "size")
+      else if (decl->getname() == "size")
         {
           DoublePositiveType * sizeVal;
           if (this->size)
@@ -2844,19 +2858,19 @@ bool FaceMeshType::badAttributes(
               returnValue = true;
               break;
             }
-          sizeVal = new DoublePositiveType(decl->val.c_str());
-          if (sizeVal->bad)
+          sizeVal = new DoublePositiveType(decl->getval().c_str());
+          if (sizeVal->getbad())
             {
               delete sizeVal;
               fprintf(stderr, "bad value %s for size in FaceMeshType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->size = sizeVal;
         }
-      else if (decl->name == "transparency")
+      else if (decl->getname() == "transparency")
         {
           TransparencyType * transparencyVal;
           if (this->transparency)
@@ -2865,19 +2879,19 @@ bool FaceMeshType::badAttributes(
               returnValue = true;
               break;
             }
-          transparencyVal = new TransparencyType(decl->val.c_str());
-          if (transparencyVal->bad)
+          transparencyVal = new TransparencyType(decl->getval().c_str());
+          if (transparencyVal->getbad())
             {
               delete transparencyVal;
               fprintf(stderr, "bad value %s for transparency in FaceMeshType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->transparency = transparencyVal;
         }
-      else if (decl->name == "turned")
+      else if (decl->getname() == "turned")
         {
           XmlBoolean * turnedVal;
           if (this->turned)
@@ -2886,12 +2900,12 @@ bool FaceMeshType::badAttributes(
               returnValue = true;
               break;
             }
-          turnedVal = new XmlBoolean(decl->val.c_str());
-          if (turnedVal->bad)
+          turnedVal = new XmlBoolean(decl->getval().c_str());
+          if (turnedVal->getbad())
             {
               delete turnedVal;
               fprintf(stderr, "bad value %s for turned in FaceMeshType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -2905,7 +2919,11 @@ bool FaceMeshType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in FaceMeshType\n");
       returnValue = true;
@@ -3054,12 +3072,12 @@ void FaceSetType::printSelf(FILE * outFile)
         FaceBaseType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "Face") == 0)
+        else if (strcmp(basie->getprintElement(), "Face") == 0)
           {
             FaceType * typ;
             if ((typ = dynamic_cast<FaceType *>(basie)))
@@ -3075,7 +3093,7 @@ void FaceSetType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "FaceMesh") == 0)
+        else if (strcmp(basie->getprintElement(), "FaceMesh") == 0)
           {
             FaceMeshType * typ;
             if ((typ = dynamic_cast<FaceMeshType *>(basie)))
@@ -3113,7 +3131,7 @@ bool FaceSetType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -3122,12 +3140,12 @@ bool FaceSetType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in FaceSetType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -3428,7 +3446,7 @@ bool FaceType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "color")
+      if (decl->getname() == "color")
         {
           ColorType * colorVal;
           if (this->color)
@@ -3437,19 +3455,19 @@ bool FaceType::badAttributes(
               returnValue = true;
               break;
             }
-          colorVal = new ColorType(decl->val.c_str());
-          if (colorVal->bad)
+          colorVal = new ColorType(decl->getval().c_str());
+          if (colorVal->getbad())
             {
               delete colorVal;
               fprintf(stderr, "bad value %s for color in FaceType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->color = colorVal;
         }
-      else if (decl->name == "hasOuter")
+      else if (decl->getname() == "hasOuter")
         {
           XmlBoolean * hasOuterVal;
           if (this->hasOuter)
@@ -3458,19 +3476,19 @@ bool FaceType::badAttributes(
               returnValue = true;
               break;
             }
-          hasOuterVal = new XmlBoolean(decl->val.c_str());
-          if (hasOuterVal->bad)
+          hasOuterVal = new XmlBoolean(decl->getval().c_str());
+          if (hasOuterVal->getbad())
             {
               delete hasOuterVal;
               fprintf(stderr, "bad value %s for hasOuter in FaceType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->hasOuter = hasOuterVal;
         }
-      else if (decl->name == "hidden")
+      else if (decl->getname() == "hidden")
         {
           XmlBoolean * hiddenVal;
           if (this->hidden)
@@ -3479,19 +3497,19 @@ bool FaceType::badAttributes(
               returnValue = true;
               break;
             }
-          hiddenVal = new XmlBoolean(decl->val.c_str());
-          if (hiddenVal->bad)
+          hiddenVal = new XmlBoolean(decl->getval().c_str());
+          if (hiddenVal->getbad())
             {
               delete hiddenVal;
               fprintf(stderr, "bad value %s for hidden in FaceType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->hidden = hiddenVal;
         }
-      else if (decl->name == "id")
+      else if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -3500,19 +3518,19 @@ bool FaceType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in FaceType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->id = idVal;
         }
-      else if (decl->name == "label")
+      else if (decl->getname() == "label")
         {
           XmlString * labelVal;
           if (this->label)
@@ -3521,19 +3539,19 @@ bool FaceType::badAttributes(
               returnValue = true;
               break;
             }
-          labelVal = new XmlString(decl->val.c_str());
-          if (labelVal->bad)
+          labelVal = new XmlString(decl->getval().c_str());
+          if (labelVal->getbad())
             {
               delete labelVal;
               fprintf(stderr, "bad value %s for label in FaceType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->label = labelVal;
         }
-      else if (decl->name == "size")
+      else if (decl->getname() == "size")
         {
           DoublePositiveType * sizeVal;
           if (this->size)
@@ -3542,19 +3560,19 @@ bool FaceType::badAttributes(
               returnValue = true;
               break;
             }
-          sizeVal = new DoublePositiveType(decl->val.c_str());
-          if (sizeVal->bad)
+          sizeVal = new DoublePositiveType(decl->getval().c_str());
+          if (sizeVal->getbad())
             {
               delete sizeVal;
               fprintf(stderr, "bad value %s for size in FaceType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->size = sizeVal;
         }
-      else if (decl->name == "transparency")
+      else if (decl->getname() == "transparency")
         {
           TransparencyType * transparencyVal;
           if (this->transparency)
@@ -3563,19 +3581,19 @@ bool FaceType::badAttributes(
               returnValue = true;
               break;
             }
-          transparencyVal = new TransparencyType(decl->val.c_str());
-          if (transparencyVal->bad)
+          transparencyVal = new TransparencyType(decl->getval().c_str());
+          if (transparencyVal->getbad())
             {
               delete transparencyVal;
               fprintf(stderr, "bad value %s for transparency in FaceType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->transparency = transparencyVal;
         }
-      else if (decl->name == "turned")
+      else if (decl->getname() == "turned")
         {
           XmlBoolean * turnedVal;
           if (this->turned)
@@ -3584,12 +3602,12 @@ bool FaceType::badAttributes(
               returnValue = true;
               break;
             }
-          turnedVal = new XmlBoolean(decl->val.c_str());
-          if (turnedVal->bad)
+          turnedVal = new XmlBoolean(decl->getval().c_str());
+          if (turnedVal->getbad())
             {
               delete turnedVal;
               fprintf(stderr, "bad value %s for turned in FaceType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -3603,7 +3621,11 @@ bool FaceType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in FaceType\n");
       returnValue = true;
@@ -3832,7 +3854,7 @@ bool LoopBaseType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "color")
+      if (decl->getname() == "color")
         {
           ColorType * colorVal;
           if (this->color)
@@ -3841,19 +3863,19 @@ bool LoopBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          colorVal = new ColorType(decl->val.c_str());
-          if (colorVal->bad)
+          colorVal = new ColorType(decl->getval().c_str());
+          if (colorVal->getbad())
             {
               delete colorVal;
               fprintf(stderr, "bad value %s for color in LoopBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->color = colorVal;
         }
-      else if (decl->name == "hidden")
+      else if (decl->getname() == "hidden")
         {
           XmlBoolean * hiddenVal;
           if (this->hidden)
@@ -3862,19 +3884,19 @@ bool LoopBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          hiddenVal = new XmlBoolean(decl->val.c_str());
-          if (hiddenVal->bad)
+          hiddenVal = new XmlBoolean(decl->getval().c_str());
+          if (hiddenVal->getbad())
             {
               delete hiddenVal;
               fprintf(stderr, "bad value %s for hidden in LoopBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->hidden = hiddenVal;
         }
-      else if (decl->name == "id")
+      else if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -3883,19 +3905,19 @@ bool LoopBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in LoopBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->id = idVal;
         }
-      else if (decl->name == "label")
+      else if (decl->getname() == "label")
         {
           XmlString * labelVal;
           if (this->label)
@@ -3904,19 +3926,19 @@ bool LoopBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          labelVal = new XmlString(decl->val.c_str());
-          if (labelVal->bad)
+          labelVal = new XmlString(decl->getval().c_str());
+          if (labelVal->getbad())
             {
               delete labelVal;
               fprintf(stderr, "bad value %s for label in LoopBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->label = labelVal;
         }
-      else if (decl->name == "size")
+      else if (decl->getname() == "size")
         {
           DoublePositiveType * sizeVal;
           if (this->size)
@@ -3925,19 +3947,19 @@ bool LoopBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          sizeVal = new DoublePositiveType(decl->val.c_str());
-          if (sizeVal->bad)
+          sizeVal = new DoublePositiveType(decl->getval().c_str());
+          if (sizeVal->getbad())
             {
               delete sizeVal;
               fprintf(stderr, "bad value %s for size in LoopBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->size = sizeVal;
         }
-      else if (decl->name == "transparency")
+      else if (decl->getname() == "transparency")
         {
           TransparencyType * transparencyVal;
           if (this->transparency)
@@ -3946,12 +3968,12 @@ bool LoopBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          transparencyVal = new TransparencyType(decl->val.c_str());
-          if (transparencyVal->bad)
+          transparencyVal = new TransparencyType(decl->getval().c_str());
+          if (transparencyVal->getbad())
             {
               delete transparencyVal;
               fprintf(stderr, "bad value %s for transparency in LoopBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -3965,7 +3987,11 @@ bool LoopBaseType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in LoopBaseType\n");
       returnValue = true;
@@ -4044,8 +4070,8 @@ LoopFormEnumType::LoopFormEnumType(
   XmlString(
     valIn)
 {
-  if (!bad)
-    bad = (strcmp(val.c_str(), "UNKNOWN") &&
+  if (!getbad())
+    setbad(strcmp(val.c_str(), "UNKNOWN") &&
            strcmp(val.c_str(), "OUTER") &&
            strcmp(val.c_str(), "INNER") &&
            strcmp(val.c_str(), "SLIT") &&
@@ -4282,7 +4308,7 @@ bool LoopMeshType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "color")
+      if (decl->getname() == "color")
         {
           ColorType * colorVal;
           if (this->color)
@@ -4291,19 +4317,19 @@ bool LoopMeshType::badAttributes(
               returnValue = true;
               break;
             }
-          colorVal = new ColorType(decl->val.c_str());
-          if (colorVal->bad)
+          colorVal = new ColorType(decl->getval().c_str());
+          if (colorVal->getbad())
             {
               delete colorVal;
               fprintf(stderr, "bad value %s for color in LoopMeshType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->color = colorVal;
         }
-      else if (decl->name == "hidden")
+      else if (decl->getname() == "hidden")
         {
           XmlBoolean * hiddenVal;
           if (this->hidden)
@@ -4312,19 +4338,19 @@ bool LoopMeshType::badAttributes(
               returnValue = true;
               break;
             }
-          hiddenVal = new XmlBoolean(decl->val.c_str());
-          if (hiddenVal->bad)
+          hiddenVal = new XmlBoolean(decl->getval().c_str());
+          if (hiddenVal->getbad())
             {
               delete hiddenVal;
               fprintf(stderr, "bad value %s for hidden in LoopMeshType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->hidden = hiddenVal;
         }
-      else if (decl->name == "id")
+      else if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -4333,19 +4359,19 @@ bool LoopMeshType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in LoopMeshType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->id = idVal;
         }
-      else if (decl->name == "label")
+      else if (decl->getname() == "label")
         {
           XmlString * labelVal;
           if (this->label)
@@ -4354,19 +4380,19 @@ bool LoopMeshType::badAttributes(
               returnValue = true;
               break;
             }
-          labelVal = new XmlString(decl->val.c_str());
-          if (labelVal->bad)
+          labelVal = new XmlString(decl->getval().c_str());
+          if (labelVal->getbad())
             {
               delete labelVal;
               fprintf(stderr, "bad value %s for label in LoopMeshType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->label = labelVal;
         }
-      else if (decl->name == "size")
+      else if (decl->getname() == "size")
         {
           DoublePositiveType * sizeVal;
           if (this->size)
@@ -4375,19 +4401,19 @@ bool LoopMeshType::badAttributes(
               returnValue = true;
               break;
             }
-          sizeVal = new DoublePositiveType(decl->val.c_str());
-          if (sizeVal->bad)
+          sizeVal = new DoublePositiveType(decl->getval().c_str());
+          if (sizeVal->getbad())
             {
               delete sizeVal;
               fprintf(stderr, "bad value %s for size in LoopMeshType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->size = sizeVal;
         }
-      else if (decl->name == "transparency")
+      else if (decl->getname() == "transparency")
         {
           TransparencyType * transparencyVal;
           if (this->transparency)
@@ -4396,12 +4422,12 @@ bool LoopMeshType::badAttributes(
               returnValue = true;
               break;
             }
-          transparencyVal = new TransparencyType(decl->val.c_str());
-          if (transparencyVal->bad)
+          transparencyVal = new TransparencyType(decl->getval().c_str());
+          if (transparencyVal->getbad())
             {
               delete transparencyVal;
               fprintf(stderr, "bad value %s for transparency in LoopMeshType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -4415,7 +4441,11 @@ bool LoopMeshType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in LoopMeshType\n");
       returnValue = true;
@@ -4538,12 +4568,12 @@ void LoopSetType::printSelf(FILE * outFile)
         LoopBaseType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "Loop") == 0)
+        else if (strcmp(basie->getprintElement(), "Loop") == 0)
           {
             LoopType * typ;
             if ((typ = dynamic_cast<LoopType *>(basie)))
@@ -4559,7 +4589,7 @@ void LoopSetType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LoopMesh") == 0)
+        else if (strcmp(basie->getprintElement(), "LoopMesh") == 0)
           {
             LoopMeshType * typ;
             if ((typ = dynamic_cast<LoopMeshType *>(basie)))
@@ -4597,7 +4627,7 @@ bool LoopSetType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -4606,12 +4636,12 @@ bool LoopSetType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in LoopSetType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -4867,7 +4897,7 @@ bool LoopType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "color")
+      if (decl->getname() == "color")
         {
           ColorType * colorVal;
           if (this->color)
@@ -4876,19 +4906,19 @@ bool LoopType::badAttributes(
               returnValue = true;
               break;
             }
-          colorVal = new ColorType(decl->val.c_str());
-          if (colorVal->bad)
+          colorVal = new ColorType(decl->getval().c_str());
+          if (colorVal->getbad())
             {
               delete colorVal;
               fprintf(stderr, "bad value %s for color in LoopType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->color = colorVal;
         }
-      else if (decl->name == "form")
+      else if (decl->getname() == "form")
         {
           LoopFormEnumType * formVal;
           if (this->form)
@@ -4897,19 +4927,19 @@ bool LoopType::badAttributes(
               returnValue = true;
               break;
             }
-          formVal = new LoopFormEnumType(decl->val.c_str());
-          if (formVal->bad)
+          formVal = new LoopFormEnumType(decl->getval().c_str());
+          if (formVal->getbad())
             {
               delete formVal;
               fprintf(stderr, "bad value %s for form in LoopType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->form = formVal;
         }
-      else if (decl->name == "hidden")
+      else if (decl->getname() == "hidden")
         {
           XmlBoolean * hiddenVal;
           if (this->hidden)
@@ -4918,19 +4948,19 @@ bool LoopType::badAttributes(
               returnValue = true;
               break;
             }
-          hiddenVal = new XmlBoolean(decl->val.c_str());
-          if (hiddenVal->bad)
+          hiddenVal = new XmlBoolean(decl->getval().c_str());
+          if (hiddenVal->getbad())
             {
               delete hiddenVal;
               fprintf(stderr, "bad value %s for hidden in LoopType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->hidden = hiddenVal;
         }
-      else if (decl->name == "id")
+      else if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -4939,19 +4969,19 @@ bool LoopType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in LoopType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->id = idVal;
         }
-      else if (decl->name == "label")
+      else if (decl->getname() == "label")
         {
           XmlString * labelVal;
           if (this->label)
@@ -4960,19 +4990,19 @@ bool LoopType::badAttributes(
               returnValue = true;
               break;
             }
-          labelVal = new XmlString(decl->val.c_str());
-          if (labelVal->bad)
+          labelVal = new XmlString(decl->getval().c_str());
+          if (labelVal->getbad())
             {
               delete labelVal;
               fprintf(stderr, "bad value %s for label in LoopType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->label = labelVal;
         }
-      else if (decl->name == "size")
+      else if (decl->getname() == "size")
         {
           DoublePositiveType * sizeVal;
           if (this->size)
@@ -4981,19 +5011,19 @@ bool LoopType::badAttributes(
               returnValue = true;
               break;
             }
-          sizeVal = new DoublePositiveType(decl->val.c_str());
-          if (sizeVal->bad)
+          sizeVal = new DoublePositiveType(decl->getval().c_str());
+          if (sizeVal->getbad())
             {
               delete sizeVal;
               fprintf(stderr, "bad value %s for size in LoopType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->size = sizeVal;
         }
-      else if (decl->name == "transparency")
+      else if (decl->getname() == "transparency")
         {
           TransparencyType * transparencyVal;
           if (this->transparency)
@@ -5002,12 +5032,12 @@ bool LoopType::badAttributes(
               returnValue = true;
               break;
             }
-          transparencyVal = new TransparencyType(decl->val.c_str());
-          if (transparencyVal->bad)
+          transparencyVal = new TransparencyType(decl->getval().c_str());
+          if (transparencyVal->getbad())
             {
               delete transparencyVal;
               fprintf(stderr, "bad value %s for transparency in LoopType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -5021,7 +5051,11 @@ bool LoopType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in LoopType\n");
       returnValue = true;
@@ -5170,7 +5204,7 @@ bool PointCloudSetType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -5179,12 +5213,12 @@ bool PointCloudSetType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in PointCloudSetType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -5444,7 +5478,7 @@ bool PointCloudType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "color")
+      if (decl->getname() == "color")
         {
           ColorType * colorVal;
           if (this->color)
@@ -5453,19 +5487,19 @@ bool PointCloudType::badAttributes(
               returnValue = true;
               break;
             }
-          colorVal = new ColorType(decl->val.c_str());
-          if (colorVal->bad)
+          colorVal = new ColorType(decl->getval().c_str());
+          if (colorVal->getbad())
             {
               delete colorVal;
               fprintf(stderr, "bad value %s for color in PointCloudType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->color = colorVal;
         }
-      else if (decl->name == "hidden")
+      else if (decl->getname() == "hidden")
         {
           XmlBoolean * hiddenVal;
           if (this->hidden)
@@ -5474,19 +5508,19 @@ bool PointCloudType::badAttributes(
               returnValue = true;
               break;
             }
-          hiddenVal = new XmlBoolean(decl->val.c_str());
-          if (hiddenVal->bad)
+          hiddenVal = new XmlBoolean(decl->getval().c_str());
+          if (hiddenVal->getbad())
             {
               delete hiddenVal;
               fprintf(stderr, "bad value %s for hidden in PointCloudType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->hidden = hiddenVal;
         }
-      else if (decl->name == "id")
+      else if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -5495,19 +5529,19 @@ bool PointCloudType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in PointCloudType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->id = idVal;
         }
-      else if (decl->name == "label")
+      else if (decl->getname() == "label")
         {
           XmlString * labelVal;
           if (this->label)
@@ -5516,19 +5550,19 @@ bool PointCloudType::badAttributes(
               returnValue = true;
               break;
             }
-          labelVal = new XmlString(decl->val.c_str());
-          if (labelVal->bad)
+          labelVal = new XmlString(decl->getval().c_str());
+          if (labelVal->getbad())
             {
               delete labelVal;
               fprintf(stderr, "bad value %s for label in PointCloudType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->label = labelVal;
         }
-      else if (decl->name == "size")
+      else if (decl->getname() == "size")
         {
           DoublePositiveType * sizeVal;
           if (this->size)
@@ -5537,19 +5571,19 @@ bool PointCloudType::badAttributes(
               returnValue = true;
               break;
             }
-          sizeVal = new DoublePositiveType(decl->val.c_str());
-          if (sizeVal->bad)
+          sizeVal = new DoublePositiveType(decl->getval().c_str());
+          if (sizeVal->getbad())
             {
               delete sizeVal;
               fprintf(stderr, "bad value %s for size in PointCloudType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->size = sizeVal;
         }
-      else if (decl->name == "transparency")
+      else if (decl->getname() == "transparency")
         {
           TransparencyType * transparencyVal;
           if (this->transparency)
@@ -5558,12 +5592,12 @@ bool PointCloudType::badAttributes(
               returnValue = true;
               break;
             }
-          transparencyVal = new TransparencyType(decl->val.c_str());
-          if (transparencyVal->bad)
+          transparencyVal = new TransparencyType(decl->getval().c_str());
+          if (transparencyVal->getbad())
             {
               delete transparencyVal;
               fprintf(stderr, "bad value %s for transparency in PointCloudType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -5577,7 +5611,11 @@ bool PointCloudType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in PointCloudType\n");
       returnValue = true;
@@ -5680,8 +5718,8 @@ ShellFormEnumType::ShellFormEnumType(
   XmlString(
     valIn)
 {
-  if (!bad)
-    bad = (strcmp(val.c_str(), "UNKNOWN") &&
+  if (!getbad())
+    setbad(strcmp(val.c_str(), "UNKNOWN") &&
            strcmp(val.c_str(), "OUTER") &&
            strcmp(val.c_str(), "INNER"));
 }
@@ -5831,7 +5869,7 @@ bool ShellSetType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -5840,12 +5878,12 @@ bool ShellSetType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in ShellSetType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -6148,7 +6186,7 @@ bool ShellType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "closed")
+      if (decl->getname() == "closed")
         {
           XmlBoolean * closedVal;
           if (this->closed)
@@ -6157,19 +6195,19 @@ bool ShellType::badAttributes(
               returnValue = true;
               break;
             }
-          closedVal = new XmlBoolean(decl->val.c_str());
-          if (closedVal->bad)
+          closedVal = new XmlBoolean(decl->getval().c_str());
+          if (closedVal->getbad())
             {
               delete closedVal;
               fprintf(stderr, "bad value %s for closed in ShellType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->closed = closedVal;
         }
-      else if (decl->name == "color")
+      else if (decl->getname() == "color")
         {
           ColorType * colorVal;
           if (this->color)
@@ -6178,19 +6216,19 @@ bool ShellType::badAttributes(
               returnValue = true;
               break;
             }
-          colorVal = new ColorType(decl->val.c_str());
-          if (colorVal->bad)
+          colorVal = new ColorType(decl->getval().c_str());
+          if (colorVal->getbad())
             {
               delete colorVal;
               fprintf(stderr, "bad value %s for color in ShellType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->color = colorVal;
         }
-      else if (decl->name == "form")
+      else if (decl->getname() == "form")
         {
           ShellFormEnumType * formVal;
           if (this->form)
@@ -6199,19 +6237,19 @@ bool ShellType::badAttributes(
               returnValue = true;
               break;
             }
-          formVal = new ShellFormEnumType(decl->val.c_str());
-          if (formVal->bad)
+          formVal = new ShellFormEnumType(decl->getval().c_str());
+          if (formVal->getbad())
             {
               delete formVal;
               fprintf(stderr, "bad value %s for form in ShellType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->form = formVal;
         }
-      else if (decl->name == "hidden")
+      else if (decl->getname() == "hidden")
         {
           XmlBoolean * hiddenVal;
           if (this->hidden)
@@ -6220,19 +6258,19 @@ bool ShellType::badAttributes(
               returnValue = true;
               break;
             }
-          hiddenVal = new XmlBoolean(decl->val.c_str());
-          if (hiddenVal->bad)
+          hiddenVal = new XmlBoolean(decl->getval().c_str());
+          if (hiddenVal->getbad())
             {
               delete hiddenVal;
               fprintf(stderr, "bad value %s for hidden in ShellType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->hidden = hiddenVal;
         }
-      else if (decl->name == "id")
+      else if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -6241,19 +6279,19 @@ bool ShellType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in ShellType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->id = idVal;
         }
-      else if (decl->name == "label")
+      else if (decl->getname() == "label")
         {
           XmlString * labelVal;
           if (this->label)
@@ -6262,19 +6300,19 @@ bool ShellType::badAttributes(
               returnValue = true;
               break;
             }
-          labelVal = new XmlString(decl->val.c_str());
-          if (labelVal->bad)
+          labelVal = new XmlString(decl->getval().c_str());
+          if (labelVal->getbad())
             {
               delete labelVal;
               fprintf(stderr, "bad value %s for label in ShellType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->label = labelVal;
         }
-      else if (decl->name == "size")
+      else if (decl->getname() == "size")
         {
           DoublePositiveType * sizeVal;
           if (this->size)
@@ -6283,19 +6321,19 @@ bool ShellType::badAttributes(
               returnValue = true;
               break;
             }
-          sizeVal = new DoublePositiveType(decl->val.c_str());
-          if (sizeVal->bad)
+          sizeVal = new DoublePositiveType(decl->getval().c_str());
+          if (sizeVal->getbad())
             {
               delete sizeVal;
               fprintf(stderr, "bad value %s for size in ShellType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->size = sizeVal;
         }
-      else if (decl->name == "transparency")
+      else if (decl->getname() == "transparency")
         {
           TransparencyType * transparencyVal;
           if (this->transparency)
@@ -6304,19 +6342,19 @@ bool ShellType::badAttributes(
               returnValue = true;
               break;
             }
-          transparencyVal = new TransparencyType(decl->val.c_str());
-          if (transparencyVal->bad)
+          transparencyVal = new TransparencyType(decl->getval().c_str());
+          if (transparencyVal->getbad())
             {
               delete transparencyVal;
               fprintf(stderr, "bad value %s for transparency in ShellType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->transparency = transparencyVal;
         }
-      else if (decl->name == "turned")
+      else if (decl->getname() == "turned")
         {
           XmlBoolean * turnedVal;
           if (this->turned)
@@ -6325,12 +6363,12 @@ bool ShellType::badAttributes(
               returnValue = true;
               break;
             }
-          turnedVal = new XmlBoolean(decl->val.c_str());
-          if (turnedVal->bad)
+          turnedVal = new XmlBoolean(decl->getval().c_str());
+          if (turnedVal->getbad())
             {
               delete turnedVal;
               fprintf(stderr, "bad value %s for turned in ShellType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -6344,7 +6382,11 @@ bool ShellType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in ShellType\n");
       returnValue = true;
@@ -6616,7 +6658,7 @@ bool TopologyBaseType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "color")
+      if (decl->getname() == "color")
         {
           ColorType * colorVal;
           if (this->color)
@@ -6625,19 +6667,19 @@ bool TopologyBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          colorVal = new ColorType(decl->val.c_str());
-          if (colorVal->bad)
+          colorVal = new ColorType(decl->getval().c_str());
+          if (colorVal->getbad())
             {
               delete colorVal;
               fprintf(stderr, "bad value %s for color in TopologyBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->color = colorVal;
         }
-      else if (decl->name == "hidden")
+      else if (decl->getname() == "hidden")
         {
           XmlBoolean * hiddenVal;
           if (this->hidden)
@@ -6646,19 +6688,19 @@ bool TopologyBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          hiddenVal = new XmlBoolean(decl->val.c_str());
-          if (hiddenVal->bad)
+          hiddenVal = new XmlBoolean(decl->getval().c_str());
+          if (hiddenVal->getbad())
             {
               delete hiddenVal;
               fprintf(stderr, "bad value %s for hidden in TopologyBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->hidden = hiddenVal;
         }
-      else if (decl->name == "id")
+      else if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -6667,19 +6709,19 @@ bool TopologyBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in TopologyBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->id = idVal;
         }
-      else if (decl->name == "label")
+      else if (decl->getname() == "label")
         {
           XmlString * labelVal;
           if (this->label)
@@ -6688,19 +6730,19 @@ bool TopologyBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          labelVal = new XmlString(decl->val.c_str());
-          if (labelVal->bad)
+          labelVal = new XmlString(decl->getval().c_str());
+          if (labelVal->getbad())
             {
               delete labelVal;
               fprintf(stderr, "bad value %s for label in TopologyBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->label = labelVal;
         }
-      else if (decl->name == "size")
+      else if (decl->getname() == "size")
         {
           DoublePositiveType * sizeVal;
           if (this->size)
@@ -6709,19 +6751,19 @@ bool TopologyBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          sizeVal = new DoublePositiveType(decl->val.c_str());
-          if (sizeVal->bad)
+          sizeVal = new DoublePositiveType(decl->getval().c_str());
+          if (sizeVal->getbad())
             {
               delete sizeVal;
               fprintf(stderr, "bad value %s for size in TopologyBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->size = sizeVal;
         }
-      else if (decl->name == "transparency")
+      else if (decl->getname() == "transparency")
         {
           TransparencyType * transparencyVal;
           if (this->transparency)
@@ -6730,12 +6772,12 @@ bool TopologyBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          transparencyVal = new TransparencyType(decl->val.c_str());
-          if (transparencyVal->bad)
+          transparencyVal = new TransparencyType(decl->getval().c_str());
+          if (transparencyVal->getbad())
             {
               delete transparencyVal;
               fprintf(stderr, "bad value %s for transparency in TopologyBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -6749,7 +6791,11 @@ bool TopologyBaseType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in TopologyBaseType\n");
       returnValue = true;
@@ -7363,7 +7409,7 @@ bool VertexSetType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -7372,12 +7418,12 @@ bool VertexSetType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in VertexSetType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -7633,7 +7679,7 @@ bool VertexType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "color")
+      if (decl->getname() == "color")
         {
           ColorType * colorVal;
           if (this->color)
@@ -7642,19 +7688,19 @@ bool VertexType::badAttributes(
               returnValue = true;
               break;
             }
-          colorVal = new ColorType(decl->val.c_str());
-          if (colorVal->bad)
+          colorVal = new ColorType(decl->getval().c_str());
+          if (colorVal->getbad())
             {
               delete colorVal;
               fprintf(stderr, "bad value %s for color in VertexType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->color = colorVal;
         }
-      else if (decl->name == "hidden")
+      else if (decl->getname() == "hidden")
         {
           XmlBoolean * hiddenVal;
           if (this->hidden)
@@ -7663,19 +7709,19 @@ bool VertexType::badAttributes(
               returnValue = true;
               break;
             }
-          hiddenVal = new XmlBoolean(decl->val.c_str());
-          if (hiddenVal->bad)
+          hiddenVal = new XmlBoolean(decl->getval().c_str());
+          if (hiddenVal->getbad())
             {
               delete hiddenVal;
               fprintf(stderr, "bad value %s for hidden in VertexType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->hidden = hiddenVal;
         }
-      else if (decl->name == "id")
+      else if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -7684,19 +7730,19 @@ bool VertexType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in VertexType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->id = idVal;
         }
-      else if (decl->name == "label")
+      else if (decl->getname() == "label")
         {
           XmlString * labelVal;
           if (this->label)
@@ -7705,19 +7751,19 @@ bool VertexType::badAttributes(
               returnValue = true;
               break;
             }
-          labelVal = new XmlString(decl->val.c_str());
-          if (labelVal->bad)
+          labelVal = new XmlString(decl->getval().c_str());
+          if (labelVal->getbad())
             {
               delete labelVal;
               fprintf(stderr, "bad value %s for label in VertexType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->label = labelVal;
         }
-      else if (decl->name == "size")
+      else if (decl->getname() == "size")
         {
           DoublePositiveType * sizeVal;
           if (this->size)
@@ -7726,19 +7772,19 @@ bool VertexType::badAttributes(
               returnValue = true;
               break;
             }
-          sizeVal = new DoublePositiveType(decl->val.c_str());
-          if (sizeVal->bad)
+          sizeVal = new DoublePositiveType(decl->getval().c_str());
+          if (sizeVal->getbad())
             {
               delete sizeVal;
               fprintf(stderr, "bad value %s for size in VertexType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->size = sizeVal;
         }
-      else if (decl->name == "tolerance")
+      else if (decl->getname() == "tolerance")
         {
           XmlDouble * toleranceVal;
           if (this->tolerance)
@@ -7747,19 +7793,19 @@ bool VertexType::badAttributes(
               returnValue = true;
               break;
             }
-          toleranceVal = new XmlDouble(decl->val.c_str());
-          if (toleranceVal->bad)
+          toleranceVal = new XmlDouble(decl->getval().c_str());
+          if (toleranceVal->getbad())
             {
               delete toleranceVal;
               fprintf(stderr, "bad value %s for tolerance in VertexType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->tolerance = toleranceVal;
         }
-      else if (decl->name == "transparency")
+      else if (decl->getname() == "transparency")
         {
           TransparencyType * transparencyVal;
           if (this->transparency)
@@ -7768,12 +7814,12 @@ bool VertexType::badAttributes(
               returnValue = true;
               break;
             }
-          transparencyVal = new TransparencyType(decl->val.c_str());
-          if (transparencyVal->bad)
+          transparencyVal = new TransparencyType(decl->getval().c_str());
+          if (transparencyVal->getbad())
             {
               delete transparencyVal;
               fprintf(stderr, "bad value %s for transparency in VertexType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -7787,7 +7833,11 @@ bool VertexType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in VertexType\n");
       returnValue = true;

@@ -4,10 +4,12 @@
 #include <string.h>            // for strdup
 #include <stdlib.h>            // for exit
 #include <list>
+#include  <map>
 #include <xmlSchemaInstance.hh>
 #include "VisualizationClasses.hh"
 
 #define INDENT 2
+extern std::map<unsigned int, XmlSchemaInstanceBase *> idMap;
 
 /* ***************************************************************** */
 /* ***************************************************************** */
@@ -26,8 +28,8 @@ AlignmentEnumType::AlignmentEnumType(
   XmlString(
     valIn)
 {
-  if (!bad)
-    bad = (strcmp(val.c_str(), "ALIGNMENT_LEFT") &&
+  if (!getbad())
+    setbad(strcmp(val.c_str(), "ALIGNMENT_LEFT") &&
            strcmp(val.c_str(), "ALIGNMENT_RIGHT") &&
            strcmp(val.c_str(), "ALIGNMENT_CENTER"));
 }
@@ -177,7 +179,7 @@ bool AnnotationViewSetType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -186,12 +188,12 @@ bool AnnotationViewSetType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in AnnotationViewSetType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -358,7 +360,7 @@ bool AnnotationViewType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -367,19 +369,19 @@ bool AnnotationViewType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in AnnotationViewType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->id = idVal;
         }
-      else if (decl->name == "label")
+      else if (decl->getname() == "label")
         {
           XmlString * labelVal;
           if (this->label)
@@ -388,12 +390,12 @@ bool AnnotationViewType::badAttributes(
               returnValue = true;
               break;
             }
-          labelVal = new XmlString(decl->val.c_str());
-          if (labelVal->bad)
+          labelVal = new XmlString(decl->getval().c_str());
+          if (labelVal->getbad())
             {
               delete labelVal;
               fprintf(stderr, "bad value %s for label in AnnotationViewType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -407,7 +409,11 @@ bool AnnotationViewType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in AnnotationViewType\n");
       returnValue = true;
@@ -693,7 +699,7 @@ bool Areas2dType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -702,12 +708,12 @@ bool Areas2dType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in Areas2dType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -767,8 +773,8 @@ CameraFormEnumType::CameraFormEnumType(
   XmlString(
     valIn)
 {
-  if (!bad)
-    bad = (strcmp(val.c_str(), "ORTHOGRAPHIC") &&
+  if (!getbad())
+    setbad(strcmp(val.c_str(), "ORTHOGRAPHIC") &&
            strcmp(val.c_str(), "PERSPECTIVE"));
 }
 
@@ -916,7 +922,7 @@ bool CameraSetType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -925,12 +931,12 @@ bool CameraSetType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in CameraSetType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -1160,7 +1166,7 @@ bool CameraType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "form")
+      if (decl->getname() == "form")
         {
           CameraFormEnumType * formVal;
           if (this->form)
@@ -1169,19 +1175,19 @@ bool CameraType::badAttributes(
               returnValue = true;
               break;
             }
-          formVal = new CameraFormEnumType(decl->val.c_str());
-          if (formVal->bad)
+          formVal = new CameraFormEnumType(decl->getval().c_str());
+          if (formVal->getbad())
             {
               delete formVal;
               fprintf(stderr, "bad value %s for form in CameraType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->form = formVal;
         }
-      else if (decl->name == "id")
+      else if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -1190,19 +1196,19 @@ bool CameraType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in CameraType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->id = idVal;
         }
-      else if (decl->name == "label")
+      else if (decl->getname() == "label")
         {
           XmlString * labelVal;
           if (this->label)
@@ -1211,12 +1217,12 @@ bool CameraType::badAttributes(
               returnValue = true;
               break;
             }
-          labelVal = new XmlString(decl->val.c_str());
-          if (labelVal->bad)
+          labelVal = new XmlString(decl->getval().c_str());
+          if (labelVal->getbad())
             {
               delete labelVal;
               fprintf(stderr, "bad value %s for label in CameraType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -1230,7 +1236,11 @@ bool CameraType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in CameraType\n");
       returnValue = true;
@@ -1345,8 +1355,8 @@ DisplayStyleFormEnumType::DisplayStyleFormEnumType(
   XmlString(
     valIn)
 {
-  if (!bad)
-    bad = (strcmp(val.c_str(), "WIREFRAME") &&
+  if (!getbad())
+    setbad(strcmp(val.c_str(), "WIREFRAME") &&
            strcmp(val.c_str(), "ISOLINES") &&
            strcmp(val.c_str(), "ISOLINES_WITH_EDGES") &&
            strcmp(val.c_str(), "SHADING") &&
@@ -1613,7 +1623,7 @@ bool DisplayStyleGroupsType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -1622,12 +1632,12 @@ bool DisplayStyleGroupsType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in DisplayStyleGroupsType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -1853,7 +1863,7 @@ bool DisplayStyleSetType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -1862,12 +1872,12 @@ bool DisplayStyleSetType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in DisplayStyleSetType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -2039,7 +2049,7 @@ bool DisplayStyleType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -2048,19 +2058,19 @@ bool DisplayStyleType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in DisplayStyleType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->id = idVal;
         }
-      else if (decl->name == "label")
+      else if (decl->getname() == "label")
         {
           XmlString * labelVal;
           if (this->label)
@@ -2069,12 +2079,12 @@ bool DisplayStyleType::badAttributes(
               returnValue = true;
               break;
             }
-          labelVal = new XmlString(decl->val.c_str());
-          if (labelVal->bad)
+          labelVal = new XmlString(decl->getval().c_str());
+          if (labelVal->getbad())
             {
               delete labelVal;
               fprintf(stderr, "bad value %s for label in DisplayStyleType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -2088,7 +2098,11 @@ bool DisplayStyleType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in DisplayStyleType\n");
       returnValue = true;
@@ -2371,7 +2385,7 @@ bool ExplodedViewMoveGroupsType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -2380,12 +2394,12 @@ bool ExplodedViewMoveGroupsType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in ExplodedViewMoveGroupsType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -2592,7 +2606,7 @@ bool ExplodedViewSetType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -2601,12 +2615,12 @@ bool ExplodedViewSetType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in ExplodedViewSetType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -2819,7 +2833,7 @@ bool ExplodedViewType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -2828,19 +2842,19 @@ bool ExplodedViewType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in ExplodedViewType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->id = idVal;
         }
-      else if (decl->name == "label")
+      else if (decl->getname() == "label")
         {
           XmlString * labelVal;
           if (this->label)
@@ -2849,12 +2863,12 @@ bool ExplodedViewType::badAttributes(
               returnValue = true;
               break;
             }
-          labelVal = new XmlString(decl->val.c_str());
-          if (labelVal->bad)
+          labelVal = new XmlString(decl->getval().c_str());
+          if (labelVal->getbad())
             {
               delete labelVal;
               fprintf(stderr, "bad value %s for label in ExplodedViewType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -2868,7 +2882,11 @@ bool ExplodedViewType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in ExplodedViewType\n");
       returnValue = true;
@@ -3114,7 +3132,7 @@ bool FontType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "bold")
+      if (decl->getname() == "bold")
         {
           XmlBoolean * boldVal;
           if (this->bold)
@@ -3123,19 +3141,19 @@ bool FontType::badAttributes(
               returnValue = true;
               break;
             }
-          boldVal = new XmlBoolean(decl->val.c_str());
-          if (boldVal->bad)
+          boldVal = new XmlBoolean(decl->getval().c_str());
+          if (boldVal->getbad())
             {
               delete boldVal;
               fprintf(stderr, "bad value %s for bold in FontType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->bold = boldVal;
         }
-      else if (decl->name == "index")
+      else if (decl->getname() == "index")
         {
           XmlUnsignedInt * indexVal;
           if (this->index)
@@ -3144,19 +3162,19 @@ bool FontType::badAttributes(
               returnValue = true;
               break;
             }
-          indexVal = new XmlUnsignedInt(decl->val.c_str());
-          if (indexVal->bad)
+          indexVal = new XmlUnsignedInt(decl->getval().c_str());
+          if (indexVal->getbad())
             {
               delete indexVal;
               fprintf(stderr, "bad value %s for index in FontType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->index = indexVal;
         }
-      else if (decl->name == "italic")
+      else if (decl->getname() == "italic")
         {
           XmlBoolean * italicVal;
           if (this->italic)
@@ -3165,19 +3183,19 @@ bool FontType::badAttributes(
               returnValue = true;
               break;
             }
-          italicVal = new XmlBoolean(decl->val.c_str());
-          if (italicVal->bad)
+          italicVal = new XmlBoolean(decl->getval().c_str());
+          if (italicVal->getbad())
             {
               delete italicVal;
               fprintf(stderr, "bad value %s for italic in FontType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->italic = italicVal;
         }
-      else if (decl->name == "underline")
+      else if (decl->getname() == "underline")
         {
           XmlBoolean * underlineVal;
           if (this->underline)
@@ -3186,12 +3204,12 @@ bool FontType::badAttributes(
               returnValue = true;
               break;
             }
-          underlineVal = new XmlBoolean(decl->val.c_str());
-          if (underlineVal->bad)
+          underlineVal = new XmlBoolean(decl->getval().c_str());
+          if (underlineVal->getbad())
             {
               delete underlineVal;
               fprintf(stderr, "bad value %s for underline in FontType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -3419,7 +3437,7 @@ bool FontsType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -3428,12 +3446,12 @@ bool FontsType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in FontsType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -3618,7 +3636,7 @@ bool FrameCircularType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "crossed")
+      if (decl->getname() == "crossed")
         {
           XmlBoolean * crossedVal;
           if (this->crossed)
@@ -3627,12 +3645,12 @@ bool FrameCircularType::badAttributes(
               returnValue = true;
               break;
             }
-          crossedVal = new XmlBoolean(decl->val.c_str());
-          if (crossedVal->bad)
+          crossedVal = new XmlBoolean(decl->getval().c_str());
+          if (crossedVal->getbad())
             {
               delete crossedVal;
               fprintf(stderr, "bad value %s for crossed in FrameCircularType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -3771,7 +3789,7 @@ bool FrameFlagType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "right")
+      if (decl->getname() == "right")
         {
           XmlBoolean * rightVal;
           if (this->right)
@@ -3780,12 +3798,12 @@ bool FrameFlagType::badAttributes(
               returnValue = true;
               break;
             }
-          rightVal = new XmlBoolean(decl->val.c_str());
-          if (rightVal->bad)
+          rightVal = new XmlBoolean(decl->getval().c_str());
+          if (rightVal->getbad())
             {
               delete rightVal;
               fprintf(stderr, "bad value %s for right in FrameFlagType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -4519,12 +4537,12 @@ void FramesType::printSelf(FILE * outFile)
         FrameBaseType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "FrameRectangular") == 0)
+        else if (strcmp(basie->getprintElement(), "FrameRectangular") == 0)
           {
             FrameRectangularType * typ;
             if ((typ = dynamic_cast<FrameRectangularType *>(basie)))
@@ -4540,7 +4558,7 @@ void FramesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "FrameCircular") == 0)
+        else if (strcmp(basie->getprintElement(), "FrameCircular") == 0)
           {
             FrameCircularType * typ;
             if ((typ = dynamic_cast<FrameCircularType *>(basie)))
@@ -4556,7 +4574,7 @@ void FramesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "FrameFlag") == 0)
+        else if (strcmp(basie->getprintElement(), "FrameFlag") == 0)
           {
             FrameFlagType * typ;
             if ((typ = dynamic_cast<FrameFlagType *>(basie)))
@@ -4572,7 +4590,7 @@ void FramesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "FrameIrregularForm") == 0)
+        else if (strcmp(basie->getprintElement(), "FrameIrregularForm") == 0)
           {
             FrameIrregularFormType * typ;
             if ((typ = dynamic_cast<FrameIrregularFormType *>(basie)))
@@ -4588,7 +4606,7 @@ void FramesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "FrameTriangle") == 0)
+        else if (strcmp(basie->getprintElement(), "FrameTriangle") == 0)
           {
             FrameTriangleType * typ;
             if ((typ = dynamic_cast<FrameTriangleType *>(basie)))
@@ -4604,7 +4622,7 @@ void FramesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "FrameHexagonal") == 0)
+        else if (strcmp(basie->getprintElement(), "FrameHexagonal") == 0)
           {
             FrameHexagonalType * typ;
             if ((typ = dynamic_cast<FrameHexagonalType *>(basie)))
@@ -4620,7 +4638,7 @@ void FramesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "FramePentagonal") == 0)
+        else if (strcmp(basie->getprintElement(), "FramePentagonal") == 0)
           {
             FramePentagonalType * typ;
             if ((typ = dynamic_cast<FramePentagonalType *>(basie)))
@@ -4636,7 +4654,7 @@ void FramesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "FrameOctagonal") == 0)
+        else if (strcmp(basie->getprintElement(), "FrameOctagonal") == 0)
           {
             FrameOctagonalType * typ;
             if ((typ = dynamic_cast<FrameOctagonalType *>(basie)))
@@ -4652,7 +4670,7 @@ void FramesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "FrameWeldSymbol") == 0)
+        else if (strcmp(basie->getprintElement(), "FrameWeldSymbol") == 0)
           {
             FrameWeldSymbolType * typ;
             if ((typ = dynamic_cast<FrameWeldSymbolType *>(basie)))
@@ -4690,7 +4708,7 @@ bool FramesType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -4699,12 +4717,12 @@ bool FramesType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in FramesType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -5056,7 +5074,7 @@ bool HatchPatternsType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -5065,12 +5083,12 @@ bool HatchPatternsType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in HatchPatternsType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -5130,8 +5148,8 @@ HatchStyleFormEnumType::HatchStyleFormEnumType(
   XmlString(
     valIn)
 {
-  if (!bad)
-    bad = (strcmp(val.c_str(), "NONE") &&
+  if (!getbad())
+    setbad(strcmp(val.c_str(), "NONE") &&
            strcmp(val.c_str(), "PATTERN") &&
            strcmp(val.c_str(), "FILL") &&
            strcmp(val.c_str(), "ERASED"));
@@ -5283,7 +5301,7 @@ bool HatchStyleSetType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -5292,12 +5310,12 @@ bool HatchStyleSetType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in HatchStyleSetType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -5481,7 +5499,7 @@ bool HatchStyleType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -5490,19 +5508,19 @@ bool HatchStyleType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in HatchStyleType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->id = idVal;
         }
-      else if (decl->name == "label")
+      else if (decl->getname() == "label")
         {
           XmlString * labelVal;
           if (this->label)
@@ -5511,12 +5529,12 @@ bool HatchStyleType::badAttributes(
               returnValue = true;
               break;
             }
-          labelVal = new XmlString(decl->val.c_str());
-          if (labelVal->bad)
+          labelVal = new XmlString(decl->getval().c_str());
+          if (labelVal->getbad())
             {
               delete labelVal;
               fprintf(stderr, "bad value %s for label in HatchStyleType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -5530,7 +5548,11 @@ bool HatchStyleType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in HatchStyleType\n");
       returnValue = true;
@@ -6009,8 +6031,8 @@ LeaderHeadFormEnumType::LeaderHeadFormEnumType(
   XmlString(
     valIn)
 {
-  if (!bad)
-    bad = (strcmp(val.c_str(), "NONE") &&
+  if (!getbad())
+    setbad(strcmp(val.c_str(), "NONE") &&
            strcmp(val.c_str(), "ARROW_OPEN") &&
            strcmp(val.c_str(), "ARROW_UNFILLED") &&
            strcmp(val.c_str(), "ARROW_BLANKED") &&
@@ -6165,7 +6187,7 @@ bool LeaderHeadFormType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "normal")
+      if (decl->getname() == "normal")
         {
           D3Type * normalVal;
           if (this->normal)
@@ -6174,12 +6196,12 @@ bool LeaderHeadFormType::badAttributes(
               returnValue = true;
               break;
             }
-          normalVal = new D3Type(decl->val.c_str());
-          if (normalVal->bad)
+          normalVal = new D3Type(decl->getval().c_str());
+          if (normalVal->getbad())
             {
               delete normalVal;
               fprintf(stderr, "bad value %s for normal in LeaderHeadFormType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -6228,8 +6250,8 @@ LeaderModifierEnumType::LeaderModifierEnumType(
   XmlString(
     valIn)
 {
-  if (!bad)
-    bad = (strcmp(val.c_str(), "ALL_AROUND") &&
+  if (!getbad())
+    setbad(strcmp(val.c_str(), "ALL_AROUND") &&
            strcmp(val.c_str(), "ALL_OVER") &&
            strcmp(val.c_str(), "FLAG") &&
            strcmp(val.c_str(), "ALL_AROUND_FLAG"));
@@ -6394,8 +6416,8 @@ LogicalOperationEnumType::LogicalOperationEnumType(
   XmlString(
     valIn)
 {
-  if (!bad)
-    bad = (strcmp(val.c_str(), "LOGICAL_AND") &&
+  if (!getbad())
+    setbad(strcmp(val.c_str(), "LOGICAL_AND") &&
            strcmp(val.c_str(), "LOGICAL_OR"));
 }
 
@@ -6525,7 +6547,7 @@ bool LogicalOperationType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "index")
+      if (decl->getname() == "index")
         {
           XmlUnsignedInt * indexVal;
           if (this->index)
@@ -6534,12 +6556,12 @@ bool LogicalOperationType::badAttributes(
               returnValue = true;
               break;
             }
-          indexVal = new XmlUnsignedInt(decl->val.c_str());
-          if (indexVal->bad)
+          indexVal = new XmlUnsignedInt(decl->getval().c_str());
+          if (indexVal->getbad())
             {
               delete indexVal;
               fprintf(stderr, "bad value %s for index in LogicalOperationType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -6731,7 +6753,7 @@ bool LogicalOperationsType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -6740,12 +6762,12 @@ bool LogicalOperationsType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in LogicalOperationsType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -6896,7 +6918,7 @@ bool Loops2dType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -6905,12 +6927,12 @@ bool Loops2dType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in Loops2dType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -7102,7 +7124,7 @@ bool PMIDisplaySetType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -7111,12 +7133,12 @@ bool PMIDisplaySetType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in PMIDisplaySetType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -7267,12 +7289,12 @@ void PMIDisplayType::printSelf(FILE * outFile)
         LeaderType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "LeaderExtend") == 0)
+        else if (strcmp(basie->getprintElement(), "LeaderExtend") == 0)
           {
             LeaderExtendType * typ;
             if ((typ = dynamic_cast<LeaderExtendType *>(basie)))
@@ -7288,7 +7310,7 @@ void PMIDisplayType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LeaderCircular") == 0)
+        else if (strcmp(basie->getprintElement(), "LeaderCircular") == 0)
           {
             LeaderCircularType * typ;
             if ((typ = dynamic_cast<LeaderCircularType *>(basie)))
@@ -7304,7 +7326,7 @@ void PMIDisplayType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LeaderDoubleHead") == 0)
+        else if (strcmp(basie->getprintElement(), "LeaderDoubleHead") == 0)
           {
             LeaderDoubleHeadType * typ;
             if ((typ = dynamic_cast<LeaderDoubleHeadType *>(basie)))
@@ -7320,7 +7342,7 @@ void PMIDisplayType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LeaderDoubleHeadCircular") == 0)
+        else if (strcmp(basie->getprintElement(), "LeaderDoubleHeadCircular") == 0)
           {
             LeaderDoubleHeadCircularType * typ;
             if ((typ = dynamic_cast<LeaderDoubleHeadCircularType *>(basie)))
@@ -7336,7 +7358,7 @@ void PMIDisplayType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LeaderDoubleHeadExtend") == 0)
+        else if (strcmp(basie->getprintElement(), "LeaderDoubleHeadExtend") == 0)
           {
             LeaderDoubleHeadExtendType * typ;
             if ((typ = dynamic_cast<LeaderDoubleHeadExtendType *>(basie)))
@@ -7352,7 +7374,7 @@ void PMIDisplayType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Leader") == 0)
+        else if (strcmp(basie->getprintElement(), "Leader") == 0)
           {
             LeaderType * typ;
             if ((typ = dynamic_cast<LeaderType *>(basie)))
@@ -7703,7 +7725,7 @@ bool Polyline2dType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "color")
+      if (decl->getname() == "color")
         {
           ColorType * colorVal;
           if (this->color)
@@ -7712,12 +7734,12 @@ bool Polyline2dType::badAttributes(
               returnValue = true;
               break;
             }
-          colorVal = new ColorType(decl->val.c_str());
-          if (colorVal->bad)
+          colorVal = new ColorType(decl->getval().c_str());
+          if (colorVal->getbad())
             {
               delete colorVal;
               fprintf(stderr, "bad value %s for color in Polyline2dType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -7892,7 +7914,7 @@ bool Polylines2dType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -7901,12 +7923,12 @@ bool Polylines2dType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in Polylines2dType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -8057,7 +8079,7 @@ bool SavedViewSetType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -8066,12 +8088,12 @@ bool SavedViewSetType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in SavedViewSetType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -8353,7 +8375,7 @@ bool SavedViewType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -8362,19 +8384,19 @@ bool SavedViewType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in SavedViewType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->id = idVal;
         }
-      else if (decl->name == "label")
+      else if (decl->getname() == "label")
         {
           XmlString * labelVal;
           if (this->label)
@@ -8383,12 +8405,12 @@ bool SavedViewType::badAttributes(
               returnValue = true;
               break;
             }
-          labelVal = new XmlString(decl->val.c_str());
-          if (labelVal->bad)
+          labelVal = new XmlString(decl->getval().c_str());
+          if (labelVal->getbad())
             {
               delete labelVal;
               fprintf(stderr, "bad value %s for label in SavedViewType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -8402,7 +8424,11 @@ bool SavedViewType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in SavedViewType\n");
       returnValue = true;
@@ -8718,7 +8744,7 @@ bool SectionAreasType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -8727,12 +8753,12 @@ bool SectionAreasType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in SectionAreasType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -8883,7 +8909,7 @@ bool SectionEdgesType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -8892,12 +8918,12 @@ bool SectionEdgesType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in SectionEdgesType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -9181,7 +9207,7 @@ bool SectionGroupsType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -9190,12 +9216,12 @@ bool SectionGroupsType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in SectionGroupsType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -9346,7 +9372,7 @@ bool SectionLoopsType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -9355,12 +9381,12 @@ bool SectionLoopsType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in SectionLoopsType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -9588,7 +9614,7 @@ bool SectionPathsType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -9597,12 +9623,12 @@ bool SectionPathsType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in SectionPathsType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -9662,8 +9688,8 @@ SimplifiedRepresentationFormEnumType::SimplifiedRepresentationFormEnumType(
   XmlString(
     valIn)
 {
-  if (!bad)
-    bad = (strcmp(val.c_str(), "MASTER") &&
+  if (!getbad())
+    setbad(strcmp(val.c_str(), "MASTER") &&
            strcmp(val.c_str(), "HIDE") &&
            strcmp(val.c_str(), "BOUNDING_BOX"));
 }
@@ -9925,7 +9951,7 @@ bool SimplifiedRepresentationGroupsType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -9934,12 +9960,12 @@ bool SimplifiedRepresentationGroupsType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in SimplifiedRepresentationGroupsType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -10090,7 +10116,7 @@ bool SimplifiedRepresentationSetType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -10099,12 +10125,12 @@ bool SimplifiedRepresentationSetType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in SimplifiedRepresentationSetType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -10275,7 +10301,7 @@ bool SimplifiedRepresentationType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -10284,19 +10310,19 @@ bool SimplifiedRepresentationType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in SimplifiedRepresentationType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->id = idVal;
         }
-      else if (decl->name == "label")
+      else if (decl->getname() == "label")
         {
           XmlString * labelVal;
           if (this->label)
@@ -10305,12 +10331,12 @@ bool SimplifiedRepresentationType::badAttributes(
               returnValue = true;
               break;
             }
-          labelVal = new XmlString(decl->val.c_str());
-          if (labelVal->bad)
+          labelVal = new XmlString(decl->getval().c_str());
+          if (labelVal->getbad())
             {
               delete labelVal;
               fprintf(stderr, "bad value %s for label in SimplifiedRepresentationType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -10324,7 +10350,11 @@ bool SimplifiedRepresentationType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in SimplifiedRepresentationType\n");
       returnValue = true;
@@ -10637,7 +10667,7 @@ bool TextsType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "fontIndex")
+      if (decl->getname() == "fontIndex")
         {
           XmlUnsignedInt * fontIndexVal;
           if (this->fontIndex)
@@ -10646,19 +10676,19 @@ bool TextsType::badAttributes(
               returnValue = true;
               break;
             }
-          fontIndexVal = new XmlUnsignedInt(decl->val.c_str());
-          if (fontIndexVal->bad)
+          fontIndexVal = new XmlUnsignedInt(decl->getval().c_str());
+          if (fontIndexVal->getbad())
             {
               delete fontIndexVal;
               fprintf(stderr, "bad value %s for fontIndex in TextsType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->fontIndex = fontIndexVal;
         }
-      else if (decl->name == "lineHeight")
+      else if (decl->getname() == "lineHeight")
         {
           XmlDouble * lineHeightVal;
           if (this->lineHeight)
@@ -10667,19 +10697,19 @@ bool TextsType::badAttributes(
               returnValue = true;
               break;
             }
-          lineHeightVal = new XmlDouble(decl->val.c_str());
-          if (lineHeightVal->bad)
+          lineHeightVal = new XmlDouble(decl->getval().c_str());
+          if (lineHeightVal->getbad())
             {
               delete lineHeightVal;
               fprintf(stderr, "bad value %s for lineHeight in TextsType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->lineHeight = lineHeightVal;
         }
-      else if (decl->name == "n")
+      else if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -10688,12 +10718,12 @@ bool TextsType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in TextsType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -10976,7 +11006,7 @@ bool TrailingZeroDimensionalCharacteristicDisplayGroupsType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -10985,12 +11015,12 @@ bool TrailingZeroDimensionalCharacteristicDisplayGroupsType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in TrailingZeroDimensionalCharacteristicDisplayGroupsType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -11346,7 +11376,7 @@ bool TrailingZeroGeometricCharacteristicDisplayGroupsType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -11355,12 +11385,12 @@ bool TrailingZeroGeometricCharacteristicDisplayGroupsType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in TrailingZeroGeometricCharacteristicDisplayGroupsType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -11764,8 +11794,8 @@ WeldMainSymbolEnumType::WeldMainSymbolEnumType(
   XmlString(
     valIn)
 {
-  if (!bad)
-    bad = (strcmp(val.c_str(), "WELD_FILLET_ARROW_SIDE") &&
+  if (!getbad())
+    setbad(strcmp(val.c_str(), "WELD_FILLET_ARROW_SIDE") &&
            strcmp(val.c_str(), "WELD_FILLET_OTHER_SIDE") &&
            strcmp(val.c_str(), "WELD_FILLET_BOTH") &&
            strcmp(val.c_str(), "WELD_SPOT_ARROW_SIDE") &&
@@ -12110,7 +12140,7 @@ bool WitnessLinesType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "width")
+      if (decl->getname() == "width")
         {
           XmlDouble * widthVal;
           if (this->width)
@@ -12119,12 +12149,12 @@ bool WitnessLinesType::badAttributes(
               returnValue = true;
               break;
             }
-          widthVal = new XmlDouble(decl->val.c_str());
-          if (widthVal->bad)
+          widthVal = new XmlDouble(decl->getval().c_str());
+          if (widthVal->getbad())
             {
               delete widthVal;
               fprintf(stderr, "bad value %s for width in WitnessLinesType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -12259,7 +12289,7 @@ bool ZoneSectionPlaneType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "index")
+      if (decl->getname() == "index")
         {
           XmlUnsignedInt * indexVal;
           if (this->index)
@@ -12268,12 +12298,12 @@ bool ZoneSectionPlaneType::badAttributes(
               returnValue = true;
               break;
             }
-          indexVal = new XmlUnsignedInt(decl->val.c_str());
-          if (indexVal->bad)
+          indexVal = new XmlUnsignedInt(decl->getval().c_str());
+          if (indexVal->getbad())
             {
               delete indexVal;
               fprintf(stderr, "bad value %s for index in ZoneSectionPlaneType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -12465,7 +12495,7 @@ bool ZoneSectionPlanesType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -12474,12 +12504,12 @@ bool ZoneSectionPlanesType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in ZoneSectionPlanesType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -12630,7 +12660,7 @@ bool ZoneSectionSetType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -12639,12 +12669,12 @@ bool ZoneSectionSetType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in ZoneSectionSetType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -12838,7 +12868,7 @@ bool ZoneSectionType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "hatching")
+      if (decl->getname() == "hatching")
         {
           XmlBoolean * hatchingVal;
           if (this->hatching)
@@ -12847,19 +12877,19 @@ bool ZoneSectionType::badAttributes(
               returnValue = true;
               break;
             }
-          hatchingVal = new XmlBoolean(decl->val.c_str());
-          if (hatchingVal->bad)
+          hatchingVal = new XmlBoolean(decl->getval().c_str());
+          if (hatchingVal->getbad())
             {
               delete hatchingVal;
               fprintf(stderr, "bad value %s for hatching in ZoneSectionType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->hatching = hatchingVal;
         }
-      else if (decl->name == "id")
+      else if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -12868,19 +12898,19 @@ bool ZoneSectionType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in ZoneSectionType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->id = idVal;
         }
-      else if (decl->name == "label")
+      else if (decl->getname() == "label")
         {
           XmlString * labelVal;
           if (this->label)
@@ -12889,12 +12919,12 @@ bool ZoneSectionType::badAttributes(
               returnValue = true;
               break;
             }
-          labelVal = new XmlString(decl->val.c_str());
-          if (labelVal->bad)
+          labelVal = new XmlString(decl->getval().c_str());
+          if (labelVal->getbad())
             {
               delete labelVal;
               fprintf(stderr, "bad value %s for label in ZoneSectionType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -12908,7 +12938,11 @@ bool ZoneSectionType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in ZoneSectionType\n");
       returnValue = true;

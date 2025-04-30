@@ -4,10 +4,12 @@
 #include <string.h>            // for strdup
 #include <stdlib.h>            // for exit
 #include <list>
+#include  <map>
 #include <xmlSchemaInstance.hh>
 #include "QIFRulesClasses.hh"
 
 #define INDENT 2
+extern std::map<unsigned int, XmlSchemaInstanceBase *> idMap;
 
 /* ***************************************************************** */
 /* ***************************************************************** */
@@ -506,12 +508,12 @@ void DMEDecisionBaseType::printSelf(FILE * outFile)
   doSpaces(+INDENT, outFile);
   {
     doSpaces(0, outFile);
-    if (Applicability->printElement == 0)
+    if (Applicability->getprintElement() == 0)
       {
         fprintf(stderr, "element name missing\n");
         exit(1);
       }
-    else if (strcmp(Applicability->printElement, "Must") == 0)
+    else if (strcmp(Applicability->getprintElement(), "Must") == 0)
       {
         QIFMustType * typ;
         if ((typ = dynamic_cast<QIFMustType *>(Applicability)))
@@ -525,7 +527,7 @@ void DMEDecisionBaseType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(Applicability->printElement, "MustNot") == 0)
+    else if (strcmp(Applicability->getprintElement(), "MustNot") == 0)
       {
         QIFMustNotType * typ;
         if ((typ = dynamic_cast<QIFMustNotType *>(Applicability)))
@@ -539,7 +541,7 @@ void DMEDecisionBaseType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(Applicability->printElement, "May") == 0)
+    else if (strcmp(Applicability->getprintElement(), "May") == 0)
       {
         QIFMayType * typ;
         if ((typ = dynamic_cast<QIFMayType *>(Applicability)))
@@ -642,12 +644,12 @@ void DMEDecisionClassType::printSelf(FILE * outFile)
   doSpaces(+INDENT, outFile);
   {
     doSpaces(0, outFile);
-    if (Applicability->printElement == 0)
+    if (Applicability->getprintElement() == 0)
       {
         fprintf(stderr, "element name missing\n");
         exit(1);
       }
-    else if (strcmp(Applicability->printElement, "Must") == 0)
+    else if (strcmp(Applicability->getprintElement(), "Must") == 0)
       {
         QIFMustType * typ;
         if ((typ = dynamic_cast<QIFMustType *>(Applicability)))
@@ -661,7 +663,7 @@ void DMEDecisionClassType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(Applicability->printElement, "MustNot") == 0)
+    else if (strcmp(Applicability->getprintElement(), "MustNot") == 0)
       {
         QIFMustNotType * typ;
         if ((typ = dynamic_cast<QIFMustNotType *>(Applicability)))
@@ -675,7 +677,7 @@ void DMEDecisionClassType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(Applicability->printElement, "May") == 0)
+    else if (strcmp(Applicability->getprintElement(), "May") == 0)
       {
         QIFMayType * typ;
         if ((typ = dynamic_cast<QIFMayType *>(Applicability)))
@@ -757,12 +759,12 @@ void DMEDecisionIdType::printSelf(FILE * outFile)
   doSpaces(+INDENT, outFile);
   {
     doSpaces(0, outFile);
-    if (Applicability->printElement == 0)
+    if (Applicability->getprintElement() == 0)
       {
         fprintf(stderr, "element name missing\n");
         exit(1);
       }
-    else if (strcmp(Applicability->printElement, "Must") == 0)
+    else if (strcmp(Applicability->getprintElement(), "Must") == 0)
       {
         QIFMustType * typ;
         if ((typ = dynamic_cast<QIFMustType *>(Applicability)))
@@ -776,7 +778,7 @@ void DMEDecisionIdType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(Applicability->printElement, "MustNot") == 0)
+    else if (strcmp(Applicability->getprintElement(), "MustNot") == 0)
       {
         QIFMustNotType * typ;
         if ((typ = dynamic_cast<QIFMustNotType *>(Applicability)))
@@ -790,7 +792,7 @@ void DMEDecisionIdType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(Applicability->printElement, "May") == 0)
+    else if (strcmp(Applicability->getprintElement(), "May") == 0)
       {
         QIFMayType * typ;
         if ((typ = dynamic_cast<QIFMayType *>(Applicability)))
@@ -866,12 +868,12 @@ void DMEDecisionMakeModelType::printSelf(FILE * outFile)
   doSpaces(+INDENT, outFile);
   {
     doSpaces(0, outFile);
-    if (Applicability->printElement == 0)
+    if (Applicability->getprintElement() == 0)
       {
         fprintf(stderr, "element name missing\n");
         exit(1);
       }
-    else if (strcmp(Applicability->printElement, "Must") == 0)
+    else if (strcmp(Applicability->getprintElement(), "Must") == 0)
       {
         QIFMustType * typ;
         if ((typ = dynamic_cast<QIFMustType *>(Applicability)))
@@ -885,7 +887,7 @@ void DMEDecisionMakeModelType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(Applicability->printElement, "MustNot") == 0)
+    else if (strcmp(Applicability->getprintElement(), "MustNot") == 0)
       {
         QIFMustNotType * typ;
         if ((typ = dynamic_cast<QIFMustNotType *>(Applicability)))
@@ -899,7 +901,7 @@ void DMEDecisionMakeModelType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(Applicability->printElement, "May") == 0)
+    else if (strcmp(Applicability->getprintElement(), "May") == 0)
       {
         QIFMayType * typ;
         if ((typ = dynamic_cast<QIFMayType *>(Applicability)))
@@ -1063,7 +1065,7 @@ bool DMEParameterConstraintSetType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -1072,12 +1074,12 @@ bool DMEParameterConstraintSetType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in DMEParameterConstraintSetType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -1167,12 +1169,12 @@ void DMEParameterConstraintType::printSelf(FILE * outFile)
   fprintf(outFile, "</Comparison>\n");
   {
     doSpaces(0, outFile);
-    if (ArithmeticExpression->printElement == 0)
+    if (ArithmeticExpression->getprintElement() == 0)
       {
         fprintf(stderr, "element name missing\n");
         exit(1);
       }
-    else if (strcmp(ArithmeticExpression->printElement, "ArithmeticConstant") == 0)
+    else if (strcmp(ArithmeticExpression->getprintElement(), "ArithmeticConstant") == 0)
       {
         ArithmeticConstantType * typ;
         if ((typ = dynamic_cast<ArithmeticConstantType *>(ArithmeticExpression)))
@@ -1186,7 +1188,7 @@ void DMEParameterConstraintType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(ArithmeticExpression->printElement, "Plus") == 0)
+    else if (strcmp(ArithmeticExpression->getprintElement(), "Plus") == 0)
       {
         PlusType * typ;
         if ((typ = dynamic_cast<PlusType *>(ArithmeticExpression)))
@@ -1202,7 +1204,7 @@ void DMEParameterConstraintType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(ArithmeticExpression->printElement, "Max") == 0)
+    else if (strcmp(ArithmeticExpression->getprintElement(), "Max") == 0)
       {
         MaxType * typ;
         if ((typ = dynamic_cast<MaxType *>(ArithmeticExpression)))
@@ -1218,7 +1220,7 @@ void DMEParameterConstraintType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(ArithmeticExpression->printElement, "Min") == 0)
+    else if (strcmp(ArithmeticExpression->getprintElement(), "Min") == 0)
       {
         MinType * typ;
         if ((typ = dynamic_cast<MinType *>(ArithmeticExpression)))
@@ -1234,7 +1236,7 @@ void DMEParameterConstraintType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(ArithmeticExpression->printElement, "Minus") == 0)
+    else if (strcmp(ArithmeticExpression->getprintElement(), "Minus") == 0)
       {
         MinusType * typ;
         if ((typ = dynamic_cast<MinusType *>(ArithmeticExpression)))
@@ -1250,7 +1252,7 @@ void DMEParameterConstraintType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(ArithmeticExpression->printElement, "Negate") == 0)
+    else if (strcmp(ArithmeticExpression->getprintElement(), "Negate") == 0)
       {
         NegateType * typ;
         if ((typ = dynamic_cast<NegateType *>(ArithmeticExpression)))
@@ -1266,7 +1268,7 @@ void DMEParameterConstraintType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(ArithmeticExpression->printElement, "Times") == 0)
+    else if (strcmp(ArithmeticExpression->getprintElement(), "Times") == 0)
       {
         TimesType * typ;
         if ((typ = dynamic_cast<TimesType *>(ArithmeticExpression)))
@@ -1282,7 +1284,7 @@ void DMEParameterConstraintType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(ArithmeticExpression->printElement, "DividedBy") == 0)
+    else if (strcmp(ArithmeticExpression->getprintElement(), "DividedBy") == 0)
       {
         DividedByType * typ;
         if ((typ = dynamic_cast<DividedByType *>(ArithmeticExpression)))
@@ -1298,7 +1300,7 @@ void DMEParameterConstraintType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(ArithmeticExpression->printElement, "ArithmeticFeatureParameter") == 0)
+    else if (strcmp(ArithmeticExpression->getprintElement(), "ArithmeticFeatureParameter") == 0)
       {
         ArithmeticFeatureParameterType * typ;
         if ((typ = dynamic_cast<ArithmeticFeatureParameterType *>(ArithmeticExpression)))
@@ -1314,7 +1316,7 @@ void DMEParameterConstraintType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(ArithmeticExpression->printElement, "ArithmeticCharacteristicParameter") == 0)
+    else if (strcmp(ArithmeticExpression->getprintElement(), "ArithmeticCharacteristicParameter") == 0)
       {
         ArithmeticCharacteristicParameterType * typ;
         if ((typ = dynamic_cast<ArithmeticCharacteristicParameterType *>(ArithmeticExpression)))
@@ -1330,7 +1332,7 @@ void DMEParameterConstraintType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(ArithmeticExpression->printElement, "ArithmeticDMEParameter") == 0)
+    else if (strcmp(ArithmeticExpression->getprintElement(), "ArithmeticDMEParameter") == 0)
       {
         ArithmeticDMEParameterType * typ;
         if ((typ = dynamic_cast<ArithmeticDMEParameterType *>(ArithmeticExpression)))
@@ -1346,7 +1348,7 @@ void DMEParameterConstraintType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(ArithmeticExpression->printElement, "ArithmeticParameterValue") == 0)
+    else if (strcmp(ArithmeticExpression->getprintElement(), "ArithmeticParameterValue") == 0)
       {
         ArithmeticParameterValueType * typ;
         if ((typ = dynamic_cast<ArithmeticParameterValueType *>(ArithmeticExpression)))
@@ -1362,7 +1364,7 @@ void DMEParameterConstraintType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(ArithmeticExpression->printElement, "ArithmeticPartParameter") == 0)
+    else if (strcmp(ArithmeticExpression->getprintElement(), "ArithmeticPartParameter") == 0)
       {
         ArithmeticPartParameterType * typ;
         if ((typ = dynamic_cast<ArithmeticPartParameterType *>(ArithmeticExpression)))
@@ -1378,7 +1380,7 @@ void DMEParameterConstraintType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(ArithmeticExpression->printElement, "CharacteristicTolerance") == 0)
+    else if (strcmp(ArithmeticExpression->getprintElement(), "CharacteristicTolerance") == 0)
       {
         CharacteristicToleranceType * typ;
         if ((typ = dynamic_cast<CharacteristicToleranceType *>(ArithmeticExpression)))
@@ -1392,7 +1394,7 @@ void DMEParameterConstraintType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(ArithmeticExpression->printElement, "FeatureLength") == 0)
+    else if (strcmp(ArithmeticExpression->getprintElement(), "FeatureLength") == 0)
       {
         FeatureLengthType * typ;
         if ((typ = dynamic_cast<FeatureLengthType *>(ArithmeticExpression)))
@@ -1406,7 +1408,7 @@ void DMEParameterConstraintType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(ArithmeticExpression->printElement, "FeatureArea") == 0)
+    else if (strcmp(ArithmeticExpression->getprintElement(), "FeatureArea") == 0)
       {
         FeatureAreaType * typ;
         if ((typ = dynamic_cast<FeatureAreaType *>(ArithmeticExpression)))
@@ -1420,7 +1422,7 @@ void DMEParameterConstraintType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(ArithmeticExpression->printElement, "FeatureSize") == 0)
+    else if (strcmp(ArithmeticExpression->getprintElement(), "FeatureSize") == 0)
       {
         FeatureSizeType * typ;
         if ((typ = dynamic_cast<FeatureSizeType *>(ArithmeticExpression)))
@@ -1434,7 +1436,7 @@ void DMEParameterConstraintType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(ArithmeticExpression->printElement, "VariableValue") == 0)
+    else if (strcmp(ArithmeticExpression->getprintElement(), "VariableValue") == 0)
       {
         VariableValueType * typ;
         if ((typ = dynamic_cast<VariableValueType *>(ArithmeticExpression)))
@@ -1642,7 +1644,7 @@ bool DMESelectionRulesType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "defaultDesirability")
+      if (decl->getname() == "defaultDesirability")
         {
           ZeroToOneType * defaultDesirabilityVal;
           if (this->defaultDesirability)
@@ -1651,19 +1653,19 @@ bool DMESelectionRulesType::badAttributes(
               returnValue = true;
               break;
             }
-          defaultDesirabilityVal = new ZeroToOneType(decl->val.c_str());
-          if (defaultDesirabilityVal->bad)
+          defaultDesirabilityVal = new ZeroToOneType(decl->getval().c_str());
+          if (defaultDesirabilityVal->getbad())
             {
               delete defaultDesirabilityVal;
               fprintf(stderr, "bad value %s for defaultDesirability in DMESelectionRulesType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->defaultDesirability = defaultDesirabilityVal;
         }
-      else if (decl->name == "n")
+      else if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -1672,12 +1674,12 @@ bool DMESelectionRulesType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in DMESelectionRulesType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -1818,12 +1820,12 @@ void DMEThenType::printSelf(FILE * outFile)
         DMEDecisionBaseType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "DMEDecisionClass") == 0)
+        else if (strcmp(basie->getprintElement(), "DMEDecisionClass") == 0)
           {
             DMEDecisionClassType * typ;
             if ((typ = dynamic_cast<DMEDecisionClassType *>(basie)))
@@ -1839,7 +1841,7 @@ void DMEThenType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "DMEDecisionId") == 0)
+        else if (strcmp(basie->getprintElement(), "DMEDecisionId") == 0)
           {
             DMEDecisionIdType * typ;
             if ((typ = dynamic_cast<DMEDecisionIdType *>(basie)))
@@ -1855,7 +1857,7 @@ void DMEThenType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "DMEDecisionMakeModel") == 0)
+        else if (strcmp(basie->getprintElement(), "DMEDecisionMakeModel") == 0)
           {
             DMEDecisionMakeModelType * typ;
             if ((typ = dynamic_cast<DMEDecisionMakeModelType *>(basie)))
@@ -1893,7 +1895,7 @@ bool DMEThenType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -1902,12 +1904,12 @@ bool DMEThenType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in DMEThenType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -2340,7 +2342,7 @@ bool ElseRuleType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "name")
+      if (decl->getname() == "name")
         {
           XmlToken * nameVal;
           if (this->name)
@@ -2349,12 +2351,12 @@ bool ElseRuleType::badAttributes(
               returnValue = true;
               break;
             }
-          nameVal = new XmlToken(decl->val.c_str());
-          if (nameVal->bad)
+          nameVal = new XmlToken(decl->getval().c_str());
+          if (nameVal->getbad())
             {
               delete nameVal;
               fprintf(stderr, "bad value %s for name in ElseRuleType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -2613,12 +2615,12 @@ void IfThenCircleRuleType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (BooleanExpression->printElement == 0)
+        if (BooleanExpression->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(BooleanExpression->printElement, "Not") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "Not") == 0)
           {
             NotType * typ;
             if ((typ = dynamic_cast<NotType *>(BooleanExpression)))
@@ -2634,7 +2636,7 @@ void IfThenCircleRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ConstantIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ConstantIs") == 0)
           {
             ConstantIsType * typ;
             if ((typ = dynamic_cast<ConstantIsType *>(BooleanExpression)))
@@ -2648,7 +2650,7 @@ void IfThenCircleRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "And") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "And") == 0)
           {
             AndType * typ;
             if ((typ = dynamic_cast<AndType *>(BooleanExpression)))
@@ -2664,7 +2666,7 @@ void IfThenCircleRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "Or") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "Or") == 0)
           {
             OrType * typ;
             if ((typ = dynamic_cast<OrType *>(BooleanExpression)))
@@ -2680,7 +2682,7 @@ void IfThenCircleRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "BooleanEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "BooleanEqual") == 0)
           {
             BooleanEqualType * typ;
             if ((typ = dynamic_cast<BooleanEqualType *>(BooleanExpression)))
@@ -2696,7 +2698,7 @@ void IfThenCircleRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ArithmeticEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ArithmeticEqual") == 0)
           {
             ArithmeticEqualType * typ;
             if ((typ = dynamic_cast<ArithmeticEqualType *>(BooleanExpression)))
@@ -2712,7 +2714,7 @@ void IfThenCircleRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "GreaterThan") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "GreaterThan") == 0)
           {
             GreaterThanType * typ;
             if ((typ = dynamic_cast<GreaterThanType *>(BooleanExpression)))
@@ -2728,7 +2730,7 @@ void IfThenCircleRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "GreaterOrEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "GreaterOrEqual") == 0)
           {
             GreaterOrEqualType * typ;
             if ((typ = dynamic_cast<GreaterOrEqualType *>(BooleanExpression)))
@@ -2744,7 +2746,7 @@ void IfThenCircleRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "LessThan") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "LessThan") == 0)
           {
             LessThanType * typ;
             if ((typ = dynamic_cast<LessThanType *>(BooleanExpression)))
@@ -2760,7 +2762,7 @@ void IfThenCircleRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "LessOrEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "LessOrEqual") == 0)
           {
             LessOrEqualType * typ;
             if ((typ = dynamic_cast<LessOrEqualType *>(BooleanExpression)))
@@ -2776,7 +2778,7 @@ void IfThenCircleRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "TokenEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "TokenEqual") == 0)
           {
             TokenEqualType * typ;
             if ((typ = dynamic_cast<TokenEqualType *>(BooleanExpression)))
@@ -2792,7 +2794,7 @@ void IfThenCircleRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "CharacteristicIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "CharacteristicIs") == 0)
           {
             CharacteristicIsType * typ;
             if ((typ = dynamic_cast<CharacteristicIsType *>(BooleanExpression)))
@@ -2806,7 +2808,7 @@ void IfThenCircleRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureIsDatum") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureIsDatum") == 0)
           {
             FeatureIsDatumType * typ;
             if ((typ = dynamic_cast<FeatureIsDatumType *>(BooleanExpression)))
@@ -2820,7 +2822,7 @@ void IfThenCircleRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureIsInternal") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureIsInternal") == 0)
           {
             FeatureIsInternalType * typ;
             if ((typ = dynamic_cast<FeatureIsInternalType *>(BooleanExpression)))
@@ -2834,7 +2836,7 @@ void IfThenCircleRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureTypeIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureTypeIs") == 0)
           {
             FeatureTypeIsType * typ;
             if ((typ = dynamic_cast<FeatureTypeIsType *>(BooleanExpression)))
@@ -2848,7 +2850,7 @@ void IfThenCircleRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "SamplingCategoryIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "SamplingCategoryIs") == 0)
           {
             SamplingCategoryIsType * typ;
             if ((typ = dynamic_cast<SamplingCategoryIsType *>(BooleanExpression)))
@@ -2862,7 +2864,7 @@ void IfThenCircleRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ShapeClassIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ShapeClassIs") == 0)
           {
             ShapeClassIsType * typ;
             if ((typ = dynamic_cast<ShapeClassIsType *>(BooleanExpression)))
@@ -2922,7 +2924,7 @@ bool IfThenCircleRuleType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "name")
+      if (decl->getname() == "name")
         {
           XmlToken * nameVal;
           if (this->name)
@@ -2931,12 +2933,12 @@ bool IfThenCircleRuleType::badAttributes(
               returnValue = true;
               break;
             }
-          nameVal = new XmlToken(decl->val.c_str());
-          if (nameVal->bad)
+          nameVal = new XmlToken(decl->getval().c_str());
+          if (nameVal->getbad())
             {
               delete nameVal;
               fprintf(stderr, "bad value %s for name in IfThenCircleRuleType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -3063,12 +3065,12 @@ void IfThenCircularArcRuleType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (BooleanExpression->printElement == 0)
+        if (BooleanExpression->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(BooleanExpression->printElement, "Not") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "Not") == 0)
           {
             NotType * typ;
             if ((typ = dynamic_cast<NotType *>(BooleanExpression)))
@@ -3084,7 +3086,7 @@ void IfThenCircularArcRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ConstantIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ConstantIs") == 0)
           {
             ConstantIsType * typ;
             if ((typ = dynamic_cast<ConstantIsType *>(BooleanExpression)))
@@ -3098,7 +3100,7 @@ void IfThenCircularArcRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "And") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "And") == 0)
           {
             AndType * typ;
             if ((typ = dynamic_cast<AndType *>(BooleanExpression)))
@@ -3114,7 +3116,7 @@ void IfThenCircularArcRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "Or") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "Or") == 0)
           {
             OrType * typ;
             if ((typ = dynamic_cast<OrType *>(BooleanExpression)))
@@ -3130,7 +3132,7 @@ void IfThenCircularArcRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "BooleanEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "BooleanEqual") == 0)
           {
             BooleanEqualType * typ;
             if ((typ = dynamic_cast<BooleanEqualType *>(BooleanExpression)))
@@ -3146,7 +3148,7 @@ void IfThenCircularArcRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ArithmeticEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ArithmeticEqual") == 0)
           {
             ArithmeticEqualType * typ;
             if ((typ = dynamic_cast<ArithmeticEqualType *>(BooleanExpression)))
@@ -3162,7 +3164,7 @@ void IfThenCircularArcRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "GreaterThan") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "GreaterThan") == 0)
           {
             GreaterThanType * typ;
             if ((typ = dynamic_cast<GreaterThanType *>(BooleanExpression)))
@@ -3178,7 +3180,7 @@ void IfThenCircularArcRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "GreaterOrEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "GreaterOrEqual") == 0)
           {
             GreaterOrEqualType * typ;
             if ((typ = dynamic_cast<GreaterOrEqualType *>(BooleanExpression)))
@@ -3194,7 +3196,7 @@ void IfThenCircularArcRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "LessThan") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "LessThan") == 0)
           {
             LessThanType * typ;
             if ((typ = dynamic_cast<LessThanType *>(BooleanExpression)))
@@ -3210,7 +3212,7 @@ void IfThenCircularArcRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "LessOrEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "LessOrEqual") == 0)
           {
             LessOrEqualType * typ;
             if ((typ = dynamic_cast<LessOrEqualType *>(BooleanExpression)))
@@ -3226,7 +3228,7 @@ void IfThenCircularArcRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "TokenEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "TokenEqual") == 0)
           {
             TokenEqualType * typ;
             if ((typ = dynamic_cast<TokenEqualType *>(BooleanExpression)))
@@ -3242,7 +3244,7 @@ void IfThenCircularArcRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "CharacteristicIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "CharacteristicIs") == 0)
           {
             CharacteristicIsType * typ;
             if ((typ = dynamic_cast<CharacteristicIsType *>(BooleanExpression)))
@@ -3256,7 +3258,7 @@ void IfThenCircularArcRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureIsDatum") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureIsDatum") == 0)
           {
             FeatureIsDatumType * typ;
             if ((typ = dynamic_cast<FeatureIsDatumType *>(BooleanExpression)))
@@ -3270,7 +3272,7 @@ void IfThenCircularArcRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureIsInternal") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureIsInternal") == 0)
           {
             FeatureIsInternalType * typ;
             if ((typ = dynamic_cast<FeatureIsInternalType *>(BooleanExpression)))
@@ -3284,7 +3286,7 @@ void IfThenCircularArcRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureTypeIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureTypeIs") == 0)
           {
             FeatureTypeIsType * typ;
             if ((typ = dynamic_cast<FeatureTypeIsType *>(BooleanExpression)))
@@ -3298,7 +3300,7 @@ void IfThenCircularArcRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "SamplingCategoryIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "SamplingCategoryIs") == 0)
           {
             SamplingCategoryIsType * typ;
             if ((typ = dynamic_cast<SamplingCategoryIsType *>(BooleanExpression)))
@@ -3312,7 +3314,7 @@ void IfThenCircularArcRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ShapeClassIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ShapeClassIs") == 0)
           {
             ShapeClassIsType * typ;
             if ((typ = dynamic_cast<ShapeClassIsType *>(BooleanExpression)))
@@ -3372,7 +3374,7 @@ bool IfThenCircularArcRuleType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "name")
+      if (decl->getname() == "name")
         {
           XmlToken * nameVal;
           if (this->name)
@@ -3381,12 +3383,12 @@ bool IfThenCircularArcRuleType::badAttributes(
               returnValue = true;
               break;
             }
-          nameVal = new XmlToken(decl->val.c_str());
-          if (nameVal->bad)
+          nameVal = new XmlToken(decl->getval().c_str());
+          if (nameVal->getbad())
             {
               delete nameVal;
               fprintf(stderr, "bad value %s for name in IfThenCircularArcRuleType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -3513,12 +3515,12 @@ void IfThenConeRuleType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (BooleanExpression->printElement == 0)
+        if (BooleanExpression->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(BooleanExpression->printElement, "Not") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "Not") == 0)
           {
             NotType * typ;
             if ((typ = dynamic_cast<NotType *>(BooleanExpression)))
@@ -3534,7 +3536,7 @@ void IfThenConeRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ConstantIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ConstantIs") == 0)
           {
             ConstantIsType * typ;
             if ((typ = dynamic_cast<ConstantIsType *>(BooleanExpression)))
@@ -3548,7 +3550,7 @@ void IfThenConeRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "And") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "And") == 0)
           {
             AndType * typ;
             if ((typ = dynamic_cast<AndType *>(BooleanExpression)))
@@ -3564,7 +3566,7 @@ void IfThenConeRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "Or") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "Or") == 0)
           {
             OrType * typ;
             if ((typ = dynamic_cast<OrType *>(BooleanExpression)))
@@ -3580,7 +3582,7 @@ void IfThenConeRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "BooleanEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "BooleanEqual") == 0)
           {
             BooleanEqualType * typ;
             if ((typ = dynamic_cast<BooleanEqualType *>(BooleanExpression)))
@@ -3596,7 +3598,7 @@ void IfThenConeRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ArithmeticEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ArithmeticEqual") == 0)
           {
             ArithmeticEqualType * typ;
             if ((typ = dynamic_cast<ArithmeticEqualType *>(BooleanExpression)))
@@ -3612,7 +3614,7 @@ void IfThenConeRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "GreaterThan") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "GreaterThan") == 0)
           {
             GreaterThanType * typ;
             if ((typ = dynamic_cast<GreaterThanType *>(BooleanExpression)))
@@ -3628,7 +3630,7 @@ void IfThenConeRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "GreaterOrEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "GreaterOrEqual") == 0)
           {
             GreaterOrEqualType * typ;
             if ((typ = dynamic_cast<GreaterOrEqualType *>(BooleanExpression)))
@@ -3644,7 +3646,7 @@ void IfThenConeRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "LessThan") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "LessThan") == 0)
           {
             LessThanType * typ;
             if ((typ = dynamic_cast<LessThanType *>(BooleanExpression)))
@@ -3660,7 +3662,7 @@ void IfThenConeRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "LessOrEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "LessOrEqual") == 0)
           {
             LessOrEqualType * typ;
             if ((typ = dynamic_cast<LessOrEqualType *>(BooleanExpression)))
@@ -3676,7 +3678,7 @@ void IfThenConeRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "TokenEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "TokenEqual") == 0)
           {
             TokenEqualType * typ;
             if ((typ = dynamic_cast<TokenEqualType *>(BooleanExpression)))
@@ -3692,7 +3694,7 @@ void IfThenConeRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "CharacteristicIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "CharacteristicIs") == 0)
           {
             CharacteristicIsType * typ;
             if ((typ = dynamic_cast<CharacteristicIsType *>(BooleanExpression)))
@@ -3706,7 +3708,7 @@ void IfThenConeRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureIsDatum") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureIsDatum") == 0)
           {
             FeatureIsDatumType * typ;
             if ((typ = dynamic_cast<FeatureIsDatumType *>(BooleanExpression)))
@@ -3720,7 +3722,7 @@ void IfThenConeRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureIsInternal") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureIsInternal") == 0)
           {
             FeatureIsInternalType * typ;
             if ((typ = dynamic_cast<FeatureIsInternalType *>(BooleanExpression)))
@@ -3734,7 +3736,7 @@ void IfThenConeRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureTypeIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureTypeIs") == 0)
           {
             FeatureTypeIsType * typ;
             if ((typ = dynamic_cast<FeatureTypeIsType *>(BooleanExpression)))
@@ -3748,7 +3750,7 @@ void IfThenConeRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "SamplingCategoryIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "SamplingCategoryIs") == 0)
           {
             SamplingCategoryIsType * typ;
             if ((typ = dynamic_cast<SamplingCategoryIsType *>(BooleanExpression)))
@@ -3762,7 +3764,7 @@ void IfThenConeRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ShapeClassIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ShapeClassIs") == 0)
           {
             ShapeClassIsType * typ;
             if ((typ = dynamic_cast<ShapeClassIsType *>(BooleanExpression)))
@@ -3822,7 +3824,7 @@ bool IfThenConeRuleType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "name")
+      if (decl->getname() == "name")
         {
           XmlToken * nameVal;
           if (this->name)
@@ -3831,12 +3833,12 @@ bool IfThenConeRuleType::badAttributes(
               returnValue = true;
               break;
             }
-          nameVal = new XmlToken(decl->val.c_str());
-          if (nameVal->bad)
+          nameVal = new XmlToken(decl->getval().c_str());
+          if (nameVal->getbad())
             {
               delete nameVal;
               fprintf(stderr, "bad value %s for name in IfThenConeRuleType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -3963,12 +3965,12 @@ void IfThenConicalSegmentRuleType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (BooleanExpression->printElement == 0)
+        if (BooleanExpression->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(BooleanExpression->printElement, "Not") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "Not") == 0)
           {
             NotType * typ;
             if ((typ = dynamic_cast<NotType *>(BooleanExpression)))
@@ -3984,7 +3986,7 @@ void IfThenConicalSegmentRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ConstantIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ConstantIs") == 0)
           {
             ConstantIsType * typ;
             if ((typ = dynamic_cast<ConstantIsType *>(BooleanExpression)))
@@ -3998,7 +4000,7 @@ void IfThenConicalSegmentRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "And") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "And") == 0)
           {
             AndType * typ;
             if ((typ = dynamic_cast<AndType *>(BooleanExpression)))
@@ -4014,7 +4016,7 @@ void IfThenConicalSegmentRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "Or") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "Or") == 0)
           {
             OrType * typ;
             if ((typ = dynamic_cast<OrType *>(BooleanExpression)))
@@ -4030,7 +4032,7 @@ void IfThenConicalSegmentRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "BooleanEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "BooleanEqual") == 0)
           {
             BooleanEqualType * typ;
             if ((typ = dynamic_cast<BooleanEqualType *>(BooleanExpression)))
@@ -4046,7 +4048,7 @@ void IfThenConicalSegmentRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ArithmeticEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ArithmeticEqual") == 0)
           {
             ArithmeticEqualType * typ;
             if ((typ = dynamic_cast<ArithmeticEqualType *>(BooleanExpression)))
@@ -4062,7 +4064,7 @@ void IfThenConicalSegmentRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "GreaterThan") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "GreaterThan") == 0)
           {
             GreaterThanType * typ;
             if ((typ = dynamic_cast<GreaterThanType *>(BooleanExpression)))
@@ -4078,7 +4080,7 @@ void IfThenConicalSegmentRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "GreaterOrEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "GreaterOrEqual") == 0)
           {
             GreaterOrEqualType * typ;
             if ((typ = dynamic_cast<GreaterOrEqualType *>(BooleanExpression)))
@@ -4094,7 +4096,7 @@ void IfThenConicalSegmentRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "LessThan") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "LessThan") == 0)
           {
             LessThanType * typ;
             if ((typ = dynamic_cast<LessThanType *>(BooleanExpression)))
@@ -4110,7 +4112,7 @@ void IfThenConicalSegmentRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "LessOrEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "LessOrEqual") == 0)
           {
             LessOrEqualType * typ;
             if ((typ = dynamic_cast<LessOrEqualType *>(BooleanExpression)))
@@ -4126,7 +4128,7 @@ void IfThenConicalSegmentRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "TokenEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "TokenEqual") == 0)
           {
             TokenEqualType * typ;
             if ((typ = dynamic_cast<TokenEqualType *>(BooleanExpression)))
@@ -4142,7 +4144,7 @@ void IfThenConicalSegmentRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "CharacteristicIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "CharacteristicIs") == 0)
           {
             CharacteristicIsType * typ;
             if ((typ = dynamic_cast<CharacteristicIsType *>(BooleanExpression)))
@@ -4156,7 +4158,7 @@ void IfThenConicalSegmentRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureIsDatum") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureIsDatum") == 0)
           {
             FeatureIsDatumType * typ;
             if ((typ = dynamic_cast<FeatureIsDatumType *>(BooleanExpression)))
@@ -4170,7 +4172,7 @@ void IfThenConicalSegmentRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureIsInternal") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureIsInternal") == 0)
           {
             FeatureIsInternalType * typ;
             if ((typ = dynamic_cast<FeatureIsInternalType *>(BooleanExpression)))
@@ -4184,7 +4186,7 @@ void IfThenConicalSegmentRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureTypeIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureTypeIs") == 0)
           {
             FeatureTypeIsType * typ;
             if ((typ = dynamic_cast<FeatureTypeIsType *>(BooleanExpression)))
@@ -4198,7 +4200,7 @@ void IfThenConicalSegmentRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "SamplingCategoryIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "SamplingCategoryIs") == 0)
           {
             SamplingCategoryIsType * typ;
             if ((typ = dynamic_cast<SamplingCategoryIsType *>(BooleanExpression)))
@@ -4212,7 +4214,7 @@ void IfThenConicalSegmentRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ShapeClassIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ShapeClassIs") == 0)
           {
             ShapeClassIsType * typ;
             if ((typ = dynamic_cast<ShapeClassIsType *>(BooleanExpression)))
@@ -4272,7 +4274,7 @@ bool IfThenConicalSegmentRuleType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "name")
+      if (decl->getname() == "name")
         {
           XmlToken * nameVal;
           if (this->name)
@@ -4281,12 +4283,12 @@ bool IfThenConicalSegmentRuleType::badAttributes(
               returnValue = true;
               break;
             }
-          nameVal = new XmlToken(decl->val.c_str());
-          if (nameVal->bad)
+          nameVal = new XmlToken(decl->getval().c_str());
+          if (nameVal->getbad())
             {
               delete nameVal;
               fprintf(stderr, "bad value %s for name in IfThenConicalSegmentRuleType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -4401,12 +4403,12 @@ void IfThenCurveRuleType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (BooleanExpression->printElement == 0)
+        if (BooleanExpression->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(BooleanExpression->printElement, "Not") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "Not") == 0)
           {
             NotType * typ;
             if ((typ = dynamic_cast<NotType *>(BooleanExpression)))
@@ -4422,7 +4424,7 @@ void IfThenCurveRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ConstantIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ConstantIs") == 0)
           {
             ConstantIsType * typ;
             if ((typ = dynamic_cast<ConstantIsType *>(BooleanExpression)))
@@ -4436,7 +4438,7 @@ void IfThenCurveRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "And") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "And") == 0)
           {
             AndType * typ;
             if ((typ = dynamic_cast<AndType *>(BooleanExpression)))
@@ -4452,7 +4454,7 @@ void IfThenCurveRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "Or") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "Or") == 0)
           {
             OrType * typ;
             if ((typ = dynamic_cast<OrType *>(BooleanExpression)))
@@ -4468,7 +4470,7 @@ void IfThenCurveRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "BooleanEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "BooleanEqual") == 0)
           {
             BooleanEqualType * typ;
             if ((typ = dynamic_cast<BooleanEqualType *>(BooleanExpression)))
@@ -4484,7 +4486,7 @@ void IfThenCurveRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ArithmeticEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ArithmeticEqual") == 0)
           {
             ArithmeticEqualType * typ;
             if ((typ = dynamic_cast<ArithmeticEqualType *>(BooleanExpression)))
@@ -4500,7 +4502,7 @@ void IfThenCurveRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "GreaterThan") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "GreaterThan") == 0)
           {
             GreaterThanType * typ;
             if ((typ = dynamic_cast<GreaterThanType *>(BooleanExpression)))
@@ -4516,7 +4518,7 @@ void IfThenCurveRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "GreaterOrEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "GreaterOrEqual") == 0)
           {
             GreaterOrEqualType * typ;
             if ((typ = dynamic_cast<GreaterOrEqualType *>(BooleanExpression)))
@@ -4532,7 +4534,7 @@ void IfThenCurveRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "LessThan") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "LessThan") == 0)
           {
             LessThanType * typ;
             if ((typ = dynamic_cast<LessThanType *>(BooleanExpression)))
@@ -4548,7 +4550,7 @@ void IfThenCurveRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "LessOrEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "LessOrEqual") == 0)
           {
             LessOrEqualType * typ;
             if ((typ = dynamic_cast<LessOrEqualType *>(BooleanExpression)))
@@ -4564,7 +4566,7 @@ void IfThenCurveRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "TokenEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "TokenEqual") == 0)
           {
             TokenEqualType * typ;
             if ((typ = dynamic_cast<TokenEqualType *>(BooleanExpression)))
@@ -4580,7 +4582,7 @@ void IfThenCurveRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "CharacteristicIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "CharacteristicIs") == 0)
           {
             CharacteristicIsType * typ;
             if ((typ = dynamic_cast<CharacteristicIsType *>(BooleanExpression)))
@@ -4594,7 +4596,7 @@ void IfThenCurveRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureIsDatum") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureIsDatum") == 0)
           {
             FeatureIsDatumType * typ;
             if ((typ = dynamic_cast<FeatureIsDatumType *>(BooleanExpression)))
@@ -4608,7 +4610,7 @@ void IfThenCurveRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureIsInternal") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureIsInternal") == 0)
           {
             FeatureIsInternalType * typ;
             if ((typ = dynamic_cast<FeatureIsInternalType *>(BooleanExpression)))
@@ -4622,7 +4624,7 @@ void IfThenCurveRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureTypeIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureTypeIs") == 0)
           {
             FeatureTypeIsType * typ;
             if ((typ = dynamic_cast<FeatureTypeIsType *>(BooleanExpression)))
@@ -4636,7 +4638,7 @@ void IfThenCurveRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "SamplingCategoryIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "SamplingCategoryIs") == 0)
           {
             SamplingCategoryIsType * typ;
             if ((typ = dynamic_cast<SamplingCategoryIsType *>(BooleanExpression)))
@@ -4650,7 +4652,7 @@ void IfThenCurveRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ShapeClassIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ShapeClassIs") == 0)
           {
             ShapeClassIsType * typ;
             if ((typ = dynamic_cast<ShapeClassIsType *>(BooleanExpression)))
@@ -4694,7 +4696,7 @@ bool IfThenCurveRuleType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "name")
+      if (decl->getname() == "name")
         {
           XmlToken * nameVal;
           if (this->name)
@@ -4703,12 +4705,12 @@ bool IfThenCurveRuleType::badAttributes(
               returnValue = true;
               break;
             }
-          nameVal = new XmlToken(decl->val.c_str());
-          if (nameVal->bad)
+          nameVal = new XmlToken(decl->getval().c_str());
+          if (nameVal->getbad())
             {
               delete nameVal;
               fprintf(stderr, "bad value %s for name in IfThenCurveRuleType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -4823,12 +4825,12 @@ void IfThenCylinderRuleType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (BooleanExpression->printElement == 0)
+        if (BooleanExpression->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(BooleanExpression->printElement, "Not") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "Not") == 0)
           {
             NotType * typ;
             if ((typ = dynamic_cast<NotType *>(BooleanExpression)))
@@ -4844,7 +4846,7 @@ void IfThenCylinderRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ConstantIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ConstantIs") == 0)
           {
             ConstantIsType * typ;
             if ((typ = dynamic_cast<ConstantIsType *>(BooleanExpression)))
@@ -4858,7 +4860,7 @@ void IfThenCylinderRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "And") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "And") == 0)
           {
             AndType * typ;
             if ((typ = dynamic_cast<AndType *>(BooleanExpression)))
@@ -4874,7 +4876,7 @@ void IfThenCylinderRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "Or") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "Or") == 0)
           {
             OrType * typ;
             if ((typ = dynamic_cast<OrType *>(BooleanExpression)))
@@ -4890,7 +4892,7 @@ void IfThenCylinderRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "BooleanEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "BooleanEqual") == 0)
           {
             BooleanEqualType * typ;
             if ((typ = dynamic_cast<BooleanEqualType *>(BooleanExpression)))
@@ -4906,7 +4908,7 @@ void IfThenCylinderRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ArithmeticEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ArithmeticEqual") == 0)
           {
             ArithmeticEqualType * typ;
             if ((typ = dynamic_cast<ArithmeticEqualType *>(BooleanExpression)))
@@ -4922,7 +4924,7 @@ void IfThenCylinderRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "GreaterThan") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "GreaterThan") == 0)
           {
             GreaterThanType * typ;
             if ((typ = dynamic_cast<GreaterThanType *>(BooleanExpression)))
@@ -4938,7 +4940,7 @@ void IfThenCylinderRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "GreaterOrEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "GreaterOrEqual") == 0)
           {
             GreaterOrEqualType * typ;
             if ((typ = dynamic_cast<GreaterOrEqualType *>(BooleanExpression)))
@@ -4954,7 +4956,7 @@ void IfThenCylinderRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "LessThan") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "LessThan") == 0)
           {
             LessThanType * typ;
             if ((typ = dynamic_cast<LessThanType *>(BooleanExpression)))
@@ -4970,7 +4972,7 @@ void IfThenCylinderRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "LessOrEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "LessOrEqual") == 0)
           {
             LessOrEqualType * typ;
             if ((typ = dynamic_cast<LessOrEqualType *>(BooleanExpression)))
@@ -4986,7 +4988,7 @@ void IfThenCylinderRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "TokenEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "TokenEqual") == 0)
           {
             TokenEqualType * typ;
             if ((typ = dynamic_cast<TokenEqualType *>(BooleanExpression)))
@@ -5002,7 +5004,7 @@ void IfThenCylinderRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "CharacteristicIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "CharacteristicIs") == 0)
           {
             CharacteristicIsType * typ;
             if ((typ = dynamic_cast<CharacteristicIsType *>(BooleanExpression)))
@@ -5016,7 +5018,7 @@ void IfThenCylinderRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureIsDatum") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureIsDatum") == 0)
           {
             FeatureIsDatumType * typ;
             if ((typ = dynamic_cast<FeatureIsDatumType *>(BooleanExpression)))
@@ -5030,7 +5032,7 @@ void IfThenCylinderRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureIsInternal") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureIsInternal") == 0)
           {
             FeatureIsInternalType * typ;
             if ((typ = dynamic_cast<FeatureIsInternalType *>(BooleanExpression)))
@@ -5044,7 +5046,7 @@ void IfThenCylinderRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureTypeIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureTypeIs") == 0)
           {
             FeatureTypeIsType * typ;
             if ((typ = dynamic_cast<FeatureTypeIsType *>(BooleanExpression)))
@@ -5058,7 +5060,7 @@ void IfThenCylinderRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "SamplingCategoryIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "SamplingCategoryIs") == 0)
           {
             SamplingCategoryIsType * typ;
             if ((typ = dynamic_cast<SamplingCategoryIsType *>(BooleanExpression)))
@@ -5072,7 +5074,7 @@ void IfThenCylinderRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ShapeClassIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ShapeClassIs") == 0)
           {
             ShapeClassIsType * typ;
             if ((typ = dynamic_cast<ShapeClassIsType *>(BooleanExpression)))
@@ -5132,7 +5134,7 @@ bool IfThenCylinderRuleType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "name")
+      if (decl->getname() == "name")
         {
           XmlToken * nameVal;
           if (this->name)
@@ -5141,12 +5143,12 @@ bool IfThenCylinderRuleType::badAttributes(
               returnValue = true;
               break;
             }
-          nameVal = new XmlToken(decl->val.c_str());
-          if (nameVal->bad)
+          nameVal = new XmlToken(decl->getval().c_str());
+          if (nameVal->getbad())
             {
               delete nameVal;
               fprintf(stderr, "bad value %s for name in IfThenCylinderRuleType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -5273,12 +5275,12 @@ void IfThenCylindricalSegmentRuleType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (BooleanExpression->printElement == 0)
+        if (BooleanExpression->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(BooleanExpression->printElement, "Not") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "Not") == 0)
           {
             NotType * typ;
             if ((typ = dynamic_cast<NotType *>(BooleanExpression)))
@@ -5294,7 +5296,7 @@ void IfThenCylindricalSegmentRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ConstantIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ConstantIs") == 0)
           {
             ConstantIsType * typ;
             if ((typ = dynamic_cast<ConstantIsType *>(BooleanExpression)))
@@ -5308,7 +5310,7 @@ void IfThenCylindricalSegmentRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "And") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "And") == 0)
           {
             AndType * typ;
             if ((typ = dynamic_cast<AndType *>(BooleanExpression)))
@@ -5324,7 +5326,7 @@ void IfThenCylindricalSegmentRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "Or") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "Or") == 0)
           {
             OrType * typ;
             if ((typ = dynamic_cast<OrType *>(BooleanExpression)))
@@ -5340,7 +5342,7 @@ void IfThenCylindricalSegmentRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "BooleanEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "BooleanEqual") == 0)
           {
             BooleanEqualType * typ;
             if ((typ = dynamic_cast<BooleanEqualType *>(BooleanExpression)))
@@ -5356,7 +5358,7 @@ void IfThenCylindricalSegmentRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ArithmeticEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ArithmeticEqual") == 0)
           {
             ArithmeticEqualType * typ;
             if ((typ = dynamic_cast<ArithmeticEqualType *>(BooleanExpression)))
@@ -5372,7 +5374,7 @@ void IfThenCylindricalSegmentRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "GreaterThan") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "GreaterThan") == 0)
           {
             GreaterThanType * typ;
             if ((typ = dynamic_cast<GreaterThanType *>(BooleanExpression)))
@@ -5388,7 +5390,7 @@ void IfThenCylindricalSegmentRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "GreaterOrEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "GreaterOrEqual") == 0)
           {
             GreaterOrEqualType * typ;
             if ((typ = dynamic_cast<GreaterOrEqualType *>(BooleanExpression)))
@@ -5404,7 +5406,7 @@ void IfThenCylindricalSegmentRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "LessThan") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "LessThan") == 0)
           {
             LessThanType * typ;
             if ((typ = dynamic_cast<LessThanType *>(BooleanExpression)))
@@ -5420,7 +5422,7 @@ void IfThenCylindricalSegmentRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "LessOrEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "LessOrEqual") == 0)
           {
             LessOrEqualType * typ;
             if ((typ = dynamic_cast<LessOrEqualType *>(BooleanExpression)))
@@ -5436,7 +5438,7 @@ void IfThenCylindricalSegmentRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "TokenEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "TokenEqual") == 0)
           {
             TokenEqualType * typ;
             if ((typ = dynamic_cast<TokenEqualType *>(BooleanExpression)))
@@ -5452,7 +5454,7 @@ void IfThenCylindricalSegmentRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "CharacteristicIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "CharacteristicIs") == 0)
           {
             CharacteristicIsType * typ;
             if ((typ = dynamic_cast<CharacteristicIsType *>(BooleanExpression)))
@@ -5466,7 +5468,7 @@ void IfThenCylindricalSegmentRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureIsDatum") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureIsDatum") == 0)
           {
             FeatureIsDatumType * typ;
             if ((typ = dynamic_cast<FeatureIsDatumType *>(BooleanExpression)))
@@ -5480,7 +5482,7 @@ void IfThenCylindricalSegmentRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureIsInternal") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureIsInternal") == 0)
           {
             FeatureIsInternalType * typ;
             if ((typ = dynamic_cast<FeatureIsInternalType *>(BooleanExpression)))
@@ -5494,7 +5496,7 @@ void IfThenCylindricalSegmentRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureTypeIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureTypeIs") == 0)
           {
             FeatureTypeIsType * typ;
             if ((typ = dynamic_cast<FeatureTypeIsType *>(BooleanExpression)))
@@ -5508,7 +5510,7 @@ void IfThenCylindricalSegmentRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "SamplingCategoryIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "SamplingCategoryIs") == 0)
           {
             SamplingCategoryIsType * typ;
             if ((typ = dynamic_cast<SamplingCategoryIsType *>(BooleanExpression)))
@@ -5522,7 +5524,7 @@ void IfThenCylindricalSegmentRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ShapeClassIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ShapeClassIs") == 0)
           {
             ShapeClassIsType * typ;
             if ((typ = dynamic_cast<ShapeClassIsType *>(BooleanExpression)))
@@ -5582,7 +5584,7 @@ bool IfThenCylindricalSegmentRuleType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "name")
+      if (decl->getname() == "name")
         {
           XmlToken * nameVal;
           if (this->name)
@@ -5591,12 +5593,12 @@ bool IfThenCylindricalSegmentRuleType::badAttributes(
               returnValue = true;
               break;
             }
-          nameVal = new XmlToken(decl->val.c_str());
-          if (nameVal->bad)
+          nameVal = new XmlToken(decl->getval().c_str());
+          if (nameVal->getbad())
             {
               delete nameVal;
               fprintf(stderr, "bad value %s for name in IfThenCylindricalSegmentRuleType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -5715,12 +5717,12 @@ void IfThenDMERuleType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (BooleanExpression->printElement == 0)
+        if (BooleanExpression->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(BooleanExpression->printElement, "Not") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "Not") == 0)
           {
             NotType * typ;
             if ((typ = dynamic_cast<NotType *>(BooleanExpression)))
@@ -5736,7 +5738,7 @@ void IfThenDMERuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ConstantIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ConstantIs") == 0)
           {
             ConstantIsType * typ;
             if ((typ = dynamic_cast<ConstantIsType *>(BooleanExpression)))
@@ -5750,7 +5752,7 @@ void IfThenDMERuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "And") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "And") == 0)
           {
             AndType * typ;
             if ((typ = dynamic_cast<AndType *>(BooleanExpression)))
@@ -5766,7 +5768,7 @@ void IfThenDMERuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "Or") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "Or") == 0)
           {
             OrType * typ;
             if ((typ = dynamic_cast<OrType *>(BooleanExpression)))
@@ -5782,7 +5784,7 @@ void IfThenDMERuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "BooleanEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "BooleanEqual") == 0)
           {
             BooleanEqualType * typ;
             if ((typ = dynamic_cast<BooleanEqualType *>(BooleanExpression)))
@@ -5798,7 +5800,7 @@ void IfThenDMERuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ArithmeticEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ArithmeticEqual") == 0)
           {
             ArithmeticEqualType * typ;
             if ((typ = dynamic_cast<ArithmeticEqualType *>(BooleanExpression)))
@@ -5814,7 +5816,7 @@ void IfThenDMERuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "GreaterThan") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "GreaterThan") == 0)
           {
             GreaterThanType * typ;
             if ((typ = dynamic_cast<GreaterThanType *>(BooleanExpression)))
@@ -5830,7 +5832,7 @@ void IfThenDMERuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "GreaterOrEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "GreaterOrEqual") == 0)
           {
             GreaterOrEqualType * typ;
             if ((typ = dynamic_cast<GreaterOrEqualType *>(BooleanExpression)))
@@ -5846,7 +5848,7 @@ void IfThenDMERuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "LessThan") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "LessThan") == 0)
           {
             LessThanType * typ;
             if ((typ = dynamic_cast<LessThanType *>(BooleanExpression)))
@@ -5862,7 +5864,7 @@ void IfThenDMERuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "LessOrEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "LessOrEqual") == 0)
           {
             LessOrEqualType * typ;
             if ((typ = dynamic_cast<LessOrEqualType *>(BooleanExpression)))
@@ -5878,7 +5880,7 @@ void IfThenDMERuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "TokenEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "TokenEqual") == 0)
           {
             TokenEqualType * typ;
             if ((typ = dynamic_cast<TokenEqualType *>(BooleanExpression)))
@@ -5894,7 +5896,7 @@ void IfThenDMERuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "CharacteristicIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "CharacteristicIs") == 0)
           {
             CharacteristicIsType * typ;
             if ((typ = dynamic_cast<CharacteristicIsType *>(BooleanExpression)))
@@ -5908,7 +5910,7 @@ void IfThenDMERuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureIsDatum") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureIsDatum") == 0)
           {
             FeatureIsDatumType * typ;
             if ((typ = dynamic_cast<FeatureIsDatumType *>(BooleanExpression)))
@@ -5922,7 +5924,7 @@ void IfThenDMERuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureIsInternal") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureIsInternal") == 0)
           {
             FeatureIsInternalType * typ;
             if ((typ = dynamic_cast<FeatureIsInternalType *>(BooleanExpression)))
@@ -5936,7 +5938,7 @@ void IfThenDMERuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureTypeIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureTypeIs") == 0)
           {
             FeatureTypeIsType * typ;
             if ((typ = dynamic_cast<FeatureTypeIsType *>(BooleanExpression)))
@@ -5950,7 +5952,7 @@ void IfThenDMERuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "SamplingCategoryIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "SamplingCategoryIs") == 0)
           {
             SamplingCategoryIsType * typ;
             if ((typ = dynamic_cast<SamplingCategoryIsType *>(BooleanExpression)))
@@ -5964,7 +5966,7 @@ void IfThenDMERuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ShapeClassIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ShapeClassIs") == 0)
           {
             ShapeClassIsType * typ;
             if ((typ = dynamic_cast<ShapeClassIsType *>(BooleanExpression)))
@@ -6005,7 +6007,7 @@ bool IfThenDMERuleType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "name")
+      if (decl->getname() == "name")
         {
           XmlToken * nameVal;
           if (this->name)
@@ -6014,12 +6016,12 @@ bool IfThenDMERuleType::badAttributes(
               returnValue = true;
               break;
             }
-          nameVal = new XmlToken(decl->val.c_str());
-          if (nameVal->bad)
+          nameVal = new XmlToken(decl->getval().c_str());
+          if (nameVal->getbad())
             {
               delete nameVal;
               fprintf(stderr, "bad value %s for name in IfThenDMERuleType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -6181,12 +6183,12 @@ void IfThenEllipseRuleType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (BooleanExpression->printElement == 0)
+        if (BooleanExpression->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(BooleanExpression->printElement, "Not") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "Not") == 0)
           {
             NotType * typ;
             if ((typ = dynamic_cast<NotType *>(BooleanExpression)))
@@ -6202,7 +6204,7 @@ void IfThenEllipseRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ConstantIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ConstantIs") == 0)
           {
             ConstantIsType * typ;
             if ((typ = dynamic_cast<ConstantIsType *>(BooleanExpression)))
@@ -6216,7 +6218,7 @@ void IfThenEllipseRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "And") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "And") == 0)
           {
             AndType * typ;
             if ((typ = dynamic_cast<AndType *>(BooleanExpression)))
@@ -6232,7 +6234,7 @@ void IfThenEllipseRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "Or") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "Or") == 0)
           {
             OrType * typ;
             if ((typ = dynamic_cast<OrType *>(BooleanExpression)))
@@ -6248,7 +6250,7 @@ void IfThenEllipseRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "BooleanEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "BooleanEqual") == 0)
           {
             BooleanEqualType * typ;
             if ((typ = dynamic_cast<BooleanEqualType *>(BooleanExpression)))
@@ -6264,7 +6266,7 @@ void IfThenEllipseRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ArithmeticEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ArithmeticEqual") == 0)
           {
             ArithmeticEqualType * typ;
             if ((typ = dynamic_cast<ArithmeticEqualType *>(BooleanExpression)))
@@ -6280,7 +6282,7 @@ void IfThenEllipseRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "GreaterThan") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "GreaterThan") == 0)
           {
             GreaterThanType * typ;
             if ((typ = dynamic_cast<GreaterThanType *>(BooleanExpression)))
@@ -6296,7 +6298,7 @@ void IfThenEllipseRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "GreaterOrEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "GreaterOrEqual") == 0)
           {
             GreaterOrEqualType * typ;
             if ((typ = dynamic_cast<GreaterOrEqualType *>(BooleanExpression)))
@@ -6312,7 +6314,7 @@ void IfThenEllipseRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "LessThan") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "LessThan") == 0)
           {
             LessThanType * typ;
             if ((typ = dynamic_cast<LessThanType *>(BooleanExpression)))
@@ -6328,7 +6330,7 @@ void IfThenEllipseRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "LessOrEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "LessOrEqual") == 0)
           {
             LessOrEqualType * typ;
             if ((typ = dynamic_cast<LessOrEqualType *>(BooleanExpression)))
@@ -6344,7 +6346,7 @@ void IfThenEllipseRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "TokenEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "TokenEqual") == 0)
           {
             TokenEqualType * typ;
             if ((typ = dynamic_cast<TokenEqualType *>(BooleanExpression)))
@@ -6360,7 +6362,7 @@ void IfThenEllipseRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "CharacteristicIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "CharacteristicIs") == 0)
           {
             CharacteristicIsType * typ;
             if ((typ = dynamic_cast<CharacteristicIsType *>(BooleanExpression)))
@@ -6374,7 +6376,7 @@ void IfThenEllipseRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureIsDatum") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureIsDatum") == 0)
           {
             FeatureIsDatumType * typ;
             if ((typ = dynamic_cast<FeatureIsDatumType *>(BooleanExpression)))
@@ -6388,7 +6390,7 @@ void IfThenEllipseRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureIsInternal") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureIsInternal") == 0)
           {
             FeatureIsInternalType * typ;
             if ((typ = dynamic_cast<FeatureIsInternalType *>(BooleanExpression)))
@@ -6402,7 +6404,7 @@ void IfThenEllipseRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureTypeIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureTypeIs") == 0)
           {
             FeatureTypeIsType * typ;
             if ((typ = dynamic_cast<FeatureTypeIsType *>(BooleanExpression)))
@@ -6416,7 +6418,7 @@ void IfThenEllipseRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "SamplingCategoryIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "SamplingCategoryIs") == 0)
           {
             SamplingCategoryIsType * typ;
             if ((typ = dynamic_cast<SamplingCategoryIsType *>(BooleanExpression)))
@@ -6430,7 +6432,7 @@ void IfThenEllipseRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ShapeClassIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ShapeClassIs") == 0)
           {
             ShapeClassIsType * typ;
             if ((typ = dynamic_cast<ShapeClassIsType *>(BooleanExpression)))
@@ -6490,7 +6492,7 @@ bool IfThenEllipseRuleType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "name")
+      if (decl->getname() == "name")
         {
           XmlToken * nameVal;
           if (this->name)
@@ -6499,12 +6501,12 @@ bool IfThenEllipseRuleType::badAttributes(
               returnValue = true;
               break;
             }
-          nameVal = new XmlToken(decl->val.c_str());
-          if (nameVal->bad)
+          nameVal = new XmlToken(decl->getval().c_str());
+          if (nameVal->getbad())
             {
               delete nameVal;
               fprintf(stderr, "bad value %s for name in IfThenEllipseRuleType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -6631,12 +6633,12 @@ void IfThenEllipticalArcRuleType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (BooleanExpression->printElement == 0)
+        if (BooleanExpression->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(BooleanExpression->printElement, "Not") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "Not") == 0)
           {
             NotType * typ;
             if ((typ = dynamic_cast<NotType *>(BooleanExpression)))
@@ -6652,7 +6654,7 @@ void IfThenEllipticalArcRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ConstantIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ConstantIs") == 0)
           {
             ConstantIsType * typ;
             if ((typ = dynamic_cast<ConstantIsType *>(BooleanExpression)))
@@ -6666,7 +6668,7 @@ void IfThenEllipticalArcRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "And") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "And") == 0)
           {
             AndType * typ;
             if ((typ = dynamic_cast<AndType *>(BooleanExpression)))
@@ -6682,7 +6684,7 @@ void IfThenEllipticalArcRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "Or") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "Or") == 0)
           {
             OrType * typ;
             if ((typ = dynamic_cast<OrType *>(BooleanExpression)))
@@ -6698,7 +6700,7 @@ void IfThenEllipticalArcRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "BooleanEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "BooleanEqual") == 0)
           {
             BooleanEqualType * typ;
             if ((typ = dynamic_cast<BooleanEqualType *>(BooleanExpression)))
@@ -6714,7 +6716,7 @@ void IfThenEllipticalArcRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ArithmeticEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ArithmeticEqual") == 0)
           {
             ArithmeticEqualType * typ;
             if ((typ = dynamic_cast<ArithmeticEqualType *>(BooleanExpression)))
@@ -6730,7 +6732,7 @@ void IfThenEllipticalArcRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "GreaterThan") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "GreaterThan") == 0)
           {
             GreaterThanType * typ;
             if ((typ = dynamic_cast<GreaterThanType *>(BooleanExpression)))
@@ -6746,7 +6748,7 @@ void IfThenEllipticalArcRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "GreaterOrEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "GreaterOrEqual") == 0)
           {
             GreaterOrEqualType * typ;
             if ((typ = dynamic_cast<GreaterOrEqualType *>(BooleanExpression)))
@@ -6762,7 +6764,7 @@ void IfThenEllipticalArcRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "LessThan") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "LessThan") == 0)
           {
             LessThanType * typ;
             if ((typ = dynamic_cast<LessThanType *>(BooleanExpression)))
@@ -6778,7 +6780,7 @@ void IfThenEllipticalArcRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "LessOrEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "LessOrEqual") == 0)
           {
             LessOrEqualType * typ;
             if ((typ = dynamic_cast<LessOrEqualType *>(BooleanExpression)))
@@ -6794,7 +6796,7 @@ void IfThenEllipticalArcRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "TokenEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "TokenEqual") == 0)
           {
             TokenEqualType * typ;
             if ((typ = dynamic_cast<TokenEqualType *>(BooleanExpression)))
@@ -6810,7 +6812,7 @@ void IfThenEllipticalArcRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "CharacteristicIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "CharacteristicIs") == 0)
           {
             CharacteristicIsType * typ;
             if ((typ = dynamic_cast<CharacteristicIsType *>(BooleanExpression)))
@@ -6824,7 +6826,7 @@ void IfThenEllipticalArcRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureIsDatum") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureIsDatum") == 0)
           {
             FeatureIsDatumType * typ;
             if ((typ = dynamic_cast<FeatureIsDatumType *>(BooleanExpression)))
@@ -6838,7 +6840,7 @@ void IfThenEllipticalArcRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureIsInternal") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureIsInternal") == 0)
           {
             FeatureIsInternalType * typ;
             if ((typ = dynamic_cast<FeatureIsInternalType *>(BooleanExpression)))
@@ -6852,7 +6854,7 @@ void IfThenEllipticalArcRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureTypeIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureTypeIs") == 0)
           {
             FeatureTypeIsType * typ;
             if ((typ = dynamic_cast<FeatureTypeIsType *>(BooleanExpression)))
@@ -6866,7 +6868,7 @@ void IfThenEllipticalArcRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "SamplingCategoryIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "SamplingCategoryIs") == 0)
           {
             SamplingCategoryIsType * typ;
             if ((typ = dynamic_cast<SamplingCategoryIsType *>(BooleanExpression)))
@@ -6880,7 +6882,7 @@ void IfThenEllipticalArcRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ShapeClassIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ShapeClassIs") == 0)
           {
             ShapeClassIsType * typ;
             if ((typ = dynamic_cast<ShapeClassIsType *>(BooleanExpression)))
@@ -6940,7 +6942,7 @@ bool IfThenEllipticalArcRuleType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "name")
+      if (decl->getname() == "name")
         {
           XmlToken * nameVal;
           if (this->name)
@@ -6949,12 +6951,12 @@ bool IfThenEllipticalArcRuleType::badAttributes(
               returnValue = true;
               break;
             }
-          nameVal = new XmlToken(decl->val.c_str());
-          if (nameVal->bad)
+          nameVal = new XmlToken(decl->getval().c_str());
+          if (nameVal->getbad())
             {
               delete nameVal;
               fprintf(stderr, "bad value %s for name in IfThenEllipticalArcRuleType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -7081,12 +7083,12 @@ void IfThenElongatedCircleRuleType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (BooleanExpression->printElement == 0)
+        if (BooleanExpression->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(BooleanExpression->printElement, "Not") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "Not") == 0)
           {
             NotType * typ;
             if ((typ = dynamic_cast<NotType *>(BooleanExpression)))
@@ -7102,7 +7104,7 @@ void IfThenElongatedCircleRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ConstantIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ConstantIs") == 0)
           {
             ConstantIsType * typ;
             if ((typ = dynamic_cast<ConstantIsType *>(BooleanExpression)))
@@ -7116,7 +7118,7 @@ void IfThenElongatedCircleRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "And") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "And") == 0)
           {
             AndType * typ;
             if ((typ = dynamic_cast<AndType *>(BooleanExpression)))
@@ -7132,7 +7134,7 @@ void IfThenElongatedCircleRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "Or") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "Or") == 0)
           {
             OrType * typ;
             if ((typ = dynamic_cast<OrType *>(BooleanExpression)))
@@ -7148,7 +7150,7 @@ void IfThenElongatedCircleRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "BooleanEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "BooleanEqual") == 0)
           {
             BooleanEqualType * typ;
             if ((typ = dynamic_cast<BooleanEqualType *>(BooleanExpression)))
@@ -7164,7 +7166,7 @@ void IfThenElongatedCircleRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ArithmeticEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ArithmeticEqual") == 0)
           {
             ArithmeticEqualType * typ;
             if ((typ = dynamic_cast<ArithmeticEqualType *>(BooleanExpression)))
@@ -7180,7 +7182,7 @@ void IfThenElongatedCircleRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "GreaterThan") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "GreaterThan") == 0)
           {
             GreaterThanType * typ;
             if ((typ = dynamic_cast<GreaterThanType *>(BooleanExpression)))
@@ -7196,7 +7198,7 @@ void IfThenElongatedCircleRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "GreaterOrEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "GreaterOrEqual") == 0)
           {
             GreaterOrEqualType * typ;
             if ((typ = dynamic_cast<GreaterOrEqualType *>(BooleanExpression)))
@@ -7212,7 +7214,7 @@ void IfThenElongatedCircleRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "LessThan") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "LessThan") == 0)
           {
             LessThanType * typ;
             if ((typ = dynamic_cast<LessThanType *>(BooleanExpression)))
@@ -7228,7 +7230,7 @@ void IfThenElongatedCircleRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "LessOrEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "LessOrEqual") == 0)
           {
             LessOrEqualType * typ;
             if ((typ = dynamic_cast<LessOrEqualType *>(BooleanExpression)))
@@ -7244,7 +7246,7 @@ void IfThenElongatedCircleRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "TokenEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "TokenEqual") == 0)
           {
             TokenEqualType * typ;
             if ((typ = dynamic_cast<TokenEqualType *>(BooleanExpression)))
@@ -7260,7 +7262,7 @@ void IfThenElongatedCircleRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "CharacteristicIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "CharacteristicIs") == 0)
           {
             CharacteristicIsType * typ;
             if ((typ = dynamic_cast<CharacteristicIsType *>(BooleanExpression)))
@@ -7274,7 +7276,7 @@ void IfThenElongatedCircleRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureIsDatum") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureIsDatum") == 0)
           {
             FeatureIsDatumType * typ;
             if ((typ = dynamic_cast<FeatureIsDatumType *>(BooleanExpression)))
@@ -7288,7 +7290,7 @@ void IfThenElongatedCircleRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureIsInternal") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureIsInternal") == 0)
           {
             FeatureIsInternalType * typ;
             if ((typ = dynamic_cast<FeatureIsInternalType *>(BooleanExpression)))
@@ -7302,7 +7304,7 @@ void IfThenElongatedCircleRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureTypeIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureTypeIs") == 0)
           {
             FeatureTypeIsType * typ;
             if ((typ = dynamic_cast<FeatureTypeIsType *>(BooleanExpression)))
@@ -7316,7 +7318,7 @@ void IfThenElongatedCircleRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "SamplingCategoryIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "SamplingCategoryIs") == 0)
           {
             SamplingCategoryIsType * typ;
             if ((typ = dynamic_cast<SamplingCategoryIsType *>(BooleanExpression)))
@@ -7330,7 +7332,7 @@ void IfThenElongatedCircleRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ShapeClassIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ShapeClassIs") == 0)
           {
             ShapeClassIsType * typ;
             if ((typ = dynamic_cast<ShapeClassIsType *>(BooleanExpression)))
@@ -7390,7 +7392,7 @@ bool IfThenElongatedCircleRuleType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "name")
+      if (decl->getname() == "name")
         {
           XmlToken * nameVal;
           if (this->name)
@@ -7399,12 +7401,12 @@ bool IfThenElongatedCircleRuleType::badAttributes(
               returnValue = true;
               break;
             }
-          nameVal = new XmlToken(decl->val.c_str());
-          if (nameVal->bad)
+          nameVal = new XmlToken(decl->getval().c_str());
+          if (nameVal->getbad())
             {
               delete nameVal;
               fprintf(stderr, "bad value %s for name in IfThenElongatedCircleRuleType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -7531,12 +7533,12 @@ void IfThenElongatedCylinderRuleType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (BooleanExpression->printElement == 0)
+        if (BooleanExpression->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(BooleanExpression->printElement, "Not") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "Not") == 0)
           {
             NotType * typ;
             if ((typ = dynamic_cast<NotType *>(BooleanExpression)))
@@ -7552,7 +7554,7 @@ void IfThenElongatedCylinderRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ConstantIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ConstantIs") == 0)
           {
             ConstantIsType * typ;
             if ((typ = dynamic_cast<ConstantIsType *>(BooleanExpression)))
@@ -7566,7 +7568,7 @@ void IfThenElongatedCylinderRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "And") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "And") == 0)
           {
             AndType * typ;
             if ((typ = dynamic_cast<AndType *>(BooleanExpression)))
@@ -7582,7 +7584,7 @@ void IfThenElongatedCylinderRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "Or") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "Or") == 0)
           {
             OrType * typ;
             if ((typ = dynamic_cast<OrType *>(BooleanExpression)))
@@ -7598,7 +7600,7 @@ void IfThenElongatedCylinderRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "BooleanEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "BooleanEqual") == 0)
           {
             BooleanEqualType * typ;
             if ((typ = dynamic_cast<BooleanEqualType *>(BooleanExpression)))
@@ -7614,7 +7616,7 @@ void IfThenElongatedCylinderRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ArithmeticEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ArithmeticEqual") == 0)
           {
             ArithmeticEqualType * typ;
             if ((typ = dynamic_cast<ArithmeticEqualType *>(BooleanExpression)))
@@ -7630,7 +7632,7 @@ void IfThenElongatedCylinderRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "GreaterThan") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "GreaterThan") == 0)
           {
             GreaterThanType * typ;
             if ((typ = dynamic_cast<GreaterThanType *>(BooleanExpression)))
@@ -7646,7 +7648,7 @@ void IfThenElongatedCylinderRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "GreaterOrEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "GreaterOrEqual") == 0)
           {
             GreaterOrEqualType * typ;
             if ((typ = dynamic_cast<GreaterOrEqualType *>(BooleanExpression)))
@@ -7662,7 +7664,7 @@ void IfThenElongatedCylinderRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "LessThan") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "LessThan") == 0)
           {
             LessThanType * typ;
             if ((typ = dynamic_cast<LessThanType *>(BooleanExpression)))
@@ -7678,7 +7680,7 @@ void IfThenElongatedCylinderRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "LessOrEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "LessOrEqual") == 0)
           {
             LessOrEqualType * typ;
             if ((typ = dynamic_cast<LessOrEqualType *>(BooleanExpression)))
@@ -7694,7 +7696,7 @@ void IfThenElongatedCylinderRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "TokenEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "TokenEqual") == 0)
           {
             TokenEqualType * typ;
             if ((typ = dynamic_cast<TokenEqualType *>(BooleanExpression)))
@@ -7710,7 +7712,7 @@ void IfThenElongatedCylinderRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "CharacteristicIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "CharacteristicIs") == 0)
           {
             CharacteristicIsType * typ;
             if ((typ = dynamic_cast<CharacteristicIsType *>(BooleanExpression)))
@@ -7724,7 +7726,7 @@ void IfThenElongatedCylinderRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureIsDatum") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureIsDatum") == 0)
           {
             FeatureIsDatumType * typ;
             if ((typ = dynamic_cast<FeatureIsDatumType *>(BooleanExpression)))
@@ -7738,7 +7740,7 @@ void IfThenElongatedCylinderRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureIsInternal") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureIsInternal") == 0)
           {
             FeatureIsInternalType * typ;
             if ((typ = dynamic_cast<FeatureIsInternalType *>(BooleanExpression)))
@@ -7752,7 +7754,7 @@ void IfThenElongatedCylinderRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureTypeIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureTypeIs") == 0)
           {
             FeatureTypeIsType * typ;
             if ((typ = dynamic_cast<FeatureTypeIsType *>(BooleanExpression)))
@@ -7766,7 +7768,7 @@ void IfThenElongatedCylinderRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "SamplingCategoryIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "SamplingCategoryIs") == 0)
           {
             SamplingCategoryIsType * typ;
             if ((typ = dynamic_cast<SamplingCategoryIsType *>(BooleanExpression)))
@@ -7780,7 +7782,7 @@ void IfThenElongatedCylinderRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ShapeClassIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ShapeClassIs") == 0)
           {
             ShapeClassIsType * typ;
             if ((typ = dynamic_cast<ShapeClassIsType *>(BooleanExpression)))
@@ -7840,7 +7842,7 @@ bool IfThenElongatedCylinderRuleType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "name")
+      if (decl->getname() == "name")
         {
           XmlToken * nameVal;
           if (this->name)
@@ -7849,12 +7851,12 @@ bool IfThenElongatedCylinderRuleType::badAttributes(
               returnValue = true;
               break;
             }
-          nameVal = new XmlToken(decl->val.c_str());
-          if (nameVal->bad)
+          nameVal = new XmlToken(decl->getval().c_str());
+          if (nameVal->getbad())
             {
               delete nameVal;
               fprintf(stderr, "bad value %s for name in IfThenElongatedCylinderRuleType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -7988,12 +7990,12 @@ void IfThenElseFeatureRulesType::printSelf(FILE * outFile)
         IfThenFeatureRuleType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "IfThenCurveRule") == 0)
+        else if (strcmp(basie->getprintElement(), "IfThenCurveRule") == 0)
           {
             IfThenCurveRuleType * typ;
             if ((typ = dynamic_cast<IfThenCurveRuleType *>(basie)))
@@ -8009,7 +8011,7 @@ void IfThenElseFeatureRulesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "IfThenSurfaceRule") == 0)
+        else if (strcmp(basie->getprintElement(), "IfThenSurfaceRule") == 0)
           {
             IfThenSurfaceRuleType * typ;
             if ((typ = dynamic_cast<IfThenSurfaceRuleType *>(basie)))
@@ -8025,7 +8027,7 @@ void IfThenElseFeatureRulesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "IfThenCircleRule") == 0)
+        else if (strcmp(basie->getprintElement(), "IfThenCircleRule") == 0)
           {
             IfThenCircleRuleType * typ;
             if ((typ = dynamic_cast<IfThenCircleRuleType *>(basie)))
@@ -8041,7 +8043,7 @@ void IfThenElseFeatureRulesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "IfThenCircularArcRule") == 0)
+        else if (strcmp(basie->getprintElement(), "IfThenCircularArcRule") == 0)
           {
             IfThenCircularArcRuleType * typ;
             if ((typ = dynamic_cast<IfThenCircularArcRuleType *>(basie)))
@@ -8057,7 +8059,7 @@ void IfThenElseFeatureRulesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "IfThenConeRule") == 0)
+        else if (strcmp(basie->getprintElement(), "IfThenConeRule") == 0)
           {
             IfThenConeRuleType * typ;
             if ((typ = dynamic_cast<IfThenConeRuleType *>(basie)))
@@ -8073,7 +8075,7 @@ void IfThenElseFeatureRulesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "IfThenConicalSegmentRule") == 0)
+        else if (strcmp(basie->getprintElement(), "IfThenConicalSegmentRule") == 0)
           {
             IfThenConicalSegmentRuleType * typ;
             if ((typ = dynamic_cast<IfThenConicalSegmentRuleType *>(basie)))
@@ -8089,7 +8091,7 @@ void IfThenElseFeatureRulesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "IfThenCylinderRule") == 0)
+        else if (strcmp(basie->getprintElement(), "IfThenCylinderRule") == 0)
           {
             IfThenCylinderRuleType * typ;
             if ((typ = dynamic_cast<IfThenCylinderRuleType *>(basie)))
@@ -8105,7 +8107,7 @@ void IfThenElseFeatureRulesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "IfThenCylindricalSegmentRule") == 0)
+        else if (strcmp(basie->getprintElement(), "IfThenCylindricalSegmentRule") == 0)
           {
             IfThenCylindricalSegmentRuleType * typ;
             if ((typ = dynamic_cast<IfThenCylindricalSegmentRuleType *>(basie)))
@@ -8121,7 +8123,7 @@ void IfThenElseFeatureRulesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "IfThenEllipseRule") == 0)
+        else if (strcmp(basie->getprintElement(), "IfThenEllipseRule") == 0)
           {
             IfThenEllipseRuleType * typ;
             if ((typ = dynamic_cast<IfThenEllipseRuleType *>(basie)))
@@ -8137,7 +8139,7 @@ void IfThenElseFeatureRulesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "IfThenEllipticalArcRule") == 0)
+        else if (strcmp(basie->getprintElement(), "IfThenEllipticalArcRule") == 0)
           {
             IfThenEllipticalArcRuleType * typ;
             if ((typ = dynamic_cast<IfThenEllipticalArcRuleType *>(basie)))
@@ -8153,7 +8155,7 @@ void IfThenElseFeatureRulesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "IfThenElongatedCircleRule") == 0)
+        else if (strcmp(basie->getprintElement(), "IfThenElongatedCircleRule") == 0)
           {
             IfThenElongatedCircleRuleType * typ;
             if ((typ = dynamic_cast<IfThenElongatedCircleRuleType *>(basie)))
@@ -8169,7 +8171,7 @@ void IfThenElseFeatureRulesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "IfThenElongatedCylinderRule") == 0)
+        else if (strcmp(basie->getprintElement(), "IfThenElongatedCylinderRule") == 0)
           {
             IfThenElongatedCylinderRuleType * typ;
             if ((typ = dynamic_cast<IfThenElongatedCylinderRuleType *>(basie)))
@@ -8185,7 +8187,7 @@ void IfThenElseFeatureRulesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "IfThenExtrudedCrossSectionRule") == 0)
+        else if (strcmp(basie->getprintElement(), "IfThenExtrudedCrossSectionRule") == 0)
           {
             IfThenExtrudedCrossSectionRuleType * typ;
             if ((typ = dynamic_cast<IfThenExtrudedCrossSectionRuleType *>(basie)))
@@ -8201,7 +8203,7 @@ void IfThenElseFeatureRulesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "IfThenLineRule") == 0)
+        else if (strcmp(basie->getprintElement(), "IfThenLineRule") == 0)
           {
             IfThenLineRuleType * typ;
             if ((typ = dynamic_cast<IfThenLineRuleType *>(basie)))
@@ -8217,7 +8219,7 @@ void IfThenElseFeatureRulesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "IfThenOppositeAngledLinesRule") == 0)
+        else if (strcmp(basie->getprintElement(), "IfThenOppositeAngledLinesRule") == 0)
           {
             IfThenOppositeAngledLinesRuleType * typ;
             if ((typ = dynamic_cast<IfThenOppositeAngledLinesRuleType *>(basie)))
@@ -8233,7 +8235,7 @@ void IfThenElseFeatureRulesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "IfThenOppositeAngledPlanesRule") == 0)
+        else if (strcmp(basie->getprintElement(), "IfThenOppositeAngledPlanesRule") == 0)
           {
             IfThenOppositeAngledPlanesRuleType * typ;
             if ((typ = dynamic_cast<IfThenOppositeAngledPlanesRuleType *>(basie)))
@@ -8249,7 +8251,7 @@ void IfThenElseFeatureRulesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "IfThenOppositeParallelLinesRule") == 0)
+        else if (strcmp(basie->getprintElement(), "IfThenOppositeParallelLinesRule") == 0)
           {
             IfThenOppositeParallelLinesRuleType * typ;
             if ((typ = dynamic_cast<IfThenOppositeParallelLinesRuleType *>(basie)))
@@ -8265,7 +8267,7 @@ void IfThenElseFeatureRulesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "IfThenOppositeParallelPlanesRule") == 0)
+        else if (strcmp(basie->getprintElement(), "IfThenOppositeParallelPlanesRule") == 0)
           {
             IfThenOppositeParallelPlanesRuleType * typ;
             if ((typ = dynamic_cast<IfThenOppositeParallelPlanesRuleType *>(basie)))
@@ -8281,7 +8283,7 @@ void IfThenElseFeatureRulesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "IfThenPlaneRule") == 0)
+        else if (strcmp(basie->getprintElement(), "IfThenPlaneRule") == 0)
           {
             IfThenPlaneRuleType * typ;
             if ((typ = dynamic_cast<IfThenPlaneRuleType *>(basie)))
@@ -8297,7 +8299,7 @@ void IfThenElseFeatureRulesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "IfThenPointDefinedCurveRule") == 0)
+        else if (strcmp(basie->getprintElement(), "IfThenPointDefinedCurveRule") == 0)
           {
             IfThenPointDefinedCurveRuleType * typ;
             if ((typ = dynamic_cast<IfThenPointDefinedCurveRuleType *>(basie)))
@@ -8313,7 +8315,7 @@ void IfThenElseFeatureRulesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "IfThenPointDefinedSurfaceRule") == 0)
+        else if (strcmp(basie->getprintElement(), "IfThenPointDefinedSurfaceRule") == 0)
           {
             IfThenPointDefinedSurfaceRuleType * typ;
             if ((typ = dynamic_cast<IfThenPointDefinedSurfaceRuleType *>(basie)))
@@ -8329,7 +8331,7 @@ void IfThenElseFeatureRulesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "IfThenPointRule") == 0)
+        else if (strcmp(basie->getprintElement(), "IfThenPointRule") == 0)
           {
             IfThenPointRuleType * typ;
             if ((typ = dynamic_cast<IfThenPointRuleType *>(basie)))
@@ -8345,7 +8347,7 @@ void IfThenElseFeatureRulesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "IfThenSphereRule") == 0)
+        else if (strcmp(basie->getprintElement(), "IfThenSphereRule") == 0)
           {
             IfThenSphereRuleType * typ;
             if ((typ = dynamic_cast<IfThenSphereRuleType *>(basie)))
@@ -8361,7 +8363,7 @@ void IfThenElseFeatureRulesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "IfThenSphericalSegmentRule") == 0)
+        else if (strcmp(basie->getprintElement(), "IfThenSphericalSegmentRule") == 0)
           {
             IfThenSphericalSegmentRuleType * typ;
             if ((typ = dynamic_cast<IfThenSphericalSegmentRuleType *>(basie)))
@@ -8377,7 +8379,7 @@ void IfThenElseFeatureRulesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "IfThenSurfaceOfRevolutionRule") == 0)
+        else if (strcmp(basie->getprintElement(), "IfThenSurfaceOfRevolutionRule") == 0)
           {
             IfThenSurfaceOfRevolutionRuleType * typ;
             if ((typ = dynamic_cast<IfThenSurfaceOfRevolutionRuleType *>(basie)))
@@ -8393,7 +8395,7 @@ void IfThenElseFeatureRulesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "IfThenToroidalSegmentRule") == 0)
+        else if (strcmp(basie->getprintElement(), "IfThenToroidalSegmentRule") == 0)
           {
             IfThenToroidalSegmentRuleType * typ;
             if ((typ = dynamic_cast<IfThenToroidalSegmentRuleType *>(basie)))
@@ -8409,7 +8411,7 @@ void IfThenElseFeatureRulesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "IfThenTorusRule") == 0)
+        else if (strcmp(basie->getprintElement(), "IfThenTorusRule") == 0)
           {
             IfThenTorusRuleType * typ;
             if ((typ = dynamic_cast<IfThenTorusRuleType *>(basie)))
@@ -8425,7 +8427,7 @@ void IfThenElseFeatureRulesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "IfThenFeatureRule") == 0)
+        else if (strcmp(basie->getprintElement(), "IfThenFeatureRule") == 0)
           {
             IfThenFeatureRuleType * typ;
             if ((typ = dynamic_cast<IfThenFeatureRuleType *>(basie)))
@@ -8471,7 +8473,7 @@ bool IfThenElseFeatureRulesType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -8480,12 +8482,12 @@ bool IfThenElseFeatureRulesType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in IfThenElseFeatureRulesType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -8623,12 +8625,12 @@ void IfThenExtrudedCrossSectionRuleType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (BooleanExpression->printElement == 0)
+        if (BooleanExpression->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(BooleanExpression->printElement, "Not") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "Not") == 0)
           {
             NotType * typ;
             if ((typ = dynamic_cast<NotType *>(BooleanExpression)))
@@ -8644,7 +8646,7 @@ void IfThenExtrudedCrossSectionRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ConstantIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ConstantIs") == 0)
           {
             ConstantIsType * typ;
             if ((typ = dynamic_cast<ConstantIsType *>(BooleanExpression)))
@@ -8658,7 +8660,7 @@ void IfThenExtrudedCrossSectionRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "And") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "And") == 0)
           {
             AndType * typ;
             if ((typ = dynamic_cast<AndType *>(BooleanExpression)))
@@ -8674,7 +8676,7 @@ void IfThenExtrudedCrossSectionRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "Or") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "Or") == 0)
           {
             OrType * typ;
             if ((typ = dynamic_cast<OrType *>(BooleanExpression)))
@@ -8690,7 +8692,7 @@ void IfThenExtrudedCrossSectionRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "BooleanEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "BooleanEqual") == 0)
           {
             BooleanEqualType * typ;
             if ((typ = dynamic_cast<BooleanEqualType *>(BooleanExpression)))
@@ -8706,7 +8708,7 @@ void IfThenExtrudedCrossSectionRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ArithmeticEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ArithmeticEqual") == 0)
           {
             ArithmeticEqualType * typ;
             if ((typ = dynamic_cast<ArithmeticEqualType *>(BooleanExpression)))
@@ -8722,7 +8724,7 @@ void IfThenExtrudedCrossSectionRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "GreaterThan") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "GreaterThan") == 0)
           {
             GreaterThanType * typ;
             if ((typ = dynamic_cast<GreaterThanType *>(BooleanExpression)))
@@ -8738,7 +8740,7 @@ void IfThenExtrudedCrossSectionRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "GreaterOrEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "GreaterOrEqual") == 0)
           {
             GreaterOrEqualType * typ;
             if ((typ = dynamic_cast<GreaterOrEqualType *>(BooleanExpression)))
@@ -8754,7 +8756,7 @@ void IfThenExtrudedCrossSectionRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "LessThan") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "LessThan") == 0)
           {
             LessThanType * typ;
             if ((typ = dynamic_cast<LessThanType *>(BooleanExpression)))
@@ -8770,7 +8772,7 @@ void IfThenExtrudedCrossSectionRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "LessOrEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "LessOrEqual") == 0)
           {
             LessOrEqualType * typ;
             if ((typ = dynamic_cast<LessOrEqualType *>(BooleanExpression)))
@@ -8786,7 +8788,7 @@ void IfThenExtrudedCrossSectionRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "TokenEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "TokenEqual") == 0)
           {
             TokenEqualType * typ;
             if ((typ = dynamic_cast<TokenEqualType *>(BooleanExpression)))
@@ -8802,7 +8804,7 @@ void IfThenExtrudedCrossSectionRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "CharacteristicIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "CharacteristicIs") == 0)
           {
             CharacteristicIsType * typ;
             if ((typ = dynamic_cast<CharacteristicIsType *>(BooleanExpression)))
@@ -8816,7 +8818,7 @@ void IfThenExtrudedCrossSectionRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureIsDatum") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureIsDatum") == 0)
           {
             FeatureIsDatumType * typ;
             if ((typ = dynamic_cast<FeatureIsDatumType *>(BooleanExpression)))
@@ -8830,7 +8832,7 @@ void IfThenExtrudedCrossSectionRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureIsInternal") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureIsInternal") == 0)
           {
             FeatureIsInternalType * typ;
             if ((typ = dynamic_cast<FeatureIsInternalType *>(BooleanExpression)))
@@ -8844,7 +8846,7 @@ void IfThenExtrudedCrossSectionRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureTypeIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureTypeIs") == 0)
           {
             FeatureTypeIsType * typ;
             if ((typ = dynamic_cast<FeatureTypeIsType *>(BooleanExpression)))
@@ -8858,7 +8860,7 @@ void IfThenExtrudedCrossSectionRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "SamplingCategoryIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "SamplingCategoryIs") == 0)
           {
             SamplingCategoryIsType * typ;
             if ((typ = dynamic_cast<SamplingCategoryIsType *>(BooleanExpression)))
@@ -8872,7 +8874,7 @@ void IfThenExtrudedCrossSectionRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ShapeClassIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ShapeClassIs") == 0)
           {
             ShapeClassIsType * typ;
             if ((typ = dynamic_cast<ShapeClassIsType *>(BooleanExpression)))
@@ -8932,7 +8934,7 @@ bool IfThenExtrudedCrossSectionRuleType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "name")
+      if (decl->getname() == "name")
         {
           XmlToken * nameVal;
           if (this->name)
@@ -8941,12 +8943,12 @@ bool IfThenExtrudedCrossSectionRuleType::badAttributes(
               returnValue = true;
               break;
             }
-          nameVal = new XmlToken(decl->val.c_str());
-          if (nameVal->bad)
+          nameVal = new XmlToken(decl->getval().c_str());
+          if (nameVal->getbad())
             {
               delete nameVal;
               fprintf(stderr, "bad value %s for name in IfThenExtrudedCrossSectionRuleType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -9065,12 +9067,12 @@ void IfThenFeatureRuleType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (BooleanExpression->printElement == 0)
+        if (BooleanExpression->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(BooleanExpression->printElement, "Not") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "Not") == 0)
           {
             NotType * typ;
             if ((typ = dynamic_cast<NotType *>(BooleanExpression)))
@@ -9086,7 +9088,7 @@ void IfThenFeatureRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ConstantIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ConstantIs") == 0)
           {
             ConstantIsType * typ;
             if ((typ = dynamic_cast<ConstantIsType *>(BooleanExpression)))
@@ -9100,7 +9102,7 @@ void IfThenFeatureRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "And") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "And") == 0)
           {
             AndType * typ;
             if ((typ = dynamic_cast<AndType *>(BooleanExpression)))
@@ -9116,7 +9118,7 @@ void IfThenFeatureRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "Or") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "Or") == 0)
           {
             OrType * typ;
             if ((typ = dynamic_cast<OrType *>(BooleanExpression)))
@@ -9132,7 +9134,7 @@ void IfThenFeatureRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "BooleanEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "BooleanEqual") == 0)
           {
             BooleanEqualType * typ;
             if ((typ = dynamic_cast<BooleanEqualType *>(BooleanExpression)))
@@ -9148,7 +9150,7 @@ void IfThenFeatureRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ArithmeticEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ArithmeticEqual") == 0)
           {
             ArithmeticEqualType * typ;
             if ((typ = dynamic_cast<ArithmeticEqualType *>(BooleanExpression)))
@@ -9164,7 +9166,7 @@ void IfThenFeatureRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "GreaterThan") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "GreaterThan") == 0)
           {
             GreaterThanType * typ;
             if ((typ = dynamic_cast<GreaterThanType *>(BooleanExpression)))
@@ -9180,7 +9182,7 @@ void IfThenFeatureRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "GreaterOrEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "GreaterOrEqual") == 0)
           {
             GreaterOrEqualType * typ;
             if ((typ = dynamic_cast<GreaterOrEqualType *>(BooleanExpression)))
@@ -9196,7 +9198,7 @@ void IfThenFeatureRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "LessThan") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "LessThan") == 0)
           {
             LessThanType * typ;
             if ((typ = dynamic_cast<LessThanType *>(BooleanExpression)))
@@ -9212,7 +9214,7 @@ void IfThenFeatureRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "LessOrEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "LessOrEqual") == 0)
           {
             LessOrEqualType * typ;
             if ((typ = dynamic_cast<LessOrEqualType *>(BooleanExpression)))
@@ -9228,7 +9230,7 @@ void IfThenFeatureRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "TokenEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "TokenEqual") == 0)
           {
             TokenEqualType * typ;
             if ((typ = dynamic_cast<TokenEqualType *>(BooleanExpression)))
@@ -9244,7 +9246,7 @@ void IfThenFeatureRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "CharacteristicIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "CharacteristicIs") == 0)
           {
             CharacteristicIsType * typ;
             if ((typ = dynamic_cast<CharacteristicIsType *>(BooleanExpression)))
@@ -9258,7 +9260,7 @@ void IfThenFeatureRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureIsDatum") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureIsDatum") == 0)
           {
             FeatureIsDatumType * typ;
             if ((typ = dynamic_cast<FeatureIsDatumType *>(BooleanExpression)))
@@ -9272,7 +9274,7 @@ void IfThenFeatureRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureIsInternal") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureIsInternal") == 0)
           {
             FeatureIsInternalType * typ;
             if ((typ = dynamic_cast<FeatureIsInternalType *>(BooleanExpression)))
@@ -9286,7 +9288,7 @@ void IfThenFeatureRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureTypeIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureTypeIs") == 0)
           {
             FeatureTypeIsType * typ;
             if ((typ = dynamic_cast<FeatureTypeIsType *>(BooleanExpression)))
@@ -9300,7 +9302,7 @@ void IfThenFeatureRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "SamplingCategoryIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "SamplingCategoryIs") == 0)
           {
             SamplingCategoryIsType * typ;
             if ((typ = dynamic_cast<SamplingCategoryIsType *>(BooleanExpression)))
@@ -9314,7 +9316,7 @@ void IfThenFeatureRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ShapeClassIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ShapeClassIs") == 0)
           {
             ShapeClassIsType * typ;
             if ((typ = dynamic_cast<ShapeClassIsType *>(BooleanExpression)))
@@ -9358,7 +9360,7 @@ bool IfThenFeatureRuleType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "name")
+      if (decl->getname() == "name")
         {
           XmlToken * nameVal;
           if (this->name)
@@ -9367,12 +9369,12 @@ bool IfThenFeatureRuleType::badAttributes(
               returnValue = true;
               break;
             }
-          nameVal = new XmlToken(decl->val.c_str());
-          if (nameVal->bad)
+          nameVal = new XmlToken(decl->getval().c_str());
+          if (nameVal->getbad())
             {
               delete nameVal;
               fprintf(stderr, "bad value %s for name in IfThenFeatureRuleType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -9534,12 +9536,12 @@ void IfThenLineRuleType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (BooleanExpression->printElement == 0)
+        if (BooleanExpression->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(BooleanExpression->printElement, "Not") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "Not") == 0)
           {
             NotType * typ;
             if ((typ = dynamic_cast<NotType *>(BooleanExpression)))
@@ -9555,7 +9557,7 @@ void IfThenLineRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ConstantIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ConstantIs") == 0)
           {
             ConstantIsType * typ;
             if ((typ = dynamic_cast<ConstantIsType *>(BooleanExpression)))
@@ -9569,7 +9571,7 @@ void IfThenLineRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "And") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "And") == 0)
           {
             AndType * typ;
             if ((typ = dynamic_cast<AndType *>(BooleanExpression)))
@@ -9585,7 +9587,7 @@ void IfThenLineRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "Or") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "Or") == 0)
           {
             OrType * typ;
             if ((typ = dynamic_cast<OrType *>(BooleanExpression)))
@@ -9601,7 +9603,7 @@ void IfThenLineRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "BooleanEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "BooleanEqual") == 0)
           {
             BooleanEqualType * typ;
             if ((typ = dynamic_cast<BooleanEqualType *>(BooleanExpression)))
@@ -9617,7 +9619,7 @@ void IfThenLineRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ArithmeticEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ArithmeticEqual") == 0)
           {
             ArithmeticEqualType * typ;
             if ((typ = dynamic_cast<ArithmeticEqualType *>(BooleanExpression)))
@@ -9633,7 +9635,7 @@ void IfThenLineRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "GreaterThan") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "GreaterThan") == 0)
           {
             GreaterThanType * typ;
             if ((typ = dynamic_cast<GreaterThanType *>(BooleanExpression)))
@@ -9649,7 +9651,7 @@ void IfThenLineRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "GreaterOrEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "GreaterOrEqual") == 0)
           {
             GreaterOrEqualType * typ;
             if ((typ = dynamic_cast<GreaterOrEqualType *>(BooleanExpression)))
@@ -9665,7 +9667,7 @@ void IfThenLineRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "LessThan") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "LessThan") == 0)
           {
             LessThanType * typ;
             if ((typ = dynamic_cast<LessThanType *>(BooleanExpression)))
@@ -9681,7 +9683,7 @@ void IfThenLineRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "LessOrEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "LessOrEqual") == 0)
           {
             LessOrEqualType * typ;
             if ((typ = dynamic_cast<LessOrEqualType *>(BooleanExpression)))
@@ -9697,7 +9699,7 @@ void IfThenLineRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "TokenEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "TokenEqual") == 0)
           {
             TokenEqualType * typ;
             if ((typ = dynamic_cast<TokenEqualType *>(BooleanExpression)))
@@ -9713,7 +9715,7 @@ void IfThenLineRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "CharacteristicIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "CharacteristicIs") == 0)
           {
             CharacteristicIsType * typ;
             if ((typ = dynamic_cast<CharacteristicIsType *>(BooleanExpression)))
@@ -9727,7 +9729,7 @@ void IfThenLineRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureIsDatum") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureIsDatum") == 0)
           {
             FeatureIsDatumType * typ;
             if ((typ = dynamic_cast<FeatureIsDatumType *>(BooleanExpression)))
@@ -9741,7 +9743,7 @@ void IfThenLineRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureIsInternal") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureIsInternal") == 0)
           {
             FeatureIsInternalType * typ;
             if ((typ = dynamic_cast<FeatureIsInternalType *>(BooleanExpression)))
@@ -9755,7 +9757,7 @@ void IfThenLineRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureTypeIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureTypeIs") == 0)
           {
             FeatureTypeIsType * typ;
             if ((typ = dynamic_cast<FeatureTypeIsType *>(BooleanExpression)))
@@ -9769,7 +9771,7 @@ void IfThenLineRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "SamplingCategoryIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "SamplingCategoryIs") == 0)
           {
             SamplingCategoryIsType * typ;
             if ((typ = dynamic_cast<SamplingCategoryIsType *>(BooleanExpression)))
@@ -9783,7 +9785,7 @@ void IfThenLineRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ShapeClassIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ShapeClassIs") == 0)
           {
             ShapeClassIsType * typ;
             if ((typ = dynamic_cast<ShapeClassIsType *>(BooleanExpression)))
@@ -9843,7 +9845,7 @@ bool IfThenLineRuleType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "name")
+      if (decl->getname() == "name")
         {
           XmlToken * nameVal;
           if (this->name)
@@ -9852,12 +9854,12 @@ bool IfThenLineRuleType::badAttributes(
               returnValue = true;
               break;
             }
-          nameVal = new XmlToken(decl->val.c_str());
-          if (nameVal->bad)
+          nameVal = new XmlToken(decl->getval().c_str());
+          if (nameVal->getbad())
             {
               delete nameVal;
               fprintf(stderr, "bad value %s for name in IfThenLineRuleType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -9984,12 +9986,12 @@ void IfThenOppositeAngledLinesRuleType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (BooleanExpression->printElement == 0)
+        if (BooleanExpression->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(BooleanExpression->printElement, "Not") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "Not") == 0)
           {
             NotType * typ;
             if ((typ = dynamic_cast<NotType *>(BooleanExpression)))
@@ -10005,7 +10007,7 @@ void IfThenOppositeAngledLinesRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ConstantIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ConstantIs") == 0)
           {
             ConstantIsType * typ;
             if ((typ = dynamic_cast<ConstantIsType *>(BooleanExpression)))
@@ -10019,7 +10021,7 @@ void IfThenOppositeAngledLinesRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "And") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "And") == 0)
           {
             AndType * typ;
             if ((typ = dynamic_cast<AndType *>(BooleanExpression)))
@@ -10035,7 +10037,7 @@ void IfThenOppositeAngledLinesRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "Or") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "Or") == 0)
           {
             OrType * typ;
             if ((typ = dynamic_cast<OrType *>(BooleanExpression)))
@@ -10051,7 +10053,7 @@ void IfThenOppositeAngledLinesRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "BooleanEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "BooleanEqual") == 0)
           {
             BooleanEqualType * typ;
             if ((typ = dynamic_cast<BooleanEqualType *>(BooleanExpression)))
@@ -10067,7 +10069,7 @@ void IfThenOppositeAngledLinesRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ArithmeticEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ArithmeticEqual") == 0)
           {
             ArithmeticEqualType * typ;
             if ((typ = dynamic_cast<ArithmeticEqualType *>(BooleanExpression)))
@@ -10083,7 +10085,7 @@ void IfThenOppositeAngledLinesRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "GreaterThan") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "GreaterThan") == 0)
           {
             GreaterThanType * typ;
             if ((typ = dynamic_cast<GreaterThanType *>(BooleanExpression)))
@@ -10099,7 +10101,7 @@ void IfThenOppositeAngledLinesRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "GreaterOrEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "GreaterOrEqual") == 0)
           {
             GreaterOrEqualType * typ;
             if ((typ = dynamic_cast<GreaterOrEqualType *>(BooleanExpression)))
@@ -10115,7 +10117,7 @@ void IfThenOppositeAngledLinesRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "LessThan") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "LessThan") == 0)
           {
             LessThanType * typ;
             if ((typ = dynamic_cast<LessThanType *>(BooleanExpression)))
@@ -10131,7 +10133,7 @@ void IfThenOppositeAngledLinesRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "LessOrEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "LessOrEqual") == 0)
           {
             LessOrEqualType * typ;
             if ((typ = dynamic_cast<LessOrEqualType *>(BooleanExpression)))
@@ -10147,7 +10149,7 @@ void IfThenOppositeAngledLinesRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "TokenEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "TokenEqual") == 0)
           {
             TokenEqualType * typ;
             if ((typ = dynamic_cast<TokenEqualType *>(BooleanExpression)))
@@ -10163,7 +10165,7 @@ void IfThenOppositeAngledLinesRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "CharacteristicIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "CharacteristicIs") == 0)
           {
             CharacteristicIsType * typ;
             if ((typ = dynamic_cast<CharacteristicIsType *>(BooleanExpression)))
@@ -10177,7 +10179,7 @@ void IfThenOppositeAngledLinesRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureIsDatum") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureIsDatum") == 0)
           {
             FeatureIsDatumType * typ;
             if ((typ = dynamic_cast<FeatureIsDatumType *>(BooleanExpression)))
@@ -10191,7 +10193,7 @@ void IfThenOppositeAngledLinesRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureIsInternal") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureIsInternal") == 0)
           {
             FeatureIsInternalType * typ;
             if ((typ = dynamic_cast<FeatureIsInternalType *>(BooleanExpression)))
@@ -10205,7 +10207,7 @@ void IfThenOppositeAngledLinesRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureTypeIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureTypeIs") == 0)
           {
             FeatureTypeIsType * typ;
             if ((typ = dynamic_cast<FeatureTypeIsType *>(BooleanExpression)))
@@ -10219,7 +10221,7 @@ void IfThenOppositeAngledLinesRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "SamplingCategoryIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "SamplingCategoryIs") == 0)
           {
             SamplingCategoryIsType * typ;
             if ((typ = dynamic_cast<SamplingCategoryIsType *>(BooleanExpression)))
@@ -10233,7 +10235,7 @@ void IfThenOppositeAngledLinesRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ShapeClassIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ShapeClassIs") == 0)
           {
             ShapeClassIsType * typ;
             if ((typ = dynamic_cast<ShapeClassIsType *>(BooleanExpression)))
@@ -10293,7 +10295,7 @@ bool IfThenOppositeAngledLinesRuleType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "name")
+      if (decl->getname() == "name")
         {
           XmlToken * nameVal;
           if (this->name)
@@ -10302,12 +10304,12 @@ bool IfThenOppositeAngledLinesRuleType::badAttributes(
               returnValue = true;
               break;
             }
-          nameVal = new XmlToken(decl->val.c_str());
-          if (nameVal->bad)
+          nameVal = new XmlToken(decl->getval().c_str());
+          if (nameVal->getbad())
             {
               delete nameVal;
               fprintf(stderr, "bad value %s for name in IfThenOppositeAngledLinesRuleType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -10434,12 +10436,12 @@ void IfThenOppositeAngledPlanesRuleType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (BooleanExpression->printElement == 0)
+        if (BooleanExpression->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(BooleanExpression->printElement, "Not") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "Not") == 0)
           {
             NotType * typ;
             if ((typ = dynamic_cast<NotType *>(BooleanExpression)))
@@ -10455,7 +10457,7 @@ void IfThenOppositeAngledPlanesRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ConstantIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ConstantIs") == 0)
           {
             ConstantIsType * typ;
             if ((typ = dynamic_cast<ConstantIsType *>(BooleanExpression)))
@@ -10469,7 +10471,7 @@ void IfThenOppositeAngledPlanesRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "And") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "And") == 0)
           {
             AndType * typ;
             if ((typ = dynamic_cast<AndType *>(BooleanExpression)))
@@ -10485,7 +10487,7 @@ void IfThenOppositeAngledPlanesRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "Or") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "Or") == 0)
           {
             OrType * typ;
             if ((typ = dynamic_cast<OrType *>(BooleanExpression)))
@@ -10501,7 +10503,7 @@ void IfThenOppositeAngledPlanesRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "BooleanEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "BooleanEqual") == 0)
           {
             BooleanEqualType * typ;
             if ((typ = dynamic_cast<BooleanEqualType *>(BooleanExpression)))
@@ -10517,7 +10519,7 @@ void IfThenOppositeAngledPlanesRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ArithmeticEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ArithmeticEqual") == 0)
           {
             ArithmeticEqualType * typ;
             if ((typ = dynamic_cast<ArithmeticEqualType *>(BooleanExpression)))
@@ -10533,7 +10535,7 @@ void IfThenOppositeAngledPlanesRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "GreaterThan") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "GreaterThan") == 0)
           {
             GreaterThanType * typ;
             if ((typ = dynamic_cast<GreaterThanType *>(BooleanExpression)))
@@ -10549,7 +10551,7 @@ void IfThenOppositeAngledPlanesRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "GreaterOrEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "GreaterOrEqual") == 0)
           {
             GreaterOrEqualType * typ;
             if ((typ = dynamic_cast<GreaterOrEqualType *>(BooleanExpression)))
@@ -10565,7 +10567,7 @@ void IfThenOppositeAngledPlanesRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "LessThan") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "LessThan") == 0)
           {
             LessThanType * typ;
             if ((typ = dynamic_cast<LessThanType *>(BooleanExpression)))
@@ -10581,7 +10583,7 @@ void IfThenOppositeAngledPlanesRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "LessOrEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "LessOrEqual") == 0)
           {
             LessOrEqualType * typ;
             if ((typ = dynamic_cast<LessOrEqualType *>(BooleanExpression)))
@@ -10597,7 +10599,7 @@ void IfThenOppositeAngledPlanesRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "TokenEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "TokenEqual") == 0)
           {
             TokenEqualType * typ;
             if ((typ = dynamic_cast<TokenEqualType *>(BooleanExpression)))
@@ -10613,7 +10615,7 @@ void IfThenOppositeAngledPlanesRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "CharacteristicIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "CharacteristicIs") == 0)
           {
             CharacteristicIsType * typ;
             if ((typ = dynamic_cast<CharacteristicIsType *>(BooleanExpression)))
@@ -10627,7 +10629,7 @@ void IfThenOppositeAngledPlanesRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureIsDatum") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureIsDatum") == 0)
           {
             FeatureIsDatumType * typ;
             if ((typ = dynamic_cast<FeatureIsDatumType *>(BooleanExpression)))
@@ -10641,7 +10643,7 @@ void IfThenOppositeAngledPlanesRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureIsInternal") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureIsInternal") == 0)
           {
             FeatureIsInternalType * typ;
             if ((typ = dynamic_cast<FeatureIsInternalType *>(BooleanExpression)))
@@ -10655,7 +10657,7 @@ void IfThenOppositeAngledPlanesRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureTypeIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureTypeIs") == 0)
           {
             FeatureTypeIsType * typ;
             if ((typ = dynamic_cast<FeatureTypeIsType *>(BooleanExpression)))
@@ -10669,7 +10671,7 @@ void IfThenOppositeAngledPlanesRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "SamplingCategoryIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "SamplingCategoryIs") == 0)
           {
             SamplingCategoryIsType * typ;
             if ((typ = dynamic_cast<SamplingCategoryIsType *>(BooleanExpression)))
@@ -10683,7 +10685,7 @@ void IfThenOppositeAngledPlanesRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ShapeClassIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ShapeClassIs") == 0)
           {
             ShapeClassIsType * typ;
             if ((typ = dynamic_cast<ShapeClassIsType *>(BooleanExpression)))
@@ -10743,7 +10745,7 @@ bool IfThenOppositeAngledPlanesRuleType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "name")
+      if (decl->getname() == "name")
         {
           XmlToken * nameVal;
           if (this->name)
@@ -10752,12 +10754,12 @@ bool IfThenOppositeAngledPlanesRuleType::badAttributes(
               returnValue = true;
               break;
             }
-          nameVal = new XmlToken(decl->val.c_str());
-          if (nameVal->bad)
+          nameVal = new XmlToken(decl->getval().c_str());
+          if (nameVal->getbad())
             {
               delete nameVal;
               fprintf(stderr, "bad value %s for name in IfThenOppositeAngledPlanesRuleType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -10884,12 +10886,12 @@ void IfThenOppositeParallelLinesRuleType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (BooleanExpression->printElement == 0)
+        if (BooleanExpression->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(BooleanExpression->printElement, "Not") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "Not") == 0)
           {
             NotType * typ;
             if ((typ = dynamic_cast<NotType *>(BooleanExpression)))
@@ -10905,7 +10907,7 @@ void IfThenOppositeParallelLinesRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ConstantIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ConstantIs") == 0)
           {
             ConstantIsType * typ;
             if ((typ = dynamic_cast<ConstantIsType *>(BooleanExpression)))
@@ -10919,7 +10921,7 @@ void IfThenOppositeParallelLinesRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "And") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "And") == 0)
           {
             AndType * typ;
             if ((typ = dynamic_cast<AndType *>(BooleanExpression)))
@@ -10935,7 +10937,7 @@ void IfThenOppositeParallelLinesRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "Or") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "Or") == 0)
           {
             OrType * typ;
             if ((typ = dynamic_cast<OrType *>(BooleanExpression)))
@@ -10951,7 +10953,7 @@ void IfThenOppositeParallelLinesRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "BooleanEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "BooleanEqual") == 0)
           {
             BooleanEqualType * typ;
             if ((typ = dynamic_cast<BooleanEqualType *>(BooleanExpression)))
@@ -10967,7 +10969,7 @@ void IfThenOppositeParallelLinesRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ArithmeticEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ArithmeticEqual") == 0)
           {
             ArithmeticEqualType * typ;
             if ((typ = dynamic_cast<ArithmeticEqualType *>(BooleanExpression)))
@@ -10983,7 +10985,7 @@ void IfThenOppositeParallelLinesRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "GreaterThan") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "GreaterThan") == 0)
           {
             GreaterThanType * typ;
             if ((typ = dynamic_cast<GreaterThanType *>(BooleanExpression)))
@@ -10999,7 +11001,7 @@ void IfThenOppositeParallelLinesRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "GreaterOrEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "GreaterOrEqual") == 0)
           {
             GreaterOrEqualType * typ;
             if ((typ = dynamic_cast<GreaterOrEqualType *>(BooleanExpression)))
@@ -11015,7 +11017,7 @@ void IfThenOppositeParallelLinesRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "LessThan") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "LessThan") == 0)
           {
             LessThanType * typ;
             if ((typ = dynamic_cast<LessThanType *>(BooleanExpression)))
@@ -11031,7 +11033,7 @@ void IfThenOppositeParallelLinesRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "LessOrEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "LessOrEqual") == 0)
           {
             LessOrEqualType * typ;
             if ((typ = dynamic_cast<LessOrEqualType *>(BooleanExpression)))
@@ -11047,7 +11049,7 @@ void IfThenOppositeParallelLinesRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "TokenEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "TokenEqual") == 0)
           {
             TokenEqualType * typ;
             if ((typ = dynamic_cast<TokenEqualType *>(BooleanExpression)))
@@ -11063,7 +11065,7 @@ void IfThenOppositeParallelLinesRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "CharacteristicIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "CharacteristicIs") == 0)
           {
             CharacteristicIsType * typ;
             if ((typ = dynamic_cast<CharacteristicIsType *>(BooleanExpression)))
@@ -11077,7 +11079,7 @@ void IfThenOppositeParallelLinesRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureIsDatum") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureIsDatum") == 0)
           {
             FeatureIsDatumType * typ;
             if ((typ = dynamic_cast<FeatureIsDatumType *>(BooleanExpression)))
@@ -11091,7 +11093,7 @@ void IfThenOppositeParallelLinesRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureIsInternal") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureIsInternal") == 0)
           {
             FeatureIsInternalType * typ;
             if ((typ = dynamic_cast<FeatureIsInternalType *>(BooleanExpression)))
@@ -11105,7 +11107,7 @@ void IfThenOppositeParallelLinesRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureTypeIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureTypeIs") == 0)
           {
             FeatureTypeIsType * typ;
             if ((typ = dynamic_cast<FeatureTypeIsType *>(BooleanExpression)))
@@ -11119,7 +11121,7 @@ void IfThenOppositeParallelLinesRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "SamplingCategoryIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "SamplingCategoryIs") == 0)
           {
             SamplingCategoryIsType * typ;
             if ((typ = dynamic_cast<SamplingCategoryIsType *>(BooleanExpression)))
@@ -11133,7 +11135,7 @@ void IfThenOppositeParallelLinesRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ShapeClassIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ShapeClassIs") == 0)
           {
             ShapeClassIsType * typ;
             if ((typ = dynamic_cast<ShapeClassIsType *>(BooleanExpression)))
@@ -11193,7 +11195,7 @@ bool IfThenOppositeParallelLinesRuleType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "name")
+      if (decl->getname() == "name")
         {
           XmlToken * nameVal;
           if (this->name)
@@ -11202,12 +11204,12 @@ bool IfThenOppositeParallelLinesRuleType::badAttributes(
               returnValue = true;
               break;
             }
-          nameVal = new XmlToken(decl->val.c_str());
-          if (nameVal->bad)
+          nameVal = new XmlToken(decl->getval().c_str());
+          if (nameVal->getbad())
             {
               delete nameVal;
               fprintf(stderr, "bad value %s for name in IfThenOppositeParallelLinesRuleType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -11334,12 +11336,12 @@ void IfThenOppositeParallelPlanesRuleType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (BooleanExpression->printElement == 0)
+        if (BooleanExpression->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(BooleanExpression->printElement, "Not") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "Not") == 0)
           {
             NotType * typ;
             if ((typ = dynamic_cast<NotType *>(BooleanExpression)))
@@ -11355,7 +11357,7 @@ void IfThenOppositeParallelPlanesRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ConstantIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ConstantIs") == 0)
           {
             ConstantIsType * typ;
             if ((typ = dynamic_cast<ConstantIsType *>(BooleanExpression)))
@@ -11369,7 +11371,7 @@ void IfThenOppositeParallelPlanesRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "And") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "And") == 0)
           {
             AndType * typ;
             if ((typ = dynamic_cast<AndType *>(BooleanExpression)))
@@ -11385,7 +11387,7 @@ void IfThenOppositeParallelPlanesRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "Or") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "Or") == 0)
           {
             OrType * typ;
             if ((typ = dynamic_cast<OrType *>(BooleanExpression)))
@@ -11401,7 +11403,7 @@ void IfThenOppositeParallelPlanesRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "BooleanEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "BooleanEqual") == 0)
           {
             BooleanEqualType * typ;
             if ((typ = dynamic_cast<BooleanEqualType *>(BooleanExpression)))
@@ -11417,7 +11419,7 @@ void IfThenOppositeParallelPlanesRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ArithmeticEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ArithmeticEqual") == 0)
           {
             ArithmeticEqualType * typ;
             if ((typ = dynamic_cast<ArithmeticEqualType *>(BooleanExpression)))
@@ -11433,7 +11435,7 @@ void IfThenOppositeParallelPlanesRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "GreaterThan") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "GreaterThan") == 0)
           {
             GreaterThanType * typ;
             if ((typ = dynamic_cast<GreaterThanType *>(BooleanExpression)))
@@ -11449,7 +11451,7 @@ void IfThenOppositeParallelPlanesRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "GreaterOrEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "GreaterOrEqual") == 0)
           {
             GreaterOrEqualType * typ;
             if ((typ = dynamic_cast<GreaterOrEqualType *>(BooleanExpression)))
@@ -11465,7 +11467,7 @@ void IfThenOppositeParallelPlanesRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "LessThan") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "LessThan") == 0)
           {
             LessThanType * typ;
             if ((typ = dynamic_cast<LessThanType *>(BooleanExpression)))
@@ -11481,7 +11483,7 @@ void IfThenOppositeParallelPlanesRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "LessOrEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "LessOrEqual") == 0)
           {
             LessOrEqualType * typ;
             if ((typ = dynamic_cast<LessOrEqualType *>(BooleanExpression)))
@@ -11497,7 +11499,7 @@ void IfThenOppositeParallelPlanesRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "TokenEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "TokenEqual") == 0)
           {
             TokenEqualType * typ;
             if ((typ = dynamic_cast<TokenEqualType *>(BooleanExpression)))
@@ -11513,7 +11515,7 @@ void IfThenOppositeParallelPlanesRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "CharacteristicIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "CharacteristicIs") == 0)
           {
             CharacteristicIsType * typ;
             if ((typ = dynamic_cast<CharacteristicIsType *>(BooleanExpression)))
@@ -11527,7 +11529,7 @@ void IfThenOppositeParallelPlanesRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureIsDatum") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureIsDatum") == 0)
           {
             FeatureIsDatumType * typ;
             if ((typ = dynamic_cast<FeatureIsDatumType *>(BooleanExpression)))
@@ -11541,7 +11543,7 @@ void IfThenOppositeParallelPlanesRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureIsInternal") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureIsInternal") == 0)
           {
             FeatureIsInternalType * typ;
             if ((typ = dynamic_cast<FeatureIsInternalType *>(BooleanExpression)))
@@ -11555,7 +11557,7 @@ void IfThenOppositeParallelPlanesRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureTypeIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureTypeIs") == 0)
           {
             FeatureTypeIsType * typ;
             if ((typ = dynamic_cast<FeatureTypeIsType *>(BooleanExpression)))
@@ -11569,7 +11571,7 @@ void IfThenOppositeParallelPlanesRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "SamplingCategoryIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "SamplingCategoryIs") == 0)
           {
             SamplingCategoryIsType * typ;
             if ((typ = dynamic_cast<SamplingCategoryIsType *>(BooleanExpression)))
@@ -11583,7 +11585,7 @@ void IfThenOppositeParallelPlanesRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ShapeClassIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ShapeClassIs") == 0)
           {
             ShapeClassIsType * typ;
             if ((typ = dynamic_cast<ShapeClassIsType *>(BooleanExpression)))
@@ -11643,7 +11645,7 @@ bool IfThenOppositeParallelPlanesRuleType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "name")
+      if (decl->getname() == "name")
         {
           XmlToken * nameVal;
           if (this->name)
@@ -11652,12 +11654,12 @@ bool IfThenOppositeParallelPlanesRuleType::badAttributes(
               returnValue = true;
               break;
             }
-          nameVal = new XmlToken(decl->val.c_str());
-          if (nameVal->bad)
+          nameVal = new XmlToken(decl->getval().c_str());
+          if (nameVal->getbad())
             {
               delete nameVal;
               fprintf(stderr, "bad value %s for name in IfThenOppositeParallelPlanesRuleType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -11784,12 +11786,12 @@ void IfThenPlaneRuleType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (BooleanExpression->printElement == 0)
+        if (BooleanExpression->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(BooleanExpression->printElement, "Not") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "Not") == 0)
           {
             NotType * typ;
             if ((typ = dynamic_cast<NotType *>(BooleanExpression)))
@@ -11805,7 +11807,7 @@ void IfThenPlaneRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ConstantIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ConstantIs") == 0)
           {
             ConstantIsType * typ;
             if ((typ = dynamic_cast<ConstantIsType *>(BooleanExpression)))
@@ -11819,7 +11821,7 @@ void IfThenPlaneRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "And") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "And") == 0)
           {
             AndType * typ;
             if ((typ = dynamic_cast<AndType *>(BooleanExpression)))
@@ -11835,7 +11837,7 @@ void IfThenPlaneRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "Or") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "Or") == 0)
           {
             OrType * typ;
             if ((typ = dynamic_cast<OrType *>(BooleanExpression)))
@@ -11851,7 +11853,7 @@ void IfThenPlaneRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "BooleanEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "BooleanEqual") == 0)
           {
             BooleanEqualType * typ;
             if ((typ = dynamic_cast<BooleanEqualType *>(BooleanExpression)))
@@ -11867,7 +11869,7 @@ void IfThenPlaneRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ArithmeticEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ArithmeticEqual") == 0)
           {
             ArithmeticEqualType * typ;
             if ((typ = dynamic_cast<ArithmeticEqualType *>(BooleanExpression)))
@@ -11883,7 +11885,7 @@ void IfThenPlaneRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "GreaterThan") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "GreaterThan") == 0)
           {
             GreaterThanType * typ;
             if ((typ = dynamic_cast<GreaterThanType *>(BooleanExpression)))
@@ -11899,7 +11901,7 @@ void IfThenPlaneRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "GreaterOrEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "GreaterOrEqual") == 0)
           {
             GreaterOrEqualType * typ;
             if ((typ = dynamic_cast<GreaterOrEqualType *>(BooleanExpression)))
@@ -11915,7 +11917,7 @@ void IfThenPlaneRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "LessThan") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "LessThan") == 0)
           {
             LessThanType * typ;
             if ((typ = dynamic_cast<LessThanType *>(BooleanExpression)))
@@ -11931,7 +11933,7 @@ void IfThenPlaneRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "LessOrEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "LessOrEqual") == 0)
           {
             LessOrEqualType * typ;
             if ((typ = dynamic_cast<LessOrEqualType *>(BooleanExpression)))
@@ -11947,7 +11949,7 @@ void IfThenPlaneRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "TokenEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "TokenEqual") == 0)
           {
             TokenEqualType * typ;
             if ((typ = dynamic_cast<TokenEqualType *>(BooleanExpression)))
@@ -11963,7 +11965,7 @@ void IfThenPlaneRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "CharacteristicIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "CharacteristicIs") == 0)
           {
             CharacteristicIsType * typ;
             if ((typ = dynamic_cast<CharacteristicIsType *>(BooleanExpression)))
@@ -11977,7 +11979,7 @@ void IfThenPlaneRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureIsDatum") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureIsDatum") == 0)
           {
             FeatureIsDatumType * typ;
             if ((typ = dynamic_cast<FeatureIsDatumType *>(BooleanExpression)))
@@ -11991,7 +11993,7 @@ void IfThenPlaneRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureIsInternal") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureIsInternal") == 0)
           {
             FeatureIsInternalType * typ;
             if ((typ = dynamic_cast<FeatureIsInternalType *>(BooleanExpression)))
@@ -12005,7 +12007,7 @@ void IfThenPlaneRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureTypeIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureTypeIs") == 0)
           {
             FeatureTypeIsType * typ;
             if ((typ = dynamic_cast<FeatureTypeIsType *>(BooleanExpression)))
@@ -12019,7 +12021,7 @@ void IfThenPlaneRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "SamplingCategoryIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "SamplingCategoryIs") == 0)
           {
             SamplingCategoryIsType * typ;
             if ((typ = dynamic_cast<SamplingCategoryIsType *>(BooleanExpression)))
@@ -12033,7 +12035,7 @@ void IfThenPlaneRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ShapeClassIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ShapeClassIs") == 0)
           {
             ShapeClassIsType * typ;
             if ((typ = dynamic_cast<ShapeClassIsType *>(BooleanExpression)))
@@ -12093,7 +12095,7 @@ bool IfThenPlaneRuleType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "name")
+      if (decl->getname() == "name")
         {
           XmlToken * nameVal;
           if (this->name)
@@ -12102,12 +12104,12 @@ bool IfThenPlaneRuleType::badAttributes(
               returnValue = true;
               break;
             }
-          nameVal = new XmlToken(decl->val.c_str());
-          if (nameVal->bad)
+          nameVal = new XmlToken(decl->getval().c_str());
+          if (nameVal->getbad())
             {
               delete nameVal;
               fprintf(stderr, "bad value %s for name in IfThenPlaneRuleType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -12234,12 +12236,12 @@ void IfThenPointDefinedCurveRuleType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (BooleanExpression->printElement == 0)
+        if (BooleanExpression->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(BooleanExpression->printElement, "Not") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "Not") == 0)
           {
             NotType * typ;
             if ((typ = dynamic_cast<NotType *>(BooleanExpression)))
@@ -12255,7 +12257,7 @@ void IfThenPointDefinedCurveRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ConstantIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ConstantIs") == 0)
           {
             ConstantIsType * typ;
             if ((typ = dynamic_cast<ConstantIsType *>(BooleanExpression)))
@@ -12269,7 +12271,7 @@ void IfThenPointDefinedCurveRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "And") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "And") == 0)
           {
             AndType * typ;
             if ((typ = dynamic_cast<AndType *>(BooleanExpression)))
@@ -12285,7 +12287,7 @@ void IfThenPointDefinedCurveRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "Or") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "Or") == 0)
           {
             OrType * typ;
             if ((typ = dynamic_cast<OrType *>(BooleanExpression)))
@@ -12301,7 +12303,7 @@ void IfThenPointDefinedCurveRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "BooleanEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "BooleanEqual") == 0)
           {
             BooleanEqualType * typ;
             if ((typ = dynamic_cast<BooleanEqualType *>(BooleanExpression)))
@@ -12317,7 +12319,7 @@ void IfThenPointDefinedCurveRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ArithmeticEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ArithmeticEqual") == 0)
           {
             ArithmeticEqualType * typ;
             if ((typ = dynamic_cast<ArithmeticEqualType *>(BooleanExpression)))
@@ -12333,7 +12335,7 @@ void IfThenPointDefinedCurveRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "GreaterThan") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "GreaterThan") == 0)
           {
             GreaterThanType * typ;
             if ((typ = dynamic_cast<GreaterThanType *>(BooleanExpression)))
@@ -12349,7 +12351,7 @@ void IfThenPointDefinedCurveRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "GreaterOrEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "GreaterOrEqual") == 0)
           {
             GreaterOrEqualType * typ;
             if ((typ = dynamic_cast<GreaterOrEqualType *>(BooleanExpression)))
@@ -12365,7 +12367,7 @@ void IfThenPointDefinedCurveRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "LessThan") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "LessThan") == 0)
           {
             LessThanType * typ;
             if ((typ = dynamic_cast<LessThanType *>(BooleanExpression)))
@@ -12381,7 +12383,7 @@ void IfThenPointDefinedCurveRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "LessOrEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "LessOrEqual") == 0)
           {
             LessOrEqualType * typ;
             if ((typ = dynamic_cast<LessOrEqualType *>(BooleanExpression)))
@@ -12397,7 +12399,7 @@ void IfThenPointDefinedCurveRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "TokenEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "TokenEqual") == 0)
           {
             TokenEqualType * typ;
             if ((typ = dynamic_cast<TokenEqualType *>(BooleanExpression)))
@@ -12413,7 +12415,7 @@ void IfThenPointDefinedCurveRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "CharacteristicIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "CharacteristicIs") == 0)
           {
             CharacteristicIsType * typ;
             if ((typ = dynamic_cast<CharacteristicIsType *>(BooleanExpression)))
@@ -12427,7 +12429,7 @@ void IfThenPointDefinedCurveRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureIsDatum") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureIsDatum") == 0)
           {
             FeatureIsDatumType * typ;
             if ((typ = dynamic_cast<FeatureIsDatumType *>(BooleanExpression)))
@@ -12441,7 +12443,7 @@ void IfThenPointDefinedCurveRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureIsInternal") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureIsInternal") == 0)
           {
             FeatureIsInternalType * typ;
             if ((typ = dynamic_cast<FeatureIsInternalType *>(BooleanExpression)))
@@ -12455,7 +12457,7 @@ void IfThenPointDefinedCurveRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureTypeIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureTypeIs") == 0)
           {
             FeatureTypeIsType * typ;
             if ((typ = dynamic_cast<FeatureTypeIsType *>(BooleanExpression)))
@@ -12469,7 +12471,7 @@ void IfThenPointDefinedCurveRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "SamplingCategoryIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "SamplingCategoryIs") == 0)
           {
             SamplingCategoryIsType * typ;
             if ((typ = dynamic_cast<SamplingCategoryIsType *>(BooleanExpression)))
@@ -12483,7 +12485,7 @@ void IfThenPointDefinedCurveRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ShapeClassIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ShapeClassIs") == 0)
           {
             ShapeClassIsType * typ;
             if ((typ = dynamic_cast<ShapeClassIsType *>(BooleanExpression)))
@@ -12543,7 +12545,7 @@ bool IfThenPointDefinedCurveRuleType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "name")
+      if (decl->getname() == "name")
         {
           XmlToken * nameVal;
           if (this->name)
@@ -12552,12 +12554,12 @@ bool IfThenPointDefinedCurveRuleType::badAttributes(
               returnValue = true;
               break;
             }
-          nameVal = new XmlToken(decl->val.c_str());
-          if (nameVal->bad)
+          nameVal = new XmlToken(decl->getval().c_str());
+          if (nameVal->getbad())
             {
               delete nameVal;
               fprintf(stderr, "bad value %s for name in IfThenPointDefinedCurveRuleType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -12684,12 +12686,12 @@ void IfThenPointDefinedSurfaceRuleType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (BooleanExpression->printElement == 0)
+        if (BooleanExpression->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(BooleanExpression->printElement, "Not") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "Not") == 0)
           {
             NotType * typ;
             if ((typ = dynamic_cast<NotType *>(BooleanExpression)))
@@ -12705,7 +12707,7 @@ void IfThenPointDefinedSurfaceRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ConstantIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ConstantIs") == 0)
           {
             ConstantIsType * typ;
             if ((typ = dynamic_cast<ConstantIsType *>(BooleanExpression)))
@@ -12719,7 +12721,7 @@ void IfThenPointDefinedSurfaceRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "And") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "And") == 0)
           {
             AndType * typ;
             if ((typ = dynamic_cast<AndType *>(BooleanExpression)))
@@ -12735,7 +12737,7 @@ void IfThenPointDefinedSurfaceRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "Or") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "Or") == 0)
           {
             OrType * typ;
             if ((typ = dynamic_cast<OrType *>(BooleanExpression)))
@@ -12751,7 +12753,7 @@ void IfThenPointDefinedSurfaceRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "BooleanEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "BooleanEqual") == 0)
           {
             BooleanEqualType * typ;
             if ((typ = dynamic_cast<BooleanEqualType *>(BooleanExpression)))
@@ -12767,7 +12769,7 @@ void IfThenPointDefinedSurfaceRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ArithmeticEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ArithmeticEqual") == 0)
           {
             ArithmeticEqualType * typ;
             if ((typ = dynamic_cast<ArithmeticEqualType *>(BooleanExpression)))
@@ -12783,7 +12785,7 @@ void IfThenPointDefinedSurfaceRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "GreaterThan") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "GreaterThan") == 0)
           {
             GreaterThanType * typ;
             if ((typ = dynamic_cast<GreaterThanType *>(BooleanExpression)))
@@ -12799,7 +12801,7 @@ void IfThenPointDefinedSurfaceRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "GreaterOrEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "GreaterOrEqual") == 0)
           {
             GreaterOrEqualType * typ;
             if ((typ = dynamic_cast<GreaterOrEqualType *>(BooleanExpression)))
@@ -12815,7 +12817,7 @@ void IfThenPointDefinedSurfaceRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "LessThan") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "LessThan") == 0)
           {
             LessThanType * typ;
             if ((typ = dynamic_cast<LessThanType *>(BooleanExpression)))
@@ -12831,7 +12833,7 @@ void IfThenPointDefinedSurfaceRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "LessOrEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "LessOrEqual") == 0)
           {
             LessOrEqualType * typ;
             if ((typ = dynamic_cast<LessOrEqualType *>(BooleanExpression)))
@@ -12847,7 +12849,7 @@ void IfThenPointDefinedSurfaceRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "TokenEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "TokenEqual") == 0)
           {
             TokenEqualType * typ;
             if ((typ = dynamic_cast<TokenEqualType *>(BooleanExpression)))
@@ -12863,7 +12865,7 @@ void IfThenPointDefinedSurfaceRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "CharacteristicIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "CharacteristicIs") == 0)
           {
             CharacteristicIsType * typ;
             if ((typ = dynamic_cast<CharacteristicIsType *>(BooleanExpression)))
@@ -12877,7 +12879,7 @@ void IfThenPointDefinedSurfaceRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureIsDatum") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureIsDatum") == 0)
           {
             FeatureIsDatumType * typ;
             if ((typ = dynamic_cast<FeatureIsDatumType *>(BooleanExpression)))
@@ -12891,7 +12893,7 @@ void IfThenPointDefinedSurfaceRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureIsInternal") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureIsInternal") == 0)
           {
             FeatureIsInternalType * typ;
             if ((typ = dynamic_cast<FeatureIsInternalType *>(BooleanExpression)))
@@ -12905,7 +12907,7 @@ void IfThenPointDefinedSurfaceRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureTypeIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureTypeIs") == 0)
           {
             FeatureTypeIsType * typ;
             if ((typ = dynamic_cast<FeatureTypeIsType *>(BooleanExpression)))
@@ -12919,7 +12921,7 @@ void IfThenPointDefinedSurfaceRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "SamplingCategoryIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "SamplingCategoryIs") == 0)
           {
             SamplingCategoryIsType * typ;
             if ((typ = dynamic_cast<SamplingCategoryIsType *>(BooleanExpression)))
@@ -12933,7 +12935,7 @@ void IfThenPointDefinedSurfaceRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ShapeClassIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ShapeClassIs") == 0)
           {
             ShapeClassIsType * typ;
             if ((typ = dynamic_cast<ShapeClassIsType *>(BooleanExpression)))
@@ -12993,7 +12995,7 @@ bool IfThenPointDefinedSurfaceRuleType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "name")
+      if (decl->getname() == "name")
         {
           XmlToken * nameVal;
           if (this->name)
@@ -13002,12 +13004,12 @@ bool IfThenPointDefinedSurfaceRuleType::badAttributes(
               returnValue = true;
               break;
             }
-          nameVal = new XmlToken(decl->val.c_str());
-          if (nameVal->bad)
+          nameVal = new XmlToken(decl->getval().c_str());
+          if (nameVal->getbad())
             {
               delete nameVal;
               fprintf(stderr, "bad value %s for name in IfThenPointDefinedSurfaceRuleType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -13128,12 +13130,12 @@ void IfThenPointRuleType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (BooleanExpression->printElement == 0)
+        if (BooleanExpression->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(BooleanExpression->printElement, "Not") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "Not") == 0)
           {
             NotType * typ;
             if ((typ = dynamic_cast<NotType *>(BooleanExpression)))
@@ -13149,7 +13151,7 @@ void IfThenPointRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ConstantIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ConstantIs") == 0)
           {
             ConstantIsType * typ;
             if ((typ = dynamic_cast<ConstantIsType *>(BooleanExpression)))
@@ -13163,7 +13165,7 @@ void IfThenPointRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "And") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "And") == 0)
           {
             AndType * typ;
             if ((typ = dynamic_cast<AndType *>(BooleanExpression)))
@@ -13179,7 +13181,7 @@ void IfThenPointRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "Or") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "Or") == 0)
           {
             OrType * typ;
             if ((typ = dynamic_cast<OrType *>(BooleanExpression)))
@@ -13195,7 +13197,7 @@ void IfThenPointRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "BooleanEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "BooleanEqual") == 0)
           {
             BooleanEqualType * typ;
             if ((typ = dynamic_cast<BooleanEqualType *>(BooleanExpression)))
@@ -13211,7 +13213,7 @@ void IfThenPointRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ArithmeticEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ArithmeticEqual") == 0)
           {
             ArithmeticEqualType * typ;
             if ((typ = dynamic_cast<ArithmeticEqualType *>(BooleanExpression)))
@@ -13227,7 +13229,7 @@ void IfThenPointRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "GreaterThan") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "GreaterThan") == 0)
           {
             GreaterThanType * typ;
             if ((typ = dynamic_cast<GreaterThanType *>(BooleanExpression)))
@@ -13243,7 +13245,7 @@ void IfThenPointRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "GreaterOrEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "GreaterOrEqual") == 0)
           {
             GreaterOrEqualType * typ;
             if ((typ = dynamic_cast<GreaterOrEqualType *>(BooleanExpression)))
@@ -13259,7 +13261,7 @@ void IfThenPointRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "LessThan") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "LessThan") == 0)
           {
             LessThanType * typ;
             if ((typ = dynamic_cast<LessThanType *>(BooleanExpression)))
@@ -13275,7 +13277,7 @@ void IfThenPointRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "LessOrEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "LessOrEqual") == 0)
           {
             LessOrEqualType * typ;
             if ((typ = dynamic_cast<LessOrEqualType *>(BooleanExpression)))
@@ -13291,7 +13293,7 @@ void IfThenPointRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "TokenEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "TokenEqual") == 0)
           {
             TokenEqualType * typ;
             if ((typ = dynamic_cast<TokenEqualType *>(BooleanExpression)))
@@ -13307,7 +13309,7 @@ void IfThenPointRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "CharacteristicIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "CharacteristicIs") == 0)
           {
             CharacteristicIsType * typ;
             if ((typ = dynamic_cast<CharacteristicIsType *>(BooleanExpression)))
@@ -13321,7 +13323,7 @@ void IfThenPointRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureIsDatum") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureIsDatum") == 0)
           {
             FeatureIsDatumType * typ;
             if ((typ = dynamic_cast<FeatureIsDatumType *>(BooleanExpression)))
@@ -13335,7 +13337,7 @@ void IfThenPointRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureIsInternal") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureIsInternal") == 0)
           {
             FeatureIsInternalType * typ;
             if ((typ = dynamic_cast<FeatureIsInternalType *>(BooleanExpression)))
@@ -13349,7 +13351,7 @@ void IfThenPointRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureTypeIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureTypeIs") == 0)
           {
             FeatureTypeIsType * typ;
             if ((typ = dynamic_cast<FeatureTypeIsType *>(BooleanExpression)))
@@ -13363,7 +13365,7 @@ void IfThenPointRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "SamplingCategoryIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "SamplingCategoryIs") == 0)
           {
             SamplingCategoryIsType * typ;
             if ((typ = dynamic_cast<SamplingCategoryIsType *>(BooleanExpression)))
@@ -13377,7 +13379,7 @@ void IfThenPointRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ShapeClassIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ShapeClassIs") == 0)
           {
             ShapeClassIsType * typ;
             if ((typ = dynamic_cast<ShapeClassIsType *>(BooleanExpression)))
@@ -13429,7 +13431,7 @@ bool IfThenPointRuleType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "name")
+      if (decl->getname() == "name")
         {
           XmlToken * nameVal;
           if (this->name)
@@ -13438,12 +13440,12 @@ bool IfThenPointRuleType::badAttributes(
               returnValue = true;
               break;
             }
-          nameVal = new XmlToken(decl->val.c_str());
-          if (nameVal->bad)
+          nameVal = new XmlToken(decl->getval().c_str());
+          if (nameVal->getbad())
             {
               delete nameVal;
               fprintf(stderr, "bad value %s for name in IfThenPointRuleType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -13564,12 +13566,12 @@ void IfThenSphereRuleType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (BooleanExpression->printElement == 0)
+        if (BooleanExpression->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(BooleanExpression->printElement, "Not") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "Not") == 0)
           {
             NotType * typ;
             if ((typ = dynamic_cast<NotType *>(BooleanExpression)))
@@ -13585,7 +13587,7 @@ void IfThenSphereRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ConstantIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ConstantIs") == 0)
           {
             ConstantIsType * typ;
             if ((typ = dynamic_cast<ConstantIsType *>(BooleanExpression)))
@@ -13599,7 +13601,7 @@ void IfThenSphereRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "And") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "And") == 0)
           {
             AndType * typ;
             if ((typ = dynamic_cast<AndType *>(BooleanExpression)))
@@ -13615,7 +13617,7 @@ void IfThenSphereRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "Or") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "Or") == 0)
           {
             OrType * typ;
             if ((typ = dynamic_cast<OrType *>(BooleanExpression)))
@@ -13631,7 +13633,7 @@ void IfThenSphereRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "BooleanEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "BooleanEqual") == 0)
           {
             BooleanEqualType * typ;
             if ((typ = dynamic_cast<BooleanEqualType *>(BooleanExpression)))
@@ -13647,7 +13649,7 @@ void IfThenSphereRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ArithmeticEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ArithmeticEqual") == 0)
           {
             ArithmeticEqualType * typ;
             if ((typ = dynamic_cast<ArithmeticEqualType *>(BooleanExpression)))
@@ -13663,7 +13665,7 @@ void IfThenSphereRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "GreaterThan") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "GreaterThan") == 0)
           {
             GreaterThanType * typ;
             if ((typ = dynamic_cast<GreaterThanType *>(BooleanExpression)))
@@ -13679,7 +13681,7 @@ void IfThenSphereRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "GreaterOrEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "GreaterOrEqual") == 0)
           {
             GreaterOrEqualType * typ;
             if ((typ = dynamic_cast<GreaterOrEqualType *>(BooleanExpression)))
@@ -13695,7 +13697,7 @@ void IfThenSphereRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "LessThan") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "LessThan") == 0)
           {
             LessThanType * typ;
             if ((typ = dynamic_cast<LessThanType *>(BooleanExpression)))
@@ -13711,7 +13713,7 @@ void IfThenSphereRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "LessOrEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "LessOrEqual") == 0)
           {
             LessOrEqualType * typ;
             if ((typ = dynamic_cast<LessOrEqualType *>(BooleanExpression)))
@@ -13727,7 +13729,7 @@ void IfThenSphereRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "TokenEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "TokenEqual") == 0)
           {
             TokenEqualType * typ;
             if ((typ = dynamic_cast<TokenEqualType *>(BooleanExpression)))
@@ -13743,7 +13745,7 @@ void IfThenSphereRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "CharacteristicIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "CharacteristicIs") == 0)
           {
             CharacteristicIsType * typ;
             if ((typ = dynamic_cast<CharacteristicIsType *>(BooleanExpression)))
@@ -13757,7 +13759,7 @@ void IfThenSphereRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureIsDatum") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureIsDatum") == 0)
           {
             FeatureIsDatumType * typ;
             if ((typ = dynamic_cast<FeatureIsDatumType *>(BooleanExpression)))
@@ -13771,7 +13773,7 @@ void IfThenSphereRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureIsInternal") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureIsInternal") == 0)
           {
             FeatureIsInternalType * typ;
             if ((typ = dynamic_cast<FeatureIsInternalType *>(BooleanExpression)))
@@ -13785,7 +13787,7 @@ void IfThenSphereRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureTypeIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureTypeIs") == 0)
           {
             FeatureTypeIsType * typ;
             if ((typ = dynamic_cast<FeatureTypeIsType *>(BooleanExpression)))
@@ -13799,7 +13801,7 @@ void IfThenSphereRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "SamplingCategoryIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "SamplingCategoryIs") == 0)
           {
             SamplingCategoryIsType * typ;
             if ((typ = dynamic_cast<SamplingCategoryIsType *>(BooleanExpression)))
@@ -13813,7 +13815,7 @@ void IfThenSphereRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ShapeClassIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ShapeClassIs") == 0)
           {
             ShapeClassIsType * typ;
             if ((typ = dynamic_cast<ShapeClassIsType *>(BooleanExpression)))
@@ -13873,7 +13875,7 @@ bool IfThenSphereRuleType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "name")
+      if (decl->getname() == "name")
         {
           XmlToken * nameVal;
           if (this->name)
@@ -13882,12 +13884,12 @@ bool IfThenSphereRuleType::badAttributes(
               returnValue = true;
               break;
             }
-          nameVal = new XmlToken(decl->val.c_str());
-          if (nameVal->bad)
+          nameVal = new XmlToken(decl->getval().c_str());
+          if (nameVal->getbad())
             {
               delete nameVal;
               fprintf(stderr, "bad value %s for name in IfThenSphereRuleType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -14014,12 +14016,12 @@ void IfThenSphericalSegmentRuleType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (BooleanExpression->printElement == 0)
+        if (BooleanExpression->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(BooleanExpression->printElement, "Not") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "Not") == 0)
           {
             NotType * typ;
             if ((typ = dynamic_cast<NotType *>(BooleanExpression)))
@@ -14035,7 +14037,7 @@ void IfThenSphericalSegmentRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ConstantIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ConstantIs") == 0)
           {
             ConstantIsType * typ;
             if ((typ = dynamic_cast<ConstantIsType *>(BooleanExpression)))
@@ -14049,7 +14051,7 @@ void IfThenSphericalSegmentRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "And") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "And") == 0)
           {
             AndType * typ;
             if ((typ = dynamic_cast<AndType *>(BooleanExpression)))
@@ -14065,7 +14067,7 @@ void IfThenSphericalSegmentRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "Or") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "Or") == 0)
           {
             OrType * typ;
             if ((typ = dynamic_cast<OrType *>(BooleanExpression)))
@@ -14081,7 +14083,7 @@ void IfThenSphericalSegmentRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "BooleanEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "BooleanEqual") == 0)
           {
             BooleanEqualType * typ;
             if ((typ = dynamic_cast<BooleanEqualType *>(BooleanExpression)))
@@ -14097,7 +14099,7 @@ void IfThenSphericalSegmentRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ArithmeticEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ArithmeticEqual") == 0)
           {
             ArithmeticEqualType * typ;
             if ((typ = dynamic_cast<ArithmeticEqualType *>(BooleanExpression)))
@@ -14113,7 +14115,7 @@ void IfThenSphericalSegmentRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "GreaterThan") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "GreaterThan") == 0)
           {
             GreaterThanType * typ;
             if ((typ = dynamic_cast<GreaterThanType *>(BooleanExpression)))
@@ -14129,7 +14131,7 @@ void IfThenSphericalSegmentRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "GreaterOrEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "GreaterOrEqual") == 0)
           {
             GreaterOrEqualType * typ;
             if ((typ = dynamic_cast<GreaterOrEqualType *>(BooleanExpression)))
@@ -14145,7 +14147,7 @@ void IfThenSphericalSegmentRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "LessThan") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "LessThan") == 0)
           {
             LessThanType * typ;
             if ((typ = dynamic_cast<LessThanType *>(BooleanExpression)))
@@ -14161,7 +14163,7 @@ void IfThenSphericalSegmentRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "LessOrEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "LessOrEqual") == 0)
           {
             LessOrEqualType * typ;
             if ((typ = dynamic_cast<LessOrEqualType *>(BooleanExpression)))
@@ -14177,7 +14179,7 @@ void IfThenSphericalSegmentRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "TokenEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "TokenEqual") == 0)
           {
             TokenEqualType * typ;
             if ((typ = dynamic_cast<TokenEqualType *>(BooleanExpression)))
@@ -14193,7 +14195,7 @@ void IfThenSphericalSegmentRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "CharacteristicIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "CharacteristicIs") == 0)
           {
             CharacteristicIsType * typ;
             if ((typ = dynamic_cast<CharacteristicIsType *>(BooleanExpression)))
@@ -14207,7 +14209,7 @@ void IfThenSphericalSegmentRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureIsDatum") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureIsDatum") == 0)
           {
             FeatureIsDatumType * typ;
             if ((typ = dynamic_cast<FeatureIsDatumType *>(BooleanExpression)))
@@ -14221,7 +14223,7 @@ void IfThenSphericalSegmentRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureIsInternal") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureIsInternal") == 0)
           {
             FeatureIsInternalType * typ;
             if ((typ = dynamic_cast<FeatureIsInternalType *>(BooleanExpression)))
@@ -14235,7 +14237,7 @@ void IfThenSphericalSegmentRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureTypeIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureTypeIs") == 0)
           {
             FeatureTypeIsType * typ;
             if ((typ = dynamic_cast<FeatureTypeIsType *>(BooleanExpression)))
@@ -14249,7 +14251,7 @@ void IfThenSphericalSegmentRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "SamplingCategoryIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "SamplingCategoryIs") == 0)
           {
             SamplingCategoryIsType * typ;
             if ((typ = dynamic_cast<SamplingCategoryIsType *>(BooleanExpression)))
@@ -14263,7 +14265,7 @@ void IfThenSphericalSegmentRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ShapeClassIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ShapeClassIs") == 0)
           {
             ShapeClassIsType * typ;
             if ((typ = dynamic_cast<ShapeClassIsType *>(BooleanExpression)))
@@ -14323,7 +14325,7 @@ bool IfThenSphericalSegmentRuleType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "name")
+      if (decl->getname() == "name")
         {
           XmlToken * nameVal;
           if (this->name)
@@ -14332,12 +14334,12 @@ bool IfThenSphericalSegmentRuleType::badAttributes(
               returnValue = true;
               break;
             }
-          nameVal = new XmlToken(decl->val.c_str());
-          if (nameVal->bad)
+          nameVal = new XmlToken(decl->getval().c_str());
+          if (nameVal->getbad())
             {
               delete nameVal;
               fprintf(stderr, "bad value %s for name in IfThenSphericalSegmentRuleType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -14464,12 +14466,12 @@ void IfThenSurfaceOfRevolutionRuleType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (BooleanExpression->printElement == 0)
+        if (BooleanExpression->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(BooleanExpression->printElement, "Not") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "Not") == 0)
           {
             NotType * typ;
             if ((typ = dynamic_cast<NotType *>(BooleanExpression)))
@@ -14485,7 +14487,7 @@ void IfThenSurfaceOfRevolutionRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ConstantIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ConstantIs") == 0)
           {
             ConstantIsType * typ;
             if ((typ = dynamic_cast<ConstantIsType *>(BooleanExpression)))
@@ -14499,7 +14501,7 @@ void IfThenSurfaceOfRevolutionRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "And") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "And") == 0)
           {
             AndType * typ;
             if ((typ = dynamic_cast<AndType *>(BooleanExpression)))
@@ -14515,7 +14517,7 @@ void IfThenSurfaceOfRevolutionRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "Or") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "Or") == 0)
           {
             OrType * typ;
             if ((typ = dynamic_cast<OrType *>(BooleanExpression)))
@@ -14531,7 +14533,7 @@ void IfThenSurfaceOfRevolutionRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "BooleanEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "BooleanEqual") == 0)
           {
             BooleanEqualType * typ;
             if ((typ = dynamic_cast<BooleanEqualType *>(BooleanExpression)))
@@ -14547,7 +14549,7 @@ void IfThenSurfaceOfRevolutionRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ArithmeticEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ArithmeticEqual") == 0)
           {
             ArithmeticEqualType * typ;
             if ((typ = dynamic_cast<ArithmeticEqualType *>(BooleanExpression)))
@@ -14563,7 +14565,7 @@ void IfThenSurfaceOfRevolutionRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "GreaterThan") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "GreaterThan") == 0)
           {
             GreaterThanType * typ;
             if ((typ = dynamic_cast<GreaterThanType *>(BooleanExpression)))
@@ -14579,7 +14581,7 @@ void IfThenSurfaceOfRevolutionRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "GreaterOrEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "GreaterOrEqual") == 0)
           {
             GreaterOrEqualType * typ;
             if ((typ = dynamic_cast<GreaterOrEqualType *>(BooleanExpression)))
@@ -14595,7 +14597,7 @@ void IfThenSurfaceOfRevolutionRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "LessThan") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "LessThan") == 0)
           {
             LessThanType * typ;
             if ((typ = dynamic_cast<LessThanType *>(BooleanExpression)))
@@ -14611,7 +14613,7 @@ void IfThenSurfaceOfRevolutionRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "LessOrEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "LessOrEqual") == 0)
           {
             LessOrEqualType * typ;
             if ((typ = dynamic_cast<LessOrEqualType *>(BooleanExpression)))
@@ -14627,7 +14629,7 @@ void IfThenSurfaceOfRevolutionRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "TokenEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "TokenEqual") == 0)
           {
             TokenEqualType * typ;
             if ((typ = dynamic_cast<TokenEqualType *>(BooleanExpression)))
@@ -14643,7 +14645,7 @@ void IfThenSurfaceOfRevolutionRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "CharacteristicIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "CharacteristicIs") == 0)
           {
             CharacteristicIsType * typ;
             if ((typ = dynamic_cast<CharacteristicIsType *>(BooleanExpression)))
@@ -14657,7 +14659,7 @@ void IfThenSurfaceOfRevolutionRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureIsDatum") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureIsDatum") == 0)
           {
             FeatureIsDatumType * typ;
             if ((typ = dynamic_cast<FeatureIsDatumType *>(BooleanExpression)))
@@ -14671,7 +14673,7 @@ void IfThenSurfaceOfRevolutionRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureIsInternal") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureIsInternal") == 0)
           {
             FeatureIsInternalType * typ;
             if ((typ = dynamic_cast<FeatureIsInternalType *>(BooleanExpression)))
@@ -14685,7 +14687,7 @@ void IfThenSurfaceOfRevolutionRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureTypeIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureTypeIs") == 0)
           {
             FeatureTypeIsType * typ;
             if ((typ = dynamic_cast<FeatureTypeIsType *>(BooleanExpression)))
@@ -14699,7 +14701,7 @@ void IfThenSurfaceOfRevolutionRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "SamplingCategoryIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "SamplingCategoryIs") == 0)
           {
             SamplingCategoryIsType * typ;
             if ((typ = dynamic_cast<SamplingCategoryIsType *>(BooleanExpression)))
@@ -14713,7 +14715,7 @@ void IfThenSurfaceOfRevolutionRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ShapeClassIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ShapeClassIs") == 0)
           {
             ShapeClassIsType * typ;
             if ((typ = dynamic_cast<ShapeClassIsType *>(BooleanExpression)))
@@ -14773,7 +14775,7 @@ bool IfThenSurfaceOfRevolutionRuleType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "name")
+      if (decl->getname() == "name")
         {
           XmlToken * nameVal;
           if (this->name)
@@ -14782,12 +14784,12 @@ bool IfThenSurfaceOfRevolutionRuleType::badAttributes(
               returnValue = true;
               break;
             }
-          nameVal = new XmlToken(decl->val.c_str());
-          if (nameVal->bad)
+          nameVal = new XmlToken(decl->getval().c_str());
+          if (nameVal->getbad())
             {
               delete nameVal;
               fprintf(stderr, "bad value %s for name in IfThenSurfaceOfRevolutionRuleType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -14902,12 +14904,12 @@ void IfThenSurfaceRuleType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (BooleanExpression->printElement == 0)
+        if (BooleanExpression->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(BooleanExpression->printElement, "Not") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "Not") == 0)
           {
             NotType * typ;
             if ((typ = dynamic_cast<NotType *>(BooleanExpression)))
@@ -14923,7 +14925,7 @@ void IfThenSurfaceRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ConstantIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ConstantIs") == 0)
           {
             ConstantIsType * typ;
             if ((typ = dynamic_cast<ConstantIsType *>(BooleanExpression)))
@@ -14937,7 +14939,7 @@ void IfThenSurfaceRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "And") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "And") == 0)
           {
             AndType * typ;
             if ((typ = dynamic_cast<AndType *>(BooleanExpression)))
@@ -14953,7 +14955,7 @@ void IfThenSurfaceRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "Or") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "Or") == 0)
           {
             OrType * typ;
             if ((typ = dynamic_cast<OrType *>(BooleanExpression)))
@@ -14969,7 +14971,7 @@ void IfThenSurfaceRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "BooleanEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "BooleanEqual") == 0)
           {
             BooleanEqualType * typ;
             if ((typ = dynamic_cast<BooleanEqualType *>(BooleanExpression)))
@@ -14985,7 +14987,7 @@ void IfThenSurfaceRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ArithmeticEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ArithmeticEqual") == 0)
           {
             ArithmeticEqualType * typ;
             if ((typ = dynamic_cast<ArithmeticEqualType *>(BooleanExpression)))
@@ -15001,7 +15003,7 @@ void IfThenSurfaceRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "GreaterThan") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "GreaterThan") == 0)
           {
             GreaterThanType * typ;
             if ((typ = dynamic_cast<GreaterThanType *>(BooleanExpression)))
@@ -15017,7 +15019,7 @@ void IfThenSurfaceRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "GreaterOrEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "GreaterOrEqual") == 0)
           {
             GreaterOrEqualType * typ;
             if ((typ = dynamic_cast<GreaterOrEqualType *>(BooleanExpression)))
@@ -15033,7 +15035,7 @@ void IfThenSurfaceRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "LessThan") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "LessThan") == 0)
           {
             LessThanType * typ;
             if ((typ = dynamic_cast<LessThanType *>(BooleanExpression)))
@@ -15049,7 +15051,7 @@ void IfThenSurfaceRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "LessOrEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "LessOrEqual") == 0)
           {
             LessOrEqualType * typ;
             if ((typ = dynamic_cast<LessOrEqualType *>(BooleanExpression)))
@@ -15065,7 +15067,7 @@ void IfThenSurfaceRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "TokenEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "TokenEqual") == 0)
           {
             TokenEqualType * typ;
             if ((typ = dynamic_cast<TokenEqualType *>(BooleanExpression)))
@@ -15081,7 +15083,7 @@ void IfThenSurfaceRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "CharacteristicIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "CharacteristicIs") == 0)
           {
             CharacteristicIsType * typ;
             if ((typ = dynamic_cast<CharacteristicIsType *>(BooleanExpression)))
@@ -15095,7 +15097,7 @@ void IfThenSurfaceRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureIsDatum") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureIsDatum") == 0)
           {
             FeatureIsDatumType * typ;
             if ((typ = dynamic_cast<FeatureIsDatumType *>(BooleanExpression)))
@@ -15109,7 +15111,7 @@ void IfThenSurfaceRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureIsInternal") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureIsInternal") == 0)
           {
             FeatureIsInternalType * typ;
             if ((typ = dynamic_cast<FeatureIsInternalType *>(BooleanExpression)))
@@ -15123,7 +15125,7 @@ void IfThenSurfaceRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureTypeIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureTypeIs") == 0)
           {
             FeatureTypeIsType * typ;
             if ((typ = dynamic_cast<FeatureTypeIsType *>(BooleanExpression)))
@@ -15137,7 +15139,7 @@ void IfThenSurfaceRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "SamplingCategoryIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "SamplingCategoryIs") == 0)
           {
             SamplingCategoryIsType * typ;
             if ((typ = dynamic_cast<SamplingCategoryIsType *>(BooleanExpression)))
@@ -15151,7 +15153,7 @@ void IfThenSurfaceRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ShapeClassIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ShapeClassIs") == 0)
           {
             ShapeClassIsType * typ;
             if ((typ = dynamic_cast<ShapeClassIsType *>(BooleanExpression)))
@@ -15195,7 +15197,7 @@ bool IfThenSurfaceRuleType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "name")
+      if (decl->getname() == "name")
         {
           XmlToken * nameVal;
           if (this->name)
@@ -15204,12 +15206,12 @@ bool IfThenSurfaceRuleType::badAttributes(
               returnValue = true;
               break;
             }
-          nameVal = new XmlToken(decl->val.c_str());
-          if (nameVal->bad)
+          nameVal = new XmlToken(decl->getval().c_str());
+          if (nameVal->getbad())
             {
               delete nameVal;
               fprintf(stderr, "bad value %s for name in IfThenSurfaceRuleType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -15324,12 +15326,12 @@ void IfThenToroidalSegmentRuleType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (BooleanExpression->printElement == 0)
+        if (BooleanExpression->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(BooleanExpression->printElement, "Not") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "Not") == 0)
           {
             NotType * typ;
             if ((typ = dynamic_cast<NotType *>(BooleanExpression)))
@@ -15345,7 +15347,7 @@ void IfThenToroidalSegmentRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ConstantIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ConstantIs") == 0)
           {
             ConstantIsType * typ;
             if ((typ = dynamic_cast<ConstantIsType *>(BooleanExpression)))
@@ -15359,7 +15361,7 @@ void IfThenToroidalSegmentRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "And") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "And") == 0)
           {
             AndType * typ;
             if ((typ = dynamic_cast<AndType *>(BooleanExpression)))
@@ -15375,7 +15377,7 @@ void IfThenToroidalSegmentRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "Or") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "Or") == 0)
           {
             OrType * typ;
             if ((typ = dynamic_cast<OrType *>(BooleanExpression)))
@@ -15391,7 +15393,7 @@ void IfThenToroidalSegmentRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "BooleanEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "BooleanEqual") == 0)
           {
             BooleanEqualType * typ;
             if ((typ = dynamic_cast<BooleanEqualType *>(BooleanExpression)))
@@ -15407,7 +15409,7 @@ void IfThenToroidalSegmentRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ArithmeticEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ArithmeticEqual") == 0)
           {
             ArithmeticEqualType * typ;
             if ((typ = dynamic_cast<ArithmeticEqualType *>(BooleanExpression)))
@@ -15423,7 +15425,7 @@ void IfThenToroidalSegmentRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "GreaterThan") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "GreaterThan") == 0)
           {
             GreaterThanType * typ;
             if ((typ = dynamic_cast<GreaterThanType *>(BooleanExpression)))
@@ -15439,7 +15441,7 @@ void IfThenToroidalSegmentRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "GreaterOrEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "GreaterOrEqual") == 0)
           {
             GreaterOrEqualType * typ;
             if ((typ = dynamic_cast<GreaterOrEqualType *>(BooleanExpression)))
@@ -15455,7 +15457,7 @@ void IfThenToroidalSegmentRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "LessThan") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "LessThan") == 0)
           {
             LessThanType * typ;
             if ((typ = dynamic_cast<LessThanType *>(BooleanExpression)))
@@ -15471,7 +15473,7 @@ void IfThenToroidalSegmentRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "LessOrEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "LessOrEqual") == 0)
           {
             LessOrEqualType * typ;
             if ((typ = dynamic_cast<LessOrEqualType *>(BooleanExpression)))
@@ -15487,7 +15489,7 @@ void IfThenToroidalSegmentRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "TokenEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "TokenEqual") == 0)
           {
             TokenEqualType * typ;
             if ((typ = dynamic_cast<TokenEqualType *>(BooleanExpression)))
@@ -15503,7 +15505,7 @@ void IfThenToroidalSegmentRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "CharacteristicIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "CharacteristicIs") == 0)
           {
             CharacteristicIsType * typ;
             if ((typ = dynamic_cast<CharacteristicIsType *>(BooleanExpression)))
@@ -15517,7 +15519,7 @@ void IfThenToroidalSegmentRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureIsDatum") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureIsDatum") == 0)
           {
             FeatureIsDatumType * typ;
             if ((typ = dynamic_cast<FeatureIsDatumType *>(BooleanExpression)))
@@ -15531,7 +15533,7 @@ void IfThenToroidalSegmentRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureIsInternal") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureIsInternal") == 0)
           {
             FeatureIsInternalType * typ;
             if ((typ = dynamic_cast<FeatureIsInternalType *>(BooleanExpression)))
@@ -15545,7 +15547,7 @@ void IfThenToroidalSegmentRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureTypeIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureTypeIs") == 0)
           {
             FeatureTypeIsType * typ;
             if ((typ = dynamic_cast<FeatureTypeIsType *>(BooleanExpression)))
@@ -15559,7 +15561,7 @@ void IfThenToroidalSegmentRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "SamplingCategoryIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "SamplingCategoryIs") == 0)
           {
             SamplingCategoryIsType * typ;
             if ((typ = dynamic_cast<SamplingCategoryIsType *>(BooleanExpression)))
@@ -15573,7 +15575,7 @@ void IfThenToroidalSegmentRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ShapeClassIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ShapeClassIs") == 0)
           {
             ShapeClassIsType * typ;
             if ((typ = dynamic_cast<ShapeClassIsType *>(BooleanExpression)))
@@ -15633,7 +15635,7 @@ bool IfThenToroidalSegmentRuleType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "name")
+      if (decl->getname() == "name")
         {
           XmlToken * nameVal;
           if (this->name)
@@ -15642,12 +15644,12 @@ bool IfThenToroidalSegmentRuleType::badAttributes(
               returnValue = true;
               break;
             }
-          nameVal = new XmlToken(decl->val.c_str());
-          if (nameVal->bad)
+          nameVal = new XmlToken(decl->getval().c_str());
+          if (nameVal->getbad())
             {
               delete nameVal;
               fprintf(stderr, "bad value %s for name in IfThenToroidalSegmentRuleType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -15774,12 +15776,12 @@ void IfThenTorusRuleType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (BooleanExpression->printElement == 0)
+        if (BooleanExpression->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(BooleanExpression->printElement, "Not") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "Not") == 0)
           {
             NotType * typ;
             if ((typ = dynamic_cast<NotType *>(BooleanExpression)))
@@ -15795,7 +15797,7 @@ void IfThenTorusRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ConstantIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ConstantIs") == 0)
           {
             ConstantIsType * typ;
             if ((typ = dynamic_cast<ConstantIsType *>(BooleanExpression)))
@@ -15809,7 +15811,7 @@ void IfThenTorusRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "And") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "And") == 0)
           {
             AndType * typ;
             if ((typ = dynamic_cast<AndType *>(BooleanExpression)))
@@ -15825,7 +15827,7 @@ void IfThenTorusRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "Or") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "Or") == 0)
           {
             OrType * typ;
             if ((typ = dynamic_cast<OrType *>(BooleanExpression)))
@@ -15841,7 +15843,7 @@ void IfThenTorusRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "BooleanEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "BooleanEqual") == 0)
           {
             BooleanEqualType * typ;
             if ((typ = dynamic_cast<BooleanEqualType *>(BooleanExpression)))
@@ -15857,7 +15859,7 @@ void IfThenTorusRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ArithmeticEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ArithmeticEqual") == 0)
           {
             ArithmeticEqualType * typ;
             if ((typ = dynamic_cast<ArithmeticEqualType *>(BooleanExpression)))
@@ -15873,7 +15875,7 @@ void IfThenTorusRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "GreaterThan") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "GreaterThan") == 0)
           {
             GreaterThanType * typ;
             if ((typ = dynamic_cast<GreaterThanType *>(BooleanExpression)))
@@ -15889,7 +15891,7 @@ void IfThenTorusRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "GreaterOrEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "GreaterOrEqual") == 0)
           {
             GreaterOrEqualType * typ;
             if ((typ = dynamic_cast<GreaterOrEqualType *>(BooleanExpression)))
@@ -15905,7 +15907,7 @@ void IfThenTorusRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "LessThan") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "LessThan") == 0)
           {
             LessThanType * typ;
             if ((typ = dynamic_cast<LessThanType *>(BooleanExpression)))
@@ -15921,7 +15923,7 @@ void IfThenTorusRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "LessOrEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "LessOrEqual") == 0)
           {
             LessOrEqualType * typ;
             if ((typ = dynamic_cast<LessOrEqualType *>(BooleanExpression)))
@@ -15937,7 +15939,7 @@ void IfThenTorusRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "TokenEqual") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "TokenEqual") == 0)
           {
             TokenEqualType * typ;
             if ((typ = dynamic_cast<TokenEqualType *>(BooleanExpression)))
@@ -15953,7 +15955,7 @@ void IfThenTorusRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "CharacteristicIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "CharacteristicIs") == 0)
           {
             CharacteristicIsType * typ;
             if ((typ = dynamic_cast<CharacteristicIsType *>(BooleanExpression)))
@@ -15967,7 +15969,7 @@ void IfThenTorusRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureIsDatum") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureIsDatum") == 0)
           {
             FeatureIsDatumType * typ;
             if ((typ = dynamic_cast<FeatureIsDatumType *>(BooleanExpression)))
@@ -15981,7 +15983,7 @@ void IfThenTorusRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureIsInternal") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureIsInternal") == 0)
           {
             FeatureIsInternalType * typ;
             if ((typ = dynamic_cast<FeatureIsInternalType *>(BooleanExpression)))
@@ -15995,7 +15997,7 @@ void IfThenTorusRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "FeatureTypeIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "FeatureTypeIs") == 0)
           {
             FeatureTypeIsType * typ;
             if ((typ = dynamic_cast<FeatureTypeIsType *>(BooleanExpression)))
@@ -16009,7 +16011,7 @@ void IfThenTorusRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "SamplingCategoryIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "SamplingCategoryIs") == 0)
           {
             SamplingCategoryIsType * typ;
             if ((typ = dynamic_cast<SamplingCategoryIsType *>(BooleanExpression)))
@@ -16023,7 +16025,7 @@ void IfThenTorusRuleType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(BooleanExpression->printElement, "ShapeClassIs") == 0)
+        else if (strcmp(BooleanExpression->getprintElement(), "ShapeClassIs") == 0)
           {
             ShapeClassIsType * typ;
             if ((typ = dynamic_cast<ShapeClassIsType *>(BooleanExpression)))
@@ -16083,7 +16085,7 @@ bool IfThenTorusRuleType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "name")
+      if (decl->getname() == "name")
         {
           XmlToken * nameVal;
           if (this->name)
@@ -16092,12 +16094,12 @@ bool IfThenTorusRuleType::badAttributes(
               returnValue = true;
               break;
             }
-          nameVal = new XmlToken(decl->val.c_str());
-          if (nameVal->bad)
+          nameVal = new XmlToken(decl->getval().c_str());
+          if (nameVal->getbad())
             {
               delete nameVal;
               fprintf(stderr, "bad value %s for name in IfThenTorusRuleType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -16306,12 +16308,12 @@ void MaxFeatureRulesType::printSelf(FILE * outFile)
         IfThenFeatureRuleType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "IfThenCurveRule") == 0)
+        else if (strcmp(basie->getprintElement(), "IfThenCurveRule") == 0)
           {
             IfThenCurveRuleType * typ;
             if ((typ = dynamic_cast<IfThenCurveRuleType *>(basie)))
@@ -16327,7 +16329,7 @@ void MaxFeatureRulesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "IfThenSurfaceRule") == 0)
+        else if (strcmp(basie->getprintElement(), "IfThenSurfaceRule") == 0)
           {
             IfThenSurfaceRuleType * typ;
             if ((typ = dynamic_cast<IfThenSurfaceRuleType *>(basie)))
@@ -16343,7 +16345,7 @@ void MaxFeatureRulesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "IfThenCircleRule") == 0)
+        else if (strcmp(basie->getprintElement(), "IfThenCircleRule") == 0)
           {
             IfThenCircleRuleType * typ;
             if ((typ = dynamic_cast<IfThenCircleRuleType *>(basie)))
@@ -16359,7 +16361,7 @@ void MaxFeatureRulesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "IfThenCircularArcRule") == 0)
+        else if (strcmp(basie->getprintElement(), "IfThenCircularArcRule") == 0)
           {
             IfThenCircularArcRuleType * typ;
             if ((typ = dynamic_cast<IfThenCircularArcRuleType *>(basie)))
@@ -16375,7 +16377,7 @@ void MaxFeatureRulesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "IfThenConeRule") == 0)
+        else if (strcmp(basie->getprintElement(), "IfThenConeRule") == 0)
           {
             IfThenConeRuleType * typ;
             if ((typ = dynamic_cast<IfThenConeRuleType *>(basie)))
@@ -16391,7 +16393,7 @@ void MaxFeatureRulesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "IfThenConicalSegmentRule") == 0)
+        else if (strcmp(basie->getprintElement(), "IfThenConicalSegmentRule") == 0)
           {
             IfThenConicalSegmentRuleType * typ;
             if ((typ = dynamic_cast<IfThenConicalSegmentRuleType *>(basie)))
@@ -16407,7 +16409,7 @@ void MaxFeatureRulesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "IfThenCylinderRule") == 0)
+        else if (strcmp(basie->getprintElement(), "IfThenCylinderRule") == 0)
           {
             IfThenCylinderRuleType * typ;
             if ((typ = dynamic_cast<IfThenCylinderRuleType *>(basie)))
@@ -16423,7 +16425,7 @@ void MaxFeatureRulesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "IfThenCylindricalSegmentRule") == 0)
+        else if (strcmp(basie->getprintElement(), "IfThenCylindricalSegmentRule") == 0)
           {
             IfThenCylindricalSegmentRuleType * typ;
             if ((typ = dynamic_cast<IfThenCylindricalSegmentRuleType *>(basie)))
@@ -16439,7 +16441,7 @@ void MaxFeatureRulesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "IfThenEllipseRule") == 0)
+        else if (strcmp(basie->getprintElement(), "IfThenEllipseRule") == 0)
           {
             IfThenEllipseRuleType * typ;
             if ((typ = dynamic_cast<IfThenEllipseRuleType *>(basie)))
@@ -16455,7 +16457,7 @@ void MaxFeatureRulesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "IfThenEllipticalArcRule") == 0)
+        else if (strcmp(basie->getprintElement(), "IfThenEllipticalArcRule") == 0)
           {
             IfThenEllipticalArcRuleType * typ;
             if ((typ = dynamic_cast<IfThenEllipticalArcRuleType *>(basie)))
@@ -16471,7 +16473,7 @@ void MaxFeatureRulesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "IfThenElongatedCircleRule") == 0)
+        else if (strcmp(basie->getprintElement(), "IfThenElongatedCircleRule") == 0)
           {
             IfThenElongatedCircleRuleType * typ;
             if ((typ = dynamic_cast<IfThenElongatedCircleRuleType *>(basie)))
@@ -16487,7 +16489,7 @@ void MaxFeatureRulesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "IfThenElongatedCylinderRule") == 0)
+        else if (strcmp(basie->getprintElement(), "IfThenElongatedCylinderRule") == 0)
           {
             IfThenElongatedCylinderRuleType * typ;
             if ((typ = dynamic_cast<IfThenElongatedCylinderRuleType *>(basie)))
@@ -16503,7 +16505,7 @@ void MaxFeatureRulesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "IfThenExtrudedCrossSectionRule") == 0)
+        else if (strcmp(basie->getprintElement(), "IfThenExtrudedCrossSectionRule") == 0)
           {
             IfThenExtrudedCrossSectionRuleType * typ;
             if ((typ = dynamic_cast<IfThenExtrudedCrossSectionRuleType *>(basie)))
@@ -16519,7 +16521,7 @@ void MaxFeatureRulesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "IfThenLineRule") == 0)
+        else if (strcmp(basie->getprintElement(), "IfThenLineRule") == 0)
           {
             IfThenLineRuleType * typ;
             if ((typ = dynamic_cast<IfThenLineRuleType *>(basie)))
@@ -16535,7 +16537,7 @@ void MaxFeatureRulesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "IfThenOppositeAngledLinesRule") == 0)
+        else if (strcmp(basie->getprintElement(), "IfThenOppositeAngledLinesRule") == 0)
           {
             IfThenOppositeAngledLinesRuleType * typ;
             if ((typ = dynamic_cast<IfThenOppositeAngledLinesRuleType *>(basie)))
@@ -16551,7 +16553,7 @@ void MaxFeatureRulesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "IfThenOppositeAngledPlanesRule") == 0)
+        else if (strcmp(basie->getprintElement(), "IfThenOppositeAngledPlanesRule") == 0)
           {
             IfThenOppositeAngledPlanesRuleType * typ;
             if ((typ = dynamic_cast<IfThenOppositeAngledPlanesRuleType *>(basie)))
@@ -16567,7 +16569,7 @@ void MaxFeatureRulesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "IfThenOppositeParallelLinesRule") == 0)
+        else if (strcmp(basie->getprintElement(), "IfThenOppositeParallelLinesRule") == 0)
           {
             IfThenOppositeParallelLinesRuleType * typ;
             if ((typ = dynamic_cast<IfThenOppositeParallelLinesRuleType *>(basie)))
@@ -16583,7 +16585,7 @@ void MaxFeatureRulesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "IfThenOppositeParallelPlanesRule") == 0)
+        else if (strcmp(basie->getprintElement(), "IfThenOppositeParallelPlanesRule") == 0)
           {
             IfThenOppositeParallelPlanesRuleType * typ;
             if ((typ = dynamic_cast<IfThenOppositeParallelPlanesRuleType *>(basie)))
@@ -16599,7 +16601,7 @@ void MaxFeatureRulesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "IfThenPlaneRule") == 0)
+        else if (strcmp(basie->getprintElement(), "IfThenPlaneRule") == 0)
           {
             IfThenPlaneRuleType * typ;
             if ((typ = dynamic_cast<IfThenPlaneRuleType *>(basie)))
@@ -16615,7 +16617,7 @@ void MaxFeatureRulesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "IfThenPointDefinedCurveRule") == 0)
+        else if (strcmp(basie->getprintElement(), "IfThenPointDefinedCurveRule") == 0)
           {
             IfThenPointDefinedCurveRuleType * typ;
             if ((typ = dynamic_cast<IfThenPointDefinedCurveRuleType *>(basie)))
@@ -16631,7 +16633,7 @@ void MaxFeatureRulesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "IfThenPointDefinedSurfaceRule") == 0)
+        else if (strcmp(basie->getprintElement(), "IfThenPointDefinedSurfaceRule") == 0)
           {
             IfThenPointDefinedSurfaceRuleType * typ;
             if ((typ = dynamic_cast<IfThenPointDefinedSurfaceRuleType *>(basie)))
@@ -16647,7 +16649,7 @@ void MaxFeatureRulesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "IfThenPointRule") == 0)
+        else if (strcmp(basie->getprintElement(), "IfThenPointRule") == 0)
           {
             IfThenPointRuleType * typ;
             if ((typ = dynamic_cast<IfThenPointRuleType *>(basie)))
@@ -16663,7 +16665,7 @@ void MaxFeatureRulesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "IfThenSphereRule") == 0)
+        else if (strcmp(basie->getprintElement(), "IfThenSphereRule") == 0)
           {
             IfThenSphereRuleType * typ;
             if ((typ = dynamic_cast<IfThenSphereRuleType *>(basie)))
@@ -16679,7 +16681,7 @@ void MaxFeatureRulesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "IfThenSphericalSegmentRule") == 0)
+        else if (strcmp(basie->getprintElement(), "IfThenSphericalSegmentRule") == 0)
           {
             IfThenSphericalSegmentRuleType * typ;
             if ((typ = dynamic_cast<IfThenSphericalSegmentRuleType *>(basie)))
@@ -16695,7 +16697,7 @@ void MaxFeatureRulesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "IfThenSurfaceOfRevolutionRule") == 0)
+        else if (strcmp(basie->getprintElement(), "IfThenSurfaceOfRevolutionRule") == 0)
           {
             IfThenSurfaceOfRevolutionRuleType * typ;
             if ((typ = dynamic_cast<IfThenSurfaceOfRevolutionRuleType *>(basie)))
@@ -16711,7 +16713,7 @@ void MaxFeatureRulesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "IfThenToroidalSegmentRule") == 0)
+        else if (strcmp(basie->getprintElement(), "IfThenToroidalSegmentRule") == 0)
           {
             IfThenToroidalSegmentRuleType * typ;
             if ((typ = dynamic_cast<IfThenToroidalSegmentRuleType *>(basie)))
@@ -16727,7 +16729,7 @@ void MaxFeatureRulesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "IfThenTorusRule") == 0)
+        else if (strcmp(basie->getprintElement(), "IfThenTorusRule") == 0)
           {
             IfThenTorusRuleType * typ;
             if ((typ = dynamic_cast<IfThenTorusRuleType *>(basie)))
@@ -16743,7 +16745,7 @@ void MaxFeatureRulesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "IfThenFeatureRule") == 0)
+        else if (strcmp(basie->getprintElement(), "IfThenFeatureRule") == 0)
           {
             IfThenFeatureRuleType * typ;
             if ((typ = dynamic_cast<IfThenFeatureRuleType *>(basie)))
@@ -16789,7 +16791,7 @@ bool MaxFeatureRulesType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -16798,12 +16800,12 @@ bool MaxFeatureRulesType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in MaxFeatureRulesType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -17531,7 +17533,7 @@ bool PointRuleBaseType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "name")
+      if (decl->getname() == "name")
         {
           XmlToken * nameVal;
           if (this->name)
@@ -17540,12 +17542,12 @@ bool PointRuleBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          nameVal = new XmlToken(decl->val.c_str());
-          if (nameVal->bad)
+          nameVal = new XmlToken(decl->getval().c_str());
+          if (nameVal->getbad())
             {
               delete nameVal;
               fprintf(stderr, "bad value %s for name in PointRuleBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -17634,7 +17636,7 @@ bool QIFMayType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "desirability")
+      if (decl->getname() == "desirability")
         {
           ZeroToOneType * desirabilityVal;
           if (this->desirability)
@@ -17643,12 +17645,12 @@ bool QIFMayType::badAttributes(
               returnValue = true;
               break;
             }
-          desirabilityVal = new ZeroToOneType(decl->val.c_str());
-          if (desirabilityVal->bad)
+          desirabilityVal = new ZeroToOneType(decl->getval().c_str());
+          if (desirabilityVal->getbad())
             {
               delete desirabilityVal;
               fprintf(stderr, "bad value %s for desirability in QIFMayType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -17793,7 +17795,7 @@ bool QIFRuleBaseType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "name")
+      if (decl->getname() == "name")
         {
           XmlToken * nameVal;
           if (this->name)
@@ -17802,12 +17804,12 @@ bool QIFRuleBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          nameVal = new XmlToken(decl->val.c_str());
-          if (nameVal->bad)
+          nameVal = new XmlToken(decl->getval().c_str());
+          if (nameVal->getbad())
             {
               delete nameVal;
               fprintf(stderr, "bad value %s for name in QIFRuleBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -18143,7 +18145,7 @@ bool RulesUnitsType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -18152,12 +18154,12 @@ bool RulesUnitsType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in RulesUnitsType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -18736,8 +18738,8 @@ ZeroToOneType::ZeroToOneType(
   XmlDouble(
     valIn)
 {
-  if (!bad)
-    bad = ((val < 0) ||
+  if (!getbad())
+    setbad((val < 0) ||
           (val > 1));
 }
 

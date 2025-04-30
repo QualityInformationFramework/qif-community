@@ -4,10 +4,12 @@
 #include <string.h>            // for strdup
 #include <stdlib.h>            // for exit
 #include <list>
+#include  <map>
 #include <xmlSchemaInstance.hh>
 #include "QIFPlanClasses.hh"
 
 #define INDENT 2
+extern std::map<unsigned int, XmlSchemaInstanceBase *> idMap;
 
 /* ***************************************************************** */
 /* ***************************************************************** */
@@ -293,7 +295,7 @@ bool ActionMethodBaseType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -302,12 +304,12 @@ bool ActionMethodBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in ActionMethodBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -321,7 +323,11 @@ bool ActionMethodBaseType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in ActionMethodBaseType\n");
       returnValue = true;
@@ -487,12 +493,12 @@ void ActionMethodsType::printSelf(FILE * outFile)
         ActionMethodBaseType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "AutocollimatorMeasureFeatureMethod") == 0)
+        else if (strcmp(basie->getprintElement(), "AutocollimatorMeasureFeatureMethod") == 0)
           {
             AutocollimatorMeasureFeatureMethodType * typ;
             if ((typ = dynamic_cast<AutocollimatorMeasureFeatureMethodType *>(basie)))
@@ -508,7 +514,7 @@ void ActionMethodsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "CalibratedComparatorMeasureFeatureMethod") == 0)
+        else if (strcmp(basie->getprintElement(), "CalibratedComparatorMeasureFeatureMethod") == 0)
           {
             CalibratedComparatorMeasureFeatureMethodType * typ;
             if ((typ = dynamic_cast<CalibratedComparatorMeasureFeatureMethodType *>(basie)))
@@ -524,7 +530,7 @@ void ActionMethodsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "CoordinateMeasureFeatureMethod") == 0)
+        else if (strcmp(basie->getprintElement(), "CoordinateMeasureFeatureMethod") == 0)
           {
             CoordinateMeasureFeatureMethodType * typ;
             if ((typ = dynamic_cast<CoordinateMeasureFeatureMethodType *>(basie)))
@@ -540,7 +546,7 @@ void ActionMethodsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ComputedTomographyMeasureFeatureMethod") == 0)
+        else if (strcmp(basie->getprintElement(), "ComputedTomographyMeasureFeatureMethod") == 0)
           {
             ComputedTomographyMeasureFeatureMethodType * typ;
             if ((typ = dynamic_cast<ComputedTomographyMeasureFeatureMethodType *>(basie)))
@@ -556,7 +562,7 @@ void ActionMethodsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ExternalReferenceMeasureFeatureMethod") == 0)
+        else if (strcmp(basie->getprintElement(), "ExternalReferenceMeasureFeatureMethod") == 0)
           {
             ExternalReferenceMeasureFeatureMethodType * typ;
             if ((typ = dynamic_cast<ExternalReferenceMeasureFeatureMethodType *>(basie)))
@@ -572,7 +578,7 @@ void ActionMethodsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "GageMeasureFeatureMethod") == 0)
+        else if (strcmp(basie->getprintElement(), "GageMeasureFeatureMethod") == 0)
           {
             GageMeasureFeatureMethodType * typ;
             if ((typ = dynamic_cast<GageMeasureFeatureMethodType *>(basie)))
@@ -588,7 +594,7 @@ void ActionMethodsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LaserRadarMeasureFeatureMethod") == 0)
+        else if (strcmp(basie->getprintElement(), "LaserRadarMeasureFeatureMethod") == 0)
           {
             LaserRadarMeasureFeatureMethodType * typ;
             if ((typ = dynamic_cast<LaserRadarMeasureFeatureMethodType *>(basie)))
@@ -604,7 +610,7 @@ void ActionMethodsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LaserTrackerMeasureFeatureMethod") == 0)
+        else if (strcmp(basie->getprintElement(), "LaserTrackerMeasureFeatureMethod") == 0)
           {
             LaserTrackerMeasureFeatureMethodType * typ;
             if ((typ = dynamic_cast<LaserTrackerMeasureFeatureMethodType *>(basie)))
@@ -620,7 +626,7 @@ void ActionMethodsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ManualMeasureFeatureMethod") == 0)
+        else if (strcmp(basie->getprintElement(), "ManualMeasureFeatureMethod") == 0)
           {
             ManualMeasureFeatureMethodType * typ;
             if ((typ = dynamic_cast<ManualMeasureFeatureMethodType *>(basie)))
@@ -636,7 +642,7 @@ void ActionMethodsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "MicroscopeMeasureFeatureMethod") == 0)
+        else if (strcmp(basie->getprintElement(), "MicroscopeMeasureFeatureMethod") == 0)
           {
             MicroscopeMeasureFeatureMethodType * typ;
             if ((typ = dynamic_cast<MicroscopeMeasureFeatureMethodType *>(basie)))
@@ -652,23 +658,7 @@ void ActionMethodsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "OpticalDigitizerMeasureFeatureMethod") == 0)
-          {
-            OpticalDigitizerMeasureFeatureMethodType * typ;
-            if ((typ = dynamic_cast<OpticalDigitizerMeasureFeatureMethodType *>(basie)))
-              {
-                fprintf(outFile, "<OpticalDigitizerMeasureFeatureMethod");
-                typ->printSelf(outFile);
-                doSpaces(0, outFile);
-                fprintf(outFile, "</OpticalDigitizerMeasureFeatureMethod>\n");
-              }
-            else
-              {
-                fprintf(stderr, "bad OpticalDigitizerMeasureFeatureMethod element\n");
-                exit(1);
-              }
-          }
-        else if (strcmp(basie->printElement, "ProfileProjectorMeasureFeatureMethod") == 0)
+        else if (strcmp(basie->getprintElement(), "ProfileProjectorMeasureFeatureMethod") == 0)
           {
             ProfileProjectorMeasureFeatureMethodType * typ;
             if ((typ = dynamic_cast<ProfileProjectorMeasureFeatureMethodType *>(basie)))
@@ -684,7 +674,7 @@ void ActionMethodsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TheodoliteMeasureFeatureMethod") == 0)
+        else if (strcmp(basie->getprintElement(), "TheodoliteMeasureFeatureMethod") == 0)
           {
             TheodoliteMeasureFeatureMethodType * typ;
             if ((typ = dynamic_cast<TheodoliteMeasureFeatureMethodType *>(basie)))
@@ -700,7 +690,7 @@ void ActionMethodsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UniversalLengthMeasureFeatureMethod") == 0)
+        else if (strcmp(basie->getprintElement(), "UniversalLengthMeasureFeatureMethod") == 0)
           {
             UniversalLengthMeasureFeatureMethodType * typ;
             if ((typ = dynamic_cast<UniversalLengthMeasureFeatureMethodType *>(basie)))
@@ -716,7 +706,7 @@ void ActionMethodsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "OtherMeasureFeatureMethod") == 0)
+        else if (strcmp(basie->getprintElement(), "OtherMeasureFeatureMethod") == 0)
           {
             OtherMeasureFeatureMethodType * typ;
             if ((typ = dynamic_cast<OtherMeasureFeatureMethodType *>(basie)))
@@ -754,7 +744,7 @@ bool ActionMethodsType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -763,12 +753,12 @@ bool ActionMethodsType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in ActionMethodsType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -920,7 +910,7 @@ bool AutocollimatorMeasureFeatureMethodType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -929,12 +919,12 @@ bool AutocollimatorMeasureFeatureMethodType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in AutocollimatorMeasureFeatureMethodType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -948,7 +938,11 @@ bool AutocollimatorMeasureFeatureMethodType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in AutocollimatorMeasureFeatureMethodType\n");
       returnValue = true;
@@ -1074,7 +1068,7 @@ bool CalibratedComparatorMeasureFeatureMethodType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -1083,12 +1077,12 @@ bool CalibratedComparatorMeasureFeatureMethodType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in CalibratedComparatorMeasureFeatureMethodType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -1102,7 +1096,11 @@ bool CalibratedComparatorMeasureFeatureMethodType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in CalibratedComparatorMeasureFeatureMethodType\n");
       returnValue = true;
@@ -1228,7 +1226,7 @@ bool ComputedTomographyMeasureFeatureMethodType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -1237,12 +1235,12 @@ bool ComputedTomographyMeasureFeatureMethodType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in ComputedTomographyMeasureFeatureMethodType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -1256,7 +1254,11 @@ bool ComputedTomographyMeasureFeatureMethodType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in ComputedTomographyMeasureFeatureMethodType\n");
       returnValue = true;
@@ -1395,7 +1397,7 @@ bool CoordinateMeasureFeatureMethodType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -1404,12 +1406,12 @@ bool CoordinateMeasureFeatureMethodType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in CoordinateMeasureFeatureMethodType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -1423,7 +1425,11 @@ bool CoordinateMeasureFeatureMethodType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in CoordinateMeasureFeatureMethodType\n");
       returnValue = true;
@@ -1542,7 +1548,7 @@ bool DocumentFileInstructionType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -1551,12 +1557,12 @@ bool DocumentFileInstructionType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in DocumentFileInstructionType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -1570,7 +1576,11 @@ bool DocumentFileInstructionType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in DocumentFileInstructionType\n");
       returnValue = true;
@@ -1624,12 +1634,12 @@ void ElseDoType::printSelf(FILE * outFile)
   doSpaces(+INDENT, outFile);
   {
     doSpaces(0, outFile);
-    if (PlanElement->printElement == 0)
+    if (PlanElement->getprintElement() == 0)
       {
         fprintf(stderr, "element name missing\n");
         exit(1);
       }
-    else if (strcmp(PlanElement->printElement, "OrderedActionGroup") == 0)
+    else if (strcmp(PlanElement->getprintElement(), "OrderedActionGroup") == 0)
       {
         OrderedActionGroupType * typ;
         if ((typ = dynamic_cast<OrderedActionGroupType *>(PlanElement)))
@@ -1645,7 +1655,7 @@ void ElseDoType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(PlanElement->printElement, "UnorderedActionGroup") == 0)
+    else if (strcmp(PlanElement->getprintElement(), "UnorderedActionGroup") == 0)
       {
         UnorderedActionGroupType * typ;
         if ((typ = dynamic_cast<UnorderedActionGroupType *>(PlanElement)))
@@ -1661,7 +1671,7 @@ void ElseDoType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(PlanElement->printElement, "PartiallyOrderedActionGroup") == 0)
+    else if (strcmp(PlanElement->getprintElement(), "PartiallyOrderedActionGroup") == 0)
       {
         PartiallyOrderedActionGroupType * typ;
         if ((typ = dynamic_cast<PartiallyOrderedActionGroupType *>(PlanElement)))
@@ -1677,7 +1687,7 @@ void ElseDoType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(PlanElement->printElement, "OneOfActionGroup") == 0)
+    else if (strcmp(PlanElement->getprintElement(), "OneOfActionGroup") == 0)
       {
         OneOfActionGroupType * typ;
         if ((typ = dynamic_cast<OneOfActionGroupType *>(PlanElement)))
@@ -1693,7 +1703,7 @@ void ElseDoType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(PlanElement->printElement, "PickSomeActionGroup") == 0)
+    else if (strcmp(PlanElement->getprintElement(), "PickSomeActionGroup") == 0)
       {
         PickSomeActionGroupType * typ;
         if ((typ = dynamic_cast<PickSomeActionGroupType *>(PlanElement)))
@@ -1709,7 +1719,7 @@ void ElseDoType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(PlanElement->printElement, "MeasureEvaluateAll") == 0)
+    else if (strcmp(PlanElement->getprintElement(), "MeasureEvaluateAll") == 0)
       {
         MeasureEvaluateAllActionType * typ;
         if ((typ = dynamic_cast<MeasureEvaluateAllActionType *>(PlanElement)))
@@ -1725,7 +1735,7 @@ void ElseDoType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(PlanElement->printElement, "MeasureEvaluateSpecified") == 0)
+    else if (strcmp(PlanElement->getprintElement(), "MeasureEvaluateSpecified") == 0)
       {
         MeasureEvaluateSpecifiedActionType * typ;
         if ((typ = dynamic_cast<MeasureEvaluateSpecifiedActionType *>(PlanElement)))
@@ -1741,7 +1751,7 @@ void ElseDoType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(PlanElement->printElement, "EvaluateSpecifiedCharacteristics") == 0)
+    else if (strcmp(PlanElement->getprintElement(), "EvaluateSpecifiedCharacteristics") == 0)
       {
         EvaluateSpecifiedCharacteristicsActionType * typ;
         if ((typ = dynamic_cast<EvaluateSpecifiedCharacteristicsActionType *>(PlanElement)))
@@ -1757,7 +1767,7 @@ void ElseDoType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(PlanElement->printElement, "Halt") == 0)
+    else if (strcmp(PlanElement->getprintElement(), "Halt") == 0)
       {
         HaltActionType * typ;
         if ((typ = dynamic_cast<HaltActionType *>(PlanElement)))
@@ -1773,7 +1783,7 @@ void ElseDoType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(PlanElement->printElement, "MeasureSpecifiedFeatures") == 0)
+    else if (strcmp(PlanElement->getprintElement(), "MeasureSpecifiedFeatures") == 0)
       {
         MeasureSpecifiedFeaturesActionType * typ;
         if ((typ = dynamic_cast<MeasureSpecifiedFeaturesActionType *>(PlanElement)))
@@ -1789,7 +1799,7 @@ void ElseDoType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(PlanElement->printElement, "MeasureSpecifiedMeasurands") == 0)
+    else if (strcmp(PlanElement->getprintElement(), "MeasureSpecifiedMeasurands") == 0)
       {
         MeasureSpecifiedMeasurandsActionType * typ;
         if ((typ = dynamic_cast<MeasureSpecifiedMeasurandsActionType *>(PlanElement)))
@@ -1805,7 +1815,7 @@ void ElseDoType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(PlanElement->printElement, "IfActionGroup") == 0)
+    else if (strcmp(PlanElement->getprintElement(), "IfActionGroup") == 0)
       {
         IfActionGroupType * typ;
         if ((typ = dynamic_cast<IfActionGroupType *>(PlanElement)))
@@ -1821,7 +1831,7 @@ void ElseDoType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(PlanElement->printElement, "WhileActionGroup") == 0)
+    else if (strcmp(PlanElement->getprintElement(), "WhileActionGroup") == 0)
       {
         WhileActionGroupType * typ;
         if ((typ = dynamic_cast<WhileActionGroupType *>(PlanElement)))
@@ -1837,7 +1847,7 @@ void ElseDoType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(PlanElement->printElement, "VariableSet") == 0)
+    else if (strcmp(PlanElement->getprintElement(), "VariableSet") == 0)
       {
         VariableSetType * typ;
         if ((typ = dynamic_cast<VariableSetType *>(PlanElement)))
@@ -1973,7 +1983,7 @@ bool EstablishDatumMeasurandType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -1982,12 +1992,12 @@ bool EstablishDatumMeasurandType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in EstablishDatumMeasurandType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -2001,7 +2011,11 @@ bool EstablishDatumMeasurandType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in EstablishDatumMeasurandType\n");
       returnValue = true;
@@ -2125,7 +2139,7 @@ bool EvaluateCharacteristicMeasurandType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -2134,12 +2148,12 @@ bool EvaluateCharacteristicMeasurandType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in EvaluateCharacteristicMeasurandType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -2153,7 +2167,11 @@ bool EvaluateCharacteristicMeasurandType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in EvaluateCharacteristicMeasurandType\n");
       returnValue = true;
@@ -2392,7 +2410,7 @@ bool ExternalReferenceMeasureFeatureMethodType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -2401,12 +2419,12 @@ bool ExternalReferenceMeasureFeatureMethodType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in ExternalReferenceMeasureFeatureMethodType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -2420,7 +2438,11 @@ bool ExternalReferenceMeasureFeatureMethodType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in ExternalReferenceMeasureFeatureMethodType\n");
       returnValue = true;
@@ -2552,7 +2574,7 @@ bool GageMeasureFeatureMethodType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -2561,12 +2583,12 @@ bool GageMeasureFeatureMethodType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in GageMeasureFeatureMethodType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -2580,7 +2602,11 @@ bool GageMeasureFeatureMethodType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in GageMeasureFeatureMethodType\n");
       returnValue = true;
@@ -2882,7 +2908,7 @@ bool ImageInstructionType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -2891,12 +2917,12 @@ bool ImageInstructionType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in ImageInstructionType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -2910,7 +2936,11 @@ bool ImageInstructionType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in ImageInstructionType\n");
       returnValue = true;
@@ -3042,7 +3072,7 @@ bool LaserRadarMeasureFeatureMethodType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -3051,12 +3081,12 @@ bool LaserRadarMeasureFeatureMethodType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in LaserRadarMeasureFeatureMethodType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -3070,7 +3100,11 @@ bool LaserRadarMeasureFeatureMethodType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in LaserRadarMeasureFeatureMethodType\n");
       returnValue = true;
@@ -3196,7 +3230,7 @@ bool LaserTrackerMeasureFeatureMethodType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -3205,12 +3239,12 @@ bool LaserTrackerMeasureFeatureMethodType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in LaserTrackerMeasureFeatureMethodType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -3224,7 +3258,11 @@ bool LaserTrackerMeasureFeatureMethodType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in LaserTrackerMeasureFeatureMethodType\n");
       returnValue = true;
@@ -3349,7 +3387,7 @@ bool LocalVariablesType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -3358,12 +3396,12 @@ bool LocalVariablesType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in LocalVariablesType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -3515,7 +3553,7 @@ bool ManualMeasureFeatureMethodType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -3524,12 +3562,12 @@ bool ManualMeasureFeatureMethodType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in ManualMeasureFeatureMethodType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -3543,7 +3581,11 @@ bool ManualMeasureFeatureMethodType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in ManualMeasureFeatureMethodType\n");
       returnValue = true;
@@ -3647,7 +3689,7 @@ bool MeasurandBaseType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -3656,12 +3698,12 @@ bool MeasurandBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in MeasurandBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -3675,7 +3717,11 @@ bool MeasurandBaseType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in MeasurandBaseType\n");
       returnValue = true;
@@ -3829,12 +3875,12 @@ void MeasurandsType::printSelf(FILE * outFile)
         MeasurandBaseType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "EvaluateCharacteristicMeasurand") == 0)
+        else if (strcmp(basie->getprintElement(), "EvaluateCharacteristicMeasurand") == 0)
           {
             EvaluateCharacteristicMeasurandType * typ;
             if ((typ = dynamic_cast<EvaluateCharacteristicMeasurandType *>(basie)))
@@ -3850,7 +3896,7 @@ void MeasurandsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EstablishDatumMeasurand") == 0)
+        else if (strcmp(basie->getprintElement(), "EstablishDatumMeasurand") == 0)
           {
             EstablishDatumMeasurandType * typ;
             if ((typ = dynamic_cast<EstablishDatumMeasurandType *>(basie)))
@@ -3888,7 +3934,7 @@ bool MeasurandsType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -3897,12 +3943,12 @@ bool MeasurandsType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in MeasurandsType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -3962,8 +4008,8 @@ MeasureActionGroupFunctionEnumType::MeasureActionGroupFunctionEnumType(
   XmlNMTOKEN(
     valIn)
 {
-  if (!bad)
-    bad = (strcmp(val.c_str(), "ROUTING_PLAN") &&
+  if (!getbad())
+    setbad(strcmp(val.c_str(), "ROUTING_PLAN") &&
            strcmp(val.c_str(), "OPERATION_SEQUENCE") &&
            strcmp(val.c_str(), "SETUP_USAGE_GROUP") &&
            strcmp(val.c_str(), "SENSOR_USAGE_GROUP") &&
@@ -4365,7 +4411,7 @@ bool MeasureFeatureMethodBaseType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -4374,12 +4420,12 @@ bool MeasureFeatureMethodBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in MeasureFeatureMethodBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -4393,7 +4439,11 @@ bool MeasureFeatureMethodBaseType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in MeasureFeatureMethodBaseType\n");
       returnValue = true;
@@ -4705,7 +4755,7 @@ bool MicroscopeMeasureFeatureMethodType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -4714,12 +4764,12 @@ bool MicroscopeMeasureFeatureMethodType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in MicroscopeMeasureFeatureMethodType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -4733,7 +4783,11 @@ bool MicroscopeMeasureFeatureMethodType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in MicroscopeMeasureFeatureMethodType\n");
       returnValue = true;
@@ -4789,12 +4843,12 @@ void NumberedPlanElementType::printSelf(FILE * outFile)
   fprintf(outFile, "</SequenceNumber>\n");
   {
     doSpaces(0, outFile);
-    if (PlanElement->printElement == 0)
+    if (PlanElement->getprintElement() == 0)
       {
         fprintf(stderr, "element name missing\n");
         exit(1);
       }
-    else if (strcmp(PlanElement->printElement, "OrderedActionGroup") == 0)
+    else if (strcmp(PlanElement->getprintElement(), "OrderedActionGroup") == 0)
       {
         OrderedActionGroupType * typ;
         if ((typ = dynamic_cast<OrderedActionGroupType *>(PlanElement)))
@@ -4810,7 +4864,7 @@ void NumberedPlanElementType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(PlanElement->printElement, "UnorderedActionGroup") == 0)
+    else if (strcmp(PlanElement->getprintElement(), "UnorderedActionGroup") == 0)
       {
         UnorderedActionGroupType * typ;
         if ((typ = dynamic_cast<UnorderedActionGroupType *>(PlanElement)))
@@ -4826,7 +4880,7 @@ void NumberedPlanElementType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(PlanElement->printElement, "PartiallyOrderedActionGroup") == 0)
+    else if (strcmp(PlanElement->getprintElement(), "PartiallyOrderedActionGroup") == 0)
       {
         PartiallyOrderedActionGroupType * typ;
         if ((typ = dynamic_cast<PartiallyOrderedActionGroupType *>(PlanElement)))
@@ -4842,7 +4896,7 @@ void NumberedPlanElementType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(PlanElement->printElement, "OneOfActionGroup") == 0)
+    else if (strcmp(PlanElement->getprintElement(), "OneOfActionGroup") == 0)
       {
         OneOfActionGroupType * typ;
         if ((typ = dynamic_cast<OneOfActionGroupType *>(PlanElement)))
@@ -4858,7 +4912,7 @@ void NumberedPlanElementType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(PlanElement->printElement, "PickSomeActionGroup") == 0)
+    else if (strcmp(PlanElement->getprintElement(), "PickSomeActionGroup") == 0)
       {
         PickSomeActionGroupType * typ;
         if ((typ = dynamic_cast<PickSomeActionGroupType *>(PlanElement)))
@@ -4874,7 +4928,7 @@ void NumberedPlanElementType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(PlanElement->printElement, "MeasureEvaluateAll") == 0)
+    else if (strcmp(PlanElement->getprintElement(), "MeasureEvaluateAll") == 0)
       {
         MeasureEvaluateAllActionType * typ;
         if ((typ = dynamic_cast<MeasureEvaluateAllActionType *>(PlanElement)))
@@ -4890,7 +4944,7 @@ void NumberedPlanElementType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(PlanElement->printElement, "MeasureEvaluateSpecified") == 0)
+    else if (strcmp(PlanElement->getprintElement(), "MeasureEvaluateSpecified") == 0)
       {
         MeasureEvaluateSpecifiedActionType * typ;
         if ((typ = dynamic_cast<MeasureEvaluateSpecifiedActionType *>(PlanElement)))
@@ -4906,7 +4960,7 @@ void NumberedPlanElementType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(PlanElement->printElement, "EvaluateSpecifiedCharacteristics") == 0)
+    else if (strcmp(PlanElement->getprintElement(), "EvaluateSpecifiedCharacteristics") == 0)
       {
         EvaluateSpecifiedCharacteristicsActionType * typ;
         if ((typ = dynamic_cast<EvaluateSpecifiedCharacteristicsActionType *>(PlanElement)))
@@ -4922,7 +4976,7 @@ void NumberedPlanElementType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(PlanElement->printElement, "Halt") == 0)
+    else if (strcmp(PlanElement->getprintElement(), "Halt") == 0)
       {
         HaltActionType * typ;
         if ((typ = dynamic_cast<HaltActionType *>(PlanElement)))
@@ -4938,7 +4992,7 @@ void NumberedPlanElementType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(PlanElement->printElement, "MeasureSpecifiedFeatures") == 0)
+    else if (strcmp(PlanElement->getprintElement(), "MeasureSpecifiedFeatures") == 0)
       {
         MeasureSpecifiedFeaturesActionType * typ;
         if ((typ = dynamic_cast<MeasureSpecifiedFeaturesActionType *>(PlanElement)))
@@ -4954,7 +5008,7 @@ void NumberedPlanElementType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(PlanElement->printElement, "MeasureSpecifiedMeasurands") == 0)
+    else if (strcmp(PlanElement->getprintElement(), "MeasureSpecifiedMeasurands") == 0)
       {
         MeasureSpecifiedMeasurandsActionType * typ;
         if ((typ = dynamic_cast<MeasureSpecifiedMeasurandsActionType *>(PlanElement)))
@@ -4970,7 +5024,7 @@ void NumberedPlanElementType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(PlanElement->printElement, "IfActionGroup") == 0)
+    else if (strcmp(PlanElement->getprintElement(), "IfActionGroup") == 0)
       {
         IfActionGroupType * typ;
         if ((typ = dynamic_cast<IfActionGroupType *>(PlanElement)))
@@ -4986,7 +5040,7 @@ void NumberedPlanElementType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(PlanElement->printElement, "WhileActionGroup") == 0)
+    else if (strcmp(PlanElement->getprintElement(), "WhileActionGroup") == 0)
       {
         WhileActionGroupType * typ;
         if ((typ = dynamic_cast<WhileActionGroupType *>(PlanElement)))
@@ -5002,7 +5056,7 @@ void NumberedPlanElementType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(PlanElement->printElement, "VariableSet") == 0)
+    else if (strcmp(PlanElement->getprintElement(), "VariableSet") == 0)
       {
         VariableSetType * typ;
         if ((typ = dynamic_cast<VariableSetType *>(PlanElement)))
@@ -5182,7 +5236,7 @@ bool NumberedPlanElementsType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -5191,12 +5245,12 @@ bool NumberedPlanElementsType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in NumberedPlanElementsType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -5313,160 +5367,6 @@ NumberedPlanElementsType * OneOfActionGroupType::getSteps()
 
 void OneOfActionGroupType::setSteps(NumberedPlanElementsType * StepsIn)
 {Steps = StepsIn;}
-
-/* ***************************************************************** */
-
-/* class OpticalDigitizerMeasureFeatureMethodType
-
-*/
-
-OpticalDigitizerMeasureFeatureMethodType::OpticalDigitizerMeasureFeatureMethodType() :
-  MeasureFeatureMethodBaseType()
-{
-}
-
-OpticalDigitizerMeasureFeatureMethodType::OpticalDigitizerMeasureFeatureMethodType(
- ArrayReferenceType * ChosenResourceIdsIn,
- ArrayReferenceType * WorkInstructionIdsIn,
- AttributesType * AttributesIn) :
-  MeasureFeatureMethodBaseType(
-    ChosenResourceIdsIn,
-    WorkInstructionIdsIn,
-    AttributesIn)
-{
-}
-
-OpticalDigitizerMeasureFeatureMethodType::OpticalDigitizerMeasureFeatureMethodType(
- QIFIdType * idIn,
- ArrayReferenceType * ChosenResourceIdsIn,
- ArrayReferenceType * WorkInstructionIdsIn,
- AttributesType * AttributesIn) :
-  MeasureFeatureMethodBaseType(
-    idIn,
-    ChosenResourceIdsIn,
-    WorkInstructionIdsIn,
-    AttributesIn)
-{
-}
-
-OpticalDigitizerMeasureFeatureMethodType::~OpticalDigitizerMeasureFeatureMethodType()
-{
-  #ifndef NODESTRUCT
-  #endif
-}
-
-void OpticalDigitizerMeasureFeatureMethodType::printSelf(FILE * outFile)
-{
-  bool printedOne;
-
-  printedOne = false;
-  if (id)
-    {
-      if (printedOne)
-        {
-          fprintf(outFile, "\n");
-          doSpaces(0, outFile);
-          fprintf(outFile, "  ");
-        }
-      else
-        {
-          fprintf(outFile, " ");
-          printedOne = true;
-        }
-      fprintf(outFile, "id=\"");
-      id->oPrintSelf(outFile);
-      fprintf(outFile, "\"");
-    }
-  else
-    {
-      fprintf(stderr, "required attribute \"id\" missing\n");
-      exit(1);
-    }
-  fprintf(outFile, ">\n");
-  doSpaces(+INDENT, outFile);
-  if (ChosenResourceIds)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<ChosenResourceIds");
-      ChosenResourceIds->printSelf(outFile);
-      doSpaces(0, outFile);
-      fprintf(outFile, "</ChosenResourceIds>\n");
-    }
-  if (WorkInstructionIds)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<WorkInstructionIds");
-      WorkInstructionIds->printSelf(outFile);
-      doSpaces(0, outFile);
-      fprintf(outFile, "</WorkInstructionIds>\n");
-    }
-  if (Attributes)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<Attributes");
-      Attributes->printSelf(outFile);
-      doSpaces(0, outFile);
-      fprintf(outFile, "</Attributes>\n");
-    }
-  doSpaces(-INDENT, outFile);
-}
-
-bool OpticalDigitizerMeasureFeatureMethodType::badAttributes(
- AttributePairLisd * attributes)
-{
-  std::list<AttributePair *>::iterator iter;
-  AttributePair * decl;
-  bool returnValue;
-
-  returnValue = false;
-  for (iter = attributes->begin(); iter != attributes->end(); iter++)
-    {
-      decl = *iter;
-      if (decl->name == "id")
-        {
-          QIFIdType * idVal;
-          if (this->id)
-            {
-              fprintf(stderr, "two values for id in OpticalDigitizerMeasureFeatureMethodType\n");
-              returnValue = true;
-              break;
-            }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
-            {
-              delete idVal;
-              fprintf(stderr, "bad value %s for id in OpticalDigitizerMeasureFeatureMethodType\n",
-                      decl->val.c_str());
-              returnValue = true;
-              break;
-            }
-          else
-            this->id = idVal;
-        }
-      else
-        {
-          fprintf(stderr, "bad attribute in OpticalDigitizerMeasureFeatureMethodType\n");
-          returnValue = true;
-          break;
-        }
-    }
-  if (this->id == 0)
-    {
-      fprintf(stderr, "required attribute \"id\" missing in OpticalDigitizerMeasureFeatureMethodType\n");
-      returnValue = true;
-    }
-  for (iter = attributes->begin(); iter != attributes->end(); iter++)
-    {
-      delete *iter;
-    }
-  attributes->clear();
-  if (returnValue == true)
-    {
-      delete this->id;
-      this->id = 0;
-    }
-  return returnValue;
-}
 
 /* ***************************************************************** */
 
@@ -5650,7 +5550,7 @@ bool OtherMeasureFeatureMethodType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -5659,12 +5559,12 @@ bool OtherMeasureFeatureMethodType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in OtherMeasureFeatureMethodType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -5678,7 +5578,11 @@ bool OtherMeasureFeatureMethodType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in OtherMeasureFeatureMethodType\n");
       returnValue = true;
@@ -6070,12 +5974,12 @@ void PlanType::printSelf(FILE * outFile)
     }
   {
     doSpaces(0, outFile);
-    if (PlanRoot->printElement == 0)
+    if (PlanRoot->getprintElement() == 0)
       {
         fprintf(stderr, "element name missing\n");
         exit(1);
       }
-    else if (strcmp(PlanRoot->printElement, "OrderedPlanRoot") == 0)
+    else if (strcmp(PlanRoot->getprintElement(), "OrderedPlanRoot") == 0)
       {
         OrderedActionGroupType * typ;
         if ((typ = dynamic_cast<OrderedActionGroupType *>(PlanRoot)))
@@ -6091,7 +5995,7 @@ void PlanType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(PlanRoot->printElement, "UnorderedPlanRoot") == 0)
+    else if (strcmp(PlanRoot->getprintElement(), "UnorderedPlanRoot") == 0)
       {
         UnorderedActionGroupType * typ;
         if ((typ = dynamic_cast<UnorderedActionGroupType *>(PlanRoot)))
@@ -6107,7 +6011,7 @@ void PlanType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(PlanRoot->printElement, "PartiallyOrderedPlanRoot") == 0)
+    else if (strcmp(PlanRoot->getprintElement(), "PartiallyOrderedPlanRoot") == 0)
       {
         PartiallyOrderedActionGroupType * typ;
         if ((typ = dynamic_cast<PartiallyOrderedActionGroupType *>(PlanRoot)))
@@ -6123,7 +6027,7 @@ void PlanType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(PlanRoot->printElement, "OneOfPlanRoot") == 0)
+    else if (strcmp(PlanRoot->getprintElement(), "OneOfPlanRoot") == 0)
       {
         OneOfActionGroupType * typ;
         if ((typ = dynamic_cast<OneOfActionGroupType *>(PlanRoot)))
@@ -6139,7 +6043,7 @@ void PlanType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(PlanRoot->printElement, "PickSomePlanRoot") == 0)
+    else if (strcmp(PlanRoot->getprintElement(), "PickSomePlanRoot") == 0)
       {
         PickSomeActionGroupType * typ;
         if ((typ = dynamic_cast<PickSomeActionGroupType *>(PlanRoot)))
@@ -6319,7 +6223,7 @@ bool PredecessorsType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -6328,12 +6232,12 @@ bool PredecessorsType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in PredecessorsType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -6485,7 +6389,7 @@ bool ProfileProjectorMeasureFeatureMethodType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -6494,12 +6398,12 @@ bool ProfileProjectorMeasureFeatureMethodType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in ProfileProjectorMeasureFeatureMethodType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -6513,7 +6417,11 @@ bool ProfileProjectorMeasureFeatureMethodType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in ProfileProjectorMeasureFeatureMethodType\n");
       returnValue = true;
@@ -6733,7 +6641,7 @@ bool StepsWithPredecessorsType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -6742,12 +6650,12 @@ bool StepsWithPredecessorsType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in StepsWithPredecessorsType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -6825,12 +6733,12 @@ void TestAndPlanElementType::printSelf(FILE * outFile)
   doSpaces(+INDENT, outFile);
   {
     doSpaces(0, outFile);
-    if (BooleanExpression->printElement == 0)
+    if (BooleanExpression->getprintElement() == 0)
       {
         fprintf(stderr, "element name missing\n");
         exit(1);
       }
-    else if (strcmp(BooleanExpression->printElement, "Not") == 0)
+    else if (strcmp(BooleanExpression->getprintElement(), "Not") == 0)
       {
         NotType * typ;
         if ((typ = dynamic_cast<NotType *>(BooleanExpression)))
@@ -6846,7 +6754,7 @@ void TestAndPlanElementType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(BooleanExpression->printElement, "ConstantIs") == 0)
+    else if (strcmp(BooleanExpression->getprintElement(), "ConstantIs") == 0)
       {
         ConstantIsType * typ;
         if ((typ = dynamic_cast<ConstantIsType *>(BooleanExpression)))
@@ -6860,7 +6768,7 @@ void TestAndPlanElementType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(BooleanExpression->printElement, "And") == 0)
+    else if (strcmp(BooleanExpression->getprintElement(), "And") == 0)
       {
         AndType * typ;
         if ((typ = dynamic_cast<AndType *>(BooleanExpression)))
@@ -6876,7 +6784,7 @@ void TestAndPlanElementType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(BooleanExpression->printElement, "Or") == 0)
+    else if (strcmp(BooleanExpression->getprintElement(), "Or") == 0)
       {
         OrType * typ;
         if ((typ = dynamic_cast<OrType *>(BooleanExpression)))
@@ -6892,7 +6800,7 @@ void TestAndPlanElementType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(BooleanExpression->printElement, "BooleanEqual") == 0)
+    else if (strcmp(BooleanExpression->getprintElement(), "BooleanEqual") == 0)
       {
         BooleanEqualType * typ;
         if ((typ = dynamic_cast<BooleanEqualType *>(BooleanExpression)))
@@ -6908,7 +6816,7 @@ void TestAndPlanElementType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(BooleanExpression->printElement, "ArithmeticEqual") == 0)
+    else if (strcmp(BooleanExpression->getprintElement(), "ArithmeticEqual") == 0)
       {
         ArithmeticEqualType * typ;
         if ((typ = dynamic_cast<ArithmeticEqualType *>(BooleanExpression)))
@@ -6924,7 +6832,7 @@ void TestAndPlanElementType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(BooleanExpression->printElement, "GreaterThan") == 0)
+    else if (strcmp(BooleanExpression->getprintElement(), "GreaterThan") == 0)
       {
         GreaterThanType * typ;
         if ((typ = dynamic_cast<GreaterThanType *>(BooleanExpression)))
@@ -6940,7 +6848,7 @@ void TestAndPlanElementType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(BooleanExpression->printElement, "GreaterOrEqual") == 0)
+    else if (strcmp(BooleanExpression->getprintElement(), "GreaterOrEqual") == 0)
       {
         GreaterOrEqualType * typ;
         if ((typ = dynamic_cast<GreaterOrEqualType *>(BooleanExpression)))
@@ -6956,7 +6864,7 @@ void TestAndPlanElementType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(BooleanExpression->printElement, "LessThan") == 0)
+    else if (strcmp(BooleanExpression->getprintElement(), "LessThan") == 0)
       {
         LessThanType * typ;
         if ((typ = dynamic_cast<LessThanType *>(BooleanExpression)))
@@ -6972,7 +6880,7 @@ void TestAndPlanElementType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(BooleanExpression->printElement, "LessOrEqual") == 0)
+    else if (strcmp(BooleanExpression->getprintElement(), "LessOrEqual") == 0)
       {
         LessOrEqualType * typ;
         if ((typ = dynamic_cast<LessOrEqualType *>(BooleanExpression)))
@@ -6988,7 +6896,7 @@ void TestAndPlanElementType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(BooleanExpression->printElement, "TokenEqual") == 0)
+    else if (strcmp(BooleanExpression->getprintElement(), "TokenEqual") == 0)
       {
         TokenEqualType * typ;
         if ((typ = dynamic_cast<TokenEqualType *>(BooleanExpression)))
@@ -7004,7 +6912,7 @@ void TestAndPlanElementType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(BooleanExpression->printElement, "CharacteristicIs") == 0)
+    else if (strcmp(BooleanExpression->getprintElement(), "CharacteristicIs") == 0)
       {
         CharacteristicIsType * typ;
         if ((typ = dynamic_cast<CharacteristicIsType *>(BooleanExpression)))
@@ -7018,7 +6926,7 @@ void TestAndPlanElementType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(BooleanExpression->printElement, "FeatureIsDatum") == 0)
+    else if (strcmp(BooleanExpression->getprintElement(), "FeatureIsDatum") == 0)
       {
         FeatureIsDatumType * typ;
         if ((typ = dynamic_cast<FeatureIsDatumType *>(BooleanExpression)))
@@ -7032,7 +6940,7 @@ void TestAndPlanElementType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(BooleanExpression->printElement, "FeatureIsInternal") == 0)
+    else if (strcmp(BooleanExpression->getprintElement(), "FeatureIsInternal") == 0)
       {
         FeatureIsInternalType * typ;
         if ((typ = dynamic_cast<FeatureIsInternalType *>(BooleanExpression)))
@@ -7046,7 +6954,7 @@ void TestAndPlanElementType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(BooleanExpression->printElement, "FeatureTypeIs") == 0)
+    else if (strcmp(BooleanExpression->getprintElement(), "FeatureTypeIs") == 0)
       {
         FeatureTypeIsType * typ;
         if ((typ = dynamic_cast<FeatureTypeIsType *>(BooleanExpression)))
@@ -7060,7 +6968,7 @@ void TestAndPlanElementType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(BooleanExpression->printElement, "SamplingCategoryIs") == 0)
+    else if (strcmp(BooleanExpression->getprintElement(), "SamplingCategoryIs") == 0)
       {
         SamplingCategoryIsType * typ;
         if ((typ = dynamic_cast<SamplingCategoryIsType *>(BooleanExpression)))
@@ -7074,7 +6982,7 @@ void TestAndPlanElementType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(BooleanExpression->printElement, "ShapeClassIs") == 0)
+    else if (strcmp(BooleanExpression->getprintElement(), "ShapeClassIs") == 0)
       {
         ShapeClassIsType * typ;
         if ((typ = dynamic_cast<ShapeClassIsType *>(BooleanExpression)))
@@ -7097,12 +7005,12 @@ void TestAndPlanElementType::printSelf(FILE * outFile)
   }
   {
     doSpaces(0, outFile);
-    if (PlanElement->printElement == 0)
+    if (PlanElement->getprintElement() == 0)
       {
         fprintf(stderr, "element name missing\n");
         exit(1);
       }
-    else if (strcmp(PlanElement->printElement, "OrderedActionGroup") == 0)
+    else if (strcmp(PlanElement->getprintElement(), "OrderedActionGroup") == 0)
       {
         OrderedActionGroupType * typ;
         if ((typ = dynamic_cast<OrderedActionGroupType *>(PlanElement)))
@@ -7118,7 +7026,7 @@ void TestAndPlanElementType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(PlanElement->printElement, "UnorderedActionGroup") == 0)
+    else if (strcmp(PlanElement->getprintElement(), "UnorderedActionGroup") == 0)
       {
         UnorderedActionGroupType * typ;
         if ((typ = dynamic_cast<UnorderedActionGroupType *>(PlanElement)))
@@ -7134,7 +7042,7 @@ void TestAndPlanElementType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(PlanElement->printElement, "PartiallyOrderedActionGroup") == 0)
+    else if (strcmp(PlanElement->getprintElement(), "PartiallyOrderedActionGroup") == 0)
       {
         PartiallyOrderedActionGroupType * typ;
         if ((typ = dynamic_cast<PartiallyOrderedActionGroupType *>(PlanElement)))
@@ -7150,7 +7058,7 @@ void TestAndPlanElementType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(PlanElement->printElement, "OneOfActionGroup") == 0)
+    else if (strcmp(PlanElement->getprintElement(), "OneOfActionGroup") == 0)
       {
         OneOfActionGroupType * typ;
         if ((typ = dynamic_cast<OneOfActionGroupType *>(PlanElement)))
@@ -7166,7 +7074,7 @@ void TestAndPlanElementType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(PlanElement->printElement, "PickSomeActionGroup") == 0)
+    else if (strcmp(PlanElement->getprintElement(), "PickSomeActionGroup") == 0)
       {
         PickSomeActionGroupType * typ;
         if ((typ = dynamic_cast<PickSomeActionGroupType *>(PlanElement)))
@@ -7182,7 +7090,7 @@ void TestAndPlanElementType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(PlanElement->printElement, "MeasureEvaluateAll") == 0)
+    else if (strcmp(PlanElement->getprintElement(), "MeasureEvaluateAll") == 0)
       {
         MeasureEvaluateAllActionType * typ;
         if ((typ = dynamic_cast<MeasureEvaluateAllActionType *>(PlanElement)))
@@ -7198,7 +7106,7 @@ void TestAndPlanElementType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(PlanElement->printElement, "MeasureEvaluateSpecified") == 0)
+    else if (strcmp(PlanElement->getprintElement(), "MeasureEvaluateSpecified") == 0)
       {
         MeasureEvaluateSpecifiedActionType * typ;
         if ((typ = dynamic_cast<MeasureEvaluateSpecifiedActionType *>(PlanElement)))
@@ -7214,7 +7122,7 @@ void TestAndPlanElementType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(PlanElement->printElement, "EvaluateSpecifiedCharacteristics") == 0)
+    else if (strcmp(PlanElement->getprintElement(), "EvaluateSpecifiedCharacteristics") == 0)
       {
         EvaluateSpecifiedCharacteristicsActionType * typ;
         if ((typ = dynamic_cast<EvaluateSpecifiedCharacteristicsActionType *>(PlanElement)))
@@ -7230,7 +7138,7 @@ void TestAndPlanElementType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(PlanElement->printElement, "Halt") == 0)
+    else if (strcmp(PlanElement->getprintElement(), "Halt") == 0)
       {
         HaltActionType * typ;
         if ((typ = dynamic_cast<HaltActionType *>(PlanElement)))
@@ -7246,7 +7154,7 @@ void TestAndPlanElementType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(PlanElement->printElement, "MeasureSpecifiedFeatures") == 0)
+    else if (strcmp(PlanElement->getprintElement(), "MeasureSpecifiedFeatures") == 0)
       {
         MeasureSpecifiedFeaturesActionType * typ;
         if ((typ = dynamic_cast<MeasureSpecifiedFeaturesActionType *>(PlanElement)))
@@ -7262,7 +7170,7 @@ void TestAndPlanElementType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(PlanElement->printElement, "MeasureSpecifiedMeasurands") == 0)
+    else if (strcmp(PlanElement->getprintElement(), "MeasureSpecifiedMeasurands") == 0)
       {
         MeasureSpecifiedMeasurandsActionType * typ;
         if ((typ = dynamic_cast<MeasureSpecifiedMeasurandsActionType *>(PlanElement)))
@@ -7278,7 +7186,7 @@ void TestAndPlanElementType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(PlanElement->printElement, "IfActionGroup") == 0)
+    else if (strcmp(PlanElement->getprintElement(), "IfActionGroup") == 0)
       {
         IfActionGroupType * typ;
         if ((typ = dynamic_cast<IfActionGroupType *>(PlanElement)))
@@ -7294,7 +7202,7 @@ void TestAndPlanElementType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(PlanElement->printElement, "WhileActionGroup") == 0)
+    else if (strcmp(PlanElement->getprintElement(), "WhileActionGroup") == 0)
       {
         WhileActionGroupType * typ;
         if ((typ = dynamic_cast<WhileActionGroupType *>(PlanElement)))
@@ -7310,7 +7218,7 @@ void TestAndPlanElementType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(PlanElement->printElement, "VariableSet") == 0)
+    else if (strcmp(PlanElement->getprintElement(), "VariableSet") == 0)
       {
         VariableSetType * typ;
         if ((typ = dynamic_cast<VariableSetType *>(PlanElement)))
@@ -7477,7 +7385,7 @@ bool TextInstructionType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -7486,12 +7394,12 @@ bool TextInstructionType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in TextInstructionType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -7505,7 +7413,11 @@ bool TextInstructionType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in TextInstructionType\n");
       returnValue = true;
@@ -7637,7 +7549,7 @@ bool TheodoliteMeasureFeatureMethodType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -7646,12 +7558,12 @@ bool TheodoliteMeasureFeatureMethodType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in TheodoliteMeasureFeatureMethodType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -7665,7 +7577,11 @@ bool TheodoliteMeasureFeatureMethodType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in TheodoliteMeasureFeatureMethodType\n");
       returnValue = true;
@@ -7791,7 +7707,7 @@ bool UniversalLengthMeasureFeatureMethodType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -7800,12 +7716,12 @@ bool UniversalLengthMeasureFeatureMethodType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in UniversalLengthMeasureFeatureMethodType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -7819,7 +7735,11 @@ bool UniversalLengthMeasureFeatureMethodType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in UniversalLengthMeasureFeatureMethodType\n");
       returnValue = true;
@@ -7926,12 +7846,12 @@ void UnnumberedPlanElementsType::printSelf(FILE * outFile)
         PlanElementBaseType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "OrderedActionGroup") == 0)
+        else if (strcmp(basie->getprintElement(), "OrderedActionGroup") == 0)
           {
             OrderedActionGroupType * typ;
             if ((typ = dynamic_cast<OrderedActionGroupType *>(basie)))
@@ -7947,7 +7867,7 @@ void UnnumberedPlanElementsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UnorderedActionGroup") == 0)
+        else if (strcmp(basie->getprintElement(), "UnorderedActionGroup") == 0)
           {
             UnorderedActionGroupType * typ;
             if ((typ = dynamic_cast<UnorderedActionGroupType *>(basie)))
@@ -7963,7 +7883,7 @@ void UnnumberedPlanElementsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "PartiallyOrderedActionGroup") == 0)
+        else if (strcmp(basie->getprintElement(), "PartiallyOrderedActionGroup") == 0)
           {
             PartiallyOrderedActionGroupType * typ;
             if ((typ = dynamic_cast<PartiallyOrderedActionGroupType *>(basie)))
@@ -7979,7 +7899,7 @@ void UnnumberedPlanElementsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "OneOfActionGroup") == 0)
+        else if (strcmp(basie->getprintElement(), "OneOfActionGroup") == 0)
           {
             OneOfActionGroupType * typ;
             if ((typ = dynamic_cast<OneOfActionGroupType *>(basie)))
@@ -7995,7 +7915,7 @@ void UnnumberedPlanElementsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "PickSomeActionGroup") == 0)
+        else if (strcmp(basie->getprintElement(), "PickSomeActionGroup") == 0)
           {
             PickSomeActionGroupType * typ;
             if ((typ = dynamic_cast<PickSomeActionGroupType *>(basie)))
@@ -8011,7 +7931,7 @@ void UnnumberedPlanElementsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "MeasureEvaluateAll") == 0)
+        else if (strcmp(basie->getprintElement(), "MeasureEvaluateAll") == 0)
           {
             MeasureEvaluateAllActionType * typ;
             if ((typ = dynamic_cast<MeasureEvaluateAllActionType *>(basie)))
@@ -8027,7 +7947,7 @@ void UnnumberedPlanElementsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "MeasureEvaluateSpecified") == 0)
+        else if (strcmp(basie->getprintElement(), "MeasureEvaluateSpecified") == 0)
           {
             MeasureEvaluateSpecifiedActionType * typ;
             if ((typ = dynamic_cast<MeasureEvaluateSpecifiedActionType *>(basie)))
@@ -8043,7 +7963,7 @@ void UnnumberedPlanElementsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EvaluateSpecifiedCharacteristics") == 0)
+        else if (strcmp(basie->getprintElement(), "EvaluateSpecifiedCharacteristics") == 0)
           {
             EvaluateSpecifiedCharacteristicsActionType * typ;
             if ((typ = dynamic_cast<EvaluateSpecifiedCharacteristicsActionType *>(basie)))
@@ -8059,7 +7979,7 @@ void UnnumberedPlanElementsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Halt") == 0)
+        else if (strcmp(basie->getprintElement(), "Halt") == 0)
           {
             HaltActionType * typ;
             if ((typ = dynamic_cast<HaltActionType *>(basie)))
@@ -8075,7 +7995,7 @@ void UnnumberedPlanElementsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "MeasureSpecifiedFeatures") == 0)
+        else if (strcmp(basie->getprintElement(), "MeasureSpecifiedFeatures") == 0)
           {
             MeasureSpecifiedFeaturesActionType * typ;
             if ((typ = dynamic_cast<MeasureSpecifiedFeaturesActionType *>(basie)))
@@ -8091,7 +8011,7 @@ void UnnumberedPlanElementsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "MeasureSpecifiedMeasurands") == 0)
+        else if (strcmp(basie->getprintElement(), "MeasureSpecifiedMeasurands") == 0)
           {
             MeasureSpecifiedMeasurandsActionType * typ;
             if ((typ = dynamic_cast<MeasureSpecifiedMeasurandsActionType *>(basie)))
@@ -8107,7 +8027,7 @@ void UnnumberedPlanElementsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "IfActionGroup") == 0)
+        else if (strcmp(basie->getprintElement(), "IfActionGroup") == 0)
           {
             IfActionGroupType * typ;
             if ((typ = dynamic_cast<IfActionGroupType *>(basie)))
@@ -8123,7 +8043,7 @@ void UnnumberedPlanElementsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "WhileActionGroup") == 0)
+        else if (strcmp(basie->getprintElement(), "WhileActionGroup") == 0)
           {
             WhileActionGroupType * typ;
             if ((typ = dynamic_cast<WhileActionGroupType *>(basie)))
@@ -8139,7 +8059,7 @@ void UnnumberedPlanElementsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "VariableSet") == 0)
+        else if (strcmp(basie->getprintElement(), "VariableSet") == 0)
           {
             VariableSetType * typ;
             if ((typ = dynamic_cast<VariableSetType *>(basie)))
@@ -8177,7 +8097,7 @@ bool UnnumberedPlanElementsType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -8186,12 +8106,12 @@ bool UnnumberedPlanElementsType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in UnnumberedPlanElementsType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -8459,12 +8379,12 @@ void VariableSetType::printSelf(FILE * outFile)
   fprintf(outFile, "</VariableName>\n");
   {
     doSpaces(0, outFile);
-    if (ArithmeticExpression->printElement == 0)
+    if (ArithmeticExpression->getprintElement() == 0)
       {
         fprintf(stderr, "element name missing\n");
         exit(1);
       }
-    else if (strcmp(ArithmeticExpression->printElement, "ArithmeticConstant") == 0)
+    else if (strcmp(ArithmeticExpression->getprintElement(), "ArithmeticConstant") == 0)
       {
         ArithmeticConstantType * typ;
         if ((typ = dynamic_cast<ArithmeticConstantType *>(ArithmeticExpression)))
@@ -8478,7 +8398,7 @@ void VariableSetType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(ArithmeticExpression->printElement, "Plus") == 0)
+    else if (strcmp(ArithmeticExpression->getprintElement(), "Plus") == 0)
       {
         PlusType * typ;
         if ((typ = dynamic_cast<PlusType *>(ArithmeticExpression)))
@@ -8494,7 +8414,7 @@ void VariableSetType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(ArithmeticExpression->printElement, "Max") == 0)
+    else if (strcmp(ArithmeticExpression->getprintElement(), "Max") == 0)
       {
         MaxType * typ;
         if ((typ = dynamic_cast<MaxType *>(ArithmeticExpression)))
@@ -8510,7 +8430,7 @@ void VariableSetType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(ArithmeticExpression->printElement, "Min") == 0)
+    else if (strcmp(ArithmeticExpression->getprintElement(), "Min") == 0)
       {
         MinType * typ;
         if ((typ = dynamic_cast<MinType *>(ArithmeticExpression)))
@@ -8526,7 +8446,7 @@ void VariableSetType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(ArithmeticExpression->printElement, "Minus") == 0)
+    else if (strcmp(ArithmeticExpression->getprintElement(), "Minus") == 0)
       {
         MinusType * typ;
         if ((typ = dynamic_cast<MinusType *>(ArithmeticExpression)))
@@ -8542,7 +8462,7 @@ void VariableSetType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(ArithmeticExpression->printElement, "Negate") == 0)
+    else if (strcmp(ArithmeticExpression->getprintElement(), "Negate") == 0)
       {
         NegateType * typ;
         if ((typ = dynamic_cast<NegateType *>(ArithmeticExpression)))
@@ -8558,7 +8478,7 @@ void VariableSetType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(ArithmeticExpression->printElement, "Times") == 0)
+    else if (strcmp(ArithmeticExpression->getprintElement(), "Times") == 0)
       {
         TimesType * typ;
         if ((typ = dynamic_cast<TimesType *>(ArithmeticExpression)))
@@ -8574,7 +8494,7 @@ void VariableSetType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(ArithmeticExpression->printElement, "DividedBy") == 0)
+    else if (strcmp(ArithmeticExpression->getprintElement(), "DividedBy") == 0)
       {
         DividedByType * typ;
         if ((typ = dynamic_cast<DividedByType *>(ArithmeticExpression)))
@@ -8590,7 +8510,7 @@ void VariableSetType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(ArithmeticExpression->printElement, "ArithmeticFeatureParameter") == 0)
+    else if (strcmp(ArithmeticExpression->getprintElement(), "ArithmeticFeatureParameter") == 0)
       {
         ArithmeticFeatureParameterType * typ;
         if ((typ = dynamic_cast<ArithmeticFeatureParameterType *>(ArithmeticExpression)))
@@ -8606,7 +8526,7 @@ void VariableSetType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(ArithmeticExpression->printElement, "ArithmeticCharacteristicParameter") == 0)
+    else if (strcmp(ArithmeticExpression->getprintElement(), "ArithmeticCharacteristicParameter") == 0)
       {
         ArithmeticCharacteristicParameterType * typ;
         if ((typ = dynamic_cast<ArithmeticCharacteristicParameterType *>(ArithmeticExpression)))
@@ -8622,7 +8542,7 @@ void VariableSetType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(ArithmeticExpression->printElement, "ArithmeticDMEParameter") == 0)
+    else if (strcmp(ArithmeticExpression->getprintElement(), "ArithmeticDMEParameter") == 0)
       {
         ArithmeticDMEParameterType * typ;
         if ((typ = dynamic_cast<ArithmeticDMEParameterType *>(ArithmeticExpression)))
@@ -8638,7 +8558,7 @@ void VariableSetType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(ArithmeticExpression->printElement, "ArithmeticParameterValue") == 0)
+    else if (strcmp(ArithmeticExpression->getprintElement(), "ArithmeticParameterValue") == 0)
       {
         ArithmeticParameterValueType * typ;
         if ((typ = dynamic_cast<ArithmeticParameterValueType *>(ArithmeticExpression)))
@@ -8654,7 +8574,7 @@ void VariableSetType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(ArithmeticExpression->printElement, "ArithmeticPartParameter") == 0)
+    else if (strcmp(ArithmeticExpression->getprintElement(), "ArithmeticPartParameter") == 0)
       {
         ArithmeticPartParameterType * typ;
         if ((typ = dynamic_cast<ArithmeticPartParameterType *>(ArithmeticExpression)))
@@ -8670,7 +8590,7 @@ void VariableSetType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(ArithmeticExpression->printElement, "CharacteristicTolerance") == 0)
+    else if (strcmp(ArithmeticExpression->getprintElement(), "CharacteristicTolerance") == 0)
       {
         CharacteristicToleranceType * typ;
         if ((typ = dynamic_cast<CharacteristicToleranceType *>(ArithmeticExpression)))
@@ -8684,7 +8604,7 @@ void VariableSetType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(ArithmeticExpression->printElement, "FeatureLength") == 0)
+    else if (strcmp(ArithmeticExpression->getprintElement(), "FeatureLength") == 0)
       {
         FeatureLengthType * typ;
         if ((typ = dynamic_cast<FeatureLengthType *>(ArithmeticExpression)))
@@ -8698,7 +8618,7 @@ void VariableSetType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(ArithmeticExpression->printElement, "FeatureArea") == 0)
+    else if (strcmp(ArithmeticExpression->getprintElement(), "FeatureArea") == 0)
       {
         FeatureAreaType * typ;
         if ((typ = dynamic_cast<FeatureAreaType *>(ArithmeticExpression)))
@@ -8712,7 +8632,7 @@ void VariableSetType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(ArithmeticExpression->printElement, "FeatureSize") == 0)
+    else if (strcmp(ArithmeticExpression->getprintElement(), "FeatureSize") == 0)
       {
         FeatureSizeType * typ;
         if ((typ = dynamic_cast<FeatureSizeType *>(ArithmeticExpression)))
@@ -8726,7 +8646,7 @@ void VariableSetType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(ArithmeticExpression->printElement, "VariableValue") == 0)
+    else if (strcmp(ArithmeticExpression->getprintElement(), "VariableValue") == 0)
       {
         VariableValueType * typ;
         if ((typ = dynamic_cast<VariableValueType *>(ArithmeticExpression)))
@@ -8859,7 +8779,7 @@ bool VideoInstructionType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -8868,12 +8788,12 @@ bool VideoInstructionType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in VideoInstructionType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -8887,7 +8807,11 @@ bool VideoInstructionType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in VideoInstructionType\n");
       returnValue = true;
@@ -8977,12 +8901,12 @@ void WhileActionGroupType::printSelf(FILE * outFile)
     }
   {
     doSpaces(0, outFile);
-    if (BooleanExpression->printElement == 0)
+    if (BooleanExpression->getprintElement() == 0)
       {
         fprintf(stderr, "element name missing\n");
         exit(1);
       }
-    else if (strcmp(BooleanExpression->printElement, "Not") == 0)
+    else if (strcmp(BooleanExpression->getprintElement(), "Not") == 0)
       {
         NotType * typ;
         if ((typ = dynamic_cast<NotType *>(BooleanExpression)))
@@ -8998,7 +8922,7 @@ void WhileActionGroupType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(BooleanExpression->printElement, "ConstantIs") == 0)
+    else if (strcmp(BooleanExpression->getprintElement(), "ConstantIs") == 0)
       {
         ConstantIsType * typ;
         if ((typ = dynamic_cast<ConstantIsType *>(BooleanExpression)))
@@ -9012,7 +8936,7 @@ void WhileActionGroupType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(BooleanExpression->printElement, "And") == 0)
+    else if (strcmp(BooleanExpression->getprintElement(), "And") == 0)
       {
         AndType * typ;
         if ((typ = dynamic_cast<AndType *>(BooleanExpression)))
@@ -9028,7 +8952,7 @@ void WhileActionGroupType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(BooleanExpression->printElement, "Or") == 0)
+    else if (strcmp(BooleanExpression->getprintElement(), "Or") == 0)
       {
         OrType * typ;
         if ((typ = dynamic_cast<OrType *>(BooleanExpression)))
@@ -9044,7 +8968,7 @@ void WhileActionGroupType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(BooleanExpression->printElement, "BooleanEqual") == 0)
+    else if (strcmp(BooleanExpression->getprintElement(), "BooleanEqual") == 0)
       {
         BooleanEqualType * typ;
         if ((typ = dynamic_cast<BooleanEqualType *>(BooleanExpression)))
@@ -9060,7 +8984,7 @@ void WhileActionGroupType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(BooleanExpression->printElement, "ArithmeticEqual") == 0)
+    else if (strcmp(BooleanExpression->getprintElement(), "ArithmeticEqual") == 0)
       {
         ArithmeticEqualType * typ;
         if ((typ = dynamic_cast<ArithmeticEqualType *>(BooleanExpression)))
@@ -9076,7 +9000,7 @@ void WhileActionGroupType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(BooleanExpression->printElement, "GreaterThan") == 0)
+    else if (strcmp(BooleanExpression->getprintElement(), "GreaterThan") == 0)
       {
         GreaterThanType * typ;
         if ((typ = dynamic_cast<GreaterThanType *>(BooleanExpression)))
@@ -9092,7 +9016,7 @@ void WhileActionGroupType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(BooleanExpression->printElement, "GreaterOrEqual") == 0)
+    else if (strcmp(BooleanExpression->getprintElement(), "GreaterOrEqual") == 0)
       {
         GreaterOrEqualType * typ;
         if ((typ = dynamic_cast<GreaterOrEqualType *>(BooleanExpression)))
@@ -9108,7 +9032,7 @@ void WhileActionGroupType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(BooleanExpression->printElement, "LessThan") == 0)
+    else if (strcmp(BooleanExpression->getprintElement(), "LessThan") == 0)
       {
         LessThanType * typ;
         if ((typ = dynamic_cast<LessThanType *>(BooleanExpression)))
@@ -9124,7 +9048,7 @@ void WhileActionGroupType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(BooleanExpression->printElement, "LessOrEqual") == 0)
+    else if (strcmp(BooleanExpression->getprintElement(), "LessOrEqual") == 0)
       {
         LessOrEqualType * typ;
         if ((typ = dynamic_cast<LessOrEqualType *>(BooleanExpression)))
@@ -9140,7 +9064,7 @@ void WhileActionGroupType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(BooleanExpression->printElement, "TokenEqual") == 0)
+    else if (strcmp(BooleanExpression->getprintElement(), "TokenEqual") == 0)
       {
         TokenEqualType * typ;
         if ((typ = dynamic_cast<TokenEqualType *>(BooleanExpression)))
@@ -9156,7 +9080,7 @@ void WhileActionGroupType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(BooleanExpression->printElement, "CharacteristicIs") == 0)
+    else if (strcmp(BooleanExpression->getprintElement(), "CharacteristicIs") == 0)
       {
         CharacteristicIsType * typ;
         if ((typ = dynamic_cast<CharacteristicIsType *>(BooleanExpression)))
@@ -9170,7 +9094,7 @@ void WhileActionGroupType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(BooleanExpression->printElement, "FeatureIsDatum") == 0)
+    else if (strcmp(BooleanExpression->getprintElement(), "FeatureIsDatum") == 0)
       {
         FeatureIsDatumType * typ;
         if ((typ = dynamic_cast<FeatureIsDatumType *>(BooleanExpression)))
@@ -9184,7 +9108,7 @@ void WhileActionGroupType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(BooleanExpression->printElement, "FeatureIsInternal") == 0)
+    else if (strcmp(BooleanExpression->getprintElement(), "FeatureIsInternal") == 0)
       {
         FeatureIsInternalType * typ;
         if ((typ = dynamic_cast<FeatureIsInternalType *>(BooleanExpression)))
@@ -9198,7 +9122,7 @@ void WhileActionGroupType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(BooleanExpression->printElement, "FeatureTypeIs") == 0)
+    else if (strcmp(BooleanExpression->getprintElement(), "FeatureTypeIs") == 0)
       {
         FeatureTypeIsType * typ;
         if ((typ = dynamic_cast<FeatureTypeIsType *>(BooleanExpression)))
@@ -9212,7 +9136,7 @@ void WhileActionGroupType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(BooleanExpression->printElement, "SamplingCategoryIs") == 0)
+    else if (strcmp(BooleanExpression->getprintElement(), "SamplingCategoryIs") == 0)
       {
         SamplingCategoryIsType * typ;
         if ((typ = dynamic_cast<SamplingCategoryIsType *>(BooleanExpression)))
@@ -9226,7 +9150,7 @@ void WhileActionGroupType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(BooleanExpression->printElement, "ShapeClassIs") == 0)
+    else if (strcmp(BooleanExpression->getprintElement(), "ShapeClassIs") == 0)
       {
         ShapeClassIsType * typ;
         if ((typ = dynamic_cast<ShapeClassIsType *>(BooleanExpression)))
@@ -9249,12 +9173,12 @@ void WhileActionGroupType::printSelf(FILE * outFile)
   }
   {
     doSpaces(0, outFile);
-    if (PlanElement->printElement == 0)
+    if (PlanElement->getprintElement() == 0)
       {
         fprintf(stderr, "element name missing\n");
         exit(1);
       }
-    else if (strcmp(PlanElement->printElement, "OrderedActionGroup") == 0)
+    else if (strcmp(PlanElement->getprintElement(), "OrderedActionGroup") == 0)
       {
         OrderedActionGroupType * typ;
         if ((typ = dynamic_cast<OrderedActionGroupType *>(PlanElement)))
@@ -9270,7 +9194,7 @@ void WhileActionGroupType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(PlanElement->printElement, "UnorderedActionGroup") == 0)
+    else if (strcmp(PlanElement->getprintElement(), "UnorderedActionGroup") == 0)
       {
         UnorderedActionGroupType * typ;
         if ((typ = dynamic_cast<UnorderedActionGroupType *>(PlanElement)))
@@ -9286,7 +9210,7 @@ void WhileActionGroupType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(PlanElement->printElement, "PartiallyOrderedActionGroup") == 0)
+    else if (strcmp(PlanElement->getprintElement(), "PartiallyOrderedActionGroup") == 0)
       {
         PartiallyOrderedActionGroupType * typ;
         if ((typ = dynamic_cast<PartiallyOrderedActionGroupType *>(PlanElement)))
@@ -9302,7 +9226,7 @@ void WhileActionGroupType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(PlanElement->printElement, "OneOfActionGroup") == 0)
+    else if (strcmp(PlanElement->getprintElement(), "OneOfActionGroup") == 0)
       {
         OneOfActionGroupType * typ;
         if ((typ = dynamic_cast<OneOfActionGroupType *>(PlanElement)))
@@ -9318,7 +9242,7 @@ void WhileActionGroupType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(PlanElement->printElement, "PickSomeActionGroup") == 0)
+    else if (strcmp(PlanElement->getprintElement(), "PickSomeActionGroup") == 0)
       {
         PickSomeActionGroupType * typ;
         if ((typ = dynamic_cast<PickSomeActionGroupType *>(PlanElement)))
@@ -9334,7 +9258,7 @@ void WhileActionGroupType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(PlanElement->printElement, "MeasureEvaluateAll") == 0)
+    else if (strcmp(PlanElement->getprintElement(), "MeasureEvaluateAll") == 0)
       {
         MeasureEvaluateAllActionType * typ;
         if ((typ = dynamic_cast<MeasureEvaluateAllActionType *>(PlanElement)))
@@ -9350,7 +9274,7 @@ void WhileActionGroupType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(PlanElement->printElement, "MeasureEvaluateSpecified") == 0)
+    else if (strcmp(PlanElement->getprintElement(), "MeasureEvaluateSpecified") == 0)
       {
         MeasureEvaluateSpecifiedActionType * typ;
         if ((typ = dynamic_cast<MeasureEvaluateSpecifiedActionType *>(PlanElement)))
@@ -9366,7 +9290,7 @@ void WhileActionGroupType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(PlanElement->printElement, "EvaluateSpecifiedCharacteristics") == 0)
+    else if (strcmp(PlanElement->getprintElement(), "EvaluateSpecifiedCharacteristics") == 0)
       {
         EvaluateSpecifiedCharacteristicsActionType * typ;
         if ((typ = dynamic_cast<EvaluateSpecifiedCharacteristicsActionType *>(PlanElement)))
@@ -9382,7 +9306,7 @@ void WhileActionGroupType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(PlanElement->printElement, "Halt") == 0)
+    else if (strcmp(PlanElement->getprintElement(), "Halt") == 0)
       {
         HaltActionType * typ;
         if ((typ = dynamic_cast<HaltActionType *>(PlanElement)))
@@ -9398,7 +9322,7 @@ void WhileActionGroupType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(PlanElement->printElement, "MeasureSpecifiedFeatures") == 0)
+    else if (strcmp(PlanElement->getprintElement(), "MeasureSpecifiedFeatures") == 0)
       {
         MeasureSpecifiedFeaturesActionType * typ;
         if ((typ = dynamic_cast<MeasureSpecifiedFeaturesActionType *>(PlanElement)))
@@ -9414,7 +9338,7 @@ void WhileActionGroupType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(PlanElement->printElement, "MeasureSpecifiedMeasurands") == 0)
+    else if (strcmp(PlanElement->getprintElement(), "MeasureSpecifiedMeasurands") == 0)
       {
         MeasureSpecifiedMeasurandsActionType * typ;
         if ((typ = dynamic_cast<MeasureSpecifiedMeasurandsActionType *>(PlanElement)))
@@ -9430,7 +9354,7 @@ void WhileActionGroupType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(PlanElement->printElement, "IfActionGroup") == 0)
+    else if (strcmp(PlanElement->getprintElement(), "IfActionGroup") == 0)
       {
         IfActionGroupType * typ;
         if ((typ = dynamic_cast<IfActionGroupType *>(PlanElement)))
@@ -9446,7 +9370,7 @@ void WhileActionGroupType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(PlanElement->printElement, "WhileActionGroup") == 0)
+    else if (strcmp(PlanElement->getprintElement(), "WhileActionGroup") == 0)
       {
         WhileActionGroupType * typ;
         if ((typ = dynamic_cast<WhileActionGroupType *>(PlanElement)))
@@ -9462,7 +9386,7 @@ void WhileActionGroupType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(PlanElement->printElement, "VariableSet") == 0)
+    else if (strcmp(PlanElement->getprintElement(), "VariableSet") == 0)
       {
         VariableSetType * typ;
         if ((typ = dynamic_cast<VariableSetType *>(PlanElement)))
@@ -9586,7 +9510,7 @@ bool WorkInstructionBaseType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -9595,12 +9519,12 @@ bool WorkInstructionBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in WorkInstructionBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -9614,7 +9538,11 @@ bool WorkInstructionBaseType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in WorkInstructionBaseType\n");
       returnValue = true;
@@ -9768,12 +9696,12 @@ void WorkInstructionsType::printSelf(FILE * outFile)
         WorkInstructionBaseType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "TextInstruction") == 0)
+        else if (strcmp(basie->getprintElement(), "TextInstruction") == 0)
           {
             TextInstructionType * typ;
             if ((typ = dynamic_cast<TextInstructionType *>(basie)))
@@ -9789,7 +9717,7 @@ void WorkInstructionsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "DocumentFileInstruction") == 0)
+        else if (strcmp(basie->getprintElement(), "DocumentFileInstruction") == 0)
           {
             DocumentFileInstructionType * typ;
             if ((typ = dynamic_cast<DocumentFileInstructionType *>(basie)))
@@ -9805,7 +9733,7 @@ void WorkInstructionsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ImageInstruction") == 0)
+        else if (strcmp(basie->getprintElement(), "ImageInstruction") == 0)
           {
             ImageInstructionType * typ;
             if ((typ = dynamic_cast<ImageInstructionType *>(basie)))
@@ -9821,7 +9749,7 @@ void WorkInstructionsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "VideoInstruction") == 0)
+        else if (strcmp(basie->getprintElement(), "VideoInstruction") == 0)
           {
             VideoInstructionType * typ;
             if ((typ = dynamic_cast<VideoInstructionType *>(basie)))
@@ -9859,7 +9787,7 @@ bool WorkInstructionsType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -9868,12 +9796,12 @@ bool WorkInstructionsType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in WorkInstructionsType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }

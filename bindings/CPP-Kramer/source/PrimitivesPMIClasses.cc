@@ -4,10 +4,12 @@
 #include <string.h>            // for strdup
 #include <stdlib.h>            // for exit
 #include <list>
+#include  <map>
 #include <xmlSchemaInstance.hh>
 #include "PrimitivesPMIClasses.hh"
 
 #define INDENT 2
+extern std::map<unsigned int, XmlSchemaInstanceBase *> idMap;
 
 /* ***************************************************************** */
 /* ***************************************************************** */
@@ -137,8 +139,8 @@ BottomEnumType::BottomEnumType(
   XmlNMTOKEN(
     valIn)
 {
-  if (!bad)
-    bad = (strcmp(val.c_str(), "BLIND") &&
+  if (!getbad())
+    setbad(strcmp(val.c_str(), "BLIND") &&
            strcmp(val.c_str(), "THROUGH") &&
            strcmp(val.c_str(), "UNDEFINED"));
 }
@@ -451,8 +453,8 @@ CoordinateEnumType::CoordinateEnumType(
   XmlNMTOKEN(
     valIn)
 {
-  if (!bad)
-    bad = (strcmp(val.c_str(), "CARTESIAN_2D") &&
+  if (!getbad())
+    setbad(strcmp(val.c_str(), "CARTESIAN_2D") &&
            strcmp(val.c_str(), "POLAR_2D") &&
            strcmp(val.c_str(), "CARTESIAN_3D") &&
            strcmp(val.c_str(), "CYLINDRICAL_3D") &&
@@ -600,8 +602,8 @@ DigitalModelFormatEnumType::DigitalModelFormatEnumType(
   XmlNMTOKEN(
     valIn)
 {
-  if (!bad)
-    bad = (strcmp(val.c_str(), "STEPAP203") &&
+  if (!getbad())
+    setbad(strcmp(val.c_str(), "STEPAP203") &&
            strcmp(val.c_str(), "STEPAP203E2") &&
            strcmp(val.c_str(), "STEPAP214") &&
            strcmp(val.c_str(), "STEPAP242") &&
@@ -759,8 +761,8 @@ DimensionCountEnumType::DimensionCountEnumType(
   XmlNMTOKEN(
     valIn)
 {
-  if (!bad)
-    bad = (strcmp(val.c_str(), "TWODIMENSIONAL") &&
+  if (!getbad())
+    setbad(strcmp(val.c_str(), "TWODIMENSIONAL") &&
            strcmp(val.c_str(), "THREEDIMENSIONAL"));
 }
 
@@ -875,8 +877,8 @@ InternalExternalEnumType::InternalExternalEnumType(
   XmlNMTOKEN(
     valIn)
 {
-  if (!bad)
-    bad = (strcmp(val.c_str(), "INTERNAL") &&
+  if (!getbad())
+    setbad(strcmp(val.c_str(), "INTERNAL") &&
            strcmp(val.c_str(), "EXTERNAL") &&
            strcmp(val.c_str(), "NOT_APPLICABLE"));
 }
@@ -966,7 +968,7 @@ ListAccumulatedStatsValuesListType::ListAccumulatedStatsValuesListType(
       strncpy(buffer, valueString + start, 199);
       buffer[n - start] = 0;
       val = new StatsValuesEnumType(buffer);
-      if (val->bad)
+      if (val->getbad())
         {
           fprintf(stderr, "%s is not a valid ListAccumulatedStatsValuesListType\n",
                   valueString);
@@ -1014,6 +1016,10 @@ void ListAccumulatedStatsValuesListType::oPrintSelf(FILE * outFile)
         fprintf(outFile, " ");
     } 
 }
+
+bool ListAccumulatedStatsValuesListType::getbad() {return bad;}
+
+void ListAccumulatedStatsValuesListType::setbad(bool badIn) {bad = badIn;}
 
 /* ***************************************************************** */
 
@@ -1146,7 +1152,7 @@ ListSubgroupStatsValuesListType::ListSubgroupStatsValuesListType(
       strncpy(buffer, valueString + start, 199);
       buffer[n - start] = 0;
       val = new SubgroupStatsValuesEnumType(buffer);
-      if (val->bad)
+      if (val->getbad())
         {
           fprintf(stderr, "%s is not a valid ListSubgroupStatsValuesListType\n",
                   valueString);
@@ -1194,6 +1200,10 @@ void ListSubgroupStatsValuesListType::oPrintSelf(FILE * outFile)
         fprintf(outFile, " ");
     } 
 }
+
+bool ListSubgroupStatsValuesListType::getbad() {return bad;}
+
+void ListSubgroupStatsValuesListType::setbad(bool badIn) {bad = badIn;}
 
 /* ***************************************************************** */
 
@@ -1326,7 +1336,7 @@ ListSummaryStatsValuesListType::ListSummaryStatsValuesListType(
       strncpy(buffer, valueString + start, 199);
       buffer[n - start] = 0;
       val = new StatsValuesEnumType(buffer);
-      if (val->bad)
+      if (val->getbad())
         {
           fprintf(stderr, "%s is not a valid ListSummaryStatsValuesListType\n",
                   valueString);
@@ -1374,6 +1384,10 @@ void ListSummaryStatsValuesListType::oPrintSelf(FILE * outFile)
         fprintf(outFile, " ");
     } 
 }
+
+bool ListSummaryStatsValuesListType::getbad() {return bad;}
+
+void ListSummaryStatsValuesListType::setbad(bool badIn) {bad = badIn;}
 
 /* ***************************************************************** */
 
@@ -1440,8 +1454,8 @@ ManufacturingMethodEnumType::ManufacturingMethodEnumType(
   XmlNMTOKEN(
     valIn)
 {
-  if (!bad)
-    bad = (strcmp(val.c_str(), "ADDITIVE") &&
+  if (!getbad())
+    setbad(strcmp(val.c_str(), "ADDITIVE") &&
            strcmp(val.c_str(), "CASTING") &&
            strcmp(val.c_str(), "COMPOSITE") &&
            strcmp(val.c_str(), "FABRICATION") &&
@@ -2280,7 +2294,7 @@ bool MeasuredPointType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "combinedUncertainty")
+      if (decl->getname() == "combinedUncertainty")
         {
           XmlDecimal * combinedUncertaintyVal;
           if (this->combinedUncertainty)
@@ -2289,19 +2303,19 @@ bool MeasuredPointType::badAttributes(
               returnValue = true;
               break;
             }
-          combinedUncertaintyVal = new XmlDecimal(decl->val.c_str());
-          if (combinedUncertaintyVal->bad)
+          combinedUncertaintyVal = new XmlDecimal(decl->getval().c_str());
+          if (combinedUncertaintyVal->getbad())
             {
               delete combinedUncertaintyVal;
               fprintf(stderr, "bad value %s for combinedUncertainty in MeasuredPointType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->combinedUncertainty = combinedUncertaintyVal;
         }
-      else if (decl->name == "decimalPlaces")
+      else if (decl->getname() == "decimalPlaces")
         {
           XmlNonNegativeInteger * decimalPlacesVal;
           if (this->decimalPlaces)
@@ -2310,19 +2324,19 @@ bool MeasuredPointType::badAttributes(
               returnValue = true;
               break;
             }
-          decimalPlacesVal = new XmlNonNegativeInteger(decl->val.c_str());
-          if (decimalPlacesVal->bad)
+          decimalPlacesVal = new XmlNonNegativeInteger(decl->getval().c_str());
+          if (decimalPlacesVal->getbad())
             {
               delete decimalPlacesVal;
               fprintf(stderr, "bad value %s for decimalPlaces in MeasuredPointType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->decimalPlaces = decimalPlacesVal;
         }
-      else if (decl->name == "linearUnit")
+      else if (decl->getname() == "linearUnit")
         {
           XmlToken * linearUnitVal;
           if (this->linearUnit)
@@ -2331,19 +2345,19 @@ bool MeasuredPointType::badAttributes(
               returnValue = true;
               break;
             }
-          linearUnitVal = new XmlToken(decl->val.c_str());
-          if (linearUnitVal->bad)
+          linearUnitVal = new XmlToken(decl->getval().c_str());
+          if (linearUnitVal->getbad())
             {
               delete linearUnitVal;
               fprintf(stderr, "bad value %s for linearUnit in MeasuredPointType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->linearUnit = linearUnitVal;
         }
-      else if (decl->name == "meanError")
+      else if (decl->getname() == "meanError")
         {
           XmlDecimal * meanErrorVal;
           if (this->meanError)
@@ -2352,19 +2366,19 @@ bool MeasuredPointType::badAttributes(
               returnValue = true;
               break;
             }
-          meanErrorVal = new XmlDecimal(decl->val.c_str());
-          if (meanErrorVal->bad)
+          meanErrorVal = new XmlDecimal(decl->getval().c_str());
+          if (meanErrorVal->getbad())
             {
               delete meanErrorVal;
               fprintf(stderr, "bad value %s for meanError in MeasuredPointType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->meanError = meanErrorVal;
         }
-      else if (decl->name == "significantFigures")
+      else if (decl->getname() == "significantFigures")
         {
           XmlNonNegativeInteger * significantFiguresVal;
           if (this->significantFigures)
@@ -2373,19 +2387,19 @@ bool MeasuredPointType::badAttributes(
               returnValue = true;
               break;
             }
-          significantFiguresVal = new XmlNonNegativeInteger(decl->val.c_str());
-          if (significantFiguresVal->bad)
+          significantFiguresVal = new XmlNonNegativeInteger(decl->getval().c_str());
+          if (significantFiguresVal->getbad())
             {
               delete significantFiguresVal;
               fprintf(stderr, "bad value %s for significantFigures in MeasuredPointType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->significantFigures = significantFiguresVal;
         }
-      else if (decl->name == "validity")
+      else if (decl->getname() == "validity")
         {
           ValidityEnumType * validityVal;
           if (this->validity)
@@ -2394,19 +2408,19 @@ bool MeasuredPointType::badAttributes(
               returnValue = true;
               break;
             }
-          validityVal = new ValidityEnumType(decl->val.c_str());
-          if (validityVal->bad)
+          validityVal = new ValidityEnumType(decl->getval().c_str());
+          if (validityVal->getbad())
             {
               delete validityVal;
               fprintf(stderr, "bad value %s for validity in MeasuredPointType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->validity = validityVal;
         }
-      else if (decl->name == "xCombinedUncertainty")
+      else if (decl->getname() == "xCombinedUncertainty")
         {
           XmlDecimal * xCombinedUncertaintyVal;
           if (this->xCombinedUncertainty)
@@ -2415,19 +2429,19 @@ bool MeasuredPointType::badAttributes(
               returnValue = true;
               break;
             }
-          xCombinedUncertaintyVal = new XmlDecimal(decl->val.c_str());
-          if (xCombinedUncertaintyVal->bad)
+          xCombinedUncertaintyVal = new XmlDecimal(decl->getval().c_str());
+          if (xCombinedUncertaintyVal->getbad())
             {
               delete xCombinedUncertaintyVal;
               fprintf(stderr, "bad value %s for xCombinedUncertainty in MeasuredPointType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->xCombinedUncertainty = xCombinedUncertaintyVal;
         }
-      else if (decl->name == "xDecimalPlaces")
+      else if (decl->getname() == "xDecimalPlaces")
         {
           XmlNonNegativeInteger * xDecimalPlacesVal;
           if (this->xDecimalPlaces)
@@ -2436,19 +2450,19 @@ bool MeasuredPointType::badAttributes(
               returnValue = true;
               break;
             }
-          xDecimalPlacesVal = new XmlNonNegativeInteger(decl->val.c_str());
-          if (xDecimalPlacesVal->bad)
+          xDecimalPlacesVal = new XmlNonNegativeInteger(decl->getval().c_str());
+          if (xDecimalPlacesVal->getbad())
             {
               delete xDecimalPlacesVal;
               fprintf(stderr, "bad value %s for xDecimalPlaces in MeasuredPointType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->xDecimalPlaces = xDecimalPlacesVal;
         }
-      else if (decl->name == "xMeanError")
+      else if (decl->getname() == "xMeanError")
         {
           XmlDecimal * xMeanErrorVal;
           if (this->xMeanError)
@@ -2457,19 +2471,19 @@ bool MeasuredPointType::badAttributes(
               returnValue = true;
               break;
             }
-          xMeanErrorVal = new XmlDecimal(decl->val.c_str());
-          if (xMeanErrorVal->bad)
+          xMeanErrorVal = new XmlDecimal(decl->getval().c_str());
+          if (xMeanErrorVal->getbad())
             {
               delete xMeanErrorVal;
               fprintf(stderr, "bad value %s for xMeanError in MeasuredPointType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->xMeanError = xMeanErrorVal;
         }
-      else if (decl->name == "xSignificantFigures")
+      else if (decl->getname() == "xSignificantFigures")
         {
           XmlNonNegativeInteger * xSignificantFiguresVal;
           if (this->xSignificantFigures)
@@ -2478,19 +2492,19 @@ bool MeasuredPointType::badAttributes(
               returnValue = true;
               break;
             }
-          xSignificantFiguresVal = new XmlNonNegativeInteger(decl->val.c_str());
-          if (xSignificantFiguresVal->bad)
+          xSignificantFiguresVal = new XmlNonNegativeInteger(decl->getval().c_str());
+          if (xSignificantFiguresVal->getbad())
             {
               delete xSignificantFiguresVal;
               fprintf(stderr, "bad value %s for xSignificantFigures in MeasuredPointType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->xSignificantFigures = xSignificantFiguresVal;
         }
-      else if (decl->name == "xValidity")
+      else if (decl->getname() == "xValidity")
         {
           ValidityEnumType * xValidityVal;
           if (this->xValidity)
@@ -2499,19 +2513,19 @@ bool MeasuredPointType::badAttributes(
               returnValue = true;
               break;
             }
-          xValidityVal = new ValidityEnumType(decl->val.c_str());
-          if (xValidityVal->bad)
+          xValidityVal = new ValidityEnumType(decl->getval().c_str());
+          if (xValidityVal->getbad())
             {
               delete xValidityVal;
               fprintf(stderr, "bad value %s for xValidity in MeasuredPointType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->xValidity = xValidityVal;
         }
-      else if (decl->name == "yCombinedUncertainty")
+      else if (decl->getname() == "yCombinedUncertainty")
         {
           XmlDecimal * yCombinedUncertaintyVal;
           if (this->yCombinedUncertainty)
@@ -2520,19 +2534,19 @@ bool MeasuredPointType::badAttributes(
               returnValue = true;
               break;
             }
-          yCombinedUncertaintyVal = new XmlDecimal(decl->val.c_str());
-          if (yCombinedUncertaintyVal->bad)
+          yCombinedUncertaintyVal = new XmlDecimal(decl->getval().c_str());
+          if (yCombinedUncertaintyVal->getbad())
             {
               delete yCombinedUncertaintyVal;
               fprintf(stderr, "bad value %s for yCombinedUncertainty in MeasuredPointType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->yCombinedUncertainty = yCombinedUncertaintyVal;
         }
-      else if (decl->name == "yDecimalPlaces")
+      else if (decl->getname() == "yDecimalPlaces")
         {
           XmlNonNegativeInteger * yDecimalPlacesVal;
           if (this->yDecimalPlaces)
@@ -2541,19 +2555,19 @@ bool MeasuredPointType::badAttributes(
               returnValue = true;
               break;
             }
-          yDecimalPlacesVal = new XmlNonNegativeInteger(decl->val.c_str());
-          if (yDecimalPlacesVal->bad)
+          yDecimalPlacesVal = new XmlNonNegativeInteger(decl->getval().c_str());
+          if (yDecimalPlacesVal->getbad())
             {
               delete yDecimalPlacesVal;
               fprintf(stderr, "bad value %s for yDecimalPlaces in MeasuredPointType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->yDecimalPlaces = yDecimalPlacesVal;
         }
-      else if (decl->name == "yMeanError")
+      else if (decl->getname() == "yMeanError")
         {
           XmlDecimal * yMeanErrorVal;
           if (this->yMeanError)
@@ -2562,19 +2576,19 @@ bool MeasuredPointType::badAttributes(
               returnValue = true;
               break;
             }
-          yMeanErrorVal = new XmlDecimal(decl->val.c_str());
-          if (yMeanErrorVal->bad)
+          yMeanErrorVal = new XmlDecimal(decl->getval().c_str());
+          if (yMeanErrorVal->getbad())
             {
               delete yMeanErrorVal;
               fprintf(stderr, "bad value %s for yMeanError in MeasuredPointType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->yMeanError = yMeanErrorVal;
         }
-      else if (decl->name == "ySignificantFigures")
+      else if (decl->getname() == "ySignificantFigures")
         {
           XmlNonNegativeInteger * ySignificantFiguresVal;
           if (this->ySignificantFigures)
@@ -2583,19 +2597,19 @@ bool MeasuredPointType::badAttributes(
               returnValue = true;
               break;
             }
-          ySignificantFiguresVal = new XmlNonNegativeInteger(decl->val.c_str());
-          if (ySignificantFiguresVal->bad)
+          ySignificantFiguresVal = new XmlNonNegativeInteger(decl->getval().c_str());
+          if (ySignificantFiguresVal->getbad())
             {
               delete ySignificantFiguresVal;
               fprintf(stderr, "bad value %s for ySignificantFigures in MeasuredPointType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->ySignificantFigures = ySignificantFiguresVal;
         }
-      else if (decl->name == "yValidity")
+      else if (decl->getname() == "yValidity")
         {
           ValidityEnumType * yValidityVal;
           if (this->yValidity)
@@ -2604,19 +2618,19 @@ bool MeasuredPointType::badAttributes(
               returnValue = true;
               break;
             }
-          yValidityVal = new ValidityEnumType(decl->val.c_str());
-          if (yValidityVal->bad)
+          yValidityVal = new ValidityEnumType(decl->getval().c_str());
+          if (yValidityVal->getbad())
             {
               delete yValidityVal;
               fprintf(stderr, "bad value %s for yValidity in MeasuredPointType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->yValidity = yValidityVal;
         }
-      else if (decl->name == "zCombinedUncertainty")
+      else if (decl->getname() == "zCombinedUncertainty")
         {
           XmlDecimal * zCombinedUncertaintyVal;
           if (this->zCombinedUncertainty)
@@ -2625,19 +2639,19 @@ bool MeasuredPointType::badAttributes(
               returnValue = true;
               break;
             }
-          zCombinedUncertaintyVal = new XmlDecimal(decl->val.c_str());
-          if (zCombinedUncertaintyVal->bad)
+          zCombinedUncertaintyVal = new XmlDecimal(decl->getval().c_str());
+          if (zCombinedUncertaintyVal->getbad())
             {
               delete zCombinedUncertaintyVal;
               fprintf(stderr, "bad value %s for zCombinedUncertainty in MeasuredPointType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->zCombinedUncertainty = zCombinedUncertaintyVal;
         }
-      else if (decl->name == "zDecimalPlaces")
+      else if (decl->getname() == "zDecimalPlaces")
         {
           XmlNonNegativeInteger * zDecimalPlacesVal;
           if (this->zDecimalPlaces)
@@ -2646,19 +2660,19 @@ bool MeasuredPointType::badAttributes(
               returnValue = true;
               break;
             }
-          zDecimalPlacesVal = new XmlNonNegativeInteger(decl->val.c_str());
-          if (zDecimalPlacesVal->bad)
+          zDecimalPlacesVal = new XmlNonNegativeInteger(decl->getval().c_str());
+          if (zDecimalPlacesVal->getbad())
             {
               delete zDecimalPlacesVal;
               fprintf(stderr, "bad value %s for zDecimalPlaces in MeasuredPointType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->zDecimalPlaces = zDecimalPlacesVal;
         }
-      else if (decl->name == "zMeanError")
+      else if (decl->getname() == "zMeanError")
         {
           XmlDecimal * zMeanErrorVal;
           if (this->zMeanError)
@@ -2667,19 +2681,19 @@ bool MeasuredPointType::badAttributes(
               returnValue = true;
               break;
             }
-          zMeanErrorVal = new XmlDecimal(decl->val.c_str());
-          if (zMeanErrorVal->bad)
+          zMeanErrorVal = new XmlDecimal(decl->getval().c_str());
+          if (zMeanErrorVal->getbad())
             {
               delete zMeanErrorVal;
               fprintf(stderr, "bad value %s for zMeanError in MeasuredPointType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->zMeanError = zMeanErrorVal;
         }
-      else if (decl->name == "zSignificantFigures")
+      else if (decl->getname() == "zSignificantFigures")
         {
           XmlNonNegativeInteger * zSignificantFiguresVal;
           if (this->zSignificantFigures)
@@ -2688,19 +2702,19 @@ bool MeasuredPointType::badAttributes(
               returnValue = true;
               break;
             }
-          zSignificantFiguresVal = new XmlNonNegativeInteger(decl->val.c_str());
-          if (zSignificantFiguresVal->bad)
+          zSignificantFiguresVal = new XmlNonNegativeInteger(decl->getval().c_str());
+          if (zSignificantFiguresVal->getbad())
             {
               delete zSignificantFiguresVal;
               fprintf(stderr, "bad value %s for zSignificantFigures in MeasuredPointType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->zSignificantFigures = zSignificantFiguresVal;
         }
-      else if (decl->name == "zValidity")
+      else if (decl->getname() == "zValidity")
         {
           ValidityEnumType * zValidityVal;
           if (this->zValidity)
@@ -2709,12 +2723,12 @@ bool MeasuredPointType::badAttributes(
               returnValue = true;
               break;
             }
-          zValidityVal = new ValidityEnumType(decl->val.c_str());
-          if (zValidityVal->bad)
+          zValidityVal = new ValidityEnumType(decl->getval().c_str());
+          if (zValidityVal->getbad())
             {
               delete zValidityVal;
               fprintf(stderr, "bad value %s for zValidity in MeasuredPointType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -3317,7 +3331,7 @@ bool MeasuredUnitVectorType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "combinedUncertainty")
+      if (decl->getname() == "combinedUncertainty")
         {
           XmlDecimal * combinedUncertaintyVal;
           if (this->combinedUncertainty)
@@ -3326,19 +3340,19 @@ bool MeasuredUnitVectorType::badAttributes(
               returnValue = true;
               break;
             }
-          combinedUncertaintyVal = new XmlDecimal(decl->val.c_str());
-          if (combinedUncertaintyVal->bad)
+          combinedUncertaintyVal = new XmlDecimal(decl->getval().c_str());
+          if (combinedUncertaintyVal->getbad())
             {
               delete combinedUncertaintyVal;
               fprintf(stderr, "bad value %s for combinedUncertainty in MeasuredUnitVectorType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->combinedUncertainty = combinedUncertaintyVal;
         }
-      else if (decl->name == "decimalPlaces")
+      else if (decl->getname() == "decimalPlaces")
         {
           XmlNonNegativeInteger * decimalPlacesVal;
           if (this->decimalPlaces)
@@ -3347,19 +3361,19 @@ bool MeasuredUnitVectorType::badAttributes(
               returnValue = true;
               break;
             }
-          decimalPlacesVal = new XmlNonNegativeInteger(decl->val.c_str());
-          if (decimalPlacesVal->bad)
+          decimalPlacesVal = new XmlNonNegativeInteger(decl->getval().c_str());
+          if (decimalPlacesVal->getbad())
             {
               delete decimalPlacesVal;
               fprintf(stderr, "bad value %s for decimalPlaces in MeasuredUnitVectorType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->decimalPlaces = decimalPlacesVal;
         }
-      else if (decl->name == "linearUnit")
+      else if (decl->getname() == "linearUnit")
         {
           XmlToken * linearUnitVal;
           if (this->linearUnit)
@@ -3368,19 +3382,19 @@ bool MeasuredUnitVectorType::badAttributes(
               returnValue = true;
               break;
             }
-          linearUnitVal = new XmlToken(decl->val.c_str());
-          if (linearUnitVal->bad)
+          linearUnitVal = new XmlToken(decl->getval().c_str());
+          if (linearUnitVal->getbad())
             {
               delete linearUnitVal;
               fprintf(stderr, "bad value %s for linearUnit in MeasuredUnitVectorType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->linearUnit = linearUnitVal;
         }
-      else if (decl->name == "meanError")
+      else if (decl->getname() == "meanError")
         {
           XmlDecimal * meanErrorVal;
           if (this->meanError)
@@ -3389,19 +3403,19 @@ bool MeasuredUnitVectorType::badAttributes(
               returnValue = true;
               break;
             }
-          meanErrorVal = new XmlDecimal(decl->val.c_str());
-          if (meanErrorVal->bad)
+          meanErrorVal = new XmlDecimal(decl->getval().c_str());
+          if (meanErrorVal->getbad())
             {
               delete meanErrorVal;
               fprintf(stderr, "bad value %s for meanError in MeasuredUnitVectorType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->meanError = meanErrorVal;
         }
-      else if (decl->name == "significantFigures")
+      else if (decl->getname() == "significantFigures")
         {
           XmlNonNegativeInteger * significantFiguresVal;
           if (this->significantFigures)
@@ -3410,19 +3424,19 @@ bool MeasuredUnitVectorType::badAttributes(
               returnValue = true;
               break;
             }
-          significantFiguresVal = new XmlNonNegativeInteger(decl->val.c_str());
-          if (significantFiguresVal->bad)
+          significantFiguresVal = new XmlNonNegativeInteger(decl->getval().c_str());
+          if (significantFiguresVal->getbad())
             {
               delete significantFiguresVal;
               fprintf(stderr, "bad value %s for significantFigures in MeasuredUnitVectorType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->significantFigures = significantFiguresVal;
         }
-      else if (decl->name == "validity")
+      else if (decl->getname() == "validity")
         {
           ValidityEnumType * validityVal;
           if (this->validity)
@@ -3431,19 +3445,19 @@ bool MeasuredUnitVectorType::badAttributes(
               returnValue = true;
               break;
             }
-          validityVal = new ValidityEnumType(decl->val.c_str());
-          if (validityVal->bad)
+          validityVal = new ValidityEnumType(decl->getval().c_str());
+          if (validityVal->getbad())
             {
               delete validityVal;
               fprintf(stderr, "bad value %s for validity in MeasuredUnitVectorType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->validity = validityVal;
         }
-      else if (decl->name == "xCombinedUncertainty")
+      else if (decl->getname() == "xCombinedUncertainty")
         {
           XmlDecimal * xCombinedUncertaintyVal;
           if (this->xCombinedUncertainty)
@@ -3452,19 +3466,19 @@ bool MeasuredUnitVectorType::badAttributes(
               returnValue = true;
               break;
             }
-          xCombinedUncertaintyVal = new XmlDecimal(decl->val.c_str());
-          if (xCombinedUncertaintyVal->bad)
+          xCombinedUncertaintyVal = new XmlDecimal(decl->getval().c_str());
+          if (xCombinedUncertaintyVal->getbad())
             {
               delete xCombinedUncertaintyVal;
               fprintf(stderr, "bad value %s for xCombinedUncertainty in MeasuredUnitVectorType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->xCombinedUncertainty = xCombinedUncertaintyVal;
         }
-      else if (decl->name == "xDecimalPlaces")
+      else if (decl->getname() == "xDecimalPlaces")
         {
           XmlNonNegativeInteger * xDecimalPlacesVal;
           if (this->xDecimalPlaces)
@@ -3473,19 +3487,19 @@ bool MeasuredUnitVectorType::badAttributes(
               returnValue = true;
               break;
             }
-          xDecimalPlacesVal = new XmlNonNegativeInteger(decl->val.c_str());
-          if (xDecimalPlacesVal->bad)
+          xDecimalPlacesVal = new XmlNonNegativeInteger(decl->getval().c_str());
+          if (xDecimalPlacesVal->getbad())
             {
               delete xDecimalPlacesVal;
               fprintf(stderr, "bad value %s for xDecimalPlaces in MeasuredUnitVectorType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->xDecimalPlaces = xDecimalPlacesVal;
         }
-      else if (decl->name == "xMeanError")
+      else if (decl->getname() == "xMeanError")
         {
           XmlDecimal * xMeanErrorVal;
           if (this->xMeanError)
@@ -3494,19 +3508,19 @@ bool MeasuredUnitVectorType::badAttributes(
               returnValue = true;
               break;
             }
-          xMeanErrorVal = new XmlDecimal(decl->val.c_str());
-          if (xMeanErrorVal->bad)
+          xMeanErrorVal = new XmlDecimal(decl->getval().c_str());
+          if (xMeanErrorVal->getbad())
             {
               delete xMeanErrorVal;
               fprintf(stderr, "bad value %s for xMeanError in MeasuredUnitVectorType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->xMeanError = xMeanErrorVal;
         }
-      else if (decl->name == "xSignificantFigures")
+      else if (decl->getname() == "xSignificantFigures")
         {
           XmlNonNegativeInteger * xSignificantFiguresVal;
           if (this->xSignificantFigures)
@@ -3515,19 +3529,19 @@ bool MeasuredUnitVectorType::badAttributes(
               returnValue = true;
               break;
             }
-          xSignificantFiguresVal = new XmlNonNegativeInteger(decl->val.c_str());
-          if (xSignificantFiguresVal->bad)
+          xSignificantFiguresVal = new XmlNonNegativeInteger(decl->getval().c_str());
+          if (xSignificantFiguresVal->getbad())
             {
               delete xSignificantFiguresVal;
               fprintf(stderr, "bad value %s for xSignificantFigures in MeasuredUnitVectorType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->xSignificantFigures = xSignificantFiguresVal;
         }
-      else if (decl->name == "xValidity")
+      else if (decl->getname() == "xValidity")
         {
           ValidityEnumType * xValidityVal;
           if (this->xValidity)
@@ -3536,19 +3550,19 @@ bool MeasuredUnitVectorType::badAttributes(
               returnValue = true;
               break;
             }
-          xValidityVal = new ValidityEnumType(decl->val.c_str());
-          if (xValidityVal->bad)
+          xValidityVal = new ValidityEnumType(decl->getval().c_str());
+          if (xValidityVal->getbad())
             {
               delete xValidityVal;
               fprintf(stderr, "bad value %s for xValidity in MeasuredUnitVectorType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->xValidity = xValidityVal;
         }
-      else if (decl->name == "yCombinedUncertainty")
+      else if (decl->getname() == "yCombinedUncertainty")
         {
           XmlDecimal * yCombinedUncertaintyVal;
           if (this->yCombinedUncertainty)
@@ -3557,19 +3571,19 @@ bool MeasuredUnitVectorType::badAttributes(
               returnValue = true;
               break;
             }
-          yCombinedUncertaintyVal = new XmlDecimal(decl->val.c_str());
-          if (yCombinedUncertaintyVal->bad)
+          yCombinedUncertaintyVal = new XmlDecimal(decl->getval().c_str());
+          if (yCombinedUncertaintyVal->getbad())
             {
               delete yCombinedUncertaintyVal;
               fprintf(stderr, "bad value %s for yCombinedUncertainty in MeasuredUnitVectorType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->yCombinedUncertainty = yCombinedUncertaintyVal;
         }
-      else if (decl->name == "yDecimalPlaces")
+      else if (decl->getname() == "yDecimalPlaces")
         {
           XmlNonNegativeInteger * yDecimalPlacesVal;
           if (this->yDecimalPlaces)
@@ -3578,19 +3592,19 @@ bool MeasuredUnitVectorType::badAttributes(
               returnValue = true;
               break;
             }
-          yDecimalPlacesVal = new XmlNonNegativeInteger(decl->val.c_str());
-          if (yDecimalPlacesVal->bad)
+          yDecimalPlacesVal = new XmlNonNegativeInteger(decl->getval().c_str());
+          if (yDecimalPlacesVal->getbad())
             {
               delete yDecimalPlacesVal;
               fprintf(stderr, "bad value %s for yDecimalPlaces in MeasuredUnitVectorType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->yDecimalPlaces = yDecimalPlacesVal;
         }
-      else if (decl->name == "yMeanError")
+      else if (decl->getname() == "yMeanError")
         {
           XmlDecimal * yMeanErrorVal;
           if (this->yMeanError)
@@ -3599,19 +3613,19 @@ bool MeasuredUnitVectorType::badAttributes(
               returnValue = true;
               break;
             }
-          yMeanErrorVal = new XmlDecimal(decl->val.c_str());
-          if (yMeanErrorVal->bad)
+          yMeanErrorVal = new XmlDecimal(decl->getval().c_str());
+          if (yMeanErrorVal->getbad())
             {
               delete yMeanErrorVal;
               fprintf(stderr, "bad value %s for yMeanError in MeasuredUnitVectorType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->yMeanError = yMeanErrorVal;
         }
-      else if (decl->name == "ySignificantFigures")
+      else if (decl->getname() == "ySignificantFigures")
         {
           XmlNonNegativeInteger * ySignificantFiguresVal;
           if (this->ySignificantFigures)
@@ -3620,19 +3634,19 @@ bool MeasuredUnitVectorType::badAttributes(
               returnValue = true;
               break;
             }
-          ySignificantFiguresVal = new XmlNonNegativeInteger(decl->val.c_str());
-          if (ySignificantFiguresVal->bad)
+          ySignificantFiguresVal = new XmlNonNegativeInteger(decl->getval().c_str());
+          if (ySignificantFiguresVal->getbad())
             {
               delete ySignificantFiguresVal;
               fprintf(stderr, "bad value %s for ySignificantFigures in MeasuredUnitVectorType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->ySignificantFigures = ySignificantFiguresVal;
         }
-      else if (decl->name == "yValidity")
+      else if (decl->getname() == "yValidity")
         {
           ValidityEnumType * yValidityVal;
           if (this->yValidity)
@@ -3641,19 +3655,19 @@ bool MeasuredUnitVectorType::badAttributes(
               returnValue = true;
               break;
             }
-          yValidityVal = new ValidityEnumType(decl->val.c_str());
-          if (yValidityVal->bad)
+          yValidityVal = new ValidityEnumType(decl->getval().c_str());
+          if (yValidityVal->getbad())
             {
               delete yValidityVal;
               fprintf(stderr, "bad value %s for yValidity in MeasuredUnitVectorType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->yValidity = yValidityVal;
         }
-      else if (decl->name == "zCombinedUncertainty")
+      else if (decl->getname() == "zCombinedUncertainty")
         {
           XmlDecimal * zCombinedUncertaintyVal;
           if (this->zCombinedUncertainty)
@@ -3662,19 +3676,19 @@ bool MeasuredUnitVectorType::badAttributes(
               returnValue = true;
               break;
             }
-          zCombinedUncertaintyVal = new XmlDecimal(decl->val.c_str());
-          if (zCombinedUncertaintyVal->bad)
+          zCombinedUncertaintyVal = new XmlDecimal(decl->getval().c_str());
+          if (zCombinedUncertaintyVal->getbad())
             {
               delete zCombinedUncertaintyVal;
               fprintf(stderr, "bad value %s for zCombinedUncertainty in MeasuredUnitVectorType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->zCombinedUncertainty = zCombinedUncertaintyVal;
         }
-      else if (decl->name == "zDecimalPlaces")
+      else if (decl->getname() == "zDecimalPlaces")
         {
           XmlNonNegativeInteger * zDecimalPlacesVal;
           if (this->zDecimalPlaces)
@@ -3683,19 +3697,19 @@ bool MeasuredUnitVectorType::badAttributes(
               returnValue = true;
               break;
             }
-          zDecimalPlacesVal = new XmlNonNegativeInteger(decl->val.c_str());
-          if (zDecimalPlacesVal->bad)
+          zDecimalPlacesVal = new XmlNonNegativeInteger(decl->getval().c_str());
+          if (zDecimalPlacesVal->getbad())
             {
               delete zDecimalPlacesVal;
               fprintf(stderr, "bad value %s for zDecimalPlaces in MeasuredUnitVectorType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->zDecimalPlaces = zDecimalPlacesVal;
         }
-      else if (decl->name == "zMeanError")
+      else if (decl->getname() == "zMeanError")
         {
           XmlDecimal * zMeanErrorVal;
           if (this->zMeanError)
@@ -3704,19 +3718,19 @@ bool MeasuredUnitVectorType::badAttributes(
               returnValue = true;
               break;
             }
-          zMeanErrorVal = new XmlDecimal(decl->val.c_str());
-          if (zMeanErrorVal->bad)
+          zMeanErrorVal = new XmlDecimal(decl->getval().c_str());
+          if (zMeanErrorVal->getbad())
             {
               delete zMeanErrorVal;
               fprintf(stderr, "bad value %s for zMeanError in MeasuredUnitVectorType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->zMeanError = zMeanErrorVal;
         }
-      else if (decl->name == "zSignificantFigures")
+      else if (decl->getname() == "zSignificantFigures")
         {
           XmlNonNegativeInteger * zSignificantFiguresVal;
           if (this->zSignificantFigures)
@@ -3725,19 +3739,19 @@ bool MeasuredUnitVectorType::badAttributes(
               returnValue = true;
               break;
             }
-          zSignificantFiguresVal = new XmlNonNegativeInteger(decl->val.c_str());
-          if (zSignificantFiguresVal->bad)
+          zSignificantFiguresVal = new XmlNonNegativeInteger(decl->getval().c_str());
+          if (zSignificantFiguresVal->getbad())
             {
               delete zSignificantFiguresVal;
               fprintf(stderr, "bad value %s for zSignificantFigures in MeasuredUnitVectorType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->zSignificantFigures = zSignificantFiguresVal;
         }
-      else if (decl->name == "zValidity")
+      else if (decl->getname() == "zValidity")
         {
           ValidityEnumType * zValidityVal;
           if (this->zValidity)
@@ -3746,12 +3760,12 @@ bool MeasuredUnitVectorType::badAttributes(
               returnValue = true;
               break;
             }
-          zValidityVal = new ValidityEnumType(decl->val.c_str());
-          if (zValidityVal->bad)
+          zValidityVal = new ValidityEnumType(decl->getval().c_str());
+          if (zValidityVal->getbad())
             {
               delete zValidityVal;
               fprintf(stderr, "bad value %s for zValidity in MeasuredUnitVectorType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -4282,8 +4296,8 @@ SecurityClassificationEnumType::SecurityClassificationEnumType(
   XmlNMTOKEN(
     valIn)
 {
-  if (!bad)
-    bad = (strcmp(val.c_str(), "COMPANY_CONFIDENTIAL") &&
+  if (!getbad())
+    setbad(strcmp(val.c_str(), "COMPANY_CONFIDENTIAL") &&
            strcmp(val.c_str(), "CONFIDENTIAL") &&
            strcmp(val.c_str(), "EU_CONFIDENTIAL") &&
            strcmp(val.c_str(), "EU_RESTRICTED") &&
@@ -4473,8 +4487,8 @@ ShapeClassEnumType::ShapeClassEnumType(
   XmlNMTOKEN(
     valIn)
 {
-  if (!bad)
-    bad = (strcmp(val.c_str(), "GEAR") &&
+  if (!getbad())
+    setbad(strcmp(val.c_str(), "GEAR") &&
            strcmp(val.c_str(), "FREEFORM") &&
            strcmp(val.c_str(), "PRISMATIC") &&
            strcmp(val.c_str(), "ROTATIONAL") &&
@@ -4612,8 +4626,8 @@ SlotEndEnumType::SlotEndEnumType(
   XmlNMTOKEN(
     valIn)
 {
-  if (!bad)
-    bad = (strcmp(val.c_str(), "ROUND") &&
+  if (!getbad())
+    setbad(strcmp(val.c_str(), "ROUND") &&
            strcmp(val.c_str(), "FLAT") &&
            strcmp(val.c_str(), "OPEN") &&
            strcmp(val.c_str(), "UNDEFINED"));
@@ -5019,8 +5033,8 @@ StatsValuesEnumType::StatsValuesEnumType(
   XmlNMTOKEN(
     valIn)
 {
-  if (!bad)
-    bad = (strcmp(val.c_str(), "TOTNUM") &&
+  if (!getbad())
+    setbad(strcmp(val.c_str(), "TOTNUM") &&
            strcmp(val.c_str(), "EFFNUM") &&
            strcmp(val.c_str(), "NUMSUB") &&
            strcmp(val.c_str(), "AVG") &&
@@ -5391,7 +5405,7 @@ bool SubgroupDecimalArrayType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -5400,12 +5414,12 @@ bool SubgroupDecimalArrayType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in SubgroupDecimalArrayType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -5606,7 +5620,7 @@ bool SubgroupDecimalType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "combinedUncertainty")
+      if (decl->getname() == "combinedUncertainty")
         {
           NonNegativeDecimalType * combinedUncertaintyVal;
           if (this->combinedUncertainty)
@@ -5615,19 +5629,19 @@ bool SubgroupDecimalType::badAttributes(
               returnValue = true;
               break;
             }
-          combinedUncertaintyVal = new NonNegativeDecimalType(decl->val.c_str());
-          if (combinedUncertaintyVal->bad)
+          combinedUncertaintyVal = new NonNegativeDecimalType(decl->getval().c_str());
+          if (combinedUncertaintyVal->getbad())
             {
               delete combinedUncertaintyVal;
               fprintf(stderr, "bad value %s for combinedUncertainty in SubgroupDecimalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->combinedUncertainty = combinedUncertaintyVal;
         }
-      else if (decl->name == "decimalPlaces")
+      else if (decl->getname() == "decimalPlaces")
         {
           XmlNonNegativeInteger * decimalPlacesVal;
           if (this->decimalPlaces)
@@ -5636,19 +5650,19 @@ bool SubgroupDecimalType::badAttributes(
               returnValue = true;
               break;
             }
-          decimalPlacesVal = new XmlNonNegativeInteger(decl->val.c_str());
-          if (decimalPlacesVal->bad)
+          decimalPlacesVal = new XmlNonNegativeInteger(decl->getval().c_str());
+          if (decimalPlacesVal->getbad())
             {
               delete decimalPlacesVal;
               fprintf(stderr, "bad value %s for decimalPlaces in SubgroupDecimalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->decimalPlaces = decimalPlacesVal;
         }
-      else if (decl->name == "meanError")
+      else if (decl->getname() == "meanError")
         {
           NonNegativeDecimalType * meanErrorVal;
           if (this->meanError)
@@ -5657,19 +5671,19 @@ bool SubgroupDecimalType::badAttributes(
               returnValue = true;
               break;
             }
-          meanErrorVal = new NonNegativeDecimalType(decl->val.c_str());
-          if (meanErrorVal->bad)
+          meanErrorVal = new NonNegativeDecimalType(decl->getval().c_str());
+          if (meanErrorVal->getbad())
             {
               delete meanErrorVal;
               fprintf(stderr, "bad value %s for meanError in SubgroupDecimalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->meanError = meanErrorVal;
         }
-      else if (decl->name == "significantFigures")
+      else if (decl->getname() == "significantFigures")
         {
           XmlNonNegativeInteger * significantFiguresVal;
           if (this->significantFigures)
@@ -5678,19 +5692,19 @@ bool SubgroupDecimalType::badAttributes(
               returnValue = true;
               break;
             }
-          significantFiguresVal = new XmlNonNegativeInteger(decl->val.c_str());
-          if (significantFiguresVal->bad)
+          significantFiguresVal = new XmlNonNegativeInteger(decl->getval().c_str());
+          if (significantFiguresVal->getbad())
             {
               delete significantFiguresVal;
               fprintf(stderr, "bad value %s for significantFigures in SubgroupDecimalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->significantFigures = significantFiguresVal;
         }
-      else if (decl->name == "subgroupId")
+      else if (decl->getname() == "subgroupId")
         {
           QIFIdType * subgroupIdVal;
           if (this->subgroupId)
@@ -5699,12 +5713,12 @@ bool SubgroupDecimalType::badAttributes(
               returnValue = true;
               break;
             }
-          subgroupIdVal = new QIFIdType(decl->val.c_str());
-          if (subgroupIdVal->bad)
+          subgroupIdVal = new QIFIdType(decl->getval().c_str());
+          if (subgroupIdVal->getbad())
             {
               delete subgroupIdVal;
               fprintf(stderr, "bad value %s for subgroupId in SubgroupDecimalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -5941,7 +5955,7 @@ bool SubgroupIntegerArrayType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -5950,12 +5964,12 @@ bool SubgroupIntegerArrayType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in SubgroupIntegerArrayType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -6079,7 +6093,7 @@ bool SubgroupIntegerType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "subgroupId")
+      if (decl->getname() == "subgroupId")
         {
           QIFIdType * subgroupIdVal;
           if (this->subgroupId)
@@ -6088,12 +6102,12 @@ bool SubgroupIntegerType::badAttributes(
               returnValue = true;
               break;
             }
-          subgroupIdVal = new QIFIdType(decl->val.c_str());
-          if (subgroupIdVal->bad)
+          subgroupIdVal = new QIFIdType(decl->getval().c_str());
+          if (subgroupIdVal->getbad())
             {
               delete subgroupIdVal;
               fprintf(stderr, "bad value %s for subgroupId in SubgroupIntegerType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -6232,8 +6246,8 @@ SubgroupStatsValuesEnumType::SubgroupStatsValuesEnumType(
   XmlNMTOKEN(
     valIn)
 {
-  if (!bad)
-    bad = (strcmp(val.c_str(), "TOTNUM") &&
+  if (!getbad())
+    setbad(strcmp(val.c_str(), "TOTNUM") &&
            strcmp(val.c_str(), "EFFNUM") &&
            strcmp(val.c_str(), "AVG") &&
            strcmp(val.c_str(), "DIFF") &&
@@ -6306,8 +6320,8 @@ SummaryStatsValuesEnumType::SummaryStatsValuesEnumType(
   XmlNMTOKEN(
     valIn)
 {
-  if (!bad)
-    bad = (strcmp(val.c_str(), "AVG") &&
+  if (!getbad())
+    setbad(strcmp(val.c_str(), "AVG") &&
            strcmp(val.c_str(), "MAX") &&
            strcmp(val.c_str(), "MIN") &&
            strcmp(val.c_str(), "RANGE") &&
@@ -6461,7 +6475,7 @@ bool SummaryStatsValuesListType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -6470,12 +6484,12 @@ bool SummaryStatsValuesListType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in SummaryStatsValuesListType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -6661,8 +6675,8 @@ ThreadClassEnumType::ThreadClassEnumType(
   XmlNMTOKEN(
     valIn)
 {
-  if (!bad)
-    bad = (strcmp(val.c_str(), "1A") &&
+  if (!getbad())
+    setbad(strcmp(val.c_str(), "1A") &&
            strcmp(val.c_str(), "1B") &&
            strcmp(val.c_str(), "2A") &&
            strcmp(val.c_str(), "2AG") &&
@@ -6890,8 +6904,8 @@ ThreadSeriesEnumType::ThreadSeriesEnumType(
   XmlNMTOKEN(
     valIn)
 {
-  if (!bad)
-    bad = (strcmp(val.c_str(), "ACME") &&
+  if (!getbad())
+    setbad(strcmp(val.c_str(), "ACME") &&
            strcmp(val.c_str(), "ACME_C") &&
            strcmp(val.c_str(), "ACME_G") &&
            strcmp(val.c_str(), "AMO") &&
@@ -7247,8 +7261,8 @@ ZoneOrientationEnumType::ZoneOrientationEnumType(
   XmlNMTOKEN(
     valIn)
 {
-  if (!bad)
-    bad = (strcmp(val.c_str(), "LENGTH") &&
+  if (!getbad())
+    setbad(strcmp(val.c_str(), "LENGTH") &&
            strcmp(val.c_str(), "WIDTH") &&
            strcmp(val.c_str(), "RADIAL") &&
            strcmp(val.c_str(), "ANGULAR"));

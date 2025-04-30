@@ -4,10 +4,12 @@
 #include <string.h>            // for strdup
 #include <stdlib.h>            // for exit
 #include <list>
+#include  <map>
 #include <xmlSchemaInstance.hh>
 #include "QIFMeasurementResourcesClasses.hh"
 
 #define INDENT 2
+extern std::map<unsigned int, XmlSchemaInstanceBase *> idMap;
 
 /* ***************************************************************** */
 /* ***************************************************************** */
@@ -117,7 +119,7 @@ bool AACMMAccuraciesType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -126,12 +128,12 @@ bool AACMMAccuraciesType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in AACMMAccuraciesType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -218,12 +220,12 @@ void AACMMAccuracyType::printSelf(FILE * outFile)
   fprintf(outFile, "</EnvironmentalRange>\n");
   {
     doSpaces(0, outFile);
-    if (AACMMAccuracyTest->printElement == 0)
+    if (AACMMAccuracyTest->getprintElement() == 0)
       {
         fprintf(stderr, "element name missing\n");
         exit(1);
       }
-    else if (strcmp(AACMMAccuracyTest->printElement, "AACMMB89Test") == 0)
+    else if (strcmp(AACMMAccuracyTest->getprintElement(), "AACMMB89Test") == 0)
       {
         AACMMB89TestType * typ;
         if ((typ = dynamic_cast<AACMMB89TestType *>(AACMMAccuracyTest)))
@@ -239,7 +241,7 @@ void AACMMAccuracyType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(AACMMAccuracyTest->printElement, "AACMMISO10360Test") == 0)
+    else if (strcmp(AACMMAccuracyTest->getprintElement(), "AACMMISO10360Test") == 0)
       {
         ISO10360TestType * typ;
         if ((typ = dynamic_cast<ISO10360TestType *>(AACMMAccuracyTest)))
@@ -255,7 +257,7 @@ void AACMMAccuracyType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(AACMMAccuracyTest->printElement, "AACMMPointAccuracyTest") == 0)
+    else if (strcmp(AACMMAccuracyTest->getprintElement(), "AACMMPointAccuracyTest") == 0)
       {
         PointAccuracyTestType * typ;
         if ((typ = dynamic_cast<PointAccuracyTestType *>(AACMMAccuracyTest)))
@@ -649,12 +651,12 @@ void AACMMType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (Resolution->printElement == 0)
+        if (Resolution->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(Resolution->printElement, "LinearResolution") == 0)
+        else if (strcmp(Resolution->getprintElement(), "LinearResolution") == 0)
           {
             LinearResolutionType * typ;
             if ((typ = dynamic_cast<LinearResolutionType *>(Resolution)))
@@ -670,7 +672,7 @@ void AACMMType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(Resolution->printElement, "CartesianResolution") == 0)
+        else if (strcmp(Resolution->getprintElement(), "CartesianResolution") == 0)
           {
             CartesianResolutionType * typ;
             if ((typ = dynamic_cast<CartesianResolutionType *>(Resolution)))
@@ -686,7 +688,7 @@ void AACMMType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(Resolution->printElement, "SphericalResolution") == 0)
+        else if (strcmp(Resolution->getprintElement(), "SphericalResolution") == 0)
           {
             SphericalResolutionType * typ;
             if ((typ = dynamic_cast<SphericalResolutionType *>(Resolution)))
@@ -702,7 +704,7 @@ void AACMMType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(Resolution->printElement, "UserDefinedResolution") == 0)
+        else if (strcmp(Resolution->getprintElement(), "UserDefinedResolution") == 0)
           {
             UserDefinedResolutionType * typ;
             if ((typ = dynamic_cast<UserDefinedResolutionType *>(Resolution)))
@@ -730,12 +732,12 @@ void AACMMType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (WorkingVolume->printElement == 0)
+        if (WorkingVolume->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(WorkingVolume->printElement, "ClosedShellSetWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "ClosedShellSetWorkingVolume") == 0)
           {
             ClosedShellSetWorkingVolumeType * typ;
             if ((typ = dynamic_cast<ClosedShellSetWorkingVolumeType *>(WorkingVolume)))
@@ -751,7 +753,7 @@ void AACMMType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(WorkingVolume->printElement, "CartesianWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "CartesianWorkingVolume") == 0)
           {
             CartesianWorkingVolumeType * typ;
             if ((typ = dynamic_cast<CartesianWorkingVolumeType *>(WorkingVolume)))
@@ -767,7 +769,7 @@ void AACMMType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(WorkingVolume->printElement, "SphericalWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "SphericalWorkingVolume") == 0)
           {
             SphericalWorkingVolumeType * typ;
             if ((typ = dynamic_cast<SphericalWorkingVolumeType *>(WorkingVolume)))
@@ -783,7 +785,7 @@ void AACMMType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(WorkingVolume->printElement, "CylindricalWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "CylindricalWorkingVolume") == 0)
           {
             CylindricalWorkingVolumeType * typ;
             if ((typ = dynamic_cast<CylindricalWorkingVolumeType *>(WorkingVolume)))
@@ -799,7 +801,7 @@ void AACMMType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(WorkingVolume->printElement, "UserDefinedWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "UserDefinedWorkingVolume") == 0)
           {
             UserDefinedWorkingVolumeType * typ;
             if ((typ = dynamic_cast<UserDefinedWorkingVolumeType *>(WorkingVolume)))
@@ -827,12 +829,12 @@ void AACMMType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (EffectiveWorkingVolume->printElement == 0)
+        if (EffectiveWorkingVolume->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(EffectiveWorkingVolume->printElement, "EffectiveClosedShellSetWorkingVolume") == 0)
+        else if (strcmp(EffectiveWorkingVolume->getprintElement(), "EffectiveClosedShellSetWorkingVolume") == 0)
           {
             EffectiveClosedShellSetWorkingVolumeType * typ;
             if ((typ = dynamic_cast<EffectiveClosedShellSetWorkingVolumeType *>(EffectiveWorkingVolume)))
@@ -848,7 +850,7 @@ void AACMMType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(EffectiveWorkingVolume->printElement, "EffectiveCartesianWorkingVolume") == 0)
+        else if (strcmp(EffectiveWorkingVolume->getprintElement(), "EffectiveCartesianWorkingVolume") == 0)
           {
             EffectiveCartesianWorkingVolumeType * typ;
             if ((typ = dynamic_cast<EffectiveCartesianWorkingVolumeType *>(EffectiveWorkingVolume)))
@@ -864,7 +866,7 @@ void AACMMType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(EffectiveWorkingVolume->printElement, "EffectiveSphericalWorkingVolume") == 0)
+        else if (strcmp(EffectiveWorkingVolume->getprintElement(), "EffectiveSphericalWorkingVolume") == 0)
           {
             EffectiveSphericalWorkingVolumeType * typ;
             if ((typ = dynamic_cast<EffectiveSphericalWorkingVolumeType *>(EffectiveWorkingVolume)))
@@ -880,7 +882,7 @@ void AACMMType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(EffectiveWorkingVolume->printElement, "EffectiveCylindricalWorkingVolume") == 0)
+        else if (strcmp(EffectiveWorkingVolume->getprintElement(), "EffectiveCylindricalWorkingVolume") == 0)
           {
             EffectiveCylindricalWorkingVolumeType * typ;
             if ((typ = dynamic_cast<EffectiveCylindricalWorkingVolumeType *>(EffectiveWorkingVolume)))
@@ -896,7 +898,7 @@ void AACMMType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(EffectiveWorkingVolume->printElement, "EffectiveUserDefinedWorkingVolume") == 0)
+        else if (strcmp(EffectiveWorkingVolume->getprintElement(), "EffectiveUserDefinedWorkingVolume") == 0)
           {
             EffectiveUserDefinedWorkingVolumeType * typ;
             if ((typ = dynamic_cast<EffectiveUserDefinedWorkingVolumeType *>(EffectiveWorkingVolume)))
@@ -985,7 +987,7 @@ bool AACMMType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -994,12 +996,12 @@ bool AACMMType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in AACMMType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -1013,7 +1015,11 @@ bool AACMMType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in AACMMType\n");
       returnValue = true;
@@ -1155,8 +1161,8 @@ AccuracySourceEnumType::AccuracySourceEnumType(
   XmlNMTOKEN(
     valIn)
 {
-  if (!bad)
-    bad = (strcmp(val.c_str(), "MANUFACTURER_SPECIFICATION") &&
+  if (!getbad())
+    setbad(strcmp(val.c_str(), "MANUFACTURER_SPECIFICATION") &&
            strcmp(val.c_str(), "CUSTOM_CERTIFICATION"));
 }
 
@@ -1380,7 +1386,7 @@ bool AngleFunctionDiscreteType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -1389,12 +1395,12 @@ bool AngleFunctionDiscreteType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in AngleFunctionDiscreteType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -1738,12 +1744,12 @@ void AutocollimatorType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (Resolution->printElement == 0)
+        if (Resolution->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(Resolution->printElement, "LinearResolution") == 0)
+        else if (strcmp(Resolution->getprintElement(), "LinearResolution") == 0)
           {
             LinearResolutionType * typ;
             if ((typ = dynamic_cast<LinearResolutionType *>(Resolution)))
@@ -1759,7 +1765,7 @@ void AutocollimatorType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(Resolution->printElement, "CartesianResolution") == 0)
+        else if (strcmp(Resolution->getprintElement(), "CartesianResolution") == 0)
           {
             CartesianResolutionType * typ;
             if ((typ = dynamic_cast<CartesianResolutionType *>(Resolution)))
@@ -1775,7 +1781,7 @@ void AutocollimatorType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(Resolution->printElement, "SphericalResolution") == 0)
+        else if (strcmp(Resolution->getprintElement(), "SphericalResolution") == 0)
           {
             SphericalResolutionType * typ;
             if ((typ = dynamic_cast<SphericalResolutionType *>(Resolution)))
@@ -1791,7 +1797,7 @@ void AutocollimatorType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(Resolution->printElement, "UserDefinedResolution") == 0)
+        else if (strcmp(Resolution->getprintElement(), "UserDefinedResolution") == 0)
           {
             UserDefinedResolutionType * typ;
             if ((typ = dynamic_cast<UserDefinedResolutionType *>(Resolution)))
@@ -1819,12 +1825,12 @@ void AutocollimatorType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (WorkingVolume->printElement == 0)
+        if (WorkingVolume->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(WorkingVolume->printElement, "ClosedShellSetWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "ClosedShellSetWorkingVolume") == 0)
           {
             ClosedShellSetWorkingVolumeType * typ;
             if ((typ = dynamic_cast<ClosedShellSetWorkingVolumeType *>(WorkingVolume)))
@@ -1840,7 +1846,7 @@ void AutocollimatorType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(WorkingVolume->printElement, "CartesianWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "CartesianWorkingVolume") == 0)
           {
             CartesianWorkingVolumeType * typ;
             if ((typ = dynamic_cast<CartesianWorkingVolumeType *>(WorkingVolume)))
@@ -1856,7 +1862,7 @@ void AutocollimatorType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(WorkingVolume->printElement, "SphericalWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "SphericalWorkingVolume") == 0)
           {
             SphericalWorkingVolumeType * typ;
             if ((typ = dynamic_cast<SphericalWorkingVolumeType *>(WorkingVolume)))
@@ -1872,7 +1878,7 @@ void AutocollimatorType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(WorkingVolume->printElement, "CylindricalWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "CylindricalWorkingVolume") == 0)
           {
             CylindricalWorkingVolumeType * typ;
             if ((typ = dynamic_cast<CylindricalWorkingVolumeType *>(WorkingVolume)))
@@ -1888,7 +1894,7 @@ void AutocollimatorType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(WorkingVolume->printElement, "UserDefinedWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "UserDefinedWorkingVolume") == 0)
           {
             UserDefinedWorkingVolumeType * typ;
             if ((typ = dynamic_cast<UserDefinedWorkingVolumeType *>(WorkingVolume)))
@@ -1916,12 +1922,12 @@ void AutocollimatorType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (EffectiveWorkingVolume->printElement == 0)
+        if (EffectiveWorkingVolume->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(EffectiveWorkingVolume->printElement, "EffectiveClosedShellSetWorkingVolume") == 0)
+        else if (strcmp(EffectiveWorkingVolume->getprintElement(), "EffectiveClosedShellSetWorkingVolume") == 0)
           {
             EffectiveClosedShellSetWorkingVolumeType * typ;
             if ((typ = dynamic_cast<EffectiveClosedShellSetWorkingVolumeType *>(EffectiveWorkingVolume)))
@@ -1937,7 +1943,7 @@ void AutocollimatorType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(EffectiveWorkingVolume->printElement, "EffectiveCartesianWorkingVolume") == 0)
+        else if (strcmp(EffectiveWorkingVolume->getprintElement(), "EffectiveCartesianWorkingVolume") == 0)
           {
             EffectiveCartesianWorkingVolumeType * typ;
             if ((typ = dynamic_cast<EffectiveCartesianWorkingVolumeType *>(EffectiveWorkingVolume)))
@@ -1953,7 +1959,7 @@ void AutocollimatorType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(EffectiveWorkingVolume->printElement, "EffectiveSphericalWorkingVolume") == 0)
+        else if (strcmp(EffectiveWorkingVolume->getprintElement(), "EffectiveSphericalWorkingVolume") == 0)
           {
             EffectiveSphericalWorkingVolumeType * typ;
             if ((typ = dynamic_cast<EffectiveSphericalWorkingVolumeType *>(EffectiveWorkingVolume)))
@@ -1969,7 +1975,7 @@ void AutocollimatorType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(EffectiveWorkingVolume->printElement, "EffectiveCylindricalWorkingVolume") == 0)
+        else if (strcmp(EffectiveWorkingVolume->getprintElement(), "EffectiveCylindricalWorkingVolume") == 0)
           {
             EffectiveCylindricalWorkingVolumeType * typ;
             if ((typ = dynamic_cast<EffectiveCylindricalWorkingVolumeType *>(EffectiveWorkingVolume)))
@@ -1985,7 +1991,7 @@ void AutocollimatorType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(EffectiveWorkingVolume->printElement, "EffectiveUserDefinedWorkingVolume") == 0)
+        else if (strcmp(EffectiveWorkingVolume->getprintElement(), "EffectiveUserDefinedWorkingVolume") == 0)
           {
             EffectiveUserDefinedWorkingVolumeType * typ;
             if ((typ = dynamic_cast<EffectiveUserDefinedWorkingVolumeType *>(EffectiveWorkingVolume)))
@@ -2088,7 +2094,7 @@ bool AutocollimatorType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -2097,12 +2103,12 @@ bool AutocollimatorType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in AutocollimatorType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -2116,7 +2122,11 @@ bool AutocollimatorType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in AutocollimatorType\n");
       returnValue = true;
@@ -2230,8 +2240,8 @@ CMMDirectionEnumType::CMMDirectionEnumType(
   XmlNMTOKEN(
     valIn)
 {
-  if (!bad)
-    bad = (strcmp(val.c_str(), "RIGHT") &&
+  if (!getbad())
+    setbad(strcmp(val.c_str(), "RIGHT") &&
            strcmp(val.c_str(), "LEFT") &&
            strcmp(val.c_str(), "FRONT") &&
            strcmp(val.c_str(), "BACK") &&
@@ -2493,12 +2503,12 @@ void CMMType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (Resolution->printElement == 0)
+        if (Resolution->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(Resolution->printElement, "LinearResolution") == 0)
+        else if (strcmp(Resolution->getprintElement(), "LinearResolution") == 0)
           {
             LinearResolutionType * typ;
             if ((typ = dynamic_cast<LinearResolutionType *>(Resolution)))
@@ -2514,7 +2524,7 @@ void CMMType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(Resolution->printElement, "CartesianResolution") == 0)
+        else if (strcmp(Resolution->getprintElement(), "CartesianResolution") == 0)
           {
             CartesianResolutionType * typ;
             if ((typ = dynamic_cast<CartesianResolutionType *>(Resolution)))
@@ -2530,7 +2540,7 @@ void CMMType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(Resolution->printElement, "SphericalResolution") == 0)
+        else if (strcmp(Resolution->getprintElement(), "SphericalResolution") == 0)
           {
             SphericalResolutionType * typ;
             if ((typ = dynamic_cast<SphericalResolutionType *>(Resolution)))
@@ -2546,7 +2556,7 @@ void CMMType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(Resolution->printElement, "UserDefinedResolution") == 0)
+        else if (strcmp(Resolution->getprintElement(), "UserDefinedResolution") == 0)
           {
             UserDefinedResolutionType * typ;
             if ((typ = dynamic_cast<UserDefinedResolutionType *>(Resolution)))
@@ -2574,12 +2584,12 @@ void CMMType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (WorkingVolume->printElement == 0)
+        if (WorkingVolume->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(WorkingVolume->printElement, "ClosedShellSetWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "ClosedShellSetWorkingVolume") == 0)
           {
             ClosedShellSetWorkingVolumeType * typ;
             if ((typ = dynamic_cast<ClosedShellSetWorkingVolumeType *>(WorkingVolume)))
@@ -2595,7 +2605,7 @@ void CMMType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(WorkingVolume->printElement, "CartesianWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "CartesianWorkingVolume") == 0)
           {
             CartesianWorkingVolumeType * typ;
             if ((typ = dynamic_cast<CartesianWorkingVolumeType *>(WorkingVolume)))
@@ -2611,7 +2621,7 @@ void CMMType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(WorkingVolume->printElement, "SphericalWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "SphericalWorkingVolume") == 0)
           {
             SphericalWorkingVolumeType * typ;
             if ((typ = dynamic_cast<SphericalWorkingVolumeType *>(WorkingVolume)))
@@ -2627,7 +2637,7 @@ void CMMType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(WorkingVolume->printElement, "CylindricalWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "CylindricalWorkingVolume") == 0)
           {
             CylindricalWorkingVolumeType * typ;
             if ((typ = dynamic_cast<CylindricalWorkingVolumeType *>(WorkingVolume)))
@@ -2643,7 +2653,7 @@ void CMMType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(WorkingVolume->printElement, "UserDefinedWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "UserDefinedWorkingVolume") == 0)
           {
             UserDefinedWorkingVolumeType * typ;
             if ((typ = dynamic_cast<UserDefinedWorkingVolumeType *>(WorkingVolume)))
@@ -2671,12 +2681,12 @@ void CMMType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (EffectiveWorkingVolume->printElement == 0)
+        if (EffectiveWorkingVolume->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(EffectiveWorkingVolume->printElement, "EffectiveClosedShellSetWorkingVolume") == 0)
+        else if (strcmp(EffectiveWorkingVolume->getprintElement(), "EffectiveClosedShellSetWorkingVolume") == 0)
           {
             EffectiveClosedShellSetWorkingVolumeType * typ;
             if ((typ = dynamic_cast<EffectiveClosedShellSetWorkingVolumeType *>(EffectiveWorkingVolume)))
@@ -2692,7 +2702,7 @@ void CMMType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(EffectiveWorkingVolume->printElement, "EffectiveCartesianWorkingVolume") == 0)
+        else if (strcmp(EffectiveWorkingVolume->getprintElement(), "EffectiveCartesianWorkingVolume") == 0)
           {
             EffectiveCartesianWorkingVolumeType * typ;
             if ((typ = dynamic_cast<EffectiveCartesianWorkingVolumeType *>(EffectiveWorkingVolume)))
@@ -2708,7 +2718,7 @@ void CMMType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(EffectiveWorkingVolume->printElement, "EffectiveSphericalWorkingVolume") == 0)
+        else if (strcmp(EffectiveWorkingVolume->getprintElement(), "EffectiveSphericalWorkingVolume") == 0)
           {
             EffectiveSphericalWorkingVolumeType * typ;
             if ((typ = dynamic_cast<EffectiveSphericalWorkingVolumeType *>(EffectiveWorkingVolume)))
@@ -2724,7 +2734,7 @@ void CMMType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(EffectiveWorkingVolume->printElement, "EffectiveCylindricalWorkingVolume") == 0)
+        else if (strcmp(EffectiveWorkingVolume->getprintElement(), "EffectiveCylindricalWorkingVolume") == 0)
           {
             EffectiveCylindricalWorkingVolumeType * typ;
             if ((typ = dynamic_cast<EffectiveCylindricalWorkingVolumeType *>(EffectiveWorkingVolume)))
@@ -2740,7 +2750,7 @@ void CMMType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(EffectiveWorkingVolume->printElement, "EffectiveUserDefinedWorkingVolume") == 0)
+        else if (strcmp(EffectiveWorkingVolume->getprintElement(), "EffectiveUserDefinedWorkingVolume") == 0)
           {
             EffectiveUserDefinedWorkingVolumeType * typ;
             if ((typ = dynamic_cast<EffectiveUserDefinedWorkingVolumeType *>(EffectiveWorkingVolume)))
@@ -2786,7 +2796,7 @@ bool CMMType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -2795,12 +2805,12 @@ bool CMMType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in CMMType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -2814,7 +2824,11 @@ bool CMMType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in CMMType\n");
       returnValue = true;
@@ -3126,7 +3140,7 @@ bool CalibrationsType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -3135,12 +3149,12 @@ bool CalibrationsType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in CalibrationsType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -3454,7 +3468,7 @@ bool CaliperDialType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -3463,12 +3477,12 @@ bool CaliperDialType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in CaliperDialType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -3482,7 +3496,11 @@ bool CaliperDialType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in CaliperDialType\n");
       returnValue = true;
@@ -3770,7 +3788,7 @@ bool CaliperDigitalType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -3779,12 +3797,12 @@ bool CaliperDigitalType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in CaliperDigitalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -3798,7 +3816,11 @@ bool CaliperDigitalType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in CaliperDigitalType\n");
       returnValue = true;
@@ -4096,7 +4118,7 @@ bool CaliperType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -4105,12 +4127,12 @@ bool CaliperType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in CaliperType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -4124,7 +4146,11 @@ bool CaliperType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in CaliperType\n");
       returnValue = true;
@@ -4510,7 +4536,7 @@ bool CapacitiveSensorType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -4519,12 +4545,12 @@ bool CapacitiveSensorType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in CapacitiveSensorType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -4538,7 +4564,11 @@ bool CapacitiveSensorType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in CapacitiveSensorType\n");
       returnValue = true;
@@ -4785,7 +4815,7 @@ bool CarriageType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -4794,12 +4824,12 @@ bool CarriageType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in CarriageType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -4813,7 +4843,11 @@ bool CarriageType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in CarriageType\n");
       returnValue = true;
@@ -4979,7 +5013,7 @@ bool CarriagesType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -4988,12 +5022,12 @@ bool CarriagesType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in CarriagesType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -5144,7 +5178,7 @@ bool CartesianCMMAccuraciesType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -5153,12 +5187,12 @@ bool CartesianCMMAccuraciesType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in CartesianCMMAccuraciesType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -5245,12 +5279,12 @@ void CartesianCMMAccuracyType::printSelf(FILE * outFile)
   fprintf(outFile, "</EnvironmentalRange>\n");
   {
     doSpaces(0, outFile);
-    if (CartesianCMMAccuracyTest->printElement == 0)
+    if (CartesianCMMAccuracyTest->getprintElement() == 0)
       {
         fprintf(stderr, "element name missing\n");
         exit(1);
       }
-    else if (strcmp(CartesianCMMAccuracyTest->printElement, "CartesianCMMFPSTest") == 0)
+    else if (strcmp(CartesianCMMAccuracyTest->getprintElement(), "CartesianCMMFPSTest") == 0)
       {
         FPSTestType * typ;
         if ((typ = dynamic_cast<FPSTestType *>(CartesianCMMAccuracyTest)))
@@ -5266,7 +5300,7 @@ void CartesianCMMAccuracyType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(CartesianCMMAccuracyTest->printElement, "CartesianCMMB89Test") == 0)
+    else if (strcmp(CartesianCMMAccuracyTest->getprintElement(), "CartesianCMMB89Test") == 0)
       {
         CartesianCMMB89TestType * typ;
         if ((typ = dynamic_cast<CartesianCMMB89TestType *>(CartesianCMMAccuracyTest)))
@@ -5282,7 +5316,7 @@ void CartesianCMMAccuracyType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(CartesianCMMAccuracyTest->printElement, "CartesianCMMISO10360Test") == 0)
+    else if (strcmp(CartesianCMMAccuracyTest->getprintElement(), "CartesianCMMISO10360Test") == 0)
       {
         ISO10360TestType * typ;
         if ((typ = dynamic_cast<ISO10360TestType *>(CartesianCMMAccuracyTest)))
@@ -5298,7 +5332,7 @@ void CartesianCMMAccuracyType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(CartesianCMMAccuracyTest->printElement, "CartesianCMMPointAccuracyTest") == 0)
+    else if (strcmp(CartesianCMMAccuracyTest->getprintElement(), "CartesianCMMPointAccuracyTest") == 0)
       {
         PointAccuracyTestType * typ;
         if ((typ = dynamic_cast<PointAccuracyTestType *>(CartesianCMMAccuracyTest)))
@@ -5576,8 +5610,8 @@ CartesianCMMGeometryEnumType::CartesianCMMGeometryEnumType(
   XmlNMTOKEN(
     valIn)
 {
-  if (!bad)
-    bad = (strcmp(val.c_str(), "FIXED_BRIDGE") &&
+  if (!getbad())
+    setbad(strcmp(val.c_str(), "FIXED_BRIDGE") &&
            strcmp(val.c_str(), "MOVING_BRIDGE") &&
            strcmp(val.c_str(), "L_SHAPED_BRIDGE") &&
            strcmp(val.c_str(), "COLUMN") &&
@@ -6109,12 +6143,12 @@ void CartesianCMMType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (Resolution->printElement == 0)
+        if (Resolution->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(Resolution->printElement, "LinearResolution") == 0)
+        else if (strcmp(Resolution->getprintElement(), "LinearResolution") == 0)
           {
             LinearResolutionType * typ;
             if ((typ = dynamic_cast<LinearResolutionType *>(Resolution)))
@@ -6130,7 +6164,7 @@ void CartesianCMMType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(Resolution->printElement, "CartesianResolution") == 0)
+        else if (strcmp(Resolution->getprintElement(), "CartesianResolution") == 0)
           {
             CartesianResolutionType * typ;
             if ((typ = dynamic_cast<CartesianResolutionType *>(Resolution)))
@@ -6146,7 +6180,7 @@ void CartesianCMMType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(Resolution->printElement, "SphericalResolution") == 0)
+        else if (strcmp(Resolution->getprintElement(), "SphericalResolution") == 0)
           {
             SphericalResolutionType * typ;
             if ((typ = dynamic_cast<SphericalResolutionType *>(Resolution)))
@@ -6162,7 +6196,7 @@ void CartesianCMMType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(Resolution->printElement, "UserDefinedResolution") == 0)
+        else if (strcmp(Resolution->getprintElement(), "UserDefinedResolution") == 0)
           {
             UserDefinedResolutionType * typ;
             if ((typ = dynamic_cast<UserDefinedResolutionType *>(Resolution)))
@@ -6190,12 +6224,12 @@ void CartesianCMMType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (WorkingVolume->printElement == 0)
+        if (WorkingVolume->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(WorkingVolume->printElement, "ClosedShellSetWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "ClosedShellSetWorkingVolume") == 0)
           {
             ClosedShellSetWorkingVolumeType * typ;
             if ((typ = dynamic_cast<ClosedShellSetWorkingVolumeType *>(WorkingVolume)))
@@ -6211,7 +6245,7 @@ void CartesianCMMType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(WorkingVolume->printElement, "CartesianWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "CartesianWorkingVolume") == 0)
           {
             CartesianWorkingVolumeType * typ;
             if ((typ = dynamic_cast<CartesianWorkingVolumeType *>(WorkingVolume)))
@@ -6227,7 +6261,7 @@ void CartesianCMMType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(WorkingVolume->printElement, "SphericalWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "SphericalWorkingVolume") == 0)
           {
             SphericalWorkingVolumeType * typ;
             if ((typ = dynamic_cast<SphericalWorkingVolumeType *>(WorkingVolume)))
@@ -6243,7 +6277,7 @@ void CartesianCMMType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(WorkingVolume->printElement, "CylindricalWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "CylindricalWorkingVolume") == 0)
           {
             CylindricalWorkingVolumeType * typ;
             if ((typ = dynamic_cast<CylindricalWorkingVolumeType *>(WorkingVolume)))
@@ -6259,7 +6293,7 @@ void CartesianCMMType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(WorkingVolume->printElement, "UserDefinedWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "UserDefinedWorkingVolume") == 0)
           {
             UserDefinedWorkingVolumeType * typ;
             if ((typ = dynamic_cast<UserDefinedWorkingVolumeType *>(WorkingVolume)))
@@ -6287,12 +6321,12 @@ void CartesianCMMType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (EffectiveWorkingVolume->printElement == 0)
+        if (EffectiveWorkingVolume->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(EffectiveWorkingVolume->printElement, "EffectiveClosedShellSetWorkingVolume") == 0)
+        else if (strcmp(EffectiveWorkingVolume->getprintElement(), "EffectiveClosedShellSetWorkingVolume") == 0)
           {
             EffectiveClosedShellSetWorkingVolumeType * typ;
             if ((typ = dynamic_cast<EffectiveClosedShellSetWorkingVolumeType *>(EffectiveWorkingVolume)))
@@ -6308,7 +6342,7 @@ void CartesianCMMType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(EffectiveWorkingVolume->printElement, "EffectiveCartesianWorkingVolume") == 0)
+        else if (strcmp(EffectiveWorkingVolume->getprintElement(), "EffectiveCartesianWorkingVolume") == 0)
           {
             EffectiveCartesianWorkingVolumeType * typ;
             if ((typ = dynamic_cast<EffectiveCartesianWorkingVolumeType *>(EffectiveWorkingVolume)))
@@ -6324,7 +6358,7 @@ void CartesianCMMType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(EffectiveWorkingVolume->printElement, "EffectiveSphericalWorkingVolume") == 0)
+        else if (strcmp(EffectiveWorkingVolume->getprintElement(), "EffectiveSphericalWorkingVolume") == 0)
           {
             EffectiveSphericalWorkingVolumeType * typ;
             if ((typ = dynamic_cast<EffectiveSphericalWorkingVolumeType *>(EffectiveWorkingVolume)))
@@ -6340,7 +6374,7 @@ void CartesianCMMType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(EffectiveWorkingVolume->printElement, "EffectiveCylindricalWorkingVolume") == 0)
+        else if (strcmp(EffectiveWorkingVolume->getprintElement(), "EffectiveCylindricalWorkingVolume") == 0)
           {
             EffectiveCylindricalWorkingVolumeType * typ;
             if ((typ = dynamic_cast<EffectiveCylindricalWorkingVolumeType *>(EffectiveWorkingVolume)))
@@ -6356,7 +6390,7 @@ void CartesianCMMType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(EffectiveWorkingVolume->printElement, "EffectiveUserDefinedWorkingVolume") == 0)
+        else if (strcmp(EffectiveWorkingVolume->getprintElement(), "EffectiveUserDefinedWorkingVolume") == 0)
           {
             EffectiveUserDefinedWorkingVolumeType * typ;
             if ((typ = dynamic_cast<EffectiveUserDefinedWorkingVolumeType *>(EffectiveWorkingVolume)))
@@ -6407,12 +6441,12 @@ void CartesianCMMType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (CMMAxisDirections->printElement == 0)
+        if (CMMAxisDirections->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(CMMAxisDirections->printElement, "CartesianCMMAxisDirections") == 0)
+        else if (strcmp(CMMAxisDirections->getprintElement(), "CartesianCMMAxisDirections") == 0)
           {
             CartesianCMMAxisDirectionsType * typ;
             if ((typ = dynamic_cast<CartesianCMMAxisDirectionsType *>(CMMAxisDirections)))
@@ -6440,12 +6474,12 @@ void CartesianCMMType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (Scales->printElement == 0)
+        if (Scales->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(Scales->printElement, "CartesianMeasurementDeviceScales") == 0)
+        else if (strcmp(Scales->getprintElement(), "CartesianMeasurementDeviceScales") == 0)
           {
             CartesianMeasurementDeviceScalesType * typ;
             if ((typ = dynamic_cast<CartesianMeasurementDeviceScalesType *>(Scales)))
@@ -6495,12 +6529,12 @@ void CartesianCMMType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (CMMSpeeds->printElement == 0)
+        if (CMMSpeeds->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(CMMSpeeds->printElement, "CartesianCMMSpeeds") == 0)
+        else if (strcmp(CMMSpeeds->getprintElement(), "CartesianCMMSpeeds") == 0)
           {
             CartesianCMMSpeedsType * typ;
             if ((typ = dynamic_cast<CartesianCMMSpeedsType *>(CMMSpeeds)))
@@ -6516,7 +6550,7 @@ void CartesianCMMType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(CMMSpeeds->printElement, "ParallelLinkCMMSpeeds") == 0)
+        else if (strcmp(CMMSpeeds->getprintElement(), "ParallelLinkCMMSpeeds") == 0)
           {
             ParallelLinkCMMSpeedsType * typ;
             if ((typ = dynamic_cast<ParallelLinkCMMSpeedsType *>(CMMSpeeds)))
@@ -6586,7 +6620,7 @@ bool CartesianCMMType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -6595,12 +6629,12 @@ bool CartesianCMMType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in CartesianCMMType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -6614,7 +6648,11 @@ bool CartesianCMMType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in CartesianCMMType\n");
       returnValue = true;
@@ -7325,7 +7363,7 @@ bool ChargeCoupledDeviceCameraSensorType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -7334,12 +7372,12 @@ bool ChargeCoupledDeviceCameraSensorType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in ChargeCoupledDeviceCameraSensorType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -7353,7 +7391,11 @@ bool ChargeCoupledDeviceCameraSensorType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in ChargeCoupledDeviceCameraSensorType\n");
       returnValue = true;
@@ -8095,7 +8137,7 @@ bool ComplexTactileProbeSensorType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -8104,12 +8146,12 @@ bool ComplexTactileProbeSensorType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in ComplexTactileProbeSensorType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -8123,7 +8165,11 @@ bool ComplexTactileProbeSensorType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in ComplexTactileProbeSensorType\n");
       returnValue = true;
@@ -8446,12 +8492,12 @@ void ComputedTomographyType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (Resolution->printElement == 0)
+        if (Resolution->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(Resolution->printElement, "LinearResolution") == 0)
+        else if (strcmp(Resolution->getprintElement(), "LinearResolution") == 0)
           {
             LinearResolutionType * typ;
             if ((typ = dynamic_cast<LinearResolutionType *>(Resolution)))
@@ -8467,7 +8513,7 @@ void ComputedTomographyType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(Resolution->printElement, "CartesianResolution") == 0)
+        else if (strcmp(Resolution->getprintElement(), "CartesianResolution") == 0)
           {
             CartesianResolutionType * typ;
             if ((typ = dynamic_cast<CartesianResolutionType *>(Resolution)))
@@ -8483,7 +8529,7 @@ void ComputedTomographyType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(Resolution->printElement, "SphericalResolution") == 0)
+        else if (strcmp(Resolution->getprintElement(), "SphericalResolution") == 0)
           {
             SphericalResolutionType * typ;
             if ((typ = dynamic_cast<SphericalResolutionType *>(Resolution)))
@@ -8499,7 +8545,7 @@ void ComputedTomographyType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(Resolution->printElement, "UserDefinedResolution") == 0)
+        else if (strcmp(Resolution->getprintElement(), "UserDefinedResolution") == 0)
           {
             UserDefinedResolutionType * typ;
             if ((typ = dynamic_cast<UserDefinedResolutionType *>(Resolution)))
@@ -8527,12 +8573,12 @@ void ComputedTomographyType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (WorkingVolume->printElement == 0)
+        if (WorkingVolume->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(WorkingVolume->printElement, "ClosedShellSetWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "ClosedShellSetWorkingVolume") == 0)
           {
             ClosedShellSetWorkingVolumeType * typ;
             if ((typ = dynamic_cast<ClosedShellSetWorkingVolumeType *>(WorkingVolume)))
@@ -8548,7 +8594,7 @@ void ComputedTomographyType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(WorkingVolume->printElement, "CartesianWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "CartesianWorkingVolume") == 0)
           {
             CartesianWorkingVolumeType * typ;
             if ((typ = dynamic_cast<CartesianWorkingVolumeType *>(WorkingVolume)))
@@ -8564,7 +8610,7 @@ void ComputedTomographyType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(WorkingVolume->printElement, "SphericalWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "SphericalWorkingVolume") == 0)
           {
             SphericalWorkingVolumeType * typ;
             if ((typ = dynamic_cast<SphericalWorkingVolumeType *>(WorkingVolume)))
@@ -8580,7 +8626,7 @@ void ComputedTomographyType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(WorkingVolume->printElement, "CylindricalWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "CylindricalWorkingVolume") == 0)
           {
             CylindricalWorkingVolumeType * typ;
             if ((typ = dynamic_cast<CylindricalWorkingVolumeType *>(WorkingVolume)))
@@ -8596,7 +8642,7 @@ void ComputedTomographyType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(WorkingVolume->printElement, "UserDefinedWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "UserDefinedWorkingVolume") == 0)
           {
             UserDefinedWorkingVolumeType * typ;
             if ((typ = dynamic_cast<UserDefinedWorkingVolumeType *>(WorkingVolume)))
@@ -8624,12 +8670,12 @@ void ComputedTomographyType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (EffectiveWorkingVolume->printElement == 0)
+        if (EffectiveWorkingVolume->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(EffectiveWorkingVolume->printElement, "EffectiveClosedShellSetWorkingVolume") == 0)
+        else if (strcmp(EffectiveWorkingVolume->getprintElement(), "EffectiveClosedShellSetWorkingVolume") == 0)
           {
             EffectiveClosedShellSetWorkingVolumeType * typ;
             if ((typ = dynamic_cast<EffectiveClosedShellSetWorkingVolumeType *>(EffectiveWorkingVolume)))
@@ -8645,7 +8691,7 @@ void ComputedTomographyType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(EffectiveWorkingVolume->printElement, "EffectiveCartesianWorkingVolume") == 0)
+        else if (strcmp(EffectiveWorkingVolume->getprintElement(), "EffectiveCartesianWorkingVolume") == 0)
           {
             EffectiveCartesianWorkingVolumeType * typ;
             if ((typ = dynamic_cast<EffectiveCartesianWorkingVolumeType *>(EffectiveWorkingVolume)))
@@ -8661,7 +8707,7 @@ void ComputedTomographyType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(EffectiveWorkingVolume->printElement, "EffectiveSphericalWorkingVolume") == 0)
+        else if (strcmp(EffectiveWorkingVolume->getprintElement(), "EffectiveSphericalWorkingVolume") == 0)
           {
             EffectiveSphericalWorkingVolumeType * typ;
             if ((typ = dynamic_cast<EffectiveSphericalWorkingVolumeType *>(EffectiveWorkingVolume)))
@@ -8677,7 +8723,7 @@ void ComputedTomographyType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(EffectiveWorkingVolume->printElement, "EffectiveCylindricalWorkingVolume") == 0)
+        else if (strcmp(EffectiveWorkingVolume->getprintElement(), "EffectiveCylindricalWorkingVolume") == 0)
           {
             EffectiveCylindricalWorkingVolumeType * typ;
             if ((typ = dynamic_cast<EffectiveCylindricalWorkingVolumeType *>(EffectiveWorkingVolume)))
@@ -8693,7 +8739,7 @@ void ComputedTomographyType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(EffectiveWorkingVolume->printElement, "EffectiveUserDefinedWorkingVolume") == 0)
+        else if (strcmp(EffectiveWorkingVolume->getprintElement(), "EffectiveUserDefinedWorkingVolume") == 0)
           {
             EffectiveUserDefinedWorkingVolumeType * typ;
             if ((typ = dynamic_cast<EffectiveUserDefinedWorkingVolumeType *>(EffectiveWorkingVolume)))
@@ -8862,7 +8908,7 @@ bool ComputedTomographyType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -8871,12 +8917,12 @@ bool ComputedTomographyType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in ComputedTomographyType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -8890,7 +8936,11 @@ bool ComputedTomographyType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in ComputedTomographyType\n");
       returnValue = true;
@@ -9374,7 +9424,7 @@ bool ConfocalChromaticSensorType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -9383,12 +9433,12 @@ bool ConfocalChromaticSensorType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in ConfocalChromaticSensorType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -9402,7 +9452,11 @@ bool ConfocalChromaticSensorType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in ConfocalChromaticSensorType\n");
       returnValue = true;
@@ -9799,7 +9853,7 @@ bool DetachableSensorBaseType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -9808,12 +9862,12 @@ bool DetachableSensorBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in DetachableSensorBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -9827,7 +9881,11 @@ bool DetachableSensorBaseType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in DetachableSensorBaseType\n");
       returnValue = true;
@@ -9969,12 +10027,12 @@ void DetachableSensorsType::printSelf(FILE * outFile)
         DetachableSensorBaseType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "DetachableTactileProbeSensor") == 0)
+        else if (strcmp(basie->getprintElement(), "DetachableTactileProbeSensor") == 0)
           {
             TactileProbeSensorBaseType * typ;
             if ((typ = dynamic_cast<TactileProbeSensorBaseType *>(basie)))
@@ -9990,7 +10048,7 @@ void DetachableSensorsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "DetachableCapacitiveSensor") == 0)
+        else if (strcmp(basie->getprintElement(), "DetachableCapacitiveSensor") == 0)
           {
             CapacitiveSensorType * typ;
             if ((typ = dynamic_cast<CapacitiveSensorType *>(basie)))
@@ -10006,7 +10064,7 @@ void DetachableSensorsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "DetachableLVDTSensor") == 0)
+        else if (strcmp(basie->getprintElement(), "DetachableLVDTSensor") == 0)
           {
             LinearVariableDifferentialTransformerSensorType * typ;
             if ((typ = dynamic_cast<LinearVariableDifferentialTransformerSensorType *>(basie)))
@@ -10022,7 +10080,7 @@ void DetachableSensorsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SimpleTactileProbeSensor") == 0)
+        else if (strcmp(basie->getprintElement(), "SimpleTactileProbeSensor") == 0)
           {
             SimpleTactileProbeSensorType * typ;
             if ((typ = dynamic_cast<SimpleTactileProbeSensorType *>(basie)))
@@ -10038,7 +10096,7 @@ void DetachableSensorsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ComplexTactileProbeSensor") == 0)
+        else if (strcmp(basie->getprintElement(), "ComplexTactileProbeSensor") == 0)
           {
             ComplexTactileProbeSensorType * typ;
             if ((typ = dynamic_cast<ComplexTactileProbeSensorType *>(basie)))
@@ -10076,7 +10134,7 @@ bool DetachableSensorsType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -10085,12 +10143,12 @@ bool DetachableSensorsType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in DetachableSensorsType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -10446,7 +10504,7 @@ bool DifferentialVariableReluctanceTransducerSensorType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -10455,12 +10513,12 @@ bool DifferentialVariableReluctanceTransducerSensorType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in DifferentialVariableReluctanceTransducerSensorType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -10474,7 +10532,11 @@ bool DifferentialVariableReluctanceTransducerSensorType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in DifferentialVariableReluctanceTransducerSensorType\n");
       returnValue = true;
@@ -10827,7 +10889,7 @@ bool DrawWireSensorType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -10836,12 +10898,12 @@ bool DrawWireSensorType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in DrawWireSensorType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -10855,7 +10917,11 @@ bool DrawWireSensorType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in DrawWireSensorType\n");
       returnValue = true;
@@ -11280,7 +11346,7 @@ bool EddyCurrentSensorType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -11289,12 +11355,12 @@ bool EddyCurrentSensorType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in EddyCurrentSensorType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -11308,7 +11374,11 @@ bool EddyCurrentSensorType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in EddyCurrentSensorType\n");
       returnValue = true;
@@ -12623,7 +12693,7 @@ bool FixtureType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -12632,12 +12702,12 @@ bool FixtureType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in FixtureType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -12651,7 +12721,11 @@ bool FixtureType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in FixtureType\n");
       returnValue = true;
@@ -12811,7 +12885,7 @@ bool FixturesType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -12820,12 +12894,12 @@ bool FixturesType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in FixturesType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -12961,7 +13035,7 @@ bool FunctionDiscreteType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -12970,12 +13044,12 @@ bool FunctionDiscreteType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in FunctionDiscreteType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -13238,7 +13312,7 @@ bool GageDeviceType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -13247,12 +13321,12 @@ bool GageDeviceType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in GageDeviceType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -13266,7 +13340,11 @@ bool GageDeviceType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in GageDeviceType\n");
       returnValue = true;
@@ -13667,12 +13745,12 @@ void LaserRadarType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (Resolution->printElement == 0)
+        if (Resolution->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(Resolution->printElement, "LinearResolution") == 0)
+        else if (strcmp(Resolution->getprintElement(), "LinearResolution") == 0)
           {
             LinearResolutionType * typ;
             if ((typ = dynamic_cast<LinearResolutionType *>(Resolution)))
@@ -13688,7 +13766,7 @@ void LaserRadarType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(Resolution->printElement, "CartesianResolution") == 0)
+        else if (strcmp(Resolution->getprintElement(), "CartesianResolution") == 0)
           {
             CartesianResolutionType * typ;
             if ((typ = dynamic_cast<CartesianResolutionType *>(Resolution)))
@@ -13704,7 +13782,7 @@ void LaserRadarType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(Resolution->printElement, "SphericalResolution") == 0)
+        else if (strcmp(Resolution->getprintElement(), "SphericalResolution") == 0)
           {
             SphericalResolutionType * typ;
             if ((typ = dynamic_cast<SphericalResolutionType *>(Resolution)))
@@ -13720,7 +13798,7 @@ void LaserRadarType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(Resolution->printElement, "UserDefinedResolution") == 0)
+        else if (strcmp(Resolution->getprintElement(), "UserDefinedResolution") == 0)
           {
             UserDefinedResolutionType * typ;
             if ((typ = dynamic_cast<UserDefinedResolutionType *>(Resolution)))
@@ -13748,12 +13826,12 @@ void LaserRadarType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (WorkingVolume->printElement == 0)
+        if (WorkingVolume->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(WorkingVolume->printElement, "ClosedShellSetWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "ClosedShellSetWorkingVolume") == 0)
           {
             ClosedShellSetWorkingVolumeType * typ;
             if ((typ = dynamic_cast<ClosedShellSetWorkingVolumeType *>(WorkingVolume)))
@@ -13769,7 +13847,7 @@ void LaserRadarType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(WorkingVolume->printElement, "CartesianWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "CartesianWorkingVolume") == 0)
           {
             CartesianWorkingVolumeType * typ;
             if ((typ = dynamic_cast<CartesianWorkingVolumeType *>(WorkingVolume)))
@@ -13785,7 +13863,7 @@ void LaserRadarType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(WorkingVolume->printElement, "SphericalWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "SphericalWorkingVolume") == 0)
           {
             SphericalWorkingVolumeType * typ;
             if ((typ = dynamic_cast<SphericalWorkingVolumeType *>(WorkingVolume)))
@@ -13801,7 +13879,7 @@ void LaserRadarType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(WorkingVolume->printElement, "CylindricalWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "CylindricalWorkingVolume") == 0)
           {
             CylindricalWorkingVolumeType * typ;
             if ((typ = dynamic_cast<CylindricalWorkingVolumeType *>(WorkingVolume)))
@@ -13817,7 +13895,7 @@ void LaserRadarType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(WorkingVolume->printElement, "UserDefinedWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "UserDefinedWorkingVolume") == 0)
           {
             UserDefinedWorkingVolumeType * typ;
             if ((typ = dynamic_cast<UserDefinedWorkingVolumeType *>(WorkingVolume)))
@@ -13845,12 +13923,12 @@ void LaserRadarType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (EffectiveWorkingVolume->printElement == 0)
+        if (EffectiveWorkingVolume->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(EffectiveWorkingVolume->printElement, "EffectiveClosedShellSetWorkingVolume") == 0)
+        else if (strcmp(EffectiveWorkingVolume->getprintElement(), "EffectiveClosedShellSetWorkingVolume") == 0)
           {
             EffectiveClosedShellSetWorkingVolumeType * typ;
             if ((typ = dynamic_cast<EffectiveClosedShellSetWorkingVolumeType *>(EffectiveWorkingVolume)))
@@ -13866,7 +13944,7 @@ void LaserRadarType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(EffectiveWorkingVolume->printElement, "EffectiveCartesianWorkingVolume") == 0)
+        else if (strcmp(EffectiveWorkingVolume->getprintElement(), "EffectiveCartesianWorkingVolume") == 0)
           {
             EffectiveCartesianWorkingVolumeType * typ;
             if ((typ = dynamic_cast<EffectiveCartesianWorkingVolumeType *>(EffectiveWorkingVolume)))
@@ -13882,7 +13960,7 @@ void LaserRadarType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(EffectiveWorkingVolume->printElement, "EffectiveSphericalWorkingVolume") == 0)
+        else if (strcmp(EffectiveWorkingVolume->getprintElement(), "EffectiveSphericalWorkingVolume") == 0)
           {
             EffectiveSphericalWorkingVolumeType * typ;
             if ((typ = dynamic_cast<EffectiveSphericalWorkingVolumeType *>(EffectiveWorkingVolume)))
@@ -13898,7 +13976,7 @@ void LaserRadarType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(EffectiveWorkingVolume->printElement, "EffectiveCylindricalWorkingVolume") == 0)
+        else if (strcmp(EffectiveWorkingVolume->getprintElement(), "EffectiveCylindricalWorkingVolume") == 0)
           {
             EffectiveCylindricalWorkingVolumeType * typ;
             if ((typ = dynamic_cast<EffectiveCylindricalWorkingVolumeType *>(EffectiveWorkingVolume)))
@@ -13914,7 +13992,7 @@ void LaserRadarType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(EffectiveWorkingVolume->printElement, "EffectiveUserDefinedWorkingVolume") == 0)
+        else if (strcmp(EffectiveWorkingVolume->getprintElement(), "EffectiveUserDefinedWorkingVolume") == 0)
           {
             EffectiveUserDefinedWorkingVolumeType * typ;
             if ((typ = dynamic_cast<EffectiveUserDefinedWorkingVolumeType *>(EffectiveWorkingVolume)))
@@ -14077,7 +14155,7 @@ bool LaserRadarType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -14086,12 +14164,12 @@ bool LaserRadarType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in LaserRadarType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -14105,7 +14183,11 @@ bool LaserRadarType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in LaserRadarType\n");
       returnValue = true;
@@ -14476,12 +14558,12 @@ void LaserTrackerType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (Resolution->printElement == 0)
+        if (Resolution->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(Resolution->printElement, "LinearResolution") == 0)
+        else if (strcmp(Resolution->getprintElement(), "LinearResolution") == 0)
           {
             LinearResolutionType * typ;
             if ((typ = dynamic_cast<LinearResolutionType *>(Resolution)))
@@ -14497,7 +14579,7 @@ void LaserTrackerType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(Resolution->printElement, "CartesianResolution") == 0)
+        else if (strcmp(Resolution->getprintElement(), "CartesianResolution") == 0)
           {
             CartesianResolutionType * typ;
             if ((typ = dynamic_cast<CartesianResolutionType *>(Resolution)))
@@ -14513,7 +14595,7 @@ void LaserTrackerType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(Resolution->printElement, "SphericalResolution") == 0)
+        else if (strcmp(Resolution->getprintElement(), "SphericalResolution") == 0)
           {
             SphericalResolutionType * typ;
             if ((typ = dynamic_cast<SphericalResolutionType *>(Resolution)))
@@ -14529,7 +14611,7 @@ void LaserTrackerType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(Resolution->printElement, "UserDefinedResolution") == 0)
+        else if (strcmp(Resolution->getprintElement(), "UserDefinedResolution") == 0)
           {
             UserDefinedResolutionType * typ;
             if ((typ = dynamic_cast<UserDefinedResolutionType *>(Resolution)))
@@ -14557,12 +14639,12 @@ void LaserTrackerType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (WorkingVolume->printElement == 0)
+        if (WorkingVolume->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(WorkingVolume->printElement, "ClosedShellSetWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "ClosedShellSetWorkingVolume") == 0)
           {
             ClosedShellSetWorkingVolumeType * typ;
             if ((typ = dynamic_cast<ClosedShellSetWorkingVolumeType *>(WorkingVolume)))
@@ -14578,7 +14660,7 @@ void LaserTrackerType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(WorkingVolume->printElement, "CartesianWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "CartesianWorkingVolume") == 0)
           {
             CartesianWorkingVolumeType * typ;
             if ((typ = dynamic_cast<CartesianWorkingVolumeType *>(WorkingVolume)))
@@ -14594,7 +14676,7 @@ void LaserTrackerType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(WorkingVolume->printElement, "SphericalWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "SphericalWorkingVolume") == 0)
           {
             SphericalWorkingVolumeType * typ;
             if ((typ = dynamic_cast<SphericalWorkingVolumeType *>(WorkingVolume)))
@@ -14610,7 +14692,7 @@ void LaserTrackerType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(WorkingVolume->printElement, "CylindricalWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "CylindricalWorkingVolume") == 0)
           {
             CylindricalWorkingVolumeType * typ;
             if ((typ = dynamic_cast<CylindricalWorkingVolumeType *>(WorkingVolume)))
@@ -14626,7 +14708,7 @@ void LaserTrackerType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(WorkingVolume->printElement, "UserDefinedWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "UserDefinedWorkingVolume") == 0)
           {
             UserDefinedWorkingVolumeType * typ;
             if ((typ = dynamic_cast<UserDefinedWorkingVolumeType *>(WorkingVolume)))
@@ -14654,12 +14736,12 @@ void LaserTrackerType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (EffectiveWorkingVolume->printElement == 0)
+        if (EffectiveWorkingVolume->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(EffectiveWorkingVolume->printElement, "EffectiveClosedShellSetWorkingVolume") == 0)
+        else if (strcmp(EffectiveWorkingVolume->getprintElement(), "EffectiveClosedShellSetWorkingVolume") == 0)
           {
             EffectiveClosedShellSetWorkingVolumeType * typ;
             if ((typ = dynamic_cast<EffectiveClosedShellSetWorkingVolumeType *>(EffectiveWorkingVolume)))
@@ -14675,7 +14757,7 @@ void LaserTrackerType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(EffectiveWorkingVolume->printElement, "EffectiveCartesianWorkingVolume") == 0)
+        else if (strcmp(EffectiveWorkingVolume->getprintElement(), "EffectiveCartesianWorkingVolume") == 0)
           {
             EffectiveCartesianWorkingVolumeType * typ;
             if ((typ = dynamic_cast<EffectiveCartesianWorkingVolumeType *>(EffectiveWorkingVolume)))
@@ -14691,7 +14773,7 @@ void LaserTrackerType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(EffectiveWorkingVolume->printElement, "EffectiveSphericalWorkingVolume") == 0)
+        else if (strcmp(EffectiveWorkingVolume->getprintElement(), "EffectiveSphericalWorkingVolume") == 0)
           {
             EffectiveSphericalWorkingVolumeType * typ;
             if ((typ = dynamic_cast<EffectiveSphericalWorkingVolumeType *>(EffectiveWorkingVolume)))
@@ -14707,7 +14789,7 @@ void LaserTrackerType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(EffectiveWorkingVolume->printElement, "EffectiveCylindricalWorkingVolume") == 0)
+        else if (strcmp(EffectiveWorkingVolume->getprintElement(), "EffectiveCylindricalWorkingVolume") == 0)
           {
             EffectiveCylindricalWorkingVolumeType * typ;
             if ((typ = dynamic_cast<EffectiveCylindricalWorkingVolumeType *>(EffectiveWorkingVolume)))
@@ -14723,7 +14805,7 @@ void LaserTrackerType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(EffectiveWorkingVolume->printElement, "EffectiveUserDefinedWorkingVolume") == 0)
+        else if (strcmp(EffectiveWorkingVolume->getprintElement(), "EffectiveUserDefinedWorkingVolume") == 0)
           {
             EffectiveUserDefinedWorkingVolumeType * typ;
             if ((typ = dynamic_cast<EffectiveUserDefinedWorkingVolumeType *>(EffectiveWorkingVolume)))
@@ -14843,7 +14925,7 @@ bool LaserTrackerType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -14852,12 +14934,12 @@ bool LaserTrackerType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in LaserTrackerType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -14871,7 +14953,11 @@ bool LaserTrackerType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in LaserTrackerType\n");
       returnValue = true;
@@ -15327,7 +15413,7 @@ bool LaserTriangulationSensorType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -15336,12 +15422,12 @@ bool LaserTriangulationSensorType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in LaserTriangulationSensorType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -15355,7 +15441,11 @@ bool LaserTriangulationSensorType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in LaserTriangulationSensorType\n");
       returnValue = true;
@@ -15697,7 +15787,7 @@ bool LaserType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -15706,12 +15796,12 @@ bool LaserType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in LaserType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -15725,7 +15815,11 @@ bool LaserType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in LaserType\n");
       returnValue = true;
@@ -15893,7 +15987,7 @@ bool LengthFunctionDiscreteType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -15902,12 +15996,12 @@ bool LengthFunctionDiscreteType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in LengthFunctionDiscreteType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -16252,12 +16346,12 @@ void LightPenCMMType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (Resolution->printElement == 0)
+        if (Resolution->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(Resolution->printElement, "LinearResolution") == 0)
+        else if (strcmp(Resolution->getprintElement(), "LinearResolution") == 0)
           {
             LinearResolutionType * typ;
             if ((typ = dynamic_cast<LinearResolutionType *>(Resolution)))
@@ -16273,7 +16367,7 @@ void LightPenCMMType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(Resolution->printElement, "CartesianResolution") == 0)
+        else if (strcmp(Resolution->getprintElement(), "CartesianResolution") == 0)
           {
             CartesianResolutionType * typ;
             if ((typ = dynamic_cast<CartesianResolutionType *>(Resolution)))
@@ -16289,7 +16383,7 @@ void LightPenCMMType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(Resolution->printElement, "SphericalResolution") == 0)
+        else if (strcmp(Resolution->getprintElement(), "SphericalResolution") == 0)
           {
             SphericalResolutionType * typ;
             if ((typ = dynamic_cast<SphericalResolutionType *>(Resolution)))
@@ -16305,7 +16399,7 @@ void LightPenCMMType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(Resolution->printElement, "UserDefinedResolution") == 0)
+        else if (strcmp(Resolution->getprintElement(), "UserDefinedResolution") == 0)
           {
             UserDefinedResolutionType * typ;
             if ((typ = dynamic_cast<UserDefinedResolutionType *>(Resolution)))
@@ -16333,12 +16427,12 @@ void LightPenCMMType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (WorkingVolume->printElement == 0)
+        if (WorkingVolume->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(WorkingVolume->printElement, "ClosedShellSetWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "ClosedShellSetWorkingVolume") == 0)
           {
             ClosedShellSetWorkingVolumeType * typ;
             if ((typ = dynamic_cast<ClosedShellSetWorkingVolumeType *>(WorkingVolume)))
@@ -16354,7 +16448,7 @@ void LightPenCMMType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(WorkingVolume->printElement, "CartesianWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "CartesianWorkingVolume") == 0)
           {
             CartesianWorkingVolumeType * typ;
             if ((typ = dynamic_cast<CartesianWorkingVolumeType *>(WorkingVolume)))
@@ -16370,7 +16464,7 @@ void LightPenCMMType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(WorkingVolume->printElement, "SphericalWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "SphericalWorkingVolume") == 0)
           {
             SphericalWorkingVolumeType * typ;
             if ((typ = dynamic_cast<SphericalWorkingVolumeType *>(WorkingVolume)))
@@ -16386,7 +16480,7 @@ void LightPenCMMType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(WorkingVolume->printElement, "CylindricalWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "CylindricalWorkingVolume") == 0)
           {
             CylindricalWorkingVolumeType * typ;
             if ((typ = dynamic_cast<CylindricalWorkingVolumeType *>(WorkingVolume)))
@@ -16402,7 +16496,7 @@ void LightPenCMMType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(WorkingVolume->printElement, "UserDefinedWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "UserDefinedWorkingVolume") == 0)
           {
             UserDefinedWorkingVolumeType * typ;
             if ((typ = dynamic_cast<UserDefinedWorkingVolumeType *>(WorkingVolume)))
@@ -16430,12 +16524,12 @@ void LightPenCMMType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (EffectiveWorkingVolume->printElement == 0)
+        if (EffectiveWorkingVolume->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(EffectiveWorkingVolume->printElement, "EffectiveClosedShellSetWorkingVolume") == 0)
+        else if (strcmp(EffectiveWorkingVolume->getprintElement(), "EffectiveClosedShellSetWorkingVolume") == 0)
           {
             EffectiveClosedShellSetWorkingVolumeType * typ;
             if ((typ = dynamic_cast<EffectiveClosedShellSetWorkingVolumeType *>(EffectiveWorkingVolume)))
@@ -16451,7 +16545,7 @@ void LightPenCMMType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(EffectiveWorkingVolume->printElement, "EffectiveCartesianWorkingVolume") == 0)
+        else if (strcmp(EffectiveWorkingVolume->getprintElement(), "EffectiveCartesianWorkingVolume") == 0)
           {
             EffectiveCartesianWorkingVolumeType * typ;
             if ((typ = dynamic_cast<EffectiveCartesianWorkingVolumeType *>(EffectiveWorkingVolume)))
@@ -16467,7 +16561,7 @@ void LightPenCMMType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(EffectiveWorkingVolume->printElement, "EffectiveSphericalWorkingVolume") == 0)
+        else if (strcmp(EffectiveWorkingVolume->getprintElement(), "EffectiveSphericalWorkingVolume") == 0)
           {
             EffectiveSphericalWorkingVolumeType * typ;
             if ((typ = dynamic_cast<EffectiveSphericalWorkingVolumeType *>(EffectiveWorkingVolume)))
@@ -16483,7 +16577,7 @@ void LightPenCMMType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(EffectiveWorkingVolume->printElement, "EffectiveCylindricalWorkingVolume") == 0)
+        else if (strcmp(EffectiveWorkingVolume->getprintElement(), "EffectiveCylindricalWorkingVolume") == 0)
           {
             EffectiveCylindricalWorkingVolumeType * typ;
             if ((typ = dynamic_cast<EffectiveCylindricalWorkingVolumeType *>(EffectiveWorkingVolume)))
@@ -16499,7 +16593,7 @@ void LightPenCMMType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(EffectiveWorkingVolume->printElement, "EffectiveUserDefinedWorkingVolume") == 0)
+        else if (strcmp(EffectiveWorkingVolume->getprintElement(), "EffectiveUserDefinedWorkingVolume") == 0)
           {
             EffectiveUserDefinedWorkingVolumeType * typ;
             if ((typ = dynamic_cast<EffectiveUserDefinedWorkingVolumeType *>(EffectiveWorkingVolume)))
@@ -16602,7 +16696,7 @@ bool LightPenCMMType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -16611,12 +16705,12 @@ bool LightPenCMMType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in LightPenCMMType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -16630,7 +16724,11 @@ bool LightPenCMMType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in LightPenCMMType\n");
       returnValue = true;
@@ -16838,12 +16936,12 @@ void LinearOrRotaryAxisType::printSelf(FILE * outFile)
   doSpaces(+INDENT, outFile);
   {
     doSpaces(0, outFile);
-    if (Axis->printElement == 0)
+    if (Axis->getprintElement() == 0)
       {
         fprintf(stderr, "element name missing\n");
         exit(1);
       }
-    else if (strcmp(Axis->printElement, "RotaryAxis") == 0)
+    else if (strcmp(Axis->getprintElement(), "RotaryAxis") == 0)
       {
         RotaryAxisType * typ;
         if ((typ = dynamic_cast<RotaryAxisType *>(Axis)))
@@ -16859,7 +16957,7 @@ void LinearOrRotaryAxisType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(Axis->printElement, "LinearAxis") == 0)
+    else if (strcmp(Axis->getprintElement(), "LinearAxis") == 0)
       {
         LinearAxisType * typ;
         if ((typ = dynamic_cast<LinearAxisType *>(Axis)))
@@ -16950,8 +17048,8 @@ LinearVariableDifferentialTransformerEnumType::LinearVariableDifferentialTransfo
   XmlNMTOKEN(
     valIn)
 {
-  if (!bad)
-    bad = (strcmp(val.c_str(), "AC_LINEAR_VARIABLE_DIFFERENTIAL_TRANSFORMER") &&
+  if (!getbad())
+    setbad(strcmp(val.c_str(), "AC_LINEAR_VARIABLE_DIFFERENTIAL_TRANSFORMER") &&
            strcmp(val.c_str(), "DC_LINEAR_VARIABLE_DIFFERENTIAL_TRANSFORMER"));
 }
 
@@ -17369,7 +17467,7 @@ bool LinearVariableDifferentialTransformerSensorType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -17378,12 +17476,12 @@ bool LinearVariableDifferentialTransformerSensorType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in LinearVariableDifferentialTransformerSensorType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -17397,7 +17495,11 @@ bool LinearVariableDifferentialTransformerSensorType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in LinearVariableDifferentialTransformerSensorType\n");
       returnValue = true;
@@ -17679,7 +17781,7 @@ bool LocatedTipsType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -17688,12 +17790,12 @@ bool LocatedTipsType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in LocatedTipsType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -18114,7 +18216,7 @@ bool MagnetoInductiveSensorType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -18123,12 +18225,12 @@ bool MagnetoInductiveSensorType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in MagnetoInductiveSensorType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -18142,7 +18244,11 @@ bool MagnetoInductiveSensorType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in MagnetoInductiveSensorType\n");
       returnValue = true;
@@ -18443,7 +18549,7 @@ bool ManualMeasurementDeviceType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -18452,12 +18558,12 @@ bool ManualMeasurementDeviceType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in ManualMeasurementDeviceType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -18471,7 +18577,11 @@ bool ManualMeasurementDeviceType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in ManualMeasurementDeviceType\n");
       returnValue = true;
@@ -18884,7 +18994,7 @@ bool MeasurementDeviceType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -18893,12 +19003,12 @@ bool MeasurementDeviceType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in MeasurementDeviceType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -18912,7 +19022,11 @@ bool MeasurementDeviceType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in MeasurementDeviceType\n");
       returnValue = true;
@@ -19066,12 +19180,12 @@ void MeasurementDevicesType::printSelf(FILE * outFile)
         MeasurementDeviceType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "CMM") == 0)
+        else if (strcmp(basie->getprintElement(), "CMM") == 0)
           {
             CMMType * typ;
             if ((typ = dynamic_cast<CMMType *>(basie)))
@@ -19087,7 +19201,7 @@ void MeasurementDevicesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ManualMeasurementDevice") == 0)
+        else if (strcmp(basie->getprintElement(), "ManualMeasurementDevice") == 0)
           {
             ManualMeasurementDeviceType * typ;
             if ((typ = dynamic_cast<ManualMeasurementDeviceType *>(basie)))
@@ -19103,7 +19217,7 @@ void MeasurementDevicesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Microscope") == 0)
+        else if (strcmp(basie->getprintElement(), "Microscope") == 0)
           {
             MicroscopeType * typ;
             if ((typ = dynamic_cast<MicroscopeType *>(basie)))
@@ -19119,7 +19233,7 @@ void MeasurementDevicesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Autocollimator") == 0)
+        else if (strcmp(basie->getprintElement(), "Autocollimator") == 0)
           {
             AutocollimatorType * typ;
             if ((typ = dynamic_cast<AutocollimatorType *>(basie)))
@@ -19135,7 +19249,7 @@ void MeasurementDevicesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "OpticalComparator") == 0)
+        else if (strcmp(basie->getprintElement(), "OpticalComparator") == 0)
           {
             OpticalComparatorType * typ;
             if ((typ = dynamic_cast<OpticalComparatorType *>(basie)))
@@ -19151,7 +19265,7 @@ void MeasurementDevicesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "UniversalLengthMeasuring") == 0)
+        else if (strcmp(basie->getprintElement(), "UniversalLengthMeasuring") == 0)
           {
             UniversalLengthMeasuringType * typ;
             if ((typ = dynamic_cast<UniversalLengthMeasuringType *>(basie)))
@@ -19167,7 +19281,7 @@ void MeasurementDevicesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LaserRadar") == 0)
+        else if (strcmp(basie->getprintElement(), "LaserRadar") == 0)
           {
             LaserRadarType * typ;
             if ((typ = dynamic_cast<LaserRadarType *>(basie)))
@@ -19183,7 +19297,7 @@ void MeasurementDevicesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LaserTracker") == 0)
+        else if (strcmp(basie->getprintElement(), "LaserTracker") == 0)
           {
             LaserTrackerType * typ;
             if ((typ = dynamic_cast<LaserTrackerType *>(basie)))
@@ -19199,7 +19313,7 @@ void MeasurementDevicesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ComputedTomography") == 0)
+        else if (strcmp(basie->getprintElement(), "ComputedTomography") == 0)
           {
             ComputedTomographyType * typ;
             if ((typ = dynamic_cast<ComputedTomographyType *>(basie)))
@@ -19215,7 +19329,7 @@ void MeasurementDevicesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Theodolite") == 0)
+        else if (strcmp(basie->getprintElement(), "Theodolite") == 0)
           {
             TheodoliteType * typ;
             if ((typ = dynamic_cast<TheodoliteType *>(basie)))
@@ -19231,7 +19345,7 @@ void MeasurementDevicesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "AACMM") == 0)
+        else if (strcmp(basie->getprintElement(), "AACMM") == 0)
           {
             AACMMType * typ;
             if ((typ = dynamic_cast<AACMMType *>(basie)))
@@ -19247,7 +19361,7 @@ void MeasurementDevicesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "CartesianCMM") == 0)
+        else if (strcmp(basie->getprintElement(), "CartesianCMM") == 0)
           {
             CartesianCMMType * typ;
             if ((typ = dynamic_cast<CartesianCMMType *>(basie)))
@@ -19263,7 +19377,7 @@ void MeasurementDevicesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "MultipleCarriageCartesianCMM") == 0)
+        else if (strcmp(basie->getprintElement(), "MultipleCarriageCartesianCMM") == 0)
           {
             MultipleCarriageCartesianCMMType * typ;
             if ((typ = dynamic_cast<MultipleCarriageCartesianCMMType *>(basie)))
@@ -19279,7 +19393,7 @@ void MeasurementDevicesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ParallelLinkCMM") == 0)
+        else if (strcmp(basie->getprintElement(), "ParallelLinkCMM") == 0)
           {
             ParallelLinkCMMType * typ;
             if ((typ = dynamic_cast<ParallelLinkCMMType *>(basie)))
@@ -19295,7 +19409,7 @@ void MeasurementDevicesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LightPenCMM") == 0)
+        else if (strcmp(basie->getprintElement(), "LightPenCMM") == 0)
           {
             LightPenCMMType * typ;
             if ((typ = dynamic_cast<LightPenCMMType *>(basie)))
@@ -19311,7 +19425,7 @@ void MeasurementDevicesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Caliper") == 0)
+        else if (strcmp(basie->getprintElement(), "Caliper") == 0)
           {
             CaliperType * typ;
             if ((typ = dynamic_cast<CaliperType *>(basie)))
@@ -19327,7 +19441,7 @@ void MeasurementDevicesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "CaliperDial") == 0)
+        else if (strcmp(basie->getprintElement(), "CaliperDial") == 0)
           {
             CaliperDialType * typ;
             if ((typ = dynamic_cast<CaliperDialType *>(basie)))
@@ -19343,7 +19457,7 @@ void MeasurementDevicesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "CaliperDigital") == 0)
+        else if (strcmp(basie->getprintElement(), "CaliperDigital") == 0)
           {
             CaliperDigitalType * typ;
             if ((typ = dynamic_cast<CaliperDigitalType *>(basie)))
@@ -19359,7 +19473,7 @@ void MeasurementDevicesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "GageDevice") == 0)
+        else if (strcmp(basie->getprintElement(), "GageDevice") == 0)
           {
             GageDeviceType * typ;
             if ((typ = dynamic_cast<GageDeviceType *>(basie)))
@@ -19375,7 +19489,7 @@ void MeasurementDevicesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "Micrometer") == 0)
+        else if (strcmp(basie->getprintElement(), "Micrometer") == 0)
           {
             MicrometerType * typ;
             if ((typ = dynamic_cast<MicrometerType *>(basie)))
@@ -19391,7 +19505,7 @@ void MeasurementDevicesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "MicrometerAnalog") == 0)
+        else if (strcmp(basie->getprintElement(), "MicrometerAnalog") == 0)
           {
             MicrometerAnalogType * typ;
             if ((typ = dynamic_cast<MicrometerAnalogType *>(basie)))
@@ -19407,7 +19521,7 @@ void MeasurementDevicesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "MicrometerDigital") == 0)
+        else if (strcmp(basie->getprintElement(), "MicrometerDigital") == 0)
           {
             MicrometerDigitalType * typ;
             if ((typ = dynamic_cast<MicrometerDigitalType *>(basie)))
@@ -19423,7 +19537,7 @@ void MeasurementDevicesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SineBar") == 0)
+        else if (strcmp(basie->getprintElement(), "SineBar") == 0)
           {
             SineBarType * typ;
             if ((typ = dynamic_cast<SineBarType *>(basie)))
@@ -19439,7 +19553,7 @@ void MeasurementDevicesType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "MeasurementDevice") == 0)
+        else if (strcmp(basie->getprintElement(), "MeasurementDevice") == 0)
           {
             MeasurementDeviceType * typ;
             if ((typ = dynamic_cast<MeasurementDeviceType *>(basie)))
@@ -19477,7 +19591,7 @@ bool MeasurementDevicesType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -19486,12 +19600,12 @@ bool MeasurementDevicesType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in MeasurementDevicesType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -19720,7 +19834,7 @@ bool MeasurementResourceBaseType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -19729,12 +19843,12 @@ bool MeasurementResourceBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in MeasurementResourceBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -19748,7 +19862,11 @@ bool MeasurementResourceBaseType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in MeasurementResourceBaseType\n");
       returnValue = true;
@@ -20216,7 +20334,7 @@ bool MeasurementRoomType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -20225,12 +20343,12 @@ bool MeasurementRoomType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in MeasurementRoomType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -20244,7 +20362,11 @@ bool MeasurementRoomType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in MeasurementRoomType\n");
       returnValue = true;
@@ -20452,7 +20574,7 @@ bool MeasurementRoomsType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -20461,12 +20583,12 @@ bool MeasurementRoomsType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in MeasurementRoomsType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -20769,7 +20891,7 @@ bool MicrometerAnalogType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -20778,12 +20900,12 @@ bool MicrometerAnalogType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in MicrometerAnalogType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -20797,7 +20919,11 @@ bool MicrometerAnalogType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in MicrometerAnalogType\n");
       returnValue = true;
@@ -21074,7 +21200,7 @@ bool MicrometerDigitalType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -21083,12 +21209,12 @@ bool MicrometerDigitalType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in MicrometerDigitalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -21102,7 +21228,11 @@ bool MicrometerDigitalType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in MicrometerDigitalType\n");
       returnValue = true;
@@ -21387,7 +21517,7 @@ bool MicrometerType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -21396,12 +21526,12 @@ bool MicrometerType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in MicrometerType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -21415,7 +21545,11 @@ bool MicrometerType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in MicrometerType\n");
       returnValue = true;
@@ -21708,12 +21842,12 @@ void MicroscopeType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (Resolution->printElement == 0)
+        if (Resolution->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(Resolution->printElement, "LinearResolution") == 0)
+        else if (strcmp(Resolution->getprintElement(), "LinearResolution") == 0)
           {
             LinearResolutionType * typ;
             if ((typ = dynamic_cast<LinearResolutionType *>(Resolution)))
@@ -21729,7 +21863,7 @@ void MicroscopeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(Resolution->printElement, "CartesianResolution") == 0)
+        else if (strcmp(Resolution->getprintElement(), "CartesianResolution") == 0)
           {
             CartesianResolutionType * typ;
             if ((typ = dynamic_cast<CartesianResolutionType *>(Resolution)))
@@ -21745,7 +21879,7 @@ void MicroscopeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(Resolution->printElement, "SphericalResolution") == 0)
+        else if (strcmp(Resolution->getprintElement(), "SphericalResolution") == 0)
           {
             SphericalResolutionType * typ;
             if ((typ = dynamic_cast<SphericalResolutionType *>(Resolution)))
@@ -21761,7 +21895,7 @@ void MicroscopeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(Resolution->printElement, "UserDefinedResolution") == 0)
+        else if (strcmp(Resolution->getprintElement(), "UserDefinedResolution") == 0)
           {
             UserDefinedResolutionType * typ;
             if ((typ = dynamic_cast<UserDefinedResolutionType *>(Resolution)))
@@ -21789,12 +21923,12 @@ void MicroscopeType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (WorkingVolume->printElement == 0)
+        if (WorkingVolume->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(WorkingVolume->printElement, "ClosedShellSetWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "ClosedShellSetWorkingVolume") == 0)
           {
             ClosedShellSetWorkingVolumeType * typ;
             if ((typ = dynamic_cast<ClosedShellSetWorkingVolumeType *>(WorkingVolume)))
@@ -21810,7 +21944,7 @@ void MicroscopeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(WorkingVolume->printElement, "CartesianWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "CartesianWorkingVolume") == 0)
           {
             CartesianWorkingVolumeType * typ;
             if ((typ = dynamic_cast<CartesianWorkingVolumeType *>(WorkingVolume)))
@@ -21826,7 +21960,7 @@ void MicroscopeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(WorkingVolume->printElement, "SphericalWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "SphericalWorkingVolume") == 0)
           {
             SphericalWorkingVolumeType * typ;
             if ((typ = dynamic_cast<SphericalWorkingVolumeType *>(WorkingVolume)))
@@ -21842,7 +21976,7 @@ void MicroscopeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(WorkingVolume->printElement, "CylindricalWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "CylindricalWorkingVolume") == 0)
           {
             CylindricalWorkingVolumeType * typ;
             if ((typ = dynamic_cast<CylindricalWorkingVolumeType *>(WorkingVolume)))
@@ -21858,7 +21992,7 @@ void MicroscopeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(WorkingVolume->printElement, "UserDefinedWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "UserDefinedWorkingVolume") == 0)
           {
             UserDefinedWorkingVolumeType * typ;
             if ((typ = dynamic_cast<UserDefinedWorkingVolumeType *>(WorkingVolume)))
@@ -21886,12 +22020,12 @@ void MicroscopeType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (EffectiveWorkingVolume->printElement == 0)
+        if (EffectiveWorkingVolume->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(EffectiveWorkingVolume->printElement, "EffectiveClosedShellSetWorkingVolume") == 0)
+        else if (strcmp(EffectiveWorkingVolume->getprintElement(), "EffectiveClosedShellSetWorkingVolume") == 0)
           {
             EffectiveClosedShellSetWorkingVolumeType * typ;
             if ((typ = dynamic_cast<EffectiveClosedShellSetWorkingVolumeType *>(EffectiveWorkingVolume)))
@@ -21907,7 +22041,7 @@ void MicroscopeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(EffectiveWorkingVolume->printElement, "EffectiveCartesianWorkingVolume") == 0)
+        else if (strcmp(EffectiveWorkingVolume->getprintElement(), "EffectiveCartesianWorkingVolume") == 0)
           {
             EffectiveCartesianWorkingVolumeType * typ;
             if ((typ = dynamic_cast<EffectiveCartesianWorkingVolumeType *>(EffectiveWorkingVolume)))
@@ -21923,7 +22057,7 @@ void MicroscopeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(EffectiveWorkingVolume->printElement, "EffectiveSphericalWorkingVolume") == 0)
+        else if (strcmp(EffectiveWorkingVolume->getprintElement(), "EffectiveSphericalWorkingVolume") == 0)
           {
             EffectiveSphericalWorkingVolumeType * typ;
             if ((typ = dynamic_cast<EffectiveSphericalWorkingVolumeType *>(EffectiveWorkingVolume)))
@@ -21939,7 +22073,7 @@ void MicroscopeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(EffectiveWorkingVolume->printElement, "EffectiveCylindricalWorkingVolume") == 0)
+        else if (strcmp(EffectiveWorkingVolume->getprintElement(), "EffectiveCylindricalWorkingVolume") == 0)
           {
             EffectiveCylindricalWorkingVolumeType * typ;
             if ((typ = dynamic_cast<EffectiveCylindricalWorkingVolumeType *>(EffectiveWorkingVolume)))
@@ -21955,7 +22089,7 @@ void MicroscopeType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(EffectiveWorkingVolume->printElement, "EffectiveUserDefinedWorkingVolume") == 0)
+        else if (strcmp(EffectiveWorkingVolume->getprintElement(), "EffectiveUserDefinedWorkingVolume") == 0)
           {
             EffectiveUserDefinedWorkingVolumeType * typ;
             if ((typ = dynamic_cast<EffectiveUserDefinedWorkingVolumeType *>(EffectiveWorkingVolume)))
@@ -22066,7 +22200,7 @@ bool MicroscopeType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -22075,12 +22209,12 @@ bool MicroscopeType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in MicroscopeType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -22094,7 +22228,11 @@ bool MicroscopeType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in MicroscopeType\n");
       returnValue = true;
@@ -22417,12 +22555,12 @@ void MultipleCarriageCartesianCMMType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (Resolution->printElement == 0)
+        if (Resolution->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(Resolution->printElement, "LinearResolution") == 0)
+        else if (strcmp(Resolution->getprintElement(), "LinearResolution") == 0)
           {
             LinearResolutionType * typ;
             if ((typ = dynamic_cast<LinearResolutionType *>(Resolution)))
@@ -22438,7 +22576,7 @@ void MultipleCarriageCartesianCMMType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(Resolution->printElement, "CartesianResolution") == 0)
+        else if (strcmp(Resolution->getprintElement(), "CartesianResolution") == 0)
           {
             CartesianResolutionType * typ;
             if ((typ = dynamic_cast<CartesianResolutionType *>(Resolution)))
@@ -22454,7 +22592,7 @@ void MultipleCarriageCartesianCMMType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(Resolution->printElement, "SphericalResolution") == 0)
+        else if (strcmp(Resolution->getprintElement(), "SphericalResolution") == 0)
           {
             SphericalResolutionType * typ;
             if ((typ = dynamic_cast<SphericalResolutionType *>(Resolution)))
@@ -22470,7 +22608,7 @@ void MultipleCarriageCartesianCMMType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(Resolution->printElement, "UserDefinedResolution") == 0)
+        else if (strcmp(Resolution->getprintElement(), "UserDefinedResolution") == 0)
           {
             UserDefinedResolutionType * typ;
             if ((typ = dynamic_cast<UserDefinedResolutionType *>(Resolution)))
@@ -22498,12 +22636,12 @@ void MultipleCarriageCartesianCMMType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (WorkingVolume->printElement == 0)
+        if (WorkingVolume->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(WorkingVolume->printElement, "ClosedShellSetWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "ClosedShellSetWorkingVolume") == 0)
           {
             ClosedShellSetWorkingVolumeType * typ;
             if ((typ = dynamic_cast<ClosedShellSetWorkingVolumeType *>(WorkingVolume)))
@@ -22519,7 +22657,7 @@ void MultipleCarriageCartesianCMMType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(WorkingVolume->printElement, "CartesianWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "CartesianWorkingVolume") == 0)
           {
             CartesianWorkingVolumeType * typ;
             if ((typ = dynamic_cast<CartesianWorkingVolumeType *>(WorkingVolume)))
@@ -22535,7 +22673,7 @@ void MultipleCarriageCartesianCMMType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(WorkingVolume->printElement, "SphericalWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "SphericalWorkingVolume") == 0)
           {
             SphericalWorkingVolumeType * typ;
             if ((typ = dynamic_cast<SphericalWorkingVolumeType *>(WorkingVolume)))
@@ -22551,7 +22689,7 @@ void MultipleCarriageCartesianCMMType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(WorkingVolume->printElement, "CylindricalWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "CylindricalWorkingVolume") == 0)
           {
             CylindricalWorkingVolumeType * typ;
             if ((typ = dynamic_cast<CylindricalWorkingVolumeType *>(WorkingVolume)))
@@ -22567,7 +22705,7 @@ void MultipleCarriageCartesianCMMType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(WorkingVolume->printElement, "UserDefinedWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "UserDefinedWorkingVolume") == 0)
           {
             UserDefinedWorkingVolumeType * typ;
             if ((typ = dynamic_cast<UserDefinedWorkingVolumeType *>(WorkingVolume)))
@@ -22595,12 +22733,12 @@ void MultipleCarriageCartesianCMMType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (EffectiveWorkingVolume->printElement == 0)
+        if (EffectiveWorkingVolume->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(EffectiveWorkingVolume->printElement, "EffectiveClosedShellSetWorkingVolume") == 0)
+        else if (strcmp(EffectiveWorkingVolume->getprintElement(), "EffectiveClosedShellSetWorkingVolume") == 0)
           {
             EffectiveClosedShellSetWorkingVolumeType * typ;
             if ((typ = dynamic_cast<EffectiveClosedShellSetWorkingVolumeType *>(EffectiveWorkingVolume)))
@@ -22616,7 +22754,7 @@ void MultipleCarriageCartesianCMMType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(EffectiveWorkingVolume->printElement, "EffectiveCartesianWorkingVolume") == 0)
+        else if (strcmp(EffectiveWorkingVolume->getprintElement(), "EffectiveCartesianWorkingVolume") == 0)
           {
             EffectiveCartesianWorkingVolumeType * typ;
             if ((typ = dynamic_cast<EffectiveCartesianWorkingVolumeType *>(EffectiveWorkingVolume)))
@@ -22632,7 +22770,7 @@ void MultipleCarriageCartesianCMMType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(EffectiveWorkingVolume->printElement, "EffectiveSphericalWorkingVolume") == 0)
+        else if (strcmp(EffectiveWorkingVolume->getprintElement(), "EffectiveSphericalWorkingVolume") == 0)
           {
             EffectiveSphericalWorkingVolumeType * typ;
             if ((typ = dynamic_cast<EffectiveSphericalWorkingVolumeType *>(EffectiveWorkingVolume)))
@@ -22648,7 +22786,7 @@ void MultipleCarriageCartesianCMMType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(EffectiveWorkingVolume->printElement, "EffectiveCylindricalWorkingVolume") == 0)
+        else if (strcmp(EffectiveWorkingVolume->getprintElement(), "EffectiveCylindricalWorkingVolume") == 0)
           {
             EffectiveCylindricalWorkingVolumeType * typ;
             if ((typ = dynamic_cast<EffectiveCylindricalWorkingVolumeType *>(EffectiveWorkingVolume)))
@@ -22664,7 +22802,7 @@ void MultipleCarriageCartesianCMMType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(EffectiveWorkingVolume->printElement, "EffectiveUserDefinedWorkingVolume") == 0)
+        else if (strcmp(EffectiveWorkingVolume->getprintElement(), "EffectiveUserDefinedWorkingVolume") == 0)
           {
             EffectiveUserDefinedWorkingVolumeType * typ;
             if ((typ = dynamic_cast<EffectiveUserDefinedWorkingVolumeType *>(EffectiveWorkingVolume)))
@@ -22715,12 +22853,12 @@ void MultipleCarriageCartesianCMMType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (CMMAxisDirections->printElement == 0)
+        if (CMMAxisDirections->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(CMMAxisDirections->printElement, "CartesianCMMAxisDirections") == 0)
+        else if (strcmp(CMMAxisDirections->getprintElement(), "CartesianCMMAxisDirections") == 0)
           {
             CartesianCMMAxisDirectionsType * typ;
             if ((typ = dynamic_cast<CartesianCMMAxisDirectionsType *>(CMMAxisDirections)))
@@ -22748,12 +22886,12 @@ void MultipleCarriageCartesianCMMType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (Scales->printElement == 0)
+        if (Scales->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(Scales->printElement, "CartesianMeasurementDeviceScales") == 0)
+        else if (strcmp(Scales->getprintElement(), "CartesianMeasurementDeviceScales") == 0)
           {
             CartesianMeasurementDeviceScalesType * typ;
             if ((typ = dynamic_cast<CartesianMeasurementDeviceScalesType *>(Scales)))
@@ -22803,12 +22941,12 @@ void MultipleCarriageCartesianCMMType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (CMMSpeeds->printElement == 0)
+        if (CMMSpeeds->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(CMMSpeeds->printElement, "CartesianCMMSpeeds") == 0)
+        else if (strcmp(CMMSpeeds->getprintElement(), "CartesianCMMSpeeds") == 0)
           {
             CartesianCMMSpeedsType * typ;
             if ((typ = dynamic_cast<CartesianCMMSpeedsType *>(CMMSpeeds)))
@@ -22824,7 +22962,7 @@ void MultipleCarriageCartesianCMMType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(CMMSpeeds->printElement, "ParallelLinkCMMSpeeds") == 0)
+        else if (strcmp(CMMSpeeds->getprintElement(), "ParallelLinkCMMSpeeds") == 0)
           {
             ParallelLinkCMMSpeedsType * typ;
             if ((typ = dynamic_cast<ParallelLinkCMMSpeedsType *>(CMMSpeeds)))
@@ -22899,7 +23037,7 @@ bool MultipleCarriageCartesianCMMType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -22908,12 +23046,12 @@ bool MultipleCarriageCartesianCMMType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in MultipleCarriageCartesianCMMType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -22927,7 +23065,11 @@ bool MultipleCarriageCartesianCMMType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in MultipleCarriageCartesianCMMType\n");
       returnValue = true;
@@ -23252,12 +23394,12 @@ void OpticalComparatorType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (Resolution->printElement == 0)
+        if (Resolution->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(Resolution->printElement, "LinearResolution") == 0)
+        else if (strcmp(Resolution->getprintElement(), "LinearResolution") == 0)
           {
             LinearResolutionType * typ;
             if ((typ = dynamic_cast<LinearResolutionType *>(Resolution)))
@@ -23273,7 +23415,7 @@ void OpticalComparatorType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(Resolution->printElement, "CartesianResolution") == 0)
+        else if (strcmp(Resolution->getprintElement(), "CartesianResolution") == 0)
           {
             CartesianResolutionType * typ;
             if ((typ = dynamic_cast<CartesianResolutionType *>(Resolution)))
@@ -23289,7 +23431,7 @@ void OpticalComparatorType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(Resolution->printElement, "SphericalResolution") == 0)
+        else if (strcmp(Resolution->getprintElement(), "SphericalResolution") == 0)
           {
             SphericalResolutionType * typ;
             if ((typ = dynamic_cast<SphericalResolutionType *>(Resolution)))
@@ -23305,7 +23447,7 @@ void OpticalComparatorType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(Resolution->printElement, "UserDefinedResolution") == 0)
+        else if (strcmp(Resolution->getprintElement(), "UserDefinedResolution") == 0)
           {
             UserDefinedResolutionType * typ;
             if ((typ = dynamic_cast<UserDefinedResolutionType *>(Resolution)))
@@ -23333,12 +23475,12 @@ void OpticalComparatorType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (WorkingVolume->printElement == 0)
+        if (WorkingVolume->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(WorkingVolume->printElement, "ClosedShellSetWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "ClosedShellSetWorkingVolume") == 0)
           {
             ClosedShellSetWorkingVolumeType * typ;
             if ((typ = dynamic_cast<ClosedShellSetWorkingVolumeType *>(WorkingVolume)))
@@ -23354,7 +23496,7 @@ void OpticalComparatorType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(WorkingVolume->printElement, "CartesianWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "CartesianWorkingVolume") == 0)
           {
             CartesianWorkingVolumeType * typ;
             if ((typ = dynamic_cast<CartesianWorkingVolumeType *>(WorkingVolume)))
@@ -23370,7 +23512,7 @@ void OpticalComparatorType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(WorkingVolume->printElement, "SphericalWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "SphericalWorkingVolume") == 0)
           {
             SphericalWorkingVolumeType * typ;
             if ((typ = dynamic_cast<SphericalWorkingVolumeType *>(WorkingVolume)))
@@ -23386,7 +23528,7 @@ void OpticalComparatorType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(WorkingVolume->printElement, "CylindricalWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "CylindricalWorkingVolume") == 0)
           {
             CylindricalWorkingVolumeType * typ;
             if ((typ = dynamic_cast<CylindricalWorkingVolumeType *>(WorkingVolume)))
@@ -23402,7 +23544,7 @@ void OpticalComparatorType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(WorkingVolume->printElement, "UserDefinedWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "UserDefinedWorkingVolume") == 0)
           {
             UserDefinedWorkingVolumeType * typ;
             if ((typ = dynamic_cast<UserDefinedWorkingVolumeType *>(WorkingVolume)))
@@ -23430,12 +23572,12 @@ void OpticalComparatorType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (EffectiveWorkingVolume->printElement == 0)
+        if (EffectiveWorkingVolume->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(EffectiveWorkingVolume->printElement, "EffectiveClosedShellSetWorkingVolume") == 0)
+        else if (strcmp(EffectiveWorkingVolume->getprintElement(), "EffectiveClosedShellSetWorkingVolume") == 0)
           {
             EffectiveClosedShellSetWorkingVolumeType * typ;
             if ((typ = dynamic_cast<EffectiveClosedShellSetWorkingVolumeType *>(EffectiveWorkingVolume)))
@@ -23451,7 +23593,7 @@ void OpticalComparatorType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(EffectiveWorkingVolume->printElement, "EffectiveCartesianWorkingVolume") == 0)
+        else if (strcmp(EffectiveWorkingVolume->getprintElement(), "EffectiveCartesianWorkingVolume") == 0)
           {
             EffectiveCartesianWorkingVolumeType * typ;
             if ((typ = dynamic_cast<EffectiveCartesianWorkingVolumeType *>(EffectiveWorkingVolume)))
@@ -23467,7 +23609,7 @@ void OpticalComparatorType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(EffectiveWorkingVolume->printElement, "EffectiveSphericalWorkingVolume") == 0)
+        else if (strcmp(EffectiveWorkingVolume->getprintElement(), "EffectiveSphericalWorkingVolume") == 0)
           {
             EffectiveSphericalWorkingVolumeType * typ;
             if ((typ = dynamic_cast<EffectiveSphericalWorkingVolumeType *>(EffectiveWorkingVolume)))
@@ -23483,7 +23625,7 @@ void OpticalComparatorType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(EffectiveWorkingVolume->printElement, "EffectiveCylindricalWorkingVolume") == 0)
+        else if (strcmp(EffectiveWorkingVolume->getprintElement(), "EffectiveCylindricalWorkingVolume") == 0)
           {
             EffectiveCylindricalWorkingVolumeType * typ;
             if ((typ = dynamic_cast<EffectiveCylindricalWorkingVolumeType *>(EffectiveWorkingVolume)))
@@ -23499,7 +23641,7 @@ void OpticalComparatorType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(EffectiveWorkingVolume->printElement, "EffectiveUserDefinedWorkingVolume") == 0)
+        else if (strcmp(EffectiveWorkingVolume->getprintElement(), "EffectiveUserDefinedWorkingVolume") == 0)
           {
             EffectiveUserDefinedWorkingVolumeType * typ;
             if ((typ = dynamic_cast<EffectiveUserDefinedWorkingVolumeType *>(EffectiveWorkingVolume)))
@@ -23609,7 +23751,7 @@ bool OpticalComparatorType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -23618,12 +23760,12 @@ bool OpticalComparatorType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in OpticalComparatorType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -23637,7 +23779,11 @@ bool OpticalComparatorType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in OpticalComparatorType\n");
       returnValue = true;
@@ -24154,12 +24300,12 @@ void ParallelLinkCMMType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (Resolution->printElement == 0)
+        if (Resolution->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(Resolution->printElement, "LinearResolution") == 0)
+        else if (strcmp(Resolution->getprintElement(), "LinearResolution") == 0)
           {
             LinearResolutionType * typ;
             if ((typ = dynamic_cast<LinearResolutionType *>(Resolution)))
@@ -24175,7 +24321,7 @@ void ParallelLinkCMMType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(Resolution->printElement, "CartesianResolution") == 0)
+        else if (strcmp(Resolution->getprintElement(), "CartesianResolution") == 0)
           {
             CartesianResolutionType * typ;
             if ((typ = dynamic_cast<CartesianResolutionType *>(Resolution)))
@@ -24191,7 +24337,7 @@ void ParallelLinkCMMType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(Resolution->printElement, "SphericalResolution") == 0)
+        else if (strcmp(Resolution->getprintElement(), "SphericalResolution") == 0)
           {
             SphericalResolutionType * typ;
             if ((typ = dynamic_cast<SphericalResolutionType *>(Resolution)))
@@ -24207,7 +24353,7 @@ void ParallelLinkCMMType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(Resolution->printElement, "UserDefinedResolution") == 0)
+        else if (strcmp(Resolution->getprintElement(), "UserDefinedResolution") == 0)
           {
             UserDefinedResolutionType * typ;
             if ((typ = dynamic_cast<UserDefinedResolutionType *>(Resolution)))
@@ -24235,12 +24381,12 @@ void ParallelLinkCMMType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (WorkingVolume->printElement == 0)
+        if (WorkingVolume->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(WorkingVolume->printElement, "ClosedShellSetWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "ClosedShellSetWorkingVolume") == 0)
           {
             ClosedShellSetWorkingVolumeType * typ;
             if ((typ = dynamic_cast<ClosedShellSetWorkingVolumeType *>(WorkingVolume)))
@@ -24256,7 +24402,7 @@ void ParallelLinkCMMType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(WorkingVolume->printElement, "CartesianWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "CartesianWorkingVolume") == 0)
           {
             CartesianWorkingVolumeType * typ;
             if ((typ = dynamic_cast<CartesianWorkingVolumeType *>(WorkingVolume)))
@@ -24272,7 +24418,7 @@ void ParallelLinkCMMType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(WorkingVolume->printElement, "SphericalWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "SphericalWorkingVolume") == 0)
           {
             SphericalWorkingVolumeType * typ;
             if ((typ = dynamic_cast<SphericalWorkingVolumeType *>(WorkingVolume)))
@@ -24288,7 +24434,7 @@ void ParallelLinkCMMType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(WorkingVolume->printElement, "CylindricalWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "CylindricalWorkingVolume") == 0)
           {
             CylindricalWorkingVolumeType * typ;
             if ((typ = dynamic_cast<CylindricalWorkingVolumeType *>(WorkingVolume)))
@@ -24304,7 +24450,7 @@ void ParallelLinkCMMType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(WorkingVolume->printElement, "UserDefinedWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "UserDefinedWorkingVolume") == 0)
           {
             UserDefinedWorkingVolumeType * typ;
             if ((typ = dynamic_cast<UserDefinedWorkingVolumeType *>(WorkingVolume)))
@@ -24332,12 +24478,12 @@ void ParallelLinkCMMType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (EffectiveWorkingVolume->printElement == 0)
+        if (EffectiveWorkingVolume->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(EffectiveWorkingVolume->printElement, "EffectiveClosedShellSetWorkingVolume") == 0)
+        else if (strcmp(EffectiveWorkingVolume->getprintElement(), "EffectiveClosedShellSetWorkingVolume") == 0)
           {
             EffectiveClosedShellSetWorkingVolumeType * typ;
             if ((typ = dynamic_cast<EffectiveClosedShellSetWorkingVolumeType *>(EffectiveWorkingVolume)))
@@ -24353,7 +24499,7 @@ void ParallelLinkCMMType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(EffectiveWorkingVolume->printElement, "EffectiveCartesianWorkingVolume") == 0)
+        else if (strcmp(EffectiveWorkingVolume->getprintElement(), "EffectiveCartesianWorkingVolume") == 0)
           {
             EffectiveCartesianWorkingVolumeType * typ;
             if ((typ = dynamic_cast<EffectiveCartesianWorkingVolumeType *>(EffectiveWorkingVolume)))
@@ -24369,7 +24515,7 @@ void ParallelLinkCMMType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(EffectiveWorkingVolume->printElement, "EffectiveSphericalWorkingVolume") == 0)
+        else if (strcmp(EffectiveWorkingVolume->getprintElement(), "EffectiveSphericalWorkingVolume") == 0)
           {
             EffectiveSphericalWorkingVolumeType * typ;
             if ((typ = dynamic_cast<EffectiveSphericalWorkingVolumeType *>(EffectiveWorkingVolume)))
@@ -24385,7 +24531,7 @@ void ParallelLinkCMMType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(EffectiveWorkingVolume->printElement, "EffectiveCylindricalWorkingVolume") == 0)
+        else if (strcmp(EffectiveWorkingVolume->getprintElement(), "EffectiveCylindricalWorkingVolume") == 0)
           {
             EffectiveCylindricalWorkingVolumeType * typ;
             if ((typ = dynamic_cast<EffectiveCylindricalWorkingVolumeType *>(EffectiveWorkingVolume)))
@@ -24401,7 +24547,7 @@ void ParallelLinkCMMType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(EffectiveWorkingVolume->printElement, "EffectiveUserDefinedWorkingVolume") == 0)
+        else if (strcmp(EffectiveWorkingVolume->getprintElement(), "EffectiveUserDefinedWorkingVolume") == 0)
           {
             EffectiveUserDefinedWorkingVolumeType * typ;
             if ((typ = dynamic_cast<EffectiveUserDefinedWorkingVolumeType *>(EffectiveWorkingVolume)))
@@ -24437,12 +24583,12 @@ void ParallelLinkCMMType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (CMMSpeeds->printElement == 0)
+        if (CMMSpeeds->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(CMMSpeeds->printElement, "CartesianCMMSpeeds") == 0)
+        else if (strcmp(CMMSpeeds->getprintElement(), "CartesianCMMSpeeds") == 0)
           {
             CartesianCMMSpeedsType * typ;
             if ((typ = dynamic_cast<CartesianCMMSpeedsType *>(CMMSpeeds)))
@@ -24458,7 +24604,7 @@ void ParallelLinkCMMType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(CMMSpeeds->printElement, "ParallelLinkCMMSpeeds") == 0)
+        else if (strcmp(CMMSpeeds->getprintElement(), "ParallelLinkCMMSpeeds") == 0)
           {
             ParallelLinkCMMSpeedsType * typ;
             if ((typ = dynamic_cast<ParallelLinkCMMSpeedsType *>(CMMSpeeds)))
@@ -24571,7 +24717,7 @@ bool ParallelLinkCMMType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -24580,12 +24726,12 @@ bool ParallelLinkCMMType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in ParallelLinkCMMType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -24599,7 +24745,11 @@ bool ParallelLinkCMMType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in ParallelLinkCMMType\n");
       returnValue = true;
@@ -24959,7 +25109,7 @@ bool ProbeTipType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -24968,12 +25118,12 @@ bool ProbeTipType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in ProbeTipType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -24987,7 +25137,11 @@ bool ProbeTipType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in ProbeTipType\n");
       returnValue = true;
@@ -25236,7 +25390,7 @@ bool QualificationsType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -25245,12 +25399,12 @@ bool QualificationsType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in QualificationsType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -25550,8 +25704,8 @@ ScaleReferenceEnumType::ScaleReferenceEnumType(
   XmlNMTOKEN(
     valIn)
 {
-  if (!bad)
-    bad = (strcmp(val.c_str(), "SCALE_ABSOLUTE") &&
+  if (!getbad())
+    setbad(strcmp(val.c_str(), "SCALE_ABSOLUTE") &&
            strcmp(val.c_str(), "SCALE_INCREMENTAL"));
 }
 
@@ -25838,7 +25992,7 @@ bool SensorType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -25847,12 +26001,12 @@ bool SensorType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in SensorType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -25866,7 +26020,11 @@ bool SensorType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in SensorType\n");
       returnValue = true;
@@ -26247,7 +26405,7 @@ bool SimpleTactileProbeSensorType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -26256,12 +26414,12 @@ bool SimpleTactileProbeSensorType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in SimpleTactileProbeSensorType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -26275,7 +26433,11 @@ bool SimpleTactileProbeSensorType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in SimpleTactileProbeSensorType\n");
       returnValue = true;
@@ -26639,7 +26801,7 @@ bool SineBarType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -26648,12 +26810,12 @@ bool SineBarType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in SineBarType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -26667,7 +26829,11 @@ bool SineBarType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in SineBarType\n");
       returnValue = true;
@@ -27405,12 +27571,12 @@ void StructuredLightSensorType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (WorkingVolume->printElement == 0)
+        if (WorkingVolume->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(WorkingVolume->printElement, "ClosedShellSetWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "ClosedShellSetWorkingVolume") == 0)
           {
             ClosedShellSetWorkingVolumeType * typ;
             if ((typ = dynamic_cast<ClosedShellSetWorkingVolumeType *>(WorkingVolume)))
@@ -27426,7 +27592,7 @@ void StructuredLightSensorType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(WorkingVolume->printElement, "CartesianWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "CartesianWorkingVolume") == 0)
           {
             CartesianWorkingVolumeType * typ;
             if ((typ = dynamic_cast<CartesianWorkingVolumeType *>(WorkingVolume)))
@@ -27442,7 +27608,7 @@ void StructuredLightSensorType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(WorkingVolume->printElement, "SphericalWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "SphericalWorkingVolume") == 0)
           {
             SphericalWorkingVolumeType * typ;
             if ((typ = dynamic_cast<SphericalWorkingVolumeType *>(WorkingVolume)))
@@ -27458,7 +27624,7 @@ void StructuredLightSensorType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(WorkingVolume->printElement, "CylindricalWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "CylindricalWorkingVolume") == 0)
           {
             CylindricalWorkingVolumeType * typ;
             if ((typ = dynamic_cast<CylindricalWorkingVolumeType *>(WorkingVolume)))
@@ -27474,7 +27640,7 @@ void StructuredLightSensorType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(WorkingVolume->printElement, "UserDefinedWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "UserDefinedWorkingVolume") == 0)
           {
             UserDefinedWorkingVolumeType * typ;
             if ((typ = dynamic_cast<UserDefinedWorkingVolumeType *>(WorkingVolume)))
@@ -27534,7 +27700,7 @@ bool StructuredLightSensorType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -27543,12 +27709,12 @@ bool StructuredLightSensorType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in StructuredLightSensorType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -27562,7 +27728,11 @@ bool StructuredLightSensorType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in StructuredLightSensorType\n");
       returnValue = true;
@@ -27937,7 +28107,7 @@ bool TactileProbeSensorBaseType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -27946,12 +28116,12 @@ bool TactileProbeSensorBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in TactileProbeSensorBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -27965,7 +28135,11 @@ bool TactileProbeSensorBaseType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in TactileProbeSensorBaseType\n");
       returnValue = true;
@@ -27999,8 +28173,8 @@ TargetMirrorEnumType::TargetMirrorEnumType(
   XmlNMTOKEN(
     valIn)
 {
-  if (!bad)
-    bad = (strcmp(val.c_str(), "CUBE_CORNER") &&
+  if (!getbad())
+    setbad(strcmp(val.c_str(), "CUBE_CORNER") &&
            strcmp(val.c_str(), "CATS_EYE") &&
            strcmp(val.c_str(), "PLANE_MIRROR"));
 }
@@ -28059,8 +28233,8 @@ TemperatureCompensationEnumType::TemperatureCompensationEnumType(
   XmlNMTOKEN(
     valIn)
 {
-  if (!bad)
-    bad = (strcmp(val.c_str(), "NONE") &&
+  if (!getbad())
+    setbad(strcmp(val.c_str(), "NONE") &&
            strcmp(val.c_str(), "DEVICE_ONLY") &&
            strcmp(val.c_str(), "DEVICE_AND_PART_SAME") &&
            strcmp(val.c_str(), "DEVICE_AND_PART_SEPARATE"));
@@ -28398,7 +28572,7 @@ bool TemperaturesType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -28407,12 +28581,12 @@ bool TemperaturesType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in TemperaturesType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -28749,12 +28923,12 @@ void TheodoliteType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (Resolution->printElement == 0)
+        if (Resolution->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(Resolution->printElement, "LinearResolution") == 0)
+        else if (strcmp(Resolution->getprintElement(), "LinearResolution") == 0)
           {
             LinearResolutionType * typ;
             if ((typ = dynamic_cast<LinearResolutionType *>(Resolution)))
@@ -28770,7 +28944,7 @@ void TheodoliteType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(Resolution->printElement, "CartesianResolution") == 0)
+        else if (strcmp(Resolution->getprintElement(), "CartesianResolution") == 0)
           {
             CartesianResolutionType * typ;
             if ((typ = dynamic_cast<CartesianResolutionType *>(Resolution)))
@@ -28786,7 +28960,7 @@ void TheodoliteType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(Resolution->printElement, "SphericalResolution") == 0)
+        else if (strcmp(Resolution->getprintElement(), "SphericalResolution") == 0)
           {
             SphericalResolutionType * typ;
             if ((typ = dynamic_cast<SphericalResolutionType *>(Resolution)))
@@ -28802,7 +28976,7 @@ void TheodoliteType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(Resolution->printElement, "UserDefinedResolution") == 0)
+        else if (strcmp(Resolution->getprintElement(), "UserDefinedResolution") == 0)
           {
             UserDefinedResolutionType * typ;
             if ((typ = dynamic_cast<UserDefinedResolutionType *>(Resolution)))
@@ -28830,12 +29004,12 @@ void TheodoliteType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (WorkingVolume->printElement == 0)
+        if (WorkingVolume->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(WorkingVolume->printElement, "ClosedShellSetWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "ClosedShellSetWorkingVolume") == 0)
           {
             ClosedShellSetWorkingVolumeType * typ;
             if ((typ = dynamic_cast<ClosedShellSetWorkingVolumeType *>(WorkingVolume)))
@@ -28851,7 +29025,7 @@ void TheodoliteType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(WorkingVolume->printElement, "CartesianWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "CartesianWorkingVolume") == 0)
           {
             CartesianWorkingVolumeType * typ;
             if ((typ = dynamic_cast<CartesianWorkingVolumeType *>(WorkingVolume)))
@@ -28867,7 +29041,7 @@ void TheodoliteType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(WorkingVolume->printElement, "SphericalWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "SphericalWorkingVolume") == 0)
           {
             SphericalWorkingVolumeType * typ;
             if ((typ = dynamic_cast<SphericalWorkingVolumeType *>(WorkingVolume)))
@@ -28883,7 +29057,7 @@ void TheodoliteType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(WorkingVolume->printElement, "CylindricalWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "CylindricalWorkingVolume") == 0)
           {
             CylindricalWorkingVolumeType * typ;
             if ((typ = dynamic_cast<CylindricalWorkingVolumeType *>(WorkingVolume)))
@@ -28899,7 +29073,7 @@ void TheodoliteType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(WorkingVolume->printElement, "UserDefinedWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "UserDefinedWorkingVolume") == 0)
           {
             UserDefinedWorkingVolumeType * typ;
             if ((typ = dynamic_cast<UserDefinedWorkingVolumeType *>(WorkingVolume)))
@@ -28927,12 +29101,12 @@ void TheodoliteType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (EffectiveWorkingVolume->printElement == 0)
+        if (EffectiveWorkingVolume->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(EffectiveWorkingVolume->printElement, "EffectiveClosedShellSetWorkingVolume") == 0)
+        else if (strcmp(EffectiveWorkingVolume->getprintElement(), "EffectiveClosedShellSetWorkingVolume") == 0)
           {
             EffectiveClosedShellSetWorkingVolumeType * typ;
             if ((typ = dynamic_cast<EffectiveClosedShellSetWorkingVolumeType *>(EffectiveWorkingVolume)))
@@ -28948,7 +29122,7 @@ void TheodoliteType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(EffectiveWorkingVolume->printElement, "EffectiveCartesianWorkingVolume") == 0)
+        else if (strcmp(EffectiveWorkingVolume->getprintElement(), "EffectiveCartesianWorkingVolume") == 0)
           {
             EffectiveCartesianWorkingVolumeType * typ;
             if ((typ = dynamic_cast<EffectiveCartesianWorkingVolumeType *>(EffectiveWorkingVolume)))
@@ -28964,7 +29138,7 @@ void TheodoliteType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(EffectiveWorkingVolume->printElement, "EffectiveSphericalWorkingVolume") == 0)
+        else if (strcmp(EffectiveWorkingVolume->getprintElement(), "EffectiveSphericalWorkingVolume") == 0)
           {
             EffectiveSphericalWorkingVolumeType * typ;
             if ((typ = dynamic_cast<EffectiveSphericalWorkingVolumeType *>(EffectiveWorkingVolume)))
@@ -28980,7 +29154,7 @@ void TheodoliteType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(EffectiveWorkingVolume->printElement, "EffectiveCylindricalWorkingVolume") == 0)
+        else if (strcmp(EffectiveWorkingVolume->getprintElement(), "EffectiveCylindricalWorkingVolume") == 0)
           {
             EffectiveCylindricalWorkingVolumeType * typ;
             if ((typ = dynamic_cast<EffectiveCylindricalWorkingVolumeType *>(EffectiveWorkingVolume)))
@@ -28996,7 +29170,7 @@ void TheodoliteType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(EffectiveWorkingVolume->printElement, "EffectiveUserDefinedWorkingVolume") == 0)
+        else if (strcmp(EffectiveWorkingVolume->getprintElement(), "EffectiveUserDefinedWorkingVolume") == 0)
           {
             EffectiveUserDefinedWorkingVolumeType * typ;
             if ((typ = dynamic_cast<EffectiveUserDefinedWorkingVolumeType *>(EffectiveWorkingVolume)))
@@ -29156,7 +29330,7 @@ bool TheodoliteType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -29165,12 +29339,12 @@ bool TheodoliteType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in TheodoliteType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -29184,7 +29358,11 @@ bool TheodoliteType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in TheodoliteType\n");
       returnValue = true;
@@ -29314,8 +29492,8 @@ TipEndGeometryEnumType::TipEndGeometryEnumType(
   XmlNMTOKEN(
     valIn)
 {
-  if (!bad)
-    bad = (strcmp(val.c_str(), "SPHERE") &&
+  if (!getbad())
+    setbad(strcmp(val.c_str(), "SPHERE") &&
            strcmp(val.c_str(), "CYLINDER") &&
            strcmp(val.c_str(), "CYLINDER_WITH_SPHERE") &&
            strcmp(val.c_str(), "HEMISPHERE") &&
@@ -29606,7 +29784,7 @@ bool ToolBaseType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -29615,12 +29793,12 @@ bool ToolBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in ToolBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -29634,7 +29812,11 @@ bool ToolBaseType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in ToolBaseType\n");
       returnValue = true;
@@ -29865,7 +30047,7 @@ bool ToolWithCCDCameraSensorType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -29874,12 +30056,12 @@ bool ToolWithCCDCameraSensorType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in ToolWithCCDCameraSensorType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -29893,7 +30075,11 @@ bool ToolWithCCDCameraSensorType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in ToolWithCCDCameraSensorType\n");
       returnValue = true;
@@ -30095,7 +30281,7 @@ bool ToolWithCapacitiveSensorType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -30104,12 +30290,12 @@ bool ToolWithCapacitiveSensorType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in ToolWithCapacitiveSensorType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -30123,7 +30309,11 @@ bool ToolWithCapacitiveSensorType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in ToolWithCapacitiveSensorType\n");
       returnValue = true;
@@ -30325,7 +30515,7 @@ bool ToolWithComplexTactileProbeSensorType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -30334,12 +30524,12 @@ bool ToolWithComplexTactileProbeSensorType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in ToolWithComplexTactileProbeSensorType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -30353,7 +30543,11 @@ bool ToolWithComplexTactileProbeSensorType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in ToolWithComplexTactileProbeSensorType\n");
       returnValue = true;
@@ -30555,7 +30749,7 @@ bool ToolWithConfocalChromaticSensorType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -30564,12 +30758,12 @@ bool ToolWithConfocalChromaticSensorType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in ToolWithConfocalChromaticSensorType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -30583,7 +30777,11 @@ bool ToolWithConfocalChromaticSensorType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in ToolWithConfocalChromaticSensorType\n");
       returnValue = true;
@@ -30785,7 +30983,7 @@ bool ToolWithDVRTSensorType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -30794,12 +30992,12 @@ bool ToolWithDVRTSensorType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in ToolWithDVRTSensorType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -30813,7 +31011,11 @@ bool ToolWithDVRTSensorType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in ToolWithDVRTSensorType\n");
       returnValue = true;
@@ -31018,7 +31220,7 @@ bool ToolWithDetachableSensorsType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -31027,12 +31229,12 @@ bool ToolWithDetachableSensorsType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in ToolWithDetachableSensorsType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -31046,7 +31248,11 @@ bool ToolWithDetachableSensorsType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in ToolWithDetachableSensorsType\n");
       returnValue = true;
@@ -31248,7 +31454,7 @@ bool ToolWithDrawWireSensorType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -31257,12 +31463,12 @@ bool ToolWithDrawWireSensorType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in ToolWithDrawWireSensorType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -31276,7 +31482,11 @@ bool ToolWithDrawWireSensorType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in ToolWithDrawWireSensorType\n");
       returnValue = true;
@@ -31478,7 +31688,7 @@ bool ToolWithEddyCurrentSensorType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -31487,12 +31697,12 @@ bool ToolWithEddyCurrentSensorType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in ToolWithEddyCurrentSensorType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -31506,7 +31716,11 @@ bool ToolWithEddyCurrentSensorType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in ToolWithEddyCurrentSensorType\n");
       returnValue = true;
@@ -31697,7 +31911,7 @@ bool ToolWithIntegratedSensorBaseType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -31706,12 +31920,12 @@ bool ToolWithIntegratedSensorBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in ToolWithIntegratedSensorBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -31725,7 +31939,11 @@ bool ToolWithIntegratedSensorBaseType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in ToolWithIntegratedSensorBaseType\n");
       returnValue = true;
@@ -31921,7 +32139,7 @@ bool ToolWithLVDTSensorType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -31930,12 +32148,12 @@ bool ToolWithLVDTSensorType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in ToolWithLVDTSensorType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -31949,7 +32167,11 @@ bool ToolWithLVDTSensorType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in ToolWithLVDTSensorType\n");
       returnValue = true;
@@ -32151,7 +32373,7 @@ bool ToolWithLaserTriangulationSensorType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -32160,12 +32382,12 @@ bool ToolWithLaserTriangulationSensorType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in ToolWithLaserTriangulationSensorType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -32179,7 +32401,11 @@ bool ToolWithLaserTriangulationSensorType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in ToolWithLaserTriangulationSensorType\n");
       returnValue = true;
@@ -32381,7 +32607,7 @@ bool ToolWithMagnetoInductiveSensorType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -32390,12 +32616,12 @@ bool ToolWithMagnetoInductiveSensorType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in ToolWithMagnetoInductiveSensorType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -32409,7 +32635,11 @@ bool ToolWithMagnetoInductiveSensorType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in ToolWithMagnetoInductiveSensorType\n");
       returnValue = true;
@@ -32611,7 +32841,7 @@ bool ToolWithSimpleTactileProbeSensorType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -32620,12 +32850,12 @@ bool ToolWithSimpleTactileProbeSensorType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in ToolWithSimpleTactileProbeSensorType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -32639,7 +32869,11 @@ bool ToolWithSimpleTactileProbeSensorType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in ToolWithSimpleTactileProbeSensorType\n");
       returnValue = true;
@@ -32841,7 +33075,7 @@ bool ToolWithStructuredLightSensorType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -32850,12 +33084,12 @@ bool ToolWithStructuredLightSensorType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in ToolWithStructuredLightSensorType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -32869,7 +33103,11 @@ bool ToolWithStructuredLightSensorType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in ToolWithStructuredLightSensorType\n");
       returnValue = true;
@@ -33071,7 +33309,7 @@ bool ToolWithUltrasonicSensorType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -33080,12 +33318,12 @@ bool ToolWithUltrasonicSensorType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in ToolWithUltrasonicSensorType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -33099,7 +33337,11 @@ bool ToolWithUltrasonicSensorType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in ToolWithUltrasonicSensorType\n");
       returnValue = true;
@@ -33212,12 +33454,12 @@ void ToolsType::printSelf(FILE * outFile)
         ToolBaseType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "ToolWithIntegratedSensor") == 0)
+        else if (strcmp(basie->getprintElement(), "ToolWithIntegratedSensor") == 0)
           {
             ToolWithIntegratedSensorBaseType * typ;
             if ((typ = dynamic_cast<ToolWithIntegratedSensorBaseType *>(basie)))
@@ -33233,7 +33475,7 @@ void ToolsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ToolWithDetachableSensors") == 0)
+        else if (strcmp(basie->getprintElement(), "ToolWithDetachableSensors") == 0)
           {
             ToolWithDetachableSensorsType * typ;
             if ((typ = dynamic_cast<ToolWithDetachableSensorsType *>(basie)))
@@ -33249,7 +33491,7 @@ void ToolsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ToolWithLVDTSensor") == 0)
+        else if (strcmp(basie->getprintElement(), "ToolWithLVDTSensor") == 0)
           {
             ToolWithLVDTSensorType * typ;
             if ((typ = dynamic_cast<ToolWithLVDTSensorType *>(basie)))
@@ -33265,7 +33507,7 @@ void ToolsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ToolWithCapacitiveSensor") == 0)
+        else if (strcmp(basie->getprintElement(), "ToolWithCapacitiveSensor") == 0)
           {
             ToolWithCapacitiveSensorType * typ;
             if ((typ = dynamic_cast<ToolWithCapacitiveSensorType *>(basie)))
@@ -33281,7 +33523,7 @@ void ToolsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ToolWithEddyCurrentSensor") == 0)
+        else if (strcmp(basie->getprintElement(), "ToolWithEddyCurrentSensor") == 0)
           {
             ToolWithEddyCurrentSensorType * typ;
             if ((typ = dynamic_cast<ToolWithEddyCurrentSensorType *>(basie)))
@@ -33297,7 +33539,7 @@ void ToolsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ToolWithConfocalChromaticSensor") == 0)
+        else if (strcmp(basie->getprintElement(), "ToolWithConfocalChromaticSensor") == 0)
           {
             ToolWithConfocalChromaticSensorType * typ;
             if ((typ = dynamic_cast<ToolWithConfocalChromaticSensorType *>(basie)))
@@ -33313,7 +33555,7 @@ void ToolsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ToolWithDrawWireSensor") == 0)
+        else if (strcmp(basie->getprintElement(), "ToolWithDrawWireSensor") == 0)
           {
             ToolWithDrawWireSensorType * typ;
             if ((typ = dynamic_cast<ToolWithDrawWireSensorType *>(basie)))
@@ -33329,7 +33571,7 @@ void ToolsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ToolWithMagnetoInductiveSensor") == 0)
+        else if (strcmp(basie->getprintElement(), "ToolWithMagnetoInductiveSensor") == 0)
           {
             ToolWithMagnetoInductiveSensorType * typ;
             if ((typ = dynamic_cast<ToolWithMagnetoInductiveSensorType *>(basie)))
@@ -33345,7 +33587,7 @@ void ToolsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ToolWithDVRTSensor") == 0)
+        else if (strcmp(basie->getprintElement(), "ToolWithDVRTSensor") == 0)
           {
             ToolWithDVRTSensorType * typ;
             if ((typ = dynamic_cast<ToolWithDVRTSensorType *>(basie)))
@@ -33361,7 +33603,7 @@ void ToolsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ToolWithLaserTriangulationSensor") == 0)
+        else if (strcmp(basie->getprintElement(), "ToolWithLaserTriangulationSensor") == 0)
           {
             ToolWithLaserTriangulationSensorType * typ;
             if ((typ = dynamic_cast<ToolWithLaserTriangulationSensorType *>(basie)))
@@ -33377,7 +33619,7 @@ void ToolsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ToolWithStructuredLightSensor") == 0)
+        else if (strcmp(basie->getprintElement(), "ToolWithStructuredLightSensor") == 0)
           {
             ToolWithStructuredLightSensorType * typ;
             if ((typ = dynamic_cast<ToolWithStructuredLightSensorType *>(basie)))
@@ -33393,7 +33635,7 @@ void ToolsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ToolWithUltrasonicSensor") == 0)
+        else if (strcmp(basie->getprintElement(), "ToolWithUltrasonicSensor") == 0)
           {
             ToolWithUltrasonicSensorType * typ;
             if ((typ = dynamic_cast<ToolWithUltrasonicSensorType *>(basie)))
@@ -33409,7 +33651,7 @@ void ToolsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ToolWithSimpleTactileProbeSensor") == 0)
+        else if (strcmp(basie->getprintElement(), "ToolWithSimpleTactileProbeSensor") == 0)
           {
             ToolWithSimpleTactileProbeSensorType * typ;
             if ((typ = dynamic_cast<ToolWithSimpleTactileProbeSensorType *>(basie)))
@@ -33425,7 +33667,7 @@ void ToolsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ToolWithComplexTactileProbeSensor") == 0)
+        else if (strcmp(basie->getprintElement(), "ToolWithComplexTactileProbeSensor") == 0)
           {
             ToolWithComplexTactileProbeSensorType * typ;
             if ((typ = dynamic_cast<ToolWithComplexTactileProbeSensorType *>(basie)))
@@ -33441,7 +33683,7 @@ void ToolsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ToolWithCCDCameraSensor") == 0)
+        else if (strcmp(basie->getprintElement(), "ToolWithCCDCameraSensor") == 0)
           {
             ToolWithCCDCameraSensorType * typ;
             if ((typ = dynamic_cast<ToolWithCCDCameraSensorType *>(basie)))
@@ -33479,7 +33721,7 @@ bool ToolsType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -33488,12 +33730,12 @@ bool ToolsType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in ToolsType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -33650,7 +33892,7 @@ bool TwentyLinearValuesType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -33659,12 +33901,12 @@ bool TwentyLinearValuesType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in TwentyLinearValuesType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -33724,8 +33966,8 @@ TypeOfScaleEnumType::TypeOfScaleEnumType(
   XmlNMTOKEN(
     valIn)
 {
-  if (!bad)
-    bad = (strcmp(val.c_str(), "ELECTROOPTICAL_LINEAR") &&
+  if (!getbad())
+    setbad(strcmp(val.c_str(), "ELECTROOPTICAL_LINEAR") &&
            strcmp(val.c_str(), "ELECTROOPTICAL_ROTARY") &&
            strcmp(val.c_str(), "LASER_INTERFEROMETER_LINEAR") &&
            strcmp(val.c_str(), "TIME_OF_FLIGHT_LINEAR"));
@@ -34196,7 +34438,7 @@ bool UltrasonicSensorType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -34205,12 +34447,12 @@ bool UltrasonicSensorType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in UltrasonicSensorType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -34224,7 +34466,11 @@ bool UltrasonicSensorType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in UltrasonicSensorType\n");
       returnValue = true;
@@ -34501,12 +34747,12 @@ void UniversalDeviceType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (Resolution->printElement == 0)
+        if (Resolution->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(Resolution->printElement, "LinearResolution") == 0)
+        else if (strcmp(Resolution->getprintElement(), "LinearResolution") == 0)
           {
             LinearResolutionType * typ;
             if ((typ = dynamic_cast<LinearResolutionType *>(Resolution)))
@@ -34522,7 +34768,7 @@ void UniversalDeviceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(Resolution->printElement, "CartesianResolution") == 0)
+        else if (strcmp(Resolution->getprintElement(), "CartesianResolution") == 0)
           {
             CartesianResolutionType * typ;
             if ((typ = dynamic_cast<CartesianResolutionType *>(Resolution)))
@@ -34538,7 +34784,7 @@ void UniversalDeviceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(Resolution->printElement, "SphericalResolution") == 0)
+        else if (strcmp(Resolution->getprintElement(), "SphericalResolution") == 0)
           {
             SphericalResolutionType * typ;
             if ((typ = dynamic_cast<SphericalResolutionType *>(Resolution)))
@@ -34554,7 +34800,7 @@ void UniversalDeviceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(Resolution->printElement, "UserDefinedResolution") == 0)
+        else if (strcmp(Resolution->getprintElement(), "UserDefinedResolution") == 0)
           {
             UserDefinedResolutionType * typ;
             if ((typ = dynamic_cast<UserDefinedResolutionType *>(Resolution)))
@@ -34582,12 +34828,12 @@ void UniversalDeviceType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (WorkingVolume->printElement == 0)
+        if (WorkingVolume->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(WorkingVolume->printElement, "ClosedShellSetWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "ClosedShellSetWorkingVolume") == 0)
           {
             ClosedShellSetWorkingVolumeType * typ;
             if ((typ = dynamic_cast<ClosedShellSetWorkingVolumeType *>(WorkingVolume)))
@@ -34603,7 +34849,7 @@ void UniversalDeviceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(WorkingVolume->printElement, "CartesianWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "CartesianWorkingVolume") == 0)
           {
             CartesianWorkingVolumeType * typ;
             if ((typ = dynamic_cast<CartesianWorkingVolumeType *>(WorkingVolume)))
@@ -34619,7 +34865,7 @@ void UniversalDeviceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(WorkingVolume->printElement, "SphericalWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "SphericalWorkingVolume") == 0)
           {
             SphericalWorkingVolumeType * typ;
             if ((typ = dynamic_cast<SphericalWorkingVolumeType *>(WorkingVolume)))
@@ -34635,7 +34881,7 @@ void UniversalDeviceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(WorkingVolume->printElement, "CylindricalWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "CylindricalWorkingVolume") == 0)
           {
             CylindricalWorkingVolumeType * typ;
             if ((typ = dynamic_cast<CylindricalWorkingVolumeType *>(WorkingVolume)))
@@ -34651,7 +34897,7 @@ void UniversalDeviceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(WorkingVolume->printElement, "UserDefinedWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "UserDefinedWorkingVolume") == 0)
           {
             UserDefinedWorkingVolumeType * typ;
             if ((typ = dynamic_cast<UserDefinedWorkingVolumeType *>(WorkingVolume)))
@@ -34679,12 +34925,12 @@ void UniversalDeviceType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (EffectiveWorkingVolume->printElement == 0)
+        if (EffectiveWorkingVolume->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(EffectiveWorkingVolume->printElement, "EffectiveClosedShellSetWorkingVolume") == 0)
+        else if (strcmp(EffectiveWorkingVolume->getprintElement(), "EffectiveClosedShellSetWorkingVolume") == 0)
           {
             EffectiveClosedShellSetWorkingVolumeType * typ;
             if ((typ = dynamic_cast<EffectiveClosedShellSetWorkingVolumeType *>(EffectiveWorkingVolume)))
@@ -34700,7 +34946,7 @@ void UniversalDeviceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(EffectiveWorkingVolume->printElement, "EffectiveCartesianWorkingVolume") == 0)
+        else if (strcmp(EffectiveWorkingVolume->getprintElement(), "EffectiveCartesianWorkingVolume") == 0)
           {
             EffectiveCartesianWorkingVolumeType * typ;
             if ((typ = dynamic_cast<EffectiveCartesianWorkingVolumeType *>(EffectiveWorkingVolume)))
@@ -34716,7 +34962,7 @@ void UniversalDeviceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(EffectiveWorkingVolume->printElement, "EffectiveSphericalWorkingVolume") == 0)
+        else if (strcmp(EffectiveWorkingVolume->getprintElement(), "EffectiveSphericalWorkingVolume") == 0)
           {
             EffectiveSphericalWorkingVolumeType * typ;
             if ((typ = dynamic_cast<EffectiveSphericalWorkingVolumeType *>(EffectiveWorkingVolume)))
@@ -34732,7 +34978,7 @@ void UniversalDeviceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(EffectiveWorkingVolume->printElement, "EffectiveCylindricalWorkingVolume") == 0)
+        else if (strcmp(EffectiveWorkingVolume->getprintElement(), "EffectiveCylindricalWorkingVolume") == 0)
           {
             EffectiveCylindricalWorkingVolumeType * typ;
             if ((typ = dynamic_cast<EffectiveCylindricalWorkingVolumeType *>(EffectiveWorkingVolume)))
@@ -34748,7 +34994,7 @@ void UniversalDeviceType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(EffectiveWorkingVolume->printElement, "EffectiveUserDefinedWorkingVolume") == 0)
+        else if (strcmp(EffectiveWorkingVolume->getprintElement(), "EffectiveUserDefinedWorkingVolume") == 0)
           {
             EffectiveUserDefinedWorkingVolumeType * typ;
             if ((typ = dynamic_cast<EffectiveUserDefinedWorkingVolumeType *>(EffectiveWorkingVolume)))
@@ -34794,7 +35040,7 @@ bool UniversalDeviceType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -34803,12 +35049,12 @@ bool UniversalDeviceType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in UniversalDeviceType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -34822,7 +35068,11 @@ bool UniversalDeviceType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in UniversalDeviceType\n");
       returnValue = true;
@@ -35103,12 +35353,12 @@ void UniversalLengthMeasuringType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (Resolution->printElement == 0)
+        if (Resolution->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(Resolution->printElement, "LinearResolution") == 0)
+        else if (strcmp(Resolution->getprintElement(), "LinearResolution") == 0)
           {
             LinearResolutionType * typ;
             if ((typ = dynamic_cast<LinearResolutionType *>(Resolution)))
@@ -35124,7 +35374,7 @@ void UniversalLengthMeasuringType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(Resolution->printElement, "CartesianResolution") == 0)
+        else if (strcmp(Resolution->getprintElement(), "CartesianResolution") == 0)
           {
             CartesianResolutionType * typ;
             if ((typ = dynamic_cast<CartesianResolutionType *>(Resolution)))
@@ -35140,7 +35390,7 @@ void UniversalLengthMeasuringType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(Resolution->printElement, "SphericalResolution") == 0)
+        else if (strcmp(Resolution->getprintElement(), "SphericalResolution") == 0)
           {
             SphericalResolutionType * typ;
             if ((typ = dynamic_cast<SphericalResolutionType *>(Resolution)))
@@ -35156,7 +35406,7 @@ void UniversalLengthMeasuringType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(Resolution->printElement, "UserDefinedResolution") == 0)
+        else if (strcmp(Resolution->getprintElement(), "UserDefinedResolution") == 0)
           {
             UserDefinedResolutionType * typ;
             if ((typ = dynamic_cast<UserDefinedResolutionType *>(Resolution)))
@@ -35184,12 +35434,12 @@ void UniversalLengthMeasuringType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (WorkingVolume->printElement == 0)
+        if (WorkingVolume->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(WorkingVolume->printElement, "ClosedShellSetWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "ClosedShellSetWorkingVolume") == 0)
           {
             ClosedShellSetWorkingVolumeType * typ;
             if ((typ = dynamic_cast<ClosedShellSetWorkingVolumeType *>(WorkingVolume)))
@@ -35205,7 +35455,7 @@ void UniversalLengthMeasuringType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(WorkingVolume->printElement, "CartesianWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "CartesianWorkingVolume") == 0)
           {
             CartesianWorkingVolumeType * typ;
             if ((typ = dynamic_cast<CartesianWorkingVolumeType *>(WorkingVolume)))
@@ -35221,7 +35471,7 @@ void UniversalLengthMeasuringType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(WorkingVolume->printElement, "SphericalWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "SphericalWorkingVolume") == 0)
           {
             SphericalWorkingVolumeType * typ;
             if ((typ = dynamic_cast<SphericalWorkingVolumeType *>(WorkingVolume)))
@@ -35237,7 +35487,7 @@ void UniversalLengthMeasuringType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(WorkingVolume->printElement, "CylindricalWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "CylindricalWorkingVolume") == 0)
           {
             CylindricalWorkingVolumeType * typ;
             if ((typ = dynamic_cast<CylindricalWorkingVolumeType *>(WorkingVolume)))
@@ -35253,7 +35503,7 @@ void UniversalLengthMeasuringType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(WorkingVolume->printElement, "UserDefinedWorkingVolume") == 0)
+        else if (strcmp(WorkingVolume->getprintElement(), "UserDefinedWorkingVolume") == 0)
           {
             UserDefinedWorkingVolumeType * typ;
             if ((typ = dynamic_cast<UserDefinedWorkingVolumeType *>(WorkingVolume)))
@@ -35281,12 +35531,12 @@ void UniversalLengthMeasuringType::printSelf(FILE * outFile)
     {
       {// list may be empty
         doSpaces(0, outFile);
-        if (EffectiveWorkingVolume->printElement == 0)
+        if (EffectiveWorkingVolume->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(EffectiveWorkingVolume->printElement, "EffectiveClosedShellSetWorkingVolume") == 0)
+        else if (strcmp(EffectiveWorkingVolume->getprintElement(), "EffectiveClosedShellSetWorkingVolume") == 0)
           {
             EffectiveClosedShellSetWorkingVolumeType * typ;
             if ((typ = dynamic_cast<EffectiveClosedShellSetWorkingVolumeType *>(EffectiveWorkingVolume)))
@@ -35302,7 +35552,7 @@ void UniversalLengthMeasuringType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(EffectiveWorkingVolume->printElement, "EffectiveCartesianWorkingVolume") == 0)
+        else if (strcmp(EffectiveWorkingVolume->getprintElement(), "EffectiveCartesianWorkingVolume") == 0)
           {
             EffectiveCartesianWorkingVolumeType * typ;
             if ((typ = dynamic_cast<EffectiveCartesianWorkingVolumeType *>(EffectiveWorkingVolume)))
@@ -35318,7 +35568,7 @@ void UniversalLengthMeasuringType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(EffectiveWorkingVolume->printElement, "EffectiveSphericalWorkingVolume") == 0)
+        else if (strcmp(EffectiveWorkingVolume->getprintElement(), "EffectiveSphericalWorkingVolume") == 0)
           {
             EffectiveSphericalWorkingVolumeType * typ;
             if ((typ = dynamic_cast<EffectiveSphericalWorkingVolumeType *>(EffectiveWorkingVolume)))
@@ -35334,7 +35584,7 @@ void UniversalLengthMeasuringType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(EffectiveWorkingVolume->printElement, "EffectiveCylindricalWorkingVolume") == 0)
+        else if (strcmp(EffectiveWorkingVolume->getprintElement(), "EffectiveCylindricalWorkingVolume") == 0)
           {
             EffectiveCylindricalWorkingVolumeType * typ;
             if ((typ = dynamic_cast<EffectiveCylindricalWorkingVolumeType *>(EffectiveWorkingVolume)))
@@ -35350,7 +35600,7 @@ void UniversalLengthMeasuringType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(EffectiveWorkingVolume->printElement, "EffectiveUserDefinedWorkingVolume") == 0)
+        else if (strcmp(EffectiveWorkingVolume->getprintElement(), "EffectiveUserDefinedWorkingVolume") == 0)
           {
             EffectiveUserDefinedWorkingVolumeType * typ;
             if ((typ = dynamic_cast<EffectiveUserDefinedWorkingVolumeType *>(EffectiveWorkingVolume)))
@@ -35447,7 +35697,7 @@ bool UniversalLengthMeasuringType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -35456,12 +35706,12 @@ bool UniversalLengthMeasuringType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in UniversalLengthMeasuringType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -35475,7 +35725,11 @@ bool UniversalLengthMeasuringType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in UniversalLengthMeasuringType\n");
       returnValue = true;
@@ -35589,12 +35843,12 @@ void UserDefinedAxisType::printSelf(FILE * outFile)
   doSpaces(+INDENT, outFile);
   {
     doSpaces(0, outFile);
-    if (Axis->printElement == 0)
+    if (Axis->getprintElement() == 0)
       {
         fprintf(stderr, "element name missing\n");
         exit(1);
       }
-    else if (strcmp(Axis->printElement, "RotaryAxis") == 0)
+    else if (strcmp(Axis->getprintElement(), "RotaryAxis") == 0)
       {
         RotaryAxisType * typ;
         if ((typ = dynamic_cast<RotaryAxisType *>(Axis)))
@@ -35610,7 +35864,7 @@ void UserDefinedAxisType::printSelf(FILE * outFile)
             exit(1);
           }
       }
-    else if (strcmp(Axis->printElement, "LinearAxis") == 0)
+    else if (strcmp(Axis->getprintElement(), "LinearAxis") == 0)
       {
         LinearAxisType * typ;
         if ((typ = dynamic_cast<LinearAxisType *>(Axis)))
@@ -36197,11 +36451,14 @@ void SphericalResolu_1197_Type::printSelf(FILE * outFile)
   CombinedSphericalResolution->printSelf(outFile);
   doSpaces(0, outFile);
   fprintf(outFile, "</CombinedSphericalResolution>\n");
-  doSpaces(0, outFile);
-  fprintf(outFile, "<RAPZResolution");
-  RAPZResolution->printSelf(outFile);
-  doSpaces(0, outFile);
-  fprintf(outFile, "</RAPZResolution>\n");
+  if (RAPZResolution)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<RAPZResolution");
+      RAPZResolution->printSelf(outFile);
+      doSpaces(0, outFile);
+      fprintf(outFile, "</RAPZResolution>\n");
+    }
 }
 
 CombinedSphericalResolutionType * SphericalResolu_1197_Type::getCombinedSphericalResolution()
@@ -36251,11 +36508,14 @@ void UserDefinedReso_1198_Type::printSelf(FILE * outFile)
   CombinedUserDefinedResolution->printSelf(outFile);
   doSpaces(0, outFile);
   fprintf(outFile, "</CombinedUserDefinedResolution>\n");
-  doSpaces(0, outFile);
-  fprintf(outFile, "<ABCResolution");
-  ABCResolution->printSelf(outFile);
-  doSpaces(0, outFile);
-  fprintf(outFile, "</ABCResolution>\n");
+  if (ABCResolution)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<ABCResolution");
+      ABCResolution->printSelf(outFile);
+      doSpaces(0, outFile);
+      fprintf(outFile, "</ABCResolution>\n");
+    }
 }
 
 CombinedUserDefinedResolutionType * UserDefinedReso_1198_Type::getCombinedUserDefinedResolution()

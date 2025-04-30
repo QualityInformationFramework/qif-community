@@ -4,10 +4,12 @@
 #include <string.h>            // for strdup
 #include <stdlib.h>            // for exit
 #include <list>
+#include  <map>
 #include <xmlSchemaInstance.hh>
 #include "QIFProductClasses.hh"
 
 #define INDENT 2
+extern std::map<unsigned int, XmlSchemaInstanceBase *> idMap;
 
 /* ***************************************************************** */
 /* ***************************************************************** */
@@ -96,7 +98,7 @@ bool AsmPathType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -105,12 +107,12 @@ bool AsmPathType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in AsmPathType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -124,7 +126,11 @@ bool AsmPathType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in AsmPathType\n");
       returnValue = true;
@@ -296,7 +302,7 @@ bool AsmPathsType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -305,12 +311,12 @@ bool AsmPathsType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in AsmPathsType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -461,7 +467,7 @@ bool AssemblySetType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -470,12 +476,12 @@ bool AssemblySetType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in AssemblySetType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -1011,7 +1017,7 @@ bool AssemblyType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "color")
+      if (decl->getname() == "color")
         {
           ColorType * colorVal;
           if (this->color)
@@ -1020,19 +1026,19 @@ bool AssemblyType::badAttributes(
               returnValue = true;
               break;
             }
-          colorVal = new ColorType(decl->val.c_str());
-          if (colorVal->bad)
+          colorVal = new ColorType(decl->getval().c_str());
+          if (colorVal->getbad())
             {
               delete colorVal;
               fprintf(stderr, "bad value %s for color in AssemblyType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->color = colorVal;
         }
-      else if (decl->name == "hidden")
+      else if (decl->getname() == "hidden")
         {
           XmlBoolean * hiddenVal;
           if (this->hidden)
@@ -1041,19 +1047,19 @@ bool AssemblyType::badAttributes(
               returnValue = true;
               break;
             }
-          hiddenVal = new XmlBoolean(decl->val.c_str());
-          if (hiddenVal->bad)
+          hiddenVal = new XmlBoolean(decl->getval().c_str());
+          if (hiddenVal->getbad())
             {
               delete hiddenVal;
               fprintf(stderr, "bad value %s for hidden in AssemblyType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->hidden = hiddenVal;
         }
-      else if (decl->name == "id")
+      else if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -1062,19 +1068,19 @@ bool AssemblyType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in AssemblyType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->id = idVal;
         }
-      else if (decl->name == "label")
+      else if (decl->getname() == "label")
         {
           XmlString * labelVal;
           if (this->label)
@@ -1083,19 +1089,19 @@ bool AssemblyType::badAttributes(
               returnValue = true;
               break;
             }
-          labelVal = new XmlString(decl->val.c_str());
-          if (labelVal->bad)
+          labelVal = new XmlString(decl->getval().c_str());
+          if (labelVal->getbad())
             {
               delete labelVal;
               fprintf(stderr, "bad value %s for label in AssemblyType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->label = labelVal;
         }
-      else if (decl->name == "materialIndex")
+      else if (decl->getname() == "materialIndex")
         {
           NaturalType * materialIndexVal;
           if (this->materialIndex)
@@ -1104,19 +1110,19 @@ bool AssemblyType::badAttributes(
               returnValue = true;
               break;
             }
-          materialIndexVal = new NaturalType(decl->val.c_str());
-          if (materialIndexVal->bad)
+          materialIndexVal = new NaturalType(decl->getval().c_str());
+          if (materialIndexVal->getbad())
             {
               delete materialIndexVal;
               fprintf(stderr, "bad value %s for materialIndex in AssemblyType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->materialIndex = materialIndexVal;
         }
-      else if (decl->name == "originMassProperty")
+      else if (decl->getname() == "originMassProperty")
         {
           PointSimpleType * originMassPropertyVal;
           if (this->originMassProperty)
@@ -1125,19 +1131,19 @@ bool AssemblyType::badAttributes(
               returnValue = true;
               break;
             }
-          originMassPropertyVal = new PointSimpleType(decl->val.c_str());
-          if (originMassPropertyVal->bad)
+          originMassPropertyVal = new PointSimpleType(decl->getval().c_str());
+          if (originMassPropertyVal->getbad())
             {
               delete originMassPropertyVal;
               fprintf(stderr, "bad value %s for originMassProperty in AssemblyType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->originMassProperty = originMassPropertyVal;
         }
-      else if (decl->name == "size")
+      else if (decl->getname() == "size")
         {
           DoublePositiveType * sizeVal;
           if (this->size)
@@ -1146,19 +1152,19 @@ bool AssemblyType::badAttributes(
               returnValue = true;
               break;
             }
-          sizeVal = new DoublePositiveType(decl->val.c_str());
-          if (sizeVal->bad)
+          sizeVal = new DoublePositiveType(decl->getval().c_str());
+          if (sizeVal->getbad())
             {
               delete sizeVal;
               fprintf(stderr, "bad value %s for size in AssemblyType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->size = sizeVal;
         }
-      else if (decl->name == "transparency")
+      else if (decl->getname() == "transparency")
         {
           TransparencyType * transparencyVal;
           if (this->transparency)
@@ -1167,12 +1173,12 @@ bool AssemblyType::badAttributes(
               returnValue = true;
               break;
             }
-          transparencyVal = new TransparencyType(decl->val.c_str());
-          if (transparencyVal->bad)
+          transparencyVal = new TransparencyType(decl->getval().c_str());
+          if (transparencyVal->getbad())
             {
               delete transparencyVal;
               fprintf(stderr, "bad value %s for transparency in AssemblyType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -1186,7 +1192,11 @@ bool AssemblyType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in AssemblyType\n");
       returnValue = true;
@@ -1378,7 +1388,7 @@ bool ComponentSetType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -1387,12 +1397,12 @@ bool ComponentSetType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in ComponentSetType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -1663,7 +1673,7 @@ bool ComponentType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "color")
+      if (decl->getname() == "color")
         {
           ColorType * colorVal;
           if (this->color)
@@ -1672,19 +1682,19 @@ bool ComponentType::badAttributes(
               returnValue = true;
               break;
             }
-          colorVal = new ColorType(decl->val.c_str());
-          if (colorVal->bad)
+          colorVal = new ColorType(decl->getval().c_str());
+          if (colorVal->getbad())
             {
               delete colorVal;
               fprintf(stderr, "bad value %s for color in ComponentType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->color = colorVal;
         }
-      else if (decl->name == "hidden")
+      else if (decl->getname() == "hidden")
         {
           XmlBoolean * hiddenVal;
           if (this->hidden)
@@ -1693,19 +1703,19 @@ bool ComponentType::badAttributes(
               returnValue = true;
               break;
             }
-          hiddenVal = new XmlBoolean(decl->val.c_str());
-          if (hiddenVal->bad)
+          hiddenVal = new XmlBoolean(decl->getval().c_str());
+          if (hiddenVal->getbad())
             {
               delete hiddenVal;
               fprintf(stderr, "bad value %s for hidden in ComponentType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->hidden = hiddenVal;
         }
-      else if (decl->name == "id")
+      else if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -1714,19 +1724,19 @@ bool ComponentType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in ComponentType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->id = idVal;
         }
-      else if (decl->name == "label")
+      else if (decl->getname() == "label")
         {
           XmlString * labelVal;
           if (this->label)
@@ -1735,19 +1745,19 @@ bool ComponentType::badAttributes(
               returnValue = true;
               break;
             }
-          labelVal = new XmlString(decl->val.c_str());
-          if (labelVal->bad)
+          labelVal = new XmlString(decl->getval().c_str());
+          if (labelVal->getbad())
             {
               delete labelVal;
               fprintf(stderr, "bad value %s for label in ComponentType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->label = labelVal;
         }
-      else if (decl->name == "size")
+      else if (decl->getname() == "size")
         {
           DoublePositiveType * sizeVal;
           if (this->size)
@@ -1756,19 +1766,19 @@ bool ComponentType::badAttributes(
               returnValue = true;
               break;
             }
-          sizeVal = new DoublePositiveType(decl->val.c_str());
-          if (sizeVal->bad)
+          sizeVal = new DoublePositiveType(decl->getval().c_str());
+          if (sizeVal->getbad())
             {
               delete sizeVal;
               fprintf(stderr, "bad value %s for size in ComponentType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->size = sizeVal;
         }
-      else if (decl->name == "transparency")
+      else if (decl->getname() == "transparency")
         {
           TransparencyType * transparencyVal;
           if (this->transparency)
@@ -1777,12 +1787,12 @@ bool ComponentType::badAttributes(
               returnValue = true;
               break;
             }
-          transparencyVal = new TransparencyType(decl->val.c_str());
-          if (transparencyVal->bad)
+          transparencyVal = new TransparencyType(decl->getval().c_str());
+          if (transparencyVal->getbad())
             {
               delete transparencyVal;
               fprintf(stderr, "bad value %s for transparency in ComponentType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -1796,7 +1806,11 @@ bool ComponentType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in ComponentType\n");
       returnValue = true;
@@ -2059,7 +2073,7 @@ bool DefinitionExternalType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -2068,19 +2082,19 @@ bool DefinitionExternalType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in DefinitionExternalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->id = idVal;
         }
-      else if (decl->name == "n")
+      else if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -2089,12 +2103,12 @@ bool DefinitionExternalType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in DefinitionExternalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -2108,7 +2122,11 @@ bool DefinitionExternalType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in DefinitionExternalType\n");
       returnValue = true;
@@ -2342,7 +2360,7 @@ bool DigitalDrawingType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -2351,12 +2369,12 @@ bool DigitalDrawingType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in DigitalDrawingType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -2370,7 +2388,11 @@ bool DigitalDrawingType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in DigitalDrawingType\n");
       returnValue = true;
@@ -2638,7 +2660,7 @@ bool DigitalModelType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -2647,12 +2669,12 @@ bool DigitalModelType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in DigitalModelType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -2666,7 +2688,11 @@ bool DigitalModelType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in DigitalModelType\n");
       returnValue = true;
@@ -3167,7 +3193,7 @@ bool FolderAssemblyType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "color")
+      if (decl->getname() == "color")
         {
           ColorType * colorVal;
           if (this->color)
@@ -3176,19 +3202,19 @@ bool FolderAssemblyType::badAttributes(
               returnValue = true;
               break;
             }
-          colorVal = new ColorType(decl->val.c_str());
-          if (colorVal->bad)
+          colorVal = new ColorType(decl->getval().c_str());
+          if (colorVal->getbad())
             {
               delete colorVal;
               fprintf(stderr, "bad value %s for color in FolderAssemblyType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->color = colorVal;
         }
-      else if (decl->name == "hidden")
+      else if (decl->getname() == "hidden")
         {
           XmlBoolean * hiddenVal;
           if (this->hidden)
@@ -3197,19 +3223,19 @@ bool FolderAssemblyType::badAttributes(
               returnValue = true;
               break;
             }
-          hiddenVal = new XmlBoolean(decl->val.c_str());
-          if (hiddenVal->bad)
+          hiddenVal = new XmlBoolean(decl->getval().c_str());
+          if (hiddenVal->getbad())
             {
               delete hiddenVal;
               fprintf(stderr, "bad value %s for hidden in FolderAssemblyType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->hidden = hiddenVal;
         }
-      else if (decl->name == "id")
+      else if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -3218,19 +3244,19 @@ bool FolderAssemblyType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in FolderAssemblyType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->id = idVal;
         }
-      else if (decl->name == "label")
+      else if (decl->getname() == "label")
         {
           XmlString * labelVal;
           if (this->label)
@@ -3239,19 +3265,19 @@ bool FolderAssemblyType::badAttributes(
               returnValue = true;
               break;
             }
-          labelVal = new XmlString(decl->val.c_str());
-          if (labelVal->bad)
+          labelVal = new XmlString(decl->getval().c_str());
+          if (labelVal->getbad())
             {
               delete labelVal;
               fprintf(stderr, "bad value %s for label in FolderAssemblyType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->label = labelVal;
         }
-      else if (decl->name == "size")
+      else if (decl->getname() == "size")
         {
           DoublePositiveType * sizeVal;
           if (this->size)
@@ -3260,19 +3286,19 @@ bool FolderAssemblyType::badAttributes(
               returnValue = true;
               break;
             }
-          sizeVal = new DoublePositiveType(decl->val.c_str());
-          if (sizeVal->bad)
+          sizeVal = new DoublePositiveType(decl->getval().c_str());
+          if (sizeVal->getbad())
             {
               delete sizeVal;
               fprintf(stderr, "bad value %s for size in FolderAssemblyType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->size = sizeVal;
         }
-      else if (decl->name == "transparency")
+      else if (decl->getname() == "transparency")
         {
           TransparencyType * transparencyVal;
           if (this->transparency)
@@ -3281,12 +3307,12 @@ bool FolderAssemblyType::badAttributes(
               returnValue = true;
               break;
             }
-          transparencyVal = new TransparencyType(decl->val.c_str());
-          if (transparencyVal->bad)
+          transparencyVal = new TransparencyType(decl->getval().c_str());
+          if (transparencyVal->getbad())
             {
               delete transparencyVal;
               fprintf(stderr, "bad value %s for transparency in FolderAssemblyType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -3300,7 +3326,11 @@ bool FolderAssemblyType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in FolderAssemblyType\n");
       returnValue = true;
@@ -3744,7 +3774,7 @@ bool FolderPartAssemblyBaseType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "color")
+      if (decl->getname() == "color")
         {
           ColorType * colorVal;
           if (this->color)
@@ -3753,19 +3783,19 @@ bool FolderPartAssemblyBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          colorVal = new ColorType(decl->val.c_str());
-          if (colorVal->bad)
+          colorVal = new ColorType(decl->getval().c_str());
+          if (colorVal->getbad())
             {
               delete colorVal;
               fprintf(stderr, "bad value %s for color in FolderPartAssemblyBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->color = colorVal;
         }
-      else if (decl->name == "hidden")
+      else if (decl->getname() == "hidden")
         {
           XmlBoolean * hiddenVal;
           if (this->hidden)
@@ -3774,19 +3804,19 @@ bool FolderPartAssemblyBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          hiddenVal = new XmlBoolean(decl->val.c_str());
-          if (hiddenVal->bad)
+          hiddenVal = new XmlBoolean(decl->getval().c_str());
+          if (hiddenVal->getbad())
             {
               delete hiddenVal;
               fprintf(stderr, "bad value %s for hidden in FolderPartAssemblyBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->hidden = hiddenVal;
         }
-      else if (decl->name == "id")
+      else if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -3795,19 +3825,19 @@ bool FolderPartAssemblyBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in FolderPartAssemblyBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->id = idVal;
         }
-      else if (decl->name == "label")
+      else if (decl->getname() == "label")
         {
           XmlString * labelVal;
           if (this->label)
@@ -3816,19 +3846,19 @@ bool FolderPartAssemblyBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          labelVal = new XmlString(decl->val.c_str());
-          if (labelVal->bad)
+          labelVal = new XmlString(decl->getval().c_str());
+          if (labelVal->getbad())
             {
               delete labelVal;
               fprintf(stderr, "bad value %s for label in FolderPartAssemblyBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->label = labelVal;
         }
-      else if (decl->name == "size")
+      else if (decl->getname() == "size")
         {
           DoublePositiveType * sizeVal;
           if (this->size)
@@ -3837,19 +3867,19 @@ bool FolderPartAssemblyBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          sizeVal = new DoublePositiveType(decl->val.c_str());
-          if (sizeVal->bad)
+          sizeVal = new DoublePositiveType(decl->getval().c_str());
+          if (sizeVal->getbad())
             {
               delete sizeVal;
               fprintf(stderr, "bad value %s for size in FolderPartAssemblyBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->size = sizeVal;
         }
-      else if (decl->name == "transparency")
+      else if (decl->getname() == "transparency")
         {
           TransparencyType * transparencyVal;
           if (this->transparency)
@@ -3858,12 +3888,12 @@ bool FolderPartAssemblyBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          transparencyVal = new TransparencyType(decl->val.c_str());
-          if (transparencyVal->bad)
+          transparencyVal = new TransparencyType(decl->getval().c_str());
+          if (transparencyVal->getbad())
             {
               delete transparencyVal;
               fprintf(stderr, "bad value %s for transparency in FolderPartAssemblyBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -3877,7 +3907,11 @@ bool FolderPartAssemblyBaseType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in FolderPartAssemblyBaseType\n");
       returnValue = true;
@@ -4336,7 +4370,7 @@ bool FolderPartType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "color")
+      if (decl->getname() == "color")
         {
           ColorType * colorVal;
           if (this->color)
@@ -4345,19 +4379,19 @@ bool FolderPartType::badAttributes(
               returnValue = true;
               break;
             }
-          colorVal = new ColorType(decl->val.c_str());
-          if (colorVal->bad)
+          colorVal = new ColorType(decl->getval().c_str());
+          if (colorVal->getbad())
             {
               delete colorVal;
               fprintf(stderr, "bad value %s for color in FolderPartType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->color = colorVal;
         }
-      else if (decl->name == "hidden")
+      else if (decl->getname() == "hidden")
         {
           XmlBoolean * hiddenVal;
           if (this->hidden)
@@ -4366,19 +4400,19 @@ bool FolderPartType::badAttributes(
               returnValue = true;
               break;
             }
-          hiddenVal = new XmlBoolean(decl->val.c_str());
-          if (hiddenVal->bad)
+          hiddenVal = new XmlBoolean(decl->getval().c_str());
+          if (hiddenVal->getbad())
             {
               delete hiddenVal;
               fprintf(stderr, "bad value %s for hidden in FolderPartType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->hidden = hiddenVal;
         }
-      else if (decl->name == "id")
+      else if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -4387,19 +4421,19 @@ bool FolderPartType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in FolderPartType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->id = idVal;
         }
-      else if (decl->name == "label")
+      else if (decl->getname() == "label")
         {
           XmlString * labelVal;
           if (this->label)
@@ -4408,19 +4442,19 @@ bool FolderPartType::badAttributes(
               returnValue = true;
               break;
             }
-          labelVal = new XmlString(decl->val.c_str());
-          if (labelVal->bad)
+          labelVal = new XmlString(decl->getval().c_str());
+          if (labelVal->getbad())
             {
               delete labelVal;
               fprintf(stderr, "bad value %s for label in FolderPartType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->label = labelVal;
         }
-      else if (decl->name == "size")
+      else if (decl->getname() == "size")
         {
           DoublePositiveType * sizeVal;
           if (this->size)
@@ -4429,19 +4463,19 @@ bool FolderPartType::badAttributes(
               returnValue = true;
               break;
             }
-          sizeVal = new DoublePositiveType(decl->val.c_str());
-          if (sizeVal->bad)
+          sizeVal = new DoublePositiveType(decl->getval().c_str());
+          if (sizeVal->getbad())
             {
               delete sizeVal;
               fprintf(stderr, "bad value %s for size in FolderPartType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->size = sizeVal;
         }
-      else if (decl->name == "transparency")
+      else if (decl->getname() == "transparency")
         {
           TransparencyType * transparencyVal;
           if (this->transparency)
@@ -4450,12 +4484,12 @@ bool FolderPartType::badAttributes(
               returnValue = true;
               break;
             }
-          transparencyVal = new TransparencyType(decl->val.c_str());
-          if (transparencyVal->bad)
+          transparencyVal = new TransparencyType(decl->getval().c_str());
+          if (transparencyVal->getbad())
             {
               delete transparencyVal;
               fprintf(stderr, "bad value %s for transparency in FolderPartType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -4469,7 +4503,11 @@ bool FolderPartType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in FolderPartType\n");
       returnValue = true;
@@ -4639,7 +4677,7 @@ bool FoldersAssemblyType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -4648,12 +4686,12 @@ bool FoldersAssemblyType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in FoldersAssemblyType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -4804,7 +4842,7 @@ bool FoldersPartType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -4813,12 +4851,12 @@ bool FoldersPartType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in FoldersPartType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -4878,8 +4916,8 @@ GDTEnumType::GDTEnumType(
   XmlString(
     valIn)
 {
-  if (!bad)
-    bad = (strcmp(val.c_str(), "UNKNOWN") &&
+  if (!getbad())
+    setbad(strcmp(val.c_str(), "UNKNOWN") &&
            strcmp(val.c_str(), "HUMANREAD") &&
            strcmp(val.c_str(), "MACHINEREAD") &&
            strcmp(val.c_str(), "ABSENT"));
@@ -5031,7 +5069,7 @@ bool LayerSetType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -5040,12 +5078,12 @@ bool LayerSetType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in LayerSetType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -5331,7 +5369,7 @@ bool LayerType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "applyColor")
+      if (decl->getname() == "applyColor")
         {
           XmlBoolean * applyColorVal;
           if (this->applyColor)
@@ -5340,19 +5378,19 @@ bool LayerType::badAttributes(
               returnValue = true;
               break;
             }
-          applyColorVal = new XmlBoolean(decl->val.c_str());
-          if (applyColorVal->bad)
+          applyColorVal = new XmlBoolean(decl->getval().c_str());
+          if (applyColorVal->getbad())
             {
               delete applyColorVal;
               fprintf(stderr, "bad value %s for applyColor in LayerType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->applyColor = applyColorVal;
         }
-      else if (decl->name == "color")
+      else if (decl->getname() == "color")
         {
           ColorType * colorVal;
           if (this->color)
@@ -5361,19 +5399,19 @@ bool LayerType::badAttributes(
               returnValue = true;
               break;
             }
-          colorVal = new ColorType(decl->val.c_str());
-          if (colorVal->bad)
+          colorVal = new ColorType(decl->getval().c_str());
+          if (colorVal->getbad())
             {
               delete colorVal;
               fprintf(stderr, "bad value %s for color in LayerType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->color = colorVal;
         }
-      else if (decl->name == "hidden")
+      else if (decl->getname() == "hidden")
         {
           XmlBoolean * hiddenVal;
           if (this->hidden)
@@ -5382,19 +5420,19 @@ bool LayerType::badAttributes(
               returnValue = true;
               break;
             }
-          hiddenVal = new XmlBoolean(decl->val.c_str());
-          if (hiddenVal->bad)
+          hiddenVal = new XmlBoolean(decl->getval().c_str());
+          if (hiddenVal->getbad())
             {
               delete hiddenVal;
               fprintf(stderr, "bad value %s for hidden in LayerType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->hidden = hiddenVal;
         }
-      else if (decl->name == "id")
+      else if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -5403,19 +5441,19 @@ bool LayerType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in LayerType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->id = idVal;
         }
-      else if (decl->name == "index")
+      else if (decl->getname() == "index")
         {
           XmlUnsignedInt * indexVal;
           if (this->index)
@@ -5424,19 +5462,19 @@ bool LayerType::badAttributes(
               returnValue = true;
               break;
             }
-          indexVal = new XmlUnsignedInt(decl->val.c_str());
-          if (indexVal->bad)
+          indexVal = new XmlUnsignedInt(decl->getval().c_str());
+          if (indexVal->getbad())
             {
               delete indexVal;
               fprintf(stderr, "bad value %s for index in LayerType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->index = indexVal;
         }
-      else if (decl->name == "label")
+      else if (decl->getname() == "label")
         {
           XmlString * labelVal;
           if (this->label)
@@ -5445,19 +5483,19 @@ bool LayerType::badAttributes(
               returnValue = true;
               break;
             }
-          labelVal = new XmlString(decl->val.c_str());
-          if (labelVal->bad)
+          labelVal = new XmlString(decl->getval().c_str());
+          if (labelVal->getbad())
             {
               delete labelVal;
               fprintf(stderr, "bad value %s for label in LayerType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->label = labelVal;
         }
-      else if (decl->name == "size")
+      else if (decl->getname() == "size")
         {
           DoublePositiveType * sizeVal;
           if (this->size)
@@ -5466,19 +5504,19 @@ bool LayerType::badAttributes(
               returnValue = true;
               break;
             }
-          sizeVal = new DoublePositiveType(decl->val.c_str());
-          if (sizeVal->bad)
+          sizeVal = new DoublePositiveType(decl->getval().c_str());
+          if (sizeVal->getbad())
             {
               delete sizeVal;
               fprintf(stderr, "bad value %s for size in LayerType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->size = sizeVal;
         }
-      else if (decl->name == "transparency")
+      else if (decl->getname() == "transparency")
         {
           TransparencyType * transparencyVal;
           if (this->transparency)
@@ -5487,12 +5525,12 @@ bool LayerType::badAttributes(
               returnValue = true;
               break;
             }
-          transparencyVal = new TransparencyType(decl->val.c_str());
-          if (transparencyVal->bad)
+          transparencyVal = new TransparencyType(decl->getval().c_str());
+          if (transparencyVal->getbad())
             {
               delete transparencyVal;
               fprintf(stderr, "bad value %s for transparency in LayerType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -5506,7 +5544,11 @@ bool LayerType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in LayerType\n");
       returnValue = true;
@@ -5703,7 +5745,7 @@ bool NoteFlagSetType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -5712,12 +5754,12 @@ bool NoteFlagSetType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in NoteFlagSetType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -6017,7 +6059,7 @@ bool NoteFlagType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "color")
+      if (decl->getname() == "color")
         {
           ColorType * colorVal;
           if (this->color)
@@ -6026,19 +6068,19 @@ bool NoteFlagType::badAttributes(
               returnValue = true;
               break;
             }
-          colorVal = new ColorType(decl->val.c_str());
-          if (colorVal->bad)
+          colorVal = new ColorType(decl->getval().c_str());
+          if (colorVal->getbad())
             {
               delete colorVal;
               fprintf(stderr, "bad value %s for color in NoteFlagType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->color = colorVal;
         }
-      else if (decl->name == "form")
+      else if (decl->getname() == "form")
         {
           NoteFormEnumType * formVal;
           if (this->form)
@@ -6047,19 +6089,19 @@ bool NoteFlagType::badAttributes(
               returnValue = true;
               break;
             }
-          formVal = new NoteFormEnumType(decl->val.c_str());
-          if (formVal->bad)
+          formVal = new NoteFormEnumType(decl->getval().c_str());
+          if (formVal->getbad())
             {
               delete formVal;
               fprintf(stderr, "bad value %s for form in NoteFlagType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->form = formVal;
         }
-      else if (decl->name == "hidden")
+      else if (decl->getname() == "hidden")
         {
           XmlBoolean * hiddenVal;
           if (this->hidden)
@@ -6068,19 +6110,19 @@ bool NoteFlagType::badAttributes(
               returnValue = true;
               break;
             }
-          hiddenVal = new XmlBoolean(decl->val.c_str());
-          if (hiddenVal->bad)
+          hiddenVal = new XmlBoolean(decl->getval().c_str());
+          if (hiddenVal->getbad())
             {
               delete hiddenVal;
               fprintf(stderr, "bad value %s for hidden in NoteFlagType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->hidden = hiddenVal;
         }
-      else if (decl->name == "id")
+      else if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -6089,19 +6131,19 @@ bool NoteFlagType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in NoteFlagType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->id = idVal;
         }
-      else if (decl->name == "label")
+      else if (decl->getname() == "label")
         {
           XmlString * labelVal;
           if (this->label)
@@ -6110,19 +6152,19 @@ bool NoteFlagType::badAttributes(
               returnValue = true;
               break;
             }
-          labelVal = new XmlString(decl->val.c_str());
-          if (labelVal->bad)
+          labelVal = new XmlString(decl->getval().c_str());
+          if (labelVal->getbad())
             {
               delete labelVal;
               fprintf(stderr, "bad value %s for label in NoteFlagType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->label = labelVal;
         }
-      else if (decl->name == "size")
+      else if (decl->getname() == "size")
         {
           DoublePositiveType * sizeVal;
           if (this->size)
@@ -6131,19 +6173,19 @@ bool NoteFlagType::badAttributes(
               returnValue = true;
               break;
             }
-          sizeVal = new DoublePositiveType(decl->val.c_str());
-          if (sizeVal->bad)
+          sizeVal = new DoublePositiveType(decl->getval().c_str());
+          if (sizeVal->getbad())
             {
               delete sizeVal;
               fprintf(stderr, "bad value %s for size in NoteFlagType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->size = sizeVal;
         }
-      else if (decl->name == "transparency")
+      else if (decl->getname() == "transparency")
         {
           TransparencyType * transparencyVal;
           if (this->transparency)
@@ -6152,12 +6194,12 @@ bool NoteFlagType::badAttributes(
               returnValue = true;
               break;
             }
-          transparencyVal = new TransparencyType(decl->val.c_str());
-          if (transparencyVal->bad)
+          transparencyVal = new TransparencyType(decl->getval().c_str());
+          if (transparencyVal->getbad())
             {
               delete transparencyVal;
               fprintf(stderr, "bad value %s for transparency in NoteFlagType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -6171,7 +6213,11 @@ bool NoteFlagType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in NoteFlagType\n");
       returnValue = true;
@@ -6264,8 +6310,8 @@ NoteFormEnumType::NoteFormEnumType(
   XmlString(
     valIn)
 {
-  if (!bad)
-    bad = (strcmp(val.c_str(), "3D") &&
+  if (!getbad())
+    setbad(strcmp(val.c_str(), "3D") &&
            strcmp(val.c_str(), "SCREEN"));
 }
 
@@ -6413,7 +6459,7 @@ bool NoteSetType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -6422,12 +6468,12 @@ bool NoteSetType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in NoteSetType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -6710,7 +6756,7 @@ bool NoteType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "color")
+      if (decl->getname() == "color")
         {
           ColorType * colorVal;
           if (this->color)
@@ -6719,19 +6765,19 @@ bool NoteType::badAttributes(
               returnValue = true;
               break;
             }
-          colorVal = new ColorType(decl->val.c_str());
-          if (colorVal->bad)
+          colorVal = new ColorType(decl->getval().c_str());
+          if (colorVal->getbad())
             {
               delete colorVal;
               fprintf(stderr, "bad value %s for color in NoteType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->color = colorVal;
         }
-      else if (decl->name == "form")
+      else if (decl->getname() == "form")
         {
           NoteFormEnumType * formVal;
           if (this->form)
@@ -6740,19 +6786,19 @@ bool NoteType::badAttributes(
               returnValue = true;
               break;
             }
-          formVal = new NoteFormEnumType(decl->val.c_str());
-          if (formVal->bad)
+          formVal = new NoteFormEnumType(decl->getval().c_str());
+          if (formVal->getbad())
             {
               delete formVal;
               fprintf(stderr, "bad value %s for form in NoteType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->form = formVal;
         }
-      else if (decl->name == "hidden")
+      else if (decl->getname() == "hidden")
         {
           XmlBoolean * hiddenVal;
           if (this->hidden)
@@ -6761,19 +6807,19 @@ bool NoteType::badAttributes(
               returnValue = true;
               break;
             }
-          hiddenVal = new XmlBoolean(decl->val.c_str());
-          if (hiddenVal->bad)
+          hiddenVal = new XmlBoolean(decl->getval().c_str());
+          if (hiddenVal->getbad())
             {
               delete hiddenVal;
               fprintf(stderr, "bad value %s for hidden in NoteType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->hidden = hiddenVal;
         }
-      else if (decl->name == "id")
+      else if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -6782,19 +6828,19 @@ bool NoteType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in NoteType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->id = idVal;
         }
-      else if (decl->name == "label")
+      else if (decl->getname() == "label")
         {
           XmlString * labelVal;
           if (this->label)
@@ -6803,19 +6849,19 @@ bool NoteType::badAttributes(
               returnValue = true;
               break;
             }
-          labelVal = new XmlString(decl->val.c_str());
-          if (labelVal->bad)
+          labelVal = new XmlString(decl->getval().c_str());
+          if (labelVal->getbad())
             {
               delete labelVal;
               fprintf(stderr, "bad value %s for label in NoteType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->label = labelVal;
         }
-      else if (decl->name == "size")
+      else if (decl->getname() == "size")
         {
           DoublePositiveType * sizeVal;
           if (this->size)
@@ -6824,19 +6870,19 @@ bool NoteType::badAttributes(
               returnValue = true;
               break;
             }
-          sizeVal = new DoublePositiveType(decl->val.c_str());
-          if (sizeVal->bad)
+          sizeVal = new DoublePositiveType(decl->getval().c_str());
+          if (sizeVal->getbad())
             {
               delete sizeVal;
               fprintf(stderr, "bad value %s for size in NoteType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->size = sizeVal;
         }
-      else if (decl->name == "transparency")
+      else if (decl->getname() == "transparency")
         {
           TransparencyType * transparencyVal;
           if (this->transparency)
@@ -6845,12 +6891,12 @@ bool NoteType::badAttributes(
               returnValue = true;
               break;
             }
-          transparencyVal = new TransparencyType(decl->val.c_str());
-          if (transparencyVal->bad)
+          transparencyVal = new TransparencyType(decl->getval().c_str());
+          if (transparencyVal->getbad())
             {
               delete transparencyVal;
               fprintf(stderr, "bad value %s for transparency in NoteType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -6864,7 +6910,11 @@ bool NoteType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in NoteType\n");
       returnValue = true;
@@ -7452,7 +7502,7 @@ bool PartAssemblyBaseType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "color")
+      if (decl->getname() == "color")
         {
           ColorType * colorVal;
           if (this->color)
@@ -7461,19 +7511,19 @@ bool PartAssemblyBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          colorVal = new ColorType(decl->val.c_str());
-          if (colorVal->bad)
+          colorVal = new ColorType(decl->getval().c_str());
+          if (colorVal->getbad())
             {
               delete colorVal;
               fprintf(stderr, "bad value %s for color in PartAssemblyBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->color = colorVal;
         }
-      else if (decl->name == "hidden")
+      else if (decl->getname() == "hidden")
         {
           XmlBoolean * hiddenVal;
           if (this->hidden)
@@ -7482,19 +7532,19 @@ bool PartAssemblyBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          hiddenVal = new XmlBoolean(decl->val.c_str());
-          if (hiddenVal->bad)
+          hiddenVal = new XmlBoolean(decl->getval().c_str());
+          if (hiddenVal->getbad())
             {
               delete hiddenVal;
               fprintf(stderr, "bad value %s for hidden in PartAssemblyBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->hidden = hiddenVal;
         }
-      else if (decl->name == "id")
+      else if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -7503,19 +7553,19 @@ bool PartAssemblyBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in PartAssemblyBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->id = idVal;
         }
-      else if (decl->name == "label")
+      else if (decl->getname() == "label")
         {
           XmlString * labelVal;
           if (this->label)
@@ -7524,19 +7574,19 @@ bool PartAssemblyBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          labelVal = new XmlString(decl->val.c_str());
-          if (labelVal->bad)
+          labelVal = new XmlString(decl->getval().c_str());
+          if (labelVal->getbad())
             {
               delete labelVal;
               fprintf(stderr, "bad value %s for label in PartAssemblyBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->label = labelVal;
         }
-      else if (decl->name == "materialIndex")
+      else if (decl->getname() == "materialIndex")
         {
           NaturalType * materialIndexVal;
           if (this->materialIndex)
@@ -7545,19 +7595,19 @@ bool PartAssemblyBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          materialIndexVal = new NaturalType(decl->val.c_str());
-          if (materialIndexVal->bad)
+          materialIndexVal = new NaturalType(decl->getval().c_str());
+          if (materialIndexVal->getbad())
             {
               delete materialIndexVal;
               fprintf(stderr, "bad value %s for materialIndex in PartAssemblyBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->materialIndex = materialIndexVal;
         }
-      else if (decl->name == "originMassProperty")
+      else if (decl->getname() == "originMassProperty")
         {
           PointSimpleType * originMassPropertyVal;
           if (this->originMassProperty)
@@ -7566,19 +7616,19 @@ bool PartAssemblyBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          originMassPropertyVal = new PointSimpleType(decl->val.c_str());
-          if (originMassPropertyVal->bad)
+          originMassPropertyVal = new PointSimpleType(decl->getval().c_str());
+          if (originMassPropertyVal->getbad())
             {
               delete originMassPropertyVal;
               fprintf(stderr, "bad value %s for originMassProperty in PartAssemblyBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->originMassProperty = originMassPropertyVal;
         }
-      else if (decl->name == "size")
+      else if (decl->getname() == "size")
         {
           DoublePositiveType * sizeVal;
           if (this->size)
@@ -7587,19 +7637,19 @@ bool PartAssemblyBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          sizeVal = new DoublePositiveType(decl->val.c_str());
-          if (sizeVal->bad)
+          sizeVal = new DoublePositiveType(decl->getval().c_str());
+          if (sizeVal->getbad())
             {
               delete sizeVal;
               fprintf(stderr, "bad value %s for size in PartAssemblyBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->size = sizeVal;
         }
-      else if (decl->name == "transparency")
+      else if (decl->getname() == "transparency")
         {
           TransparencyType * transparencyVal;
           if (this->transparency)
@@ -7608,12 +7658,12 @@ bool PartAssemblyBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          transparencyVal = new TransparencyType(decl->val.c_str());
-          if (transparencyVal->bad)
+          transparencyVal = new TransparencyType(decl->getval().c_str());
+          if (transparencyVal->getbad())
             {
               delete transparencyVal;
               fprintf(stderr, "bad value %s for transparency in PartAssemblyBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -7627,7 +7677,11 @@ bool PartAssemblyBaseType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in PartAssemblyBaseType\n");
       returnValue = true;
@@ -8129,7 +8183,7 @@ bool PartNoteSetType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -8138,12 +8192,12 @@ bool PartNoteSetType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in PartNoteSetType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -8393,7 +8447,7 @@ bool PartNoteType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "color")
+      if (decl->getname() == "color")
         {
           ColorType * colorVal;
           if (this->color)
@@ -8402,19 +8456,19 @@ bool PartNoteType::badAttributes(
               returnValue = true;
               break;
             }
-          colorVal = new ColorType(decl->val.c_str());
-          if (colorVal->bad)
+          colorVal = new ColorType(decl->getval().c_str());
+          if (colorVal->getbad())
             {
               delete colorVal;
               fprintf(stderr, "bad value %s for color in PartNoteType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->color = colorVal;
         }
-      else if (decl->name == "hidden")
+      else if (decl->getname() == "hidden")
         {
           XmlBoolean * hiddenVal;
           if (this->hidden)
@@ -8423,19 +8477,19 @@ bool PartNoteType::badAttributes(
               returnValue = true;
               break;
             }
-          hiddenVal = new XmlBoolean(decl->val.c_str());
-          if (hiddenVal->bad)
+          hiddenVal = new XmlBoolean(decl->getval().c_str());
+          if (hiddenVal->getbad())
             {
               delete hiddenVal;
               fprintf(stderr, "bad value %s for hidden in PartNoteType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->hidden = hiddenVal;
         }
-      else if (decl->name == "id")
+      else if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -8444,19 +8498,19 @@ bool PartNoteType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in PartNoteType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->id = idVal;
         }
-      else if (decl->name == "label")
+      else if (decl->getname() == "label")
         {
           XmlString * labelVal;
           if (this->label)
@@ -8465,19 +8519,19 @@ bool PartNoteType::badAttributes(
               returnValue = true;
               break;
             }
-          labelVal = new XmlString(decl->val.c_str());
-          if (labelVal->bad)
+          labelVal = new XmlString(decl->getval().c_str());
+          if (labelVal->getbad())
             {
               delete labelVal;
               fprintf(stderr, "bad value %s for label in PartNoteType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->label = labelVal;
         }
-      else if (decl->name == "size")
+      else if (decl->getname() == "size")
         {
           DoublePositiveType * sizeVal;
           if (this->size)
@@ -8486,19 +8540,19 @@ bool PartNoteType::badAttributes(
               returnValue = true;
               break;
             }
-          sizeVal = new DoublePositiveType(decl->val.c_str());
-          if (sizeVal->bad)
+          sizeVal = new DoublePositiveType(decl->getval().c_str());
+          if (sizeVal->getbad())
             {
               delete sizeVal;
               fprintf(stderr, "bad value %s for size in PartNoteType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->size = sizeVal;
         }
-      else if (decl->name == "transparency")
+      else if (decl->getname() == "transparency")
         {
           TransparencyType * transparencyVal;
           if (this->transparency)
@@ -8507,12 +8561,12 @@ bool PartNoteType::badAttributes(
               returnValue = true;
               break;
             }
-          transparencyVal = new TransparencyType(decl->val.c_str());
-          if (transparencyVal->bad)
+          transparencyVal = new TransparencyType(decl->getval().c_str());
+          if (transparencyVal->getbad())
             {
               delete transparencyVal;
               fprintf(stderr, "bad value %s for transparency in PartNoteType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -8526,7 +8580,11 @@ bool PartNoteType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in PartNoteType\n");
       returnValue = true;
@@ -8708,7 +8766,7 @@ bool PartSetType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -8717,12 +8775,12 @@ bool PartSetType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in PartSetType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -9261,7 +9319,7 @@ bool PartType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "color")
+      if (decl->getname() == "color")
         {
           ColorType * colorVal;
           if (this->color)
@@ -9270,19 +9328,19 @@ bool PartType::badAttributes(
               returnValue = true;
               break;
             }
-          colorVal = new ColorType(decl->val.c_str());
-          if (colorVal->bad)
+          colorVal = new ColorType(decl->getval().c_str());
+          if (colorVal->getbad())
             {
               delete colorVal;
               fprintf(stderr, "bad value %s for color in PartType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->color = colorVal;
         }
-      else if (decl->name == "hidden")
+      else if (decl->getname() == "hidden")
         {
           XmlBoolean * hiddenVal;
           if (this->hidden)
@@ -9291,19 +9349,19 @@ bool PartType::badAttributes(
               returnValue = true;
               break;
             }
-          hiddenVal = new XmlBoolean(decl->val.c_str());
-          if (hiddenVal->bad)
+          hiddenVal = new XmlBoolean(decl->getval().c_str());
+          if (hiddenVal->getbad())
             {
               delete hiddenVal;
               fprintf(stderr, "bad value %s for hidden in PartType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->hidden = hiddenVal;
         }
-      else if (decl->name == "id")
+      else if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -9312,19 +9370,19 @@ bool PartType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in PartType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->id = idVal;
         }
-      else if (decl->name == "label")
+      else if (decl->getname() == "label")
         {
           XmlString * labelVal;
           if (this->label)
@@ -9333,19 +9391,19 @@ bool PartType::badAttributes(
               returnValue = true;
               break;
             }
-          labelVal = new XmlString(decl->val.c_str());
-          if (labelVal->bad)
+          labelVal = new XmlString(decl->getval().c_str());
+          if (labelVal->getbad())
             {
               delete labelVal;
               fprintf(stderr, "bad value %s for label in PartType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->label = labelVal;
         }
-      else if (decl->name == "materialIndex")
+      else if (decl->getname() == "materialIndex")
         {
           NaturalType * materialIndexVal;
           if (this->materialIndex)
@@ -9354,19 +9412,19 @@ bool PartType::badAttributes(
               returnValue = true;
               break;
             }
-          materialIndexVal = new NaturalType(decl->val.c_str());
-          if (materialIndexVal->bad)
+          materialIndexVal = new NaturalType(decl->getval().c_str());
+          if (materialIndexVal->getbad())
             {
               delete materialIndexVal;
               fprintf(stderr, "bad value %s for materialIndex in PartType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->materialIndex = materialIndexVal;
         }
-      else if (decl->name == "originMassProperty")
+      else if (decl->getname() == "originMassProperty")
         {
           PointSimpleType * originMassPropertyVal;
           if (this->originMassProperty)
@@ -9375,19 +9433,19 @@ bool PartType::badAttributes(
               returnValue = true;
               break;
             }
-          originMassPropertyVal = new PointSimpleType(decl->val.c_str());
-          if (originMassPropertyVal->bad)
+          originMassPropertyVal = new PointSimpleType(decl->getval().c_str());
+          if (originMassPropertyVal->getbad())
             {
               delete originMassPropertyVal;
               fprintf(stderr, "bad value %s for originMassProperty in PartType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->originMassProperty = originMassPropertyVal;
         }
-      else if (decl->name == "size")
+      else if (decl->getname() == "size")
         {
           DoublePositiveType * sizeVal;
           if (this->size)
@@ -9396,19 +9454,19 @@ bool PartType::badAttributes(
               returnValue = true;
               break;
             }
-          sizeVal = new DoublePositiveType(decl->val.c_str());
-          if (sizeVal->bad)
+          sizeVal = new DoublePositiveType(decl->getval().c_str());
+          if (sizeVal->getbad())
             {
               delete sizeVal;
               fprintf(stderr, "bad value %s for size in PartType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->size = sizeVal;
         }
-      else if (decl->name == "transparency")
+      else if (decl->getname() == "transparency")
         {
           TransparencyType * transparencyVal;
           if (this->transparency)
@@ -9417,12 +9475,12 @@ bool PartType::badAttributes(
               returnValue = true;
               break;
             }
-          transparencyVal = new TransparencyType(decl->val.c_str());
-          if (transparencyVal->bad)
+          transparencyVal = new TransparencyType(decl->getval().c_str());
+          if (transparencyVal->getbad())
             {
               delete transparencyVal;
               fprintf(stderr, "bad value %s for transparency in PartType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -9436,7 +9494,11 @@ bool PartType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in PartType\n");
       returnValue = true;
@@ -9669,7 +9731,7 @@ bool PhysicalModelType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -9678,12 +9740,12 @@ bool PhysicalModelType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in PhysicalModelType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -9697,7 +9759,11 @@ bool PhysicalModelType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in PhysicalModelType\n");
       returnValue = true;
@@ -9918,7 +9984,7 @@ bool PrintedDrawingType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -9927,12 +9993,12 @@ bool PrintedDrawingType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in PrintedDrawingType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -9946,7 +10012,11 @@ bool PrintedDrawingType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in PrintedDrawingType\n");
       returnValue = true;
@@ -10495,8 +10565,8 @@ TopologyEnumType::TopologyEnumType(
   XmlString(
     valIn)
 {
-  if (!bad)
-    bad = (strcmp(val.c_str(), "UNKNOWN") &&
+  if (!getbad())
+    setbad(strcmp(val.c_str(), "UNKNOWN") &&
            strcmp(val.c_str(), "PRESENT") &&
            strcmp(val.c_str(), "ABSENT"));
 }
@@ -10757,7 +10827,7 @@ bool ValidationPartAssemblyInstancesType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -10766,12 +10836,12 @@ bool ValidationPartAssemblyInstancesType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in ValidationPartAssemblyInstancesType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }

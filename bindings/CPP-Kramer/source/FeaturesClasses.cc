@@ -4,10 +4,12 @@
 #include <string.h>            // for strdup
 #include <stdlib.h>            // for exit
 #include <list>
+#include  <map>
 #include <xmlSchemaInstance.hh>
 #include "FeaturesClasses.hh"
 
 #define INDENT 2
+extern std::map<unsigned int, XmlSchemaInstanceBase *> idMap;
 
 /* ***************************************************************** */
 /* ***************************************************************** */
@@ -117,7 +119,7 @@ bool BaseFeaturePointListType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -126,12 +128,12 @@ bool BaseFeaturePointListType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in BaseFeaturePointListType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -415,7 +417,7 @@ bool CircleBestFitType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -424,12 +426,12 @@ bool CircleBestFitType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in CircleBestFitType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -975,7 +977,7 @@ bool CircleFeatureDefinitionType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -984,12 +986,12 @@ bool CircleFeatureDefinitionType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in CircleFeatureDefinitionType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -1003,7 +1005,11 @@ bool CircleFeatureDefinitionType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in CircleFeatureDefinitionType\n");
       returnValue = true;
@@ -1223,7 +1229,7 @@ bool CircleFeatureItemType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -1232,12 +1238,12 @@ bool CircleFeatureItemType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in CircleFeatureItemType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -1251,7 +1257,11 @@ bool CircleFeatureItemType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in CircleFeatureItemType\n");
       returnValue = true;
@@ -1590,7 +1600,7 @@ bool CircleFeatureMeasurementType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -1599,12 +1609,12 @@ bool CircleFeatureMeasurementType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in CircleFeatureMeasurementType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -1618,7 +1628,11 @@ bool CircleFeatureMeasurementType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in CircleFeatureMeasurementType\n");
       returnValue = true;
@@ -1916,7 +1930,7 @@ bool CircleFeatureNominalType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -1925,12 +1939,12 @@ bool CircleFeatureNominalType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in CircleFeatureNominalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -1944,7 +1958,11 @@ bool CircleFeatureNominalType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in CircleFeatureNominalType\n");
       returnValue = true;
@@ -2776,7 +2794,7 @@ bool CircularArcBestFitType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -2785,12 +2803,12 @@ bool CircularArcBestFitType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in CircularArcBestFitType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -3369,7 +3387,7 @@ bool CircularArcFeatureDefinitionType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -3378,12 +3396,12 @@ bool CircularArcFeatureDefinitionType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in CircularArcFeatureDefinitionType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -3397,7 +3415,11 @@ bool CircularArcFeatureDefinitionType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in CircularArcFeatureDefinitionType\n");
       returnValue = true;
@@ -3617,7 +3639,7 @@ bool CircularArcFeatureItemType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -3626,12 +3648,12 @@ bool CircularArcFeatureItemType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in CircularArcFeatureItemType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -3645,7 +3667,11 @@ bool CircularArcFeatureItemType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in CircularArcFeatureItemType\n");
       returnValue = true;
@@ -3984,7 +4010,7 @@ bool CircularArcFeatureMeasurementType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -3993,12 +4019,12 @@ bool CircularArcFeatureMeasurementType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in CircularArcFeatureMeasurementType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -4012,7 +4038,11 @@ bool CircularArcFeatureMeasurementType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in CircularArcFeatureMeasurementType\n");
       returnValue = true;
@@ -4307,7 +4337,7 @@ bool CircularArcFeatureNominalType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -4316,12 +4346,12 @@ bool CircularArcFeatureNominalType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in CircularArcFeatureNominalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -4335,7 +4365,11 @@ bool CircularArcFeatureNominalType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in CircularArcFeatureNominalType\n");
       returnValue = true;
@@ -4927,7 +4961,7 @@ bool ConeBestFitType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -4936,12 +4970,12 @@ bool ConeBestFitType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in ConeBestFitType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -5454,7 +5488,7 @@ bool ConeFeatureDefinitionType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -5463,12 +5497,12 @@ bool ConeFeatureDefinitionType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in ConeFeatureDefinitionType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -5482,7 +5516,11 @@ bool ConeFeatureDefinitionType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in ConeFeatureDefinitionType\n");
       returnValue = true;
@@ -5714,7 +5752,7 @@ bool ConeFeatureItemType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -5723,12 +5761,12 @@ bool ConeFeatureItemType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in ConeFeatureItemType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -5742,7 +5780,11 @@ bool ConeFeatureItemType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in ConeFeatureItemType\n");
       returnValue = true;
@@ -6105,7 +6147,7 @@ bool ConeFeatureMeasurementType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -6114,12 +6156,12 @@ bool ConeFeatureMeasurementType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in ConeFeatureMeasurementType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -6133,7 +6175,11 @@ bool ConeFeatureMeasurementType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in ConeFeatureMeasurementType\n");
       returnValue = true;
@@ -6423,7 +6469,7 @@ bool ConeFeatureNominalType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -6432,12 +6478,12 @@ bool ConeFeatureNominalType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in ConeFeatureNominalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -6451,7 +6497,11 @@ bool ConeFeatureNominalType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in ConeFeatureNominalType\n");
       returnValue = true;
@@ -6871,7 +6921,7 @@ bool ConicalSegmentBestFitType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -6880,12 +6930,12 @@ bool ConicalSegmentBestFitType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in ConicalSegmentBestFitType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -7388,7 +7438,7 @@ bool ConicalSegmentFeatureDefinitionType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -7397,12 +7447,12 @@ bool ConicalSegmentFeatureDefinitionType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in ConicalSegmentFeatureDefinitionType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -7416,7 +7466,11 @@ bool ConicalSegmentFeatureDefinitionType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in ConicalSegmentFeatureDefinitionType\n");
       returnValue = true;
@@ -7648,7 +7702,7 @@ bool ConicalSegmentFeatureItemType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -7657,12 +7711,12 @@ bool ConicalSegmentFeatureItemType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in ConicalSegmentFeatureItemType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -7676,7 +7730,11 @@ bool ConicalSegmentFeatureItemType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in ConicalSegmentFeatureItemType\n");
       returnValue = true;
@@ -8039,7 +8097,7 @@ bool ConicalSegmentFeatureMeasurementType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -8048,12 +8106,12 @@ bool ConicalSegmentFeatureMeasurementType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in ConicalSegmentFeatureMeasurementType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -8067,7 +8125,11 @@ bool ConicalSegmentFeatureMeasurementType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in ConicalSegmentFeatureMeasurementType\n");
       returnValue = true;
@@ -8354,7 +8416,7 @@ bool ConicalSegmentFeatureNominalType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -8363,12 +8425,12 @@ bool ConicalSegmentFeatureNominalType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in ConicalSegmentFeatureNominalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -8382,7 +8444,11 @@ bool ConicalSegmentFeatureNominalType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in ConicalSegmentFeatureNominalType\n");
       returnValue = true;
@@ -8742,7 +8808,7 @@ bool CurveFeatureDefinitionBaseType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -8751,12 +8817,12 @@ bool CurveFeatureDefinitionBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in CurveFeatureDefinitionBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -8770,7 +8836,11 @@ bool CurveFeatureDefinitionBaseType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in CurveFeatureDefinitionBaseType\n");
       returnValue = true;
@@ -8967,7 +9037,7 @@ bool CurveFeatureItemBaseType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -8976,12 +9046,12 @@ bool CurveFeatureItemBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in CurveFeatureItemBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -8995,7 +9065,11 @@ bool CurveFeatureItemBaseType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in CurveFeatureItemBaseType\n");
       returnValue = true;
@@ -9222,7 +9296,7 @@ bool CurveFeatureMeasurementBaseType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -9231,12 +9305,12 @@ bool CurveFeatureMeasurementBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in CurveFeatureMeasurementBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -9250,7 +9324,11 @@ bool CurveFeatureMeasurementBaseType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in CurveFeatureMeasurementBaseType\n");
       returnValue = true;
@@ -9454,7 +9532,7 @@ bool CurveFeatureNominalBaseType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -9463,12 +9541,12 @@ bool CurveFeatureNominalBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in CurveFeatureNominalBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -9482,7 +9560,11 @@ bool CurveFeatureNominalBaseType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in CurveFeatureNominalBaseType\n");
       returnValue = true;
@@ -9627,7 +9709,7 @@ bool CylinderBestFitType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -9636,12 +9718,12 @@ bool CylinderBestFitType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in CylinderBestFitType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -10164,7 +10246,7 @@ bool CylinderFeatureDefinitionType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -10173,12 +10255,12 @@ bool CylinderFeatureDefinitionType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in CylinderFeatureDefinitionType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -10192,7 +10274,11 @@ bool CylinderFeatureDefinitionType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in CylinderFeatureDefinitionType\n");
       returnValue = true;
@@ -10424,7 +10510,7 @@ bool CylinderFeatureItemType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -10433,12 +10519,12 @@ bool CylinderFeatureItemType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in CylinderFeatureItemType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -10452,7 +10538,11 @@ bool CylinderFeatureItemType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in CylinderFeatureItemType\n");
       returnValue = true;
@@ -10792,7 +10882,7 @@ bool CylinderFeatureMeasurementType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -10801,12 +10891,12 @@ bool CylinderFeatureMeasurementType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in CylinderFeatureMeasurementType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -10820,7 +10910,11 @@ bool CylinderFeatureMeasurementType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in CylinderFeatureMeasurementType\n");
       returnValue = true;
@@ -11098,7 +11192,7 @@ bool CylinderFeatureNominalType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -11107,12 +11201,12 @@ bool CylinderFeatureNominalType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in CylinderFeatureNominalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -11126,7 +11220,11 @@ bool CylinderFeatureNominalType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in CylinderFeatureNominalType\n");
       returnValue = true;
@@ -11546,7 +11644,7 @@ bool CylindricalSegmentBestFitType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -11555,12 +11653,12 @@ bool CylindricalSegmentBestFitType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in CylindricalSegmentBestFitType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -12073,7 +12171,7 @@ bool CylindricalSegmentFeatureDefinitionType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -12082,12 +12180,12 @@ bool CylindricalSegmentFeatureDefinitionType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in CylindricalSegmentFeatureDefinitionType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -12101,7 +12199,11 @@ bool CylindricalSegmentFeatureDefinitionType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in CylindricalSegmentFeatureDefinitionType\n");
       returnValue = true;
@@ -12333,7 +12435,7 @@ bool CylindricalSegmentFeatureItemType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -12342,12 +12444,12 @@ bool CylindricalSegmentFeatureItemType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in CylindricalSegmentFeatureItemType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -12361,7 +12463,11 @@ bool CylindricalSegmentFeatureItemType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in CylindricalSegmentFeatureItemType\n");
       returnValue = true;
@@ -12701,7 +12807,7 @@ bool CylindricalSegmentFeatureMeasurementType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -12710,12 +12816,12 @@ bool CylindricalSegmentFeatureMeasurementType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in CylindricalSegmentFeatureMeasurementType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -12729,7 +12835,11 @@ bool CylindricalSegmentFeatureMeasurementType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in CylindricalSegmentFeatureMeasurementType\n");
       returnValue = true;
@@ -13004,7 +13114,7 @@ bool CylindricalSegmentFeatureNominalType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -13013,12 +13123,12 @@ bool CylindricalSegmentFeatureNominalType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in CylindricalSegmentFeatureNominalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -13032,7 +13142,11 @@ bool CylindricalSegmentFeatureNominalType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in CylindricalSegmentFeatureNominalType\n");
       returnValue = true;
@@ -13833,7 +13947,7 @@ bool DefiningPointsMeasurementType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "combinedUncertainty")
+      if (decl->getname() == "combinedUncertainty")
         {
           XmlDecimal * combinedUncertaintyVal;
           if (this->combinedUncertainty)
@@ -13842,19 +13956,19 @@ bool DefiningPointsMeasurementType::badAttributes(
               returnValue = true;
               break;
             }
-          combinedUncertaintyVal = new XmlDecimal(decl->val.c_str());
-          if (combinedUncertaintyVal->bad)
+          combinedUncertaintyVal = new XmlDecimal(decl->getval().c_str());
+          if (combinedUncertaintyVal->getbad())
             {
               delete combinedUncertaintyVal;
               fprintf(stderr, "bad value %s for combinedUncertainty in DefiningPointsMeasurementType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->combinedUncertainty = combinedUncertaintyVal;
         }
-      else if (decl->name == "decimalPlaces")
+      else if (decl->getname() == "decimalPlaces")
         {
           XmlNonNegativeInteger * decimalPlacesVal;
           if (this->decimalPlaces)
@@ -13863,19 +13977,19 @@ bool DefiningPointsMeasurementType::badAttributes(
               returnValue = true;
               break;
             }
-          decimalPlacesVal = new XmlNonNegativeInteger(decl->val.c_str());
-          if (decimalPlacesVal->bad)
+          decimalPlacesVal = new XmlNonNegativeInteger(decl->getval().c_str());
+          if (decimalPlacesVal->getbad())
             {
               delete decimalPlacesVal;
               fprintf(stderr, "bad value %s for decimalPlaces in DefiningPointsMeasurementType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->decimalPlaces = decimalPlacesVal;
         }
-      else if (decl->name == "linearUnit")
+      else if (decl->getname() == "linearUnit")
         {
           XmlToken * linearUnitVal;
           if (this->linearUnit)
@@ -13884,19 +13998,19 @@ bool DefiningPointsMeasurementType::badAttributes(
               returnValue = true;
               break;
             }
-          linearUnitVal = new XmlToken(decl->val.c_str());
-          if (linearUnitVal->bad)
+          linearUnitVal = new XmlToken(decl->getval().c_str());
+          if (linearUnitVal->getbad())
             {
               delete linearUnitVal;
               fprintf(stderr, "bad value %s for linearUnit in DefiningPointsMeasurementType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->linearUnit = linearUnitVal;
         }
-      else if (decl->name == "meanError")
+      else if (decl->getname() == "meanError")
         {
           XmlDecimal * meanErrorVal;
           if (this->meanError)
@@ -13905,19 +14019,19 @@ bool DefiningPointsMeasurementType::badAttributes(
               returnValue = true;
               break;
             }
-          meanErrorVal = new XmlDecimal(decl->val.c_str());
-          if (meanErrorVal->bad)
+          meanErrorVal = new XmlDecimal(decl->getval().c_str());
+          if (meanErrorVal->getbad())
             {
               delete meanErrorVal;
               fprintf(stderr, "bad value %s for meanError in DefiningPointsMeasurementType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->meanError = meanErrorVal;
         }
-      else if (decl->name == "n")
+      else if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -13926,19 +14040,19 @@ bool DefiningPointsMeasurementType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in DefiningPointsMeasurementType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->n = nVal;
         }
-      else if (decl->name == "significantFigures")
+      else if (decl->getname() == "significantFigures")
         {
           XmlNonNegativeInteger * significantFiguresVal;
           if (this->significantFigures)
@@ -13947,19 +14061,19 @@ bool DefiningPointsMeasurementType::badAttributes(
               returnValue = true;
               break;
             }
-          significantFiguresVal = new XmlNonNegativeInteger(decl->val.c_str());
-          if (significantFiguresVal->bad)
+          significantFiguresVal = new XmlNonNegativeInteger(decl->getval().c_str());
+          if (significantFiguresVal->getbad())
             {
               delete significantFiguresVal;
               fprintf(stderr, "bad value %s for significantFigures in DefiningPointsMeasurementType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->significantFigures = significantFiguresVal;
         }
-      else if (decl->name == "validity")
+      else if (decl->getname() == "validity")
         {
           ValidityEnumType * validityVal;
           if (this->validity)
@@ -13968,19 +14082,19 @@ bool DefiningPointsMeasurementType::badAttributes(
               returnValue = true;
               break;
             }
-          validityVal = new ValidityEnumType(decl->val.c_str());
-          if (validityVal->bad)
+          validityVal = new ValidityEnumType(decl->getval().c_str());
+          if (validityVal->getbad())
             {
               delete validityVal;
               fprintf(stderr, "bad value %s for validity in DefiningPointsMeasurementType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->validity = validityVal;
         }
-      else if (decl->name == "xCombinedUncertainty")
+      else if (decl->getname() == "xCombinedUncertainty")
         {
           XmlDecimal * xCombinedUncertaintyVal;
           if (this->xCombinedUncertainty)
@@ -13989,19 +14103,19 @@ bool DefiningPointsMeasurementType::badAttributes(
               returnValue = true;
               break;
             }
-          xCombinedUncertaintyVal = new XmlDecimal(decl->val.c_str());
-          if (xCombinedUncertaintyVal->bad)
+          xCombinedUncertaintyVal = new XmlDecimal(decl->getval().c_str());
+          if (xCombinedUncertaintyVal->getbad())
             {
               delete xCombinedUncertaintyVal;
               fprintf(stderr, "bad value %s for xCombinedUncertainty in DefiningPointsMeasurementType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->xCombinedUncertainty = xCombinedUncertaintyVal;
         }
-      else if (decl->name == "xDecimalPlaces")
+      else if (decl->getname() == "xDecimalPlaces")
         {
           XmlNonNegativeInteger * xDecimalPlacesVal;
           if (this->xDecimalPlaces)
@@ -14010,19 +14124,19 @@ bool DefiningPointsMeasurementType::badAttributes(
               returnValue = true;
               break;
             }
-          xDecimalPlacesVal = new XmlNonNegativeInteger(decl->val.c_str());
-          if (xDecimalPlacesVal->bad)
+          xDecimalPlacesVal = new XmlNonNegativeInteger(decl->getval().c_str());
+          if (xDecimalPlacesVal->getbad())
             {
               delete xDecimalPlacesVal;
               fprintf(stderr, "bad value %s for xDecimalPlaces in DefiningPointsMeasurementType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->xDecimalPlaces = xDecimalPlacesVal;
         }
-      else if (decl->name == "xMeanError")
+      else if (decl->getname() == "xMeanError")
         {
           XmlDecimal * xMeanErrorVal;
           if (this->xMeanError)
@@ -14031,19 +14145,19 @@ bool DefiningPointsMeasurementType::badAttributes(
               returnValue = true;
               break;
             }
-          xMeanErrorVal = new XmlDecimal(decl->val.c_str());
-          if (xMeanErrorVal->bad)
+          xMeanErrorVal = new XmlDecimal(decl->getval().c_str());
+          if (xMeanErrorVal->getbad())
             {
               delete xMeanErrorVal;
               fprintf(stderr, "bad value %s for xMeanError in DefiningPointsMeasurementType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->xMeanError = xMeanErrorVal;
         }
-      else if (decl->name == "xSignificantFigures")
+      else if (decl->getname() == "xSignificantFigures")
         {
           XmlNonNegativeInteger * xSignificantFiguresVal;
           if (this->xSignificantFigures)
@@ -14052,19 +14166,19 @@ bool DefiningPointsMeasurementType::badAttributes(
               returnValue = true;
               break;
             }
-          xSignificantFiguresVal = new XmlNonNegativeInteger(decl->val.c_str());
-          if (xSignificantFiguresVal->bad)
+          xSignificantFiguresVal = new XmlNonNegativeInteger(decl->getval().c_str());
+          if (xSignificantFiguresVal->getbad())
             {
               delete xSignificantFiguresVal;
               fprintf(stderr, "bad value %s for xSignificantFigures in DefiningPointsMeasurementType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->xSignificantFigures = xSignificantFiguresVal;
         }
-      else if (decl->name == "xValidity")
+      else if (decl->getname() == "xValidity")
         {
           ValidityEnumType * xValidityVal;
           if (this->xValidity)
@@ -14073,19 +14187,19 @@ bool DefiningPointsMeasurementType::badAttributes(
               returnValue = true;
               break;
             }
-          xValidityVal = new ValidityEnumType(decl->val.c_str());
-          if (xValidityVal->bad)
+          xValidityVal = new ValidityEnumType(decl->getval().c_str());
+          if (xValidityVal->getbad())
             {
               delete xValidityVal;
               fprintf(stderr, "bad value %s for xValidity in DefiningPointsMeasurementType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->xValidity = xValidityVal;
         }
-      else if (decl->name == "yCombinedUncertainty")
+      else if (decl->getname() == "yCombinedUncertainty")
         {
           XmlDecimal * yCombinedUncertaintyVal;
           if (this->yCombinedUncertainty)
@@ -14094,19 +14208,19 @@ bool DefiningPointsMeasurementType::badAttributes(
               returnValue = true;
               break;
             }
-          yCombinedUncertaintyVal = new XmlDecimal(decl->val.c_str());
-          if (yCombinedUncertaintyVal->bad)
+          yCombinedUncertaintyVal = new XmlDecimal(decl->getval().c_str());
+          if (yCombinedUncertaintyVal->getbad())
             {
               delete yCombinedUncertaintyVal;
               fprintf(stderr, "bad value %s for yCombinedUncertainty in DefiningPointsMeasurementType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->yCombinedUncertainty = yCombinedUncertaintyVal;
         }
-      else if (decl->name == "yDecimalPlaces")
+      else if (decl->getname() == "yDecimalPlaces")
         {
           XmlNonNegativeInteger * yDecimalPlacesVal;
           if (this->yDecimalPlaces)
@@ -14115,19 +14229,19 @@ bool DefiningPointsMeasurementType::badAttributes(
               returnValue = true;
               break;
             }
-          yDecimalPlacesVal = new XmlNonNegativeInteger(decl->val.c_str());
-          if (yDecimalPlacesVal->bad)
+          yDecimalPlacesVal = new XmlNonNegativeInteger(decl->getval().c_str());
+          if (yDecimalPlacesVal->getbad())
             {
               delete yDecimalPlacesVal;
               fprintf(stderr, "bad value %s for yDecimalPlaces in DefiningPointsMeasurementType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->yDecimalPlaces = yDecimalPlacesVal;
         }
-      else if (decl->name == "yMeanError")
+      else if (decl->getname() == "yMeanError")
         {
           XmlDecimal * yMeanErrorVal;
           if (this->yMeanError)
@@ -14136,19 +14250,19 @@ bool DefiningPointsMeasurementType::badAttributes(
               returnValue = true;
               break;
             }
-          yMeanErrorVal = new XmlDecimal(decl->val.c_str());
-          if (yMeanErrorVal->bad)
+          yMeanErrorVal = new XmlDecimal(decl->getval().c_str());
+          if (yMeanErrorVal->getbad())
             {
               delete yMeanErrorVal;
               fprintf(stderr, "bad value %s for yMeanError in DefiningPointsMeasurementType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->yMeanError = yMeanErrorVal;
         }
-      else if (decl->name == "ySignificantFigures")
+      else if (decl->getname() == "ySignificantFigures")
         {
           XmlNonNegativeInteger * ySignificantFiguresVal;
           if (this->ySignificantFigures)
@@ -14157,19 +14271,19 @@ bool DefiningPointsMeasurementType::badAttributes(
               returnValue = true;
               break;
             }
-          ySignificantFiguresVal = new XmlNonNegativeInteger(decl->val.c_str());
-          if (ySignificantFiguresVal->bad)
+          ySignificantFiguresVal = new XmlNonNegativeInteger(decl->getval().c_str());
+          if (ySignificantFiguresVal->getbad())
             {
               delete ySignificantFiguresVal;
               fprintf(stderr, "bad value %s for ySignificantFigures in DefiningPointsMeasurementType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->ySignificantFigures = ySignificantFiguresVal;
         }
-      else if (decl->name == "yValidity")
+      else if (decl->getname() == "yValidity")
         {
           ValidityEnumType * yValidityVal;
           if (this->yValidity)
@@ -14178,19 +14292,19 @@ bool DefiningPointsMeasurementType::badAttributes(
               returnValue = true;
               break;
             }
-          yValidityVal = new ValidityEnumType(decl->val.c_str());
-          if (yValidityVal->bad)
+          yValidityVal = new ValidityEnumType(decl->getval().c_str());
+          if (yValidityVal->getbad())
             {
               delete yValidityVal;
               fprintf(stderr, "bad value %s for yValidity in DefiningPointsMeasurementType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->yValidity = yValidityVal;
         }
-      else if (decl->name == "zCombinedUncertainty")
+      else if (decl->getname() == "zCombinedUncertainty")
         {
           XmlDecimal * zCombinedUncertaintyVal;
           if (this->zCombinedUncertainty)
@@ -14199,19 +14313,19 @@ bool DefiningPointsMeasurementType::badAttributes(
               returnValue = true;
               break;
             }
-          zCombinedUncertaintyVal = new XmlDecimal(decl->val.c_str());
-          if (zCombinedUncertaintyVal->bad)
+          zCombinedUncertaintyVal = new XmlDecimal(decl->getval().c_str());
+          if (zCombinedUncertaintyVal->getbad())
             {
               delete zCombinedUncertaintyVal;
               fprintf(stderr, "bad value %s for zCombinedUncertainty in DefiningPointsMeasurementType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->zCombinedUncertainty = zCombinedUncertaintyVal;
         }
-      else if (decl->name == "zDecimalPlaces")
+      else if (decl->getname() == "zDecimalPlaces")
         {
           XmlNonNegativeInteger * zDecimalPlacesVal;
           if (this->zDecimalPlaces)
@@ -14220,19 +14334,19 @@ bool DefiningPointsMeasurementType::badAttributes(
               returnValue = true;
               break;
             }
-          zDecimalPlacesVal = new XmlNonNegativeInteger(decl->val.c_str());
-          if (zDecimalPlacesVal->bad)
+          zDecimalPlacesVal = new XmlNonNegativeInteger(decl->getval().c_str());
+          if (zDecimalPlacesVal->getbad())
             {
               delete zDecimalPlacesVal;
               fprintf(stderr, "bad value %s for zDecimalPlaces in DefiningPointsMeasurementType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->zDecimalPlaces = zDecimalPlacesVal;
         }
-      else if (decl->name == "zMeanError")
+      else if (decl->getname() == "zMeanError")
         {
           XmlDecimal * zMeanErrorVal;
           if (this->zMeanError)
@@ -14241,19 +14355,19 @@ bool DefiningPointsMeasurementType::badAttributes(
               returnValue = true;
               break;
             }
-          zMeanErrorVal = new XmlDecimal(decl->val.c_str());
-          if (zMeanErrorVal->bad)
+          zMeanErrorVal = new XmlDecimal(decl->getval().c_str());
+          if (zMeanErrorVal->getbad())
             {
               delete zMeanErrorVal;
               fprintf(stderr, "bad value %s for zMeanError in DefiningPointsMeasurementType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->zMeanError = zMeanErrorVal;
         }
-      else if (decl->name == "zSignificantFigures")
+      else if (decl->getname() == "zSignificantFigures")
         {
           XmlNonNegativeInteger * zSignificantFiguresVal;
           if (this->zSignificantFigures)
@@ -14262,19 +14376,19 @@ bool DefiningPointsMeasurementType::badAttributes(
               returnValue = true;
               break;
             }
-          zSignificantFiguresVal = new XmlNonNegativeInteger(decl->val.c_str());
-          if (zSignificantFiguresVal->bad)
+          zSignificantFiguresVal = new XmlNonNegativeInteger(decl->getval().c_str());
+          if (zSignificantFiguresVal->getbad())
             {
               delete zSignificantFiguresVal;
               fprintf(stderr, "bad value %s for zSignificantFigures in DefiningPointsMeasurementType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->zSignificantFigures = zSignificantFiguresVal;
         }
-      else if (decl->name == "zValidity")
+      else if (decl->getname() == "zValidity")
         {
           ValidityEnumType * zValidityVal;
           if (this->zValidity)
@@ -14283,12 +14397,12 @@ bool DefiningPointsMeasurementType::badAttributes(
               returnValue = true;
               break;
             }
-          zValidityVal = new ValidityEnumType(decl->val.c_str());
-          if (zValidityVal->bad)
+          zValidityVal = new ValidityEnumType(decl->getval().c_str());
+          if (zValidityVal->getbad())
             {
               delete zValidityVal;
               fprintf(stderr, "bad value %s for zValidity in DefiningPointsMeasurementType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -14893,7 +15007,7 @@ bool DefiningPointsNominalType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "decimalPlaces")
+      if (decl->getname() == "decimalPlaces")
         {
           XmlNonNegativeInteger * decimalPlacesVal;
           if (this->decimalPlaces)
@@ -14902,19 +15016,19 @@ bool DefiningPointsNominalType::badAttributes(
               returnValue = true;
               break;
             }
-          decimalPlacesVal = new XmlNonNegativeInteger(decl->val.c_str());
-          if (decimalPlacesVal->bad)
+          decimalPlacesVal = new XmlNonNegativeInteger(decl->getval().c_str());
+          if (decimalPlacesVal->getbad())
             {
               delete decimalPlacesVal;
               fprintf(stderr, "bad value %s for decimalPlaces in DefiningPointsNominalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->decimalPlaces = decimalPlacesVal;
         }
-      else if (decl->name == "linearUnit")
+      else if (decl->getname() == "linearUnit")
         {
           XmlToken * linearUnitVal;
           if (this->linearUnit)
@@ -14923,19 +15037,19 @@ bool DefiningPointsNominalType::badAttributes(
               returnValue = true;
               break;
             }
-          linearUnitVal = new XmlToken(decl->val.c_str());
-          if (linearUnitVal->bad)
+          linearUnitVal = new XmlToken(decl->getval().c_str());
+          if (linearUnitVal->getbad())
             {
               delete linearUnitVal;
               fprintf(stderr, "bad value %s for linearUnit in DefiningPointsNominalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->linearUnit = linearUnitVal;
         }
-      else if (decl->name == "n")
+      else if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -14944,19 +15058,19 @@ bool DefiningPointsNominalType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in DefiningPointsNominalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->n = nVal;
         }
-      else if (decl->name == "significantFigures")
+      else if (decl->getname() == "significantFigures")
         {
           XmlNonNegativeInteger * significantFiguresVal;
           if (this->significantFigures)
@@ -14965,19 +15079,19 @@ bool DefiningPointsNominalType::badAttributes(
               returnValue = true;
               break;
             }
-          significantFiguresVal = new XmlNonNegativeInteger(decl->val.c_str());
-          if (significantFiguresVal->bad)
+          significantFiguresVal = new XmlNonNegativeInteger(decl->getval().c_str());
+          if (significantFiguresVal->getbad())
             {
               delete significantFiguresVal;
               fprintf(stderr, "bad value %s for significantFigures in DefiningPointsNominalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->significantFigures = significantFiguresVal;
         }
-      else if (decl->name == "validity")
+      else if (decl->getname() == "validity")
         {
           ValidityEnumType * validityVal;
           if (this->validity)
@@ -14986,19 +15100,19 @@ bool DefiningPointsNominalType::badAttributes(
               returnValue = true;
               break;
             }
-          validityVal = new ValidityEnumType(decl->val.c_str());
-          if (validityVal->bad)
+          validityVal = new ValidityEnumType(decl->getval().c_str());
+          if (validityVal->getbad())
             {
               delete validityVal;
               fprintf(stderr, "bad value %s for validity in DefiningPointsNominalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->validity = validityVal;
         }
-      else if (decl->name == "xDecimalPlaces")
+      else if (decl->getname() == "xDecimalPlaces")
         {
           XmlNonNegativeInteger * xDecimalPlacesVal;
           if (this->xDecimalPlaces)
@@ -15007,19 +15121,19 @@ bool DefiningPointsNominalType::badAttributes(
               returnValue = true;
               break;
             }
-          xDecimalPlacesVal = new XmlNonNegativeInteger(decl->val.c_str());
-          if (xDecimalPlacesVal->bad)
+          xDecimalPlacesVal = new XmlNonNegativeInteger(decl->getval().c_str());
+          if (xDecimalPlacesVal->getbad())
             {
               delete xDecimalPlacesVal;
               fprintf(stderr, "bad value %s for xDecimalPlaces in DefiningPointsNominalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->xDecimalPlaces = xDecimalPlacesVal;
         }
-      else if (decl->name == "xSignificantFigures")
+      else if (decl->getname() == "xSignificantFigures")
         {
           XmlNonNegativeInteger * xSignificantFiguresVal;
           if (this->xSignificantFigures)
@@ -15028,19 +15142,19 @@ bool DefiningPointsNominalType::badAttributes(
               returnValue = true;
               break;
             }
-          xSignificantFiguresVal = new XmlNonNegativeInteger(decl->val.c_str());
-          if (xSignificantFiguresVal->bad)
+          xSignificantFiguresVal = new XmlNonNegativeInteger(decl->getval().c_str());
+          if (xSignificantFiguresVal->getbad())
             {
               delete xSignificantFiguresVal;
               fprintf(stderr, "bad value %s for xSignificantFigures in DefiningPointsNominalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->xSignificantFigures = xSignificantFiguresVal;
         }
-      else if (decl->name == "xValidity")
+      else if (decl->getname() == "xValidity")
         {
           ValidityEnumType * xValidityVal;
           if (this->xValidity)
@@ -15049,19 +15163,19 @@ bool DefiningPointsNominalType::badAttributes(
               returnValue = true;
               break;
             }
-          xValidityVal = new ValidityEnumType(decl->val.c_str());
-          if (xValidityVal->bad)
+          xValidityVal = new ValidityEnumType(decl->getval().c_str());
+          if (xValidityVal->getbad())
             {
               delete xValidityVal;
               fprintf(stderr, "bad value %s for xValidity in DefiningPointsNominalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->xValidity = xValidityVal;
         }
-      else if (decl->name == "yDecimalPlaces")
+      else if (decl->getname() == "yDecimalPlaces")
         {
           XmlNonNegativeInteger * yDecimalPlacesVal;
           if (this->yDecimalPlaces)
@@ -15070,19 +15184,19 @@ bool DefiningPointsNominalType::badAttributes(
               returnValue = true;
               break;
             }
-          yDecimalPlacesVal = new XmlNonNegativeInteger(decl->val.c_str());
-          if (yDecimalPlacesVal->bad)
+          yDecimalPlacesVal = new XmlNonNegativeInteger(decl->getval().c_str());
+          if (yDecimalPlacesVal->getbad())
             {
               delete yDecimalPlacesVal;
               fprintf(stderr, "bad value %s for yDecimalPlaces in DefiningPointsNominalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->yDecimalPlaces = yDecimalPlacesVal;
         }
-      else if (decl->name == "ySignificantFigures")
+      else if (decl->getname() == "ySignificantFigures")
         {
           XmlNonNegativeInteger * ySignificantFiguresVal;
           if (this->ySignificantFigures)
@@ -15091,19 +15205,19 @@ bool DefiningPointsNominalType::badAttributes(
               returnValue = true;
               break;
             }
-          ySignificantFiguresVal = new XmlNonNegativeInteger(decl->val.c_str());
-          if (ySignificantFiguresVal->bad)
+          ySignificantFiguresVal = new XmlNonNegativeInteger(decl->getval().c_str());
+          if (ySignificantFiguresVal->getbad())
             {
               delete ySignificantFiguresVal;
               fprintf(stderr, "bad value %s for ySignificantFigures in DefiningPointsNominalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->ySignificantFigures = ySignificantFiguresVal;
         }
-      else if (decl->name == "yValidity")
+      else if (decl->getname() == "yValidity")
         {
           ValidityEnumType * yValidityVal;
           if (this->yValidity)
@@ -15112,19 +15226,19 @@ bool DefiningPointsNominalType::badAttributes(
               returnValue = true;
               break;
             }
-          yValidityVal = new ValidityEnumType(decl->val.c_str());
-          if (yValidityVal->bad)
+          yValidityVal = new ValidityEnumType(decl->getval().c_str());
+          if (yValidityVal->getbad())
             {
               delete yValidityVal;
               fprintf(stderr, "bad value %s for yValidity in DefiningPointsNominalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->yValidity = yValidityVal;
         }
-      else if (decl->name == "zDecimalPlaces")
+      else if (decl->getname() == "zDecimalPlaces")
         {
           XmlNonNegativeInteger * zDecimalPlacesVal;
           if (this->zDecimalPlaces)
@@ -15133,19 +15247,19 @@ bool DefiningPointsNominalType::badAttributes(
               returnValue = true;
               break;
             }
-          zDecimalPlacesVal = new XmlNonNegativeInteger(decl->val.c_str());
-          if (zDecimalPlacesVal->bad)
+          zDecimalPlacesVal = new XmlNonNegativeInteger(decl->getval().c_str());
+          if (zDecimalPlacesVal->getbad())
             {
               delete zDecimalPlacesVal;
               fprintf(stderr, "bad value %s for zDecimalPlaces in DefiningPointsNominalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->zDecimalPlaces = zDecimalPlacesVal;
         }
-      else if (decl->name == "zSignificantFigures")
+      else if (decl->getname() == "zSignificantFigures")
         {
           XmlNonNegativeInteger * zSignificantFiguresVal;
           if (this->zSignificantFigures)
@@ -15154,19 +15268,19 @@ bool DefiningPointsNominalType::badAttributes(
               returnValue = true;
               break;
             }
-          zSignificantFiguresVal = new XmlNonNegativeInteger(decl->val.c_str());
-          if (zSignificantFiguresVal->bad)
+          zSignificantFiguresVal = new XmlNonNegativeInteger(decl->getval().c_str());
+          if (zSignificantFiguresVal->getbad())
             {
               delete zSignificantFiguresVal;
               fprintf(stderr, "bad value %s for zSignificantFigures in DefiningPointsNominalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->zSignificantFigures = zSignificantFiguresVal;
         }
-      else if (decl->name == "zValidity")
+      else if (decl->getname() == "zValidity")
         {
           ValidityEnumType * zValidityVal;
           if (this->zValidity)
@@ -15175,12 +15289,12 @@ bool DefiningPointsNominalType::badAttributes(
               returnValue = true;
               break;
             }
-          zValidityVal = new ValidityEnumType(decl->val.c_str());
-          if (zValidityVal->bad)
+          zValidityVal = new ValidityEnumType(decl->getval().c_str());
+          if (zValidityVal->getbad())
             {
               delete zValidityVal;
               fprintf(stderr, "bad value %s for zValidity in DefiningPointsNominalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -15750,7 +15864,7 @@ bool EdgePointFeatureDefinitionType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -15759,12 +15873,12 @@ bool EdgePointFeatureDefinitionType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in EdgePointFeatureDefinitionType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -15778,7 +15892,11 @@ bool EdgePointFeatureDefinitionType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in EdgePointFeatureDefinitionType\n");
       returnValue = true;
@@ -15992,7 +16110,7 @@ bool EdgePointFeatureItemType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -16001,12 +16119,12 @@ bool EdgePointFeatureItemType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in EdgePointFeatureItemType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -16020,7 +16138,11 @@ bool EdgePointFeatureItemType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in EdgePointFeatureItemType\n");
       returnValue = true;
@@ -16292,7 +16414,7 @@ bool EdgePointFeatureMeasurementType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -16301,12 +16423,12 @@ bool EdgePointFeatureMeasurementType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in EdgePointFeatureMeasurementType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -16320,7 +16442,11 @@ bool EdgePointFeatureMeasurementType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in EdgePointFeatureMeasurementType\n");
       returnValue = true;
@@ -16584,7 +16710,7 @@ bool EdgePointFeatureNominalType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -16593,12 +16719,12 @@ bool EdgePointFeatureNominalType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in EdgePointFeatureNominalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -16612,7 +16738,11 @@ bool EdgePointFeatureNominalType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in EdgePointFeatureNominalType\n");
       returnValue = true;
@@ -17041,7 +17171,7 @@ bool EllipseBestFitType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -17050,12 +17180,12 @@ bool EllipseBestFitType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in EllipseBestFitType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -17581,7 +17711,7 @@ bool EllipseFeatureDefinitionType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -17590,12 +17720,12 @@ bool EllipseFeatureDefinitionType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in EllipseFeatureDefinitionType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -17609,7 +17739,11 @@ bool EllipseFeatureDefinitionType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in EllipseFeatureDefinitionType\n");
       returnValue = true;
@@ -17835,7 +17969,7 @@ bool EllipseFeatureItemType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -17844,12 +17978,12 @@ bool EllipseFeatureItemType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in EllipseFeatureItemType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -17863,7 +17997,11 @@ bool EllipseFeatureItemType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in EllipseFeatureItemType\n");
       returnValue = true;
@@ -18190,7 +18328,7 @@ bool EllipseFeatureMeasurementType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -18199,12 +18337,12 @@ bool EllipseFeatureMeasurementType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in EllipseFeatureMeasurementType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -18218,7 +18356,11 @@ bool EllipseFeatureMeasurementType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in EllipseFeatureMeasurementType\n");
       returnValue = true;
@@ -18511,7 +18653,7 @@ bool EllipseFeatureNominalType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -18520,12 +18662,12 @@ bool EllipseFeatureNominalType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in EllipseFeatureNominalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -18539,7 +18681,11 @@ bool EllipseFeatureNominalType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in EllipseFeatureNominalType\n");
       returnValue = true;
@@ -19115,7 +19261,7 @@ bool EllipticalArcBestFitType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -19124,12 +19270,12 @@ bool EllipticalArcBestFitType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in EllipticalArcBestFitType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -19655,7 +19801,7 @@ bool EllipticalArcFeatureDefinitionType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -19664,12 +19810,12 @@ bool EllipticalArcFeatureDefinitionType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in EllipticalArcFeatureDefinitionType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -19683,7 +19829,11 @@ bool EllipticalArcFeatureDefinitionType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in EllipticalArcFeatureDefinitionType\n");
       returnValue = true;
@@ -19909,7 +20059,7 @@ bool EllipticalArcFeatureItemType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -19918,12 +20068,12 @@ bool EllipticalArcFeatureItemType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in EllipticalArcFeatureItemType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -19937,7 +20087,11 @@ bool EllipticalArcFeatureItemType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in EllipticalArcFeatureItemType\n");
       returnValue = true;
@@ -20264,7 +20418,7 @@ bool EllipticalArcFeatureMeasurementType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -20273,12 +20427,12 @@ bool EllipticalArcFeatureMeasurementType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in EllipticalArcFeatureMeasurementType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -20292,7 +20446,11 @@ bool EllipticalArcFeatureMeasurementType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in EllipticalArcFeatureMeasurementType\n");
       returnValue = true;
@@ -20582,7 +20740,7 @@ bool EllipticalArcFeatureNominalType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -20591,12 +20749,12 @@ bool EllipticalArcFeatureNominalType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in EllipticalArcFeatureNominalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -20610,7 +20768,11 @@ bool EllipticalArcFeatureNominalType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in EllipticalArcFeatureNominalType\n");
       returnValue = true;
@@ -21186,7 +21348,7 @@ bool ElongatedCircleBestFitType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -21195,12 +21357,12 @@ bool ElongatedCircleBestFitType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in ElongatedCircleBestFitType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -21696,7 +21858,7 @@ bool ElongatedCircleFeatureDefinitionType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -21705,12 +21867,12 @@ bool ElongatedCircleFeatureDefinitionType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in ElongatedCircleFeatureDefinitionType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -21724,7 +21886,11 @@ bool ElongatedCircleFeatureDefinitionType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in ElongatedCircleFeatureDefinitionType\n");
       returnValue = true;
@@ -21950,7 +22116,7 @@ bool ElongatedCircleFeatureItemType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -21959,12 +22125,12 @@ bool ElongatedCircleFeatureItemType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in ElongatedCircleFeatureItemType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -21978,7 +22144,11 @@ bool ElongatedCircleFeatureItemType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in ElongatedCircleFeatureItemType\n");
       returnValue = true;
@@ -22329,7 +22499,7 @@ bool ElongatedCircleFeatureMeasurementType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -22338,12 +22508,12 @@ bool ElongatedCircleFeatureMeasurementType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in ElongatedCircleFeatureMeasurementType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -22357,7 +22527,11 @@ bool ElongatedCircleFeatureMeasurementType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in ElongatedCircleFeatureMeasurementType\n");
       returnValue = true;
@@ -22648,7 +22822,7 @@ bool ElongatedCircleFeatureNominalType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -22657,12 +22831,12 @@ bool ElongatedCircleFeatureNominalType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in ElongatedCircleFeatureNominalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -22676,7 +22850,11 @@ bool ElongatedCircleFeatureNominalType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in ElongatedCircleFeatureNominalType\n");
       returnValue = true;
@@ -23029,7 +23207,7 @@ bool ElongatedCylinderBestFitType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -23038,12 +23216,12 @@ bool ElongatedCylinderBestFitType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in ElongatedCylinderBestFitType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -23552,7 +23730,7 @@ bool ElongatedCylinderFeatureDefinitionType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -23561,12 +23739,12 @@ bool ElongatedCylinderFeatureDefinitionType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in ElongatedCylinderFeatureDefinitionType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -23580,7 +23758,11 @@ bool ElongatedCylinderFeatureDefinitionType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in ElongatedCylinderFeatureDefinitionType\n");
       returnValue = true;
@@ -23812,7 +23994,7 @@ bool ElongatedCylinderFeatureItemType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -23821,12 +24003,12 @@ bool ElongatedCylinderFeatureItemType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in ElongatedCylinderFeatureItemType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -23840,7 +24022,11 @@ bool ElongatedCylinderFeatureItemType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in ElongatedCylinderFeatureItemType\n");
       returnValue = true;
@@ -24230,7 +24416,7 @@ bool ElongatedCylinderFeatureMeasurementType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -24239,12 +24425,12 @@ bool ElongatedCylinderFeatureMeasurementType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in ElongatedCylinderFeatureMeasurementType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -24258,7 +24444,11 @@ bool ElongatedCylinderFeatureMeasurementType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in ElongatedCylinderFeatureMeasurementType\n");
       returnValue = true;
@@ -24556,7 +24746,7 @@ bool ElongatedCylinderFeatureNominalType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -24565,12 +24755,12 @@ bool ElongatedCylinderFeatureNominalType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in ElongatedCylinderFeatureNominalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -24584,7 +24774,11 @@ bool ElongatedCylinderFeatureNominalType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in ElongatedCylinderFeatureNominalType\n");
       returnValue = true;
@@ -24937,7 +25131,7 @@ bool ExtrudedCrossSectionBestFitType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -24946,12 +25140,12 @@ bool ExtrudedCrossSectionBestFitType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in ExtrudedCrossSectionBestFitType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -25437,7 +25631,7 @@ bool ExtrudedCrossSectionFeatureDefinitionType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -25446,12 +25640,12 @@ bool ExtrudedCrossSectionFeatureDefinitionType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in ExtrudedCrossSectionFeatureDefinitionType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -25465,7 +25659,11 @@ bool ExtrudedCrossSectionFeatureDefinitionType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in ExtrudedCrossSectionFeatureDefinitionType\n");
       returnValue = true;
@@ -25685,7 +25883,7 @@ bool ExtrudedCrossSectionFeatureItemType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -25694,12 +25892,12 @@ bool ExtrudedCrossSectionFeatureItemType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in ExtrudedCrossSectionFeatureItemType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -25713,7 +25911,11 @@ bool ExtrudedCrossSectionFeatureItemType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in ExtrudedCrossSectionFeatureItemType\n");
       returnValue = true;
@@ -25985,7 +26187,7 @@ bool ExtrudedCrossSectionFeatureMeasurementType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -25994,12 +26196,12 @@ bool ExtrudedCrossSectionFeatureMeasurementType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in ExtrudedCrossSectionFeatureMeasurementType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -26013,7 +26215,11 @@ bool ExtrudedCrossSectionFeatureMeasurementType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in ExtrudedCrossSectionFeatureMeasurementType\n");
       returnValue = true;
@@ -26257,7 +26463,7 @@ bool ExtrudedCrossSectionFeatureNominalType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -26266,12 +26472,12 @@ bool ExtrudedCrossSectionFeatureNominalType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in ExtrudedCrossSectionFeatureNominalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -26285,7 +26491,11 @@ bool ExtrudedCrossSectionFeatureNominalType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in ExtrudedCrossSectionFeatureNominalType\n");
       returnValue = true;
@@ -26702,7 +26912,7 @@ bool FeatureBaseType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -26711,12 +26921,12 @@ bool FeatureBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in FeatureBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -26730,7 +26940,11 @@ bool FeatureBaseType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in FeatureBaseType\n");
       returnValue = true;
@@ -26844,7 +27058,7 @@ bool FeatureDefinitionBaseType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -26853,12 +27067,12 @@ bool FeatureDefinitionBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in FeatureDefinitionBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -26872,7 +27086,11 @@ bool FeatureDefinitionBaseType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in FeatureDefinitionBaseType\n");
       returnValue = true;
@@ -27014,12 +27232,12 @@ void FeatureDefinitionsType::printSelf(FILE * outFile)
         FeatureDefinitionBaseType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "CircleFeatureDefinition") == 0)
+        else if (strcmp(basie->getprintElement(), "CircleFeatureDefinition") == 0)
           {
             CircleFeatureDefinitionType * typ;
             if ((typ = dynamic_cast<CircleFeatureDefinitionType *>(basie)))
@@ -27035,7 +27253,7 @@ void FeatureDefinitionsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "CircularArcFeatureDefinition") == 0)
+        else if (strcmp(basie->getprintElement(), "CircularArcFeatureDefinition") == 0)
           {
             CircularArcFeatureDefinitionType * typ;
             if ((typ = dynamic_cast<CircularArcFeatureDefinitionType *>(basie)))
@@ -27051,7 +27269,7 @@ void FeatureDefinitionsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ConeFeatureDefinition") == 0)
+        else if (strcmp(basie->getprintElement(), "ConeFeatureDefinition") == 0)
           {
             ConeFeatureDefinitionType * typ;
             if ((typ = dynamic_cast<ConeFeatureDefinitionType *>(basie)))
@@ -27067,7 +27285,7 @@ void FeatureDefinitionsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ConicalSegmentFeatureDefinition") == 0)
+        else if (strcmp(basie->getprintElement(), "ConicalSegmentFeatureDefinition") == 0)
           {
             ConicalSegmentFeatureDefinitionType * typ;
             if ((typ = dynamic_cast<ConicalSegmentFeatureDefinitionType *>(basie)))
@@ -27083,7 +27301,7 @@ void FeatureDefinitionsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "CylinderFeatureDefinition") == 0)
+        else if (strcmp(basie->getprintElement(), "CylinderFeatureDefinition") == 0)
           {
             CylinderFeatureDefinitionType * typ;
             if ((typ = dynamic_cast<CylinderFeatureDefinitionType *>(basie)))
@@ -27099,7 +27317,7 @@ void FeatureDefinitionsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "CylindricalSegmentFeatureDefinition") == 0)
+        else if (strcmp(basie->getprintElement(), "CylindricalSegmentFeatureDefinition") == 0)
           {
             CylindricalSegmentFeatureDefinitionType * typ;
             if ((typ = dynamic_cast<CylindricalSegmentFeatureDefinitionType *>(basie)))
@@ -27115,7 +27333,7 @@ void FeatureDefinitionsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EdgePointFeatureDefinition") == 0)
+        else if (strcmp(basie->getprintElement(), "EdgePointFeatureDefinition") == 0)
           {
             EdgePointFeatureDefinitionType * typ;
             if ((typ = dynamic_cast<EdgePointFeatureDefinitionType *>(basie)))
@@ -27131,7 +27349,7 @@ void FeatureDefinitionsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EllipseFeatureDefinition") == 0)
+        else if (strcmp(basie->getprintElement(), "EllipseFeatureDefinition") == 0)
           {
             EllipseFeatureDefinitionType * typ;
             if ((typ = dynamic_cast<EllipseFeatureDefinitionType *>(basie)))
@@ -27147,7 +27365,7 @@ void FeatureDefinitionsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EllipticalArcFeatureDefinition") == 0)
+        else if (strcmp(basie->getprintElement(), "EllipticalArcFeatureDefinition") == 0)
           {
             EllipticalArcFeatureDefinitionType * typ;
             if ((typ = dynamic_cast<EllipticalArcFeatureDefinitionType *>(basie)))
@@ -27163,7 +27381,7 @@ void FeatureDefinitionsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ElongatedCircleFeatureDefinition") == 0)
+        else if (strcmp(basie->getprintElement(), "ElongatedCircleFeatureDefinition") == 0)
           {
             ElongatedCircleFeatureDefinitionType * typ;
             if ((typ = dynamic_cast<ElongatedCircleFeatureDefinitionType *>(basie)))
@@ -27179,7 +27397,7 @@ void FeatureDefinitionsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ElongatedCylinderFeatureDefinition") == 0)
+        else if (strcmp(basie->getprintElement(), "ElongatedCylinderFeatureDefinition") == 0)
           {
             ElongatedCylinderFeatureDefinitionType * typ;
             if ((typ = dynamic_cast<ElongatedCylinderFeatureDefinitionType *>(basie)))
@@ -27195,7 +27413,7 @@ void FeatureDefinitionsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ExtrudedCrossSectionFeatureDefinition") == 0)
+        else if (strcmp(basie->getprintElement(), "ExtrudedCrossSectionFeatureDefinition") == 0)
           {
             ExtrudedCrossSectionFeatureDefinitionType * typ;
             if ((typ = dynamic_cast<ExtrudedCrossSectionFeatureDefinitionType *>(basie)))
@@ -27211,7 +27429,7 @@ void FeatureDefinitionsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "GroupFeatureDefinition") == 0)
+        else if (strcmp(basie->getprintElement(), "GroupFeatureDefinition") == 0)
           {
             GroupFeatureDefinitionType * typ;
             if ((typ = dynamic_cast<GroupFeatureDefinitionType *>(basie)))
@@ -27227,7 +27445,7 @@ void FeatureDefinitionsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LineFeatureDefinition") == 0)
+        else if (strcmp(basie->getprintElement(), "LineFeatureDefinition") == 0)
           {
             LineFeatureDefinitionType * typ;
             if ((typ = dynamic_cast<LineFeatureDefinitionType *>(basie)))
@@ -27243,7 +27461,7 @@ void FeatureDefinitionsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "MarkingFeatureDefinition") == 0)
+        else if (strcmp(basie->getprintElement(), "MarkingFeatureDefinition") == 0)
           {
             MarkingFeatureDefinitionType * typ;
             if ((typ = dynamic_cast<MarkingFeatureDefinitionType *>(basie)))
@@ -27259,7 +27477,7 @@ void FeatureDefinitionsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "OppositeAngledLinesFeatureDefinition") == 0)
+        else if (strcmp(basie->getprintElement(), "OppositeAngledLinesFeatureDefinition") == 0)
           {
             OppositeAngledLinesFeatureDefinitionType * typ;
             if ((typ = dynamic_cast<OppositeAngledLinesFeatureDefinitionType *>(basie)))
@@ -27275,7 +27493,7 @@ void FeatureDefinitionsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "OppositeAngledPlanesFeatureDefinition") == 0)
+        else if (strcmp(basie->getprintElement(), "OppositeAngledPlanesFeatureDefinition") == 0)
           {
             OppositeAngledPlanesFeatureDefinitionType * typ;
             if ((typ = dynamic_cast<OppositeAngledPlanesFeatureDefinitionType *>(basie)))
@@ -27291,7 +27509,7 @@ void FeatureDefinitionsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "OppositeParallelLinesFeatureDefinition") == 0)
+        else if (strcmp(basie->getprintElement(), "OppositeParallelLinesFeatureDefinition") == 0)
           {
             OppositeParallelLinesFeatureDefinitionType * typ;
             if ((typ = dynamic_cast<OppositeParallelLinesFeatureDefinitionType *>(basie)))
@@ -27307,7 +27525,7 @@ void FeatureDefinitionsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "OppositeParallelPlanesFeatureDefinition") == 0)
+        else if (strcmp(basie->getprintElement(), "OppositeParallelPlanesFeatureDefinition") == 0)
           {
             OppositeParallelPlanesFeatureDefinitionType * typ;
             if ((typ = dynamic_cast<OppositeParallelPlanesFeatureDefinitionType *>(basie)))
@@ -27323,7 +27541,7 @@ void FeatureDefinitionsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "OtherCurveFeatureDefinition") == 0)
+        else if (strcmp(basie->getprintElement(), "OtherCurveFeatureDefinition") == 0)
           {
             OtherCurveFeatureDefinitionType * typ;
             if ((typ = dynamic_cast<OtherCurveFeatureDefinitionType *>(basie)))
@@ -27339,7 +27557,7 @@ void FeatureDefinitionsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "OtherNonShapeFeatureDefinition") == 0)
+        else if (strcmp(basie->getprintElement(), "OtherNonShapeFeatureDefinition") == 0)
           {
             OtherNonShapeFeatureDefinitionType * typ;
             if ((typ = dynamic_cast<OtherNonShapeFeatureDefinitionType *>(basie)))
@@ -27355,7 +27573,7 @@ void FeatureDefinitionsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "OtherShapeFeatureDefinition") == 0)
+        else if (strcmp(basie->getprintElement(), "OtherShapeFeatureDefinition") == 0)
           {
             OtherShapeFeatureDefinitionType * typ;
             if ((typ = dynamic_cast<OtherShapeFeatureDefinitionType *>(basie)))
@@ -27371,7 +27589,7 @@ void FeatureDefinitionsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "OtherSurfaceFeatureDefinition") == 0)
+        else if (strcmp(basie->getprintElement(), "OtherSurfaceFeatureDefinition") == 0)
           {
             OtherSurfaceFeatureDefinitionType * typ;
             if ((typ = dynamic_cast<OtherSurfaceFeatureDefinitionType *>(basie)))
@@ -27387,7 +27605,7 @@ void FeatureDefinitionsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "PatternFeatureCircleDefinition") == 0)
+        else if (strcmp(basie->getprintElement(), "PatternFeatureCircleDefinition") == 0)
           {
             PatternFeatureCircleDefinitionType * typ;
             if ((typ = dynamic_cast<PatternFeatureCircleDefinitionType *>(basie)))
@@ -27403,7 +27621,7 @@ void FeatureDefinitionsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "PatternFeatureCircularArcDefinition") == 0)
+        else if (strcmp(basie->getprintElement(), "PatternFeatureCircularArcDefinition") == 0)
           {
             PatternFeatureCircularArcDefinitionType * typ;
             if ((typ = dynamic_cast<PatternFeatureCircularArcDefinitionType *>(basie)))
@@ -27419,7 +27637,7 @@ void FeatureDefinitionsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "PatternFeatureLinearDefinition") == 0)
+        else if (strcmp(basie->getprintElement(), "PatternFeatureLinearDefinition") == 0)
           {
             PatternFeatureLinearDefinitionType * typ;
             if ((typ = dynamic_cast<PatternFeatureLinearDefinitionType *>(basie)))
@@ -27435,7 +27653,7 @@ void FeatureDefinitionsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "PatternFeatureParallelogramDefinition") == 0)
+        else if (strcmp(basie->getprintElement(), "PatternFeatureParallelogramDefinition") == 0)
           {
             PatternFeatureParallelogramDefinitionType * typ;
             if ((typ = dynamic_cast<PatternFeatureParallelogramDefinitionType *>(basie)))
@@ -27451,7 +27669,7 @@ void FeatureDefinitionsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "PlaneFeatureDefinition") == 0)
+        else if (strcmp(basie->getprintElement(), "PlaneFeatureDefinition") == 0)
           {
             PlaneFeatureDefinitionType * typ;
             if ((typ = dynamic_cast<PlaneFeatureDefinitionType *>(basie)))
@@ -27467,7 +27685,7 @@ void FeatureDefinitionsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "PointDefinedCurveFeatureDefinition") == 0)
+        else if (strcmp(basie->getprintElement(), "PointDefinedCurveFeatureDefinition") == 0)
           {
             PointDefinedCurveFeatureDefinitionType * typ;
             if ((typ = dynamic_cast<PointDefinedCurveFeatureDefinitionType *>(basie)))
@@ -27483,7 +27701,7 @@ void FeatureDefinitionsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "PointDefinedSurfaceFeatureDefinition") == 0)
+        else if (strcmp(basie->getprintElement(), "PointDefinedSurfaceFeatureDefinition") == 0)
           {
             PointDefinedSurfaceFeatureDefinitionType * typ;
             if ((typ = dynamic_cast<PointDefinedSurfaceFeatureDefinitionType *>(basie)))
@@ -27499,7 +27717,7 @@ void FeatureDefinitionsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "PointFeatureDefinition") == 0)
+        else if (strcmp(basie->getprintElement(), "PointFeatureDefinition") == 0)
           {
             PointFeatureDefinitionType * typ;
             if ((typ = dynamic_cast<PointFeatureDefinitionType *>(basie)))
@@ -27515,7 +27733,7 @@ void FeatureDefinitionsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SphereFeatureDefinition") == 0)
+        else if (strcmp(basie->getprintElement(), "SphereFeatureDefinition") == 0)
           {
             SphereFeatureDefinitionType * typ;
             if ((typ = dynamic_cast<SphereFeatureDefinitionType *>(basie)))
@@ -27531,7 +27749,7 @@ void FeatureDefinitionsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SphericalSegmentFeatureDefinition") == 0)
+        else if (strcmp(basie->getprintElement(), "SphericalSegmentFeatureDefinition") == 0)
           {
             SphericalSegmentFeatureDefinitionType * typ;
             if ((typ = dynamic_cast<SphericalSegmentFeatureDefinitionType *>(basie)))
@@ -27547,7 +27765,7 @@ void FeatureDefinitionsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SurfaceOfRevolutionFeatureDefinition") == 0)
+        else if (strcmp(basie->getprintElement(), "SurfaceOfRevolutionFeatureDefinition") == 0)
           {
             SurfaceOfRevolutionFeatureDefinitionType * typ;
             if ((typ = dynamic_cast<SurfaceOfRevolutionFeatureDefinitionType *>(basie)))
@@ -27563,7 +27781,7 @@ void FeatureDefinitionsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ThreadedFeatureDefinition") == 0)
+        else if (strcmp(basie->getprintElement(), "ThreadedFeatureDefinition") == 0)
           {
             ThreadedFeatureDefinitionType * typ;
             if ((typ = dynamic_cast<ThreadedFeatureDefinitionType *>(basie)))
@@ -27579,7 +27797,7 @@ void FeatureDefinitionsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ToroidalSegmentFeatureDefinition") == 0)
+        else if (strcmp(basie->getprintElement(), "ToroidalSegmentFeatureDefinition") == 0)
           {
             ToroidalSegmentFeatureDefinitionType * typ;
             if ((typ = dynamic_cast<ToroidalSegmentFeatureDefinitionType *>(basie)))
@@ -27595,7 +27813,7 @@ void FeatureDefinitionsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TorusFeatureDefinition") == 0)
+        else if (strcmp(basie->getprintElement(), "TorusFeatureDefinition") == 0)
           {
             TorusFeatureDefinitionType * typ;
             if ((typ = dynamic_cast<TorusFeatureDefinitionType *>(basie)))
@@ -27633,7 +27851,7 @@ bool FeatureDefinitionsType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -27642,12 +27860,12 @@ bool FeatureDefinitionsType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in FeatureDefinitionsType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -27848,7 +28066,7 @@ bool FeatureItemBaseType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -27857,12 +28075,12 @@ bool FeatureItemBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in FeatureItemBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -27876,7 +28094,11 @@ bool FeatureItemBaseType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in FeatureItemBaseType\n");
       returnValue = true;
@@ -28054,12 +28276,12 @@ void FeatureItemsType::printSelf(FILE * outFile)
         FeatureItemBaseType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "CircleFeatureItem") == 0)
+        else if (strcmp(basie->getprintElement(), "CircleFeatureItem") == 0)
           {
             CircleFeatureItemType * typ;
             if ((typ = dynamic_cast<CircleFeatureItemType *>(basie)))
@@ -28075,7 +28297,7 @@ void FeatureItemsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "CircularArcFeatureItem") == 0)
+        else if (strcmp(basie->getprintElement(), "CircularArcFeatureItem") == 0)
           {
             CircularArcFeatureItemType * typ;
             if ((typ = dynamic_cast<CircularArcFeatureItemType *>(basie)))
@@ -28091,7 +28313,7 @@ void FeatureItemsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ConeFeatureItem") == 0)
+        else if (strcmp(basie->getprintElement(), "ConeFeatureItem") == 0)
           {
             ConeFeatureItemType * typ;
             if ((typ = dynamic_cast<ConeFeatureItemType *>(basie)))
@@ -28107,7 +28329,7 @@ void FeatureItemsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ConicalSegmentFeatureItem") == 0)
+        else if (strcmp(basie->getprintElement(), "ConicalSegmentFeatureItem") == 0)
           {
             ConicalSegmentFeatureItemType * typ;
             if ((typ = dynamic_cast<ConicalSegmentFeatureItemType *>(basie)))
@@ -28123,7 +28345,7 @@ void FeatureItemsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "CylinderFeatureItem") == 0)
+        else if (strcmp(basie->getprintElement(), "CylinderFeatureItem") == 0)
           {
             CylinderFeatureItemType * typ;
             if ((typ = dynamic_cast<CylinderFeatureItemType *>(basie)))
@@ -28139,7 +28361,7 @@ void FeatureItemsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "CylindricalSegmentFeatureItem") == 0)
+        else if (strcmp(basie->getprintElement(), "CylindricalSegmentFeatureItem") == 0)
           {
             CylindricalSegmentFeatureItemType * typ;
             if ((typ = dynamic_cast<CylindricalSegmentFeatureItemType *>(basie)))
@@ -28155,7 +28377,7 @@ void FeatureItemsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EdgePointFeatureItem") == 0)
+        else if (strcmp(basie->getprintElement(), "EdgePointFeatureItem") == 0)
           {
             EdgePointFeatureItemType * typ;
             if ((typ = dynamic_cast<EdgePointFeatureItemType *>(basie)))
@@ -28171,7 +28393,7 @@ void FeatureItemsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EllipseFeatureItem") == 0)
+        else if (strcmp(basie->getprintElement(), "EllipseFeatureItem") == 0)
           {
             EllipseFeatureItemType * typ;
             if ((typ = dynamic_cast<EllipseFeatureItemType *>(basie)))
@@ -28187,7 +28409,7 @@ void FeatureItemsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EllipticalArcFeatureItem") == 0)
+        else if (strcmp(basie->getprintElement(), "EllipticalArcFeatureItem") == 0)
           {
             EllipticalArcFeatureItemType * typ;
             if ((typ = dynamic_cast<EllipticalArcFeatureItemType *>(basie)))
@@ -28203,7 +28425,7 @@ void FeatureItemsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ElongatedCircleFeatureItem") == 0)
+        else if (strcmp(basie->getprintElement(), "ElongatedCircleFeatureItem") == 0)
           {
             ElongatedCircleFeatureItemType * typ;
             if ((typ = dynamic_cast<ElongatedCircleFeatureItemType *>(basie)))
@@ -28219,7 +28441,7 @@ void FeatureItemsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ElongatedCylinderFeatureItem") == 0)
+        else if (strcmp(basie->getprintElement(), "ElongatedCylinderFeatureItem") == 0)
           {
             ElongatedCylinderFeatureItemType * typ;
             if ((typ = dynamic_cast<ElongatedCylinderFeatureItemType *>(basie)))
@@ -28235,7 +28457,7 @@ void FeatureItemsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ExtrudedCrossSectionFeatureItem") == 0)
+        else if (strcmp(basie->getprintElement(), "ExtrudedCrossSectionFeatureItem") == 0)
           {
             ExtrudedCrossSectionFeatureItemType * typ;
             if ((typ = dynamic_cast<ExtrudedCrossSectionFeatureItemType *>(basie)))
@@ -28251,7 +28473,7 @@ void FeatureItemsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "GroupFeatureItem") == 0)
+        else if (strcmp(basie->getprintElement(), "GroupFeatureItem") == 0)
           {
             GroupFeatureItemType * typ;
             if ((typ = dynamic_cast<GroupFeatureItemType *>(basie)))
@@ -28267,7 +28489,7 @@ void FeatureItemsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LineFeatureItem") == 0)
+        else if (strcmp(basie->getprintElement(), "LineFeatureItem") == 0)
           {
             LineFeatureItemType * typ;
             if ((typ = dynamic_cast<LineFeatureItemType *>(basie)))
@@ -28283,7 +28505,7 @@ void FeatureItemsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "MarkingFeatureItem") == 0)
+        else if (strcmp(basie->getprintElement(), "MarkingFeatureItem") == 0)
           {
             MarkingFeatureItemType * typ;
             if ((typ = dynamic_cast<MarkingFeatureItemType *>(basie)))
@@ -28299,7 +28521,7 @@ void FeatureItemsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "OppositeAngledLinesFeatureItem") == 0)
+        else if (strcmp(basie->getprintElement(), "OppositeAngledLinesFeatureItem") == 0)
           {
             OppositeAngledLinesFeatureItemType * typ;
             if ((typ = dynamic_cast<OppositeAngledLinesFeatureItemType *>(basie)))
@@ -28315,7 +28537,7 @@ void FeatureItemsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "OppositeAngledPlanesFeatureItem") == 0)
+        else if (strcmp(basie->getprintElement(), "OppositeAngledPlanesFeatureItem") == 0)
           {
             OppositeAngledPlanesFeatureItemType * typ;
             if ((typ = dynamic_cast<OppositeAngledPlanesFeatureItemType *>(basie)))
@@ -28331,7 +28553,7 @@ void FeatureItemsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "OppositeParallelLinesFeatureItem") == 0)
+        else if (strcmp(basie->getprintElement(), "OppositeParallelLinesFeatureItem") == 0)
           {
             OppositeParallelLinesFeatureItemType * typ;
             if ((typ = dynamic_cast<OppositeParallelLinesFeatureItemType *>(basie)))
@@ -28347,7 +28569,7 @@ void FeatureItemsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "OppositeParallelPlanesFeatureItem") == 0)
+        else if (strcmp(basie->getprintElement(), "OppositeParallelPlanesFeatureItem") == 0)
           {
             OppositeParallelPlanesFeatureItemType * typ;
             if ((typ = dynamic_cast<OppositeParallelPlanesFeatureItemType *>(basie)))
@@ -28363,7 +28585,7 @@ void FeatureItemsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "OtherCurveFeatureItem") == 0)
+        else if (strcmp(basie->getprintElement(), "OtherCurveFeatureItem") == 0)
           {
             OtherCurveFeatureItemType * typ;
             if ((typ = dynamic_cast<OtherCurveFeatureItemType *>(basie)))
@@ -28379,7 +28601,7 @@ void FeatureItemsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "OtherNonShapeFeatureItem") == 0)
+        else if (strcmp(basie->getprintElement(), "OtherNonShapeFeatureItem") == 0)
           {
             OtherNonShapeFeatureItemType * typ;
             if ((typ = dynamic_cast<OtherNonShapeFeatureItemType *>(basie)))
@@ -28395,7 +28617,7 @@ void FeatureItemsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "OtherShapeFeatureItem") == 0)
+        else if (strcmp(basie->getprintElement(), "OtherShapeFeatureItem") == 0)
           {
             OtherShapeFeatureItemType * typ;
             if ((typ = dynamic_cast<OtherShapeFeatureItemType *>(basie)))
@@ -28411,7 +28633,7 @@ void FeatureItemsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "OtherSurfaceFeatureItem") == 0)
+        else if (strcmp(basie->getprintElement(), "OtherSurfaceFeatureItem") == 0)
           {
             OtherSurfaceFeatureItemType * typ;
             if ((typ = dynamic_cast<OtherSurfaceFeatureItemType *>(basie)))
@@ -28427,7 +28649,7 @@ void FeatureItemsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "PatternFeatureCircleItem") == 0)
+        else if (strcmp(basie->getprintElement(), "PatternFeatureCircleItem") == 0)
           {
             PatternFeatureCircleItemType * typ;
             if ((typ = dynamic_cast<PatternFeatureCircleItemType *>(basie)))
@@ -28443,7 +28665,7 @@ void FeatureItemsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "PatternFeatureCircularArcItem") == 0)
+        else if (strcmp(basie->getprintElement(), "PatternFeatureCircularArcItem") == 0)
           {
             PatternFeatureCircularArcItemType * typ;
             if ((typ = dynamic_cast<PatternFeatureCircularArcItemType *>(basie)))
@@ -28459,7 +28681,7 @@ void FeatureItemsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "PatternFeatureLinearItem") == 0)
+        else if (strcmp(basie->getprintElement(), "PatternFeatureLinearItem") == 0)
           {
             PatternFeatureLinearItemType * typ;
             if ((typ = dynamic_cast<PatternFeatureLinearItemType *>(basie)))
@@ -28475,7 +28697,7 @@ void FeatureItemsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "PatternFeatureParallelogramItem") == 0)
+        else if (strcmp(basie->getprintElement(), "PatternFeatureParallelogramItem") == 0)
           {
             PatternFeatureParallelogramItemType * typ;
             if ((typ = dynamic_cast<PatternFeatureParallelogramItemType *>(basie)))
@@ -28491,7 +28713,7 @@ void FeatureItemsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "PlaneFeatureItem") == 0)
+        else if (strcmp(basie->getprintElement(), "PlaneFeatureItem") == 0)
           {
             PlaneFeatureItemType * typ;
             if ((typ = dynamic_cast<PlaneFeatureItemType *>(basie)))
@@ -28507,7 +28729,7 @@ void FeatureItemsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "PointDefinedCurveFeatureItem") == 0)
+        else if (strcmp(basie->getprintElement(), "PointDefinedCurveFeatureItem") == 0)
           {
             PointDefinedCurveFeatureItemType * typ;
             if ((typ = dynamic_cast<PointDefinedCurveFeatureItemType *>(basie)))
@@ -28523,7 +28745,7 @@ void FeatureItemsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "PointDefinedSurfaceFeatureItem") == 0)
+        else if (strcmp(basie->getprintElement(), "PointDefinedSurfaceFeatureItem") == 0)
           {
             PointDefinedSurfaceFeatureItemType * typ;
             if ((typ = dynamic_cast<PointDefinedSurfaceFeatureItemType *>(basie)))
@@ -28539,7 +28761,7 @@ void FeatureItemsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "PointFeatureItem") == 0)
+        else if (strcmp(basie->getprintElement(), "PointFeatureItem") == 0)
           {
             PointFeatureItemType * typ;
             if ((typ = dynamic_cast<PointFeatureItemType *>(basie)))
@@ -28555,7 +28777,7 @@ void FeatureItemsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SphereFeatureItem") == 0)
+        else if (strcmp(basie->getprintElement(), "SphereFeatureItem") == 0)
           {
             SphereFeatureItemType * typ;
             if ((typ = dynamic_cast<SphereFeatureItemType *>(basie)))
@@ -28571,7 +28793,7 @@ void FeatureItemsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SphericalSegmentFeatureItem") == 0)
+        else if (strcmp(basie->getprintElement(), "SphericalSegmentFeatureItem") == 0)
           {
             SphericalSegmentFeatureItemType * typ;
             if ((typ = dynamic_cast<SphericalSegmentFeatureItemType *>(basie)))
@@ -28587,7 +28809,7 @@ void FeatureItemsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SurfaceOfRevolutionFeatureItem") == 0)
+        else if (strcmp(basie->getprintElement(), "SurfaceOfRevolutionFeatureItem") == 0)
           {
             SurfaceOfRevolutionFeatureItemType * typ;
             if ((typ = dynamic_cast<SurfaceOfRevolutionFeatureItemType *>(basie)))
@@ -28603,7 +28825,7 @@ void FeatureItemsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ThreadedFeatureItem") == 0)
+        else if (strcmp(basie->getprintElement(), "ThreadedFeatureItem") == 0)
           {
             ThreadedFeatureItemType * typ;
             if ((typ = dynamic_cast<ThreadedFeatureItemType *>(basie)))
@@ -28619,7 +28841,7 @@ void FeatureItemsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ToroidalSegmentFeatureItem") == 0)
+        else if (strcmp(basie->getprintElement(), "ToroidalSegmentFeatureItem") == 0)
           {
             ToroidalSegmentFeatureItemType * typ;
             if ((typ = dynamic_cast<ToroidalSegmentFeatureItemType *>(basie)))
@@ -28635,7 +28857,7 @@ void FeatureItemsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TorusFeatureItem") == 0)
+        else if (strcmp(basie->getprintElement(), "TorusFeatureItem") == 0)
           {
             TorusFeatureItemType * typ;
             if ((typ = dynamic_cast<TorusFeatureItemType *>(basie)))
@@ -28673,7 +28895,7 @@ bool FeatureItemsType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -28682,12 +28904,12 @@ bool FeatureItemsType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in FeatureItemsType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -28921,7 +29143,7 @@ bool FeatureMeasurementBaseType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -28930,12 +29152,12 @@ bool FeatureMeasurementBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in FeatureMeasurementBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -28949,7 +29171,11 @@ bool FeatureMeasurementBaseType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in FeatureMeasurementBaseType\n");
       returnValue = true;
@@ -29139,12 +29365,12 @@ void FeatureMeasurementsType::printSelf(FILE * outFile)
         FeatureMeasurementBaseType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "CircleFeatureMeasurement") == 0)
+        else if (strcmp(basie->getprintElement(), "CircleFeatureMeasurement") == 0)
           {
             CircleFeatureMeasurementType * typ;
             if ((typ = dynamic_cast<CircleFeatureMeasurementType *>(basie)))
@@ -29160,7 +29386,7 @@ void FeatureMeasurementsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "CircularArcFeatureMeasurement") == 0)
+        else if (strcmp(basie->getprintElement(), "CircularArcFeatureMeasurement") == 0)
           {
             CircularArcFeatureMeasurementType * typ;
             if ((typ = dynamic_cast<CircularArcFeatureMeasurementType *>(basie)))
@@ -29176,7 +29402,7 @@ void FeatureMeasurementsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ConeFeatureMeasurement") == 0)
+        else if (strcmp(basie->getprintElement(), "ConeFeatureMeasurement") == 0)
           {
             ConeFeatureMeasurementType * typ;
             if ((typ = dynamic_cast<ConeFeatureMeasurementType *>(basie)))
@@ -29192,7 +29418,7 @@ void FeatureMeasurementsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ConicalSegmentFeatureMeasurement") == 0)
+        else if (strcmp(basie->getprintElement(), "ConicalSegmentFeatureMeasurement") == 0)
           {
             ConicalSegmentFeatureMeasurementType * typ;
             if ((typ = dynamic_cast<ConicalSegmentFeatureMeasurementType *>(basie)))
@@ -29208,7 +29434,7 @@ void FeatureMeasurementsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "CylinderFeatureMeasurement") == 0)
+        else if (strcmp(basie->getprintElement(), "CylinderFeatureMeasurement") == 0)
           {
             CylinderFeatureMeasurementType * typ;
             if ((typ = dynamic_cast<CylinderFeatureMeasurementType *>(basie)))
@@ -29224,7 +29450,7 @@ void FeatureMeasurementsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "CylindricalSegmentFeatureMeasurement") == 0)
+        else if (strcmp(basie->getprintElement(), "CylindricalSegmentFeatureMeasurement") == 0)
           {
             CylindricalSegmentFeatureMeasurementType * typ;
             if ((typ = dynamic_cast<CylindricalSegmentFeatureMeasurementType *>(basie)))
@@ -29240,7 +29466,7 @@ void FeatureMeasurementsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EdgePointFeatureMeasurement") == 0)
+        else if (strcmp(basie->getprintElement(), "EdgePointFeatureMeasurement") == 0)
           {
             EdgePointFeatureMeasurementType * typ;
             if ((typ = dynamic_cast<EdgePointFeatureMeasurementType *>(basie)))
@@ -29256,7 +29482,7 @@ void FeatureMeasurementsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EllipseFeatureMeasurement") == 0)
+        else if (strcmp(basie->getprintElement(), "EllipseFeatureMeasurement") == 0)
           {
             EllipseFeatureMeasurementType * typ;
             if ((typ = dynamic_cast<EllipseFeatureMeasurementType *>(basie)))
@@ -29272,7 +29498,7 @@ void FeatureMeasurementsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EllipticalArcFeatureMeasurement") == 0)
+        else if (strcmp(basie->getprintElement(), "EllipticalArcFeatureMeasurement") == 0)
           {
             EllipticalArcFeatureMeasurementType * typ;
             if ((typ = dynamic_cast<EllipticalArcFeatureMeasurementType *>(basie)))
@@ -29288,7 +29514,7 @@ void FeatureMeasurementsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ElongatedCircleFeatureMeasurement") == 0)
+        else if (strcmp(basie->getprintElement(), "ElongatedCircleFeatureMeasurement") == 0)
           {
             ElongatedCircleFeatureMeasurementType * typ;
             if ((typ = dynamic_cast<ElongatedCircleFeatureMeasurementType *>(basie)))
@@ -29304,7 +29530,7 @@ void FeatureMeasurementsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ElongatedCylinderFeatureMeasurement") == 0)
+        else if (strcmp(basie->getprintElement(), "ElongatedCylinderFeatureMeasurement") == 0)
           {
             ElongatedCylinderFeatureMeasurementType * typ;
             if ((typ = dynamic_cast<ElongatedCylinderFeatureMeasurementType *>(basie)))
@@ -29320,7 +29546,7 @@ void FeatureMeasurementsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ExtrudedCrossSectionFeatureMeasurement") == 0)
+        else if (strcmp(basie->getprintElement(), "ExtrudedCrossSectionFeatureMeasurement") == 0)
           {
             ExtrudedCrossSectionFeatureMeasurementType * typ;
             if ((typ = dynamic_cast<ExtrudedCrossSectionFeatureMeasurementType *>(basie)))
@@ -29336,7 +29562,7 @@ void FeatureMeasurementsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "GroupFeatureMeasurement") == 0)
+        else if (strcmp(basie->getprintElement(), "GroupFeatureMeasurement") == 0)
           {
             GroupFeatureMeasurementType * typ;
             if ((typ = dynamic_cast<GroupFeatureMeasurementType *>(basie)))
@@ -29352,7 +29578,7 @@ void FeatureMeasurementsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LineFeatureMeasurement") == 0)
+        else if (strcmp(basie->getprintElement(), "LineFeatureMeasurement") == 0)
           {
             LineFeatureMeasurementType * typ;
             if ((typ = dynamic_cast<LineFeatureMeasurementType *>(basie)))
@@ -29368,7 +29594,7 @@ void FeatureMeasurementsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "MarkingFeatureMeasurement") == 0)
+        else if (strcmp(basie->getprintElement(), "MarkingFeatureMeasurement") == 0)
           {
             MarkingFeatureMeasurementType * typ;
             if ((typ = dynamic_cast<MarkingFeatureMeasurementType *>(basie)))
@@ -29384,7 +29610,7 @@ void FeatureMeasurementsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "OppositeAngledLinesFeatureMeasurement") == 0)
+        else if (strcmp(basie->getprintElement(), "OppositeAngledLinesFeatureMeasurement") == 0)
           {
             OppositeAngledLinesFeatureMeasurementType * typ;
             if ((typ = dynamic_cast<OppositeAngledLinesFeatureMeasurementType *>(basie)))
@@ -29400,7 +29626,7 @@ void FeatureMeasurementsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "OppositeAngledPlanesFeatureMeasurement") == 0)
+        else if (strcmp(basie->getprintElement(), "OppositeAngledPlanesFeatureMeasurement") == 0)
           {
             OppositeAngledPlanesFeatureMeasurementType * typ;
             if ((typ = dynamic_cast<OppositeAngledPlanesFeatureMeasurementType *>(basie)))
@@ -29416,7 +29642,7 @@ void FeatureMeasurementsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "OppositeParallelLinesFeatureMeasurement") == 0)
+        else if (strcmp(basie->getprintElement(), "OppositeParallelLinesFeatureMeasurement") == 0)
           {
             OppositeParallelLinesFeatureMeasurementType * typ;
             if ((typ = dynamic_cast<OppositeParallelLinesFeatureMeasurementType *>(basie)))
@@ -29432,7 +29658,7 @@ void FeatureMeasurementsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "OppositeParallelPlanesFeatureMeasurement") == 0)
+        else if (strcmp(basie->getprintElement(), "OppositeParallelPlanesFeatureMeasurement") == 0)
           {
             OppositeParallelPlanesFeatureMeasurementType * typ;
             if ((typ = dynamic_cast<OppositeParallelPlanesFeatureMeasurementType *>(basie)))
@@ -29448,7 +29674,7 @@ void FeatureMeasurementsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "OtherCurveFeatureMeasurement") == 0)
+        else if (strcmp(basie->getprintElement(), "OtherCurveFeatureMeasurement") == 0)
           {
             OtherCurveFeatureMeasurementType * typ;
             if ((typ = dynamic_cast<OtherCurveFeatureMeasurementType *>(basie)))
@@ -29464,7 +29690,7 @@ void FeatureMeasurementsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "OtherNonShapeFeatureMeasurement") == 0)
+        else if (strcmp(basie->getprintElement(), "OtherNonShapeFeatureMeasurement") == 0)
           {
             OtherNonShapeFeatureMeasurementType * typ;
             if ((typ = dynamic_cast<OtherNonShapeFeatureMeasurementType *>(basie)))
@@ -29480,7 +29706,7 @@ void FeatureMeasurementsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "OtherShapeFeatureMeasurement") == 0)
+        else if (strcmp(basie->getprintElement(), "OtherShapeFeatureMeasurement") == 0)
           {
             OtherShapeFeatureMeasurementType * typ;
             if ((typ = dynamic_cast<OtherShapeFeatureMeasurementType *>(basie)))
@@ -29496,7 +29722,7 @@ void FeatureMeasurementsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "OtherSurfaceFeatureMeasurement") == 0)
+        else if (strcmp(basie->getprintElement(), "OtherSurfaceFeatureMeasurement") == 0)
           {
             OtherSurfaceFeatureMeasurementType * typ;
             if ((typ = dynamic_cast<OtherSurfaceFeatureMeasurementType *>(basie)))
@@ -29512,7 +29738,7 @@ void FeatureMeasurementsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "PlaneFeatureMeasurement") == 0)
+        else if (strcmp(basie->getprintElement(), "PlaneFeatureMeasurement") == 0)
           {
             PlaneFeatureMeasurementType * typ;
             if ((typ = dynamic_cast<PlaneFeatureMeasurementType *>(basie)))
@@ -29528,7 +29754,7 @@ void FeatureMeasurementsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "PointDefinedCurveFeatureMeasurement") == 0)
+        else if (strcmp(basie->getprintElement(), "PointDefinedCurveFeatureMeasurement") == 0)
           {
             PointDefinedCurveFeatureMeasurementType * typ;
             if ((typ = dynamic_cast<PointDefinedCurveFeatureMeasurementType *>(basie)))
@@ -29544,7 +29770,7 @@ void FeatureMeasurementsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "PointDefinedSurfaceFeatureMeasurement") == 0)
+        else if (strcmp(basie->getprintElement(), "PointDefinedSurfaceFeatureMeasurement") == 0)
           {
             PointDefinedSurfaceFeatureMeasurementType * typ;
             if ((typ = dynamic_cast<PointDefinedSurfaceFeatureMeasurementType *>(basie)))
@@ -29560,7 +29786,7 @@ void FeatureMeasurementsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "PointFeatureMeasurement") == 0)
+        else if (strcmp(basie->getprintElement(), "PointFeatureMeasurement") == 0)
           {
             PointFeatureMeasurementType * typ;
             if ((typ = dynamic_cast<PointFeatureMeasurementType *>(basie)))
@@ -29576,7 +29802,7 @@ void FeatureMeasurementsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SphereFeatureMeasurement") == 0)
+        else if (strcmp(basie->getprintElement(), "SphereFeatureMeasurement") == 0)
           {
             SphereFeatureMeasurementType * typ;
             if ((typ = dynamic_cast<SphereFeatureMeasurementType *>(basie)))
@@ -29592,7 +29818,7 @@ void FeatureMeasurementsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SphericalSegmentFeatureMeasurement") == 0)
+        else if (strcmp(basie->getprintElement(), "SphericalSegmentFeatureMeasurement") == 0)
           {
             SphericalSegmentFeatureMeasurementType * typ;
             if ((typ = dynamic_cast<SphericalSegmentFeatureMeasurementType *>(basie)))
@@ -29608,7 +29834,7 @@ void FeatureMeasurementsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SurfaceOfRevolutionFeatureMeasurement") == 0)
+        else if (strcmp(basie->getprintElement(), "SurfaceOfRevolutionFeatureMeasurement") == 0)
           {
             SurfaceOfRevolutionFeatureMeasurementType * typ;
             if ((typ = dynamic_cast<SurfaceOfRevolutionFeatureMeasurementType *>(basie)))
@@ -29624,7 +29850,7 @@ void FeatureMeasurementsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ThreadedFeatureMeasurement") == 0)
+        else if (strcmp(basie->getprintElement(), "ThreadedFeatureMeasurement") == 0)
           {
             ThreadedFeatureMeasurementType * typ;
             if ((typ = dynamic_cast<ThreadedFeatureMeasurementType *>(basie)))
@@ -29640,7 +29866,7 @@ void FeatureMeasurementsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ToroidalSegmentFeatureMeasurement") == 0)
+        else if (strcmp(basie->getprintElement(), "ToroidalSegmentFeatureMeasurement") == 0)
           {
             ToroidalSegmentFeatureMeasurementType * typ;
             if ((typ = dynamic_cast<ToroidalSegmentFeatureMeasurementType *>(basie)))
@@ -29656,7 +29882,7 @@ void FeatureMeasurementsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TorusFeatureMeasurement") == 0)
+        else if (strcmp(basie->getprintElement(), "TorusFeatureMeasurement") == 0)
           {
             TorusFeatureMeasurementType * typ;
             if ((typ = dynamic_cast<TorusFeatureMeasurementType *>(basie)))
@@ -29694,7 +29920,7 @@ bool FeatureMeasurementsType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -29703,12 +29929,12 @@ bool FeatureMeasurementsType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in FeatureMeasurementsType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -29913,7 +30139,7 @@ bool FeatureNominalBaseType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -29922,12 +30148,12 @@ bool FeatureNominalBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in FeatureNominalBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -29941,7 +30167,11 @@ bool FeatureNominalBaseType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in FeatureNominalBaseType\n");
       returnValue = true;
@@ -30119,12 +30349,12 @@ void FeatureNominalsType::printSelf(FILE * outFile)
         FeatureNominalBaseType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "CircleFeatureNominal") == 0)
+        else if (strcmp(basie->getprintElement(), "CircleFeatureNominal") == 0)
           {
             CircleFeatureNominalType * typ;
             if ((typ = dynamic_cast<CircleFeatureNominalType *>(basie)))
@@ -30140,7 +30370,7 @@ void FeatureNominalsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "CircularArcFeatureNominal") == 0)
+        else if (strcmp(basie->getprintElement(), "CircularArcFeatureNominal") == 0)
           {
             CircularArcFeatureNominalType * typ;
             if ((typ = dynamic_cast<CircularArcFeatureNominalType *>(basie)))
@@ -30156,7 +30386,7 @@ void FeatureNominalsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ConeFeatureNominal") == 0)
+        else if (strcmp(basie->getprintElement(), "ConeFeatureNominal") == 0)
           {
             ConeFeatureNominalType * typ;
             if ((typ = dynamic_cast<ConeFeatureNominalType *>(basie)))
@@ -30172,7 +30402,7 @@ void FeatureNominalsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ConicalSegmentFeatureNominal") == 0)
+        else if (strcmp(basie->getprintElement(), "ConicalSegmentFeatureNominal") == 0)
           {
             ConicalSegmentFeatureNominalType * typ;
             if ((typ = dynamic_cast<ConicalSegmentFeatureNominalType *>(basie)))
@@ -30188,7 +30418,7 @@ void FeatureNominalsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "CylinderFeatureNominal") == 0)
+        else if (strcmp(basie->getprintElement(), "CylinderFeatureNominal") == 0)
           {
             CylinderFeatureNominalType * typ;
             if ((typ = dynamic_cast<CylinderFeatureNominalType *>(basie)))
@@ -30204,7 +30434,7 @@ void FeatureNominalsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "CylindricalSegmentFeatureNominal") == 0)
+        else if (strcmp(basie->getprintElement(), "CylindricalSegmentFeatureNominal") == 0)
           {
             CylindricalSegmentFeatureNominalType * typ;
             if ((typ = dynamic_cast<CylindricalSegmentFeatureNominalType *>(basie)))
@@ -30220,7 +30450,7 @@ void FeatureNominalsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EdgePointFeatureNominal") == 0)
+        else if (strcmp(basie->getprintElement(), "EdgePointFeatureNominal") == 0)
           {
             EdgePointFeatureNominalType * typ;
             if ((typ = dynamic_cast<EdgePointFeatureNominalType *>(basie)))
@@ -30236,7 +30466,7 @@ void FeatureNominalsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EllipseFeatureNominal") == 0)
+        else if (strcmp(basie->getprintElement(), "EllipseFeatureNominal") == 0)
           {
             EllipseFeatureNominalType * typ;
             if ((typ = dynamic_cast<EllipseFeatureNominalType *>(basie)))
@@ -30252,7 +30482,7 @@ void FeatureNominalsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "EllipticalArcFeatureNominal") == 0)
+        else if (strcmp(basie->getprintElement(), "EllipticalArcFeatureNominal") == 0)
           {
             EllipticalArcFeatureNominalType * typ;
             if ((typ = dynamic_cast<EllipticalArcFeatureNominalType *>(basie)))
@@ -30268,7 +30498,7 @@ void FeatureNominalsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ElongatedCircleFeatureNominal") == 0)
+        else if (strcmp(basie->getprintElement(), "ElongatedCircleFeatureNominal") == 0)
           {
             ElongatedCircleFeatureNominalType * typ;
             if ((typ = dynamic_cast<ElongatedCircleFeatureNominalType *>(basie)))
@@ -30284,7 +30514,7 @@ void FeatureNominalsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ElongatedCylinderFeatureNominal") == 0)
+        else if (strcmp(basie->getprintElement(), "ElongatedCylinderFeatureNominal") == 0)
           {
             ElongatedCylinderFeatureNominalType * typ;
             if ((typ = dynamic_cast<ElongatedCylinderFeatureNominalType *>(basie)))
@@ -30300,7 +30530,7 @@ void FeatureNominalsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ExtrudedCrossSectionFeatureNominal") == 0)
+        else if (strcmp(basie->getprintElement(), "ExtrudedCrossSectionFeatureNominal") == 0)
           {
             ExtrudedCrossSectionFeatureNominalType * typ;
             if ((typ = dynamic_cast<ExtrudedCrossSectionFeatureNominalType *>(basie)))
@@ -30316,7 +30546,7 @@ void FeatureNominalsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "GroupFeatureNominal") == 0)
+        else if (strcmp(basie->getprintElement(), "GroupFeatureNominal") == 0)
           {
             GroupFeatureNominalType * typ;
             if ((typ = dynamic_cast<GroupFeatureNominalType *>(basie)))
@@ -30332,7 +30562,7 @@ void FeatureNominalsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "LineFeatureNominal") == 0)
+        else if (strcmp(basie->getprintElement(), "LineFeatureNominal") == 0)
           {
             LineFeatureNominalType * typ;
             if ((typ = dynamic_cast<LineFeatureNominalType *>(basie)))
@@ -30348,7 +30578,7 @@ void FeatureNominalsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "MarkingFeatureNominal") == 0)
+        else if (strcmp(basie->getprintElement(), "MarkingFeatureNominal") == 0)
           {
             MarkingFeatureNominalType * typ;
             if ((typ = dynamic_cast<MarkingFeatureNominalType *>(basie)))
@@ -30364,7 +30594,7 @@ void FeatureNominalsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "OppositeAngledLinesFeatureNominal") == 0)
+        else if (strcmp(basie->getprintElement(), "OppositeAngledLinesFeatureNominal") == 0)
           {
             OppositeAngledLinesFeatureNominalType * typ;
             if ((typ = dynamic_cast<OppositeAngledLinesFeatureNominalType *>(basie)))
@@ -30380,7 +30610,7 @@ void FeatureNominalsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "OppositeAngledPlanesFeatureNominal") == 0)
+        else if (strcmp(basie->getprintElement(), "OppositeAngledPlanesFeatureNominal") == 0)
           {
             OppositeAngledPlanesFeatureNominalType * typ;
             if ((typ = dynamic_cast<OppositeAngledPlanesFeatureNominalType *>(basie)))
@@ -30396,7 +30626,7 @@ void FeatureNominalsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "OppositeParallelLinesFeatureNominal") == 0)
+        else if (strcmp(basie->getprintElement(), "OppositeParallelLinesFeatureNominal") == 0)
           {
             OppositeParallelLinesFeatureNominalType * typ;
             if ((typ = dynamic_cast<OppositeParallelLinesFeatureNominalType *>(basie)))
@@ -30412,7 +30642,7 @@ void FeatureNominalsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "OppositeParallelPlanesFeatureNominal") == 0)
+        else if (strcmp(basie->getprintElement(), "OppositeParallelPlanesFeatureNominal") == 0)
           {
             OppositeParallelPlanesFeatureNominalType * typ;
             if ((typ = dynamic_cast<OppositeParallelPlanesFeatureNominalType *>(basie)))
@@ -30428,7 +30658,7 @@ void FeatureNominalsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "OtherCurveFeatureNominal") == 0)
+        else if (strcmp(basie->getprintElement(), "OtherCurveFeatureNominal") == 0)
           {
             OtherCurveFeatureNominalType * typ;
             if ((typ = dynamic_cast<OtherCurveFeatureNominalType *>(basie)))
@@ -30444,7 +30674,7 @@ void FeatureNominalsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "OtherNonShapeFeatureNominal") == 0)
+        else if (strcmp(basie->getprintElement(), "OtherNonShapeFeatureNominal") == 0)
           {
             OtherNonShapeFeatureNominalType * typ;
             if ((typ = dynamic_cast<OtherNonShapeFeatureNominalType *>(basie)))
@@ -30460,7 +30690,7 @@ void FeatureNominalsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "OtherShapeFeatureNominal") == 0)
+        else if (strcmp(basie->getprintElement(), "OtherShapeFeatureNominal") == 0)
           {
             OtherShapeFeatureNominalType * typ;
             if ((typ = dynamic_cast<OtherShapeFeatureNominalType *>(basie)))
@@ -30476,7 +30706,7 @@ void FeatureNominalsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "OtherSurfaceFeatureNominal") == 0)
+        else if (strcmp(basie->getprintElement(), "OtherSurfaceFeatureNominal") == 0)
           {
             OtherSurfaceFeatureNominalType * typ;
             if ((typ = dynamic_cast<OtherSurfaceFeatureNominalType *>(basie)))
@@ -30492,7 +30722,7 @@ void FeatureNominalsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "PatternFeatureCircleNominal") == 0)
+        else if (strcmp(basie->getprintElement(), "PatternFeatureCircleNominal") == 0)
           {
             PatternFeatureCircleNominalType * typ;
             if ((typ = dynamic_cast<PatternFeatureCircleNominalType *>(basie)))
@@ -30508,7 +30738,7 @@ void FeatureNominalsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "PatternFeatureCircularArcNominal") == 0)
+        else if (strcmp(basie->getprintElement(), "PatternFeatureCircularArcNominal") == 0)
           {
             PatternFeatureCircularArcNominalType * typ;
             if ((typ = dynamic_cast<PatternFeatureCircularArcNominalType *>(basie)))
@@ -30524,7 +30754,7 @@ void FeatureNominalsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "PatternFeatureLinearNominal") == 0)
+        else if (strcmp(basie->getprintElement(), "PatternFeatureLinearNominal") == 0)
           {
             PatternFeatureLinearNominalType * typ;
             if ((typ = dynamic_cast<PatternFeatureLinearNominalType *>(basie)))
@@ -30540,7 +30770,7 @@ void FeatureNominalsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "PatternFeatureParallelogramNominal") == 0)
+        else if (strcmp(basie->getprintElement(), "PatternFeatureParallelogramNominal") == 0)
           {
             PatternFeatureParallelogramNominalType * typ;
             if ((typ = dynamic_cast<PatternFeatureParallelogramNominalType *>(basie)))
@@ -30556,7 +30786,7 @@ void FeatureNominalsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "PlaneFeatureNominal") == 0)
+        else if (strcmp(basie->getprintElement(), "PlaneFeatureNominal") == 0)
           {
             PlaneFeatureNominalType * typ;
             if ((typ = dynamic_cast<PlaneFeatureNominalType *>(basie)))
@@ -30572,7 +30802,7 @@ void FeatureNominalsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "PointDefinedCurveFeatureNominal") == 0)
+        else if (strcmp(basie->getprintElement(), "PointDefinedCurveFeatureNominal") == 0)
           {
             PointDefinedCurveFeatureNominalType * typ;
             if ((typ = dynamic_cast<PointDefinedCurveFeatureNominalType *>(basie)))
@@ -30588,7 +30818,7 @@ void FeatureNominalsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "PointDefinedSurfaceFeatureNominal") == 0)
+        else if (strcmp(basie->getprintElement(), "PointDefinedSurfaceFeatureNominal") == 0)
           {
             PointDefinedSurfaceFeatureNominalType * typ;
             if ((typ = dynamic_cast<PointDefinedSurfaceFeatureNominalType *>(basie)))
@@ -30604,7 +30834,7 @@ void FeatureNominalsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "PointFeatureNominal") == 0)
+        else if (strcmp(basie->getprintElement(), "PointFeatureNominal") == 0)
           {
             PointFeatureNominalType * typ;
             if ((typ = dynamic_cast<PointFeatureNominalType *>(basie)))
@@ -30620,7 +30850,7 @@ void FeatureNominalsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SphereFeatureNominal") == 0)
+        else if (strcmp(basie->getprintElement(), "SphereFeatureNominal") == 0)
           {
             SphereFeatureNominalType * typ;
             if ((typ = dynamic_cast<SphereFeatureNominalType *>(basie)))
@@ -30636,7 +30866,7 @@ void FeatureNominalsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SphericalSegmentFeatureNominal") == 0)
+        else if (strcmp(basie->getprintElement(), "SphericalSegmentFeatureNominal") == 0)
           {
             SphericalSegmentFeatureNominalType * typ;
             if ((typ = dynamic_cast<SphericalSegmentFeatureNominalType *>(basie)))
@@ -30652,7 +30882,7 @@ void FeatureNominalsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SurfaceOfRevolutionFeatureNominal") == 0)
+        else if (strcmp(basie->getprintElement(), "SurfaceOfRevolutionFeatureNominal") == 0)
           {
             SurfaceOfRevolutionFeatureNominalType * typ;
             if ((typ = dynamic_cast<SurfaceOfRevolutionFeatureNominalType *>(basie)))
@@ -30668,7 +30898,7 @@ void FeatureNominalsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ThreadedFeatureNominal") == 0)
+        else if (strcmp(basie->getprintElement(), "ThreadedFeatureNominal") == 0)
           {
             ThreadedFeatureNominalType * typ;
             if ((typ = dynamic_cast<ThreadedFeatureNominalType *>(basie)))
@@ -30684,7 +30914,7 @@ void FeatureNominalsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "ToroidalSegmentFeatureNominal") == 0)
+        else if (strcmp(basie->getprintElement(), "ToroidalSegmentFeatureNominal") == 0)
           {
             ToroidalSegmentFeatureNominalType * typ;
             if ((typ = dynamic_cast<ToroidalSegmentFeatureNominalType *>(basie)))
@@ -30700,7 +30930,7 @@ void FeatureNominalsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "TorusFeatureNominal") == 0)
+        else if (strcmp(basie->getprintElement(), "TorusFeatureNominal") == 0)
           {
             TorusFeatureNominalType * typ;
             if ((typ = dynamic_cast<TorusFeatureNominalType *>(basie)))
@@ -30738,7 +30968,7 @@ bool FeatureNominalsType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -30747,12 +30977,12 @@ bool FeatureNominalsType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in FeatureNominalsType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -30959,7 +31189,7 @@ bool FeatureZoneAreaBaseType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -30968,12 +31198,12 @@ bool FeatureZoneAreaBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in FeatureZoneAreaBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -30987,7 +31217,11 @@ bool FeatureZoneAreaBaseType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in FeatureZoneAreaBaseType\n");
       returnValue = true;
@@ -31159,7 +31393,7 @@ bool FeatureZoneAreaBetweenType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -31168,12 +31402,12 @@ bool FeatureZoneAreaBetweenType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in FeatureZoneAreaBetweenType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -31187,7 +31421,11 @@ bool FeatureZoneAreaBetweenType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in FeatureZoneAreaBetweenType\n");
       returnValue = true;
@@ -31354,7 +31592,7 @@ bool FeatureZoneAreaCircularType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -31363,12 +31601,12 @@ bool FeatureZoneAreaCircularType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in FeatureZoneAreaCircularType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -31382,7 +31620,11 @@ bool FeatureZoneAreaCircularType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in FeatureZoneAreaCircularType\n");
       returnValue = true;
@@ -31531,7 +31773,7 @@ bool FeatureZoneAreaCylindricalType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -31540,12 +31782,12 @@ bool FeatureZoneAreaCylindricalType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in FeatureZoneAreaCylindricalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -31559,7 +31801,11 @@ bool FeatureZoneAreaCylindricalType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in FeatureZoneAreaCylindricalType\n");
       returnValue = true;
@@ -31697,7 +31943,7 @@ bool FeatureZoneAreaIrregularType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -31706,12 +31952,12 @@ bool FeatureZoneAreaIrregularType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in FeatureZoneAreaIrregularType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -31725,7 +31971,11 @@ bool FeatureZoneAreaIrregularType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in FeatureZoneAreaIrregularType\n");
       returnValue = true;
@@ -31868,7 +32118,7 @@ bool FeatureZoneAreaRectangularType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -31877,12 +32127,12 @@ bool FeatureZoneAreaRectangularType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in FeatureZoneAreaRectangularType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -31896,7 +32146,11 @@ bool FeatureZoneAreaRectangularType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in FeatureZoneAreaRectangularType\n");
       returnValue = true;
@@ -32045,7 +32299,7 @@ bool FeatureZoneAreaSphericalType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -32054,12 +32308,12 @@ bool FeatureZoneAreaSphericalType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in FeatureZoneAreaSphericalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -32073,7 +32327,11 @@ bool FeatureZoneAreaSphericalType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in FeatureZoneAreaSphericalType\n");
       returnValue = true;
@@ -32209,7 +32467,7 @@ bool FeatureZoneBaseType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -32218,12 +32476,12 @@ bool FeatureZoneBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in FeatureZoneBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -32237,7 +32495,11 @@ bool FeatureZoneBaseType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in FeatureZoneBaseType\n");
       returnValue = true;
@@ -32477,7 +32739,7 @@ bool FeatureZoneCurveBaseType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -32486,12 +32748,12 @@ bool FeatureZoneCurveBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in FeatureZoneCurveBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -32505,7 +32767,11 @@ bool FeatureZoneCurveBaseType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in FeatureZoneCurveBaseType\n");
       returnValue = true;
@@ -32648,7 +32914,7 @@ bool FeatureZoneCurveCircularType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -32657,12 +32923,12 @@ bool FeatureZoneCurveCircularType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in FeatureZoneCurveCircularType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -32676,7 +32942,11 @@ bool FeatureZoneCurveCircularType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in FeatureZoneCurveCircularType\n");
       returnValue = true;
@@ -32824,7 +33094,7 @@ bool FeatureZoneCurveIrregularType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -32833,12 +33103,12 @@ bool FeatureZoneCurveIrregularType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in FeatureZoneCurveIrregularType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -32852,7 +33122,11 @@ bool FeatureZoneCurveIrregularType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in FeatureZoneCurveIrregularType\n");
       returnValue = true;
@@ -33001,7 +33275,7 @@ bool FeatureZoneCurveLineType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -33010,12 +33284,12 @@ bool FeatureZoneCurveLineType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in FeatureZoneCurveLineType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -33029,7 +33303,11 @@ bool FeatureZoneCurveLineType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in FeatureZoneCurveLineType\n");
       returnValue = true;
@@ -33142,12 +33420,12 @@ void FeatureZoneListType::printSelf(FILE * outFile)
         FeatureZoneBaseType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "FeatureZonePoint") == 0)
+        else if (strcmp(basie->getprintElement(), "FeatureZonePoint") == 0)
           {
             FeatureZonePointType * typ;
             if ((typ = dynamic_cast<FeatureZonePointType *>(basie)))
@@ -33163,7 +33441,7 @@ void FeatureZoneListType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "FeatureZoneCurveLine") == 0)
+        else if (strcmp(basie->getprintElement(), "FeatureZoneCurveLine") == 0)
           {
             FeatureZoneCurveLineType * typ;
             if ((typ = dynamic_cast<FeatureZoneCurveLineType *>(basie)))
@@ -33179,7 +33457,7 @@ void FeatureZoneListType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "FeatureZoneCurveCircular") == 0)
+        else if (strcmp(basie->getprintElement(), "FeatureZoneCurveCircular") == 0)
           {
             FeatureZoneCurveCircularType * typ;
             if ((typ = dynamic_cast<FeatureZoneCurveCircularType *>(basie)))
@@ -33195,7 +33473,7 @@ void FeatureZoneListType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "FeatureZoneCurveIrregular") == 0)
+        else if (strcmp(basie->getprintElement(), "FeatureZoneCurveIrregular") == 0)
           {
             FeatureZoneCurveIrregularType * typ;
             if ((typ = dynamic_cast<FeatureZoneCurveIrregularType *>(basie)))
@@ -33211,7 +33489,7 @@ void FeatureZoneListType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "FeatureZoneAreaCircular") == 0)
+        else if (strcmp(basie->getprintElement(), "FeatureZoneAreaCircular") == 0)
           {
             FeatureZoneAreaCircularType * typ;
             if ((typ = dynamic_cast<FeatureZoneAreaCircularType *>(basie)))
@@ -33227,7 +33505,7 @@ void FeatureZoneListType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "FeatureZoneAreaRectangular") == 0)
+        else if (strcmp(basie->getprintElement(), "FeatureZoneAreaRectangular") == 0)
           {
             FeatureZoneAreaRectangularType * typ;
             if ((typ = dynamic_cast<FeatureZoneAreaRectangularType *>(basie)))
@@ -33243,7 +33521,7 @@ void FeatureZoneListType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "FeatureZoneAreaIrregular") == 0)
+        else if (strcmp(basie->getprintElement(), "FeatureZoneAreaIrregular") == 0)
           {
             FeatureZoneAreaIrregularType * typ;
             if ((typ = dynamic_cast<FeatureZoneAreaIrregularType *>(basie)))
@@ -33259,7 +33537,7 @@ void FeatureZoneListType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "FeatureZoneAreaCylindrical") == 0)
+        else if (strcmp(basie->getprintElement(), "FeatureZoneAreaCylindrical") == 0)
           {
             FeatureZoneAreaCylindricalType * typ;
             if ((typ = dynamic_cast<FeatureZoneAreaCylindricalType *>(basie)))
@@ -33275,7 +33553,7 @@ void FeatureZoneListType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "FeatureZoneAreaSpherical") == 0)
+        else if (strcmp(basie->getprintElement(), "FeatureZoneAreaSpherical") == 0)
           {
             FeatureZoneAreaSphericalType * typ;
             if ((typ = dynamic_cast<FeatureZoneAreaSphericalType *>(basie)))
@@ -33291,7 +33569,7 @@ void FeatureZoneListType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "FeatureZoneAreaBetween") == 0)
+        else if (strcmp(basie->getprintElement(), "FeatureZoneAreaBetween") == 0)
           {
             FeatureZoneAreaBetweenType * typ;
             if ((typ = dynamic_cast<FeatureZoneAreaBetweenType *>(basie)))
@@ -33329,7 +33607,7 @@ bool FeatureZoneListType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -33338,12 +33616,12 @@ bool FeatureZoneListType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in FeatureZoneListType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -33513,7 +33791,7 @@ bool FeatureZonePointType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -33522,12 +33800,12 @@ bool FeatureZonePointType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in FeatureZonePointType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -33541,7 +33819,11 @@ bool FeatureZonePointType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in FeatureZonePointType\n");
       returnValue = true;
@@ -33691,7 +33973,7 @@ bool GroupFeatureDefinitionType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -33700,12 +33982,12 @@ bool GroupFeatureDefinitionType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in GroupFeatureDefinitionType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -33719,7 +34001,11 @@ bool GroupFeatureDefinitionType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in GroupFeatureDefinitionType\n");
       returnValue = true;
@@ -33934,7 +34220,7 @@ bool GroupFeatureItemType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -33943,12 +34229,12 @@ bool GroupFeatureItemType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in GroupFeatureItemType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -33962,7 +34248,11 @@ bool GroupFeatureItemType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in GroupFeatureItemType\n");
       returnValue = true;
@@ -34189,7 +34479,7 @@ bool GroupFeatureMeasurementType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -34198,12 +34488,12 @@ bool GroupFeatureMeasurementType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in GroupFeatureMeasurementType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -34217,7 +34507,11 @@ bool GroupFeatureMeasurementType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in GroupFeatureMeasurementType\n");
       returnValue = true;
@@ -34419,7 +34713,7 @@ bool GroupFeatureNominalType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -34428,12 +34722,12 @@ bool GroupFeatureNominalType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in GroupFeatureNominalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -34447,7 +34741,11 @@ bool GroupFeatureNominalType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in GroupFeatureNominalType\n");
       returnValue = true;
@@ -34592,7 +34890,7 @@ bool LineBestFitType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -34601,12 +34899,12 @@ bool LineBestFitType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in LineBestFitType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -35205,7 +35503,7 @@ bool LineFeatureDefinitionType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -35214,12 +35512,12 @@ bool LineFeatureDefinitionType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in LineFeatureDefinitionType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -35233,7 +35531,11 @@ bool LineFeatureDefinitionType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in LineFeatureDefinitionType\n");
       returnValue = true;
@@ -35441,7 +35743,7 @@ bool LineFeatureItemType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -35450,12 +35752,12 @@ bool LineFeatureItemType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in LineFeatureItemType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -35469,7 +35771,11 @@ bool LineFeatureItemType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in LineFeatureItemType\n");
       returnValue = true;
@@ -35767,7 +36073,7 @@ bool LineFeatureMeasurementType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -35776,12 +36082,12 @@ bool LineFeatureMeasurementType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in LineFeatureMeasurementType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -35795,7 +36101,11 @@ bool LineFeatureMeasurementType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in LineFeatureMeasurementType\n");
       returnValue = true;
@@ -36087,7 +36397,7 @@ bool LineFeatureNominalType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -36096,12 +36406,12 @@ bool LineFeatureNominalType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in LineFeatureNominalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -36115,7 +36425,11 @@ bool LineFeatureNominalType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in LineFeatureNominalType\n");
       returnValue = true;
@@ -36971,7 +37285,7 @@ bool MarkingFeatureDefinitionType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -36980,12 +37294,12 @@ bool MarkingFeatureDefinitionType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in MarkingFeatureDefinitionType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -36999,7 +37313,11 @@ bool MarkingFeatureDefinitionType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in MarkingFeatureDefinitionType\n");
       returnValue = true;
@@ -37174,7 +37492,7 @@ bool MarkingFeatureItemType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -37183,12 +37501,12 @@ bool MarkingFeatureItemType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in MarkingFeatureItemType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -37202,7 +37520,11 @@ bool MarkingFeatureItemType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in MarkingFeatureItemType\n");
       returnValue = true;
@@ -37415,7 +37737,7 @@ bool MarkingFeatureMeasurementType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -37424,12 +37746,12 @@ bool MarkingFeatureMeasurementType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in MarkingFeatureMeasurementType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -37443,7 +37765,11 @@ bool MarkingFeatureMeasurementType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in MarkingFeatureMeasurementType\n");
       returnValue = true;
@@ -37633,7 +37959,7 @@ bool MarkingFeatureNominalType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -37642,12 +37968,12 @@ bool MarkingFeatureNominalType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in MarkingFeatureNominalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -37661,7 +37987,11 @@ bool MarkingFeatureNominalType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in MarkingFeatureNominalType\n");
       returnValue = true;
@@ -37701,8 +38031,8 @@ MarkingMethodEnumType::MarkingMethodEnumType(
   XmlNMTOKEN(
     valIn)
 {
-  if (!bad)
-    bad = (strcmp(val.c_str(), "PAINT") &&
+  if (!getbad())
+    setbad(strcmp(val.c_str(), "PAINT") &&
            strcmp(val.c_str(), "STAIN") &&
            strcmp(val.c_str(), "ENSCRIBE") &&
            strcmp(val.c_str(), "EMBOSS"));
@@ -38593,7 +38923,7 @@ bool MeasuredPointSetType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "combinedUncertainty")
+      if (decl->getname() == "combinedUncertainty")
         {
           XmlDecimal * combinedUncertaintyVal;
           if (this->combinedUncertainty)
@@ -38602,19 +38932,19 @@ bool MeasuredPointSetType::badAttributes(
               returnValue = true;
               break;
             }
-          combinedUncertaintyVal = new XmlDecimal(decl->val.c_str());
-          if (combinedUncertaintyVal->bad)
+          combinedUncertaintyVal = new XmlDecimal(decl->getval().c_str());
+          if (combinedUncertaintyVal->getbad())
             {
               delete combinedUncertaintyVal;
               fprintf(stderr, "bad value %s for combinedUncertainty in MeasuredPointSetType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->combinedUncertainty = combinedUncertaintyVal;
         }
-      else if (decl->name == "count")
+      else if (decl->getname() == "count")
         {
           NaturalType * countVal;
           if (this->count)
@@ -38623,19 +38953,19 @@ bool MeasuredPointSetType::badAttributes(
               returnValue = true;
               break;
             }
-          countVal = new NaturalType(decl->val.c_str());
-          if (countVal->bad)
+          countVal = new NaturalType(decl->getval().c_str());
+          if (countVal->getbad())
             {
               delete countVal;
               fprintf(stderr, "bad value %s for count in MeasuredPointSetType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->count = countVal;
         }
-      else if (decl->name == "decimalPlaces")
+      else if (decl->getname() == "decimalPlaces")
         {
           XmlNonNegativeInteger * decimalPlacesVal;
           if (this->decimalPlaces)
@@ -38644,19 +38974,19 @@ bool MeasuredPointSetType::badAttributes(
               returnValue = true;
               break;
             }
-          decimalPlacesVal = new XmlNonNegativeInteger(decl->val.c_str());
-          if (decimalPlacesVal->bad)
+          decimalPlacesVal = new XmlNonNegativeInteger(decl->getval().c_str());
+          if (decimalPlacesVal->getbad())
             {
               delete decimalPlacesVal;
               fprintf(stderr, "bad value %s for decimalPlaces in MeasuredPointSetType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->decimalPlaces = decimalPlacesVal;
         }
-      else if (decl->name == "id")
+      else if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -38665,19 +38995,19 @@ bool MeasuredPointSetType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in MeasuredPointSetType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->id = idVal;
         }
-      else if (decl->name == "linearUnit")
+      else if (decl->getname() == "linearUnit")
         {
           XmlToken * linearUnitVal;
           if (this->linearUnit)
@@ -38686,19 +39016,19 @@ bool MeasuredPointSetType::badAttributes(
               returnValue = true;
               break;
             }
-          linearUnitVal = new XmlToken(decl->val.c_str());
-          if (linearUnitVal->bad)
+          linearUnitVal = new XmlToken(decl->getval().c_str());
+          if (linearUnitVal->getbad())
             {
               delete linearUnitVal;
               fprintf(stderr, "bad value %s for linearUnit in MeasuredPointSetType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->linearUnit = linearUnitVal;
         }
-      else if (decl->name == "meanError")
+      else if (decl->getname() == "meanError")
         {
           XmlDecimal * meanErrorVal;
           if (this->meanError)
@@ -38707,19 +39037,19 @@ bool MeasuredPointSetType::badAttributes(
               returnValue = true;
               break;
             }
-          meanErrorVal = new XmlDecimal(decl->val.c_str());
-          if (meanErrorVal->bad)
+          meanErrorVal = new XmlDecimal(decl->getval().c_str());
+          if (meanErrorVal->getbad())
             {
               delete meanErrorVal;
               fprintf(stderr, "bad value %s for meanError in MeasuredPointSetType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->meanError = meanErrorVal;
         }
-      else if (decl->name == "significantFigures")
+      else if (decl->getname() == "significantFigures")
         {
           XmlNonNegativeInteger * significantFiguresVal;
           if (this->significantFigures)
@@ -38728,19 +39058,19 @@ bool MeasuredPointSetType::badAttributes(
               returnValue = true;
               break;
             }
-          significantFiguresVal = new XmlNonNegativeInteger(decl->val.c_str());
-          if (significantFiguresVal->bad)
+          significantFiguresVal = new XmlNonNegativeInteger(decl->getval().c_str());
+          if (significantFiguresVal->getbad())
             {
               delete significantFiguresVal;
               fprintf(stderr, "bad value %s for significantFigures in MeasuredPointSetType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->significantFigures = significantFiguresVal;
         }
-      else if (decl->name == "validity")
+      else if (decl->getname() == "validity")
         {
           ValidityEnumType * validityVal;
           if (this->validity)
@@ -38749,19 +39079,19 @@ bool MeasuredPointSetType::badAttributes(
               returnValue = true;
               break;
             }
-          validityVal = new ValidityEnumType(decl->val.c_str());
-          if (validityVal->bad)
+          validityVal = new ValidityEnumType(decl->getval().c_str());
+          if (validityVal->getbad())
             {
               delete validityVal;
               fprintf(stderr, "bad value %s for validity in MeasuredPointSetType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->validity = validityVal;
         }
-      else if (decl->name == "xCombinedUncertainty")
+      else if (decl->getname() == "xCombinedUncertainty")
         {
           XmlDecimal * xCombinedUncertaintyVal;
           if (this->xCombinedUncertainty)
@@ -38770,19 +39100,19 @@ bool MeasuredPointSetType::badAttributes(
               returnValue = true;
               break;
             }
-          xCombinedUncertaintyVal = new XmlDecimal(decl->val.c_str());
-          if (xCombinedUncertaintyVal->bad)
+          xCombinedUncertaintyVal = new XmlDecimal(decl->getval().c_str());
+          if (xCombinedUncertaintyVal->getbad())
             {
               delete xCombinedUncertaintyVal;
               fprintf(stderr, "bad value %s for xCombinedUncertainty in MeasuredPointSetType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->xCombinedUncertainty = xCombinedUncertaintyVal;
         }
-      else if (decl->name == "xDecimalPlaces")
+      else if (decl->getname() == "xDecimalPlaces")
         {
           XmlNonNegativeInteger * xDecimalPlacesVal;
           if (this->xDecimalPlaces)
@@ -38791,19 +39121,19 @@ bool MeasuredPointSetType::badAttributes(
               returnValue = true;
               break;
             }
-          xDecimalPlacesVal = new XmlNonNegativeInteger(decl->val.c_str());
-          if (xDecimalPlacesVal->bad)
+          xDecimalPlacesVal = new XmlNonNegativeInteger(decl->getval().c_str());
+          if (xDecimalPlacesVal->getbad())
             {
               delete xDecimalPlacesVal;
               fprintf(stderr, "bad value %s for xDecimalPlaces in MeasuredPointSetType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->xDecimalPlaces = xDecimalPlacesVal;
         }
-      else if (decl->name == "xMeanError")
+      else if (decl->getname() == "xMeanError")
         {
           XmlDecimal * xMeanErrorVal;
           if (this->xMeanError)
@@ -38812,19 +39142,19 @@ bool MeasuredPointSetType::badAttributes(
               returnValue = true;
               break;
             }
-          xMeanErrorVal = new XmlDecimal(decl->val.c_str());
-          if (xMeanErrorVal->bad)
+          xMeanErrorVal = new XmlDecimal(decl->getval().c_str());
+          if (xMeanErrorVal->getbad())
             {
               delete xMeanErrorVal;
               fprintf(stderr, "bad value %s for xMeanError in MeasuredPointSetType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->xMeanError = xMeanErrorVal;
         }
-      else if (decl->name == "xSignificantFigures")
+      else if (decl->getname() == "xSignificantFigures")
         {
           XmlNonNegativeInteger * xSignificantFiguresVal;
           if (this->xSignificantFigures)
@@ -38833,19 +39163,19 @@ bool MeasuredPointSetType::badAttributes(
               returnValue = true;
               break;
             }
-          xSignificantFiguresVal = new XmlNonNegativeInteger(decl->val.c_str());
-          if (xSignificantFiguresVal->bad)
+          xSignificantFiguresVal = new XmlNonNegativeInteger(decl->getval().c_str());
+          if (xSignificantFiguresVal->getbad())
             {
               delete xSignificantFiguresVal;
               fprintf(stderr, "bad value %s for xSignificantFigures in MeasuredPointSetType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->xSignificantFigures = xSignificantFiguresVal;
         }
-      else if (decl->name == "xValidity")
+      else if (decl->getname() == "xValidity")
         {
           ValidityEnumType * xValidityVal;
           if (this->xValidity)
@@ -38854,19 +39184,19 @@ bool MeasuredPointSetType::badAttributes(
               returnValue = true;
               break;
             }
-          xValidityVal = new ValidityEnumType(decl->val.c_str());
-          if (xValidityVal->bad)
+          xValidityVal = new ValidityEnumType(decl->getval().c_str());
+          if (xValidityVal->getbad())
             {
               delete xValidityVal;
               fprintf(stderr, "bad value %s for xValidity in MeasuredPointSetType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->xValidity = xValidityVal;
         }
-      else if (decl->name == "yCombinedUncertainty")
+      else if (decl->getname() == "yCombinedUncertainty")
         {
           XmlDecimal * yCombinedUncertaintyVal;
           if (this->yCombinedUncertainty)
@@ -38875,19 +39205,19 @@ bool MeasuredPointSetType::badAttributes(
               returnValue = true;
               break;
             }
-          yCombinedUncertaintyVal = new XmlDecimal(decl->val.c_str());
-          if (yCombinedUncertaintyVal->bad)
+          yCombinedUncertaintyVal = new XmlDecimal(decl->getval().c_str());
+          if (yCombinedUncertaintyVal->getbad())
             {
               delete yCombinedUncertaintyVal;
               fprintf(stderr, "bad value %s for yCombinedUncertainty in MeasuredPointSetType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->yCombinedUncertainty = yCombinedUncertaintyVal;
         }
-      else if (decl->name == "yDecimalPlaces")
+      else if (decl->getname() == "yDecimalPlaces")
         {
           XmlNonNegativeInteger * yDecimalPlacesVal;
           if (this->yDecimalPlaces)
@@ -38896,19 +39226,19 @@ bool MeasuredPointSetType::badAttributes(
               returnValue = true;
               break;
             }
-          yDecimalPlacesVal = new XmlNonNegativeInteger(decl->val.c_str());
-          if (yDecimalPlacesVal->bad)
+          yDecimalPlacesVal = new XmlNonNegativeInteger(decl->getval().c_str());
+          if (yDecimalPlacesVal->getbad())
             {
               delete yDecimalPlacesVal;
               fprintf(stderr, "bad value %s for yDecimalPlaces in MeasuredPointSetType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->yDecimalPlaces = yDecimalPlacesVal;
         }
-      else if (decl->name == "yMeanError")
+      else if (decl->getname() == "yMeanError")
         {
           XmlDecimal * yMeanErrorVal;
           if (this->yMeanError)
@@ -38917,19 +39247,19 @@ bool MeasuredPointSetType::badAttributes(
               returnValue = true;
               break;
             }
-          yMeanErrorVal = new XmlDecimal(decl->val.c_str());
-          if (yMeanErrorVal->bad)
+          yMeanErrorVal = new XmlDecimal(decl->getval().c_str());
+          if (yMeanErrorVal->getbad())
             {
               delete yMeanErrorVal;
               fprintf(stderr, "bad value %s for yMeanError in MeasuredPointSetType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->yMeanError = yMeanErrorVal;
         }
-      else if (decl->name == "ySignificantFigures")
+      else if (decl->getname() == "ySignificantFigures")
         {
           XmlNonNegativeInteger * ySignificantFiguresVal;
           if (this->ySignificantFigures)
@@ -38938,19 +39268,19 @@ bool MeasuredPointSetType::badAttributes(
               returnValue = true;
               break;
             }
-          ySignificantFiguresVal = new XmlNonNegativeInteger(decl->val.c_str());
-          if (ySignificantFiguresVal->bad)
+          ySignificantFiguresVal = new XmlNonNegativeInteger(decl->getval().c_str());
+          if (ySignificantFiguresVal->getbad())
             {
               delete ySignificantFiguresVal;
               fprintf(stderr, "bad value %s for ySignificantFigures in MeasuredPointSetType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->ySignificantFigures = ySignificantFiguresVal;
         }
-      else if (decl->name == "yValidity")
+      else if (decl->getname() == "yValidity")
         {
           ValidityEnumType * yValidityVal;
           if (this->yValidity)
@@ -38959,19 +39289,19 @@ bool MeasuredPointSetType::badAttributes(
               returnValue = true;
               break;
             }
-          yValidityVal = new ValidityEnumType(decl->val.c_str());
-          if (yValidityVal->bad)
+          yValidityVal = new ValidityEnumType(decl->getval().c_str());
+          if (yValidityVal->getbad())
             {
               delete yValidityVal;
               fprintf(stderr, "bad value %s for yValidity in MeasuredPointSetType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->yValidity = yValidityVal;
         }
-      else if (decl->name == "zCombinedUncertainty")
+      else if (decl->getname() == "zCombinedUncertainty")
         {
           XmlDecimal * zCombinedUncertaintyVal;
           if (this->zCombinedUncertainty)
@@ -38980,19 +39310,19 @@ bool MeasuredPointSetType::badAttributes(
               returnValue = true;
               break;
             }
-          zCombinedUncertaintyVal = new XmlDecimal(decl->val.c_str());
-          if (zCombinedUncertaintyVal->bad)
+          zCombinedUncertaintyVal = new XmlDecimal(decl->getval().c_str());
+          if (zCombinedUncertaintyVal->getbad())
             {
               delete zCombinedUncertaintyVal;
               fprintf(stderr, "bad value %s for zCombinedUncertainty in MeasuredPointSetType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->zCombinedUncertainty = zCombinedUncertaintyVal;
         }
-      else if (decl->name == "zDecimalPlaces")
+      else if (decl->getname() == "zDecimalPlaces")
         {
           XmlNonNegativeInteger * zDecimalPlacesVal;
           if (this->zDecimalPlaces)
@@ -39001,19 +39331,19 @@ bool MeasuredPointSetType::badAttributes(
               returnValue = true;
               break;
             }
-          zDecimalPlacesVal = new XmlNonNegativeInteger(decl->val.c_str());
-          if (zDecimalPlacesVal->bad)
+          zDecimalPlacesVal = new XmlNonNegativeInteger(decl->getval().c_str());
+          if (zDecimalPlacesVal->getbad())
             {
               delete zDecimalPlacesVal;
               fprintf(stderr, "bad value %s for zDecimalPlaces in MeasuredPointSetType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->zDecimalPlaces = zDecimalPlacesVal;
         }
-      else if (decl->name == "zMeanError")
+      else if (decl->getname() == "zMeanError")
         {
           XmlDecimal * zMeanErrorVal;
           if (this->zMeanError)
@@ -39022,19 +39352,19 @@ bool MeasuredPointSetType::badAttributes(
               returnValue = true;
               break;
             }
-          zMeanErrorVal = new XmlDecimal(decl->val.c_str());
-          if (zMeanErrorVal->bad)
+          zMeanErrorVal = new XmlDecimal(decl->getval().c_str());
+          if (zMeanErrorVal->getbad())
             {
               delete zMeanErrorVal;
               fprintf(stderr, "bad value %s for zMeanError in MeasuredPointSetType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->zMeanError = zMeanErrorVal;
         }
-      else if (decl->name == "zSignificantFigures")
+      else if (decl->getname() == "zSignificantFigures")
         {
           XmlNonNegativeInteger * zSignificantFiguresVal;
           if (this->zSignificantFigures)
@@ -39043,19 +39373,19 @@ bool MeasuredPointSetType::badAttributes(
               returnValue = true;
               break;
             }
-          zSignificantFiguresVal = new XmlNonNegativeInteger(decl->val.c_str());
-          if (zSignificantFiguresVal->bad)
+          zSignificantFiguresVal = new XmlNonNegativeInteger(decl->getval().c_str());
+          if (zSignificantFiguresVal->getbad())
             {
               delete zSignificantFiguresVal;
               fprintf(stderr, "bad value %s for zSignificantFigures in MeasuredPointSetType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->zSignificantFigures = zSignificantFiguresVal;
         }
-      else if (decl->name == "zValidity")
+      else if (decl->getname() == "zValidity")
         {
           ValidityEnumType * zValidityVal;
           if (this->zValidity)
@@ -39064,12 +39394,12 @@ bool MeasuredPointSetType::badAttributes(
               returnValue = true;
               break;
             }
-          zValidityVal = new ValidityEnumType(decl->val.c_str());
-          if (zValidityVal->bad)
+          zValidityVal = new ValidityEnumType(decl->getval().c_str());
+          if (zValidityVal->getbad())
             {
               delete zValidityVal;
               fprintf(stderr, "bad value %s for zValidity in MeasuredPointSetType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -39088,7 +39418,11 @@ bool MeasuredPointSetType::badAttributes(
       fprintf(stderr, "required attribute \"count\" missing in MeasuredPointSetType\n");
       returnValue = true;
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in MeasuredPointSetType\n");
       returnValue = true;
@@ -39526,7 +39860,7 @@ bool MeasuredPointSetsType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -39535,12 +39869,12 @@ bool MeasuredPointSetsType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in MeasuredPointSetsType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -39691,7 +40025,7 @@ bool NominalPointSetListType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -39700,12 +40034,12 @@ bool NominalPointSetListType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in NominalPointSetListType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -39833,7 +40167,7 @@ bool NonShapeFeatureDefinitionBaseType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -39842,12 +40176,12 @@ bool NonShapeFeatureDefinitionBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in NonShapeFeatureDefinitionBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -39861,7 +40195,11 @@ bool NonShapeFeatureDefinitionBaseType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in NonShapeFeatureDefinitionBaseType\n");
       returnValue = true;
@@ -40024,7 +40362,7 @@ bool NonShapeFeatureItemBaseType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -40033,12 +40371,12 @@ bool NonShapeFeatureItemBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in NonShapeFeatureItemBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -40052,7 +40390,11 @@ bool NonShapeFeatureItemBaseType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in NonShapeFeatureItemBaseType\n");
       returnValue = true;
@@ -40244,7 +40586,7 @@ bool NonShapeFeatureMeasurementBaseType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -40253,12 +40595,12 @@ bool NonShapeFeatureMeasurementBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in NonShapeFeatureMeasurementBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -40272,7 +40614,11 @@ bool NonShapeFeatureMeasurementBaseType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in NonShapeFeatureMeasurementBaseType\n");
       returnValue = true;
@@ -40439,7 +40785,7 @@ bool NonShapeFeatureNominalBaseType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -40448,12 +40794,12 @@ bool NonShapeFeatureNominalBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in NonShapeFeatureNominalBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -40467,7 +40813,11 @@ bool NonShapeFeatureNominalBaseType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in NonShapeFeatureNominalBaseType\n");
       returnValue = true;
@@ -40606,7 +40956,7 @@ bool OppositeAngledLinesBestFitType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -40615,12 +40965,12 @@ bool OppositeAngledLinesBestFitType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in OppositeAngledLinesBestFitType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -41211,7 +41561,7 @@ bool OppositeAngledLinesFeatureDefinitionType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -41220,12 +41570,12 @@ bool OppositeAngledLinesFeatureDefinitionType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in OppositeAngledLinesFeatureDefinitionType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -41239,7 +41589,11 @@ bool OppositeAngledLinesFeatureDefinitionType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in OppositeAngledLinesFeatureDefinitionType\n");
       returnValue = true;
@@ -41495,7 +41849,7 @@ bool OppositeAngledLinesFeatureItemType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -41504,12 +41858,12 @@ bool OppositeAngledLinesFeatureItemType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in OppositeAngledLinesFeatureItemType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -41523,7 +41877,11 @@ bool OppositeAngledLinesFeatureItemType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in OppositeAngledLinesFeatureItemType\n");
       returnValue = true;
@@ -41915,7 +42273,7 @@ bool OppositeAngledLinesFeatureMeasurementType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -41924,12 +42282,12 @@ bool OppositeAngledLinesFeatureMeasurementType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in OppositeAngledLinesFeatureMeasurementType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -41943,7 +42301,11 @@ bool OppositeAngledLinesFeatureMeasurementType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in OppositeAngledLinesFeatureMeasurementType\n");
       returnValue = true;
@@ -42252,7 +42614,7 @@ bool OppositeAngledLinesFeatureNominalType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -42261,12 +42623,12 @@ bool OppositeAngledLinesFeatureNominalType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in OppositeAngledLinesFeatureNominalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -42280,7 +42642,11 @@ bool OppositeAngledLinesFeatureNominalType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in OppositeAngledLinesFeatureNominalType\n");
       returnValue = true;
@@ -42850,7 +43216,7 @@ bool OppositeAngledPlanesBestFitType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -42859,12 +43225,12 @@ bool OppositeAngledPlanesBestFitType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in OppositeAngledPlanesBestFitType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -43459,7 +43825,7 @@ bool OppositeAngledPlanesFeatureDefinitionType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -43468,12 +43834,12 @@ bool OppositeAngledPlanesFeatureDefinitionType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in OppositeAngledPlanesFeatureDefinitionType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -43487,7 +43853,11 @@ bool OppositeAngledPlanesFeatureDefinitionType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in OppositeAngledPlanesFeatureDefinitionType\n");
       returnValue = true;
@@ -43755,7 +44125,7 @@ bool OppositeAngledPlanesFeatureItemType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -43764,12 +44134,12 @@ bool OppositeAngledPlanesFeatureItemType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in OppositeAngledPlanesFeatureItemType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -43783,7 +44153,11 @@ bool OppositeAngledPlanesFeatureItemType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in OppositeAngledPlanesFeatureItemType\n");
       returnValue = true;
@@ -44198,7 +44572,7 @@ bool OppositeAngledPlanesFeatureMeasurementType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -44207,12 +44581,12 @@ bool OppositeAngledPlanesFeatureMeasurementType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in OppositeAngledPlanesFeatureMeasurementType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -44226,7 +44600,11 @@ bool OppositeAngledPlanesFeatureMeasurementType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in OppositeAngledPlanesFeatureMeasurementType\n");
       returnValue = true;
@@ -44565,7 +44943,7 @@ bool OppositeAngledPlanesFeatureNominalType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -44574,12 +44952,12 @@ bool OppositeAngledPlanesFeatureNominalType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in OppositeAngledPlanesFeatureNominalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -44593,7 +44971,11 @@ bool OppositeAngledPlanesFeatureNominalType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in OppositeAngledPlanesFeatureNominalType\n");
       returnValue = true;
@@ -45025,7 +45407,7 @@ bool OppositeParallelLinesBestFitType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -45034,12 +45416,12 @@ bool OppositeParallelLinesBestFitType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in OppositeParallelLinesBestFitType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -45620,7 +46002,7 @@ bool OppositeParallelLinesFeatureDefinitionType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -45629,12 +46011,12 @@ bool OppositeParallelLinesFeatureDefinitionType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in OppositeParallelLinesFeatureDefinitionType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -45648,7 +46030,11 @@ bool OppositeParallelLinesFeatureDefinitionType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in OppositeParallelLinesFeatureDefinitionType\n");
       returnValue = true;
@@ -45898,7 +46284,7 @@ bool OppositeParallelLinesFeatureItemType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -45907,12 +46293,12 @@ bool OppositeParallelLinesFeatureItemType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in OppositeParallelLinesFeatureItemType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -45926,7 +46312,11 @@ bool OppositeParallelLinesFeatureItemType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in OppositeParallelLinesFeatureItemType\n");
       returnValue = true;
@@ -46305,7 +46695,7 @@ bool OppositeParallelLinesFeatureMeasurementType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -46314,12 +46704,12 @@ bool OppositeParallelLinesFeatureMeasurementType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in OppositeParallelLinesFeatureMeasurementType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -46333,7 +46723,11 @@ bool OppositeParallelLinesFeatureMeasurementType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in OppositeParallelLinesFeatureMeasurementType\n");
       returnValue = true;
@@ -46636,7 +47030,7 @@ bool OppositeParallelLinesFeatureNominalType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -46645,12 +47039,12 @@ bool OppositeParallelLinesFeatureNominalType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in OppositeParallelLinesFeatureNominalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -46664,7 +47058,11 @@ bool OppositeParallelLinesFeatureNominalType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in OppositeParallelLinesFeatureNominalType\n");
       returnValue = true;
@@ -47234,7 +47632,7 @@ bool OppositeParallelPlanesBestFitType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -47243,12 +47641,12 @@ bool OppositeParallelPlanesBestFitType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in OppositeParallelPlanesBestFitType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -47836,7 +48234,7 @@ bool OppositeParallelPlanesFeatureDefinitionType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -47845,12 +48243,12 @@ bool OppositeParallelPlanesFeatureDefinitionType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in OppositeParallelPlanesFeatureDefinitionType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -47864,7 +48262,11 @@ bool OppositeParallelPlanesFeatureDefinitionType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in OppositeParallelPlanesFeatureDefinitionType\n");
       returnValue = true;
@@ -48126,7 +48528,7 @@ bool OppositeParallelPlanesFeatureItemType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -48135,12 +48537,12 @@ bool OppositeParallelPlanesFeatureItemType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in OppositeParallelPlanesFeatureItemType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -48154,7 +48556,11 @@ bool OppositeParallelPlanesFeatureItemType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in OppositeParallelPlanesFeatureItemType\n");
       returnValue = true;
@@ -48559,7 +48965,7 @@ bool OppositeParallelPlanesFeatureMeasurementType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -48568,12 +48974,12 @@ bool OppositeParallelPlanesFeatureMeasurementType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in OppositeParallelPlanesFeatureMeasurementType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -48587,7 +48993,11 @@ bool OppositeParallelPlanesFeatureMeasurementType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in OppositeParallelPlanesFeatureMeasurementType\n");
       returnValue = true;
@@ -48907,7 +49317,7 @@ bool OppositeParallelPlanesFeatureNominalType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -48916,12 +49326,12 @@ bool OppositeParallelPlanesFeatureNominalType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in OppositeParallelPlanesFeatureNominalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -48935,7 +49345,11 @@ bool OppositeParallelPlanesFeatureNominalType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in OppositeParallelPlanesFeatureNominalType\n");
       returnValue = true;
@@ -49569,7 +49983,7 @@ bool OtherCurveFeatureDefinitionType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -49578,12 +49992,12 @@ bool OtherCurveFeatureDefinitionType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in OtherCurveFeatureDefinitionType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -49597,7 +50011,11 @@ bool OtherCurveFeatureDefinitionType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in OtherCurveFeatureDefinitionType\n");
       returnValue = true;
@@ -49805,7 +50223,7 @@ bool OtherCurveFeatureItemType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -49814,12 +50232,12 @@ bool OtherCurveFeatureItemType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in OtherCurveFeatureItemType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -49833,7 +50251,11 @@ bool OtherCurveFeatureItemType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in OtherCurveFeatureItemType\n");
       returnValue = true;
@@ -50066,7 +50488,7 @@ bool OtherCurveFeatureMeasurementType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -50075,12 +50497,12 @@ bool OtherCurveFeatureMeasurementType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in OtherCurveFeatureMeasurementType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -50094,7 +50516,11 @@ bool OtherCurveFeatureMeasurementType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in OtherCurveFeatureMeasurementType\n");
       returnValue = true;
@@ -50310,7 +50736,7 @@ bool OtherCurveFeatureNominalType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -50319,12 +50745,12 @@ bool OtherCurveFeatureNominalType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in OtherCurveFeatureNominalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -50338,7 +50764,11 @@ bool OtherCurveFeatureNominalType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in OtherCurveFeatureNominalType\n");
       returnValue = true;
@@ -50531,7 +50961,7 @@ bool OtherNonShapeFeatureDefinitionType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -50540,12 +50970,12 @@ bool OtherNonShapeFeatureDefinitionType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in OtherNonShapeFeatureDefinitionType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -50559,7 +50989,11 @@ bool OtherNonShapeFeatureDefinitionType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in OtherNonShapeFeatureDefinitionType\n");
       returnValue = true;
@@ -50728,7 +51162,7 @@ bool OtherNonShapeFeatureItemType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -50737,12 +51171,12 @@ bool OtherNonShapeFeatureItemType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in OtherNonShapeFeatureItemType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -50756,7 +51190,11 @@ bool OtherNonShapeFeatureItemType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in OtherNonShapeFeatureItemType\n");
       returnValue = true;
@@ -50948,7 +51386,7 @@ bool OtherNonShapeFeatureMeasurementType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -50957,12 +51395,12 @@ bool OtherNonShapeFeatureMeasurementType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in OtherNonShapeFeatureMeasurementType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -50976,7 +51414,11 @@ bool OtherNonShapeFeatureMeasurementType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in OtherNonShapeFeatureMeasurementType\n");
       returnValue = true;
@@ -51157,7 +51599,7 @@ bool OtherNonShapeFeatureNominalType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -51166,12 +51608,12 @@ bool OtherNonShapeFeatureNominalType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in OtherNonShapeFeatureNominalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -51185,7 +51627,11 @@ bool OtherNonShapeFeatureNominalType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in OtherNonShapeFeatureNominalType\n");
       returnValue = true;
@@ -51548,7 +51994,7 @@ bool OtherShapeFeatureDefinitionType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -51557,12 +52003,12 @@ bool OtherShapeFeatureDefinitionType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in OtherShapeFeatureDefinitionType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -51576,7 +52022,11 @@ bool OtherShapeFeatureDefinitionType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in OtherShapeFeatureDefinitionType\n");
       returnValue = true;
@@ -51790,7 +52240,7 @@ bool OtherShapeFeatureItemType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -51799,12 +52249,12 @@ bool OtherShapeFeatureItemType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in OtherShapeFeatureItemType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -51818,7 +52268,11 @@ bool OtherShapeFeatureItemType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in OtherShapeFeatureItemType\n");
       returnValue = true;
@@ -52051,7 +52505,7 @@ bool OtherShapeFeatureMeasurementType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -52060,12 +52514,12 @@ bool OtherShapeFeatureMeasurementType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in OtherShapeFeatureMeasurementType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -52079,7 +52533,11 @@ bool OtherShapeFeatureMeasurementType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in OtherShapeFeatureMeasurementType\n");
       returnValue = true;
@@ -52284,7 +52742,7 @@ bool OtherShapeFeatureNominalType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -52293,12 +52751,12 @@ bool OtherShapeFeatureNominalType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in OtherShapeFeatureNominalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -52312,7 +52770,11 @@ bool OtherShapeFeatureNominalType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in OtherShapeFeatureNominalType\n");
       returnValue = true;
@@ -52740,7 +53202,7 @@ bool OtherSurfaceFeatureDefinitionType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -52749,12 +53211,12 @@ bool OtherSurfaceFeatureDefinitionType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in OtherSurfaceFeatureDefinitionType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -52768,7 +53230,11 @@ bool OtherSurfaceFeatureDefinitionType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in OtherSurfaceFeatureDefinitionType\n");
       returnValue = true;
@@ -52976,7 +53442,7 @@ bool OtherSurfaceFeatureItemType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -52985,12 +53451,12 @@ bool OtherSurfaceFeatureItemType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in OtherSurfaceFeatureItemType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -53004,7 +53470,11 @@ bool OtherSurfaceFeatureItemType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in OtherSurfaceFeatureItemType\n");
       returnValue = true;
@@ -53250,7 +53720,7 @@ bool OtherSurfaceFeatureMeasurementType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -53259,12 +53729,12 @@ bool OtherSurfaceFeatureMeasurementType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in OtherSurfaceFeatureMeasurementType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -53278,7 +53748,11 @@ bool OtherSurfaceFeatureMeasurementType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in OtherSurfaceFeatureMeasurementType\n");
       returnValue = true;
@@ -53540,7 +54014,7 @@ bool OtherSurfaceFeatureNominalType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -53549,12 +54023,12 @@ bool OtherSurfaceFeatureNominalType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in OtherSurfaceFeatureNominalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -53568,7 +54042,11 @@ bool OtherSurfaceFeatureNominalType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in OtherSurfaceFeatureNominalType\n");
       returnValue = true;
@@ -53808,7 +54286,7 @@ bool PatternFeatureCircleDefinitionType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -53817,12 +54295,12 @@ bool PatternFeatureCircleDefinitionType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in PatternFeatureCircleDefinitionType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -53836,7 +54314,11 @@ bool PatternFeatureCircleDefinitionType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in PatternFeatureCircleDefinitionType\n");
       returnValue = true;
@@ -54051,7 +54533,7 @@ bool PatternFeatureCircleItemType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -54060,12 +54542,12 @@ bool PatternFeatureCircleItemType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in PatternFeatureCircleItemType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -54079,7 +54561,11 @@ bool PatternFeatureCircleItemType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in PatternFeatureCircleItemType\n");
       returnValue = true;
@@ -54309,7 +54795,7 @@ bool PatternFeatureCircleNominalType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -54318,12 +54804,12 @@ bool PatternFeatureCircleNominalType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in PatternFeatureCircleNominalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -54337,7 +54823,11 @@ bool PatternFeatureCircleNominalType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in PatternFeatureCircleNominalType\n");
       returnValue = true;
@@ -54530,7 +55020,7 @@ bool PatternFeatureCircularArcDefinitionType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -54539,12 +55029,12 @@ bool PatternFeatureCircularArcDefinitionType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in PatternFeatureCircularArcDefinitionType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -54558,7 +55048,11 @@ bool PatternFeatureCircularArcDefinitionType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in PatternFeatureCircularArcDefinitionType\n");
       returnValue = true;
@@ -54779,7 +55273,7 @@ bool PatternFeatureCircularArcItemType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -54788,12 +55282,12 @@ bool PatternFeatureCircularArcItemType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in PatternFeatureCircularArcItemType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -54807,7 +55301,11 @@ bool PatternFeatureCircularArcItemType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in PatternFeatureCircularArcItemType\n");
       returnValue = true;
@@ -55037,7 +55535,7 @@ bool PatternFeatureCircularArcNominalType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -55046,12 +55544,12 @@ bool PatternFeatureCircularArcNominalType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in PatternFeatureCircularArcNominalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -55065,7 +55563,11 @@ bool PatternFeatureCircularArcNominalType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in PatternFeatureCircularArcNominalType\n");
       returnValue = true;
@@ -55215,7 +55717,7 @@ bool PatternFeatureDefinitionBaseType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -55224,12 +55726,12 @@ bool PatternFeatureDefinitionBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in PatternFeatureDefinitionBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -55243,7 +55745,11 @@ bool PatternFeatureDefinitionBaseType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in PatternFeatureDefinitionBaseType\n");
       returnValue = true;
@@ -55440,7 +55946,7 @@ bool PatternFeatureItemBaseType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -55449,12 +55955,12 @@ bool PatternFeatureItemBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in PatternFeatureItemBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -55468,7 +55974,11 @@ bool PatternFeatureItemBaseType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in PatternFeatureItemBaseType\n");
       returnValue = true;
@@ -55643,7 +56153,7 @@ bool PatternFeatureLinearDefinitionType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -55652,12 +56162,12 @@ bool PatternFeatureLinearDefinitionType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in PatternFeatureLinearDefinitionType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -55671,7 +56181,11 @@ bool PatternFeatureLinearDefinitionType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in PatternFeatureLinearDefinitionType\n");
       returnValue = true;
@@ -55892,7 +56406,7 @@ bool PatternFeatureLinearItemType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -55901,12 +56415,12 @@ bool PatternFeatureLinearItemType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in PatternFeatureLinearItemType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -55920,7 +56434,11 @@ bool PatternFeatureLinearItemType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in PatternFeatureLinearItemType\n");
       returnValue = true;
@@ -56130,7 +56648,7 @@ bool PatternFeatureLinearNominalType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -56139,12 +56657,12 @@ bool PatternFeatureLinearNominalType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in PatternFeatureLinearNominalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -56158,7 +56676,11 @@ bool PatternFeatureLinearNominalType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in PatternFeatureLinearNominalType\n");
       returnValue = true;
@@ -56364,7 +56886,7 @@ bool PatternFeatureNominalBaseType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -56373,12 +56895,12 @@ bool PatternFeatureNominalBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in PatternFeatureNominalBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -56392,7 +56914,11 @@ bool PatternFeatureNominalBaseType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in PatternFeatureNominalBaseType\n");
       returnValue = true;
@@ -56597,7 +57123,7 @@ bool PatternFeatureParallelogramDefinitionType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -56606,12 +57132,12 @@ bool PatternFeatureParallelogramDefinitionType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in PatternFeatureParallelogramDefinitionType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -56625,7 +57151,11 @@ bool PatternFeatureParallelogramDefinitionType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in PatternFeatureParallelogramDefinitionType\n");
       returnValue = true;
@@ -56864,7 +57394,7 @@ bool PatternFeatureParallelogramItemType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -56873,12 +57403,12 @@ bool PatternFeatureParallelogramItemType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in PatternFeatureParallelogramItemType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -56892,7 +57422,11 @@ bool PatternFeatureParallelogramItemType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in PatternFeatureParallelogramItemType\n");
       returnValue = true;
@@ -57102,7 +57636,7 @@ bool PatternFeatureParallelogramNominalType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -57111,12 +57645,12 @@ bool PatternFeatureParallelogramNominalType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in PatternFeatureParallelogramNominalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -57130,7 +57664,11 @@ bool PatternFeatureParallelogramNominalType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in PatternFeatureParallelogramNominalType\n");
       returnValue = true;
@@ -57275,7 +57813,7 @@ bool PlaneBestFitType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -57284,12 +57822,12 @@ bool PlaneBestFitType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in PlaneBestFitType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -57878,7 +58416,7 @@ bool PlaneFeatureDefinitionType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -57887,12 +58425,12 @@ bool PlaneFeatureDefinitionType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in PlaneFeatureDefinitionType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -57906,7 +58444,11 @@ bool PlaneFeatureDefinitionType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in PlaneFeatureDefinitionType\n");
       returnValue = true;
@@ -58114,7 +58656,7 @@ bool PlaneFeatureItemType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -58123,12 +58665,12 @@ bool PlaneFeatureItemType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in PlaneFeatureItemType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -58142,7 +58684,11 @@ bool PlaneFeatureItemType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in PlaneFeatureItemType\n");
       returnValue = true;
@@ -58427,7 +58973,7 @@ bool PlaneFeatureMeasurementType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -58436,12 +58982,12 @@ bool PlaneFeatureMeasurementType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in PlaneFeatureMeasurementType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -58455,7 +59001,11 @@ bool PlaneFeatureMeasurementType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in PlaneFeatureMeasurementType\n");
       returnValue = true;
@@ -58714,7 +59264,7 @@ bool PlaneFeatureNominalType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -58723,12 +59273,12 @@ bool PlaneFeatureNominalType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in PlaneFeatureNominalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -58742,7 +59292,11 @@ bool PlaneFeatureNominalType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in PlaneFeatureNominalType\n");
       returnValue = true;
@@ -59862,7 +60416,7 @@ bool PointDefinedCurveBestFitType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -59871,12 +60425,12 @@ bool PointDefinedCurveBestFitType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in PointDefinedCurveBestFitType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -60352,7 +60906,7 @@ bool PointDefinedCurveFeatureDefinitionType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -60361,12 +60915,12 @@ bool PointDefinedCurveFeatureDefinitionType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in PointDefinedCurveFeatureDefinitionType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -60380,7 +60934,11 @@ bool PointDefinedCurveFeatureDefinitionType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in PointDefinedCurveFeatureDefinitionType\n");
       returnValue = true;
@@ -60588,7 +61146,7 @@ bool PointDefinedCurveFeatureItemType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -60597,12 +61155,12 @@ bool PointDefinedCurveFeatureItemType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in PointDefinedCurveFeatureItemType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -60616,7 +61174,11 @@ bool PointDefinedCurveFeatureItemType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in PointDefinedCurveFeatureItemType\n");
       returnValue = true;
@@ -60890,7 +61452,7 @@ bool PointDefinedCurveFeatureMeasurementType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -60899,12 +61461,12 @@ bool PointDefinedCurveFeatureMeasurementType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in PointDefinedCurveFeatureMeasurementType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -60918,7 +61480,11 @@ bool PointDefinedCurveFeatureMeasurementType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in PointDefinedCurveFeatureMeasurementType\n");
       returnValue = true;
@@ -61177,7 +61743,7 @@ bool PointDefinedCurveFeatureNominalType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -61186,12 +61752,12 @@ bool PointDefinedCurveFeatureNominalType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in PointDefinedCurveFeatureNominalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -61205,7 +61771,11 @@ bool PointDefinedCurveFeatureNominalType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in PointDefinedCurveFeatureNominalType\n");
       returnValue = true;
@@ -61625,7 +62195,7 @@ bool PointDefinedSurfaceBestFitType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -61634,12 +62204,12 @@ bool PointDefinedSurfaceBestFitType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in PointDefinedSurfaceBestFitType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -62105,7 +62675,7 @@ bool PointDefinedSurfaceFeatureDefinitionType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -62114,12 +62684,12 @@ bool PointDefinedSurfaceFeatureDefinitionType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in PointDefinedSurfaceFeatureDefinitionType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -62133,7 +62703,11 @@ bool PointDefinedSurfaceFeatureDefinitionType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in PointDefinedSurfaceFeatureDefinitionType\n");
       returnValue = true;
@@ -62341,7 +62915,7 @@ bool PointDefinedSurfaceFeatureItemType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -62350,12 +62924,12 @@ bool PointDefinedSurfaceFeatureItemType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in PointDefinedSurfaceFeatureItemType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -62369,7 +62943,11 @@ bool PointDefinedSurfaceFeatureItemType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in PointDefinedSurfaceFeatureItemType\n");
       returnValue = true;
@@ -62629,7 +63207,7 @@ bool PointDefinedSurfaceFeatureMeasurementType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -62638,12 +63216,12 @@ bool PointDefinedSurfaceFeatureMeasurementType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in PointDefinedSurfaceFeatureMeasurementType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -62657,7 +63235,11 @@ bool PointDefinedSurfaceFeatureMeasurementType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in PointDefinedSurfaceFeatureMeasurementType\n");
       returnValue = true;
@@ -62885,7 +63467,7 @@ bool PointDefinedSurfaceFeatureNominalType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -62894,12 +63476,12 @@ bool PointDefinedSurfaceFeatureNominalType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in PointDefinedSurfaceFeatureNominalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -62913,7 +63495,11 @@ bool PointDefinedSurfaceFeatureNominalType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in PointDefinedSurfaceFeatureNominalType\n");
       returnValue = true;
@@ -63313,7 +63899,7 @@ bool PointFeatureCenterOfGravityType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -63322,12 +63908,12 @@ bool PointFeatureCenterOfGravityType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in PointFeatureCenterOfGravityType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -63508,7 +64094,7 @@ bool PointFeatureDefinitionBaseType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -63517,12 +64103,12 @@ bool PointFeatureDefinitionBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in PointFeatureDefinitionBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -63536,7 +64122,11 @@ bool PointFeatureDefinitionBaseType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in PointFeatureDefinitionBaseType\n");
       returnValue = true;
@@ -63638,7 +64228,7 @@ bool PointFeatureDefinitionType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -63647,12 +64237,12 @@ bool PointFeatureDefinitionType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in PointFeatureDefinitionType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -63666,7 +64256,11 @@ bool PointFeatureDefinitionType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in PointFeatureDefinitionType\n");
       returnValue = true;
@@ -64159,7 +64753,7 @@ bool PointFeatureItemBaseType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -64168,12 +64762,12 @@ bool PointFeatureItemBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in PointFeatureItemBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -64187,7 +64781,11 @@ bool PointFeatureItemBaseType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in PointFeatureItemBaseType\n");
       returnValue = true;
@@ -64395,7 +64993,7 @@ bool PointFeatureItemType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -64404,12 +65002,12 @@ bool PointFeatureItemType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in PointFeatureItemType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -64423,7 +65021,11 @@ bool PointFeatureItemType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in PointFeatureItemType\n");
       returnValue = true;
@@ -64656,7 +65258,7 @@ bool PointFeatureMeasurementBaseType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -64665,12 +65267,12 @@ bool PointFeatureMeasurementBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in PointFeatureMeasurementBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -64684,7 +65286,11 @@ bool PointFeatureMeasurementBaseType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in PointFeatureMeasurementBaseType\n");
       returnValue = true;
@@ -64937,7 +65543,7 @@ bool PointFeatureMeasurementType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -64946,12 +65552,12 @@ bool PointFeatureMeasurementType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in PointFeatureMeasurementType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -64965,7 +65571,11 @@ bool PointFeatureMeasurementType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in PointFeatureMeasurementType\n");
       returnValue = true;
@@ -65534,7 +66144,7 @@ bool PointFeatureNominalBaseType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -65543,12 +66153,12 @@ bool PointFeatureNominalBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in PointFeatureNominalBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -65562,7 +66172,11 @@ bool PointFeatureNominalBaseType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in PointFeatureNominalBaseType\n");
       returnValue = true;
@@ -65798,7 +66412,7 @@ bool PointFeatureNominalType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -65807,12 +66421,12 @@ bool PointFeatureNominalType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in PointFeatureNominalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -65826,7 +66440,11 @@ bool PointFeatureNominalType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in PointFeatureNominalType\n");
       returnValue = true;
@@ -66240,12 +66858,12 @@ void PointListType::printSelf(FILE * outFile)
         PointSetReferenceBaseType * basie;
         basie = *iter;
         doSpaces(0, outFile);
-        if (basie->printElement == 0)
+        if (basie->getprintElement() == 0)
           {
             fprintf(stderr, "element name missing\n");
             exit(1);
           }
-        else if (strcmp(basie->printElement, "WholePointSetId") == 0)
+        else if (strcmp(basie->getprintElement(), "WholePointSetId") == 0)
           {
             PointSetReferenceWholeType * typ;
             if ((typ = dynamic_cast<PointSetReferenceWholeType *>(basie)))
@@ -66260,7 +66878,7 @@ void PointListType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "RangePointSetId") == 0)
+        else if (strcmp(basie->getprintElement(), "RangePointSetId") == 0)
           {
             PointSetReferenceRangeType * typ;
             if ((typ = dynamic_cast<PointSetReferenceRangeType *>(basie)))
@@ -66275,7 +66893,7 @@ void PointListType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
-        else if (strcmp(basie->printElement, "SinglePointSetId") == 0)
+        else if (strcmp(basie->getprintElement(), "SinglePointSetId") == 0)
           {
             PointSetReferenceSingleType * typ;
             if ((typ = dynamic_cast<PointSetReferenceSingleType *>(basie)))
@@ -66312,7 +66930,7 @@ bool PointListType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -66321,12 +66939,12 @@ bool PointListType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in PointListType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -66920,7 +67538,7 @@ bool PointSetNominalType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "decimalPlaces")
+      if (decl->getname() == "decimalPlaces")
         {
           XmlNonNegativeInteger * decimalPlacesVal;
           if (this->decimalPlaces)
@@ -66929,19 +67547,19 @@ bool PointSetNominalType::badAttributes(
               returnValue = true;
               break;
             }
-          decimalPlacesVal = new XmlNonNegativeInteger(decl->val.c_str());
-          if (decimalPlacesVal->bad)
+          decimalPlacesVal = new XmlNonNegativeInteger(decl->getval().c_str());
+          if (decimalPlacesVal->getbad())
             {
               delete decimalPlacesVal;
               fprintf(stderr, "bad value %s for decimalPlaces in PointSetNominalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->decimalPlaces = decimalPlacesVal;
         }
-      else if (decl->name == "id")
+      else if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -66950,19 +67568,19 @@ bool PointSetNominalType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in PointSetNominalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->id = idVal;
         }
-      else if (decl->name == "linearUnit")
+      else if (decl->getname() == "linearUnit")
         {
           XmlToken * linearUnitVal;
           if (this->linearUnit)
@@ -66971,19 +67589,19 @@ bool PointSetNominalType::badAttributes(
               returnValue = true;
               break;
             }
-          linearUnitVal = new XmlToken(decl->val.c_str());
-          if (linearUnitVal->bad)
+          linearUnitVal = new XmlToken(decl->getval().c_str());
+          if (linearUnitVal->getbad())
             {
               delete linearUnitVal;
               fprintf(stderr, "bad value %s for linearUnit in PointSetNominalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->linearUnit = linearUnitVal;
         }
-      else if (decl->name == "n")
+      else if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -66992,19 +67610,19 @@ bool PointSetNominalType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in PointSetNominalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->n = nVal;
         }
-      else if (decl->name == "significantFigures")
+      else if (decl->getname() == "significantFigures")
         {
           XmlNonNegativeInteger * significantFiguresVal;
           if (this->significantFigures)
@@ -67013,19 +67631,19 @@ bool PointSetNominalType::badAttributes(
               returnValue = true;
               break;
             }
-          significantFiguresVal = new XmlNonNegativeInteger(decl->val.c_str());
-          if (significantFiguresVal->bad)
+          significantFiguresVal = new XmlNonNegativeInteger(decl->getval().c_str());
+          if (significantFiguresVal->getbad())
             {
               delete significantFiguresVal;
               fprintf(stderr, "bad value %s for significantFigures in PointSetNominalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->significantFigures = significantFiguresVal;
         }
-      else if (decl->name == "validity")
+      else if (decl->getname() == "validity")
         {
           ValidityEnumType * validityVal;
           if (this->validity)
@@ -67034,19 +67652,19 @@ bool PointSetNominalType::badAttributes(
               returnValue = true;
               break;
             }
-          validityVal = new ValidityEnumType(decl->val.c_str());
-          if (validityVal->bad)
+          validityVal = new ValidityEnumType(decl->getval().c_str());
+          if (validityVal->getbad())
             {
               delete validityVal;
               fprintf(stderr, "bad value %s for validity in PointSetNominalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->validity = validityVal;
         }
-      else if (decl->name == "xDecimalPlaces")
+      else if (decl->getname() == "xDecimalPlaces")
         {
           XmlNonNegativeInteger * xDecimalPlacesVal;
           if (this->xDecimalPlaces)
@@ -67055,19 +67673,19 @@ bool PointSetNominalType::badAttributes(
               returnValue = true;
               break;
             }
-          xDecimalPlacesVal = new XmlNonNegativeInteger(decl->val.c_str());
-          if (xDecimalPlacesVal->bad)
+          xDecimalPlacesVal = new XmlNonNegativeInteger(decl->getval().c_str());
+          if (xDecimalPlacesVal->getbad())
             {
               delete xDecimalPlacesVal;
               fprintf(stderr, "bad value %s for xDecimalPlaces in PointSetNominalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->xDecimalPlaces = xDecimalPlacesVal;
         }
-      else if (decl->name == "xSignificantFigures")
+      else if (decl->getname() == "xSignificantFigures")
         {
           XmlNonNegativeInteger * xSignificantFiguresVal;
           if (this->xSignificantFigures)
@@ -67076,19 +67694,19 @@ bool PointSetNominalType::badAttributes(
               returnValue = true;
               break;
             }
-          xSignificantFiguresVal = new XmlNonNegativeInteger(decl->val.c_str());
-          if (xSignificantFiguresVal->bad)
+          xSignificantFiguresVal = new XmlNonNegativeInteger(decl->getval().c_str());
+          if (xSignificantFiguresVal->getbad())
             {
               delete xSignificantFiguresVal;
               fprintf(stderr, "bad value %s for xSignificantFigures in PointSetNominalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->xSignificantFigures = xSignificantFiguresVal;
         }
-      else if (decl->name == "xValidity")
+      else if (decl->getname() == "xValidity")
         {
           ValidityEnumType * xValidityVal;
           if (this->xValidity)
@@ -67097,19 +67715,19 @@ bool PointSetNominalType::badAttributes(
               returnValue = true;
               break;
             }
-          xValidityVal = new ValidityEnumType(decl->val.c_str());
-          if (xValidityVal->bad)
+          xValidityVal = new ValidityEnumType(decl->getval().c_str());
+          if (xValidityVal->getbad())
             {
               delete xValidityVal;
               fprintf(stderr, "bad value %s for xValidity in PointSetNominalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->xValidity = xValidityVal;
         }
-      else if (decl->name == "yDecimalPlaces")
+      else if (decl->getname() == "yDecimalPlaces")
         {
           XmlNonNegativeInteger * yDecimalPlacesVal;
           if (this->yDecimalPlaces)
@@ -67118,19 +67736,19 @@ bool PointSetNominalType::badAttributes(
               returnValue = true;
               break;
             }
-          yDecimalPlacesVal = new XmlNonNegativeInteger(decl->val.c_str());
-          if (yDecimalPlacesVal->bad)
+          yDecimalPlacesVal = new XmlNonNegativeInteger(decl->getval().c_str());
+          if (yDecimalPlacesVal->getbad())
             {
               delete yDecimalPlacesVal;
               fprintf(stderr, "bad value %s for yDecimalPlaces in PointSetNominalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->yDecimalPlaces = yDecimalPlacesVal;
         }
-      else if (decl->name == "ySignificantFigures")
+      else if (decl->getname() == "ySignificantFigures")
         {
           XmlNonNegativeInteger * ySignificantFiguresVal;
           if (this->ySignificantFigures)
@@ -67139,19 +67757,19 @@ bool PointSetNominalType::badAttributes(
               returnValue = true;
               break;
             }
-          ySignificantFiguresVal = new XmlNonNegativeInteger(decl->val.c_str());
-          if (ySignificantFiguresVal->bad)
+          ySignificantFiguresVal = new XmlNonNegativeInteger(decl->getval().c_str());
+          if (ySignificantFiguresVal->getbad())
             {
               delete ySignificantFiguresVal;
               fprintf(stderr, "bad value %s for ySignificantFigures in PointSetNominalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->ySignificantFigures = ySignificantFiguresVal;
         }
-      else if (decl->name == "yValidity")
+      else if (decl->getname() == "yValidity")
         {
           ValidityEnumType * yValidityVal;
           if (this->yValidity)
@@ -67160,19 +67778,19 @@ bool PointSetNominalType::badAttributes(
               returnValue = true;
               break;
             }
-          yValidityVal = new ValidityEnumType(decl->val.c_str());
-          if (yValidityVal->bad)
+          yValidityVal = new ValidityEnumType(decl->getval().c_str());
+          if (yValidityVal->getbad())
             {
               delete yValidityVal;
               fprintf(stderr, "bad value %s for yValidity in PointSetNominalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->yValidity = yValidityVal;
         }
-      else if (decl->name == "zDecimalPlaces")
+      else if (decl->getname() == "zDecimalPlaces")
         {
           XmlNonNegativeInteger * zDecimalPlacesVal;
           if (this->zDecimalPlaces)
@@ -67181,19 +67799,19 @@ bool PointSetNominalType::badAttributes(
               returnValue = true;
               break;
             }
-          zDecimalPlacesVal = new XmlNonNegativeInteger(decl->val.c_str());
-          if (zDecimalPlacesVal->bad)
+          zDecimalPlacesVal = new XmlNonNegativeInteger(decl->getval().c_str());
+          if (zDecimalPlacesVal->getbad())
             {
               delete zDecimalPlacesVal;
               fprintf(stderr, "bad value %s for zDecimalPlaces in PointSetNominalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->zDecimalPlaces = zDecimalPlacesVal;
         }
-      else if (decl->name == "zSignificantFigures")
+      else if (decl->getname() == "zSignificantFigures")
         {
           XmlNonNegativeInteger * zSignificantFiguresVal;
           if (this->zSignificantFigures)
@@ -67202,19 +67820,19 @@ bool PointSetNominalType::badAttributes(
               returnValue = true;
               break;
             }
-          zSignificantFiguresVal = new XmlNonNegativeInteger(decl->val.c_str());
-          if (zSignificantFiguresVal->bad)
+          zSignificantFiguresVal = new XmlNonNegativeInteger(decl->getval().c_str());
+          if (zSignificantFiguresVal->getbad())
             {
               delete zSignificantFiguresVal;
               fprintf(stderr, "bad value %s for zSignificantFigures in PointSetNominalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
           else
             this->zSignificantFigures = zSignificantFiguresVal;
         }
-      else if (decl->name == "zValidity")
+      else if (decl->getname() == "zValidity")
         {
           ValidityEnumType * zValidityVal;
           if (this->zValidity)
@@ -67223,12 +67841,12 @@ bool PointSetNominalType::badAttributes(
               returnValue = true;
               break;
             }
-          zValidityVal = new ValidityEnumType(decl->val.c_str());
-          if (zValidityVal->bad)
+          zValidityVal = new ValidityEnumType(decl->getval().c_str());
+          if (zValidityVal->getbad())
             {
               delete zValidityVal;
               fprintf(stderr, "bad value %s for zValidity in PointSetNominalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -67242,7 +67860,11 @@ bool PointSetNominalType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in PointSetNominalType\n");
       returnValue = true;
@@ -67524,7 +68146,7 @@ bool ShapeFeatureDefinitionBaseType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -67533,12 +68155,12 @@ bool ShapeFeatureDefinitionBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in ShapeFeatureDefinitionBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -67552,7 +68174,11 @@ bool ShapeFeatureDefinitionBaseType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in ShapeFeatureDefinitionBaseType\n");
       returnValue = true;
@@ -67755,7 +68381,7 @@ bool ShapeFeatureItemBaseType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -67764,12 +68390,12 @@ bool ShapeFeatureItemBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in ShapeFeatureItemBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -67783,7 +68409,11 @@ bool ShapeFeatureItemBaseType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in ShapeFeatureItemBaseType\n");
       returnValue = true;
@@ -68034,7 +68664,7 @@ bool ShapeFeatureMeasurementBaseType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -68043,12 +68673,12 @@ bool ShapeFeatureMeasurementBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in ShapeFeatureMeasurementBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -68062,7 +68692,11 @@ bool ShapeFeatureMeasurementBaseType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in ShapeFeatureMeasurementBaseType\n");
       returnValue = true;
@@ -68275,7 +68909,7 @@ bool ShapeFeatureNominalBaseType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -68284,12 +68918,12 @@ bool ShapeFeatureNominalBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in ShapeFeatureNominalBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -68303,7 +68937,11 @@ bool ShapeFeatureNominalBaseType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in ShapeFeatureNominalBaseType\n");
       returnValue = true;
@@ -68417,7 +69055,7 @@ bool SpecifiedFeatureDefinitionBaseType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -68426,12 +69064,12 @@ bool SpecifiedFeatureDefinitionBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in SpecifiedFeatureDefinitionBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -68445,7 +69083,11 @@ bool SpecifiedFeatureDefinitionBaseType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in SpecifiedFeatureDefinitionBaseType\n");
       returnValue = true;
@@ -68642,7 +69284,7 @@ bool SpecifiedFeatureItemBaseType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -68651,12 +69293,12 @@ bool SpecifiedFeatureItemBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in SpecifiedFeatureItemBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -68670,7 +69312,11 @@ bool SpecifiedFeatureItemBaseType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in SpecifiedFeatureItemBaseType\n");
       returnValue = true;
@@ -68897,7 +69543,7 @@ bool SpecifiedFeatureMeasurementBaseType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -68906,12 +69552,12 @@ bool SpecifiedFeatureMeasurementBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in SpecifiedFeatureMeasurementBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -68925,7 +69571,11 @@ bool SpecifiedFeatureMeasurementBaseType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in SpecifiedFeatureMeasurementBaseType\n");
       returnValue = true;
@@ -69116,7 +69766,7 @@ bool SpecifiedFeatureNominalBaseType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -69125,12 +69775,12 @@ bool SpecifiedFeatureNominalBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in SpecifiedFeatureNominalBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -69144,7 +69794,11 @@ bool SpecifiedFeatureNominalBaseType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in SpecifiedFeatureNominalBaseType\n");
       returnValue = true;
@@ -69283,7 +69937,7 @@ bool SphereBestFitType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -69292,12 +69946,12 @@ bool SphereBestFitType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in SphereBestFitType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -69793,7 +70447,7 @@ bool SphereFeatureDefinitionType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -69802,12 +70456,12 @@ bool SphereFeatureDefinitionType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in SphereFeatureDefinitionType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -69821,7 +70475,11 @@ bool SphereFeatureDefinitionType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in SphereFeatureDefinitionType\n");
       returnValue = true;
@@ -70041,7 +70699,7 @@ bool SphereFeatureItemType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -70050,12 +70708,12 @@ bool SphereFeatureItemType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in SphereFeatureItemType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -70069,7 +70727,11 @@ bool SphereFeatureItemType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in SphereFeatureItemType\n");
       returnValue = true;
@@ -70395,7 +71057,7 @@ bool SphereFeatureMeasurementType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -70404,12 +71066,12 @@ bool SphereFeatureMeasurementType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in SphereFeatureMeasurementType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -70423,7 +71085,11 @@ bool SphereFeatureMeasurementType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in SphereFeatureMeasurementType\n");
       returnValue = true;
@@ -70694,7 +71360,7 @@ bool SphereFeatureNominalType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -70703,12 +71369,12 @@ bool SphereFeatureNominalType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in SphereFeatureNominalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -70722,7 +71388,11 @@ bool SphereFeatureNominalType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in SphereFeatureNominalType\n");
       returnValue = true;
@@ -71159,7 +71829,7 @@ bool SphericalSegmentBestFitType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -71168,12 +71838,12 @@ bool SphericalSegmentBestFitType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in SphericalSegmentBestFitType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -71659,7 +72329,7 @@ bool SphericalSegmentFeatureDefinitionType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -71668,12 +72338,12 @@ bool SphericalSegmentFeatureDefinitionType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in SphericalSegmentFeatureDefinitionType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -71687,7 +72357,11 @@ bool SphericalSegmentFeatureDefinitionType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in SphericalSegmentFeatureDefinitionType\n");
       returnValue = true;
@@ -71907,7 +72581,7 @@ bool SphericalSegmentFeatureItemType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -71916,12 +72590,12 @@ bool SphericalSegmentFeatureItemType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in SphericalSegmentFeatureItemType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -71935,7 +72609,11 @@ bool SphericalSegmentFeatureItemType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in SphericalSegmentFeatureItemType\n");
       returnValue = true;
@@ -72261,7 +72939,7 @@ bool SphericalSegmentFeatureMeasurementType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -72270,12 +72948,12 @@ bool SphericalSegmentFeatureMeasurementType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in SphericalSegmentFeatureMeasurementType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -72289,7 +72967,11 @@ bool SphericalSegmentFeatureMeasurementType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in SphericalSegmentFeatureMeasurementType\n");
       returnValue = true;
@@ -72557,7 +73239,7 @@ bool SphericalSegmentFeatureNominalType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -72566,12 +73248,12 @@ bool SphericalSegmentFeatureNominalType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in SphericalSegmentFeatureNominalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -72585,7 +73267,11 @@ bool SphericalSegmentFeatureNominalType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in SphericalSegmentFeatureNominalType\n");
       returnValue = true;
@@ -72901,7 +73587,7 @@ bool SurfaceFeatureDefinitionBaseType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -72910,12 +73596,12 @@ bool SurfaceFeatureDefinitionBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in SurfaceFeatureDefinitionBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -72929,7 +73615,11 @@ bool SurfaceFeatureDefinitionBaseType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in SurfaceFeatureDefinitionBaseType\n");
       returnValue = true;
@@ -73126,7 +73816,7 @@ bool SurfaceFeatureItemBaseType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -73135,12 +73825,12 @@ bool SurfaceFeatureItemBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in SurfaceFeatureItemBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -73154,7 +73844,11 @@ bool SurfaceFeatureItemBaseType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in SurfaceFeatureItemBaseType\n");
       returnValue = true;
@@ -73381,7 +74075,7 @@ bool SurfaceFeatureMeasurementBaseType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -73390,12 +74084,12 @@ bool SurfaceFeatureMeasurementBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in SurfaceFeatureMeasurementBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -73409,7 +74103,11 @@ bool SurfaceFeatureMeasurementBaseType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in SurfaceFeatureMeasurementBaseType\n");
       returnValue = true;
@@ -73600,7 +74298,7 @@ bool SurfaceFeatureNominalBaseType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -73609,12 +74307,12 @@ bool SurfaceFeatureNominalBaseType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in SurfaceFeatureNominalBaseType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -73628,7 +74326,11 @@ bool SurfaceFeatureNominalBaseType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in SurfaceFeatureNominalBaseType\n");
       returnValue = true;
@@ -73767,7 +74469,7 @@ bool SurfaceOfRevolutionBestFitType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -73776,12 +74478,12 @@ bool SurfaceOfRevolutionBestFitType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in SurfaceOfRevolutionBestFitType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -74270,7 +74972,7 @@ bool SurfaceOfRevolutionFeatureDefinitionType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -74279,12 +74981,12 @@ bool SurfaceOfRevolutionFeatureDefinitionType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in SurfaceOfRevolutionFeatureDefinitionType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -74298,7 +75000,11 @@ bool SurfaceOfRevolutionFeatureDefinitionType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in SurfaceOfRevolutionFeatureDefinitionType\n");
       returnValue = true;
@@ -74518,7 +75224,7 @@ bool SurfaceOfRevolutionFeatureItemType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -74527,12 +75233,12 @@ bool SurfaceOfRevolutionFeatureItemType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in SurfaceOfRevolutionFeatureItemType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -74546,7 +75252,11 @@ bool SurfaceOfRevolutionFeatureItemType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in SurfaceOfRevolutionFeatureItemType\n");
       returnValue = true;
@@ -74847,7 +75557,7 @@ bool SurfaceOfRevolutionFeatureMeasurementType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -74856,12 +75566,12 @@ bool SurfaceOfRevolutionFeatureMeasurementType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in SurfaceOfRevolutionFeatureMeasurementType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -74875,7 +75585,11 @@ bool SurfaceOfRevolutionFeatureMeasurementType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in SurfaceOfRevolutionFeatureMeasurementType\n");
       returnValue = true;
@@ -75148,7 +75862,7 @@ bool SurfaceOfRevolutionFeatureNominalType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -75157,12 +75871,12 @@ bool SurfaceOfRevolutionFeatureNominalType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in SurfaceOfRevolutionFeatureNominalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -75176,7 +75890,11 @@ bool SurfaceOfRevolutionFeatureNominalType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in SurfaceOfRevolutionFeatureNominalType\n");
       returnValue = true;
@@ -75535,7 +76253,7 @@ bool ThreadedFeatureBestFitType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -75544,12 +76262,12 @@ bool ThreadedFeatureBestFitType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in ThreadedFeatureBestFitType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -76072,7 +76790,7 @@ bool ThreadedFeatureDefinitionType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -76081,12 +76799,12 @@ bool ThreadedFeatureDefinitionType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in ThreadedFeatureDefinitionType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -76100,7 +76818,11 @@ bool ThreadedFeatureDefinitionType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in ThreadedFeatureDefinitionType\n");
       returnValue = true;
@@ -76402,7 +77124,7 @@ bool ThreadedFeatureItemType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -76411,12 +77133,12 @@ bool ThreadedFeatureItemType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in ThreadedFeatureItemType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -76430,7 +77152,11 @@ bool ThreadedFeatureItemType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in ThreadedFeatureItemType\n");
       returnValue = true;
@@ -76791,7 +77517,7 @@ bool ThreadedFeatureMeasurementType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -76800,12 +77526,12 @@ bool ThreadedFeatureMeasurementType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in ThreadedFeatureMeasurementType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -76819,7 +77545,11 @@ bool ThreadedFeatureMeasurementType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in ThreadedFeatureMeasurementType\n");
       returnValue = true;
@@ -77059,7 +77789,7 @@ bool ThreadedFeatureNominalType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -77068,12 +77798,12 @@ bool ThreadedFeatureNominalType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in ThreadedFeatureNominalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -77087,7 +77817,11 @@ bool ThreadedFeatureNominalType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in ThreadedFeatureNominalType\n");
       returnValue = true;
@@ -77359,7 +78093,7 @@ bool ToroidalSegmentBestFitType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -77368,12 +78102,12 @@ bool ToroidalSegmentBestFitType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in ToroidalSegmentBestFitType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -77869,7 +78603,7 @@ bool ToroidalSegmentFeatureDefinitionType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -77878,12 +78612,12 @@ bool ToroidalSegmentFeatureDefinitionType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in ToroidalSegmentFeatureDefinitionType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -77897,7 +78631,11 @@ bool ToroidalSegmentFeatureDefinitionType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in ToroidalSegmentFeatureDefinitionType\n");
       returnValue = true;
@@ -78123,7 +78861,7 @@ bool ToroidalSegmentFeatureItemType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -78132,12 +78870,12 @@ bool ToroidalSegmentFeatureItemType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in ToroidalSegmentFeatureItemType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -78151,7 +78889,11 @@ bool ToroidalSegmentFeatureItemType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in ToroidalSegmentFeatureItemType\n");
       returnValue = true;
@@ -78477,7 +79219,7 @@ bool ToroidalSegmentFeatureMeasurementType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -78486,12 +79228,12 @@ bool ToroidalSegmentFeatureMeasurementType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in ToroidalSegmentFeatureMeasurementType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -78505,7 +79247,11 @@ bool ToroidalSegmentFeatureMeasurementType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in ToroidalSegmentFeatureMeasurementType\n");
       returnValue = true;
@@ -78783,7 +79529,7 @@ bool ToroidalSegmentFeatureNominalType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -78792,12 +79538,12 @@ bool ToroidalSegmentFeatureNominalType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in ToroidalSegmentFeatureNominalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -78811,7 +79557,11 @@ bool ToroidalSegmentFeatureNominalType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in ToroidalSegmentFeatureNominalType\n");
       returnValue = true;
@@ -79170,7 +79920,7 @@ bool TorusBestFitType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "n")
+      if (decl->getname() == "n")
         {
           NaturalType * nVal;
           if (this->n)
@@ -79179,12 +79929,12 @@ bool TorusBestFitType::badAttributes(
               returnValue = true;
               break;
             }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
+          nVal = new NaturalType(decl->getval().c_str());
+          if (nVal->getbad())
             {
               delete nVal;
               fprintf(stderr, "bad value %s for n in TorusBestFitType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -79690,7 +80440,7 @@ bool TorusFeatureDefinitionType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -79699,12 +80449,12 @@ bool TorusFeatureDefinitionType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in TorusFeatureDefinitionType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -79718,7 +80468,11 @@ bool TorusFeatureDefinitionType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in TorusFeatureDefinitionType\n");
       returnValue = true;
@@ -79944,7 +80698,7 @@ bool TorusFeatureItemType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -79953,12 +80707,12 @@ bool TorusFeatureItemType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in TorusFeatureItemType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -79972,7 +80726,11 @@ bool TorusFeatureItemType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in TorusFeatureItemType\n");
       returnValue = true;
@@ -80298,7 +81056,7 @@ bool TorusFeatureMeasurementType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -80307,12 +81065,12 @@ bool TorusFeatureMeasurementType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in TorusFeatureMeasurementType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -80326,7 +81084,11 @@ bool TorusFeatureMeasurementType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in TorusFeatureMeasurementType\n");
       returnValue = true;
@@ -80607,7 +81369,7 @@ bool TorusFeatureNominalType::badAttributes(
   for (iter = attributes->begin(); iter != attributes->end(); iter++)
     {
       decl = *iter;
-      if (decl->name == "id")
+      if (decl->getname() == "id")
         {
           QIFIdType * idVal;
           if (this->id)
@@ -80616,12 +81378,12 @@ bool TorusFeatureNominalType::badAttributes(
               returnValue = true;
               break;
             }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
+          idVal = new QIFIdType(decl->getval().c_str());
+          if (idVal->getbad())
             {
               delete idVal;
               fprintf(stderr, "bad value %s for id in TorusFeatureNominalType\n",
-                      decl->val.c_str());
+                      decl->getval().c_str());
               returnValue = true;
               break;
             }
@@ -80635,7 +81397,11 @@ bool TorusFeatureNominalType::badAttributes(
           break;
         }
     }
-  if (this->id == 0)
+  if (this->id)
+    {
+      idMap[this->id->getval()] = this;
+    }
+  else
     {
       fprintf(stderr, "required attribute \"id\" missing in TorusFeatureNominalType\n");
       returnValue = true;
