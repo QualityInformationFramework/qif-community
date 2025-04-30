@@ -1557,7 +1557,6 @@ int yyAttributesBad(int * index1);
   OppositeParallelPlanesRecompType *  OppositeParallelPlanesRecompTypeVal;
   OppositeParallelPlanesTransformType * OppositeParallelPlanesTransformTypeVal;
   OpticalComparatorType *             OpticalComparatorTypeVal;
-  OpticalDigitizerMeasureFeatureMethodType * OpticalDigitizerMeasureFeatureMethodTypeVal;
   OrType *                            OrTypeVal;
   OrderedActionGroupType *            OrderedActionGroupTypeVal;
   OrganizationType *                  OrganizationTypeVal;
@@ -2827,6 +2826,7 @@ int yyAttributesBad(int * index1);
 %type <AACMMTypeVal>                  y_AACMM_AACMMType
 %type <ABCResolutionTypeVal>          y_ABCResolutionType
 %type <ABCResolutionTypeVal>          y_ABCResolution_ABCResolutionType
+%type <ABCResolutionTypeVal>          y_ABCResolution_ABCResolutionType_0
 %type <AbsoluteLimitsByUnitTypeVal>   y_AbsoluteDifferences_AbsoluteLimitsByUnitType
 %type <AbsoluteLimitsByUnitTypeVal>   y_AbsoluteLimitsByUnitType
 %type <AbsoluteLimitsByUnitTypeVal>   y_AbsoluteMaximums_AbsoluteLimitsByUnitType
@@ -6351,8 +6351,6 @@ int yyAttributesBad(int * index1);
 %type <OppositeParallelPlanesTransformTypeVal> y_Transform_OppositeParallelPlanesTransformType
 %type <OpticalComparatorTypeVal>      y_OpticalComparatorType
 %type <OpticalComparatorTypeVal>      y_OpticalComparator_OpticalComparatorType
-%type <OpticalDigitizerMeasureFeatureMethodTypeVal> y_OpticalDigitizerMeasureFeatureMethodType
-%type <OpticalDigitizerMeasureFeatureMethodTypeVal> y_OpticalDigitizerMeasureFeatureMethod_OpticalDigitizerMeasureFeatureMethodType
 %type <OrTypeVal>                     y_OrType
 %type <OrTypeVal>                     y_Or_OrType
 %type <OrderedActionGroupTypeVal>     y_OrderedActionGroupType
@@ -7133,7 +7131,7 @@ int yyAttributesBad(int * index1);
 %type <QuaternionTypeVal>             y_QuaternionType
 %type <RAPZResolutionTypeVal>         y_RAPResolution_RAPZResolutionType
 %type <RAPZResolutionTypeVal>         y_RAPZResolutionType
-%type <RAPZResolutionTypeVal>         y_RAPZResolution_RAPZResolutionType
+%type <RAPZResolutionTypeVal>         y_RAPZResolution_RAPZResolutionType_0
 %type <RadialDifferentialScaleTypeVal> y_RadialDifferentialScaleType
 %type <RadialDifferentialScaleTypeVal> y_RadialDifferentialScale_RadialDifferentialScaleType
 %type <RadiusCharacteristicDefinitionTypeVal> y_RadiusCharacteristicDefinitionType
@@ -12419,8 +12417,6 @@ int yyAttributesBad(int * index1);
 %token <iVal> OppositeParallelPlanesFeatureNominalSTART
 %token <iVal> OpticalComparatorEND
 %token <iVal> OpticalComparatorSTART
-%token <iVal> OpticalDigitizerMeasureFeatureMethodEND
-%token <iVal> OpticalDigitizerMeasureFeatureMethodSTART
 %token <iVal> OpticalFiberCableLengthEND
 %token <iVal> OpticalFiberCableLengthSTART
 %token <iVal> OrEND
@@ -15162,7 +15158,7 @@ y_XmlAnyURI :
           {$$ = new XmlAnyURI($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              {
               return yyerror("bad XmlAnyURI");
              }
@@ -15174,7 +15170,7 @@ y_XmlBoolean :
           {$$ = new XmlBoolean($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              {
               return yyerror("bad XmlBoolean");
              }
@@ -15186,7 +15182,7 @@ y_XmlDateTime :
           {$$ = new XmlDateTime($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              {
               return yyerror("bad XmlDateTime");
              }
@@ -15198,7 +15194,7 @@ y_XmlDecimal :
           {$$ = new XmlDecimal($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              {
               return yyerror("bad XmlDecimal");
              }
@@ -15210,7 +15206,7 @@ y_XmlDouble :
           {$$ = new XmlDouble($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              {
               return yyerror("bad XmlDouble");
              }
@@ -15222,7 +15218,7 @@ y_XmlID :
           {$$ = new XmlID($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              {
               return yyerror("bad XmlID");
              }
@@ -15234,7 +15230,7 @@ y_XmlIDREF :
           {$$ = new XmlIDREF($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              {
               return yyerror("bad XmlIDREF");
              }
@@ -15246,7 +15242,7 @@ y_XmlInt :
           {$$ = new XmlInt($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              {
               return yyerror("bad XmlInt");
              }
@@ -15258,7 +15254,7 @@ y_XmlInteger :
           {$$ = new XmlInteger($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              {
               return yyerror("bad XmlInteger");
              }
@@ -15270,7 +15266,7 @@ y_XmlNMTOKEN :
           {$$ = new XmlNMTOKEN($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              {
               return yyerror("bad XmlNMTOKEN");
              }
@@ -15282,7 +15278,7 @@ y_XmlNonNegativeInteger :
           {$$ = new XmlNonNegativeInteger($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              {
               return yyerror("bad XmlNonNegativeInteger");
              }
@@ -15294,7 +15290,7 @@ y_XmlPositiveInteger :
           {$$ = new XmlPositiveInteger($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              {
               return yyerror("bad XmlPositiveInteger");
              }
@@ -15306,7 +15302,7 @@ y_XmlString :
           {$$ = new XmlString($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              {
               return yyerror("bad XmlString");
              }
@@ -15318,7 +15314,7 @@ y_XmlToken :
           {$$ = new XmlToken($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              {
               return yyerror("bad XmlToken");
              }
@@ -15330,7 +15326,7 @@ y_XmlUnsignedByte :
           {$$ = new XmlUnsignedByte($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              {
               return yyerror("bad XmlUnsignedByte");
              }
@@ -15342,7 +15338,7 @@ y_XmlUnsignedInt :
           {$$ = new XmlUnsignedInt($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              {
               return yyerror("bad XmlUnsignedInt");
              }
@@ -15377,7 +15373,7 @@ y_XmlVersion :
               return yyerror("encoding must be UTF-8 or utf-8");
              }
            else
-             strncpy($$->encoding, $5, 6);
+             strncpy($$->getencoding(), $5, 6);
            free($3);
            free($5);
           }
@@ -15398,7 +15394,7 @@ y_XmlVersion :
               return yyerror("standalone must be yes or no");
              }
            else
-             strncpy($$->standalone, $5, 5);
+             strncpy($$->getstandalone(), $5, 5);
            free($3);
            free($5);
           }
@@ -15429,8 +15425,8 @@ y_XmlVersion :
              }
            else
              {
-              strncpy($$->encoding, $5, 6);
-              strncpy($$->standalone, $7, 5);
+              strncpy($$->getencoding(), $5, 6);
+              strncpy($$->getstandalone(), $7, 5);
               free($3);
               free($5);
               free($7);
@@ -15581,7 +15577,7 @@ y_AACMMAccuracyType :
 y_AACMMAccuracy_AACMMAccuracyType :
           AACMMAccuracySTART y_AACMMAccuracyType AACMMAccuracyEND
           {$$ = $2;
-           $$->printElement = "AACMMAccuracy";
+           $$->setprintElement("AACMMAccuracy");
           }
         ;
 
@@ -15602,18 +15598,18 @@ y_AACMMB89Test_AACMMB89TestType :
           AACMMB89TestSTART ENDWHOLEITEM
           {$$ = new AACMMB89TestType();
            yyUnrefMap[$$] = $$;
-           $$->printElement = "AACMMB89Test";
+           $$->setprintElement("AACMMB89Test");
           }
         | AACMMB89TestSTART y_AACMMB89TestType AACMMB89TestEND
           {$$ = $2;
-           $$->printElement = "AACMMB89Test";
+           $$->setprintElement("AACMMB89Test");
           }
         ;
 
 y_AACMMISO10360Test_ISO10360TestType :
           AACMMISO10360TestSTART y_ISO10360TestType AACMMISO10360TestEND
           {$$ = $2;
-           $$->printElement = "AACMMISO10360Test";
+           $$->setprintElement("AACMMISO10360Test");
           }
         ;
 
@@ -15621,7 +15617,7 @@ y_AACMMPointAccuracyTest_PointAccuracyTestType :
           AACMMPointAccuracyTestSTART y_PointAccuracyTestType
           AACMMPointAccuracyTestEND
           {$$ = $2;
-           $$->printElement = "AACMMPointAccuracyTest";
+           $$->setprintElement("AACMMPointAccuracyTest");
           }
         ;
 
@@ -15677,7 +15673,7 @@ y_AACMMType :
 y_AACMM_AACMMType :
           AACMMSTART y_AACMMType AACMMEND
           {$$ = $2;
-           $$->printElement = "AACMM";
+           $$->setprintElement("AACMM");
           }
         ;
 
@@ -15700,6 +15696,13 @@ y_ABCResolutionType :
 
 y_ABCResolution_ABCResolutionType :
           ABCResolutionSTART y_ABCResolutionType ABCResolutionEND
+          {$$ = $2;}
+        ;
+
+y_ABCResolution_ABCResolutionType_0 :
+          /* empty */
+          {$$ = 0;}
+        | ABCResolutionSTART y_ABCResolutionType ABCResolutionEND
           {$$ = $2;}
         ;
 
@@ -15886,7 +15889,7 @@ y_AccuracySourceEnumType :
           {$$ = new AccuracySourceEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad AccuracySourceEnumType value");
           }
         ;
@@ -15949,7 +15952,7 @@ y_Accuracy_NumericalLengthAccuracyType_0 :
           {$$ = 0;}
         | AccuracySTART y_NumericalLengthAccuracyType AccuracyEND
           {$$ = $2;
-           $$->printElement = "Accuracy";
+           $$->setprintElement("Accuracy");
           }
         ;
 
@@ -16004,11 +16007,6 @@ y_ActionMethod_substituteType :
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
-        | y_OpticalDigitizerMeasureFeatureMethod_OpticalDigitizerMeasureFeatureMethodType
-          {$$ = $1;
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-          }
         | y_OtherMeasureFeatureMethod_OtherMeasureFeatureMethodType
           {$$ = $1;
            yyUnrefMap[$$] = $$;
@@ -16058,7 +16056,7 @@ y_ActionToTakeEnumType :
           {$$ = new ActionToTakeEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad ActionToTakeEnumType value");
           }
         ;
@@ -16306,7 +16304,7 @@ y_AddressDescriptionEnumType :
           {$$ = new AddressDescriptionEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad AddressDescriptionEnumType value");
           }
         ;
@@ -16385,7 +16383,7 @@ y_Aggregate12CoreType :
 y_Aggregate12Core_Aggregate12CoreType :
           Aggregate12CoreSTART y_Aggregate12CoreType Aggregate12CoreEND
           {$$ = $2;
-           $$->printElement = "Aggregate12Core";
+           $$->setprintElement("Aggregate12Core");
           }
         ;
 
@@ -16409,7 +16407,7 @@ y_Aggregate12Type :
 y_Aggregate12_Aggregate12Type :
           Aggregate12START y_Aggregate12Type Aggregate12END
           {$$ = $2;
-           $$->printElement = "Aggregate12";
+           $$->setprintElement("Aggregate12");
           }
         ;
 
@@ -16431,7 +16429,7 @@ y_Aggregate13CoreType :
 y_Aggregate13Core_Aggregate13CoreType :
           Aggregate13CoreSTART y_Aggregate13CoreType Aggregate13CoreEND
           {$$ = $2;
-           $$->printElement = "Aggregate13Core";
+           $$->setprintElement("Aggregate13Core");
           }
         ;
 
@@ -16457,7 +16455,7 @@ y_Aggregate13Type :
 y_Aggregate13_Aggregate13Type :
           Aggregate13START y_Aggregate13Type Aggregate13END
           {$$ = $2;
-           $$->printElement = "Aggregate13";
+           $$->setprintElement("Aggregate13");
           }
         ;
 
@@ -16577,7 +16575,7 @@ y_AlignmentEnumType :
           {$$ = new AlignmentEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad AlignmentEnumType value");
           }
         ;
@@ -16772,7 +16770,7 @@ y_AndType :
 y_And_AndType :
           AndSTART y_AndType AndEND
           {$$ = $2;
-           $$->printElement = "And";
+           $$->setprintElement("And");
           }
         ;
 
@@ -16781,7 +16779,7 @@ y_AngleBetweenAnalysisModeEnumType :
           {$$ = new AngleBetweenAnalysisModeEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad AngleBetweenAnalysisModeEnumType value");
           }
         ;
@@ -16832,7 +16830,7 @@ y_AngleBetweenCharacteristicDefinition_AngleBetweenCharacteristicDefinitionType 
           y_AngleBetweenCharacteristicDefinitionType
           AngleBetweenCharacteristicDefinitionEND
           {$$ = $2;
-           $$->printElement = "AngleBetweenCharacteristicDefinition";
+           $$->setprintElement("AngleBetweenCharacteristicDefinition");
           }
         ;
 
@@ -16875,7 +16873,7 @@ y_AngleBetweenCharacteristicItem_AngleBetweenCharacteristicItemType :
           y_AngleBetweenCharacteristicItemType
           AngleBetweenCharacteristicItemEND
           {$$ = $2;
-           $$->printElement = "AngleBetweenCharacteristicItem";
+           $$->setprintElement("AngleBetweenCharacteristicItem");
           }
         ;
 
@@ -16929,7 +16927,7 @@ y_AngleBetweenCharacteristicMeasurement_AngleBetweenCharacteristicMeasurementTyp
           y_AngleBetweenCharacteristicMeasurementType
           AngleBetweenCharacteristicMeasurementEND
           {$$ = $2;
-           $$->printElement = "AngleBetweenCharacteristicMeasurement";
+           $$->setprintElement("AngleBetweenCharacteristicMeasurement");
           }
         ;
 
@@ -16984,7 +16982,7 @@ y_AngleBetweenCharacteristicNominal_AngleBetweenCharacteristicNominalType :
           y_AngleBetweenCharacteristicNominalType
           AngleBetweenCharacteristicNominalEND
           {$$ = $2;
-           $$->printElement = "AngleBetweenCharacteristicNominal";
+           $$->setprintElement("AngleBetweenCharacteristicNominal");
           }
         ;
 
@@ -17012,7 +17010,7 @@ y_AngleBetweenCharacteristicStats_AngleBetweenCharacteristicStatsEvalType :
           y_AngleBetweenCharacteristicStatsEvalType
           AngleBetweenCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "AngleBetweenCharacteristicStats";
+           $$->setprintElement("AngleBetweenCharacteristicStats");
           }
         ;
 
@@ -17062,7 +17060,7 @@ y_AngleCharacteristicDefinition_AngleCharacteristicDefinitionType :
           y_AngleCharacteristicDefinitionType
           AngleCharacteristicDefinitionEND
           {$$ = $2;
-           $$->printElement = "AngleCharacteristicDefinition";
+           $$->setprintElement("AngleCharacteristicDefinition");
           }
         ;
 
@@ -17104,7 +17102,7 @@ y_AngleCharacteristicItem_AngleCharacteristicItemType :
           AngleCharacteristicItemSTART y_AngleCharacteristicItemType
           AngleCharacteristicItemEND
           {$$ = $2;
-           $$->printElement = "AngleCharacteristicItem";
+           $$->setprintElement("AngleCharacteristicItem");
           }
         ;
 
@@ -17154,7 +17152,7 @@ y_AngleCharacteristicMeasurement_AngleCharacteristicMeasurementType :
           y_AngleCharacteristicMeasurementType
           AngleCharacteristicMeasurementEND
           {$$ = $2;
-           $$->printElement = "AngleCharacteristicMeasurement";
+           $$->setprintElement("AngleCharacteristicMeasurement");
           }
         ;
 
@@ -17196,7 +17194,7 @@ y_AngleCharacteristicNominal_AngleCharacteristicNominalType :
           AngleCharacteristicNominalSTART y_AngleCharacteristicNominalType
           AngleCharacteristicNominalEND
           {$$ = $2;
-           $$->printElement = "AngleCharacteristicNominal";
+           $$->setprintElement("AngleCharacteristicNominal");
           }
         ;
 
@@ -17223,7 +17221,7 @@ y_AngleCharacteristicStats_AngleCharacteristicStatsEvalType :
           AngleCharacteristicStatsSTART y_AngleCharacteristicStatsEvalType
           AngleCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "AngleCharacteristicStats";
+           $$->setprintElement("AngleCharacteristicStats");
           }
         ;
 
@@ -17273,7 +17271,7 @@ y_AngleFromCharacteristicDefinition_AngleFromCharacteristicDefinitionType :
           y_AngleFromCharacteristicDefinitionType
           AngleFromCharacteristicDefinitionEND
           {$$ = $2;
-           $$->printElement = "AngleFromCharacteristicDefinition";
+           $$->setprintElement("AngleFromCharacteristicDefinition");
           }
         ;
 
@@ -17315,7 +17313,7 @@ y_AngleFromCharacteristicItem_AngleFromCharacteristicItemType :
           AngleFromCharacteristicItemSTART
           y_AngleFromCharacteristicItemType AngleFromCharacteristicItemEND
           {$$ = $2;
-           $$->printElement = "AngleFromCharacteristicItem";
+           $$->setprintElement("AngleFromCharacteristicItem");
           }
         ;
 
@@ -17369,7 +17367,7 @@ y_AngleFromCharacteristicMeasurement_AngleFromCharacteristicMeasurementType :
           y_AngleFromCharacteristicMeasurementType
           AngleFromCharacteristicMeasurementEND
           {$$ = $2;
-           $$->printElement = "AngleFromCharacteristicMeasurement";
+           $$->setprintElement("AngleFromCharacteristicMeasurement");
           }
         ;
 
@@ -17424,7 +17422,7 @@ y_AngleFromCharacteristicNominal_AngleFromCharacteristicNominalType :
           y_AngleFromCharacteristicNominalType
           AngleFromCharacteristicNominalEND
           {$$ = $2;
-           $$->printElement = "AngleFromCharacteristicNominal";
+           $$->setprintElement("AngleFromCharacteristicNominal");
           }
         ;
 
@@ -17452,7 +17450,7 @@ y_AngleFromCharacteristicStats_AngleFromCharacteristicStatsEvalType :
           y_AngleFromCharacteristicStatsEvalType
           AngleFromCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "AngleFromCharacteristicStats";
+           $$->setprintElement("AngleFromCharacteristicStats");
           }
         ;
 
@@ -17690,7 +17688,7 @@ y_AngularCharacteristicStats_AngularCharacteristicStatsEvalType :
           y_AngularCharacteristicStatsEvalType
           AngularCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "AngularCharacteristicStats";
+           $$->setprintElement("AngularCharacteristicStats");
           }
         ;
 
@@ -17757,7 +17755,7 @@ y_AngularCoordinateCharacteristicDefinition_AngularCoordinateCharacteristicDefin
           y_AngularCoordinateCharacteristicDefinitionType
           AngularCoordinateCharacteristicDefinitionEND
           {$$ = $2;
-           $$->printElement = "AngularCoordinateCharacteristicDefinition";
+           $$->setprintElement("AngularCoordinateCharacteristicDefinition");
           }
         ;
 
@@ -17800,7 +17798,7 @@ y_AngularCoordinateCharacteristicItem_AngularCoordinateCharacteristicItemType :
           y_AngularCoordinateCharacteristicItemType
           AngularCoordinateCharacteristicItemEND
           {$$ = $2;
-           $$->printElement = "AngularCoordinateCharacteristicItem";
+           $$->setprintElement("AngularCoordinateCharacteristicItem");
           }
         ;
 
@@ -17852,7 +17850,7 @@ y_AngularCoordinateCharacteristicMeasurement_AngularCoordinateCharacteristicMeas
           y_AngularCoordinateCharacteristicMeasurementType
           AngularCoordinateCharacteristicMeasurementEND
           {$$ = $2;
-           $$->printElement = "AngularCoordinateCharacteristicMeasurement";
+           $$->setprintElement("AngularCoordinateCharacteristicMeasurement");
           }
         ;
 
@@ -17899,7 +17897,7 @@ y_AngularCoordinateCharacteristicNominal_AngularCoordinateCharacteristicNominalT
           y_AngularCoordinateCharacteristicNominalType
           AngularCoordinateCharacteristicNominalEND
           {$$ = $2;
-           $$->printElement = "AngularCoordinateCharacteristicNominal";
+           $$->setprintElement("AngularCoordinateCharacteristicNominal");
           }
         ;
 
@@ -17927,7 +17925,7 @@ y_AngularCoordinateCharacteristicStats_AngularCoordinateCharacteristicStatsEvalT
           y_AngularCoordinateCharacteristicStatsEvalType
           AngularCoordinateCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "AngularCoordinateCharacteristicStats";
+           $$->setprintElement("AngularCoordinateCharacteristicStats");
           }
         ;
 
@@ -17936,7 +17934,7 @@ y_AngularCoordinateDirectionEnumType :
           {$$ = new AngularCoordinateDirectionEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad AngularCoordinateDirectionEnumType value");
           }
         ;
@@ -17946,7 +17944,7 @@ y_AngularCriterion_CriterionAngularType_0 :
           {$$ = 0;}
         | AngularCriterionSTART y_CriterionAngularType AngularCriterionEND
           {$$ = $2;
-           $$->printElement = "AngularCriterion";
+           $$->setprintElement("AngularCriterion");
           }
         ;
 
@@ -17986,7 +17984,7 @@ y_AngularStatsSummary_SummaryStatisticsAngularType :
           AngularStatsSummarySTART y_SummaryStatisticsAngularType
           AngularStatsSummaryEND
           {$$ = $2;
-           $$->printElement = "AngularStatsSummary";
+           $$->setprintElement("AngularStatsSummary");
           }
         ;
 
@@ -18147,14 +18145,14 @@ y_AngularValueType :
           {$$ = new AngularValueType($3);
            yyUnrefMap[$$] = $$;
            free($3);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad AngularValueType value");
           }
         | y_LiztAttributePair ENDITEM {yyReadData = 1;} DATASTRING
           {$$ = new AngularValueType($4);
            yyUnrefMap[$$] = $$;
            free($4);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad AngularValueType value");
            yyUnrefMap.erase($1);
            if ($$->badAttributes($1))
@@ -18235,7 +18233,7 @@ y_AngularityCharacteristicDefinition_AngularityCharacteristicDefinitionType :
           y_AngularityCharacteristicDefinitionType
           AngularityCharacteristicDefinitionEND
           {$$ = $2;
-           $$->printElement = "AngularityCharacteristicDefinition";
+           $$->setprintElement("AngularityCharacteristicDefinition");
           }
         ;
 
@@ -18278,7 +18276,7 @@ y_AngularityCharacteristicItem_AngularityCharacteristicItemType :
           y_AngularityCharacteristicItemType
           AngularityCharacteristicItemEND
           {$$ = $2;
-           $$->printElement = "AngularityCharacteristicItem";
+           $$->setprintElement("AngularityCharacteristicItem");
           }
         ;
 
@@ -18335,7 +18333,7 @@ y_AngularityCharacteristicMeasurement_AngularityCharacteristicMeasurementType :
           y_AngularityCharacteristicMeasurementType
           AngularityCharacteristicMeasurementEND
           {$$ = $2;
-           $$->printElement = "AngularityCharacteristicMeasurement";
+           $$->setprintElement("AngularityCharacteristicMeasurement");
           }
         ;
 
@@ -18378,7 +18376,7 @@ y_AngularityCharacteristicNominal_AngularityCharacteristicNominalType :
           y_AngularityCharacteristicNominalType
           AngularityCharacteristicNominalEND
           {$$ = $2;
-           $$->printElement = "AngularityCharacteristicNominal";
+           $$->setprintElement("AngularityCharacteristicNominal");
           }
         ;
 
@@ -18418,7 +18416,7 @@ y_AngularityCharacteristicStats_AngularityCharacteristicStatsEvalType :
           y_AngularityCharacteristicStatsEvalType
           AngularityCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "AngularityCharacteristicStats";
+           $$->setprintElement("AngularityCharacteristicStats");
           }
         ;
 
@@ -18480,7 +18478,7 @@ y_AnnotationViewType :
 y_AnnotationView_AnnotationViewType :
           AnnotationViewSTART y_AnnotationViewType AnnotationViewEND
           {$$ = $2;
-           $$->printElement = "AnnotationView";
+           $$->setprintElement("AnnotationView");
           }
         ;
 
@@ -18578,7 +18576,7 @@ y_AppraiserVariation_StatsMeasuredDecimalType :
           AppraiserVariationSTART y_StatsMeasuredDecimalType
           AppraiserVariationEND
           {$$ = $2;
-           $$->printElement = "AppraiserVariation";
+           $$->setprintElement("AppraiserVariation");
           }
         ;
 
@@ -18604,7 +18602,7 @@ y_ArcCircular12Core_ArcCircular12CoreType :
           ArcCircular12CoreSTART y_ArcCircular12CoreType
           ArcCircular12CoreEND
           {$$ = $2;
-           $$->printElement = "ArcCircular12Core";
+           $$->setprintElement("ArcCircular12Core");
           }
         ;
 
@@ -18628,7 +18626,7 @@ y_ArcCircular12Type :
 y_ArcCircular12_ArcCircular12Type :
           ArcCircular12START y_ArcCircular12Type ArcCircular12END
           {$$ = $2;
-           $$->printElement = "ArcCircular12";
+           $$->setprintElement("ArcCircular12");
           }
         ;
 
@@ -18656,7 +18654,7 @@ y_ArcCircular13Core_ArcCircular13CoreType :
           ArcCircular13CoreSTART y_ArcCircular13CoreType
           ArcCircular13CoreEND
           {$$ = $2;
-           $$->printElement = "ArcCircular13Core";
+           $$->setprintElement("ArcCircular13Core");
           }
         ;
 
@@ -18682,7 +18680,7 @@ y_ArcCircular13Type :
 y_ArcCircular13_ArcCircular13Type :
           ArcCircular13START y_ArcCircular13Type ArcCircular13END
           {$$ = $2;
-           $$->printElement = "ArcCircular13";
+           $$->setprintElement("ArcCircular13");
           }
         ;
 
@@ -18708,7 +18706,7 @@ y_ArcConic12CoreType :
 y_ArcConic12Core_ArcConic12CoreType :
           ArcConic12CoreSTART y_ArcConic12CoreType ArcConic12CoreEND
           {$$ = $2;
-           $$->printElement = "ArcConic12Core";
+           $$->setprintElement("ArcConic12Core");
           }
         ;
 
@@ -18732,7 +18730,7 @@ y_ArcConic12Type :
 y_ArcConic12_ArcConic12Type :
           ArcConic12START y_ArcConic12Type ArcConic12END
           {$$ = $2;
-           $$->printElement = "ArcConic12";
+           $$->setprintElement("ArcConic12");
           }
         ;
 
@@ -18760,7 +18758,7 @@ y_ArcConic13CoreType :
 y_ArcConic13Core_ArcConic13CoreType :
           ArcConic13CoreSTART y_ArcConic13CoreType ArcConic13CoreEND
           {$$ = $2;
-           $$->printElement = "ArcConic13Core";
+           $$->setprintElement("ArcConic13Core");
           }
         ;
 
@@ -18786,7 +18784,7 @@ y_ArcConic13Type :
 y_ArcConic13_ArcConic13Type :
           ArcConic13START y_ArcConic13Type ArcConic13END
           {$$ = $2;
-           $$->printElement = "ArcConic13";
+           $$->setprintElement("ArcConic13");
           }
         ;
 
@@ -18848,7 +18846,7 @@ y_AreaCriterion_CriterionAreaType_0 :
           {$$ = 0;}
         | AreaCriterionSTART y_CriterionAreaType AreaCriterionEND
           {$$ = $2;
-           $$->printElement = "AreaCriterion";
+           $$->setprintElement("AreaCriterion");
           }
         ;
 
@@ -18890,7 +18888,7 @@ y_AreaStatsSummary_SummaryStatisticsAreaType :
           AreaStatsSummarySTART y_SummaryStatisticsAreaType
           AreaStatsSummaryEND
           {$$ = $2;
-           $$->printElement = "AreaStatsSummary";
+           $$->setprintElement("AreaStatsSummary");
           }
         ;
 
@@ -18977,14 +18975,14 @@ y_AreaValueType :
           {$$ = new AreaValueType($3);
            yyUnrefMap[$$] = $$;
            free($3);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad AreaValueType value");
           }
         | y_LiztAttributePair ENDITEM {yyReadData = 1;} DATASTRING
           {$$ = new AreaValueType($4);
            yyUnrefMap[$$] = $$;
            free($4);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad AreaValueType value");
            yyUnrefMap.erase($1);
            if ($$->badAttributes($1))
@@ -19057,7 +19055,7 @@ y_ArithmeticCharacteristicParameter_ArithmeticCharacteristicParameterType :
           y_ArithmeticCharacteristicParameterType
           ArithmeticCharacteristicParameterEND
           {$$ = $2;
-           $$->printElement = "ArithmeticCharacteristicParameter";
+           $$->setprintElement("ArithmeticCharacteristicParameter");
           }
         ;
 
@@ -19066,7 +19064,7 @@ y_ArithmeticComparisonEnumType :
           {$$ = new ArithmeticComparisonEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad ArithmeticComparisonEnumType value");
           }
         ;
@@ -19088,7 +19086,7 @@ y_ArithmeticConstantType :
 y_ArithmeticConstant_ArithmeticConstantType :
           ArithmeticConstantSTART y_ArithmeticConstantType ENDWHOLEITEM
           {$$ = $2;
-           $$->printElement = "ArithmeticConstant";
+           $$->setprintElement("ArithmeticConstant");
           }
         ;
 
@@ -19106,7 +19104,7 @@ y_ArithmeticDMEParameter_ArithmeticDMEParameterType :
           ArithmeticDMEParameterSTART y_ArithmeticDMEParameterType
           ArithmeticDMEParameterEND
           {$$ = $2;
-           $$->printElement = "ArithmeticDMEParameter";
+           $$->setprintElement("ArithmeticDMEParameter");
           }
         ;
 
@@ -19121,7 +19119,7 @@ y_ArithmeticEqualType :
 y_ArithmeticEqual_ArithmeticEqualType :
           ArithmeticEqualSTART y_ArithmeticEqualType ArithmeticEqualEND
           {$$ = $2;
-           $$->printElement = "ArithmeticEqual";
+           $$->setprintElement("ArithmeticEqual");
           }
         ;
 
@@ -19232,7 +19230,7 @@ y_ArithmeticFeatureParameter_ArithmeticFeatureParameterType :
           ArithmeticFeatureParameterSTART y_ArithmeticFeatureParameterType
           ArithmeticFeatureParameterEND
           {$$ = $2;
-           $$->printElement = "ArithmeticFeatureParameter";
+           $$->setprintElement("ArithmeticFeatureParameter");
           }
         ;
 
@@ -19249,7 +19247,7 @@ y_ArithmeticParameterValue_ArithmeticParameterValueType :
           ArithmeticParameterValueSTART y_ArithmeticParameterValueType
           ArithmeticParameterValueEND
           {$$ = $2;
-           $$->printElement = "ArithmeticParameterValue";
+           $$->setprintElement("ArithmeticParameterValue");
           }
         ;
 
@@ -19265,7 +19263,7 @@ y_ArithmeticPartParameter_ArithmeticPartParameterType :
           ArithmeticPartParameterSTART y_ArithmeticPartParameterType
           ArithmeticPartParameterEND
           {$$ = $2;
-           $$->printElement = "ArithmeticPartParameter";
+           $$->setprintElement("ArithmeticPartParameter");
           }
         ;
 
@@ -19334,7 +19332,7 @@ y_ArrayBinaryType :
           {$$ = new ArrayBinaryType($4);
            yyUnrefMap[$$] = $$;
            free($4);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad ArrayBinaryType value");
            yyUnrefMap.erase($1);
            if ($$->badAttributes($1))
@@ -19673,7 +19671,7 @@ y_ArrowSideContourSymbol_WeldContourSymbolType_0 :
         | ArrowSideContourSymbolSTART y_WeldContourSymbolType
           ArrowSideContourSymbolEND
           {$$ = $2;
-           $$->printElement = "ArrowSideContourSymbol";
+           $$->setprintElement("ArrowSideContourSymbol");
           }
         ;
 
@@ -19683,12 +19681,12 @@ y_ArrowSideParameters_WeldGrooveOneSideParametersType_0 :
         | ArrowSideParametersSTART ENDWHOLEITEM
           {$$ = new WeldGrooveOneSideParametersType();
            yyUnrefMap[$$] = $$;
-           $$->printElement = "ArrowSideParameters";
+           $$->setprintElement("ArrowSideParameters");
           }
         | ArrowSideParametersSTART y_WeldGrooveOneSideParametersType
           ArrowSideParametersEND
           {$$ = $2;
-           $$->printElement = "ArrowSideParameters";
+           $$->setprintElement("ArrowSideParameters");
           }
         ;
 
@@ -19698,12 +19696,12 @@ y_ArrowSideParameters_WeldOneSideParametersExtendSizeType_0 :
         | ArrowSideParametersSTART ENDWHOLEITEM
           {$$ = new WeldOneSideParametersExtendSizeType();
            yyUnrefMap[$$] = $$;
-           $$->printElement = "ArrowSideParameters";
+           $$->setprintElement("ArrowSideParameters");
           }
         | ArrowSideParametersSTART y_WeldOneSideParametersExtendSizeType
           ArrowSideParametersEND
           {$$ = $2;
-           $$->printElement = "ArrowSideParameters";
+           $$->setprintElement("ArrowSideParameters");
           }
         ;
 
@@ -19713,12 +19711,12 @@ y_ArrowSideParameters_WeldOneSideParametersExtendType_0 :
         | ArrowSideParametersSTART ENDWHOLEITEM
           {$$ = new WeldOneSideParametersExtendType();
            yyUnrefMap[$$] = $$;
-           $$->printElement = "ArrowSideParameters";
+           $$->setprintElement("ArrowSideParameters");
           }
         | ArrowSideParametersSTART y_WeldOneSideParametersExtendType
           ArrowSideParametersEND
           {$$ = $2;
-           $$->printElement = "ArrowSideParameters";
+           $$->setprintElement("ArrowSideParameters");
           }
         ;
 
@@ -19728,11 +19726,11 @@ y_ArrowSide_WeldFilletOneSideInBothSidesType_0 :
         | ArrowSideSTART ENDWHOLEITEM
           {$$ = new WeldFilletOneSideInBothSidesType();
            yyUnrefMap[$$] = $$;
-           $$->printElement = "ArrowSide";
+           $$->setprintElement("ArrowSide");
           }
         | ArrowSideSTART y_WeldFilletOneSideInBothSidesType ArrowSideEND
           {$$ = $2;
-           $$->printElement = "ArrowSide";
+           $$->setprintElement("ArrowSide");
           }
         ;
 
@@ -19891,7 +19889,7 @@ y_AssemblyType :
 y_Assembly_AssemblyType :
           AssemblySTART y_AssemblyType AssemblyEND
           {$$ = $2;
-           $$->printElement = "Assembly";
+           $$->setprintElement("Assembly");
           }
         ;
 
@@ -19905,7 +19903,7 @@ y_AssignableCauseEnumType :
           {$$ = new AssignableCauseEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad AssignableCauseEnumType value");
           }
         ;
@@ -20004,7 +20002,7 @@ y_AssociatedTolerancedFeatureSpecificationElementEnumType :
           {$$ = new AssociatedTolerancedFeatureSpecificationElementEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad AssociatedTolerancedFeatureSpecificationElementEnumType value");
           }
         ;
@@ -20049,7 +20047,7 @@ y_AttributeBoolType :
 y_AttributeBool_AttributeBoolType :
           AttributeBoolSTART y_AttributeBoolType ENDWHOLEITEM
           {$$ = $2;
-           $$->printElement = "AttributeBool";
+           $$->setprintElement("AttributeBool");
           }
         ;
 
@@ -20070,7 +20068,7 @@ y_AttributeD1Type :
 y_AttributeD1_AttributeD1Type :
           AttributeD1START y_AttributeD1Type ENDWHOLEITEM
           {$$ = $2;
-           $$->printElement = "AttributeD1";
+           $$->setprintElement("AttributeD1");
           }
         ;
 
@@ -20091,7 +20089,7 @@ y_AttributeD2Type :
 y_AttributeD2_AttributeD2Type :
           AttributeD2START y_AttributeD2Type ENDWHOLEITEM
           {$$ = $2;
-           $$->printElement = "AttributeD2";
+           $$->setprintElement("AttributeD2");
           }
         ;
 
@@ -20112,7 +20110,7 @@ y_AttributeD3Type :
 y_AttributeD3_AttributeD3Type :
           AttributeD3START y_AttributeD3Type ENDWHOLEITEM
           {$$ = $2;
-           $$->printElement = "AttributeD3";
+           $$->setprintElement("AttributeD3");
           }
         ;
 
@@ -20133,7 +20131,7 @@ y_AttributeI1Type :
 y_AttributeI1_AttributeI1Type :
           AttributeI1START y_AttributeI1Type ENDWHOLEITEM
           {$$ = $2;
-           $$->printElement = "AttributeI1";
+           $$->setprintElement("AttributeI1");
           }
         ;
 
@@ -20154,7 +20152,7 @@ y_AttributeI2Type :
 y_AttributeI2_AttributeI2Type :
           AttributeI2START y_AttributeI2Type ENDWHOLEITEM
           {$$ = $2;
-           $$->printElement = "AttributeI2";
+           $$->setprintElement("AttributeI2");
           }
         ;
 
@@ -20175,7 +20173,7 @@ y_AttributeI3Type :
 y_AttributeI3_AttributeI3Type :
           AttributeI3START y_AttributeI3Type ENDWHOLEITEM
           {$$ = $2;
-           $$->printElement = "AttributeI3";
+           $$->setprintElement("AttributeI3");
           }
         ;
 
@@ -20197,7 +20195,7 @@ y_AttributeQPIdType :
 y_AttributeQPId_AttributeQPIdType :
           AttributeQPIdSTART y_AttributeQPIdType AttributeQPIdEND
           {$$ = $2;
-           $$->printElement = "AttributeQPId";
+           $$->setprintElement("AttributeQPId");
           }
         ;
 
@@ -20206,7 +20204,7 @@ y_AttributeStats_StatsPassFailType_0 :
           {$$ = 0;}
         | AttributeStatsSTART y_StatsPassFailType AttributeStatsEND
           {$$ = $2;
-           $$->printElement = "AttributeStats";
+           $$->setprintElement("AttributeStats");
           }
         ;
 
@@ -20227,7 +20225,7 @@ y_AttributeStrType :
 y_AttributeStr_AttributeStrType :
           AttributeStrSTART y_AttributeStrType ENDWHOLEITEM
           {$$ = $2;
-           $$->printElement = "AttributeStr";
+           $$->setprintElement("AttributeStr");
           }
         ;
 
@@ -20248,7 +20246,7 @@ y_AttributeTimeType :
 y_AttributeTime_AttributeTimeType :
           AttributeTimeSTART y_AttributeTimeType ENDWHOLEITEM
           {$$ = $2;
-           $$->printElement = "AttributeTime";
+           $$->setprintElement("AttributeTime");
           }
         ;
 
@@ -20287,7 +20285,7 @@ y_AttributeUserTypeChoicePair :
 y_AttributeUser_AttributeUserType :
           AttributeUserSTART y_AttributeUserType AttributeUserEND
           {$$ = $2;
-           $$->printElement = "AttributeUser";
+           $$->setprintElement("AttributeUser");
           }
         ;
 
@@ -20421,14 +20419,14 @@ y_AutocollimatorMeasureFeatureMethod_AutocollimatorMeasureFeatureMethodType :
           y_AutocollimatorMeasureFeatureMethodType
           AutocollimatorMeasureFeatureMethodEND
           {$$ = $2;
-           $$->printElement = "AutocollimatorMeasureFeatureMethod";
+           $$->setprintElement("AutocollimatorMeasureFeatureMethod");
           }
         | AutocollimatorMeasureFeatureMethodSTART y_LiztAttributePair
           ENDWHOLEITEM
           {$$ = new AutocollimatorMeasureFeatureMethodType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "AutocollimatorMeasureFeatureMethod";
+           $$->setprintElement("AutocollimatorMeasureFeatureMethod");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -20493,7 +20491,7 @@ y_AutocollimatorType :
 y_Autocollimator_AutocollimatorType :
           AutocollimatorSTART y_AutocollimatorType AutocollimatorEND
           {$$ = $2;
-           $$->printElement = "Autocollimator";
+           $$->setprintElement("Autocollimator");
           }
         ;
 
@@ -20591,7 +20589,7 @@ y_AverageFeatures_AverageFeaturesType_0 :
 y_AverageRange_StatsMeasuredDecimalType :
           AverageRangeSTART y_StatsMeasuredDecimalType AverageRangeEND
           {$$ = $2;
-           $$->printElement = "AverageRange";
+           $$->setprintElement("AverageRange");
           }
         ;
 
@@ -20605,7 +20603,7 @@ y_AverageSpotDiameter_LinearValueType_0 :
 y_Average_StatsMeasuredDecimalType :
           AverageSTART y_StatsMeasuredDecimalType AverageEND
           {$$ = $2;
-           $$->printElement = "Average";
+           $$->setprintElement("Average");
           }
         ;
 
@@ -20944,7 +20942,7 @@ y_BaseFeature_BaseFeatureType :
 y_BaseFeature_SequencedBaseFeatureType :
           BaseFeatureSTART y_SequencedBaseFeatureType BaseFeatureEND
           {$$ = $2;
-           $$->printElement = "BaseFeature";
+           $$->setprintElement("BaseFeature");
           }
         ;
 
@@ -20956,7 +20954,7 @@ y_BaseLine_BaseFeatureType :
 y_BaseLine_SequencedBaseFeatureType :
           BaseLineSTART y_SequencedBaseFeatureType BaseLineEND
           {$$ = $2;
-           $$->printElement = "BaseLine";
+           $$->setprintElement("BaseLine");
           }
         ;
 
@@ -21015,7 +21013,7 @@ y_BasePlane_BaseFeatureType :
 y_BasePlane_SequencedBaseFeatureType :
           BasePlaneSTART y_SequencedBaseFeatureType BasePlaneEND
           {$$ = $2;
-           $$->printElement = "BasePlane";
+           $$->setprintElement("BasePlane");
           }
         ;
 
@@ -21097,14 +21095,14 @@ y_BeginPoint_Point2dSimpleType :
           BeginPointSTART ENDWHOLEITEM
           {$$ = new Point2dSimpleType();
            $$->Point2dSimpleTypeCheck();
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad Point2dSimpleType value");
            yyUnrefMap[$$] = $$;
           }
         | BeginPointSTART y_Point2dSimpleType BeginPointEND
           {$$ = $2;
            $2->Point2dSimpleTypeCheck();
-           if ($2->bad)
+           if ($2->getbad())
              return yyerror("bad Point2dSimpleType value");
           }
         ;
@@ -21133,182 +21131,182 @@ y_BestFitAlignmentOperationType :
 y_BestFit_BestFitAlignmentOperationType :
           BestFitSTART y_BestFitAlignmentOperationType BestFitEND
           {$$ = $2;
-           $$->printElement = "BestFit";
+           $$->setprintElement("BestFit");
           }
         ;
 
 y_BestFit_CircleBestFitType :
           BestFitSTART y_CircleBestFitType BestFitEND
           {$$ = $2;
-           $$->printElement = "BestFit";
+           $$->setprintElement("BestFit");
           }
         ;
 
 y_BestFit_CircularArcBestFitType :
           BestFitSTART y_CircularArcBestFitType BestFitEND
           {$$ = $2;
-           $$->printElement = "BestFit";
+           $$->setprintElement("BestFit");
           }
         ;
 
 y_BestFit_ConeBestFitType :
           BestFitSTART y_ConeBestFitType BestFitEND
           {$$ = $2;
-           $$->printElement = "BestFit";
+           $$->setprintElement("BestFit");
           }
         ;
 
 y_BestFit_ConicalSegmentBestFitType :
           BestFitSTART y_ConicalSegmentBestFitType BestFitEND
           {$$ = $2;
-           $$->printElement = "BestFit";
+           $$->setprintElement("BestFit");
           }
         ;
 
 y_BestFit_CylinderBestFitType :
           BestFitSTART y_CylinderBestFitType BestFitEND
           {$$ = $2;
-           $$->printElement = "BestFit";
+           $$->setprintElement("BestFit");
           }
         ;
 
 y_BestFit_CylindricalSegmentBestFitType :
           BestFitSTART y_CylindricalSegmentBestFitType BestFitEND
           {$$ = $2;
-           $$->printElement = "BestFit";
+           $$->setprintElement("BestFit");
           }
         ;
 
 y_BestFit_EllipseBestFitType :
           BestFitSTART y_EllipseBestFitType BestFitEND
           {$$ = $2;
-           $$->printElement = "BestFit";
+           $$->setprintElement("BestFit");
           }
         ;
 
 y_BestFit_EllipticalArcBestFitType :
           BestFitSTART y_EllipticalArcBestFitType BestFitEND
           {$$ = $2;
-           $$->printElement = "BestFit";
+           $$->setprintElement("BestFit");
           }
         ;
 
 y_BestFit_ElongatedCircleBestFitType :
           BestFitSTART y_ElongatedCircleBestFitType BestFitEND
           {$$ = $2;
-           $$->printElement = "BestFit";
+           $$->setprintElement("BestFit");
           }
         ;
 
 y_BestFit_ElongatedCylinderBestFitType :
           BestFitSTART y_ElongatedCylinderBestFitType BestFitEND
           {$$ = $2;
-           $$->printElement = "BestFit";
+           $$->setprintElement("BestFit");
           }
         ;
 
 y_BestFit_ExtrudedCrossSectionBestFitType :
           BestFitSTART y_ExtrudedCrossSectionBestFitType BestFitEND
           {$$ = $2;
-           $$->printElement = "BestFit";
+           $$->setprintElement("BestFit");
           }
         ;
 
 y_BestFit_LineBestFitType :
           BestFitSTART y_LineBestFitType BestFitEND
           {$$ = $2;
-           $$->printElement = "BestFit";
+           $$->setprintElement("BestFit");
           }
         ;
 
 y_BestFit_OppositeAngledLinesBestFitType :
           BestFitSTART y_OppositeAngledLinesBestFitType BestFitEND
           {$$ = $2;
-           $$->printElement = "BestFit";
+           $$->setprintElement("BestFit");
           }
         ;
 
 y_BestFit_OppositeAngledPlanesBestFitType :
           BestFitSTART y_OppositeAngledPlanesBestFitType BestFitEND
           {$$ = $2;
-           $$->printElement = "BestFit";
+           $$->setprintElement("BestFit");
           }
         ;
 
 y_BestFit_OppositeParallelLinesBestFitType :
           BestFitSTART y_OppositeParallelLinesBestFitType BestFitEND
           {$$ = $2;
-           $$->printElement = "BestFit";
+           $$->setprintElement("BestFit");
           }
         ;
 
 y_BestFit_OppositeParallelPlanesBestFitType :
           BestFitSTART y_OppositeParallelPlanesBestFitType BestFitEND
           {$$ = $2;
-           $$->printElement = "BestFit";
+           $$->setprintElement("BestFit");
           }
         ;
 
 y_BestFit_PlaneBestFitType :
           BestFitSTART y_PlaneBestFitType BestFitEND
           {$$ = $2;
-           $$->printElement = "BestFit";
+           $$->setprintElement("BestFit");
           }
         ;
 
 y_BestFit_PointDefinedCurveBestFitType :
           BestFitSTART y_PointDefinedCurveBestFitType BestFitEND
           {$$ = $2;
-           $$->printElement = "BestFit";
+           $$->setprintElement("BestFit");
           }
         ;
 
 y_BestFit_PointDefinedSurfaceBestFitType :
           BestFitSTART y_PointDefinedSurfaceBestFitType BestFitEND
           {$$ = $2;
-           $$->printElement = "BestFit";
+           $$->setprintElement("BestFit");
           }
         ;
 
 y_BestFit_SphereBestFitType :
           BestFitSTART y_SphereBestFitType BestFitEND
           {$$ = $2;
-           $$->printElement = "BestFit";
+           $$->setprintElement("BestFit");
           }
         ;
 
 y_BestFit_SphericalSegmentBestFitType :
           BestFitSTART y_SphericalSegmentBestFitType BestFitEND
           {$$ = $2;
-           $$->printElement = "BestFit";
+           $$->setprintElement("BestFit");
           }
         ;
 
 y_BestFit_SurfaceOfRevolutionBestFitType :
           BestFitSTART y_SurfaceOfRevolutionBestFitType BestFitEND
           {$$ = $2;
-           $$->printElement = "BestFit";
+           $$->setprintElement("BestFit");
           }
         ;
 
 y_BestFit_ThreadedFeatureBestFitType :
           BestFitSTART y_ThreadedFeatureBestFitType BestFitEND
           {$$ = $2;
-           $$->printElement = "BestFit";
+           $$->setprintElement("BestFit");
           }
         ;
 
 y_BestFit_ToroidalSegmentBestFitType :
           BestFitSTART y_ToroidalSegmentBestFitType BestFitEND
           {$$ = $2;
-           $$->printElement = "BestFit";
+           $$->setprintElement("BestFit");
           }
         ;
 
 y_BestFit_TorusBestFitType :
           BestFitSTART y_TorusBestFitType BestFitEND
           {$$ = $2;
-           $$->printElement = "BestFit";
+           $$->setprintElement("BestFit");
           }
         ;
 
@@ -21360,7 +21358,7 @@ y_BiasStudyPlanType :
 y_BiasStudyPlan_BiasStudyPlanType :
           BiasStudyPlanSTART y_BiasStudyPlanType BiasStudyPlanEND
           {$$ = $2;
-           $$->printElement = "BiasStudyPlan";
+           $$->setprintElement("BiasStudyPlan");
           }
         ;
 
@@ -21429,14 +21427,14 @@ y_BiasStudyResultsType :
 y_BiasStudyResults_BiasStudyResultsType :
           BiasStudyResultsSTART y_BiasStudyResultsType BiasStudyResultsEND
           {$$ = $2;
-           $$->printElement = "BiasStudyResults";
+           $$->setprintElement("BiasStudyResults");
           }
         ;
 
 y_Bias_StatsMeasuredDecimalType :
           BiasSTART y_StatsMeasuredDecimalType BiasEND
           {$$ = $2;
-           $$->printElement = "Bias";
+           $$->setprintElement("Bias");
           }
         ;
 
@@ -21455,7 +21453,7 @@ y_BinaryDataType :
           {$$ = new BinaryDataType($4);
            yyUnrefMap[$$] = $$;
            free($4);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad BinaryDataType value");
            yyUnrefMap.erase($1);
            if ($$->badAttributes($1))
@@ -21476,7 +21474,7 @@ y_BinaryMeasurePointNominalIds_ArrayBinaryQIFReferenceFullType :
           BinaryMeasurePointNominalIdsSTART
           y_ArrayBinaryQIFReferenceFullType BinaryMeasurePointNominalIdsEND
           {$$ = $2;
-           $$->printElement = "BinaryMeasurePointNominalIds";
+           $$->setprintElement("BinaryMeasurePointNominalIds");
           }
         ;
 
@@ -21589,13 +21587,13 @@ y_BodyType :
 y_Body_BodyType :
           BodySTART y_BodyType BodyEND
           {$$ = $2;
-           $$->printElement = "Body";
+           $$->setprintElement("Body");
           }
         | BodySTART y_LiztAttributePair ENDWHOLEITEM
           {$$ = new BodyType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "Body";
+           $$->setprintElement("Body");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -21610,7 +21608,7 @@ y_BonusStats_StatsLinearType_0 :
           {$$ = 0;}
         | BonusStatsSTART y_StatsLinearType BonusStatsEND
           {$$ = $2;
-           $$->printElement = "BonusStats";
+           $$->setprintElement("BonusStats");
           }
         ;
 
@@ -21637,7 +21635,7 @@ y_BooleanEqualType :
 y_BooleanEqual_BooleanEqualType :
           BooleanEqualSTART y_BooleanEqualType BooleanEqualEND
           {$$ = $2;
-           $$->printElement = "BooleanEqual";
+           $$->setprintElement("BooleanEqual");
           }
         ;
 
@@ -21832,11 +21830,11 @@ y_BothSides_WeldGrooveBothSidesExtendedType :
           BothSidesSTART ENDWHOLEITEM
           {$$ = new WeldGrooveBothSidesExtendedType();
            yyUnrefMap[$$] = $$;
-           $$->printElement = "BothSides";
+           $$->setprintElement("BothSides");
           }
         | BothSidesSTART y_WeldGrooveBothSidesExtendedType BothSidesEND
           {$$ = $2;
-           $$->printElement = "BothSides";
+           $$->setprintElement("BothSides");
           }
         ;
 
@@ -21845,7 +21843,7 @@ y_BottomEnumType :
           {$$ = new BottomEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad BottomEnumType value");
           }
         ;
@@ -21979,7 +21977,7 @@ y_CMMDirectionEnumType :
           {$$ = new CMMDirectionEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad CMMDirectionEnumType value");
           }
         ;
@@ -22047,7 +22045,7 @@ y_CMMType :
 y_CMM_CMMType :
           CMMSTART y_CMMType CMMEND
           {$$ = $2;
-           $$->printElement = "CMM";
+           $$->setprintElement("CMM");
           }
         ;
 
@@ -22072,12 +22070,12 @@ y_CabinetDimensions_CartesianWorkingVolumeType_0 :
         | CabinetDimensionsSTART ENDWHOLEITEM
           {$$ = new CartesianWorkingVolumeType();
            yyUnrefMap[$$] = $$;
-           $$->printElement = "CabinetDimensions";
+           $$->setprintElement("CabinetDimensions");
           }
         | CabinetDimensionsSTART y_CartesianWorkingVolumeType
           CabinetDimensionsEND
           {$$ = $2;
-           $$->printElement = "CabinetDimensions";
+           $$->setprintElement("CabinetDimensions");
           }
         ;
 
@@ -22114,14 +22112,14 @@ y_CalibratedComparatorMeasureFeatureMethod_CalibratedComparatorMeasureFeatureMet
           y_CalibratedComparatorMeasureFeatureMethodType
           CalibratedComparatorMeasureFeatureMethodEND
           {$$ = $2;
-           $$->printElement = "CalibratedComparatorMeasureFeatureMethod";
+           $$->setprintElement("CalibratedComparatorMeasureFeatureMethod");
           }
         | CalibratedComparatorMeasureFeatureMethodSTART y_LiztAttributePair
           ENDWHOLEITEM
           {$$ = new CalibratedComparatorMeasureFeatureMethodType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "CalibratedComparatorMeasureFeatureMethod";
+           $$->setprintElement("CalibratedComparatorMeasureFeatureMethod");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -22243,7 +22241,7 @@ y_CaliperDialType :
 y_CaliperDial_CaliperDialType :
           CaliperDialSTART y_CaliperDialType CaliperDialEND
           {$$ = $2;
-           $$->printElement = "CaliperDial";
+           $$->setprintElement("CaliperDial");
           }
         ;
 
@@ -22294,7 +22292,7 @@ y_CaliperDigitalType :
 y_CaliperDigital_CaliperDigitalType :
           CaliperDigitalSTART y_CaliperDigitalType CaliperDigitalEND
           {$$ = $2;
-           $$->printElement = "CaliperDigital";
+           $$->setprintElement("CaliperDigital");
           }
         ;
 
@@ -22345,7 +22343,7 @@ y_CaliperType :
 y_Caliper_CaliperType :
           CaliperSTART y_CaliperType CaliperEND
           {$$ = $2;
-           $$->printElement = "Caliper";
+           $$->setprintElement("Caliper");
           }
         ;
 
@@ -22405,7 +22403,7 @@ y_CameraType :
 y_Camera_CameraType :
           CameraSTART y_CameraType CameraEND
           {$$ = $2;
-           $$->printElement = "Camera";
+           $$->setprintElement("Camera");
           }
         ;
 
@@ -22512,7 +22510,7 @@ y_CapabilityStudyPlan_CapabilityStudyPlanType :
           CapabilityStudyPlanSTART y_CapabilityStudyPlanType
           CapabilityStudyPlanEND
           {$$ = $2;
-           $$->printElement = "CapabilityStudyPlan";
+           $$->setprintElement("CapabilityStudyPlan");
           }
         ;
 
@@ -22582,7 +22580,7 @@ y_CapabilityStudyResults_CapabilityStudyResultsType :
           CapabilityStudyResultsSTART y_CapabilityStudyResultsType
           CapabilityStudyResultsEND
           {$$ = $2;
-           $$->printElement = "CapabilityStudyResults";
+           $$->setprintElement("CapabilityStudyResults");
           }
         ;
 
@@ -22641,7 +22639,7 @@ y_CapacitiveSensorType :
 y_CapacitiveSensor_CapacitiveSensorType :
           CapacitiveSensorSTART y_CapacitiveSensorType CapacitiveSensorEND
           {$$ = $2;
-           $$->printElement = "CapacitiveSensor";
+           $$->setprintElement("CapacitiveSensor");
           }
         ;
 
@@ -22677,7 +22675,7 @@ y_CarriageType :
 y_Carriage_CarriageType :
           CarriageSTART y_CarriageType CarriageEND
           {$$ = $2;
-           $$->printElement = "Carriage";
+           $$->setprintElement("Carriage");
           }
         ;
 
@@ -22756,7 +22754,7 @@ y_CartesianCMMAccuracy_CartesianCMMAccuracyType :
           CartesianCMMAccuracySTART y_CartesianCMMAccuracyType
           CartesianCMMAccuracyEND
           {$$ = $2;
-           $$->printElement = "CartesianCMMAccuracy";
+           $$->setprintElement("CartesianCMMAccuracy");
           }
         ;
 
@@ -22776,7 +22774,7 @@ y_CartesianCMMAxisDirections_CartesianCMMAxisDirectionsType :
           CartesianCMMAxisDirectionsSTART y_CartesianCMMAxisDirectionsType
           CartesianCMMAxisDirectionsEND
           {$$ = $2;
-           $$->printElement = "CartesianCMMAxisDirections";
+           $$->setprintElement("CartesianCMMAxisDirections");
           }
         ;
 
@@ -22802,14 +22800,14 @@ y_CartesianCMMB89Test_CartesianCMMB89TestType :
           CartesianCMMB89TestSTART y_CartesianCMMB89TestType
           CartesianCMMB89TestEND
           {$$ = $2;
-           $$->printElement = "CartesianCMMB89Test";
+           $$->setprintElement("CartesianCMMB89Test");
           }
         ;
 
 y_CartesianCMMFPSTest_FPSTestType :
           CartesianCMMFPSTestSTART y_FPSTestType CartesianCMMFPSTestEND
           {$$ = $2;
-           $$->printElement = "CartesianCMMFPSTest";
+           $$->setprintElement("CartesianCMMFPSTest");
           }
         ;
 
@@ -22818,7 +22816,7 @@ y_CartesianCMMGeometryEnumType :
           {$$ = new CartesianCMMGeometryEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad CartesianCMMGeometryEnumType value");
           }
         ;
@@ -22858,7 +22856,7 @@ y_CartesianCMMISO10360Test_ISO10360TestType :
           CartesianCMMISO10360TestSTART y_ISO10360TestType
           CartesianCMMISO10360TestEND
           {$$ = $2;
-           $$->printElement = "CartesianCMMISO10360Test";
+           $$->setprintElement("CartesianCMMISO10360Test");
           }
         ;
 
@@ -22866,7 +22864,7 @@ y_CartesianCMMPointAccuracyTest_PointAccuracyTestType :
           CartesianCMMPointAccuracyTestSTART y_PointAccuracyTestType
           CartesianCMMPointAccuracyTestEND
           {$$ = $2;
-           $$->printElement = "CartesianCMMPointAccuracyTest";
+           $$->setprintElement("CartesianCMMPointAccuracyTest");
           }
         ;
 
@@ -22892,12 +22890,12 @@ y_CartesianCMMSpeeds_CartesianCMMSpeedsType :
           CartesianCMMSpeedsSTART ENDWHOLEITEM
           {$$ = new CartesianCMMSpeedsType();
            yyUnrefMap[$$] = $$;
-           $$->printElement = "CartesianCMMSpeeds";
+           $$->setprintElement("CartesianCMMSpeeds");
           }
         | CartesianCMMSpeedsSTART y_CartesianCMMSpeedsType
           CartesianCMMSpeedsEND
           {$$ = $2;
-           $$->printElement = "CartesianCMMSpeeds";
+           $$->setprintElement("CartesianCMMSpeeds");
           }
         ;
 
@@ -22963,7 +22961,7 @@ y_CartesianCMMType :
 y_CartesianCMM_CartesianCMMType :
           CartesianCMMSTART y_CartesianCMMType CartesianCMMEND
           {$$ = $2;
-           $$->printElement = "CartesianCMM";
+           $$->setprintElement("CartesianCMM");
           }
         ;
 
@@ -22984,7 +22982,7 @@ y_CartesianMeasurementDeviceScales_CartesianMeasurementDeviceScalesType :
           y_CartesianMeasurementDeviceScalesType
           CartesianMeasurementDeviceScalesEND
           {$$ = $2;
-           $$->printElement = "CartesianMeasurementDeviceScales";
+           $$->setprintElement("CartesianMeasurementDeviceScales");
           }
         ;
 
@@ -23032,7 +23030,7 @@ y_CartesianResolution_CartesianResolutionType :
           CartesianResolutionSTART y_CartesianResolutionType
           CartesianResolutionEND
           {$$ = $2;
-           $$->printElement = "CartesianResolution";
+           $$->setprintElement("CartesianResolution");
           }
         ;
 
@@ -23051,187 +23049,187 @@ y_CartesianWorkingVolume_CartesianWorkingVolumeType :
           CartesianWorkingVolumeSTART ENDWHOLEITEM
           {$$ = new CartesianWorkingVolumeType();
            yyUnrefMap[$$] = $$;
-           $$->printElement = "CartesianWorkingVolume";
+           $$->setprintElement("CartesianWorkingVolume");
           }
         | CartesianWorkingVolumeSTART y_CartesianWorkingVolumeType
           CartesianWorkingVolumeEND
           {$$ = $2;
-           $$->printElement = "CartesianWorkingVolume";
+           $$->setprintElement("CartesianWorkingVolume");
           }
         ;
 
 y_Cast_CircleCastType :
           CastSTART y_CircleCastType CastEND
           {$$ = $2;
-           $$->printElement = "Cast";
+           $$->setprintElement("Cast");
           }
         ;
 
 y_Cast_CircularArcCastType :
           CastSTART y_CircularArcCastType CastEND
           {$$ = $2;
-           $$->printElement = "Cast";
+           $$->setprintElement("Cast");
           }
         ;
 
 y_Cast_ConeCastType :
           CastSTART y_ConeCastType CastEND
           {$$ = $2;
-           $$->printElement = "Cast";
+           $$->setprintElement("Cast");
           }
         ;
 
 y_Cast_ConicalSegmentCastType :
           CastSTART y_ConicalSegmentCastType CastEND
           {$$ = $2;
-           $$->printElement = "Cast";
+           $$->setprintElement("Cast");
           }
         ;
 
 y_Cast_CylinderCastType :
           CastSTART y_CylinderCastType CastEND
           {$$ = $2;
-           $$->printElement = "Cast";
+           $$->setprintElement("Cast");
           }
         ;
 
 y_Cast_CylindricalSegmentCastType :
           CastSTART y_CylindricalSegmentCastType CastEND
           {$$ = $2;
-           $$->printElement = "Cast";
+           $$->setprintElement("Cast");
           }
         ;
 
 y_Cast_EdgePointCastType :
           CastSTART y_EdgePointCastType CastEND
           {$$ = $2;
-           $$->printElement = "Cast";
+           $$->setprintElement("Cast");
           }
         ;
 
 y_Cast_EllipseCastType :
           CastSTART y_EllipseCastType CastEND
           {$$ = $2;
-           $$->printElement = "Cast";
+           $$->setprintElement("Cast");
           }
         ;
 
 y_Cast_EllipticalArcCastType :
           CastSTART y_EllipticalArcCastType CastEND
           {$$ = $2;
-           $$->printElement = "Cast";
+           $$->setprintElement("Cast");
           }
         ;
 
 y_Cast_ElongatedCircleCastType :
           CastSTART y_ElongatedCircleCastType CastEND
           {$$ = $2;
-           $$->printElement = "Cast";
+           $$->setprintElement("Cast");
           }
         ;
 
 y_Cast_ElongatedCylinderCastType :
           CastSTART y_ElongatedCylinderCastType CastEND
           {$$ = $2;
-           $$->printElement = "Cast";
+           $$->setprintElement("Cast");
           }
         ;
 
 y_Cast_ExtrudedCrossSectionCastType :
           CastSTART y_ExtrudedCrossSectionCastType CastEND
           {$$ = $2;
-           $$->printElement = "Cast";
+           $$->setprintElement("Cast");
           }
         ;
 
 y_Cast_LineCastType :
           CastSTART y_LineCastType CastEND
           {$$ = $2;
-           $$->printElement = "Cast";
+           $$->setprintElement("Cast");
           }
         ;
 
 y_Cast_OppositeAngledLinesCastType :
           CastSTART y_OppositeAngledLinesCastType CastEND
           {$$ = $2;
-           $$->printElement = "Cast";
+           $$->setprintElement("Cast");
           }
         ;
 
 y_Cast_OppositeAngledPlanesCastType :
           CastSTART y_OppositeAngledPlanesCastType CastEND
           {$$ = $2;
-           $$->printElement = "Cast";
+           $$->setprintElement("Cast");
           }
         ;
 
 y_Cast_OppositeParallelLinesCastType :
           CastSTART y_OppositeParallelLinesCastType CastEND
           {$$ = $2;
-           $$->printElement = "Cast";
+           $$->setprintElement("Cast");
           }
         ;
 
 y_Cast_OppositeParallelPlanesCastType :
           CastSTART y_OppositeParallelPlanesCastType CastEND
           {$$ = $2;
-           $$->printElement = "Cast";
+           $$->setprintElement("Cast");
           }
         ;
 
 y_Cast_PlaneCastType :
           CastSTART y_PlaneCastType CastEND
           {$$ = $2;
-           $$->printElement = "Cast";
+           $$->setprintElement("Cast");
           }
         ;
 
 y_Cast_PointFeatureCastType :
           CastSTART y_PointFeatureCastType CastEND
           {$$ = $2;
-           $$->printElement = "Cast";
+           $$->setprintElement("Cast");
           }
         ;
 
 y_Cast_SphereCastType :
           CastSTART y_SphereCastType CastEND
           {$$ = $2;
-           $$->printElement = "Cast";
+           $$->setprintElement("Cast");
           }
         ;
 
 y_Cast_SphericalSegmentCastType :
           CastSTART y_SphericalSegmentCastType CastEND
           {$$ = $2;
-           $$->printElement = "Cast";
+           $$->setprintElement("Cast");
           }
         ;
 
 y_Cast_SurfaceOfRevolutionCastType :
           CastSTART y_SurfaceOfRevolutionCastType CastEND
           {$$ = $2;
-           $$->printElement = "Cast";
+           $$->setprintElement("Cast");
           }
         ;
 
 y_Cast_ThreadedFeatureCastType :
           CastSTART y_ThreadedFeatureCastType CastEND
           {$$ = $2;
-           $$->printElement = "Cast";
+           $$->setprintElement("Cast");
           }
         ;
 
 y_Cast_ToroidalSegmentCastType :
           CastSTART y_ToroidalSegmentCastType CastEND
           {$$ = $2;
-           $$->printElement = "Cast";
+           $$->setprintElement("Cast");
           }
         ;
 
 y_Cast_TorusCastType :
           CastSTART y_TorusCastType CastEND
           {$$ = $2;
-           $$->printElement = "Cast";
+           $$->setprintElement("Cast");
           }
         ;
 
@@ -23251,7 +23249,7 @@ y_CenterOfGravity_PointFeatureCenterOfGravityType :
           CenterOfGravitySTART y_PointFeatureCenterOfGravityType
           CenterOfGravityEND
           {$$ = $2;
-           $$->printElement = "CenterOfGravity";
+           $$->setprintElement("CenterOfGravity");
           }
         ;
 
@@ -23276,14 +23274,14 @@ y_Center_Point2dSimpleType :
           CenterSTART ENDWHOLEITEM
           {$$ = new Point2dSimpleType();
            $$->Point2dSimpleTypeCheck();
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad Point2dSimpleType value");
            yyUnrefMap[$$] = $$;
           }
         | CenterSTART y_Point2dSimpleType CenterEND
           {$$ = $2;
            $2->Point2dSimpleTypeCheck();
-           if ($2->bad)
+           if ($2->getbad())
              return yyerror("bad Point2dSimpleType value");
           }
         ;
@@ -23292,14 +23290,14 @@ y_Center_PointSimpleType :
           CenterSTART ENDWHOLEITEM
           {$$ = new PointSimpleType();
            $$->PointSimpleTypeCheck();
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad PointSimpleType value");
            yyUnrefMap[$$] = $$;
           }
         | CenterSTART y_PointSimpleType CenterEND
           {$$ = $2;
            $2->PointSimpleTypeCheck();
-           if ($2->bad)
+           if ($2->getbad())
              return yyerror("bad PointSimpleType value");
           }
         ;
@@ -23315,14 +23313,14 @@ y_Centroid_PointSimpleType_0 :
         | CentroidSTART ENDWHOLEITEM
           {$$ = new PointSimpleType();
            $$->PointSimpleTypeCheck();
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad PointSimpleType value");
            yyUnrefMap[$$] = $$;
           }
         | CentroidSTART y_PointSimpleType CentroidEND
           {$$ = $2;
            $2->PointSimpleTypeCheck();
-           if ($2->bad)
+           if ($2->getbad())
              return yyerror("bad PointSimpleType value");
           }
         ;
@@ -23354,7 +23352,7 @@ y_CharacteristicBalloonLocationEnumType :
           {$$ = new CharacteristicBalloonLocationEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad CharacteristicBalloonLocationEnumType value");
           }
         ;
@@ -23364,7 +23362,7 @@ y_CharacteristicBalloonStyleEnumType :
           {$$ = new CharacteristicBalloonStyleEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad CharacteristicBalloonStyleEnumType value");
           }
         ;
@@ -23873,7 +23871,7 @@ y_CharacteristicGroup_CharacteristicGroupType :
           CharacteristicGroupSTART y_CharacteristicGroupType
           CharacteristicGroupEND
           {$$ = $2;
-           $$->printElement = "CharacteristicGroup";
+           $$->setprintElement("CharacteristicGroup");
           }
         ;
 
@@ -23939,7 +23937,7 @@ y_CharacteristicIsType :
 y_CharacteristicIs_CharacteristicIsType :
           CharacteristicIsSTART y_CharacteristicIsType ENDWHOLEITEM
           {$$ = $2;
-           $$->printElement = "CharacteristicIs";
+           $$->setprintElement("CharacteristicIs");
           }
         ;
 
@@ -24387,7 +24385,7 @@ y_CharacteristicManufacturingProcessGroup_CharacteristicManufacturingProcessGrou
           y_CharacteristicManufacturingProcessGroupType
           CharacteristicManufacturingProcessGroupEND
           {$$ = $2;
-           $$->printElement = "CharacteristicManufacturingProcessGroup";
+           $$->setprintElement("CharacteristicManufacturingProcessGroup");
           }
         ;
 
@@ -25742,7 +25740,7 @@ y_CharacteristicStatusEnumType :
           {$$ = new CharacteristicStatusEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad CharacteristicStatusEnumType value");
           }
         ;
@@ -25789,7 +25787,7 @@ y_CharacteristicTolerance_CharacteristicToleranceType :
           CharacteristicToleranceSTART y_CharacteristicToleranceType
           ENDWHOLEITEM
           {$$ = $2;
-           $$->printElement = "CharacteristicTolerance";
+           $$->setprintElement("CharacteristicTolerance");
           }
         ;
 
@@ -25798,7 +25796,7 @@ y_CharacteristicTypeEnumType :
           {$$ = new CharacteristicTypeEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad CharacteristicTypeEnumType value");
           }
         ;
@@ -25909,7 +25907,7 @@ y_ChargeCoupledDeviceCameraSensor_ChargeCoupledDeviceCameraSensorType :
           y_ChargeCoupledDeviceCameraSensorType
           ChargeCoupledDeviceCameraSensorEND
           {$$ = $2;
-           $$->printElement = "ChargeCoupledDeviceCameraSensor";
+           $$->setprintElement("ChargeCoupledDeviceCameraSensor");
           }
         ;
 
@@ -25920,7 +25918,7 @@ y_ChargeCoupledDeviceCameraSensor_ChargeCoupledDeviceCameraSensorType_0 :
           y_ChargeCoupledDeviceCameraSensorType
           ChargeCoupledDeviceCameraSensorEND
           {$$ = $2;
-           $$->printElement = "ChargeCoupledDeviceCameraSensor";
+           $$->setprintElement("ChargeCoupledDeviceCameraSensor");
           }
         ;
 
@@ -26146,7 +26144,7 @@ y_CheckStatusEnumType :
           {$$ = new CheckStatusEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad CheckStatusEnumType value");
           }
         ;
@@ -26480,7 +26478,7 @@ y_ChordCharacteristicDefinition_ChordCharacteristicDefinitionType :
           y_ChordCharacteristicDefinitionType
           ChordCharacteristicDefinitionEND
           {$$ = $2;
-           $$->printElement = "ChordCharacteristicDefinition";
+           $$->setprintElement("ChordCharacteristicDefinition");
           }
         ;
 
@@ -26522,7 +26520,7 @@ y_ChordCharacteristicItem_ChordCharacteristicItemType :
           ChordCharacteristicItemSTART y_ChordCharacteristicItemType
           ChordCharacteristicItemEND
           {$$ = $2;
-           $$->printElement = "ChordCharacteristicItem";
+           $$->setprintElement("ChordCharacteristicItem");
           }
         ;
 
@@ -26572,7 +26570,7 @@ y_ChordCharacteristicMeasurement_ChordCharacteristicMeasurementType :
           y_ChordCharacteristicMeasurementType
           ChordCharacteristicMeasurementEND
           {$$ = $2;
-           $$->printElement = "ChordCharacteristicMeasurement";
+           $$->setprintElement("ChordCharacteristicMeasurement");
           }
         ;
 
@@ -26616,7 +26614,7 @@ y_ChordCharacteristicNominal_ChordCharacteristicNominalType :
           ChordCharacteristicNominalSTART y_ChordCharacteristicNominalType
           ChordCharacteristicNominalEND
           {$$ = $2;
-           $$->printElement = "ChordCharacteristicNominal";
+           $$->setprintElement("ChordCharacteristicNominal");
           }
         ;
 
@@ -26643,7 +26641,7 @@ y_ChordCharacteristicStats_ChordCharacteristicStatsEvalType :
           ChordCharacteristicStatsSTART y_ChordCharacteristicStatsEvalType
           ChordCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "ChordCharacteristicStats";
+           $$->setprintElement("ChordCharacteristicStats");
           }
         ;
 
@@ -26685,14 +26683,14 @@ y_CircleCenter_Point2dSimpleType :
           CircleCenterSTART ENDWHOLEITEM
           {$$ = new Point2dSimpleType();
            $$->Point2dSimpleTypeCheck();
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad Point2dSimpleType value");
            yyUnrefMap[$$] = $$;
           }
         | CircleCenterSTART y_Point2dSimpleType CircleCenterEND
           {$$ = $2;
            $2->Point2dSimpleTypeCheck();
-           if ($2->bad)
+           if ($2->getbad())
              return yyerror("bad Point2dSimpleType value");
           }
         ;
@@ -26853,7 +26851,7 @@ y_CircleFeatureDefinition_CircleFeatureDefinitionType :
           CircleFeatureDefinitionSTART y_CircleFeatureDefinitionType
           CircleFeatureDefinitionEND
           {$$ = $2;
-           $$->printElement = "CircleFeatureDefinition";
+           $$->setprintElement("CircleFeatureDefinition");
           }
         ;
 
@@ -26894,7 +26892,7 @@ y_CircleFeatureItem_CircleFeatureItemType :
           CircleFeatureItemSTART y_CircleFeatureItemType
           CircleFeatureItemEND
           {$$ = $2;
-           $$->printElement = "CircleFeatureItem";
+           $$->setprintElement("CircleFeatureItem");
           }
         ;
 
@@ -26952,13 +26950,13 @@ y_CircleFeatureMeasurement_CircleFeatureMeasurementType :
           CircleFeatureMeasurementSTART y_CircleFeatureMeasurementType
           CircleFeatureMeasurementEND
           {$$ = $2;
-           $$->printElement = "CircleFeatureMeasurement";
+           $$->setprintElement("CircleFeatureMeasurement");
           }
         | CircleFeatureMeasurementSTART y_LiztAttributePair ENDWHOLEITEM
           {$$ = new CircleFeatureMeasurementType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "CircleFeatureMeasurement";
+           $$->setprintElement("CircleFeatureMeasurement");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -27010,7 +27008,7 @@ y_CircleFeatureNominal_CircleFeatureNominalType :
           CircleFeatureNominalSTART y_CircleFeatureNominalType
           CircleFeatureNominalEND
           {$$ = $2;
-           $$->printElement = "CircleFeatureNominal";
+           $$->setprintElement("CircleFeatureNominal");
           }
         ;
 
@@ -27371,7 +27369,7 @@ y_CircularArcFeatureDefinition_CircularArcFeatureDefinitionType :
           y_CircularArcFeatureDefinitionType
           CircularArcFeatureDefinitionEND
           {$$ = $2;
-           $$->printElement = "CircularArcFeatureDefinition";
+           $$->setprintElement("CircularArcFeatureDefinition");
           }
         ;
 
@@ -27412,7 +27410,7 @@ y_CircularArcFeatureItem_CircularArcFeatureItemType :
           CircularArcFeatureItemSTART y_CircularArcFeatureItemType
           CircularArcFeatureItemEND
           {$$ = $2;
-           $$->printElement = "CircularArcFeatureItem";
+           $$->setprintElement("CircularArcFeatureItem");
           }
         ;
 
@@ -27471,14 +27469,14 @@ y_CircularArcFeatureMeasurement_CircularArcFeatureMeasurementType :
           y_CircularArcFeatureMeasurementType
           CircularArcFeatureMeasurementEND
           {$$ = $2;
-           $$->printElement = "CircularArcFeatureMeasurement";
+           $$->setprintElement("CircularArcFeatureMeasurement");
           }
         | CircularArcFeatureMeasurementSTART y_LiztAttributePair
           ENDWHOLEITEM
           {$$ = new CircularArcFeatureMeasurementType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "CircularArcFeatureMeasurement";
+           $$->setprintElement("CircularArcFeatureMeasurement");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -27530,7 +27528,7 @@ y_CircularArcFeatureNominal_CircularArcFeatureNominalType :
           CircularArcFeatureNominalSTART y_CircularArcFeatureNominalType
           CircularArcFeatureNominalEND
           {$$ = $2;
-           $$->printElement = "CircularArcFeatureNominal";
+           $$->setprintElement("CircularArcFeatureNominal");
           }
         ;
 
@@ -27696,7 +27694,7 @@ y_CircularRunoutCharacteristicDefinition_CircularRunoutCharacteristicDefinitionT
           y_CircularRunoutCharacteristicDefinitionType
           CircularRunoutCharacteristicDefinitionEND
           {$$ = $2;
-           $$->printElement = "CircularRunoutCharacteristicDefinition";
+           $$->setprintElement("CircularRunoutCharacteristicDefinition");
           }
         ;
 
@@ -27739,7 +27737,7 @@ y_CircularRunoutCharacteristicItem_CircularRunoutCharacteristicItemType :
           y_CircularRunoutCharacteristicItemType
           CircularRunoutCharacteristicItemEND
           {$$ = $2;
-           $$->printElement = "CircularRunoutCharacteristicItem";
+           $$->setprintElement("CircularRunoutCharacteristicItem");
           }
         ;
 
@@ -27790,7 +27788,7 @@ y_CircularRunoutCharacteristicMeasurement_CircularRunoutCharacteristicMeasuremen
           y_CircularRunoutCharacteristicMeasurementType
           CircularRunoutCharacteristicMeasurementEND
           {$$ = $2;
-           $$->printElement = "CircularRunoutCharacteristicMeasurement";
+           $$->setprintElement("CircularRunoutCharacteristicMeasurement");
           }
         ;
 
@@ -27835,7 +27833,7 @@ y_CircularRunoutCharacteristicNominal_CircularRunoutCharacteristicNominalType :
           y_CircularRunoutCharacteristicNominalType
           CircularRunoutCharacteristicNominalEND
           {$$ = $2;
-           $$->printElement = "CircularRunoutCharacteristicNominal";
+           $$->setprintElement("CircularRunoutCharacteristicNominal");
           }
         ;
 
@@ -27871,7 +27869,7 @@ y_CircularRunoutCharacteristicStats_CircularRunoutCharacteristicStatsEvalType :
           y_CircularRunoutCharacteristicStatsEvalType
           CircularRunoutCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "CircularRunoutCharacteristicStats";
+           $$->setprintElement("CircularRunoutCharacteristicStats");
           }
         ;
 
@@ -28058,7 +28056,7 @@ y_CircularityCharacteristicDefinition_CircularityCharacteristicDefinitionType :
           y_CircularityCharacteristicDefinitionType
           CircularityCharacteristicDefinitionEND
           {$$ = $2;
-           $$->printElement = "CircularityCharacteristicDefinition";
+           $$->setprintElement("CircularityCharacteristicDefinition");
           }
         ;
 
@@ -28101,7 +28099,7 @@ y_CircularityCharacteristicItem_CircularityCharacteristicItemType :
           y_CircularityCharacteristicItemType
           CircularityCharacteristicItemEND
           {$$ = $2;
-           $$->printElement = "CircularityCharacteristicItem";
+           $$->setprintElement("CircularityCharacteristicItem");
           }
         ;
 
@@ -28155,7 +28153,7 @@ y_CircularityCharacteristicMeasurement_CircularityCharacteristicMeasurementType 
           y_CircularityCharacteristicMeasurementType
           CircularityCharacteristicMeasurementEND
           {$$ = $2;
-           $$->printElement = "CircularityCharacteristicMeasurement";
+           $$->setprintElement("CircularityCharacteristicMeasurement");
           }
         ;
 
@@ -28198,7 +28196,7 @@ y_CircularityCharacteristicNominal_CircularityCharacteristicNominalType :
           y_CircularityCharacteristicNominalType
           CircularityCharacteristicNominalEND
           {$$ = $2;
-           $$->printElement = "CircularityCharacteristicNominal";
+           $$->setprintElement("CircularityCharacteristicNominal");
           }
         ;
 
@@ -28234,7 +28232,7 @@ y_CircularityCharacteristicStats_CircularityCharacteristicStatsEvalType :
           y_CircularityCharacteristicStatsEvalType
           CircularityCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "CircularityCharacteristicStats";
+           $$->setprintElement("CircularityCharacteristicStats");
           }
         ;
 
@@ -28243,7 +28241,7 @@ y_ClosedCurvePointSamplingStrategyEnumType :
           {$$ = new ClosedCurvePointSamplingStrategyEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad ClosedCurvePointSamplingStrategyEnumType value");
           }
         ;
@@ -28283,7 +28281,7 @@ y_ClosedShellSetWorkingVolume_ClosedShellSetWorkingVolumeType :
           ClosedShellSetWorkingVolumeSTART
           y_ClosedShellSetWorkingVolumeType ClosedShellSetWorkingVolumeEND
           {$$ = $2;
-           $$->printElement = "ClosedShellSetWorkingVolume";
+           $$->setprintElement("ClosedShellSetWorkingVolume");
           }
         ;
 
@@ -28296,14 +28294,14 @@ y_ClosedSurface_InternalExternalEnumType :
 y_Cm_StatsMeasuredDecimalType :
           CmSTART y_StatsMeasuredDecimalType CmEND
           {$$ = $2;
-           $$->printElement = "Cm";
+           $$->setprintElement("Cm");
           }
         ;
 
 y_Cmk_StatsMeasuredDecimalType :
           CmkSTART y_StatsMeasuredDecimalType CmkEND
           {$$ = $2;
-           $$->printElement = "Cmk";
+           $$->setprintElement("Cmk");
           }
         ;
 
@@ -28435,7 +28433,7 @@ y_CoaxialityCharacteristicDefinition_CoaxialityCharacteristicDefinitionType :
           y_CoaxialityCharacteristicDefinitionType
           CoaxialityCharacteristicDefinitionEND
           {$$ = $2;
-           $$->printElement = "CoaxialityCharacteristicDefinition";
+           $$->setprintElement("CoaxialityCharacteristicDefinition");
           }
         ;
 
@@ -28478,7 +28476,7 @@ y_CoaxialityCharacteristicItem_CoaxialityCharacteristicItemType :
           y_CoaxialityCharacteristicItemType
           CoaxialityCharacteristicItemEND
           {$$ = $2;
-           $$->printElement = "CoaxialityCharacteristicItem";
+           $$->setprintElement("CoaxialityCharacteristicItem");
           }
         ;
 
@@ -28531,7 +28529,7 @@ y_CoaxialityCharacteristicMeasurement_CoaxialityCharacteristicMeasurementType :
           y_CoaxialityCharacteristicMeasurementType
           CoaxialityCharacteristicMeasurementEND
           {$$ = $2;
-           $$->printElement = "CoaxialityCharacteristicMeasurement";
+           $$->setprintElement("CoaxialityCharacteristicMeasurement");
           }
         ;
 
@@ -28572,7 +28570,7 @@ y_CoaxialityCharacteristicNominal_CoaxialityCharacteristicNominalType :
           y_CoaxialityCharacteristicNominalType
           CoaxialityCharacteristicNominalEND
           {$$ = $2;
-           $$->printElement = "CoaxialityCharacteristicNominal";
+           $$->setprintElement("CoaxialityCharacteristicNominal");
           }
         ;
 
@@ -28608,7 +28606,7 @@ y_CoaxialityCharacteristicStats_CoaxialityCharacteristicStatsEvalType :
           y_CoaxialityCharacteristicStatsEvalType
           CoaxialityCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "CoaxialityCharacteristicStats";
+           $$->setprintElement("CoaxialityCharacteristicStats");
           }
         ;
 
@@ -28705,14 +28703,14 @@ y_Color_ColorType_0 :
         | ColorSTART ENDWHOLEITEM
           {$$ = new ColorType();
            $$->ColorTypeCheck();
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad ColorType value");
            yyUnrefMap[$$] = $$;
           }
         | ColorSTART y_ColorType ColorEND
           {$$ = $2;
            $2->ColorTypeCheck();
-           if ($2->bad)
+           if ($2->getbad())
              return yyerror("bad ColorType value");
           }
         ;
@@ -28796,7 +28794,7 @@ y_CommonFileSpecEnumType :
           {$$ = new CommonFileSpecEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad CommonFileSpecEnumType value");
           }
         ;
@@ -28911,7 +28909,7 @@ y_ComplexTactileProbeSensor_ComplexTactileProbeSensorType :
           ComplexTactileProbeSensorSTART y_ComplexTactileProbeSensorType
           ComplexTactileProbeSensorEND
           {$$ = $2;
-           $$->printElement = "ComplexTactileProbeSensor";
+           $$->setprintElement("ComplexTactileProbeSensor");
           }
         ;
 
@@ -29011,7 +29009,7 @@ y_ComponentType_1193_TypeChoicePair :
 y_Component_ComponentType :
           ComponentSTART y_ComponentType ComponentEND
           {$$ = $2;
-           $$->printElement = "Component";
+           $$->setprintElement("Component");
           }
         ;
 
@@ -29028,7 +29026,7 @@ y_CompositeSegmentLowerLevelEnumType :
           {$$ = new CompositeSegmentLowerLevelEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad CompositeSegmentLowerLevelEnumType value");
           }
         ;
@@ -29294,14 +29292,14 @@ y_ComputedTomographyMeasureFeatureMethod_ComputedTomographyMeasureFeatureMethodT
           y_ComputedTomographyMeasureFeatureMethodType
           ComputedTomographyMeasureFeatureMethodEND
           {$$ = $2;
-           $$->printElement = "ComputedTomographyMeasureFeatureMethod";
+           $$->setprintElement("ComputedTomographyMeasureFeatureMethod");
           }
         | ComputedTomographyMeasureFeatureMethodSTART y_LiztAttributePair
           ENDWHOLEITEM
           {$$ = new ComputedTomographyMeasureFeatureMethodType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "ComputedTomographyMeasureFeatureMethod";
+           $$->setprintElement("ComputedTomographyMeasureFeatureMethod");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -29385,7 +29383,7 @@ y_ComputedTomography_ComputedTomographyType :
           ComputedTomographySTART y_ComputedTomographyType
           ComputedTomographyEND
           {$$ = $2;
-           $$->printElement = "ComputedTomography";
+           $$->setprintElement("ComputedTomography");
           }
         ;
 
@@ -29447,7 +29445,7 @@ y_ConcentricityCharacteristicDefinition_ConcentricityCharacteristicDefinitionTyp
           y_ConcentricityCharacteristicDefinitionType
           ConcentricityCharacteristicDefinitionEND
           {$$ = $2;
-           $$->printElement = "ConcentricityCharacteristicDefinition";
+           $$->setprintElement("ConcentricityCharacteristicDefinition");
           }
         ;
 
@@ -29490,7 +29488,7 @@ y_ConcentricityCharacteristicItem_ConcentricityCharacteristicItemType :
           y_ConcentricityCharacteristicItemType
           ConcentricityCharacteristicItemEND
           {$$ = $2;
-           $$->printElement = "ConcentricityCharacteristicItem";
+           $$->setprintElement("ConcentricityCharacteristicItem");
           }
         ;
 
@@ -29543,7 +29541,7 @@ y_ConcentricityCharacteristicMeasurement_ConcentricityCharacteristicMeasurementT
           y_ConcentricityCharacteristicMeasurementType
           ConcentricityCharacteristicMeasurementEND
           {$$ = $2;
-           $$->printElement = "ConcentricityCharacteristicMeasurement";
+           $$->setprintElement("ConcentricityCharacteristicMeasurement");
           }
         ;
 
@@ -29584,7 +29582,7 @@ y_ConcentricityCharacteristicNominal_ConcentricityCharacteristicNominalType :
           y_ConcentricityCharacteristicNominalType
           ConcentricityCharacteristicNominalEND
           {$$ = $2;
-           $$->printElement = "ConcentricityCharacteristicNominal";
+           $$->setprintElement("ConcentricityCharacteristicNominal");
           }
         ;
 
@@ -29620,7 +29618,7 @@ y_ConcentricityCharacteristicStats_ConcentricityCharacteristicStatsEvalType :
           y_ConcentricityCharacteristicStatsEvalType
           ConcentricityCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "ConcentricityCharacteristicStats";
+           $$->setprintElement("ConcentricityCharacteristicStats");
           }
         ;
 
@@ -29714,7 +29712,7 @@ y_Cone23CoreType :
 y_Cone23Core_Cone23CoreType :
           Cone23CoreSTART y_Cone23CoreType Cone23CoreEND
           {$$ = $2;
-           $$->printElement = "Cone23Core";
+           $$->setprintElement("Cone23Core");
           }
         ;
 
@@ -29739,7 +29737,7 @@ y_Cone23Type :
 y_Cone23_Cone23Type :
           Cone23START y_Cone23Type Cone23END
           {$$ = $2;
-           $$->printElement = "Cone23";
+           $$->setprintElement("Cone23");
           }
         ;
 
@@ -29942,7 +29940,7 @@ y_ConeFeatureDefinition_ConeFeatureDefinitionType :
           ConeFeatureDefinitionSTART y_ConeFeatureDefinitionType
           ConeFeatureDefinitionEND
           {$$ = $2;
-           $$->printElement = "ConeFeatureDefinition";
+           $$->setprintElement("ConeFeatureDefinition");
           }
         ;
 
@@ -29982,7 +29980,7 @@ y_ConeFeatureItemType :
 y_ConeFeatureItem_ConeFeatureItemType :
           ConeFeatureItemSTART y_ConeFeatureItemType ConeFeatureItemEND
           {$$ = $2;
-           $$->printElement = "ConeFeatureItem";
+           $$->setprintElement("ConeFeatureItem");
           }
         ;
 
@@ -30076,13 +30074,13 @@ y_ConeFeatureMeasurement_ConeFeatureMeasurementType :
           ConeFeatureMeasurementSTART y_ConeFeatureMeasurementType
           ConeFeatureMeasurementEND
           {$$ = $2;
-           $$->printElement = "ConeFeatureMeasurement";
+           $$->setprintElement("ConeFeatureMeasurement");
           }
         | ConeFeatureMeasurementSTART y_LiztAttributePair ENDWHOLEITEM
           {$$ = new ConeFeatureMeasurementType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "ConeFeatureMeasurement";
+           $$->setprintElement("ConeFeatureMeasurement");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -30131,7 +30129,7 @@ y_ConeFeatureNominal_ConeFeatureNominalType :
           ConeFeatureNominalSTART y_ConeFeatureNominalType
           ConeFeatureNominalEND
           {$$ = $2;
-           $$->printElement = "ConeFeatureNominal";
+           $$->setprintElement("ConeFeatureNominal");
           }
         ;
 
@@ -30176,7 +30174,7 @@ y_ConePointSamplingStrategyEnumType :
           {$$ = new ConePointSamplingStrategyEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad ConePointSamplingStrategyEnumType value");
           }
         ;
@@ -30287,7 +30285,7 @@ y_ConfocalChromaticSensor_ConfocalChromaticSensorType :
           ConfocalChromaticSensorSTART y_ConfocalChromaticSensorType
           ConfocalChromaticSensorEND
           {$$ = $2;
-           $$->printElement = "ConfocalChromaticSensor";
+           $$->setprintElement("ConfocalChromaticSensor");
           }
         ;
 
@@ -30516,7 +30514,7 @@ y_ConicalSegmentFeatureDefinition_ConicalSegmentFeatureDefinitionType :
           y_ConicalSegmentFeatureDefinitionType
           ConicalSegmentFeatureDefinitionEND
           {$$ = $2;
-           $$->printElement = "ConicalSegmentFeatureDefinition";
+           $$->setprintElement("ConicalSegmentFeatureDefinition");
           }
         ;
 
@@ -30557,7 +30555,7 @@ y_ConicalSegmentFeatureItem_ConicalSegmentFeatureItemType :
           ConicalSegmentFeatureItemSTART y_ConicalSegmentFeatureItemType
           ConicalSegmentFeatureItemEND
           {$$ = $2;
-           $$->printElement = "ConicalSegmentFeatureItem";
+           $$->setprintElement("ConicalSegmentFeatureItem");
           }
         ;
 
@@ -30620,14 +30618,14 @@ y_ConicalSegmentFeatureMeasurement_ConicalSegmentFeatureMeasurementType :
           y_ConicalSegmentFeatureMeasurementType
           ConicalSegmentFeatureMeasurementEND
           {$$ = $2;
-           $$->printElement = "ConicalSegmentFeatureMeasurement";
+           $$->setprintElement("ConicalSegmentFeatureMeasurement");
           }
         | ConicalSegmentFeatureMeasurementSTART y_LiztAttributePair
           ENDWHOLEITEM
           {$$ = new ConicalSegmentFeatureMeasurementType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "ConicalSegmentFeatureMeasurement";
+           $$->setprintElement("ConicalSegmentFeatureMeasurement");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -30677,7 +30675,7 @@ y_ConicalSegmentFeatureNominal_ConicalSegmentFeatureNominalType :
           y_ConicalSegmentFeatureNominalType
           ConicalSegmentFeatureNominalEND
           {$$ = $2;
-           $$->printElement = "ConicalSegmentFeatureNominal";
+           $$->setprintElement("ConicalSegmentFeatureNominal");
           }
         ;
 
@@ -30799,7 +30797,7 @@ y_ConicalTaperCharacteristicDefinition_ConicalTaperCharacteristicDefinitionType 
           y_ConicalTaperCharacteristicDefinitionType
           ConicalTaperCharacteristicDefinitionEND
           {$$ = $2;
-           $$->printElement = "ConicalTaperCharacteristicDefinition";
+           $$->setprintElement("ConicalTaperCharacteristicDefinition");
           }
         ;
 
@@ -30842,7 +30840,7 @@ y_ConicalTaperCharacteristicItem_ConicalTaperCharacteristicItemType :
           y_ConicalTaperCharacteristicItemType
           ConicalTaperCharacteristicItemEND
           {$$ = $2;
-           $$->printElement = "ConicalTaperCharacteristicItem";
+           $$->setprintElement("ConicalTaperCharacteristicItem");
           }
         ;
 
@@ -30894,7 +30892,7 @@ y_ConicalTaperCharacteristicMeasurement_ConicalTaperCharacteristicMeasurementTyp
           y_ConicalTaperCharacteristicMeasurementType
           ConicalTaperCharacteristicMeasurementEND
           {$$ = $2;
-           $$->printElement = "ConicalTaperCharacteristicMeasurement";
+           $$->setprintElement("ConicalTaperCharacteristicMeasurement");
           }
         ;
 
@@ -30941,7 +30939,7 @@ y_ConicalTaperCharacteristicNominal_ConicalTaperCharacteristicNominalType :
           y_ConicalTaperCharacteristicNominalType
           ConicalTaperCharacteristicNominalEND
           {$$ = $2;
-           $$->printElement = "ConicalTaperCharacteristicNominal";
+           $$->setprintElement("ConicalTaperCharacteristicNominal");
           }
         ;
 
@@ -30969,7 +30967,7 @@ y_ConicalTaperCharacteristicStats_ConicalTaperCharacteristicStatsEvalType :
           y_ConicalTaperCharacteristicStatsEvalType
           ConicalTaperCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "ConicalTaperCharacteristicStats";
+           $$->setprintElement("ConicalTaperCharacteristicStats");
           }
         ;
 
@@ -31027,7 +31025,7 @@ y_ConicityCharacteristicDefinition_ConicityCharacteristicDefinitionType :
           y_ConicityCharacteristicDefinitionType
           ConicityCharacteristicDefinitionEND
           {$$ = $2;
-           $$->printElement = "ConicityCharacteristicDefinition";
+           $$->setprintElement("ConicityCharacteristicDefinition");
           }
         ;
 
@@ -31069,7 +31067,7 @@ y_ConicityCharacteristicItem_ConicityCharacteristicItemType :
           ConicityCharacteristicItemSTART y_ConicityCharacteristicItemType
           ConicityCharacteristicItemEND
           {$$ = $2;
-           $$->printElement = "ConicityCharacteristicItem";
+           $$->setprintElement("ConicityCharacteristicItem");
           }
         ;
 
@@ -31119,7 +31117,7 @@ y_ConicityCharacteristicMeasurement_ConicityCharacteristicMeasurementType :
           y_ConicityCharacteristicMeasurementType
           ConicityCharacteristicMeasurementEND
           {$$ = $2;
-           $$->printElement = "ConicityCharacteristicMeasurement";
+           $$->setprintElement("ConicityCharacteristicMeasurement");
           }
         ;
 
@@ -31160,7 +31158,7 @@ y_ConicityCharacteristicNominal_ConicityCharacteristicNominalType :
           y_ConicityCharacteristicNominalType
           ConicityCharacteristicNominalEND
           {$$ = $2;
-           $$->printElement = "ConicityCharacteristicNominal";
+           $$->setprintElement("ConicityCharacteristicNominal");
           }
         ;
 
@@ -31194,7 +31192,7 @@ y_ConicityCharacteristicStats_ConicityCharacteristicStatsEvalType :
           y_ConicityCharacteristicStatsEvalType
           ConicityCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "ConicityCharacteristicStats";
+           $$->setprintElement("ConicityCharacteristicStats");
           }
         ;
 
@@ -31215,7 +31213,7 @@ y_ConstantIsType :
 y_ConstantIs_ConstantIsType :
           ConstantIsSTART y_ConstantIsType ENDWHOLEITEM
           {$$ = $2;
-           $$->printElement = "ConstantIs";
+           $$->setprintElement("ConstantIs");
           }
         ;
 
@@ -31991,7 +31989,7 @@ y_ControlIssueEnumType :
           {$$ = new ControlIssueEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad ControlIssueEnumType value");
           }
         ;
@@ -32205,7 +32203,7 @@ y_CoordinateEnumType :
           {$$ = new CoordinateEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad CoordinateEnumType value");
           }
         ;
@@ -32243,14 +32241,14 @@ y_CoordinateMeasureFeatureMethod_CoordinateMeasureFeatureMethodType :
           y_CoordinateMeasureFeatureMethodType
           CoordinateMeasureFeatureMethodEND
           {$$ = $2;
-           $$->printElement = "CoordinateMeasureFeatureMethod";
+           $$->setprintElement("CoordinateMeasureFeatureMethod");
           }
         | CoordinateMeasureFeatureMethodSTART y_LiztAttributePair
           ENDWHOLEITEM
           {$$ = new CoordinateMeasureFeatureMethodType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "CoordinateMeasureFeatureMethod";
+           $$->setprintElement("CoordinateMeasureFeatureMethod");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -32428,7 +32426,7 @@ y_CoordinateSystem_CADCoordinateSystemType :
           CoordinateSystemSTART y_CADCoordinateSystemType
           CoordinateSystemEND
           {$$ = $2;
-           $$->printElement = "CoordinateSystem";
+           $$->setprintElement("CoordinateSystem");
           }
         ;
 
@@ -32479,210 +32477,210 @@ y_CoordinateSystems_CoordinateSystemsType_0 :
 y_Copy_CircleCopyType :
           CopySTART y_CircleCopyType CopyEND
           {$$ = $2;
-           $$->printElement = "Copy";
+           $$->setprintElement("Copy");
           }
         ;
 
 y_Copy_CircularArcCopyType :
           CopySTART y_CircularArcCopyType CopyEND
           {$$ = $2;
-           $$->printElement = "Copy";
+           $$->setprintElement("Copy");
           }
         ;
 
 y_Copy_ConeCopyType :
           CopySTART y_ConeCopyType CopyEND
           {$$ = $2;
-           $$->printElement = "Copy";
+           $$->setprintElement("Copy");
           }
         ;
 
 y_Copy_ConicalSegmentCopyType :
           CopySTART y_ConicalSegmentCopyType CopyEND
           {$$ = $2;
-           $$->printElement = "Copy";
+           $$->setprintElement("Copy");
           }
         ;
 
 y_Copy_CylinderCopyType :
           CopySTART y_CylinderCopyType CopyEND
           {$$ = $2;
-           $$->printElement = "Copy";
+           $$->setprintElement("Copy");
           }
         ;
 
 y_Copy_CylindricalSegmentCopyType :
           CopySTART y_CylindricalSegmentCopyType CopyEND
           {$$ = $2;
-           $$->printElement = "Copy";
+           $$->setprintElement("Copy");
           }
         ;
 
 y_Copy_EdgePointCopyType :
           CopySTART y_EdgePointCopyType CopyEND
           {$$ = $2;
-           $$->printElement = "Copy";
+           $$->setprintElement("Copy");
           }
         ;
 
 y_Copy_EllipseCopyType :
           CopySTART y_EllipseCopyType CopyEND
           {$$ = $2;
-           $$->printElement = "Copy";
+           $$->setprintElement("Copy");
           }
         ;
 
 y_Copy_EllipticalArcCopyType :
           CopySTART y_EllipticalArcCopyType CopyEND
           {$$ = $2;
-           $$->printElement = "Copy";
+           $$->setprintElement("Copy");
           }
         ;
 
 y_Copy_ElongatedCircleCopyType :
           CopySTART y_ElongatedCircleCopyType CopyEND
           {$$ = $2;
-           $$->printElement = "Copy";
+           $$->setprintElement("Copy");
           }
         ;
 
 y_Copy_ElongatedCylinderCopyType :
           CopySTART y_ElongatedCylinderCopyType CopyEND
           {$$ = $2;
-           $$->printElement = "Copy";
+           $$->setprintElement("Copy");
           }
         ;
 
 y_Copy_ExtrudedCrossSectionCopyType :
           CopySTART y_ExtrudedCrossSectionCopyType CopyEND
           {$$ = $2;
-           $$->printElement = "Copy";
+           $$->setprintElement("Copy");
           }
         ;
 
 y_Copy_LineCopyType :
           CopySTART y_LineCopyType CopyEND
           {$$ = $2;
-           $$->printElement = "Copy";
+           $$->setprintElement("Copy");
           }
         ;
 
 y_Copy_OppositeAngledLinesCopyType :
           CopySTART y_OppositeAngledLinesCopyType CopyEND
           {$$ = $2;
-           $$->printElement = "Copy";
+           $$->setprintElement("Copy");
           }
         ;
 
 y_Copy_OppositeAngledPlanesCopyType :
           CopySTART y_OppositeAngledPlanesCopyType CopyEND
           {$$ = $2;
-           $$->printElement = "Copy";
+           $$->setprintElement("Copy");
           }
         ;
 
 y_Copy_OppositeParallelLinesCopyType :
           CopySTART y_OppositeParallelLinesCopyType CopyEND
           {$$ = $2;
-           $$->printElement = "Copy";
+           $$->setprintElement("Copy");
           }
         ;
 
 y_Copy_OppositeParallelPlanesCopyType :
           CopySTART y_OppositeParallelPlanesCopyType CopyEND
           {$$ = $2;
-           $$->printElement = "Copy";
+           $$->setprintElement("Copy");
           }
         ;
 
 y_Copy_OtherCurveFeatureCopyType :
           CopySTART y_OtherCurveFeatureCopyType CopyEND
           {$$ = $2;
-           $$->printElement = "Copy";
+           $$->setprintElement("Copy");
           }
         ;
 
 y_Copy_OtherShapeFeatureCopyType :
           CopySTART y_OtherShapeFeatureCopyType CopyEND
           {$$ = $2;
-           $$->printElement = "Copy";
+           $$->setprintElement("Copy");
           }
         ;
 
 y_Copy_OtherSurfaceFeatureCopyType :
           CopySTART y_OtherSurfaceFeatureCopyType CopyEND
           {$$ = $2;
-           $$->printElement = "Copy";
+           $$->setprintElement("Copy");
           }
         ;
 
 y_Copy_PlaneCopyType :
           CopySTART y_PlaneCopyType CopyEND
           {$$ = $2;
-           $$->printElement = "Copy";
+           $$->setprintElement("Copy");
           }
         ;
 
 y_Copy_PointDefinedCurveCopyType :
           CopySTART y_PointDefinedCurveCopyType CopyEND
           {$$ = $2;
-           $$->printElement = "Copy";
+           $$->setprintElement("Copy");
           }
         ;
 
 y_Copy_PointDefinedSurfaceCopyType :
           CopySTART y_PointDefinedSurfaceCopyType CopyEND
           {$$ = $2;
-           $$->printElement = "Copy";
+           $$->setprintElement("Copy");
           }
         ;
 
 y_Copy_PointFeatureCopyType :
           CopySTART y_PointFeatureCopyType CopyEND
           {$$ = $2;
-           $$->printElement = "Copy";
+           $$->setprintElement("Copy");
           }
         ;
 
 y_Copy_SphereCopyType :
           CopySTART y_SphereCopyType CopyEND
           {$$ = $2;
-           $$->printElement = "Copy";
+           $$->setprintElement("Copy");
           }
         ;
 
 y_Copy_SphericalSegmentCopyType :
           CopySTART y_SphericalSegmentCopyType CopyEND
           {$$ = $2;
-           $$->printElement = "Copy";
+           $$->setprintElement("Copy");
           }
         ;
 
 y_Copy_SurfaceOfRevolutionCopyType :
           CopySTART y_SurfaceOfRevolutionCopyType CopyEND
           {$$ = $2;
-           $$->printElement = "Copy";
+           $$->setprintElement("Copy");
           }
         ;
 
 y_Copy_ThreadedFeatureCopyType :
           CopySTART y_ThreadedFeatureCopyType CopyEND
           {$$ = $2;
-           $$->printElement = "Copy";
+           $$->setprintElement("Copy");
           }
         ;
 
 y_Copy_ToroidalSegmentCopyType :
           CopySTART y_ToroidalSegmentCopyType CopyEND
           {$$ = $2;
-           $$->printElement = "Copy";
+           $$->setprintElement("Copy");
           }
         ;
 
 y_Copy_TorusCopyType :
           CopySTART y_TorusCopyType CopyEND
           {$$ = $2;
-           $$->printElement = "Copy";
+           $$->setprintElement("Copy");
           }
         ;
 
@@ -32863,7 +32861,7 @@ y_CpThreshold_CriterionDecimalType :
 y_Cp_StatsMeasuredDecimalType :
           CpSTART y_StatsMeasuredDecimalType CpEND
           {$$ = $2;
-           $$->printElement = "Cp";
+           $$->setprintElement("Cp");
           }
         ;
 
@@ -32875,14 +32873,14 @@ y_CpkThreshold_CriterionDecimalType :
 y_Cpk_StatsMeasuredDecimalType :
           CpkSTART y_StatsMeasuredDecimalType CpkEND
           {$$ = $2;
-           $$->printElement = "Cpk";
+           $$->setprintElement("Cpk");
           }
         ;
 
 y_Cpm_StatsMeasuredDecimalType :
           CpmSTART y_StatsMeasuredDecimalType CpmEND
           {$$ = $2;
-           $$->printElement = "Cpm";
+           $$->setprintElement("Cpm");
           }
         ;
 
@@ -33232,7 +33230,7 @@ y_CriticalityAreaEnumType :
           {$$ = new CriticalityAreaEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad CriticalityAreaEnumType value");
           }
         ;
@@ -33242,7 +33240,7 @@ y_CriticalityLevelEnumType :
           {$$ = new CriticalityLevelEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad CriticalityLevelEnumType value");
           }
         ;
@@ -33645,7 +33643,7 @@ y_CurveLengthCharacteristicDefinition_CurveLengthCharacteristicDefinitionType :
           y_CurveLengthCharacteristicDefinitionType
           CurveLengthCharacteristicDefinitionEND
           {$$ = $2;
-           $$->printElement = "CurveLengthCharacteristicDefinition";
+           $$->setprintElement("CurveLengthCharacteristicDefinition");
           }
         ;
 
@@ -33688,7 +33686,7 @@ y_CurveLengthCharacteristicItem_CurveLengthCharacteristicItemType :
           y_CurveLengthCharacteristicItemType
           CurveLengthCharacteristicItemEND
           {$$ = $2;
-           $$->printElement = "CurveLengthCharacteristicItem";
+           $$->setprintElement("CurveLengthCharacteristicItem");
           }
         ;
 
@@ -33738,7 +33736,7 @@ y_CurveLengthCharacteristicMeasurement_CurveLengthCharacteristicMeasurementType 
           y_CurveLengthCharacteristicMeasurementType
           CurveLengthCharacteristicMeasurementEND
           {$$ = $2;
-           $$->printElement = "CurveLengthCharacteristicMeasurement";
+           $$->setprintElement("CurveLengthCharacteristicMeasurement");
           }
         ;
 
@@ -33783,7 +33781,7 @@ y_CurveLengthCharacteristicNominal_CurveLengthCharacteristicNominalType :
           y_CurveLengthCharacteristicNominalType
           CurveLengthCharacteristicNominalEND
           {$$ = $2;
-           $$->printElement = "CurveLengthCharacteristicNominal";
+           $$->setprintElement("CurveLengthCharacteristicNominal");
           }
         ;
 
@@ -33811,7 +33809,7 @@ y_CurveLengthCharacteristicStats_CurveLengthCharacteristicStatsEvalType :
           y_CurveLengthCharacteristicStatsEvalType
           CurveLengthCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "CurveLengthCharacteristicStats";
+           $$->setprintElement("CurveLengthCharacteristicStats");
           }
         ;
 
@@ -33886,7 +33884,7 @@ y_CustomerOrganization_CustomerOrganizationType_0 :
         | CustomerOrganizationSTART y_CustomerOrganizationType
           CustomerOrganizationEND
           {$$ = $2;
-           $$->printElement = "CustomerOrganization";
+           $$->setprintElement("CustomerOrganization");
           }
         ;
 
@@ -33928,7 +33926,7 @@ y_Cylinder23CoreType :
 y_Cylinder23Core_Cylinder23CoreType :
           Cylinder23CoreSTART y_Cylinder23CoreType Cylinder23CoreEND
           {$$ = $2;
-           $$->printElement = "Cylinder23Core";
+           $$->setprintElement("Cylinder23Core");
           }
         ;
 
@@ -33954,7 +33952,7 @@ y_Cylinder23Type :
 y_Cylinder23_Cylinder23Type :
           Cylinder23START y_Cylinder23Type Cylinder23END
           {$$ = $2;
-           $$->printElement = "Cylinder23";
+           $$->setprintElement("Cylinder23");
           }
         ;
 
@@ -34117,7 +34115,7 @@ y_CylinderFeatureDefinition_CylinderFeatureDefinitionType :
           CylinderFeatureDefinitionSTART y_CylinderFeatureDefinitionType
           CylinderFeatureDefinitionEND
           {$$ = $2;
-           $$->printElement = "CylinderFeatureDefinition";
+           $$->setprintElement("CylinderFeatureDefinition");
           }
         ;
 
@@ -34158,7 +34156,7 @@ y_CylinderFeatureItem_CylinderFeatureItemType :
           CylinderFeatureItemSTART y_CylinderFeatureItemType
           CylinderFeatureItemEND
           {$$ = $2;
-           $$->printElement = "CylinderFeatureItem";
+           $$->setprintElement("CylinderFeatureItem");
           }
         ;
 
@@ -34216,13 +34214,13 @@ y_CylinderFeatureMeasurement_CylinderFeatureMeasurementType :
           CylinderFeatureMeasurementSTART y_CylinderFeatureMeasurementType
           CylinderFeatureMeasurementEND
           {$$ = $2;
-           $$->printElement = "CylinderFeatureMeasurement";
+           $$->setprintElement("CylinderFeatureMeasurement");
           }
         | CylinderFeatureMeasurementSTART y_LiztAttributePair ENDWHOLEITEM
           {$$ = new CylinderFeatureMeasurementType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "CylinderFeatureMeasurement";
+           $$->setprintElement("CylinderFeatureMeasurement");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -34271,7 +34269,7 @@ y_CylinderFeatureNominal_CylinderFeatureNominalType :
           CylinderFeatureNominalSTART y_CylinderFeatureNominalType
           CylinderFeatureNominalEND
           {$$ = $2;
-           $$->printElement = "CylinderFeatureNominal";
+           $$->setprintElement("CylinderFeatureNominal");
           }
         ;
 
@@ -34520,7 +34518,7 @@ y_CylindricalSegmentFeatureDefinition_CylindricalSegmentFeatureDefinitionType :
           y_CylindricalSegmentFeatureDefinitionType
           CylindricalSegmentFeatureDefinitionEND
           {$$ = $2;
-           $$->printElement = "CylindricalSegmentFeatureDefinition";
+           $$->setprintElement("CylindricalSegmentFeatureDefinition");
           }
         ;
 
@@ -34562,7 +34560,7 @@ y_CylindricalSegmentFeatureItem_CylindricalSegmentFeatureItemType :
           y_CylindricalSegmentFeatureItemType
           CylindricalSegmentFeatureItemEND
           {$$ = $2;
-           $$->printElement = "CylindricalSegmentFeatureItem";
+           $$->setprintElement("CylindricalSegmentFeatureItem");
           }
         ;
 
@@ -34621,14 +34619,14 @@ y_CylindricalSegmentFeatureMeasurement_CylindricalSegmentFeatureMeasurementType 
           y_CylindricalSegmentFeatureMeasurementType
           CylindricalSegmentFeatureMeasurementEND
           {$$ = $2;
-           $$->printElement = "CylindricalSegmentFeatureMeasurement";
+           $$->setprintElement("CylindricalSegmentFeatureMeasurement");
           }
         | CylindricalSegmentFeatureMeasurementSTART y_LiztAttributePair
           ENDWHOLEITEM
           {$$ = new CylindricalSegmentFeatureMeasurementType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "CylindricalSegmentFeatureMeasurement";
+           $$->setprintElement("CylindricalSegmentFeatureMeasurement");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -34678,7 +34676,7 @@ y_CylindricalSegmentFeatureNominal_CylindricalSegmentFeatureNominalType :
           y_CylindricalSegmentFeatureNominalType
           CylindricalSegmentFeatureNominalEND
           {$$ = $2;
-           $$->printElement = "CylindricalSegmentFeatureNominal";
+           $$->setprintElement("CylindricalSegmentFeatureNominal");
           }
         ;
 
@@ -34773,7 +34771,7 @@ y_CylindricalWorkingVolume_CylindricalWorkingVolumeType :
           CylindricalWorkingVolumeSTART y_CylindricalWorkingVolumeType
           CylindricalWorkingVolumeEND
           {$$ = $2;
-           $$->printElement = "CylindricalWorkingVolume";
+           $$->setprintElement("CylindricalWorkingVolume");
           }
         ;
 
@@ -34983,7 +34981,7 @@ y_CylindricityCharacteristicDefinition_CylindricityCharacteristicDefinitionType 
           y_CylindricityCharacteristicDefinitionType
           CylindricityCharacteristicDefinitionEND
           {$$ = $2;
-           $$->printElement = "CylindricityCharacteristicDefinition";
+           $$->setprintElement("CylindricityCharacteristicDefinition");
           }
         ;
 
@@ -35026,7 +35024,7 @@ y_CylindricityCharacteristicItem_CylindricityCharacteristicItemType :
           y_CylindricityCharacteristicItemType
           CylindricityCharacteristicItemEND
           {$$ = $2;
-           $$->printElement = "CylindricityCharacteristicItem";
+           $$->setprintElement("CylindricityCharacteristicItem");
           }
         ;
 
@@ -35080,7 +35078,7 @@ y_CylindricityCharacteristicMeasurement_CylindricityCharacteristicMeasurementTyp
           y_CylindricityCharacteristicMeasurementType
           CylindricityCharacteristicMeasurementEND
           {$$ = $2;
-           $$->printElement = "CylindricityCharacteristicMeasurement";
+           $$->setprintElement("CylindricityCharacteristicMeasurement");
           }
         ;
 
@@ -35121,7 +35119,7 @@ y_CylindricityCharacteristicNominal_CylindricityCharacteristicNominalType :
           y_CylindricityCharacteristicNominalType
           CylindricityCharacteristicNominalEND
           {$$ = $2;
-           $$->printElement = "CylindricityCharacteristicNominal";
+           $$->setprintElement("CylindricityCharacteristicNominal");
           }
         ;
 
@@ -35157,7 +35155,7 @@ y_CylindricityCharacteristicStats_CylindricityCharacteristicStatsEvalType :
           y_CylindricityCharacteristicStatsEvalType
           CylindricityCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "CylindricityCharacteristicStats";
+           $$->setprintElement("CylindricityCharacteristicStats");
           }
         ;
 
@@ -35179,7 +35177,7 @@ y_DMEClassNameEnumType :
           {$$ = new DMEClassNameEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad DMEClassNameEnumType value");
           }
         ;
@@ -35211,7 +35209,7 @@ y_DMEDecisionClassType :
 y_DMEDecisionClass_DMEDecisionClassType :
           DMEDecisionClassSTART y_DMEDecisionClassType DMEDecisionClassEND
           {$$ = $2;
-           $$->printElement = "DMEDecisionClass";
+           $$->setprintElement("DMEDecisionClass");
           }
         ;
 
@@ -35227,7 +35225,7 @@ y_DMEDecisionIdType :
 y_DMEDecisionId_DMEDecisionIdType :
           DMEDecisionIdSTART y_DMEDecisionIdType DMEDecisionIdEND
           {$$ = $2;
-           $$->printElement = "DMEDecisionId";
+           $$->setprintElement("DMEDecisionId");
           }
         ;
 
@@ -35247,14 +35245,14 @@ y_DMEDecisionMakeModel_DMEDecisionMakeModelType :
           DMEDecisionMakeModelSTART y_DMEDecisionMakeModelType
           DMEDecisionMakeModelEND
           {$$ = $2;
-           $$->printElement = "DMEDecisionMakeModel";
+           $$->setprintElement("DMEDecisionMakeModel");
           }
         ;
 
 y_DMEDecisionRule_IfThenDMERuleType :
           DMEDecisionRuleSTART y_IfThenDMERuleType DMEDecisionRuleEND
           {$$ = $2;
-           $$->printElement = "DMEDecisionRule";
+           $$->setprintElement("DMEDecisionRule");
           }
         ;
 
@@ -35387,7 +35385,7 @@ y_DVRTSensor_DifferentialVariableReluctanceTransducerSensorType :
           y_DifferentialVariableReluctanceTransducerSensorType
           DVRTSensorEND
           {$$ = $2;
-           $$->printElement = "DVRTSensor";
+           $$->setprintElement("DVRTSensor");
           }
         ;
 
@@ -35563,7 +35561,7 @@ y_DatumPrecedence_DatumPrecedenceAlignmentOperationType :
           DatumPrecedenceSTART y_DatumPrecedenceAlignmentOperationType
           DatumPrecedenceEND
           {$$ = $2;
-           $$->printElement = "DatumPrecedence";
+           $$->setprintElement("DatumPrecedence");
           }
         ;
 
@@ -35892,7 +35890,7 @@ y_DatumsOkStats_StatsPassFailType_0 :
           {$$ = 0;}
         | DatumsOkStatsSTART y_StatsPassFailType DatumsOkStatsEND
           {$$ = $2;
-           $$->printElement = "DatumsOkStats";
+           $$->setprintElement("DatumsOkStats");
           }
         ;
 
@@ -36013,14 +36011,14 @@ y_DefiningPoint_DefiningPointMeasurementType :
           DefiningPointSTART y_DefiningPointMeasurementType
           DefiningPointEND
           {$$ = $2;
-           $$->printElement = "DefiningPoint";
+           $$->setprintElement("DefiningPoint");
           }
         ;
 
 y_DefiningPoint_DefiningPointNominalType :
           DefiningPointSTART y_DefiningPointNominalType DefiningPointEND
           {$$ = $2;
-           $$->printElement = "DefiningPoint";
+           $$->setprintElement("DefiningPoint");
           }
         ;
 
@@ -36134,7 +36132,7 @@ y_DegreeOfFreedomEnumType :
           {$$ = new DegreeOfFreedomEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad DegreeOfFreedomEnumType value");
           }
         ;
@@ -36257,7 +36255,7 @@ y_DepthCharacteristicDefinition_DepthCharacteristicDefinitionType :
           y_DepthCharacteristicDefinitionType
           DepthCharacteristicDefinitionEND
           {$$ = $2;
-           $$->printElement = "DepthCharacteristicDefinition";
+           $$->setprintElement("DepthCharacteristicDefinition");
           }
         ;
 
@@ -36299,7 +36297,7 @@ y_DepthCharacteristicItem_DepthCharacteristicItemType :
           DepthCharacteristicItemSTART y_DepthCharacteristicItemType
           DepthCharacteristicItemEND
           {$$ = $2;
-           $$->printElement = "DepthCharacteristicItem";
+           $$->setprintElement("DepthCharacteristicItem");
           }
         ;
 
@@ -36349,7 +36347,7 @@ y_DepthCharacteristicMeasurement_DepthCharacteristicMeasurementType :
           y_DepthCharacteristicMeasurementType
           DepthCharacteristicMeasurementEND
           {$$ = $2;
-           $$->printElement = "DepthCharacteristicMeasurement";
+           $$->setprintElement("DepthCharacteristicMeasurement");
           }
         ;
 
@@ -36393,7 +36391,7 @@ y_DepthCharacteristicNominal_DepthCharacteristicNominalType :
           DepthCharacteristicNominalSTART y_DepthCharacteristicNominalType
           DepthCharacteristicNominalEND
           {$$ = $2;
-           $$->printElement = "DepthCharacteristicNominal";
+           $$->setprintElement("DepthCharacteristicNominal");
           }
         ;
 
@@ -36420,7 +36418,7 @@ y_DepthCharacteristicStats_DepthCharacteristicStatsEvalType :
           DepthCharacteristicStatsSTART y_DepthCharacteristicStatsEvalType
           DepthCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "DepthCharacteristicStats";
+           $$->setprintElement("DepthCharacteristicStats");
           }
         ;
 
@@ -36520,7 +36518,7 @@ y_DetachableCapacitiveSensor_CapacitiveSensorType :
           DetachableCapacitiveSensorSTART y_CapacitiveSensorType
           DetachableCapacitiveSensorEND
           {$$ = $2;
-           $$->printElement = "DetachableCapacitiveSensor";
+           $$->setprintElement("DetachableCapacitiveSensor");
           }
         ;
 
@@ -36529,7 +36527,7 @@ y_DetachableLVDTSensor_LinearVariableDifferentialTransformerSensorType :
           y_LinearVariableDifferentialTransformerSensorType
           DetachableLVDTSensorEND
           {$$ = $2;
-           $$->printElement = "DetachableLVDTSensor";
+           $$->setprintElement("DetachableLVDTSensor");
           }
         ;
 
@@ -36800,56 +36798,56 @@ y_DeterminationModifier_DimensionDeterminationEnumType_0 :
 y_DeviationStats_StatsLinearType :
           DeviationStatsSTART y_StatsLinearType DeviationStatsEND
           {$$ = $2;
-           $$->printElement = "DeviationStats";
+           $$->setprintElement("DeviationStats");
           }
         ;
 
 y_DeviationStats_StatsWithTolAngularType :
           DeviationStatsSTART y_StatsWithTolAngularType DeviationStatsEND
           {$$ = $2;
-           $$->printElement = "DeviationStats";
+           $$->setprintElement("DeviationStats");
           }
         ;
 
 y_DeviationStats_StatsWithTolAreaType :
           DeviationStatsSTART y_StatsWithTolAreaType DeviationStatsEND
           {$$ = $2;
-           $$->printElement = "DeviationStats";
+           $$->setprintElement("DeviationStats");
           }
         ;
 
 y_DeviationStats_StatsWithTolForceType :
           DeviationStatsSTART y_StatsWithTolForceType DeviationStatsEND
           {$$ = $2;
-           $$->printElement = "DeviationStats";
+           $$->setprintElement("DeviationStats");
           }
         ;
 
 y_DeviationStats_StatsWithTolLinearType :
           DeviationStatsSTART y_StatsWithTolLinearType DeviationStatsEND
           {$$ = $2;
-           $$->printElement = "DeviationStats";
+           $$->setprintElement("DeviationStats");
           }
         ;
 
 y_DeviationStats_StatsWithTolMassType :
           DeviationStatsSTART y_StatsWithTolMassType DeviationStatsEND
           {$$ = $2;
-           $$->printElement = "DeviationStats";
+           $$->setprintElement("DeviationStats");
           }
         ;
 
 y_DeviationStats_StatsWithTolPressureType :
           DeviationStatsSTART y_StatsWithTolPressureType DeviationStatsEND
           {$$ = $2;
-           $$->printElement = "DeviationStats";
+           $$->setprintElement("DeviationStats");
           }
         ;
 
 y_DeviationStats_StatsWithTolSpeedType :
           DeviationStatsSTART y_StatsWithTolSpeedType DeviationStatsEND
           {$$ = $2;
-           $$->printElement = "DeviationStats";
+           $$->setprintElement("DeviationStats");
           }
         ;
 
@@ -36857,14 +36855,14 @@ y_DeviationStats_StatsWithTolTemperatureType :
           DeviationStatsSTART y_StatsWithTolTemperatureType
           DeviationStatsEND
           {$$ = $2;
-           $$->printElement = "DeviationStats";
+           $$->setprintElement("DeviationStats");
           }
         ;
 
 y_DeviationStats_StatsWithTolTimeType :
           DeviationStatsSTART y_StatsWithTolTimeType DeviationStatsEND
           {$$ = $2;
-           $$->printElement = "DeviationStats";
+           $$->setprintElement("DeviationStats");
           }
         ;
 
@@ -36872,7 +36870,7 @@ y_DeviationStats_StatsWithTolUserDefinedUnitType :
           DeviationStatsSTART y_StatsWithTolUserDefinedUnitType
           DeviationStatsEND
           {$$ = $2;
-           $$->printElement = "DeviationStats";
+           $$->setprintElement("DeviationStats");
           }
         ;
 
@@ -36968,7 +36966,7 @@ y_DiameterCharacteristicDefinition_DiameterCharacteristicDefinitionType :
           y_DiameterCharacteristicDefinitionType
           DiameterCharacteristicDefinitionEND
           {$$ = $2;
-           $$->printElement = "DiameterCharacteristicDefinition";
+           $$->setprintElement("DiameterCharacteristicDefinition");
           }
         ;
 
@@ -37010,7 +37008,7 @@ y_DiameterCharacteristicItem_DiameterCharacteristicItemType :
           DiameterCharacteristicItemSTART y_DiameterCharacteristicItemType
           DiameterCharacteristicItemEND
           {$$ = $2;
-           $$->printElement = "DiameterCharacteristicItem";
+           $$->setprintElement("DiameterCharacteristicItem");
           }
         ;
 
@@ -37060,7 +37058,7 @@ y_DiameterCharacteristicMeasurement_DiameterCharacteristicMeasurementType :
           y_DiameterCharacteristicMeasurementType
           DiameterCharacteristicMeasurementEND
           {$$ = $2;
-           $$->printElement = "DiameterCharacteristicMeasurement";
+           $$->setprintElement("DiameterCharacteristicMeasurement");
           }
         ;
 
@@ -37105,7 +37103,7 @@ y_DiameterCharacteristicNominal_DiameterCharacteristicNominalType :
           y_DiameterCharacteristicNominalType
           DiameterCharacteristicNominalEND
           {$$ = $2;
-           $$->printElement = "DiameterCharacteristicNominal";
+           $$->setprintElement("DiameterCharacteristicNominal");
           }
         ;
 
@@ -37133,7 +37131,7 @@ y_DiameterCharacteristicStats_DiameterCharacteristicStatsEvalType :
           y_DiameterCharacteristicStatsEvalType
           DiameterCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "DiameterCharacteristicStats";
+           $$->setprintElement("DiameterCharacteristicStats");
           }
         ;
 
@@ -37168,7 +37166,7 @@ y_DiameterModifierEnumType :
           {$$ = new DiameterModifierEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad DiameterModifierEnumType value");
           }
         ;
@@ -37256,7 +37254,7 @@ y_DiametricalZone_StraightnessDiametricalZoneType :
 y_Difference_StatsMeasuredDecimalType :
           DifferenceSTART y_StatsMeasuredDecimalType DifferenceEND
           {$$ = $2;
-           $$->printElement = "Difference";
+           $$->setprintElement("Difference");
           }
         ;
 
@@ -37343,7 +37341,7 @@ y_DigitalModelFormatEnumType :
           {$$ = new DigitalModelFormatEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad DigitalModelFormatEnumType value");
           }
         ;
@@ -37417,7 +37415,7 @@ y_DimensionCountEnumType :
           {$$ = new DimensionCountEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad DimensionCountEnumType value");
           }
         ;
@@ -37427,7 +37425,7 @@ y_DimensionDeterminationEnumType :
           {$$ = new DimensionDeterminationEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad DimensionDeterminationEnumType value");
           }
         ;
@@ -37437,7 +37435,7 @@ y_DimensionModifierEnumType :
           {$$ = new DimensionModifierEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad DimensionModifierEnumType value");
           }
         ;
@@ -37508,14 +37506,14 @@ y_DirBeg_UnitVector2dSimpleType :
           DirBegSTART ENDWHOLEITEM
           {$$ = new UnitVector2dSimpleType();
            $$->UnitVector2dSimpleTypeCheck();
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad UnitVector2dSimpleType value");
            yyUnrefMap[$$] = $$;
           }
         | DirBegSTART y_UnitVector2dSimpleType DirBegEND
           {$$ = $2;
            $2->UnitVector2dSimpleTypeCheck();
-           if ($2->bad)
+           if ($2->getbad())
              return yyerror("bad UnitVector2dSimpleType value");
           }
         ;
@@ -37524,14 +37522,14 @@ y_DirBeg_UnitVectorSimpleType :
           DirBegSTART ENDWHOLEITEM
           {$$ = new UnitVectorSimpleType();
            $$->UnitVectorSimpleTypeCheck();
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad UnitVectorSimpleType value");
            yyUnrefMap[$$] = $$;
           }
         | DirBegSTART y_UnitVectorSimpleType DirBegEND
           {$$ = $2;
            $2->UnitVectorSimpleTypeCheck();
-           if ($2->bad)
+           if ($2->getbad())
              return yyerror("bad UnitVectorSimpleType value");
           }
         ;
@@ -37555,14 +37553,14 @@ y_DirU_VectorSimpleType :
           DirUSTART ENDWHOLEITEM
           {$$ = new VectorSimpleType();
            $$->VectorSimpleTypeCheck();
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad VectorSimpleType value");
            yyUnrefMap[$$] = $$;
           }
         | DirUSTART y_VectorSimpleType DirUEND
           {$$ = $2;
            $2->VectorSimpleTypeCheck();
-           if ($2->bad)
+           if ($2->getbad())
              return yyerror("bad VectorSimpleType value");
           }
         ;
@@ -37571,14 +37569,14 @@ y_DirV_VectorSimpleType :
           DirVSTART ENDWHOLEITEM
           {$$ = new VectorSimpleType();
            $$->VectorSimpleTypeCheck();
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad VectorSimpleType value");
            yyUnrefMap[$$] = $$;
           }
         | DirVSTART y_VectorSimpleType DirVEND
           {$$ = $2;
            $2->VectorSimpleTypeCheck();
-           if ($2->bad)
+           if ($2->getbad())
              return yyerror("bad VectorSimpleType value");
           }
         ;
@@ -37718,7 +37716,7 @@ y_DisplayStyleFormEnumType :
           {$$ = new DisplayStyleFormEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad DisplayStyleFormEnumType value");
           }
         ;
@@ -37828,7 +37826,7 @@ y_DisplayStyleType :
 y_DisplayStyle_DisplayStyleType :
           DisplayStyleSTART y_DisplayStyleType DisplayStyleEND
           {$$ = $2;
-           $$->printElement = "DisplayStyle";
+           $$->setprintElement("DisplayStyle");
           }
         ;
 
@@ -37844,7 +37842,7 @@ y_DistanceBetweenAnalysisModeEnumType :
           {$$ = new DistanceBetweenAnalysisModeEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad DistanceBetweenAnalysisModeEnumType value");
           }
         ;
@@ -37895,7 +37893,7 @@ y_DistanceBetweenCharacteristicDefinition_DistanceBetweenCharacteristicDefinitio
           y_DistanceBetweenCharacteristicDefinitionType
           DistanceBetweenCharacteristicDefinitionEND
           {$$ = $2;
-           $$->printElement = "DistanceBetweenCharacteristicDefinition";
+           $$->setprintElement("DistanceBetweenCharacteristicDefinition");
           }
         ;
 
@@ -37938,7 +37936,7 @@ y_DistanceBetweenCharacteristicItem_DistanceBetweenCharacteristicItemType :
           y_DistanceBetweenCharacteristicItemType
           DistanceBetweenCharacteristicItemEND
           {$$ = $2;
-           $$->printElement = "DistanceBetweenCharacteristicItem";
+           $$->setprintElement("DistanceBetweenCharacteristicItem");
           }
         ;
 
@@ -37990,7 +37988,7 @@ y_DistanceBetweenCharacteristicMeasurement_DistanceBetweenCharacteristicMeasurem
           y_DistanceBetweenCharacteristicMeasurementType
           DistanceBetweenCharacteristicMeasurementEND
           {$$ = $2;
-           $$->printElement = "DistanceBetweenCharacteristicMeasurement";
+           $$->setprintElement("DistanceBetweenCharacteristicMeasurement");
           }
         ;
 
@@ -38045,7 +38043,7 @@ y_DistanceBetweenCharacteristicNominal_DistanceBetweenCharacteristicNominalType 
           y_DistanceBetweenCharacteristicNominalType
           DistanceBetweenCharacteristicNominalEND
           {$$ = $2;
-           $$->printElement = "DistanceBetweenCharacteristicNominal";
+           $$->setprintElement("DistanceBetweenCharacteristicNominal");
           }
         ;
 
@@ -38073,7 +38071,7 @@ y_DistanceBetweenCharacteristicStats_DistanceBetweenCharacteristicStatsEvalType 
           y_DistanceBetweenCharacteristicStatsEvalType
           DistanceBetweenCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "DistanceBetweenCharacteristicStats";
+           $$->setprintElement("DistanceBetweenCharacteristicStats");
           }
         ;
 
@@ -38123,7 +38121,7 @@ y_DistanceFromCharacteristicDefinition_DistanceFromCharacteristicDefinitionType 
           y_DistanceFromCharacteristicDefinitionType
           DistanceFromCharacteristicDefinitionEND
           {$$ = $2;
-           $$->printElement = "DistanceFromCharacteristicDefinition";
+           $$->setprintElement("DistanceFromCharacteristicDefinition");
           }
         ;
 
@@ -38166,7 +38164,7 @@ y_DistanceFromCharacteristicItem_DistanceFromCharacteristicItemType :
           y_DistanceFromCharacteristicItemType
           DistanceFromCharacteristicItemEND
           {$$ = $2;
-           $$->printElement = "DistanceFromCharacteristicItem";
+           $$->setprintElement("DistanceFromCharacteristicItem");
           }
         ;
 
@@ -38218,7 +38216,7 @@ y_DistanceFromCharacteristicMeasurement_DistanceFromCharacteristicMeasurementTyp
           y_DistanceFromCharacteristicMeasurementType
           DistanceFromCharacteristicMeasurementEND
           {$$ = $2;
-           $$->printElement = "DistanceFromCharacteristicMeasurement";
+           $$->setprintElement("DistanceFromCharacteristicMeasurement");
           }
         ;
 
@@ -38273,7 +38271,7 @@ y_DistanceFromCharacteristicNominal_DistanceFromCharacteristicNominalType :
           y_DistanceFromCharacteristicNominalType
           DistanceFromCharacteristicNominalEND
           {$$ = $2;
-           $$->printElement = "DistanceFromCharacteristicNominal";
+           $$->setprintElement("DistanceFromCharacteristicNominal");
           }
         ;
 
@@ -38301,7 +38299,7 @@ y_DistanceFromCharacteristicStats_DistanceFromCharacteristicStatsEvalType :
           y_DistanceFromCharacteristicStatsEvalType
           DistanceFromCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "DistanceFromCharacteristicStats";
+           $$->setprintElement("DistanceFromCharacteristicStats");
           }
         ;
 
@@ -38335,7 +38333,7 @@ y_DistributionTransformationEnumType :
           {$$ = new DistributionTransformationEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad DistributionTransformationEnumType value");
           }
         ;
@@ -38398,7 +38396,7 @@ y_DividedByType :
 y_DividedBy_DividedByType :
           DividedBySTART y_DividedByType DividedByEND
           {$$ = $2;
-           $$->printElement = "DividedBy";
+           $$->setprintElement("DividedBy");
           }
         ;
 
@@ -38423,7 +38421,7 @@ y_DocumentFileInstruction_DocumentFileInstructionType :
           DocumentFileInstructionSTART y_DocumentFileInstructionType
           DocumentFileInstructionEND
           {$$ = $2;
-           $$->printElement = "DocumentFileInstruction";
+           $$->setprintElement("DocumentFileInstruction");
           }
         ;
 
@@ -38466,7 +38464,7 @@ y_DoublePositiveType :
           {$$ = new DoublePositiveType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad DoublePositiveType value");
           }
         ;
@@ -38538,7 +38536,7 @@ y_DrawWireSensorType :
 y_DrawWireSensor_DrawWireSensorType :
           DrawWireSensorSTART y_DrawWireSensorType DrawWireSensorEND
           {$$ = $2;
-           $$->printElement = "DrawWireSensor";
+           $$->setprintElement("DrawWireSensor");
           }
         ;
 
@@ -38572,7 +38570,7 @@ y_DualNestingIndexFilterSymbolEnumType :
           {$$ = new DualNestingIndexFilterSymbolEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad DualNestingIndexFilterSymbolEnumType value");
           }
         ;
@@ -38615,11 +38613,11 @@ y_EarlierVersion_VersionReferenceType :
           EarlierVersionSTART ENDWHOLEITEM
           {$$ = new VersionReferenceType();
            yyUnrefMap[$$] = $$;
-           $$->printElement = "EarlierVersion";
+           $$->setprintElement("EarlierVersion");
           }
         | EarlierVersionSTART y_VersionReferenceType EarlierVersionEND
           {$$ = $2;
-           $$->printElement = "EarlierVersion";
+           $$->setprintElement("EarlierVersion");
           }
         ;
 
@@ -38686,7 +38684,7 @@ y_EddyCurrentSensor_EddyCurrentSensorType :
           EddyCurrentSensorSTART y_EddyCurrentSensorType
           EddyCurrentSensorEND
           {$$ = $2;
-           $$->printElement = "EddyCurrentSensor";
+           $$->setprintElement("EddyCurrentSensor");
           }
         ;
 
@@ -38725,7 +38723,7 @@ y_EdgeOrientedType :
 y_EdgeOriented_EdgeOrientedType :
           EdgeOrientedSTART y_EdgeOrientedType EdgeOrientedEND
           {$$ = $2;
-           $$->printElement = "EdgeOriented";
+           $$->setprintElement("EdgeOriented");
           }
         ;
 
@@ -38844,7 +38842,7 @@ y_EdgePointFeatureDefinition_EdgePointFeatureDefinitionType :
           EdgePointFeatureDefinitionSTART y_EdgePointFeatureDefinitionType
           EdgePointFeatureDefinitionEND
           {$$ = $2;
-           $$->printElement = "EdgePointFeatureDefinition";
+           $$->setprintElement("EdgePointFeatureDefinition");
           }
         ;
 
@@ -38885,7 +38883,7 @@ y_EdgePointFeatureItem_EdgePointFeatureItemType :
           EdgePointFeatureItemSTART y_EdgePointFeatureItemType
           EdgePointFeatureItemEND
           {$$ = $2;
-           $$->printElement = "EdgePointFeatureItem";
+           $$->setprintElement("EdgePointFeatureItem");
           }
         ;
 
@@ -38934,13 +38932,13 @@ y_EdgePointFeatureMeasurement_EdgePointFeatureMeasurementType :
           EdgePointFeatureMeasurementSTART
           y_EdgePointFeatureMeasurementType EdgePointFeatureMeasurementEND
           {$$ = $2;
-           $$->printElement = "EdgePointFeatureMeasurement";
+           $$->setprintElement("EdgePointFeatureMeasurement");
           }
         | EdgePointFeatureMeasurementSTART y_LiztAttributePair ENDWHOLEITEM
           {$$ = new EdgePointFeatureMeasurementType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "EdgePointFeatureMeasurement";
+           $$->setprintElement("EdgePointFeatureMeasurement");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -38992,7 +38990,7 @@ y_EdgePointFeatureNominal_EdgePointFeatureNominalType :
           EdgePointFeatureNominalSTART y_EdgePointFeatureNominalType
           EdgePointFeatureNominalEND
           {$$ = $2;
-           $$->printElement = "EdgePointFeatureNominal";
+           $$->setprintElement("EdgePointFeatureNominal");
           }
         ;
 
@@ -39103,14 +39101,14 @@ y_EdgeType :
 y_Edge_EdgeOrientedType :
           EdgeSTART y_EdgeOrientedType EdgeEND
           {$$ = $2;
-           $$->printElement = "Edge";
+           $$->setprintElement("Edge");
           }
         ;
 
 y_Edge_EdgeType :
           EdgeSTART y_EdgeType EdgeEND
           {$$ = $2;
-           $$->printElement = "Edge";
+           $$->setprintElement("Edge");
           }
         ;
 
@@ -39143,7 +39141,7 @@ y_EffectiveCartesianWorkingVolume_EffectiveCartesianWorkingVolumeType :
           y_EffectiveCartesianWorkingVolumeType
           EffectiveCartesianWorkingVolumeEND
           {$$ = $2;
-           $$->printElement = "EffectiveCartesianWorkingVolume";
+           $$->setprintElement("EffectiveCartesianWorkingVolume");
           }
         ;
 
@@ -39160,7 +39158,7 @@ y_EffectiveClosedShellSetWorkingVolume_EffectiveClosedShellSetWorkingVolumeType 
           y_EffectiveClosedShellSetWorkingVolumeType
           EffectiveClosedShellSetWorkingVolumeEND
           {$$ = $2;
-           $$->printElement = "EffectiveClosedShellSetWorkingVolume";
+           $$->setprintElement("EffectiveClosedShellSetWorkingVolume");
           }
         ;
 
@@ -39185,7 +39183,7 @@ y_EffectiveCylindricalWorkingVolume_EffectiveCylindricalWorkingVolumeType :
           y_EffectiveCylindricalWorkingVolumeType
           EffectiveCylindricalWorkingVolumeEND
           {$$ = $2;
-           $$->printElement = "EffectiveCylindricalWorkingVolume";
+           $$->setprintElement("EffectiveCylindricalWorkingVolume");
           }
         ;
 
@@ -39220,7 +39218,7 @@ y_EffectiveNumber_StatsNonNegativeIntegerType :
           EffectiveNumberSTART y_StatsNonNegativeIntegerType
           EffectiveNumberEND
           {$$ = $2;
-           $$->printElement = "EffectiveNumber";
+           $$->setprintElement("EffectiveNumber");
           }
         ;
 
@@ -39254,7 +39252,7 @@ y_EffectiveSphericalWorkingVolume_EffectiveSphericalWorkingVolumeType :
           y_EffectiveSphericalWorkingVolumeType
           EffectiveSphericalWorkingVolumeEND
           {$$ = $2;
-           $$->printElement = "EffectiveSphericalWorkingVolume";
+           $$->setprintElement("EffectiveSphericalWorkingVolume");
           }
         ;
 
@@ -39283,7 +39281,7 @@ y_EffectiveUserDefinedWorkingVolume_EffectiveUserDefinedWorkingVolumeType :
           y_EffectiveUserDefinedWorkingVolumeType
           EffectiveUserDefinedWorkingVolumeEND
           {$$ = $2;
-           $$->printElement = "EffectiveUserDefinedWorkingVolume";
+           $$->setprintElement("EffectiveUserDefinedWorkingVolume");
           }
         ;
 
@@ -39531,7 +39529,7 @@ y_EllipseFeatureDefinition_EllipseFeatureDefinitionType :
           EllipseFeatureDefinitionSTART y_EllipseFeatureDefinitionType
           EllipseFeatureDefinitionEND
           {$$ = $2;
-           $$->printElement = "EllipseFeatureDefinition";
+           $$->setprintElement("EllipseFeatureDefinition");
           }
         ;
 
@@ -39572,7 +39570,7 @@ y_EllipseFeatureItem_EllipseFeatureItemType :
           EllipseFeatureItemSTART y_EllipseFeatureItemType
           EllipseFeatureItemEND
           {$$ = $2;
-           $$->printElement = "EllipseFeatureItem";
+           $$->setprintElement("EllipseFeatureItem");
           }
         ;
 
@@ -39628,13 +39626,13 @@ y_EllipseFeatureMeasurement_EllipseFeatureMeasurementType :
           EllipseFeatureMeasurementSTART y_EllipseFeatureMeasurementType
           EllipseFeatureMeasurementEND
           {$$ = $2;
-           $$->printElement = "EllipseFeatureMeasurement";
+           $$->setprintElement("EllipseFeatureMeasurement");
           }
         | EllipseFeatureMeasurementSTART y_LiztAttributePair ENDWHOLEITEM
           {$$ = new EllipseFeatureMeasurementType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "EllipseFeatureMeasurement";
+           $$->setprintElement("EllipseFeatureMeasurement");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -39686,7 +39684,7 @@ y_EllipseFeatureNominal_EllipseFeatureNominalType :
           EllipseFeatureNominalSTART y_EllipseFeatureNominalType
           EllipseFeatureNominalEND
           {$$ = $2;
-           $$->printElement = "EllipseFeatureNominal";
+           $$->setprintElement("EllipseFeatureNominal");
           }
         ;
 
@@ -39963,7 +39961,7 @@ y_EllipticalArcFeatureDefinition_EllipticalArcFeatureDefinitionType :
           y_EllipticalArcFeatureDefinitionType
           EllipticalArcFeatureDefinitionEND
           {$$ = $2;
-           $$->printElement = "EllipticalArcFeatureDefinition";
+           $$->setprintElement("EllipticalArcFeatureDefinition");
           }
         ;
 
@@ -40004,7 +40002,7 @@ y_EllipticalArcFeatureItem_EllipticalArcFeatureItemType :
           EllipticalArcFeatureItemSTART y_EllipticalArcFeatureItemType
           EllipticalArcFeatureItemEND
           {$$ = $2;
-           $$->printElement = "EllipticalArcFeatureItem";
+           $$->setprintElement("EllipticalArcFeatureItem");
           }
         ;
 
@@ -40061,14 +40059,14 @@ y_EllipticalArcFeatureMeasurement_EllipticalArcFeatureMeasurementType :
           y_EllipticalArcFeatureMeasurementType
           EllipticalArcFeatureMeasurementEND
           {$$ = $2;
-           $$->printElement = "EllipticalArcFeatureMeasurement";
+           $$->setprintElement("EllipticalArcFeatureMeasurement");
           }
         | EllipticalArcFeatureMeasurementSTART y_LiztAttributePair
           ENDWHOLEITEM
           {$$ = new EllipticalArcFeatureMeasurementType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "EllipticalArcFeatureMeasurement";
+           $$->setprintElement("EllipticalArcFeatureMeasurement");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -40120,7 +40118,7 @@ y_EllipticalArcFeatureNominal_EllipticalArcFeatureNominalType :
           EllipticalArcFeatureNominalSTART
           y_EllipticalArcFeatureNominalType EllipticalArcFeatureNominalEND
           {$$ = $2;
-           $$->printElement = "EllipticalArcFeatureNominal";
+           $$->setprintElement("EllipticalArcFeatureNominal");
           }
         ;
 
@@ -40287,7 +40285,7 @@ y_EllipticityCharacteristicDefinition_EllipticityCharacteristicDefinitionType :
           y_EllipticityCharacteristicDefinitionType
           EllipticityCharacteristicDefinitionEND
           {$$ = $2;
-           $$->printElement = "EllipticityCharacteristicDefinition";
+           $$->setprintElement("EllipticityCharacteristicDefinition");
           }
         ;
 
@@ -40330,7 +40328,7 @@ y_EllipticityCharacteristicItem_EllipticityCharacteristicItemType :
           y_EllipticityCharacteristicItemType
           EllipticityCharacteristicItemEND
           {$$ = $2;
-           $$->printElement = "EllipticityCharacteristicItem";
+           $$->setprintElement("EllipticityCharacteristicItem");
           }
         ;
 
@@ -40380,7 +40378,7 @@ y_EllipticityCharacteristicMeasurement_EllipticityCharacteristicMeasurementType 
           y_EllipticityCharacteristicMeasurementType
           EllipticityCharacteristicMeasurementEND
           {$$ = $2;
-           $$->printElement = "EllipticityCharacteristicMeasurement";
+           $$->setprintElement("EllipticityCharacteristicMeasurement");
           }
         ;
 
@@ -40421,7 +40419,7 @@ y_EllipticityCharacteristicNominal_EllipticityCharacteristicNominalType :
           y_EllipticityCharacteristicNominalType
           EllipticityCharacteristicNominalEND
           {$$ = $2;
-           $$->printElement = "EllipticityCharacteristicNominal";
+           $$->setprintElement("EllipticityCharacteristicNominal");
           }
         ;
 
@@ -40455,7 +40453,7 @@ y_EllipticityCharacteristicStats_EllipticityCharacteristicStatsEvalType :
           y_EllipticityCharacteristicStatsEvalType
           EllipticityCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "EllipticityCharacteristicStats";
+           $$->setprintElement("EllipticityCharacteristicStats");
           }
         ;
 
@@ -40602,7 +40600,7 @@ y_ElongatedCircleFeatureDefinition_ElongatedCircleFeatureDefinitionType :
           y_ElongatedCircleFeatureDefinitionType
           ElongatedCircleFeatureDefinitionEND
           {$$ = $2;
-           $$->printElement = "ElongatedCircleFeatureDefinition";
+           $$->setprintElement("ElongatedCircleFeatureDefinition");
           }
         ;
 
@@ -40643,7 +40641,7 @@ y_ElongatedCircleFeatureItem_ElongatedCircleFeatureItemType :
           ElongatedCircleFeatureItemSTART y_ElongatedCircleFeatureItemType
           ElongatedCircleFeatureItemEND
           {$$ = $2;
-           $$->printElement = "ElongatedCircleFeatureItem";
+           $$->setprintElement("ElongatedCircleFeatureItem");
           }
         ;
 
@@ -40706,14 +40704,14 @@ y_ElongatedCircleFeatureMeasurement_ElongatedCircleFeatureMeasurementType :
           y_ElongatedCircleFeatureMeasurementType
           ElongatedCircleFeatureMeasurementEND
           {$$ = $2;
-           $$->printElement = "ElongatedCircleFeatureMeasurement";
+           $$->setprintElement("ElongatedCircleFeatureMeasurement");
           }
         | ElongatedCircleFeatureMeasurementSTART y_LiztAttributePair
           ENDWHOLEITEM
           {$$ = new ElongatedCircleFeatureMeasurementType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "ElongatedCircleFeatureMeasurement";
+           $$->setprintElement("ElongatedCircleFeatureMeasurement");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -40765,7 +40763,7 @@ y_ElongatedCircleFeatureNominal_ElongatedCircleFeatureNominalType :
           y_ElongatedCircleFeatureNominalType
           ElongatedCircleFeatureNominalEND
           {$$ = $2;
-           $$->printElement = "ElongatedCircleFeatureNominal";
+           $$->setprintElement("ElongatedCircleFeatureNominal");
           }
         ;
 
@@ -40986,7 +40984,7 @@ y_ElongatedCylinderFeatureDefinition_ElongatedCylinderFeatureDefinitionType :
           y_ElongatedCylinderFeatureDefinitionType
           ElongatedCylinderFeatureDefinitionEND
           {$$ = $2;
-           $$->printElement = "ElongatedCylinderFeatureDefinition";
+           $$->setprintElement("ElongatedCylinderFeatureDefinition");
           }
         ;
 
@@ -41028,7 +41026,7 @@ y_ElongatedCylinderFeatureItem_ElongatedCylinderFeatureItemType :
           y_ElongatedCylinderFeatureItemType
           ElongatedCylinderFeatureItemEND
           {$$ = $2;
-           $$->printElement = "ElongatedCylinderFeatureItem";
+           $$->setprintElement("ElongatedCylinderFeatureItem");
           }
         ;
 
@@ -41097,14 +41095,14 @@ y_ElongatedCylinderFeatureMeasurement_ElongatedCylinderFeatureMeasurementType :
           y_ElongatedCylinderFeatureMeasurementType
           ElongatedCylinderFeatureMeasurementEND
           {$$ = $2;
-           $$->printElement = "ElongatedCylinderFeatureMeasurement";
+           $$->setprintElement("ElongatedCylinderFeatureMeasurement");
           }
         | ElongatedCylinderFeatureMeasurementSTART y_LiztAttributePair
           ENDWHOLEITEM
           {$$ = new ElongatedCylinderFeatureMeasurementType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "ElongatedCylinderFeatureMeasurement";
+           $$->setprintElement("ElongatedCylinderFeatureMeasurement");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -41154,7 +41152,7 @@ y_ElongatedCylinderFeatureNominal_ElongatedCylinderFeatureNominalType :
           y_ElongatedCylinderFeatureNominalType
           ElongatedCylinderFeatureNominalEND
           {$$ = $2;
-           $$->printElement = "ElongatedCylinderFeatureNominal";
+           $$->setprintElement("ElongatedCylinderFeatureNominal");
           }
         ;
 
@@ -41188,7 +41186,7 @@ y_ElongatedCylinderPointSamplingStrategyEnumType :
           {$$ = new ElongatedCylinderPointSamplingStrategyEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad ElongatedCylinderPointSamplingStrategyEnumType value");
           }
         ;
@@ -41296,7 +41294,7 @@ y_Else_ElseRuleType_0 :
           {$$ = 0;}
         | ElseSTART y_ElseRuleType ElseEND
           {$$ = $2;
-           $$->printElement = "Else";
+           $$->setprintElement("Else");
           }
         ;
 
@@ -41330,14 +41328,14 @@ y_EndPoint_Point2dSimpleType :
           EndPointSTART ENDWHOLEITEM
           {$$ = new Point2dSimpleType();
            $$->Point2dSimpleTypeCheck();
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad Point2dSimpleType value");
            yyUnrefMap[$$] = $$;
           }
         | EndPointSTART y_Point2dSimpleType EndPointEND
           {$$ = $2;
            $2->Point2dSimpleTypeCheck();
-           if ($2->bad)
+           if ($2->getbad())
              return yyerror("bad Point2dSimpleType value");
           }
         ;
@@ -41346,14 +41344,14 @@ y_EndPoint_PointSimpleType :
           EndPointSTART ENDWHOLEITEM
           {$$ = new PointSimpleType();
            $$->PointSimpleTypeCheck();
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad PointSimpleType value");
            yyUnrefMap[$$] = $$;
           }
         | EndPointSTART y_PointSimpleType EndPointEND
           {$$ = $2;
            $2->PointSimpleTypeCheck();
-           if ($2->bad)
+           if ($2->getbad())
              return yyerror("bad PointSimpleType value");
           }
         ;
@@ -41584,7 +41582,7 @@ y_EquipmentVariation_StatsMeasuredDecimalType :
           EquipmentVariationSTART y_StatsMeasuredDecimalType
           EquipmentVariationEND
           {$$ = $2;
-           $$->printElement = "EquipmentVariation";
+           $$->setprintElement("EquipmentVariation");
           }
         ;
 
@@ -41646,7 +41644,7 @@ y_EstablishDatumMeasurand_EstablishDatumMeasurandType :
           EstablishDatumMeasurandSTART y_EstablishDatumMeasurandType
           EstablishDatumMeasurandEND
           {$$ = $2;
-           $$->printElement = "EstablishDatumMeasurand";
+           $$->setprintElement("EstablishDatumMeasurand");
           }
         ;
 
@@ -41654,7 +41652,7 @@ y_EstimatedStandardDeviation_StatsMeasuredDecimalType :
           EstimatedStandardDeviationSTART y_StatsMeasuredDecimalType
           EstimatedStandardDeviationEND
           {$$ = $2;
-           $$->printElement = "EstimatedStandardDeviation";
+           $$->setprintElement("EstimatedStandardDeviation");
           }
         ;
 
@@ -41680,7 +41678,7 @@ y_EvaluateCharacteristicMeasurand_EvaluateCharacteristicMeasurandType :
           y_EvaluateCharacteristicMeasurandType
           EvaluateCharacteristicMeasurandEND
           {$$ = $2;
-           $$->printElement = "EvaluateCharacteristicMeasurand";
+           $$->setprintElement("EvaluateCharacteristicMeasurand");
           }
         ;
 
@@ -41707,7 +41705,7 @@ y_EvaluateSpecifiedCharacteristics_EvaluateSpecifiedCharacteristicsActionType :
           y_EvaluateSpecifiedCharacteristicsActionType
           EvaluateSpecifiedCharacteristicsEND
           {$$ = $2;
-           $$->printElement = "EvaluateSpecifiedCharacteristics";
+           $$->setprintElement("EvaluateSpecifiedCharacteristics");
           }
         ;
 
@@ -41732,7 +41730,7 @@ y_ExclusionEnumType :
           {$$ = new ExclusionEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad ExclusionEnumType value");
           }
         ;
@@ -41980,7 +41978,7 @@ y_ExplodedViewType :
 y_ExplodedView_ExplodedViewType :
           ExplodedViewSTART y_ExplodedViewType ExplodedViewEND
           {$$ = $2;
-           $$->printElement = "ExplodedView";
+           $$->setprintElement("ExplodedView");
           }
         ;
 
@@ -41999,7 +41997,7 @@ y_ExtentEnumType :
           {$$ = new ExtentEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad ExtentEnumType value");
           }
         ;
@@ -42179,14 +42177,14 @@ y_ExternalReferenceMeasureFeatureMethod_ExternalReferenceMeasureFeatureMethodTyp
           y_ExternalReferenceMeasureFeatureMethodType
           ExternalReferenceMeasureFeatureMethodEND
           {$$ = $2;
-           $$->printElement = "ExternalReferenceMeasureFeatureMethod";
+           $$->setprintElement("ExternalReferenceMeasureFeatureMethod");
           }
         | ExternalReferenceMeasureFeatureMethodSTART y_LiztAttributePair
           ENDWHOLEITEM
           {$$ = new ExternalReferenceMeasureFeatureMethodType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "ExternalReferenceMeasureFeatureMethod";
+           $$->setprintElement("ExternalReferenceMeasureFeatureMethod");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -42199,35 +42197,35 @@ y_ExternalReferenceMeasureFeatureMethod_ExternalReferenceMeasureFeatureMethodTyp
 y_Extract_CircularArcExtractType :
           ExtractSTART y_CircularArcExtractType ExtractEND
           {$$ = $2;
-           $$->printElement = "Extract";
+           $$->setprintElement("Extract");
           }
         ;
 
 y_Extract_LineExtractType :
           ExtractSTART y_LineExtractType ExtractEND
           {$$ = $2;
-           $$->printElement = "Extract";
+           $$->setprintElement("Extract");
           }
         ;
 
 y_Extract_PlaneExtractType :
           ExtractSTART y_PlaneExtractType ExtractEND
           {$$ = $2;
-           $$->printElement = "Extract";
+           $$->setprintElement("Extract");
           }
         ;
 
 y_Extract_PointDefinedCurveExtractType :
           ExtractSTART y_PointDefinedCurveExtractType ExtractEND
           {$$ = $2;
-           $$->printElement = "Extract";
+           $$->setprintElement("Extract");
           }
         ;
 
 y_Extract_PointDefinedSurfaceExtractType :
           ExtractSTART y_PointDefinedSurfaceExtractType ExtractEND
           {$$ = $2;
-           $$->printElement = "Extract";
+           $$->setprintElement("Extract");
           }
         ;
 
@@ -42250,7 +42248,7 @@ y_ExtremeLimit_XmlPositiveInteger_0 :
 y_Extreme_PointFeatureExtremeType :
           ExtremeSTART y_PointFeatureExtremeType ExtremeEND
           {$$ = $2;
-           $$->printElement = "Extreme";
+           $$->setprintElement("Extreme");
           }
         ;
 
@@ -42281,7 +42279,7 @@ y_Extrude23CoreType :
 y_Extrude23Core_Extrude23CoreType :
           Extrude23CoreSTART y_Extrude23CoreType Extrude23CoreEND
           {$$ = $2;
-           $$->printElement = "Extrude23Core";
+           $$->setprintElement("Extrude23Core");
           }
         ;
 
@@ -42307,7 +42305,7 @@ y_Extrude23Type :
 y_Extrude23_Extrude23Type :
           Extrude23START y_Extrude23Type Extrude23END
           {$$ = $2;
-           $$->printElement = "Extrude23";
+           $$->setprintElement("Extrude23");
           }
         ;
 
@@ -42453,7 +42451,7 @@ y_ExtrudedCrossSectionFeatureDefinition_ExtrudedCrossSectionFeatureDefinitionTyp
           y_ExtrudedCrossSectionFeatureDefinitionType
           ExtrudedCrossSectionFeatureDefinitionEND
           {$$ = $2;
-           $$->printElement = "ExtrudedCrossSectionFeatureDefinition";
+           $$->setprintElement("ExtrudedCrossSectionFeatureDefinition");
           }
         ;
 
@@ -42495,7 +42493,7 @@ y_ExtrudedCrossSectionFeatureItem_ExtrudedCrossSectionFeatureItemType :
           y_ExtrudedCrossSectionFeatureItemType
           ExtrudedCrossSectionFeatureItemEND
           {$$ = $2;
-           $$->printElement = "ExtrudedCrossSectionFeatureItem";
+           $$->setprintElement("ExtrudedCrossSectionFeatureItem");
           }
         ;
 
@@ -42546,14 +42544,14 @@ y_ExtrudedCrossSectionFeatureMeasurement_ExtrudedCrossSectionFeatureMeasurementT
           y_ExtrudedCrossSectionFeatureMeasurementType
           ExtrudedCrossSectionFeatureMeasurementEND
           {$$ = $2;
-           $$->printElement = "ExtrudedCrossSectionFeatureMeasurement";
+           $$->setprintElement("ExtrudedCrossSectionFeatureMeasurement");
           }
         | ExtrudedCrossSectionFeatureMeasurementSTART y_LiztAttributePair
           ENDWHOLEITEM
           {$$ = new ExtrudedCrossSectionFeatureMeasurementType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "ExtrudedCrossSectionFeatureMeasurement";
+           $$->setprintElement("ExtrudedCrossSectionFeatureMeasurement");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -42604,7 +42602,7 @@ y_ExtrudedCrossSectionFeatureNominal_ExtrudedCrossSectionFeatureNominalType :
           y_ExtrudedCrossSectionFeatureNominalType
           ExtrudedCrossSectionFeatureNominalEND
           {$$ = $2;
-           $$->printElement = "ExtrudedCrossSectionFeatureNominal";
+           $$->setprintElement("ExtrudedCrossSectionFeatureNominal");
           }
         ;
 
@@ -42639,7 +42637,7 @@ y_ExtrudedCrossSectionPointSamplingStrategyEnumType :
           {$$ = new ExtrudedCrossSectionPointSamplingStrategyEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad ExtrudedCrossSectionPointSamplingStrategyEnumType value");
           }
         ;
@@ -42910,7 +42908,7 @@ y_FaceMeshType_1182_TypeChoicePair_0 :
 y_FaceMesh_FaceMeshType :
           FaceMeshSTART y_FaceMeshType FaceMeshEND
           {$$ = $2;
-           $$->printElement = "FaceMesh";
+           $$->setprintElement("FaceMesh");
           }
         ;
 
@@ -42966,7 +42964,7 @@ y_FaceType :
 y_Face_FaceType :
           FaceSTART y_FaceType FaceEND
           {$$ = $2;
-           $$->printElement = "Face";
+           $$->setprintElement("Face");
           }
         ;
 
@@ -42997,7 +42995,7 @@ y_FailurePercentage_StatsMeasuredDecimalType :
           FailurePercentageSTART y_StatsMeasuredDecimalType
           FailurePercentageEND
           {$$ = $2;
-           $$->printElement = "FailurePercentage";
+           $$->setprintElement("FailurePercentage");
           }
         ;
 
@@ -43016,7 +43014,7 @@ y_FeatureAreaType :
 y_FeatureArea_FeatureAreaType :
           FeatureAreaSTART y_FeatureAreaType ENDWHOLEITEM
           {$$ = $2;
-           $$->printElement = "FeatureArea";
+           $$->setprintElement("FeatureArea");
           }
         ;
 
@@ -43292,7 +43290,7 @@ y_FeatureIsDatumType :
 y_FeatureIsDatum_FeatureIsDatumType :
           FeatureIsDatumSTART y_FeatureIsDatumType ENDWHOLEITEM
           {$$ = $2;
-           $$->printElement = "FeatureIsDatum";
+           $$->setprintElement("FeatureIsDatum");
           }
         ;
 
@@ -43306,7 +43304,7 @@ y_FeatureIsInternalType :
 y_FeatureIsInternal_FeatureIsInternalType :
           FeatureIsInternalSTART y_FeatureIsInternalType ENDWHOLEITEM
           {$$ = $2;
-           $$->printElement = "FeatureIsInternal";
+           $$->setprintElement("FeatureIsInternal");
           }
         ;
 
@@ -43562,7 +43560,7 @@ y_FeatureLengthType :
 y_FeatureLength_FeatureLengthType :
           FeatureLengthSTART y_FeatureLengthType ENDWHOLEITEM
           {$$ = $2;
-           $$->printElement = "FeatureLength";
+           $$->setprintElement("FeatureLength");
           }
         ;
 
@@ -44080,7 +44078,7 @@ y_FeatureSizeType :
 y_FeatureSize_FeatureSizeType :
           FeatureSizeSTART y_FeatureSizeType ENDWHOLEITEM
           {$$ = $2;
-           $$->printElement = "FeatureSize";
+           $$->setprintElement("FeatureSize");
           }
         ;
 
@@ -44096,7 +44094,7 @@ y_FeatureTypeEnumType :
           {$$ = new FeatureTypeEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad FeatureTypeEnumType value");
           }
         ;
@@ -44126,7 +44124,7 @@ y_FeatureTypeIsType :
 y_FeatureTypeIs_FeatureTypeIsType :
           FeatureTypeIsSTART y_FeatureTypeIsType ENDWHOLEITEM
           {$$ = $2;
-           $$->printElement = "FeatureTypeIs";
+           $$->setprintElement("FeatureTypeIs");
           }
         ;
 
@@ -44181,7 +44179,7 @@ y_FeatureZoneAreaBetween_FeatureZoneAreaBetweenType :
           FeatureZoneAreaBetweenSTART y_FeatureZoneAreaBetweenType
           FeatureZoneAreaBetweenEND
           {$$ = $2;
-           $$->printElement = "FeatureZoneAreaBetween";
+           $$->setprintElement("FeatureZoneAreaBetween");
           }
         ;
 
@@ -44211,7 +44209,7 @@ y_FeatureZoneAreaCircular_FeatureZoneAreaCircularType :
           FeatureZoneAreaCircularSTART y_FeatureZoneAreaCircularType
           FeatureZoneAreaCircularEND
           {$$ = $2;
-           $$->printElement = "FeatureZoneAreaCircular";
+           $$->setprintElement("FeatureZoneAreaCircular");
           }
         ;
 
@@ -44241,7 +44239,7 @@ y_FeatureZoneAreaCylindrical_FeatureZoneAreaCylindricalType :
           FeatureZoneAreaCylindricalSTART y_FeatureZoneAreaCylindricalType
           FeatureZoneAreaCylindricalEND
           {$$ = $2;
-           $$->printElement = "FeatureZoneAreaCylindrical";
+           $$->setprintElement("FeatureZoneAreaCylindrical");
           }
         ;
 
@@ -44270,13 +44268,13 @@ y_FeatureZoneAreaIrregular_FeatureZoneAreaIrregularType :
           FeatureZoneAreaIrregularSTART y_FeatureZoneAreaIrregularType
           FeatureZoneAreaIrregularEND
           {$$ = $2;
-           $$->printElement = "FeatureZoneAreaIrregular";
+           $$->setprintElement("FeatureZoneAreaIrregular");
           }
         | FeatureZoneAreaIrregularSTART y_LiztAttributePair ENDWHOLEITEM
           {$$ = new FeatureZoneAreaIrregularType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "FeatureZoneAreaIrregular";
+           $$->setprintElement("FeatureZoneAreaIrregular");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -44312,7 +44310,7 @@ y_FeatureZoneAreaRectangular_FeatureZoneAreaRectangularType :
           FeatureZoneAreaRectangularSTART y_FeatureZoneAreaRectangularType
           FeatureZoneAreaRectangularEND
           {$$ = $2;
-           $$->printElement = "FeatureZoneAreaRectangular";
+           $$->setprintElement("FeatureZoneAreaRectangular");
           }
         ;
 
@@ -44342,7 +44340,7 @@ y_FeatureZoneAreaSpherical_FeatureZoneAreaSphericalType :
           FeatureZoneAreaSphericalSTART y_FeatureZoneAreaSphericalType
           FeatureZoneAreaSphericalEND
           {$$ = $2;
-           $$->printElement = "FeatureZoneAreaSpherical";
+           $$->setprintElement("FeatureZoneAreaSpherical");
           }
         ;
 
@@ -44451,7 +44449,7 @@ y_FeatureZoneCurveCircular_FeatureZoneCurveCircularType :
           FeatureZoneCurveCircularSTART y_FeatureZoneCurveCircularType
           FeatureZoneCurveCircularEND
           {$$ = $2;
-           $$->printElement = "FeatureZoneCurveCircular";
+           $$->setprintElement("FeatureZoneCurveCircular");
           }
         ;
 
@@ -44481,7 +44479,7 @@ y_FeatureZoneCurveIrregular_FeatureZoneCurveIrregularType :
           FeatureZoneCurveIrregularSTART y_FeatureZoneCurveIrregularType
           FeatureZoneCurveIrregularEND
           {$$ = $2;
-           $$->printElement = "FeatureZoneCurveIrregular";
+           $$->setprintElement("FeatureZoneCurveIrregular");
           }
         ;
 
@@ -44511,7 +44509,7 @@ y_FeatureZoneCurveLine_FeatureZoneCurveLineType :
           FeatureZoneCurveLineSTART y_FeatureZoneCurveLineType
           FeatureZoneCurveLineEND
           {$$ = $2;
-           $$->printElement = "FeatureZoneCurveLine";
+           $$->setprintElement("FeatureZoneCurveLine");
           }
         ;
 
@@ -44602,7 +44600,7 @@ y_FeatureZonePointType :
 y_FeatureZonePoint_FeatureZonePointType :
           FeatureZonePointSTART y_FeatureZonePointType FeatureZonePointEND
           {$$ = $2;
-           $$->printElement = "FeatureZonePoint";
+           $$->setprintElement("FeatureZonePoint");
           }
         ;
 
@@ -44898,7 +44896,7 @@ y_FirstArticleStudyPlan_FirstArticleStudyPlanType :
           FirstArticleStudyPlanSTART y_FirstArticleStudyPlanType
           FirstArticleStudyPlanEND
           {$$ = $2;
-           $$->printElement = "FirstArticleStudyPlan";
+           $$->setprintElement("FirstArticleStudyPlan");
           }
         ;
 
@@ -44970,14 +44968,14 @@ y_FirstArticleStudyResults_FirstArticleStudyResultsType :
           FirstArticleStudyResultsSTART y_FirstArticleStudyResultsType
           FirstArticleStudyResultsEND
           {$$ = $2;
-           $$->printElement = "FirstArticleStudyResults";
+           $$->setprintElement("FirstArticleStudyResults");
           }
         ;
 
 y_FirstAxis_UserDefinedAxisType :
           FirstAxisSTART y_UserDefinedAxisType FirstAxisEND
           {$$ = $2;
-           $$->printElement = "FirstAxis";
+           $$->setprintElement("FirstAxis");
           }
         ;
 
@@ -45008,14 +45006,14 @@ y_FirstLineOrigin_Point2dSimpleType :
           FirstLineOriginSTART ENDWHOLEITEM
           {$$ = new Point2dSimpleType();
            $$->Point2dSimpleTypeCheck();
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad Point2dSimpleType value");
            yyUnrefMap[$$] = $$;
           }
         | FirstLineOriginSTART y_Point2dSimpleType FirstLineOriginEND
           {$$ = $2;
            $2->Point2dSimpleTypeCheck();
-           if ($2->bad)
+           if ($2->getbad())
              return yyerror("bad Point2dSimpleType value");
           }
         ;
@@ -45065,7 +45063,7 @@ y_FixtureType :
 y_Fixture_FixtureType :
           FixtureSTART y_FixtureType FixtureEND
           {$$ = $2;
-           $$->printElement = "Fixture";
+           $$->setprintElement("Fixture");
           }
         ;
 
@@ -45137,7 +45135,7 @@ y_FlatTaperCharacteristicDefinition_FlatTaperCharacteristicDefinitionType :
           y_FlatTaperCharacteristicDefinitionType
           FlatTaperCharacteristicDefinitionEND
           {$$ = $2;
-           $$->printElement = "FlatTaperCharacteristicDefinition";
+           $$->setprintElement("FlatTaperCharacteristicDefinition");
           }
         ;
 
@@ -45179,7 +45177,7 @@ y_FlatTaperCharacteristicItem_FlatTaperCharacteristicItemType :
           FlatTaperCharacteristicItemSTART
           y_FlatTaperCharacteristicItemType FlatTaperCharacteristicItemEND
           {$$ = $2;
-           $$->printElement = "FlatTaperCharacteristicItem";
+           $$->setprintElement("FlatTaperCharacteristicItem");
           }
         ;
 
@@ -45231,7 +45229,7 @@ y_FlatTaperCharacteristicMeasurement_FlatTaperCharacteristicMeasurementType :
           y_FlatTaperCharacteristicMeasurementType
           FlatTaperCharacteristicMeasurementEND
           {$$ = $2;
-           $$->printElement = "FlatTaperCharacteristicMeasurement";
+           $$->setprintElement("FlatTaperCharacteristicMeasurement");
           }
         ;
 
@@ -45278,7 +45276,7 @@ y_FlatTaperCharacteristicNominal_FlatTaperCharacteristicNominalType :
           y_FlatTaperCharacteristicNominalType
           FlatTaperCharacteristicNominalEND
           {$$ = $2;
-           $$->printElement = "FlatTaperCharacteristicNominal";
+           $$->setprintElement("FlatTaperCharacteristicNominal");
           }
         ;
 
@@ -45306,7 +45304,7 @@ y_FlatTaperCharacteristicStats_FlatTaperCharacteristicStatsEvalType :
           y_FlatTaperCharacteristicStatsEvalType
           FlatTaperCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "FlatTaperCharacteristicStats";
+           $$->setprintElement("FlatTaperCharacteristicStats");
           }
         ;
 
@@ -45430,7 +45428,7 @@ y_FlatnessCharacteristicDefinition_FlatnessCharacteristicDefinitionType :
           y_FlatnessCharacteristicDefinitionType
           FlatnessCharacteristicDefinitionEND
           {$$ = $2;
-           $$->printElement = "FlatnessCharacteristicDefinition";
+           $$->setprintElement("FlatnessCharacteristicDefinition");
           }
         ;
 
@@ -45472,7 +45470,7 @@ y_FlatnessCharacteristicItem_FlatnessCharacteristicItemType :
           FlatnessCharacteristicItemSTART y_FlatnessCharacteristicItemType
           FlatnessCharacteristicItemEND
           {$$ = $2;
-           $$->printElement = "FlatnessCharacteristicItem";
+           $$->setprintElement("FlatnessCharacteristicItem");
           }
         ;
 
@@ -45528,7 +45526,7 @@ y_FlatnessCharacteristicMeasurement_FlatnessCharacteristicMeasurementType :
           y_FlatnessCharacteristicMeasurementType
           FlatnessCharacteristicMeasurementEND
           {$$ = $2;
-           $$->printElement = "FlatnessCharacteristicMeasurement";
+           $$->setprintElement("FlatnessCharacteristicMeasurement");
           }
         ;
 
@@ -45569,7 +45567,7 @@ y_FlatnessCharacteristicNominal_FlatnessCharacteristicNominalType :
           y_FlatnessCharacteristicNominalType
           FlatnessCharacteristicNominalEND
           {$$ = $2;
-           $$->printElement = "FlatnessCharacteristicNominal";
+           $$->setprintElement("FlatnessCharacteristicNominal");
           }
         ;
 
@@ -45607,7 +45605,7 @@ y_FlatnessCharacteristicStats_FlatnessCharacteristicStatsEvalType :
           y_FlatnessCharacteristicStatsEvalType
           FlatnessCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "FlatnessCharacteristicStats";
+           $$->setprintElement("FlatnessCharacteristicStats");
           }
         ;
 
@@ -45666,7 +45664,7 @@ y_FolderAssemblyType :
 y_FolderAssembly_FolderAssemblyType :
           FolderAssemblySTART y_FolderAssemblyType FolderAssemblyEND
           {$$ = $2;
-           $$->printElement = "FolderAssembly";
+           $$->setprintElement("FolderAssembly");
           }
         ;
 
@@ -45723,13 +45721,13 @@ y_FolderPartType :
 y_FolderPart_FolderPartType :
           FolderPartSTART y_FolderPartType FolderPartEND
           {$$ = $2;
-           $$->printElement = "FolderPart";
+           $$->setprintElement("FolderPart");
           }
         | FolderPartSTART y_LiztAttributePair ENDWHOLEITEM
           {$$ = new FolderPartType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "FolderPart";
+           $$->setprintElement("FolderPart");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -45857,7 +45855,7 @@ y_ForceCriterion_CriterionForceType_0 :
           {$$ = 0;}
         | ForceCriterionSTART y_CriterionForceType ForceCriterionEND
           {$$ = $2;
-           $$->printElement = "ForceCriterion";
+           $$->setprintElement("ForceCriterion");
           }
         ;
 
@@ -45888,7 +45886,7 @@ y_ForceStatsSummary_SummaryStatisticsForceType :
           ForceStatsSummarySTART y_SummaryStatisticsForceType
           ForceStatsSummaryEND
           {$$ = $2;
-           $$->printElement = "ForceStatsSummary";
+           $$->setprintElement("ForceStatsSummary");
           }
         ;
 
@@ -45975,14 +45973,14 @@ y_ForceValueType :
           {$$ = new ForceValueType($3);
            yyUnrefMap[$$] = $$;
            free($3);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad ForceValueType value");
           }
         | y_LiztAttributePair ENDITEM {yyReadData = 1;} DATASTRING
           {$$ = new ForceValueType($4);
            yyUnrefMap[$$] = $$;
            free($4);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad ForceValueType value");
            yyUnrefMap.erase($1);
            if ($$->badAttributes($1))
@@ -46046,7 +46044,7 @@ y_FourthCompositeSegmentPositionDefinition_CompositeSegmentPositionDefinitionTyp
           y_CompositeSegmentPositionDefinitionType
           FourthCompositeSegmentPositionDefinitionEND
           {$$ = $2;
-           $$->printElement = "FourthCompositeSegmentPositionDefinition";
+           $$->setprintElement("FourthCompositeSegmentPositionDefinition");
           }
         ;
 
@@ -46057,7 +46055,7 @@ y_FourthCompositeSegmentPositionMeasurement_CompositeSegmentPositionMeasurementT
           y_CompositeSegmentPositionMeasurementType
           FourthCompositeSegmentPositionMeasurementEND
           {$$ = $2;
-           $$->printElement = "FourthCompositeSegmentPositionMeasurement";
+           $$->setprintElement("FourthCompositeSegmentPositionMeasurement");
           }
         ;
 
@@ -46067,13 +46065,13 @@ y_FourthCompositeSegmentPositionStats_CompositeSegmentPositionStatsEvalType_0 :
         | FourthCompositeSegmentPositionStatsSTART ENDWHOLEITEM
           {$$ = new CompositeSegmentPositionStatsEvalType();
            yyUnrefMap[$$] = $$;
-           $$->printElement = "FourthCompositeSegmentPositionStats";
+           $$->setprintElement("FourthCompositeSegmentPositionStats");
           }
         | FourthCompositeSegmentPositionStatsSTART
           y_CompositeSegmentPositionStatsEvalType
           FourthCompositeSegmentPositionStatsEND
           {$$ = $2;
-           $$->printElement = "FourthCompositeSegmentPositionStats";
+           $$->setprintElement("FourthCompositeSegmentPositionStats");
           }
         ;
 
@@ -46084,7 +46082,7 @@ y_FourthCompositeSegmentProfileDefinition_CompositeSegmentProfileDefinitionType_
           y_CompositeSegmentProfileDefinitionType
           FourthCompositeSegmentProfileDefinitionEND
           {$$ = $2;
-           $$->printElement = "FourthCompositeSegmentProfileDefinition";
+           $$->setprintElement("FourthCompositeSegmentProfileDefinition");
           }
         ;
 
@@ -46095,7 +46093,7 @@ y_FourthCompositeSegmentProfileMeasurement_CompositeSegmentProfileMeasurementTyp
           y_CompositeSegmentProfileMeasurementType
           FourthCompositeSegmentProfileMeasurementEND
           {$$ = $2;
-           $$->printElement = "FourthCompositeSegmentProfileMeasurement";
+           $$->setprintElement("FourthCompositeSegmentProfileMeasurement");
           }
         ;
 
@@ -46105,13 +46103,13 @@ y_FourthCompositeSegmentProfileStats_CompositeSegmentProfileStatsEvalType_0 :
         | FourthCompositeSegmentProfileStatsSTART ENDWHOLEITEM
           {$$ = new CompositeSegmentProfileStatsEvalType();
            yyUnrefMap[$$] = $$;
-           $$->printElement = "FourthCompositeSegmentProfileStats";
+           $$->setprintElement("FourthCompositeSegmentProfileStats");
           }
         | FourthCompositeSegmentProfileStatsSTART
           y_CompositeSegmentProfileStatsEvalType
           FourthCompositeSegmentProfileStatsEND
           {$$ = $2;
-           $$->printElement = "FourthCompositeSegmentProfileStats";
+           $$->setprintElement("FourthCompositeSegmentProfileStats");
           }
         ;
 
@@ -46155,7 +46153,7 @@ y_FrameCircularType :
 y_FrameCircular_FrameCircularType :
           FrameCircularSTART y_FrameCircularType FrameCircularEND
           {$$ = $2;
-           $$->printElement = "FrameCircular";
+           $$->setprintElement("FrameCircular");
           }
         ;
 
@@ -46188,7 +46186,7 @@ y_FrameFlagType :
 y_FrameFlag_FrameFlagType :
           FrameFlagSTART y_FrameFlagType FrameFlagEND
           {$$ = $2;
-           $$->printElement = "FrameFlag";
+           $$->setprintElement("FrameFlag");
           }
         ;
 
@@ -46203,7 +46201,7 @@ y_FrameHexagonalType :
 y_FrameHexagonal_FrameHexagonalType :
           FrameHexagonalSTART y_FrameHexagonalType FrameHexagonalEND
           {$$ = $2;
-           $$->printElement = "FrameHexagonal";
+           $$->setprintElement("FrameHexagonal");
           }
         ;
 
@@ -46219,7 +46217,7 @@ y_FrameIrregularForm_FrameIrregularFormType :
           FrameIrregularFormSTART y_FrameIrregularFormType
           FrameIrregularFormEND
           {$$ = $2;
-           $$->printElement = "FrameIrregularForm";
+           $$->setprintElement("FrameIrregularForm");
           }
         ;
 
@@ -46234,7 +46232,7 @@ y_FrameOctagonalType :
 y_FrameOctagonal_FrameOctagonalType :
           FrameOctagonalSTART y_FrameOctagonalType FrameOctagonalEND
           {$$ = $2;
-           $$->printElement = "FrameOctagonal";
+           $$->setprintElement("FrameOctagonal");
           }
         ;
 
@@ -46249,7 +46247,7 @@ y_FramePentagonalType :
 y_FramePentagonal_FramePentagonalType :
           FramePentagonalSTART y_FramePentagonalType FramePentagonalEND
           {$$ = $2;
-           $$->printElement = "FramePentagonal";
+           $$->setprintElement("FramePentagonal");
           }
         ;
 
@@ -46267,7 +46265,7 @@ y_FrameRectangularType :
 y_FrameRectangular_FrameRectangularType :
           FrameRectangularSTART y_FrameRectangularType FrameRectangularEND
           {$$ = $2;
-           $$->printElement = "FrameRectangular";
+           $$->setprintElement("FrameRectangular");
           }
         ;
 
@@ -46282,7 +46280,7 @@ y_FrameTriangleType :
 y_FrameTriangle_FrameTriangleType :
           FrameTriangleSTART y_FrameTriangleType FrameTriangleEND
           {$$ = $2;
-           $$->printElement = "FrameTriangle";
+           $$->setprintElement("FrameTriangle");
           }
         ;
 
@@ -46319,7 +46317,7 @@ y_FrameWeldSymbolType :
 y_FrameWeldSymbol_FrameWeldSymbolType :
           FrameWeldSymbolSTART y_FrameWeldSymbolType FrameWeldSymbolEND
           {$$ = $2;
-           $$->printElement = "FrameWeldSymbol";
+           $$->setprintElement("FrameWeldSymbol");
           }
         ;
 
@@ -46412,14 +46410,14 @@ y_FrequencyResponse_UserDefinedUnitValueType_0 :
 y_FromCone_CircleFromConeType :
           FromConeSTART y_CircleFromConeType FromConeEND
           {$$ = $2;
-           $$->printElement = "FromCone";
+           $$->setprintElement("FromCone");
           }
         ;
 
 y_FromCone_PointFeatureFromConeType :
           FromConeSTART y_PointFeatureFromConeType FromConeEND
           {$$ = $2;
-           $$->printElement = "FromCone";
+           $$->setprintElement("FromCone");
           }
         ;
 
@@ -46432,7 +46430,7 @@ y_FromCylinder_ThreadedFeatureFromCylinderType :
           FromCylinderSTART y_ThreadedFeatureFromCylinderType
           FromCylinderEND
           {$$ = $2;
-           $$->printElement = "FromCylinder";
+           $$->setprintElement("FromCylinder");
           }
         ;
 
@@ -46444,112 +46442,112 @@ y_FromPointZoneId_QIFReferenceFullType :
 y_FromScan_CircleFromScanType :
           FromScanSTART y_CircleFromScanType FromScanEND
           {$$ = $2;
-           $$->printElement = "FromScan";
+           $$->setprintElement("FromScan");
           }
         ;
 
 y_FromScan_CircularArcFromScanType :
           FromScanSTART y_CircularArcFromScanType FromScanEND
           {$$ = $2;
-           $$->printElement = "FromScan";
+           $$->setprintElement("FromScan");
           }
         ;
 
 y_FromScan_ConeFromScanType :
           FromScanSTART y_ConeFromScanType FromScanEND
           {$$ = $2;
-           $$->printElement = "FromScan";
+           $$->setprintElement("FromScan");
           }
         ;
 
 y_FromScan_CylinderFromScanType :
           FromScanSTART y_CylinderFromScanType FromScanEND
           {$$ = $2;
-           $$->printElement = "FromScan";
+           $$->setprintElement("FromScan");
           }
         ;
 
 y_FromScan_EdgePointFromScanType :
           FromScanSTART y_EdgePointFromScanType FromScanEND
           {$$ = $2;
-           $$->printElement = "FromScan";
+           $$->setprintElement("FromScan");
           }
         ;
 
 y_FromScan_EllipseFromScanType :
           FromScanSTART y_EllipseFromScanType FromScanEND
           {$$ = $2;
-           $$->printElement = "FromScan";
+           $$->setprintElement("FromScan");
           }
         ;
 
 y_FromScan_EllipticalArcFromScanType :
           FromScanSTART y_EllipticalArcFromScanType FromScanEND
           {$$ = $2;
-           $$->printElement = "FromScan";
+           $$->setprintElement("FromScan");
           }
         ;
 
 y_FromScan_LineFromScanType :
           FromScanSTART y_LineFromScanType FromScanEND
           {$$ = $2;
-           $$->printElement = "FromScan";
+           $$->setprintElement("FromScan");
           }
         ;
 
 y_FromScan_OppositeAngledLinesFromScanType :
           FromScanSTART y_OppositeAngledLinesFromScanType FromScanEND
           {$$ = $2;
-           $$->printElement = "FromScan";
+           $$->setprintElement("FromScan");
           }
         ;
 
 y_FromScan_OppositeAngledPlanesFromScanType :
           FromScanSTART y_OppositeAngledPlanesFromScanType FromScanEND
           {$$ = $2;
-           $$->printElement = "FromScan";
+           $$->setprintElement("FromScan");
           }
         ;
 
 y_FromScan_OppositeParallelLinesFromScanType :
           FromScanSTART y_OppositeParallelLinesFromScanType FromScanEND
           {$$ = $2;
-           $$->printElement = "FromScan";
+           $$->setprintElement("FromScan");
           }
         ;
 
 y_FromScan_OppositeParallelPlanesFromScanType :
           FromScanSTART y_OppositeParallelPlanesFromScanType FromScanEND
           {$$ = $2;
-           $$->printElement = "FromScan";
+           $$->setprintElement("FromScan");
           }
         ;
 
 y_FromScan_PointDefinedCurveFromScanType :
           FromScanSTART y_PointDefinedCurveFromScanType FromScanEND
           {$$ = $2;
-           $$->printElement = "FromScan";
+           $$->setprintElement("FromScan");
           }
         ;
 
 y_FromScan_PointFeatureFromScanType :
           FromScanSTART y_PointFeatureFromScanType FromScanEND
           {$$ = $2;
-           $$->printElement = "FromScan";
+           $$->setprintElement("FromScan");
           }
         ;
 
 y_FromScan_SphereFromScanType :
           FromScanSTART y_SphereFromScanType FromScanEND
           {$$ = $2;
-           $$->printElement = "FromScan";
+           $$->setprintElement("FromScan");
           }
         ;
 
 y_FromScan_TorusFromScanType :
           FromScanSTART y_TorusFromScanType FromScanEND
           {$$ = $2;
-           $$->printElement = "FromScan";
+           $$->setprintElement("FromScan");
           }
         ;
 
@@ -46585,7 +46583,7 @@ y_FunctionalSizeStats_StatsLinearType_0 :
           {$$ = 0;}
         | FunctionalSizeStatsSTART y_StatsLinearType FunctionalSizeStatsEND
           {$$ = $2;
-           $$->printElement = "FunctionalSizeStats";
+           $$->setprintElement("FunctionalSizeStats");
           }
         ;
 
@@ -46601,7 +46599,7 @@ y_GDTEnumType :
           {$$ = new GDTEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad GDTEnumType value");
           }
         ;
@@ -46651,7 +46649,7 @@ y_GageDeviceType :
 y_GageDevice_GageDeviceType :
           GageDeviceSTART y_GageDeviceType GageDeviceEND
           {$$ = $2;
-           $$->printElement = "GageDevice";
+           $$->setprintElement("GageDevice");
           }
         ;
 
@@ -46679,13 +46677,13 @@ y_GageMeasureFeatureMethod_GageMeasureFeatureMethodType :
           GageMeasureFeatureMethodSTART y_GageMeasureFeatureMethodType
           GageMeasureFeatureMethodEND
           {$$ = $2;
-           $$->printElement = "GageMeasureFeatureMethod";
+           $$->setprintElement("GageMeasureFeatureMethod");
           }
         | GageMeasureFeatureMethodSTART y_LiztAttributePair ENDWHOLEITEM
           {$$ = new GageMeasureFeatureMethodType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "GageMeasureFeatureMethod";
+           $$->setprintElement("GageMeasureFeatureMethod");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -46700,7 +46698,7 @@ y_GageRandRStudyEnumType :
           {$$ = new GageRandRStudyEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad GageRandRStudyEnumType value");
           }
         ;
@@ -46855,7 +46853,7 @@ y_GageRandRStudyPlan_GageRandRStudyPlanType :
           GageRandRStudyPlanSTART y_GageRandRStudyPlanType
           GageRandRStudyPlanEND
           {$$ = $2;
-           $$->printElement = "GageRandRStudyPlan";
+           $$->setprintElement("GageRandRStudyPlan");
           }
         ;
 
@@ -46929,14 +46927,14 @@ y_GageRandRStudyResults_GageRandRStudyResultsType :
           GageRandRStudyResultsSTART y_GageRandRStudyResultsType
           GageRandRStudyResultsEND
           {$$ = $2;
-           $$->printElement = "GageRandRStudyResults";
+           $$->setprintElement("GageRandRStudyResults");
           }
         ;
 
 y_GageRandR_StatsMeasuredDecimalType :
           GageRandRSTART y_StatsMeasuredDecimalType GageRandREND
           {$$ = $2;
-           $$->printElement = "GageRandR";
+           $$->setprintElement("GageRandR");
           }
         ;
 
@@ -47011,7 +47009,7 @@ y_GeometricCharacteristicStats_GeometricCharacteristicStatsEvalType :
           y_GeometricCharacteristicStatsEvalType
           GeometricCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "GeometricCharacteristicStats";
+           $$->setprintElement("GeometricCharacteristicStats");
           }
         ;
 
@@ -47074,7 +47072,7 @@ y_GoodnessOfFit_MeasuredDecimalType_0 :
 y_GoodnessOfFit_StatsMeasuredDecimalType :
           GoodnessOfFitSTART y_StatsMeasuredDecimalType GoodnessOfFitEND
           {$$ = $2;
-           $$->printElement = "GoodnessOfFit";
+           $$->setprintElement("GoodnessOfFit");
           }
         ;
 
@@ -47116,7 +47114,7 @@ y_GreaterOrEqualType :
 y_GreaterOrEqual_GreaterOrEqualType :
           GreaterOrEqualSTART y_GreaterOrEqualType GreaterOrEqualEND
           {$$ = $2;
-           $$->printElement = "GreaterOrEqual";
+           $$->setprintElement("GreaterOrEqual");
           }
         ;
 
@@ -47131,7 +47129,7 @@ y_GreaterThanType :
 y_GreaterThan_GreaterThanType :
           GreaterThanSTART y_GreaterThanType GreaterThanEND
           {$$ = $2;
-           $$->printElement = "GreaterThan";
+           $$->setprintElement("GreaterThan");
           }
         ;
 
@@ -47205,13 +47203,13 @@ y_GroupFeatureDefinition_GroupFeatureDefinitionType :
           GroupFeatureDefinitionSTART y_GroupFeatureDefinitionType
           GroupFeatureDefinitionEND
           {$$ = $2;
-           $$->printElement = "GroupFeatureDefinition";
+           $$->setprintElement("GroupFeatureDefinition");
           }
         | GroupFeatureDefinitionSTART y_LiztAttributePair ENDWHOLEITEM
           {$$ = new GroupFeatureDefinitionType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "GroupFeatureDefinition";
+           $$->setprintElement("GroupFeatureDefinition");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -47255,7 +47253,7 @@ y_GroupFeatureItemType :
 y_GroupFeatureItem_GroupFeatureItemType :
           GroupFeatureItemSTART y_GroupFeatureItemType GroupFeatureItemEND
           {$$ = $2;
-           $$->printElement = "GroupFeatureItem";
+           $$->setprintElement("GroupFeatureItem");
           }
         ;
 
@@ -47299,13 +47297,13 @@ y_GroupFeatureMeasurement_GroupFeatureMeasurementType :
           GroupFeatureMeasurementSTART y_GroupFeatureMeasurementType
           GroupFeatureMeasurementEND
           {$$ = $2;
-           $$->printElement = "GroupFeatureMeasurement";
+           $$->setprintElement("GroupFeatureMeasurement");
           }
         | GroupFeatureMeasurementSTART y_LiztAttributePair ENDWHOLEITEM
           {$$ = new GroupFeatureMeasurementType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "GroupFeatureMeasurement";
+           $$->setprintElement("GroupFeatureMeasurement");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -47351,7 +47349,7 @@ y_GroupFeatureNominal_GroupFeatureNominalType :
           GroupFeatureNominalSTART y_GroupFeatureNominalType
           GroupFeatureNominalEND
           {$$ = $2;
-           $$->printElement = "GroupFeatureNominal";
+           $$->setprintElement("GroupFeatureNominal");
           }
         ;
 
@@ -47361,14 +47359,14 @@ y_GroupID_I2Type_0 :
         | GroupIDSTART ENDWHOLEITEM
           {$$ = new I2Type();
            $$->I2TypeCheck();
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad I2Type value");
            yyUnrefMap[$$] = $$;
           }
         | GroupIDSTART y_I2Type GroupIDEND
           {$$ = $2;
            $2->I2TypeCheck();
-           if ($2->bad)
+           if ($2->getbad())
              return yyerror("bad I2Type value");
           }
         ;
@@ -47408,11 +47406,11 @@ y_Halt_HaltActionType :
           HaltSTART ENDWHOLEITEM
           {$$ = new HaltActionType();
            yyUnrefMap[$$] = $$;
-           $$->printElement = "Halt";
+           $$->setprintElement("Halt");
           }
         | HaltSTART y_HaltActionType HaltEND
           {$$ = $2;
-           $$->printElement = "Halt";
+           $$->setprintElement("Halt");
           }
         ;
 
@@ -47451,7 +47449,7 @@ y_HatchStyleFormEnumType :
           {$$ = new HatchStyleFormEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad HatchStyleFormEnumType value");
           }
         ;
@@ -47508,7 +47506,7 @@ y_HatchStyleType :
 y_HatchStyle_HatchStyleType :
           HatchStyleSTART y_HatchStyleType HatchStyleEND
           {$$ = $2;
-           $$->printElement = "HatchStyle";
+           $$->setprintElement("HatchStyle");
           }
         ;
 
@@ -47542,11 +47540,11 @@ y_HeadSize_CartesianWorkingVolumeType_0 :
         | HeadSizeSTART ENDWHOLEITEM
           {$$ = new CartesianWorkingVolumeType();
            yyUnrefMap[$$] = $$;
-           $$->printElement = "HeadSize";
+           $$->setprintElement("HeadSize");
           }
         | HeadSizeSTART y_CartesianWorkingVolumeType HeadSizeEND
           {$$ = $2;
-           $$->printElement = "HeadSize";
+           $$->setprintElement("HeadSize");
           }
         ;
 
@@ -47567,11 +47565,11 @@ y_Header_ProductHeaderType_0 :
         | HeaderSTART ENDWHOLEITEM
           {$$ = new ProductHeaderType();
            yyUnrefMap[$$] = $$;
-           $$->printElement = "Header";
+           $$->setprintElement("Header");
           }
         | HeaderSTART y_ProductHeaderType HeaderEND
           {$$ = $2;
-           $$->printElement = "Header";
+           $$->setprintElement("Header");
           }
         ;
 
@@ -47632,7 +47630,7 @@ y_HeightCharacteristicDefinition_HeightCharacteristicDefinitionType :
           y_HeightCharacteristicDefinitionType
           HeightCharacteristicDefinitionEND
           {$$ = $2;
-           $$->printElement = "HeightCharacteristicDefinition";
+           $$->setprintElement("HeightCharacteristicDefinition");
           }
         ;
 
@@ -47674,7 +47672,7 @@ y_HeightCharacteristicItem_HeightCharacteristicItemType :
           HeightCharacteristicItemSTART y_HeightCharacteristicItemType
           HeightCharacteristicItemEND
           {$$ = $2;
-           $$->printElement = "HeightCharacteristicItem";
+           $$->setprintElement("HeightCharacteristicItem");
           }
         ;
 
@@ -47724,7 +47722,7 @@ y_HeightCharacteristicMeasurement_HeightCharacteristicMeasurementType :
           y_HeightCharacteristicMeasurementType
           HeightCharacteristicMeasurementEND
           {$$ = $2;
-           $$->printElement = "HeightCharacteristicMeasurement";
+           $$->setprintElement("HeightCharacteristicMeasurement");
           }
         ;
 
@@ -47768,7 +47766,7 @@ y_HeightCharacteristicNominal_HeightCharacteristicNominalType :
           HeightCharacteristicNominalSTART
           y_HeightCharacteristicNominalType HeightCharacteristicNominalEND
           {$$ = $2;
-           $$->printElement = "HeightCharacteristicNominal";
+           $$->setprintElement("HeightCharacteristicNominal");
           }
         ;
 
@@ -47795,7 +47793,7 @@ y_HeightCharacteristicStats_HeightCharacteristicStatsEvalType :
           HeightCharacteristicStatsSTART
           y_HeightCharacteristicStatsEvalType HeightCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "HeightCharacteristicStats";
+           $$->setprintElement("HeightCharacteristicStats");
           }
         ;
 
@@ -47898,7 +47896,7 @@ y_ISODegreeOfFreedomEnumType :
           {$$ = new ISODegreeOfFreedomEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad ISODegreeOfFreedomEnumType value");
           }
         ;
@@ -47978,7 +47976,7 @@ y_IfActionGroupType :
 y_IfActionGroup_IfActionGroupType :
           IfActionGroupSTART y_IfActionGroupType IfActionGroupEND
           {$$ = $2;
-           $$->printElement = "IfActionGroup";
+           $$->setprintElement("IfActionGroup");
           }
         ;
 
@@ -48021,17 +48019,17 @@ y_IfThenCircleRule_IfThenCircleRuleType :
           IfThenCircleRuleSTART ENDWHOLEITEM
           {$$ = new IfThenCircleRuleType();
            yyUnrefMap[$$] = $$;
-           $$->printElement = "IfThenCircleRule";
+           $$->setprintElement("IfThenCircleRule");
           }
         | IfThenCircleRuleSTART y_IfThenCircleRuleType IfThenCircleRuleEND
           {$$ = $2;
-           $$->printElement = "IfThenCircleRule";
+           $$->setprintElement("IfThenCircleRule");
           }
         | IfThenCircleRuleSTART y_LiztAttributePair ENDWHOLEITEM
           {$$ = new IfThenCircleRuleType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "IfThenCircleRule";
+           $$->setprintElement("IfThenCircleRule");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -48080,18 +48078,18 @@ y_IfThenCircularArcRule_IfThenCircularArcRuleType :
           IfThenCircularArcRuleSTART ENDWHOLEITEM
           {$$ = new IfThenCircularArcRuleType();
            yyUnrefMap[$$] = $$;
-           $$->printElement = "IfThenCircularArcRule";
+           $$->setprintElement("IfThenCircularArcRule");
           }
         | IfThenCircularArcRuleSTART y_IfThenCircularArcRuleType
           IfThenCircularArcRuleEND
           {$$ = $2;
-           $$->printElement = "IfThenCircularArcRule";
+           $$->setprintElement("IfThenCircularArcRule");
           }
         | IfThenCircularArcRuleSTART y_LiztAttributePair ENDWHOLEITEM
           {$$ = new IfThenCircularArcRuleType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "IfThenCircularArcRule";
+           $$->setprintElement("IfThenCircularArcRule");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -48140,17 +48138,17 @@ y_IfThenConeRule_IfThenConeRuleType :
           IfThenConeRuleSTART ENDWHOLEITEM
           {$$ = new IfThenConeRuleType();
            yyUnrefMap[$$] = $$;
-           $$->printElement = "IfThenConeRule";
+           $$->setprintElement("IfThenConeRule");
           }
         | IfThenConeRuleSTART y_IfThenConeRuleType IfThenConeRuleEND
           {$$ = $2;
-           $$->printElement = "IfThenConeRule";
+           $$->setprintElement("IfThenConeRule");
           }
         | IfThenConeRuleSTART y_LiztAttributePair ENDWHOLEITEM
           {$$ = new IfThenConeRuleType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "IfThenConeRule";
+           $$->setprintElement("IfThenConeRule");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -48199,18 +48197,18 @@ y_IfThenConicalSegmentRule_IfThenConicalSegmentRuleType :
           IfThenConicalSegmentRuleSTART ENDWHOLEITEM
           {$$ = new IfThenConicalSegmentRuleType();
            yyUnrefMap[$$] = $$;
-           $$->printElement = "IfThenConicalSegmentRule";
+           $$->setprintElement("IfThenConicalSegmentRule");
           }
         | IfThenConicalSegmentRuleSTART y_IfThenConicalSegmentRuleType
           IfThenConicalSegmentRuleEND
           {$$ = $2;
-           $$->printElement = "IfThenConicalSegmentRule";
+           $$->setprintElement("IfThenConicalSegmentRule");
           }
         | IfThenConicalSegmentRuleSTART y_LiztAttributePair ENDWHOLEITEM
           {$$ = new IfThenConicalSegmentRuleType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "IfThenConicalSegmentRule";
+           $$->setprintElement("IfThenConicalSegmentRule");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -48251,17 +48249,17 @@ y_IfThenCurveRule_IfThenCurveRuleType :
           IfThenCurveRuleSTART ENDWHOLEITEM
           {$$ = new IfThenCurveRuleType();
            yyUnrefMap[$$] = $$;
-           $$->printElement = "IfThenCurveRule";
+           $$->setprintElement("IfThenCurveRule");
           }
         | IfThenCurveRuleSTART y_IfThenCurveRuleType IfThenCurveRuleEND
           {$$ = $2;
-           $$->printElement = "IfThenCurveRule";
+           $$->setprintElement("IfThenCurveRule");
           }
         | IfThenCurveRuleSTART y_LiztAttributePair ENDWHOLEITEM
           {$$ = new IfThenCurveRuleType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "IfThenCurveRule";
+           $$->setprintElement("IfThenCurveRule");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -48310,18 +48308,18 @@ y_IfThenCylinderRule_IfThenCylinderRuleType :
           IfThenCylinderRuleSTART ENDWHOLEITEM
           {$$ = new IfThenCylinderRuleType();
            yyUnrefMap[$$] = $$;
-           $$->printElement = "IfThenCylinderRule";
+           $$->setprintElement("IfThenCylinderRule");
           }
         | IfThenCylinderRuleSTART y_IfThenCylinderRuleType
           IfThenCylinderRuleEND
           {$$ = $2;
-           $$->printElement = "IfThenCylinderRule";
+           $$->setprintElement("IfThenCylinderRule");
           }
         | IfThenCylinderRuleSTART y_LiztAttributePair ENDWHOLEITEM
           {$$ = new IfThenCylinderRuleType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "IfThenCylinderRule";
+           $$->setprintElement("IfThenCylinderRule");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -48370,20 +48368,20 @@ y_IfThenCylindricalSegmentRule_IfThenCylindricalSegmentRuleType :
           IfThenCylindricalSegmentRuleSTART ENDWHOLEITEM
           {$$ = new IfThenCylindricalSegmentRuleType();
            yyUnrefMap[$$] = $$;
-           $$->printElement = "IfThenCylindricalSegmentRule";
+           $$->setprintElement("IfThenCylindricalSegmentRule");
           }
         | IfThenCylindricalSegmentRuleSTART
           y_IfThenCylindricalSegmentRuleType
           IfThenCylindricalSegmentRuleEND
           {$$ = $2;
-           $$->printElement = "IfThenCylindricalSegmentRule";
+           $$->setprintElement("IfThenCylindricalSegmentRule");
           }
         | IfThenCylindricalSegmentRuleSTART y_LiztAttributePair
           ENDWHOLEITEM
           {$$ = new IfThenCylindricalSegmentRuleType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "IfThenCylindricalSegmentRule";
+           $$->setprintElement("IfThenCylindricalSegmentRule");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -48458,18 +48456,18 @@ y_IfThenEllipseRule_IfThenEllipseRuleType :
           IfThenEllipseRuleSTART ENDWHOLEITEM
           {$$ = new IfThenEllipseRuleType();
            yyUnrefMap[$$] = $$;
-           $$->printElement = "IfThenEllipseRule";
+           $$->setprintElement("IfThenEllipseRule");
           }
         | IfThenEllipseRuleSTART y_IfThenEllipseRuleType
           IfThenEllipseRuleEND
           {$$ = $2;
-           $$->printElement = "IfThenEllipseRule";
+           $$->setprintElement("IfThenEllipseRule");
           }
         | IfThenEllipseRuleSTART y_LiztAttributePair ENDWHOLEITEM
           {$$ = new IfThenEllipseRuleType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "IfThenEllipseRule";
+           $$->setprintElement("IfThenEllipseRule");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -48518,18 +48516,18 @@ y_IfThenEllipticalArcRule_IfThenEllipticalArcRuleType :
           IfThenEllipticalArcRuleSTART ENDWHOLEITEM
           {$$ = new IfThenEllipticalArcRuleType();
            yyUnrefMap[$$] = $$;
-           $$->printElement = "IfThenEllipticalArcRule";
+           $$->setprintElement("IfThenEllipticalArcRule");
           }
         | IfThenEllipticalArcRuleSTART y_IfThenEllipticalArcRuleType
           IfThenEllipticalArcRuleEND
           {$$ = $2;
-           $$->printElement = "IfThenEllipticalArcRule";
+           $$->setprintElement("IfThenEllipticalArcRule");
           }
         | IfThenEllipticalArcRuleSTART y_LiztAttributePair ENDWHOLEITEM
           {$$ = new IfThenEllipticalArcRuleType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "IfThenEllipticalArcRule";
+           $$->setprintElement("IfThenEllipticalArcRule");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -48578,18 +48576,18 @@ y_IfThenElongatedCircleRule_IfThenElongatedCircleRuleType :
           IfThenElongatedCircleRuleSTART ENDWHOLEITEM
           {$$ = new IfThenElongatedCircleRuleType();
            yyUnrefMap[$$] = $$;
-           $$->printElement = "IfThenElongatedCircleRule";
+           $$->setprintElement("IfThenElongatedCircleRule");
           }
         | IfThenElongatedCircleRuleSTART y_IfThenElongatedCircleRuleType
           IfThenElongatedCircleRuleEND
           {$$ = $2;
-           $$->printElement = "IfThenElongatedCircleRule";
+           $$->setprintElement("IfThenElongatedCircleRule");
           }
         | IfThenElongatedCircleRuleSTART y_LiztAttributePair ENDWHOLEITEM
           {$$ = new IfThenElongatedCircleRuleType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "IfThenElongatedCircleRule";
+           $$->setprintElement("IfThenElongatedCircleRule");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -48638,18 +48636,18 @@ y_IfThenElongatedCylinderRule_IfThenElongatedCylinderRuleType :
           IfThenElongatedCylinderRuleSTART ENDWHOLEITEM
           {$$ = new IfThenElongatedCylinderRuleType();
            yyUnrefMap[$$] = $$;
-           $$->printElement = "IfThenElongatedCylinderRule";
+           $$->setprintElement("IfThenElongatedCylinderRule");
           }
         | IfThenElongatedCylinderRuleSTART
           y_IfThenElongatedCylinderRuleType IfThenElongatedCylinderRuleEND
           {$$ = $2;
-           $$->printElement = "IfThenElongatedCylinderRule";
+           $$->setprintElement("IfThenElongatedCylinderRule");
           }
         | IfThenElongatedCylinderRuleSTART y_LiztAttributePair ENDWHOLEITEM
           {$$ = new IfThenElongatedCylinderRuleType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "IfThenElongatedCylinderRule";
+           $$->setprintElement("IfThenElongatedCylinderRule");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -48723,20 +48721,20 @@ y_IfThenExtrudedCrossSectionRule_IfThenExtrudedCrossSectionRuleType :
           IfThenExtrudedCrossSectionRuleSTART ENDWHOLEITEM
           {$$ = new IfThenExtrudedCrossSectionRuleType();
            yyUnrefMap[$$] = $$;
-           $$->printElement = "IfThenExtrudedCrossSectionRule";
+           $$->setprintElement("IfThenExtrudedCrossSectionRule");
           }
         | IfThenExtrudedCrossSectionRuleSTART
           y_IfThenExtrudedCrossSectionRuleType
           IfThenExtrudedCrossSectionRuleEND
           {$$ = $2;
-           $$->printElement = "IfThenExtrudedCrossSectionRule";
+           $$->setprintElement("IfThenExtrudedCrossSectionRule");
           }
         | IfThenExtrudedCrossSectionRuleSTART y_LiztAttributePair
           ENDWHOLEITEM
           {$$ = new IfThenExtrudedCrossSectionRuleType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "IfThenExtrudedCrossSectionRule";
+           $$->setprintElement("IfThenExtrudedCrossSectionRule");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -48777,7 +48775,7 @@ y_IfThenFeatureRule_IfThenFeatureRuleType :
           IfThenFeatureRuleSTART y_IfThenFeatureRuleType
           IfThenFeatureRuleEND
           {$$ = $2;
-           $$->printElement = "IfThenFeatureRule";
+           $$->setprintElement("IfThenFeatureRule");
           }
         ;
 
@@ -48963,17 +48961,17 @@ y_IfThenLineRule_IfThenLineRuleType :
           IfThenLineRuleSTART ENDWHOLEITEM
           {$$ = new IfThenLineRuleType();
            yyUnrefMap[$$] = $$;
-           $$->printElement = "IfThenLineRule";
+           $$->setprintElement("IfThenLineRule");
           }
         | IfThenLineRuleSTART y_IfThenLineRuleType IfThenLineRuleEND
           {$$ = $2;
-           $$->printElement = "IfThenLineRule";
+           $$->setprintElement("IfThenLineRule");
           }
         | IfThenLineRuleSTART y_LiztAttributePair ENDWHOLEITEM
           {$$ = new IfThenLineRuleType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "IfThenLineRule";
+           $$->setprintElement("IfThenLineRule");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -49022,20 +49020,20 @@ y_IfThenOppositeAngledLinesRule_IfThenOppositeAngledLinesRuleType :
           IfThenOppositeAngledLinesRuleSTART ENDWHOLEITEM
           {$$ = new IfThenOppositeAngledLinesRuleType();
            yyUnrefMap[$$] = $$;
-           $$->printElement = "IfThenOppositeAngledLinesRule";
+           $$->setprintElement("IfThenOppositeAngledLinesRule");
           }
         | IfThenOppositeAngledLinesRuleSTART
           y_IfThenOppositeAngledLinesRuleType
           IfThenOppositeAngledLinesRuleEND
           {$$ = $2;
-           $$->printElement = "IfThenOppositeAngledLinesRule";
+           $$->setprintElement("IfThenOppositeAngledLinesRule");
           }
         | IfThenOppositeAngledLinesRuleSTART y_LiztAttributePair
           ENDWHOLEITEM
           {$$ = new IfThenOppositeAngledLinesRuleType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "IfThenOppositeAngledLinesRule";
+           $$->setprintElement("IfThenOppositeAngledLinesRule");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -49084,20 +49082,20 @@ y_IfThenOppositeAngledPlanesRule_IfThenOppositeAngledPlanesRuleType :
           IfThenOppositeAngledPlanesRuleSTART ENDWHOLEITEM
           {$$ = new IfThenOppositeAngledPlanesRuleType();
            yyUnrefMap[$$] = $$;
-           $$->printElement = "IfThenOppositeAngledPlanesRule";
+           $$->setprintElement("IfThenOppositeAngledPlanesRule");
           }
         | IfThenOppositeAngledPlanesRuleSTART
           y_IfThenOppositeAngledPlanesRuleType
           IfThenOppositeAngledPlanesRuleEND
           {$$ = $2;
-           $$->printElement = "IfThenOppositeAngledPlanesRule";
+           $$->setprintElement("IfThenOppositeAngledPlanesRule");
           }
         | IfThenOppositeAngledPlanesRuleSTART y_LiztAttributePair
           ENDWHOLEITEM
           {$$ = new IfThenOppositeAngledPlanesRuleType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "IfThenOppositeAngledPlanesRule";
+           $$->setprintElement("IfThenOppositeAngledPlanesRule");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -49146,20 +49144,20 @@ y_IfThenOppositeParallelLinesRule_IfThenOppositeParallelLinesRuleType :
           IfThenOppositeParallelLinesRuleSTART ENDWHOLEITEM
           {$$ = new IfThenOppositeParallelLinesRuleType();
            yyUnrefMap[$$] = $$;
-           $$->printElement = "IfThenOppositeParallelLinesRule";
+           $$->setprintElement("IfThenOppositeParallelLinesRule");
           }
         | IfThenOppositeParallelLinesRuleSTART
           y_IfThenOppositeParallelLinesRuleType
           IfThenOppositeParallelLinesRuleEND
           {$$ = $2;
-           $$->printElement = "IfThenOppositeParallelLinesRule";
+           $$->setprintElement("IfThenOppositeParallelLinesRule");
           }
         | IfThenOppositeParallelLinesRuleSTART y_LiztAttributePair
           ENDWHOLEITEM
           {$$ = new IfThenOppositeParallelLinesRuleType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "IfThenOppositeParallelLinesRule";
+           $$->setprintElement("IfThenOppositeParallelLinesRule");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -49208,20 +49206,20 @@ y_IfThenOppositeParallelPlanesRule_IfThenOppositeParallelPlanesRuleType :
           IfThenOppositeParallelPlanesRuleSTART ENDWHOLEITEM
           {$$ = new IfThenOppositeParallelPlanesRuleType();
            yyUnrefMap[$$] = $$;
-           $$->printElement = "IfThenOppositeParallelPlanesRule";
+           $$->setprintElement("IfThenOppositeParallelPlanesRule");
           }
         | IfThenOppositeParallelPlanesRuleSTART
           y_IfThenOppositeParallelPlanesRuleType
           IfThenOppositeParallelPlanesRuleEND
           {$$ = $2;
-           $$->printElement = "IfThenOppositeParallelPlanesRule";
+           $$->setprintElement("IfThenOppositeParallelPlanesRule");
           }
         | IfThenOppositeParallelPlanesRuleSTART y_LiztAttributePair
           ENDWHOLEITEM
           {$$ = new IfThenOppositeParallelPlanesRuleType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "IfThenOppositeParallelPlanesRule";
+           $$->setprintElement("IfThenOppositeParallelPlanesRule");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -49270,17 +49268,17 @@ y_IfThenPlaneRule_IfThenPlaneRuleType :
           IfThenPlaneRuleSTART ENDWHOLEITEM
           {$$ = new IfThenPlaneRuleType();
            yyUnrefMap[$$] = $$;
-           $$->printElement = "IfThenPlaneRule";
+           $$->setprintElement("IfThenPlaneRule");
           }
         | IfThenPlaneRuleSTART y_IfThenPlaneRuleType IfThenPlaneRuleEND
           {$$ = $2;
-           $$->printElement = "IfThenPlaneRule";
+           $$->setprintElement("IfThenPlaneRule");
           }
         | IfThenPlaneRuleSTART y_LiztAttributePair ENDWHOLEITEM
           {$$ = new IfThenPlaneRuleType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "IfThenPlaneRule";
+           $$->setprintElement("IfThenPlaneRule");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -49329,18 +49327,18 @@ y_IfThenPointDefinedCurveRule_IfThenPointDefinedCurveRuleType :
           IfThenPointDefinedCurveRuleSTART ENDWHOLEITEM
           {$$ = new IfThenPointDefinedCurveRuleType();
            yyUnrefMap[$$] = $$;
-           $$->printElement = "IfThenPointDefinedCurveRule";
+           $$->setprintElement("IfThenPointDefinedCurveRule");
           }
         | IfThenPointDefinedCurveRuleSTART
           y_IfThenPointDefinedCurveRuleType IfThenPointDefinedCurveRuleEND
           {$$ = $2;
-           $$->printElement = "IfThenPointDefinedCurveRule";
+           $$->setprintElement("IfThenPointDefinedCurveRule");
           }
         | IfThenPointDefinedCurveRuleSTART y_LiztAttributePair ENDWHOLEITEM
           {$$ = new IfThenPointDefinedCurveRuleType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "IfThenPointDefinedCurveRule";
+           $$->setprintElement("IfThenPointDefinedCurveRule");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -49389,20 +49387,20 @@ y_IfThenPointDefinedSurfaceRule_IfThenPointDefinedSurfaceRuleType :
           IfThenPointDefinedSurfaceRuleSTART ENDWHOLEITEM
           {$$ = new IfThenPointDefinedSurfaceRuleType();
            yyUnrefMap[$$] = $$;
-           $$->printElement = "IfThenPointDefinedSurfaceRule";
+           $$->setprintElement("IfThenPointDefinedSurfaceRule");
           }
         | IfThenPointDefinedSurfaceRuleSTART
           y_IfThenPointDefinedSurfaceRuleType
           IfThenPointDefinedSurfaceRuleEND
           {$$ = $2;
-           $$->printElement = "IfThenPointDefinedSurfaceRule";
+           $$->setprintElement("IfThenPointDefinedSurfaceRule");
           }
         | IfThenPointDefinedSurfaceRuleSTART y_LiztAttributePair
           ENDWHOLEITEM
           {$$ = new IfThenPointDefinedSurfaceRuleType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "IfThenPointDefinedSurfaceRule";
+           $$->setprintElement("IfThenPointDefinedSurfaceRule");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -49447,17 +49445,17 @@ y_IfThenPointRule_IfThenPointRuleType :
           IfThenPointRuleSTART ENDWHOLEITEM
           {$$ = new IfThenPointRuleType();
            yyUnrefMap[$$] = $$;
-           $$->printElement = "IfThenPointRule";
+           $$->setprintElement("IfThenPointRule");
           }
         | IfThenPointRuleSTART y_IfThenPointRuleType IfThenPointRuleEND
           {$$ = $2;
-           $$->printElement = "IfThenPointRule";
+           $$->setprintElement("IfThenPointRule");
           }
         | IfThenPointRuleSTART y_LiztAttributePair ENDWHOLEITEM
           {$$ = new IfThenPointRuleType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "IfThenPointRule";
+           $$->setprintElement("IfThenPointRule");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -49506,17 +49504,17 @@ y_IfThenSphereRule_IfThenSphereRuleType :
           IfThenSphereRuleSTART ENDWHOLEITEM
           {$$ = new IfThenSphereRuleType();
            yyUnrefMap[$$] = $$;
-           $$->printElement = "IfThenSphereRule";
+           $$->setprintElement("IfThenSphereRule");
           }
         | IfThenSphereRuleSTART y_IfThenSphereRuleType IfThenSphereRuleEND
           {$$ = $2;
-           $$->printElement = "IfThenSphereRule";
+           $$->setprintElement("IfThenSphereRule");
           }
         | IfThenSphereRuleSTART y_LiztAttributePair ENDWHOLEITEM
           {$$ = new IfThenSphereRuleType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "IfThenSphereRule";
+           $$->setprintElement("IfThenSphereRule");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -49565,18 +49563,18 @@ y_IfThenSphericalSegmentRule_IfThenSphericalSegmentRuleType :
           IfThenSphericalSegmentRuleSTART ENDWHOLEITEM
           {$$ = new IfThenSphericalSegmentRuleType();
            yyUnrefMap[$$] = $$;
-           $$->printElement = "IfThenSphericalSegmentRule";
+           $$->setprintElement("IfThenSphericalSegmentRule");
           }
         | IfThenSphericalSegmentRuleSTART y_IfThenSphericalSegmentRuleType
           IfThenSphericalSegmentRuleEND
           {$$ = $2;
-           $$->printElement = "IfThenSphericalSegmentRule";
+           $$->setprintElement("IfThenSphericalSegmentRule");
           }
         | IfThenSphericalSegmentRuleSTART y_LiztAttributePair ENDWHOLEITEM
           {$$ = new IfThenSphericalSegmentRuleType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "IfThenSphericalSegmentRule";
+           $$->setprintElement("IfThenSphericalSegmentRule");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -49625,20 +49623,20 @@ y_IfThenSurfaceOfRevolutionRule_IfThenSurfaceOfRevolutionRuleType :
           IfThenSurfaceOfRevolutionRuleSTART ENDWHOLEITEM
           {$$ = new IfThenSurfaceOfRevolutionRuleType();
            yyUnrefMap[$$] = $$;
-           $$->printElement = "IfThenSurfaceOfRevolutionRule";
+           $$->setprintElement("IfThenSurfaceOfRevolutionRule");
           }
         | IfThenSurfaceOfRevolutionRuleSTART
           y_IfThenSurfaceOfRevolutionRuleType
           IfThenSurfaceOfRevolutionRuleEND
           {$$ = $2;
-           $$->printElement = "IfThenSurfaceOfRevolutionRule";
+           $$->setprintElement("IfThenSurfaceOfRevolutionRule");
           }
         | IfThenSurfaceOfRevolutionRuleSTART y_LiztAttributePair
           ENDWHOLEITEM
           {$$ = new IfThenSurfaceOfRevolutionRuleType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "IfThenSurfaceOfRevolutionRule";
+           $$->setprintElement("IfThenSurfaceOfRevolutionRule");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -49679,18 +49677,18 @@ y_IfThenSurfaceRule_IfThenSurfaceRuleType :
           IfThenSurfaceRuleSTART ENDWHOLEITEM
           {$$ = new IfThenSurfaceRuleType();
            yyUnrefMap[$$] = $$;
-           $$->printElement = "IfThenSurfaceRule";
+           $$->setprintElement("IfThenSurfaceRule");
           }
         | IfThenSurfaceRuleSTART y_IfThenSurfaceRuleType
           IfThenSurfaceRuleEND
           {$$ = $2;
-           $$->printElement = "IfThenSurfaceRule";
+           $$->setprintElement("IfThenSurfaceRule");
           }
         | IfThenSurfaceRuleSTART y_LiztAttributePair ENDWHOLEITEM
           {$$ = new IfThenSurfaceRuleType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "IfThenSurfaceRule";
+           $$->setprintElement("IfThenSurfaceRule");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -49739,18 +49737,18 @@ y_IfThenToroidalSegmentRule_IfThenToroidalSegmentRuleType :
           IfThenToroidalSegmentRuleSTART ENDWHOLEITEM
           {$$ = new IfThenToroidalSegmentRuleType();
            yyUnrefMap[$$] = $$;
-           $$->printElement = "IfThenToroidalSegmentRule";
+           $$->setprintElement("IfThenToroidalSegmentRule");
           }
         | IfThenToroidalSegmentRuleSTART y_IfThenToroidalSegmentRuleType
           IfThenToroidalSegmentRuleEND
           {$$ = $2;
-           $$->printElement = "IfThenToroidalSegmentRule";
+           $$->setprintElement("IfThenToroidalSegmentRule");
           }
         | IfThenToroidalSegmentRuleSTART y_LiztAttributePair ENDWHOLEITEM
           {$$ = new IfThenToroidalSegmentRuleType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "IfThenToroidalSegmentRule";
+           $$->setprintElement("IfThenToroidalSegmentRule");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -49799,17 +49797,17 @@ y_IfThenTorusRule_IfThenTorusRuleType :
           IfThenTorusRuleSTART ENDWHOLEITEM
           {$$ = new IfThenTorusRuleType();
            yyUnrefMap[$$] = $$;
-           $$->printElement = "IfThenTorusRule";
+           $$->setprintElement("IfThenTorusRule");
           }
         | IfThenTorusRuleSTART y_IfThenTorusRuleType IfThenTorusRuleEND
           {$$ = $2;
-           $$->printElement = "IfThenTorusRule";
+           $$->setprintElement("IfThenTorusRule");
           }
         | IfThenTorusRuleSTART y_LiztAttributePair ENDWHOLEITEM
           {$$ = new IfThenTorusRuleType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "IfThenTorusRule";
+           $$->setprintElement("IfThenTorusRule");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -49854,7 +49852,7 @@ y_ImageInstructionType :
 y_ImageInstruction_ImageInstructionType :
           ImageInstructionSTART y_ImageInstructionType ImageInstructionEND
           {$$ = $2;
-           $$->printElement = "ImageInstruction";
+           $$->setprintElement("ImageInstruction");
           }
         ;
 
@@ -49923,7 +49921,7 @@ y_InspectionModeEnumType :
           {$$ = new InspectionModeEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad InspectionModeEnumType value");
           }
         ;
@@ -49984,7 +49982,7 @@ y_InspectionScopeEnumType :
           {$$ = new InspectionScopeEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad InspectionScopeEnumType value");
           }
         ;
@@ -50039,7 +50037,7 @@ y_InspectionStatusEnumType :
           {$$ = new InspectionStatusEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad InspectionStatusEnumType value");
           }
         ;
@@ -50188,7 +50186,7 @@ y_Instances_ValidationPartAssemblyInstancesType_0 :
 y_Interaction_StatsMeasuredDecimalType :
           InteractionSTART y_StatsMeasuredDecimalType InteractionEND
           {$$ = $2;
-           $$->printElement = "Interaction";
+           $$->setprintElement("Interaction");
           }
         ;
 
@@ -50205,7 +50203,7 @@ y_InternalExternalEnumType :
           {$$ = new InternalExternalEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad InternalExternalEnumType value");
           }
         ;
@@ -50243,7 +50241,7 @@ y_IntersectionFeature_SequencedBaseFeatureType :
           IntersectionFeatureSTART y_SequencedBaseFeatureType
           IntersectionFeatureEND
           {$$ = $2;
-           $$->printElement = "IntersectionFeature";
+           $$->setprintElement("IntersectionFeature");
           }
         ;
 
@@ -50252,7 +50250,7 @@ y_IntersectionPlaneEnumType :
           {$$ = new IntersectionPlaneEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad IntersectionPlaneEnumType value");
           }
         ;
@@ -50289,35 +50287,35 @@ y_IntersectionPlane_IntersectionPlaneType_0 :
 y_Intersection_CircleIntersectionType :
           IntersectionSTART y_CircleIntersectionType IntersectionEND
           {$$ = $2;
-           $$->printElement = "Intersection";
+           $$->setprintElement("Intersection");
           }
         ;
 
 y_Intersection_CircularArcIntersectionType :
           IntersectionSTART y_CircularArcIntersectionType IntersectionEND
           {$$ = $2;
-           $$->printElement = "Intersection";
+           $$->setprintElement("Intersection");
           }
         ;
 
 y_Intersection_EllipseIntersectionType :
           IntersectionSTART y_EllipseIntersectionType IntersectionEND
           {$$ = $2;
-           $$->printElement = "Intersection";
+           $$->setprintElement("Intersection");
           }
         ;
 
 y_Intersection_EllipticalArcIntersectionType :
           IntersectionSTART y_EllipticalArcIntersectionType IntersectionEND
           {$$ = $2;
-           $$->printElement = "Intersection";
+           $$->setprintElement("Intersection");
           }
         ;
 
 y_Intersection_LineIntersectionType :
           IntersectionSTART y_LineIntersectionType IntersectionEND
           {$$ = $2;
-           $$->printElement = "Intersection";
+           $$->setprintElement("Intersection");
           }
         ;
 
@@ -50325,7 +50323,7 @@ y_Intersection_OppositeAngledLinesIntersectionType :
           IntersectionSTART y_OppositeAngledLinesIntersectionType
           IntersectionEND
           {$$ = $2;
-           $$->printElement = "Intersection";
+           $$->setprintElement("Intersection");
           }
         ;
 
@@ -50333,14 +50331,14 @@ y_Intersection_OppositeParallelLinesIntersectionType :
           IntersectionSTART y_OppositeParallelLinesIntersectionType
           IntersectionEND
           {$$ = $2;
-           $$->printElement = "Intersection";
+           $$->setprintElement("Intersection");
           }
         ;
 
 y_Intersection_PointFeatureIntersectionType :
           IntersectionSTART y_PointFeatureIntersectionType IntersectionEND
           {$$ = $2;
-           $$->printElement = "Intersection";
+           $$->setprintElement("Intersection");
           }
         ;
 
@@ -50399,11 +50397,11 @@ y_JoystickSpeeds_CartesianCMMSpeedsType_0 :
         | JoystickSpeedsSTART ENDWHOLEITEM
           {$$ = new CartesianCMMSpeedsType();
            yyUnrefMap[$$] = $$;
-           $$->printElement = "JoystickSpeeds";
+           $$->setprintElement("JoystickSpeeds");
           }
         | JoystickSpeedsSTART y_CartesianCMMSpeedsType JoystickSpeedsEND
           {$$ = $2;
-           $$->printElement = "JoystickSpeeds";
+           $$->setprintElement("JoystickSpeeds");
           }
         ;
 
@@ -50425,7 +50423,7 @@ y_Knots_ArrayDoubleType :
 y_Kurtosis_StatsMeasuredDecimalType :
           KurtosisSTART y_StatsMeasuredDecimalType KurtosisEND
           {$$ = $2;
-           $$->printElement = "Kurtosis";
+           $$->setprintElement("Kurtosis");
           }
         ;
 
@@ -50433,7 +50431,7 @@ y_LVDTSensor_LinearVariableDifferentialTransformerSensorType :
           LVDTSensorSTART y_LinearVariableDifferentialTransformerSensorType
           LVDTSensorEND
           {$$ = $2;
-           $$->printElement = "LVDTSensor";
+           $$->setprintElement("LVDTSensor");
           }
         ;
 
@@ -50517,14 +50515,14 @@ y_LaserRadarMeasureFeatureMethod_LaserRadarMeasureFeatureMethodType :
           y_LaserRadarMeasureFeatureMethodType
           LaserRadarMeasureFeatureMethodEND
           {$$ = $2;
-           $$->printElement = "LaserRadarMeasureFeatureMethod";
+           $$->setprintElement("LaserRadarMeasureFeatureMethod");
           }
         | LaserRadarMeasureFeatureMethodSTART y_LiztAttributePair
           ENDWHOLEITEM
           {$$ = new LaserRadarMeasureFeatureMethodType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "LaserRadarMeasureFeatureMethod";
+           $$->setprintElement("LaserRadarMeasureFeatureMethod");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -50605,7 +50603,7 @@ y_LaserRadarType :
 y_LaserRadar_LaserRadarType :
           LaserRadarSTART y_LaserRadarType LaserRadarEND
           {$$ = $2;
-           $$->printElement = "LaserRadar";
+           $$->setprintElement("LaserRadar");
           }
         ;
 
@@ -50661,14 +50659,14 @@ y_LaserTrackerMeasureFeatureMethod_LaserTrackerMeasureFeatureMethodType :
           y_LaserTrackerMeasureFeatureMethodType
           LaserTrackerMeasureFeatureMethodEND
           {$$ = $2;
-           $$->printElement = "LaserTrackerMeasureFeatureMethod";
+           $$->setprintElement("LaserTrackerMeasureFeatureMethod");
           }
         | LaserTrackerMeasureFeatureMethodSTART y_LiztAttributePair
           ENDWHOLEITEM
           {$$ = new LaserTrackerMeasureFeatureMethodType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "LaserTrackerMeasureFeatureMethod";
+           $$->setprintElement("LaserTrackerMeasureFeatureMethod");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -50737,7 +50735,7 @@ y_LaserTrackerType :
 y_LaserTracker_LaserTrackerType :
           LaserTrackerSTART y_LaserTrackerType LaserTrackerEND
           {$$ = $2;
-           $$->printElement = "LaserTracker";
+           $$->setprintElement("LaserTracker");
           }
         ;
 
@@ -50803,7 +50801,7 @@ y_LaserTriangulationSensor_LaserTriangulationSensorType :
           LaserTriangulationSensorSTART y_LaserTriangulationSensorType
           LaserTriangulationSensorEND
           {$$ = $2;
-           $$->printElement = "LaserTriangulationSensor";
+           $$->setprintElement("LaserTriangulationSensor");
           }
         ;
 
@@ -50860,7 +50858,7 @@ y_Laser_LaserType_0 :
           {$$ = 0;}
         | LaserSTART y_LaserType LaserEND
           {$$ = $2;
-           $$->printElement = "Laser";
+           $$->setprintElement("Laser");
           }
         ;
 
@@ -50879,7 +50877,7 @@ y_LatitudeLongitudeSweepFull_OrientedLatitudeLongitudeSweepType_0 :
           y_OrientedLatitudeLongitudeSweepType
           LatitudeLongitudeSweepFullEND
           {$$ = $2;
-           $$->printElement = "LatitudeLongitudeSweepFull";
+           $$->setprintElement("LatitudeLongitudeSweepFull");
           }
         ;
 
@@ -50890,7 +50888,7 @@ y_LatitudeLongitudeSweepMeasurementRange_OrientedLatitudeLongitudeSweepType_0 :
           y_OrientedLatitudeLongitudeSweepType
           LatitudeLongitudeSweepMeasurementRangeEND
           {$$ = $2;
-           $$->printElement = "LatitudeLongitudeSweepMeasurementRange";
+           $$->setprintElement("LatitudeLongitudeSweepMeasurementRange");
           }
         ;
 
@@ -50923,7 +50921,7 @@ y_LatitudeLongitudeSweep_OrientedLatitudeLongitudeSweepType :
           LatitudeLongitudeSweepSTART y_OrientedLatitudeLongitudeSweepType
           LatitudeLongitudeSweepEND
           {$$ = $2;
-           $$->printElement = "LatitudeLongitudeSweep";
+           $$->setprintElement("LatitudeLongitudeSweep");
           }
         ;
 
@@ -50933,7 +50931,7 @@ y_LatitudeLongitudeSweep_OrientedLatitudeLongitudeSweepType_0 :
         | LatitudeLongitudeSweepSTART y_OrientedLatitudeLongitudeSweepType
           LatitudeLongitudeSweepEND
           {$$ = $2;
-           $$->printElement = "LatitudeLongitudeSweep";
+           $$->setprintElement("LatitudeLongitudeSweep");
           }
         ;
 
@@ -50979,13 +50977,13 @@ y_LayerType :
 y_Layer_LayerType :
           LayerSTART y_LayerType LayerEND
           {$$ = $2;
-           $$->printElement = "Layer";
+           $$->setprintElement("Layer");
           }
         | LayerSTART y_LiztAttributePair ENDWHOLEITEM
           {$$ = new LayerType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "Layer";
+           $$->setprintElement("Layer");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -51012,7 +51010,7 @@ y_LeaderCircularType :
 y_LeaderCircular_LeaderCircularType :
           LeaderCircularSTART y_LeaderCircularType LeaderCircularEND
           {$$ = $2;
-           $$->printElement = "LeaderCircular";
+           $$->setprintElement("LeaderCircular");
           }
         ;
 
@@ -51037,7 +51035,7 @@ y_LeaderDoubleHeadCircular_LeaderDoubleHeadCircularType :
           LeaderDoubleHeadCircularSTART y_LeaderDoubleHeadCircularType
           LeaderDoubleHeadCircularEND
           {$$ = $2;
-           $$->printElement = "LeaderDoubleHeadCircular";
+           $$->setprintElement("LeaderDoubleHeadCircular");
           }
         ;
 
@@ -51063,7 +51061,7 @@ y_LeaderDoubleHeadExtend_LeaderDoubleHeadExtendType :
           LeaderDoubleHeadExtendSTART y_LeaderDoubleHeadExtendType
           LeaderDoubleHeadExtendEND
           {$$ = $2;
-           $$->printElement = "LeaderDoubleHeadExtend";
+           $$->setprintElement("LeaderDoubleHeadExtend");
           }
         ;
 
@@ -51086,7 +51084,7 @@ y_LeaderDoubleHeadType :
 y_LeaderDoubleHead_LeaderDoubleHeadType :
           LeaderDoubleHeadSTART y_LeaderDoubleHeadType LeaderDoubleHeadEND
           {$$ = $2;
-           $$->printElement = "LeaderDoubleHead";
+           $$->setprintElement("LeaderDoubleHead");
           }
         ;
 
@@ -51109,7 +51107,7 @@ y_LeaderExtendType :
 y_LeaderExtend_LeaderExtendType :
           LeaderExtendSTART y_LeaderExtendType LeaderExtendEND
           {$$ = $2;
-           $$->printElement = "LeaderExtend";
+           $$->setprintElement("LeaderExtend");
           }
         ;
 
@@ -51118,7 +51116,7 @@ y_LeaderHeadFormEnumType :
           {$$ = new LeaderHeadFormEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad LeaderHeadFormEnumType value");
           }
         ;
@@ -51128,14 +51126,14 @@ y_LeaderHeadFormType :
           {$$ = new LeaderHeadFormType($3);
            yyUnrefMap[$$] = $$;
            free($3);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad LeaderHeadFormType value");
           }
         | y_LiztAttributePair ENDITEM {yyReadData = 1;} DATASTRING
           {$$ = new LeaderHeadFormType($4);
            yyUnrefMap[$$] = $$;
            free($4);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad LeaderHeadFormType value");
            yyUnrefMap.erase($1);
            if ($$->badAttributes($1))
@@ -51152,7 +51150,7 @@ y_LeaderModifierEnumType :
           {$$ = new LeaderModifierEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad LeaderModifierEnumType value");
           }
         ;
@@ -51173,7 +51171,7 @@ y_LeaderType :
 y_Leader_LeaderType :
           LeaderSTART y_LeaderType LeaderEND
           {$$ = $2;
-           $$->printElement = "Leader";
+           $$->setprintElement("Leader");
           }
         ;
 
@@ -51264,7 +51262,7 @@ y_LengthCharacteristicDefinition_LengthCharacteristicDefinitionType :
           y_LengthCharacteristicDefinitionType
           LengthCharacteristicDefinitionEND
           {$$ = $2;
-           $$->printElement = "LengthCharacteristicDefinition";
+           $$->setprintElement("LengthCharacteristicDefinition");
           }
         ;
 
@@ -51306,7 +51304,7 @@ y_LengthCharacteristicItem_LengthCharacteristicItemType :
           LengthCharacteristicItemSTART y_LengthCharacteristicItemType
           LengthCharacteristicItemEND
           {$$ = $2;
-           $$->printElement = "LengthCharacteristicItem";
+           $$->setprintElement("LengthCharacteristicItem");
           }
         ;
 
@@ -51356,7 +51354,7 @@ y_LengthCharacteristicMeasurement_LengthCharacteristicMeasurementType :
           y_LengthCharacteristicMeasurementType
           LengthCharacteristicMeasurementEND
           {$$ = $2;
-           $$->printElement = "LengthCharacteristicMeasurement";
+           $$->setprintElement("LengthCharacteristicMeasurement");
           }
         ;
 
@@ -51400,7 +51398,7 @@ y_LengthCharacteristicNominal_LengthCharacteristicNominalType :
           LengthCharacteristicNominalSTART
           y_LengthCharacteristicNominalType LengthCharacteristicNominalEND
           {$$ = $2;
-           $$->printElement = "LengthCharacteristicNominal";
+           $$->setprintElement("LengthCharacteristicNominal");
           }
         ;
 
@@ -51427,7 +51425,7 @@ y_LengthCharacteristicStats_LengthCharacteristicStatsEvalType :
           LengthCharacteristicStatsSTART
           y_LengthCharacteristicStatsEvalType LengthCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "LengthCharacteristicStats";
+           $$->setprintElement("LengthCharacteristicStats");
           }
         ;
 
@@ -51538,7 +51536,7 @@ y_LessOrEqualType :
 y_LessOrEqual_LessOrEqualType :
           LessOrEqualSTART y_LessOrEqualType LessOrEqualEND
           {$$ = $2;
-           $$->printElement = "LessOrEqual";
+           $$->setprintElement("LessOrEqual");
           }
         ;
 
@@ -51553,7 +51551,7 @@ y_LessThanType :
 y_LessThan_LessThanType :
           LessThanSTART y_LessThanType LessThanEND
           {$$ = $2;
-           $$->printElement = "LessThan";
+           $$->setprintElement("LessThan");
           }
         ;
 
@@ -51585,7 +51583,7 @@ y_LightPenCMMChargeCoupledDeviceCameraSensor_ChargeCoupledDeviceCameraSensorType
           y_ChargeCoupledDeviceCameraSensorType
           LightPenCMMChargeCoupledDeviceCameraSensorEND
           {$$ = $2;
-           $$->printElement = "LightPenCMMChargeCoupledDeviceCameraSensor";
+           $$->setprintElement("LightPenCMMChargeCoupledDeviceCameraSensor");
           }
         ;
 
@@ -51646,7 +51644,7 @@ y_LightPenCMMType :
 y_LightPenCMM_LightPenCMMType :
           LightPenCMMSTART y_LightPenCMMType LightPenCMMEND
           {$$ = $2;
-           $$->printElement = "LightPenCMM";
+           $$->setprintElement("LightPenCMM");
           }
         ;
 
@@ -51742,7 +51740,7 @@ y_LineAuxiliaryType :
 y_LineAuxiliary_LineAuxiliaryType :
           LineAuxiliarySTART y_LineAuxiliaryType LineAuxiliaryEND
           {$$ = $2;
-           $$->printElement = "LineAuxiliary";
+           $$->setprintElement("LineAuxiliary");
           }
         ;
 
@@ -51954,13 +51952,13 @@ y_LineFeatureDefinition_LineFeatureDefinitionType :
           LineFeatureDefinitionSTART y_LineFeatureDefinitionType
           LineFeatureDefinitionEND
           {$$ = $2;
-           $$->printElement = "LineFeatureDefinition";
+           $$->setprintElement("LineFeatureDefinition");
           }
         | LineFeatureDefinitionSTART y_LiztAttributePair ENDWHOLEITEM
           {$$ = new LineFeatureDefinitionType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "LineFeatureDefinition";
+           $$->setprintElement("LineFeatureDefinition");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -52006,7 +52004,7 @@ y_LineFeatureItemType :
 y_LineFeatureItem_LineFeatureItemType :
           LineFeatureItemSTART y_LineFeatureItemType LineFeatureItemEND
           {$$ = $2;
-           $$->printElement = "LineFeatureItem";
+           $$->setprintElement("LineFeatureItem");
           }
         ;
 
@@ -52060,13 +52058,13 @@ y_LineFeatureMeasurement_LineFeatureMeasurementType :
           LineFeatureMeasurementSTART y_LineFeatureMeasurementType
           LineFeatureMeasurementEND
           {$$ = $2;
-           $$->printElement = "LineFeatureMeasurement";
+           $$->setprintElement("LineFeatureMeasurement");
           }
         | LineFeatureMeasurementSTART y_LiztAttributePair ENDWHOLEITEM
           {$$ = new LineFeatureMeasurementType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "LineFeatureMeasurement";
+           $$->setprintElement("LineFeatureMeasurement");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -52120,7 +52118,7 @@ y_LineFeatureNominal_LineFeatureNominalType :
           LineFeatureNominalSTART y_LineFeatureNominalType
           LineFeatureNominalEND
           {$$ = $2;
-           $$->printElement = "LineFeatureNominal";
+           $$->setprintElement("LineFeatureNominal");
           }
         ;
 
@@ -52298,7 +52296,7 @@ y_LineProfileCharacteristicDefinition_LineProfileCharacteristicDefinitionType :
           y_LineProfileCharacteristicDefinitionType
           LineProfileCharacteristicDefinitionEND
           {$$ = $2;
-           $$->printElement = "LineProfileCharacteristicDefinition";
+           $$->setprintElement("LineProfileCharacteristicDefinition");
           }
         ;
 
@@ -52341,7 +52339,7 @@ y_LineProfileCharacteristicItem_LineProfileCharacteristicItemType :
           y_LineProfileCharacteristicItemType
           LineProfileCharacteristicItemEND
           {$$ = $2;
-           $$->printElement = "LineProfileCharacteristicItem";
+           $$->setprintElement("LineProfileCharacteristicItem");
           }
         ;
 
@@ -52406,7 +52404,7 @@ y_LineProfileCharacteristicMeasurement_LineProfileCharacteristicMeasurementType 
           y_LineProfileCharacteristicMeasurementType
           LineProfileCharacteristicMeasurementEND
           {$$ = $2;
-           $$->printElement = "LineProfileCharacteristicMeasurement";
+           $$->setprintElement("LineProfileCharacteristicMeasurement");
           }
         ;
 
@@ -52452,7 +52450,7 @@ y_LineProfileCharacteristicNominal_LineProfileCharacteristicNominalType :
           y_LineProfileCharacteristicNominalType
           LineProfileCharacteristicNominalEND
           {$$ = $2;
-           $$->printElement = "LineProfileCharacteristicNominal";
+           $$->setprintElement("LineProfileCharacteristicNominal");
           }
         ;
 
@@ -52496,7 +52494,7 @@ y_LineProfileCharacteristicStats_LineProfileCharacteristicStatsEvalType :
           y_LineProfileCharacteristicStatsEvalType
           LineProfileCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "LineProfileCharacteristicStats";
+           $$->setprintElement("LineProfileCharacteristicStats");
           }
         ;
 
@@ -52560,14 +52558,14 @@ y_LineStyleType :
           {$$ = new LineStyleType($3);
            yyUnrefMap[$$] = $$;
            free($3);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad LineStyleType value");
           }
         | y_LiztAttributePair ENDITEM {yyReadData = 1;} DATASTRING
           {$$ = new LineStyleType($4);
            yyUnrefMap[$$] = $$;
            free($4);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad LineStyleType value");
            yyUnrefMap.erase($1);
            if ($$->badAttributes($1))
@@ -52633,7 +52631,7 @@ y_LinearAxisType :
 y_LinearAxis_LinearAxisType :
           LinearAxisSTART y_LinearAxisType LinearAxisEND
           {$$ = $2;
-           $$->printElement = "LinearAxis";
+           $$->setprintElement("LinearAxis");
           }
         ;
 
@@ -52785,7 +52783,7 @@ y_LinearCharacteristicStats_LinearCharacteristicStatsEvalType :
           LinearCharacteristicStatsSTART
           y_LinearCharacteristicStatsEvalType LinearCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "LinearCharacteristicStats";
+           $$->setprintElement("LinearCharacteristicStats");
           }
         ;
 
@@ -52852,7 +52850,7 @@ y_LinearCoordinateCharacteristicDefinition_LinearCoordinateCharacteristicDefinit
           y_LinearCoordinateCharacteristicDefinitionType
           LinearCoordinateCharacteristicDefinitionEND
           {$$ = $2;
-           $$->printElement = "LinearCoordinateCharacteristicDefinition";
+           $$->setprintElement("LinearCoordinateCharacteristicDefinition");
           }
         ;
 
@@ -52895,7 +52893,7 @@ y_LinearCoordinateCharacteristicItem_LinearCoordinateCharacteristicItemType :
           y_LinearCoordinateCharacteristicItemType
           LinearCoordinateCharacteristicItemEND
           {$$ = $2;
-           $$->printElement = "LinearCoordinateCharacteristicItem";
+           $$->setprintElement("LinearCoordinateCharacteristicItem");
           }
         ;
 
@@ -52947,7 +52945,7 @@ y_LinearCoordinateCharacteristicMeasurement_LinearCoordinateCharacteristicMeasur
           y_LinearCoordinateCharacteristicMeasurementType
           LinearCoordinateCharacteristicMeasurementEND
           {$$ = $2;
-           $$->printElement = "LinearCoordinateCharacteristicMeasurement";
+           $$->setprintElement("LinearCoordinateCharacteristicMeasurement");
           }
         ;
 
@@ -52994,7 +52992,7 @@ y_LinearCoordinateCharacteristicNominal_LinearCoordinateCharacteristicNominalTyp
           y_LinearCoordinateCharacteristicNominalType
           LinearCoordinateCharacteristicNominalEND
           {$$ = $2;
-           $$->printElement = "LinearCoordinateCharacteristicNominal";
+           $$->setprintElement("LinearCoordinateCharacteristicNominal");
           }
         ;
 
@@ -53022,7 +53020,7 @@ y_LinearCoordinateCharacteristicStats_LinearCoordinateCharacteristicStatsEvalTyp
           y_LinearCoordinateCharacteristicStatsEvalType
           LinearCoordinateCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "LinearCoordinateCharacteristicStats";
+           $$->setprintElement("LinearCoordinateCharacteristicStats");
           }
         ;
 
@@ -53031,7 +53029,7 @@ y_LinearCoordinateDirectionEnumType :
           {$$ = new LinearCoordinateDirectionEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad LinearCoordinateDirectionEnumType value");
           }
         ;
@@ -53041,7 +53039,7 @@ y_LinearCriterion_CriterionLinearType_0 :
           {$$ = 0;}
         | LinearCriterionSTART y_CriterionLinearType LinearCriterionEND
           {$$ = $2;
-           $$->printElement = "LinearCriterion";
+           $$->setprintElement("LinearCriterion");
           }
         ;
 
@@ -53050,7 +53048,7 @@ y_LinearDualValueType :
           {$$ = new LinearDualValueType($4);
            yyUnrefMap[$$] = $$;
            free($4);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad LinearDualValueType value");
            yyUnrefMap.erase($1);
            if ($$->badAttributes($1))
@@ -53110,7 +53108,7 @@ y_LinearResolutionType :
 y_LinearResolution_LinearResolutionType :
           LinearResolutionSTART y_LinearResolutionType LinearResolutionEND
           {$$ = $2;
-           $$->printElement = "LinearResolution";
+           $$->setprintElement("LinearResolution");
           }
         ;
 
@@ -53119,7 +53117,7 @@ y_LinearResolution_LinearResolutionType_0 :
           {$$ = 0;}
         | LinearResolutionSTART y_LinearResolutionType LinearResolutionEND
           {$$ = $2;
-           $$->printElement = "LinearResolution";
+           $$->setprintElement("LinearResolution");
           }
         ;
 
@@ -53140,7 +53138,7 @@ y_LinearStatsSummary_SummaryStatisticsLinearType :
           LinearStatsSummarySTART y_SummaryStatisticsLinearType
           LinearStatsSummaryEND
           {$$ = $2;
-           $$->printElement = "LinearStatsSummary";
+           $$->setprintElement("LinearStatsSummary");
           }
         ;
 
@@ -53333,14 +53331,14 @@ y_LinearValueType :
           {$$ = new LinearValueType($3);
            yyUnrefMap[$$] = $$;
            free($3);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad LinearValueType value");
           }
         | y_LiztAttributePair ENDITEM {yyReadData = 1;} DATASTRING
           {$$ = new LinearValueType($4);
            yyUnrefMap[$$] = $$;
            free($4);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad LinearValueType value");
            yyUnrefMap.erase($1);
            if ($$->badAttributes($1))
@@ -53362,7 +53360,7 @@ y_LinearVariableDifferentialTransformerEnumType :
           {$$ = new LinearVariableDifferentialTransformerEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad LinearVariableDifferentialTransformerEnumType value");
           }
         ;
@@ -53509,7 +53507,7 @@ y_LinearityStudyPlan_LinearityStudyPlanType :
           LinearityStudyPlanSTART y_LinearityStudyPlanType
           LinearityStudyPlanEND
           {$$ = $2;
-           $$->printElement = "LinearityStudyPlan";
+           $$->setprintElement("LinearityStudyPlan");
           }
         ;
 
@@ -53673,14 +53671,14 @@ y_LinearityStudyResults_LinearityStudyResultsType :
           LinearityStudyResultsSTART y_LinearityStudyResultsType
           LinearityStudyResultsEND
           {$$ = $2;
-           $$->printElement = "LinearityStudyResults";
+           $$->setprintElement("LinearityStudyResults");
           }
         ;
 
 y_Linearity_StatsMeasuredDecimalType :
           LinearitySTART y_StatsMeasuredDecimalType LinearityEND
           {$$ = $2;
-           $$->printElement = "Linearity";
+           $$->setprintElement("Linearity");
           }
         ;
 
@@ -57354,7 +57352,7 @@ y_LocationCharacteristicStats_LocationCharacteristicStatsEvalType :
           y_LocationCharacteristicStatsEvalType
           LocationCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "LocationCharacteristicStats";
+           $$->setprintElement("LocationCharacteristicStats");
           }
         ;
 
@@ -57464,7 +57462,7 @@ y_LocationSignificanceAllEnumType :
           {$$ = new LocationSignificanceAllEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad LocationSignificanceAllEnumType value");
           }
         ;
@@ -57474,7 +57472,7 @@ y_LocationSignificanceOneSidesEnumType :
           {$$ = new LocationSignificanceOneSidesEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad LocationSignificanceOneSidesEnumType value");
           }
         ;
@@ -57484,7 +57482,7 @@ y_LocationSignificanceSpotSeamEnumType :
           {$$ = new LocationSignificanceSpotSeamEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad LocationSignificanceSpotSeamEnumType value");
           }
         ;
@@ -57540,14 +57538,14 @@ y_Location_PointSimpleType :
           LocationSTART ENDWHOLEITEM
           {$$ = new PointSimpleType();
            $$->PointSimpleTypeCheck();
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad PointSimpleType value");
            yyUnrefMap[$$] = $$;
           }
         | LocationSTART y_PointSimpleType LocationEND
           {$$ = $2;
            $2->PointSimpleTypeCheck();
-           if ($2->bad)
+           if ($2->getbad())
              return yyerror("bad PointSimpleType value");
           }
         ;
@@ -57606,7 +57604,7 @@ y_LogicalOperationEnumType :
           {$$ = new LogicalOperationEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad LogicalOperationEnumType value");
           }
         ;
@@ -57711,7 +57709,7 @@ y_LoopMeshType :
 y_LoopMesh_LoopMeshType :
           LoopMeshSTART y_LoopMeshType LoopMeshEND
           {$$ = $2;
-           $$->printElement = "LoopMesh";
+           $$->setprintElement("LoopMesh");
           }
         ;
 
@@ -57757,7 +57755,7 @@ y_LoopType :
 y_Loop_LoopType :
           LoopSTART y_LoopType LoopEND
           {$$ = $2;
-           $$->printElement = "Loop";
+           $$->setprintElement("Loop");
           }
         ;
 
@@ -57809,7 +57807,7 @@ y_LowerConfidenceLimit_StatsMeasuredDecimalType :
           LowerConfidenceLimitSTART y_StatsMeasuredDecimalType
           LowerConfidenceLimitEND
           {$$ = $2;
-           $$->printElement = "LowerConfidenceLimit";
+           $$->setprintElement("LowerConfidenceLimit");
           }
         ;
 
@@ -57817,7 +57815,7 @@ y_LowerControlLimitRange_StatsMeasuredDecimalType :
           LowerControlLimitRangeSTART y_StatsMeasuredDecimalType
           LowerControlLimitRangeEND
           {$$ = $2;
-           $$->printElement = "LowerControlLimitRange";
+           $$->setprintElement("LowerControlLimitRange");
           }
         ;
 
@@ -57825,7 +57823,7 @@ y_LowerControlLimit_StatsMeasuredDecimalType :
           LowerControlLimitSTART y_StatsMeasuredDecimalType
           LowerControlLimitEND
           {$$ = $2;
-           $$->printElement = "LowerControlLimit";
+           $$->setprintElement("LowerControlLimit");
           }
         ;
 
@@ -57833,14 +57831,14 @@ y_LowerPoint_Point2dSimpleType :
           LowerPointSTART ENDWHOLEITEM
           {$$ = new Point2dSimpleType();
            $$->Point2dSimpleTypeCheck();
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad Point2dSimpleType value");
            yyUnrefMap[$$] = $$;
           }
         | LowerPointSTART y_Point2dSimpleType LowerPointEND
           {$$ = $2;
            $2->Point2dSimpleTypeCheck();
-           if ($2->bad)
+           if ($2->getbad())
              return yyerror("bad Point2dSimpleType value");
           }
         ;
@@ -57894,7 +57892,7 @@ y_MachineManufacturerName_XmlString_0 :
 y_Machine_MachineCoordinateSystemOperationType :
           MachineSTART y_MachineCoordinateSystemOperationType MachineEND
           {$$ = $2;
-           $$->printElement = "Machine";
+           $$->setprintElement("Machine");
           }
         ;
 
@@ -57968,7 +57966,7 @@ y_MagnetoInductiveSensor_MagnetoInductiveSensorType :
           MagnetoInductiveSensorSTART y_MagnetoInductiveSensorType
           MagnetoInductiveSensorEND
           {$$ = $2;
-           $$->printElement = "MagnetoInductiveSensor";
+           $$->setprintElement("MagnetoInductiveSensor");
           }
         ;
 
@@ -57985,7 +57983,7 @@ y_MainSymbol_WeldMainSymbolType_0 :
           {$$ = 0;}
         | MainSymbolSTART y_WeldMainSymbolType MainSymbolEND
           {$$ = $2;
-           $$->printElement = "MainSymbol";
+           $$->setprintElement("MainSymbol");
           }
         ;
 
@@ -58026,7 +58024,7 @@ y_ManualMeasureFeatureMethod_ManualMeasureFeatureMethodType :
           {$$ = new ManualMeasureFeatureMethodType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "ManualMeasureFeatureMethod";
+           $$->setprintElement("ManualMeasureFeatureMethod");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -58037,7 +58035,7 @@ y_ManualMeasureFeatureMethod_ManualMeasureFeatureMethodType :
         | ManualMeasureFeatureMethodSTART y_ManualMeasureFeatureMethodType
           ManualMeasureFeatureMethodEND
           {$$ = $2;
-           $$->printElement = "ManualMeasureFeatureMethod";
+           $$->setprintElement("ManualMeasureFeatureMethod");
           }
         ;
 
@@ -58080,7 +58078,7 @@ y_ManualMeasurementDevice_ManualMeasurementDeviceType :
           ManualMeasurementDeviceSTART y_ManualMeasurementDeviceType
           ManualMeasurementDeviceEND
           {$$ = $2;
-           $$->printElement = "ManualMeasurementDevice";
+           $$->setprintElement("ManualMeasurementDevice");
           }
         ;
 
@@ -58107,7 +58105,7 @@ y_ManufacturingMethodEnumType :
           {$$ = new ManufacturingMethodEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad ManufacturingMethodEnumType value");
           }
         ;
@@ -58270,7 +58268,7 @@ y_MarkingFeatureDefinition_MarkingFeatureDefinitionType :
           MarkingFeatureDefinitionSTART y_MarkingFeatureDefinitionType
           MarkingFeatureDefinitionEND
           {$$ = $2;
-           $$->printElement = "MarkingFeatureDefinition";
+           $$->setprintElement("MarkingFeatureDefinition");
           }
         ;
 
@@ -58303,7 +58301,7 @@ y_MarkingFeatureItem_MarkingFeatureItemType :
           MarkingFeatureItemSTART y_MarkingFeatureItemType
           MarkingFeatureItemEND
           {$$ = $2;
-           $$->printElement = "MarkingFeatureItem";
+           $$->setprintElement("MarkingFeatureItem");
           }
         ;
 
@@ -58344,7 +58342,7 @@ y_MarkingFeatureMeasurement_MarkingFeatureMeasurementType :
           MarkingFeatureMeasurementSTART y_MarkingFeatureMeasurementType
           MarkingFeatureMeasurementEND
           {$$ = $2;
-           $$->printElement = "MarkingFeatureMeasurement";
+           $$->setprintElement("MarkingFeatureMeasurement");
           }
         ;
 
@@ -58380,7 +58378,7 @@ y_MarkingFeatureNominal_MarkingFeatureNominalType :
           MarkingFeatureNominalSTART y_MarkingFeatureNominalType
           MarkingFeatureNominalEND
           {$$ = $2;
-           $$->printElement = "MarkingFeatureNominal";
+           $$->setprintElement("MarkingFeatureNominal");
           }
         ;
 
@@ -58389,7 +58387,7 @@ y_MarkingMethodEnumType :
           {$$ = new MarkingMethodEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad MarkingMethodEnumType value");
           }
         ;
@@ -58458,7 +58456,7 @@ y_MassCriterion_CriterionMassType_0 :
           {$$ = 0;}
         | MassCriterionSTART y_CriterionMassType MassCriterionEND
           {$$ = $2;
-           $$->printElement = "MassCriterion";
+           $$->setprintElement("MassCriterion");
           }
         ;
 
@@ -58504,7 +58502,7 @@ y_MassStatsSummary_SummaryStatisticsMassType :
           MassStatsSummarySTART y_SummaryStatisticsMassType
           MassStatsSummaryEND
           {$$ = $2;
-           $$->printElement = "MassStatsSummary";
+           $$->setprintElement("MassStatsSummary");
           }
         ;
 
@@ -58591,14 +58589,14 @@ y_MassValueType :
           {$$ = new MassValueType($3);
            yyUnrefMap[$$] = $$;
            free($3);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad MassValueType value");
           }
         | y_LiztAttributePair ENDITEM {yyReadData = 1;} DATASTRING
           {$$ = new MassValueType($4);
            yyUnrefMap[$$] = $$;
            free($4);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad MassValueType value");
            yyUnrefMap.erase($1);
            if ($$->badAttributes($1))
@@ -58622,7 +58620,7 @@ y_MaterialClassEnumType :
           {$$ = new MaterialClassEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad MaterialClassEnumType value");
           }
         ;
@@ -58659,7 +58657,7 @@ y_MaterialModifierEnumType :
           {$$ = new MaterialModifierEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad MaterialModifierEnumType value");
           }
         ;
@@ -58811,7 +58809,7 @@ y_MaxCircularityStats_StatsLinearType_0 :
           {$$ = 0;}
         | MaxCircularityStatsSTART y_StatsLinearType MaxCircularityStatsEND
           {$$ = $2;
-           $$->printElement = "MaxCircularityStats";
+           $$->setprintElement("MaxCircularityStats");
           }
         ;
 
@@ -58836,7 +58834,7 @@ y_MaxCylindricityStats_StatsLinearType_0 :
         | MaxCylindricityStatsSTART y_StatsLinearType
           MaxCylindricityStatsEND
           {$$ = $2;
-           $$->printElement = "MaxCylindricityStats";
+           $$->setprintElement("MaxCylindricityStats");
           }
         ;
 
@@ -58868,7 +58866,7 @@ y_MaxDeviationFromAverageNear_LinearValueType :
 y_MaxDeviationStats_StatsAngularType :
           MaxDeviationStatsSTART y_StatsAngularType MaxDeviationStatsEND
           {$$ = $2;
-           $$->printElement = "MaxDeviationStats";
+           $$->setprintElement("MaxDeviationStats");
           }
         ;
 
@@ -58877,14 +58875,14 @@ y_MaxDeviationStats_StatsAngularType_0 :
           {$$ = 0;}
         | MaxDeviationStatsSTART y_StatsAngularType MaxDeviationStatsEND
           {$$ = $2;
-           $$->printElement = "MaxDeviationStats";
+           $$->setprintElement("MaxDeviationStats");
           }
         ;
 
 y_MaxDeviationStats_StatsAreaType :
           MaxDeviationStatsSTART y_StatsAreaType MaxDeviationStatsEND
           {$$ = $2;
-           $$->printElement = "MaxDeviationStats";
+           $$->setprintElement("MaxDeviationStats");
           }
         ;
 
@@ -58893,14 +58891,14 @@ y_MaxDeviationStats_StatsAreaType_0 :
           {$$ = 0;}
         | MaxDeviationStatsSTART y_StatsAreaType MaxDeviationStatsEND
           {$$ = $2;
-           $$->printElement = "MaxDeviationStats";
+           $$->setprintElement("MaxDeviationStats");
           }
         ;
 
 y_MaxDeviationStats_StatsForceType :
           MaxDeviationStatsSTART y_StatsForceType MaxDeviationStatsEND
           {$$ = $2;
-           $$->printElement = "MaxDeviationStats";
+           $$->setprintElement("MaxDeviationStats");
           }
         ;
 
@@ -58909,14 +58907,14 @@ y_MaxDeviationStats_StatsForceType_0 :
           {$$ = 0;}
         | MaxDeviationStatsSTART y_StatsForceType MaxDeviationStatsEND
           {$$ = $2;
-           $$->printElement = "MaxDeviationStats";
+           $$->setprintElement("MaxDeviationStats");
           }
         ;
 
 y_MaxDeviationStats_StatsLinearType :
           MaxDeviationStatsSTART y_StatsLinearType MaxDeviationStatsEND
           {$$ = $2;
-           $$->printElement = "MaxDeviationStats";
+           $$->setprintElement("MaxDeviationStats");
           }
         ;
 
@@ -58925,14 +58923,14 @@ y_MaxDeviationStats_StatsLinearType_0 :
           {$$ = 0;}
         | MaxDeviationStatsSTART y_StatsLinearType MaxDeviationStatsEND
           {$$ = $2;
-           $$->printElement = "MaxDeviationStats";
+           $$->setprintElement("MaxDeviationStats");
           }
         ;
 
 y_MaxDeviationStats_StatsMassType :
           MaxDeviationStatsSTART y_StatsMassType MaxDeviationStatsEND
           {$$ = $2;
-           $$->printElement = "MaxDeviationStats";
+           $$->setprintElement("MaxDeviationStats");
           }
         ;
 
@@ -58941,14 +58939,14 @@ y_MaxDeviationStats_StatsMassType_0 :
           {$$ = 0;}
         | MaxDeviationStatsSTART y_StatsMassType MaxDeviationStatsEND
           {$$ = $2;
-           $$->printElement = "MaxDeviationStats";
+           $$->setprintElement("MaxDeviationStats");
           }
         ;
 
 y_MaxDeviationStats_StatsPressureType :
           MaxDeviationStatsSTART y_StatsPressureType MaxDeviationStatsEND
           {$$ = $2;
-           $$->printElement = "MaxDeviationStats";
+           $$->setprintElement("MaxDeviationStats");
           }
         ;
 
@@ -58957,14 +58955,14 @@ y_MaxDeviationStats_StatsPressureType_0 :
           {$$ = 0;}
         | MaxDeviationStatsSTART y_StatsPressureType MaxDeviationStatsEND
           {$$ = $2;
-           $$->printElement = "MaxDeviationStats";
+           $$->setprintElement("MaxDeviationStats");
           }
         ;
 
 y_MaxDeviationStats_StatsSpeedType :
           MaxDeviationStatsSTART y_StatsSpeedType MaxDeviationStatsEND
           {$$ = $2;
-           $$->printElement = "MaxDeviationStats";
+           $$->setprintElement("MaxDeviationStats");
           }
         ;
 
@@ -58973,7 +58971,7 @@ y_MaxDeviationStats_StatsSpeedType_0 :
           {$$ = 0;}
         | MaxDeviationStatsSTART y_StatsSpeedType MaxDeviationStatsEND
           {$$ = $2;
-           $$->printElement = "MaxDeviationStats";
+           $$->setprintElement("MaxDeviationStats");
           }
         ;
 
@@ -58981,7 +58979,7 @@ y_MaxDeviationStats_StatsTemperatureType :
           MaxDeviationStatsSTART y_StatsTemperatureType
           MaxDeviationStatsEND
           {$$ = $2;
-           $$->printElement = "MaxDeviationStats";
+           $$->setprintElement("MaxDeviationStats");
           }
         ;
 
@@ -58991,14 +58989,14 @@ y_MaxDeviationStats_StatsTemperatureType_0 :
         | MaxDeviationStatsSTART y_StatsTemperatureType
           MaxDeviationStatsEND
           {$$ = $2;
-           $$->printElement = "MaxDeviationStats";
+           $$->setprintElement("MaxDeviationStats");
           }
         ;
 
 y_MaxDeviationStats_StatsTimeType :
           MaxDeviationStatsSTART y_StatsTimeType MaxDeviationStatsEND
           {$$ = $2;
-           $$->printElement = "MaxDeviationStats";
+           $$->setprintElement("MaxDeviationStats");
           }
         ;
 
@@ -59007,7 +59005,7 @@ y_MaxDeviationStats_StatsTimeType_0 :
           {$$ = 0;}
         | MaxDeviationStatsSTART y_StatsTimeType MaxDeviationStatsEND
           {$$ = $2;
-           $$->printElement = "MaxDeviationStats";
+           $$->setprintElement("MaxDeviationStats");
           }
         ;
 
@@ -59015,7 +59013,7 @@ y_MaxDeviationStats_StatsUserDefinedUnitType :
           MaxDeviationStatsSTART y_StatsUserDefinedUnitType
           MaxDeviationStatsEND
           {$$ = $2;
-           $$->printElement = "MaxDeviationStats";
+           $$->setprintElement("MaxDeviationStats");
           }
         ;
 
@@ -59025,7 +59023,7 @@ y_MaxDeviationStats_StatsUserDefinedUnitType_0 :
         | MaxDeviationStatsSTART y_StatsUserDefinedUnitType
           MaxDeviationStatsEND
           {$$ = $2;
-           $$->printElement = "MaxDeviationStats";
+           $$->setprintElement("MaxDeviationStats");
           }
         ;
 
@@ -59083,7 +59081,7 @@ y_MaxFlatnessStats_StatsLinearType_0 :
           {$$ = 0;}
         | MaxFlatnessStatsSTART y_StatsLinearType MaxFlatnessStatsEND
           {$$ = $2;
-           $$->printElement = "MaxFlatnessStats";
+           $$->setprintElement("MaxFlatnessStats");
           }
         ;
 
@@ -59325,7 +59323,7 @@ y_MaxStraightnessStats_StatsLinearType_0 :
         | MaxStraightnessStatsSTART y_StatsLinearType
           MaxStraightnessStatsEND
           {$$ = $2;
-           $$->printElement = "MaxStraightnessStats";
+           $$->setprintElement("MaxStraightnessStats");
           }
         ;
 
@@ -59367,7 +59365,7 @@ y_MaxType :
 y_MaxValueStats_StatsAngularType :
           MaxValueStatsSTART y_StatsAngularType MaxValueStatsEND
           {$$ = $2;
-           $$->printElement = "MaxValueStats";
+           $$->setprintElement("MaxValueStats");
           }
         ;
 
@@ -59376,14 +59374,14 @@ y_MaxValueStats_StatsAngularType_0 :
           {$$ = 0;}
         | MaxValueStatsSTART y_StatsAngularType MaxValueStatsEND
           {$$ = $2;
-           $$->printElement = "MaxValueStats";
+           $$->setprintElement("MaxValueStats");
           }
         ;
 
 y_MaxValueStats_StatsAreaType :
           MaxValueStatsSTART y_StatsAreaType MaxValueStatsEND
           {$$ = $2;
-           $$->printElement = "MaxValueStats";
+           $$->setprintElement("MaxValueStats");
           }
         ;
 
@@ -59392,14 +59390,14 @@ y_MaxValueStats_StatsAreaType_0 :
           {$$ = 0;}
         | MaxValueStatsSTART y_StatsAreaType MaxValueStatsEND
           {$$ = $2;
-           $$->printElement = "MaxValueStats";
+           $$->setprintElement("MaxValueStats");
           }
         ;
 
 y_MaxValueStats_StatsForceType :
           MaxValueStatsSTART y_StatsForceType MaxValueStatsEND
           {$$ = $2;
-           $$->printElement = "MaxValueStats";
+           $$->setprintElement("MaxValueStats");
           }
         ;
 
@@ -59408,14 +59406,14 @@ y_MaxValueStats_StatsForceType_0 :
           {$$ = 0;}
         | MaxValueStatsSTART y_StatsForceType MaxValueStatsEND
           {$$ = $2;
-           $$->printElement = "MaxValueStats";
+           $$->setprintElement("MaxValueStats");
           }
         ;
 
 y_MaxValueStats_StatsLinearType :
           MaxValueStatsSTART y_StatsLinearType MaxValueStatsEND
           {$$ = $2;
-           $$->printElement = "MaxValueStats";
+           $$->setprintElement("MaxValueStats");
           }
         ;
 
@@ -59424,14 +59422,14 @@ y_MaxValueStats_StatsLinearType_0 :
           {$$ = 0;}
         | MaxValueStatsSTART y_StatsLinearType MaxValueStatsEND
           {$$ = $2;
-           $$->printElement = "MaxValueStats";
+           $$->setprintElement("MaxValueStats");
           }
         ;
 
 y_MaxValueStats_StatsMassType :
           MaxValueStatsSTART y_StatsMassType MaxValueStatsEND
           {$$ = $2;
-           $$->printElement = "MaxValueStats";
+           $$->setprintElement("MaxValueStats");
           }
         ;
 
@@ -59440,14 +59438,14 @@ y_MaxValueStats_StatsMassType_0 :
           {$$ = 0;}
         | MaxValueStatsSTART y_StatsMassType MaxValueStatsEND
           {$$ = $2;
-           $$->printElement = "MaxValueStats";
+           $$->setprintElement("MaxValueStats");
           }
         ;
 
 y_MaxValueStats_StatsPressureType :
           MaxValueStatsSTART y_StatsPressureType MaxValueStatsEND
           {$$ = $2;
-           $$->printElement = "MaxValueStats";
+           $$->setprintElement("MaxValueStats");
           }
         ;
 
@@ -59456,14 +59454,14 @@ y_MaxValueStats_StatsPressureType_0 :
           {$$ = 0;}
         | MaxValueStatsSTART y_StatsPressureType MaxValueStatsEND
           {$$ = $2;
-           $$->printElement = "MaxValueStats";
+           $$->setprintElement("MaxValueStats");
           }
         ;
 
 y_MaxValueStats_StatsSpeedType :
           MaxValueStatsSTART y_StatsSpeedType MaxValueStatsEND
           {$$ = $2;
-           $$->printElement = "MaxValueStats";
+           $$->setprintElement("MaxValueStats");
           }
         ;
 
@@ -59472,14 +59470,14 @@ y_MaxValueStats_StatsSpeedType_0 :
           {$$ = 0;}
         | MaxValueStatsSTART y_StatsSpeedType MaxValueStatsEND
           {$$ = $2;
-           $$->printElement = "MaxValueStats";
+           $$->setprintElement("MaxValueStats");
           }
         ;
 
 y_MaxValueStats_StatsTemperatureType :
           MaxValueStatsSTART y_StatsTemperatureType MaxValueStatsEND
           {$$ = $2;
-           $$->printElement = "MaxValueStats";
+           $$->setprintElement("MaxValueStats");
           }
         ;
 
@@ -59488,14 +59486,14 @@ y_MaxValueStats_StatsTemperatureType_0 :
           {$$ = 0;}
         | MaxValueStatsSTART y_StatsTemperatureType MaxValueStatsEND
           {$$ = $2;
-           $$->printElement = "MaxValueStats";
+           $$->setprintElement("MaxValueStats");
           }
         ;
 
 y_MaxValueStats_StatsTimeType :
           MaxValueStatsSTART y_StatsTimeType MaxValueStatsEND
           {$$ = $2;
-           $$->printElement = "MaxValueStats";
+           $$->setprintElement("MaxValueStats");
           }
         ;
 
@@ -59504,14 +59502,14 @@ y_MaxValueStats_StatsTimeType_0 :
           {$$ = 0;}
         | MaxValueStatsSTART y_StatsTimeType MaxValueStatsEND
           {$$ = $2;
-           $$->printElement = "MaxValueStats";
+           $$->setprintElement("MaxValueStats");
           }
         ;
 
 y_MaxValueStats_StatsUserDefinedUnitType :
           MaxValueStatsSTART y_StatsUserDefinedUnitType MaxValueStatsEND
           {$$ = $2;
-           $$->printElement = "MaxValueStats";
+           $$->setprintElement("MaxValueStats");
           }
         ;
 
@@ -59520,7 +59518,7 @@ y_MaxValueStats_StatsUserDefinedUnitType_0 :
           {$$ = 0;}
         | MaxValueStatsSTART y_StatsUserDefinedUnitType MaxValueStatsEND
           {$$ = $2;
-           $$->printElement = "MaxValueStats";
+           $$->setprintElement("MaxValueStats");
           }
         ;
 
@@ -59761,7 +59759,7 @@ y_MaxZTraverseSpeed_SpeedValueType_0 :
 y_Max_MaxType :
           MaxSTART y_MaxType MaxEND
           {$$ = $2;
-           $$->printElement = "Max";
+           $$->setprintElement("Max");
           }
         ;
 
@@ -59863,14 +59861,14 @@ y_MaximumWorkingAmplitude_LinearValueType_0 :
 y_Maximum_StatsMeasuredDecimalWithReferenceType :
           MaximumSTART y_StatsMeasuredDecimalWithReferenceType MaximumEND
           {$$ = $2;
-           $$->printElement = "Maximum";
+           $$->setprintElement("Maximum");
           }
         ;
 
 y_May_QIFMayType :
           MaySTART y_QIFMayType ENDWHOLEITEM
           {$$ = $2;
-           $$->printElement = "May";
+           $$->setprintElement("May");
           }
         ;
 
@@ -59919,7 +59917,7 @@ y_MeasureActionGroupFunctionEnumType :
           {$$ = new MeasureActionGroupFunctionEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad MeasureActionGroupFunctionEnumType value");
           }
         ;
@@ -59984,12 +59982,12 @@ y_MeasureEvaluateAll_MeasureEvaluateAllActionType :
           MeasureEvaluateAllSTART ENDWHOLEITEM
           {$$ = new MeasureEvaluateAllActionType();
            yyUnrefMap[$$] = $$;
-           $$->printElement = "MeasureEvaluateAll";
+           $$->setprintElement("MeasureEvaluateAll");
           }
         | MeasureEvaluateAllSTART y_MeasureEvaluateAllActionType
           MeasureEvaluateAllEND
           {$$ = $2;
-           $$->printElement = "MeasureEvaluateAll";
+           $$->setprintElement("MeasureEvaluateAll");
           }
         ;
 
@@ -60015,7 +60013,7 @@ y_MeasureEvaluateSpecified_MeasureEvaluateSpecifiedActionType :
           MeasureEvaluateSpecifiedSTART
           y_MeasureEvaluateSpecifiedActionType MeasureEvaluateSpecifiedEND
           {$$ = $2;
-           $$->printElement = "MeasureEvaluateSpecified";
+           $$->setprintElement("MeasureEvaluateSpecified");
           }
         ;
 
@@ -60029,7 +60027,7 @@ y_MeasurePointNominalIds_ListQIFReferenceFullType :
           MeasurePointNominalIdsSTART y_ListQIFReferenceFullType
           MeasurePointNominalIdsEND
           {$$ = $2;
-           $$->printElement = "MeasurePointNominalIds";
+           $$->setprintElement("MeasurePointNominalIds");
           }
         ;
 
@@ -60058,7 +60056,7 @@ y_MeasurePointNominalType :
 y_MeasurePoint_MeasurePointNominalType :
           MeasurePointSTART y_MeasurePointNominalType MeasurePointEND
           {$$ = $2;
-           $$->printElement = "MeasurePoint";
+           $$->setprintElement("MeasurePoint");
           }
         ;
 
@@ -60084,7 +60082,7 @@ y_MeasureSpecifiedFeatures_MeasureSpecifiedFeaturesActionType :
           MeasureSpecifiedFeaturesSTART
           y_MeasureSpecifiedFeaturesActionType MeasureSpecifiedFeaturesEND
           {$$ = $2;
-           $$->printElement = "MeasureSpecifiedFeatures";
+           $$->setprintElement("MeasureSpecifiedFeatures");
           }
         ;
 
@@ -60111,7 +60109,7 @@ y_MeasureSpecifiedMeasurands_MeasureSpecifiedMeasurandsActionType :
           y_MeasureSpecifiedMeasurandsActionType
           MeasureSpecifiedMeasurandsEND
           {$$ = $2;
-           $$->printElement = "MeasureSpecifiedMeasurands";
+           $$->setprintElement("MeasureSpecifiedMeasurands");
           }
         ;
 
@@ -60120,14 +60118,14 @@ y_MeasuredAngularValueType :
           {$$ = new MeasuredAngularValueType($3);
            yyUnrefMap[$$] = $$;
            free($3);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad MeasuredAngularValueType value");
           }
         | y_LiztAttributePair ENDITEM {yyReadData = 1;} DATASTRING
           {$$ = new MeasuredAngularValueType($4);
            yyUnrefMap[$$] = $$;
            free($4);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad MeasuredAngularValueType value");
            yyUnrefMap.erase($1);
            if ($$->badAttributes($1))
@@ -60144,14 +60142,14 @@ y_MeasuredAreaValueType :
           {$$ = new MeasuredAreaValueType($3);
            yyUnrefMap[$$] = $$;
            free($3);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad MeasuredAreaValueType value");
           }
         | y_LiztAttributePair ENDITEM {yyReadData = 1;} DATASTRING
           {$$ = new MeasuredAreaValueType($4);
            yyUnrefMap[$$] = $$;
            free($4);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad MeasuredAreaValueType value");
            yyUnrefMap.erase($1);
            if ($$->badAttributes($1))
@@ -60208,7 +60206,7 @@ y_MeasuredDatumFeature_MeasuredDatumFeatureType :
           MeasuredDatumFeatureSTART y_MeasuredDatumFeatureType
           MeasuredDatumFeatureEND
           {$$ = $2;
-           $$->printElement = "MeasuredDatumFeature";
+           $$->setprintElement("MeasuredDatumFeature");
           }
         ;
 
@@ -60217,14 +60215,14 @@ y_MeasuredDecimalType :
           {$$ = new MeasuredDecimalType($3);
            yyUnrefMap[$$] = $$;
            free($3);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad MeasuredDecimalType value");
           }
         | y_LiztAttributePair ENDITEM {yyReadData = 1;} DATASTRING
           {$$ = new MeasuredDecimalType($4);
            yyUnrefMap[$$] = $$;
            free($4);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad MeasuredDecimalType value");
            yyUnrefMap.erase($1);
            if ($$->badAttributes($1))
@@ -60267,14 +60265,14 @@ y_MeasuredForceValueType :
           {$$ = new MeasuredForceValueType($3);
            yyUnrefMap[$$] = $$;
            free($3);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad MeasuredForceValueType value");
           }
         | y_LiztAttributePair ENDITEM {yyReadData = 1;} DATASTRING
           {$$ = new MeasuredForceValueType($4);
            yyUnrefMap[$$] = $$;
            free($4);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad MeasuredForceValueType value");
            yyUnrefMap.erase($1);
            if ($$->badAttributes($1))
@@ -60296,14 +60294,14 @@ y_MeasuredLinearValueType :
           {$$ = new MeasuredLinearValueType($3);
            yyUnrefMap[$$] = $$;
            free($3);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad MeasuredLinearValueType value");
           }
         | y_LiztAttributePair ENDITEM {yyReadData = 1;} DATASTRING
           {$$ = new MeasuredLinearValueType($4);
            yyUnrefMap[$$] = $$;
            free($4);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad MeasuredLinearValueType value");
            yyUnrefMap.erase($1);
            if ($$->badAttributes($1))
@@ -60320,14 +60318,14 @@ y_MeasuredMassValueType :
           {$$ = new MeasuredMassValueType($3);
            yyUnrefMap[$$] = $$;
            free($3);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad MeasuredMassValueType value");
           }
         | y_LiztAttributePair ENDITEM {yyReadData = 1;} DATASTRING
           {$$ = new MeasuredMassValueType($4);
            yyUnrefMap[$$] = $$;
            free($4);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad MeasuredMassValueType value");
            yyUnrefMap.erase($1);
            if ($$->badAttributes($1))
@@ -60922,14 +60920,14 @@ y_MeasuredPressureValueType :
           {$$ = new MeasuredPressureValueType($3);
            yyUnrefMap[$$] = $$;
            free($3);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad MeasuredPressureValueType value");
           }
         | y_LiztAttributePair ENDITEM {yyReadData = 1;} DATASTRING
           {$$ = new MeasuredPressureValueType($4);
            yyUnrefMap[$$] = $$;
            free($4);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad MeasuredPressureValueType value");
            yyUnrefMap.erase($1);
            if ($$->badAttributes($1))
@@ -60946,14 +60944,14 @@ y_MeasuredSpeedValueType :
           {$$ = new MeasuredSpeedValueType($3);
            yyUnrefMap[$$] = $$;
            free($3);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad MeasuredSpeedValueType value");
           }
         | y_LiztAttributePair ENDITEM {yyReadData = 1;} DATASTRING
           {$$ = new MeasuredSpeedValueType($4);
            yyUnrefMap[$$] = $$;
            free($4);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad MeasuredSpeedValueType value");
            yyUnrefMap.erase($1);
            if ($$->badAttributes($1))
@@ -60970,14 +60968,14 @@ y_MeasuredTemperatureValueType :
           {$$ = new MeasuredTemperatureValueType($3);
            yyUnrefMap[$$] = $$;
            free($3);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad MeasuredTemperatureValueType value");
           }
         | y_LiztAttributePair ENDITEM {yyReadData = 1;} DATASTRING
           {$$ = new MeasuredTemperatureValueType($4);
            yyUnrefMap[$$] = $$;
            free($4);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad MeasuredTemperatureValueType value");
            yyUnrefMap.erase($1);
            if ($$->badAttributes($1))
@@ -60994,14 +60992,14 @@ y_MeasuredTimeValueType :
           {$$ = new MeasuredTimeValueType($3);
            yyUnrefMap[$$] = $$;
            free($3);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad MeasuredTimeValueType value");
           }
         | y_LiztAttributePair ENDITEM {yyReadData = 1;} DATASTRING
           {$$ = new MeasuredTimeValueType($4);
            yyUnrefMap[$$] = $$;
            free($4);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad MeasuredTimeValueType value");
            yyUnrefMap.erase($1);
            if ($$->badAttributes($1))
@@ -61043,7 +61041,7 @@ y_MeasuredUserDefinedUnitValueType :
           {$$ = new MeasuredUserDefinedUnitValueType($4);
            yyUnrefMap[$$] = $$;
            free($4);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad MeasuredUserDefinedUnitValueType value");
            yyUnrefMap.erase($1);
            if ($$->badAttributes($1))
@@ -61168,7 +61166,7 @@ y_MeasurementDevice_MeasurementDeviceType :
           MeasurementDeviceSTART y_MeasurementDeviceType
           MeasurementDeviceEND
           {$$ = $2;
-           $$->printElement = "MeasurementDevice";
+           $$->setprintElement("MeasurementDevice");
           }
         ;
 
@@ -61324,7 +61322,7 @@ y_MeasurementDirectiveEnumType :
           {$$ = new MeasurementDirectiveEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad MeasurementDirectiveEnumType value");
           }
         ;
@@ -61381,7 +61379,7 @@ y_MeasurementLaser_LaserType_0 :
           {$$ = 0;}
         | MeasurementLaserSTART y_LaserType MeasurementLaserEND
           {$$ = $2;
-           $$->printElement = "MeasurementLaser";
+           $$->setprintElement("MeasurementLaser");
           }
         ;
 
@@ -61418,7 +61416,7 @@ y_MeasurementOffset_MeasurementOffsetAlignmentOperationType :
           MeasurementOffsetSTART y_MeasurementOffsetAlignmentOperationType
           MeasurementOffsetEND
           {$$ = $2;
-           $$->printElement = "MeasurementOffset";
+           $$->setprintElement("MeasurementOffset");
           }
         ;
 
@@ -61618,7 +61616,7 @@ y_MeasurementRoomType :
 y_MeasurementRoom_MeasurementRoomType :
           MeasurementRoomSTART y_MeasurementRoomType MeasurementRoomEND
           {$$ = $2;
-           $$->printElement = "MeasurementRoom";
+           $$->setprintElement("MeasurementRoom");
           }
         ;
 
@@ -61885,7 +61883,7 @@ y_MeshTriangle_ElementReferenceType :
 y_MeshTriangle_MeshTriangleType :
           MeshTriangleSTART y_MeshTriangleType MeshTriangleEND
           {$$ = $2;
-           $$->printElement = "MeshTriangle";
+           $$->setprintElement("MeshTriangle");
           }
         ;
 
@@ -61946,7 +61944,7 @@ y_MicrometerAnalogType :
 y_MicrometerAnalog_MicrometerAnalogType :
           MicrometerAnalogSTART y_MicrometerAnalogType MicrometerAnalogEND
           {$$ = $2;
-           $$->printElement = "MicrometerAnalog";
+           $$->setprintElement("MicrometerAnalog");
           }
         ;
 
@@ -61997,7 +61995,7 @@ y_MicrometerDigital_MicrometerDigitalType :
           MicrometerDigitalSTART y_MicrometerDigitalType
           MicrometerDigitalEND
           {$$ = $2;
-           $$->printElement = "MicrometerDigital";
+           $$->setprintElement("MicrometerDigital");
           }
         ;
 
@@ -62047,7 +62045,7 @@ y_MicrometerType :
 y_Micrometer_MicrometerType :
           MicrometerSTART y_MicrometerType MicrometerEND
           {$$ = $2;
-           $$->printElement = "Micrometer";
+           $$->setprintElement("Micrometer");
           }
         ;
 
@@ -62077,7 +62075,7 @@ y_MicroscopeMeasureFeatureMethod_MicroscopeMeasureFeatureMethodType :
           {$$ = new MicroscopeMeasureFeatureMethodType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "MicroscopeMeasureFeatureMethod";
+           $$->setprintElement("MicroscopeMeasureFeatureMethod");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -62089,7 +62087,7 @@ y_MicroscopeMeasureFeatureMethod_MicroscopeMeasureFeatureMethodType :
           y_MicroscopeMeasureFeatureMethodType
           MicroscopeMeasureFeatureMethodEND
           {$$ = $2;
-           $$->printElement = "MicroscopeMeasureFeatureMethod";
+           $$->setprintElement("MicroscopeMeasureFeatureMethod");
           }
         ;
 
@@ -62150,28 +62148,28 @@ y_MicroscopeType :
 y_Microscope_MicroscopeType :
           MicroscopeSTART y_MicroscopeType MicroscopeEND
           {$$ = $2;
-           $$->printElement = "Microscope";
+           $$->setprintElement("Microscope");
           }
         ;
 
 y_MidPoint_PointFeatureMidPointType :
           MidPointSTART y_PointFeatureMidPointType MidPointEND
           {$$ = $2;
-           $$->printElement = "MidPoint";
+           $$->setprintElement("MidPoint");
           }
         ;
 
 y_Midline_LineMidlineType :
           MidlineSTART y_LineMidlineType MidlineEND
           {$$ = $2;
-           $$->printElement = "Midline";
+           $$->setprintElement("Midline");
           }
         ;
 
 y_Midplane_PlaneMidplaneType :
           MidplaneSTART y_PlaneMidplaneType MidplaneEND
           {$$ = $2;
-           $$->printElement = "Midplane";
+           $$->setprintElement("Midplane");
           }
         ;
 
@@ -62208,7 +62206,7 @@ y_MinAzimuthalAxisAngle_AngularValueType :
 y_MinDeviationStats_StatsAngularType :
           MinDeviationStatsSTART y_StatsAngularType MinDeviationStatsEND
           {$$ = $2;
-           $$->printElement = "MinDeviationStats";
+           $$->setprintElement("MinDeviationStats");
           }
         ;
 
@@ -62217,14 +62215,14 @@ y_MinDeviationStats_StatsAngularType_0 :
           {$$ = 0;}
         | MinDeviationStatsSTART y_StatsAngularType MinDeviationStatsEND
           {$$ = $2;
-           $$->printElement = "MinDeviationStats";
+           $$->setprintElement("MinDeviationStats");
           }
         ;
 
 y_MinDeviationStats_StatsAreaType :
           MinDeviationStatsSTART y_StatsAreaType MinDeviationStatsEND
           {$$ = $2;
-           $$->printElement = "MinDeviationStats";
+           $$->setprintElement("MinDeviationStats");
           }
         ;
 
@@ -62233,14 +62231,14 @@ y_MinDeviationStats_StatsAreaType_0 :
           {$$ = 0;}
         | MinDeviationStatsSTART y_StatsAreaType MinDeviationStatsEND
           {$$ = $2;
-           $$->printElement = "MinDeviationStats";
+           $$->setprintElement("MinDeviationStats");
           }
         ;
 
 y_MinDeviationStats_StatsForceType :
           MinDeviationStatsSTART y_StatsForceType MinDeviationStatsEND
           {$$ = $2;
-           $$->printElement = "MinDeviationStats";
+           $$->setprintElement("MinDeviationStats");
           }
         ;
 
@@ -62249,14 +62247,14 @@ y_MinDeviationStats_StatsForceType_0 :
           {$$ = 0;}
         | MinDeviationStatsSTART y_StatsForceType MinDeviationStatsEND
           {$$ = $2;
-           $$->printElement = "MinDeviationStats";
+           $$->setprintElement("MinDeviationStats");
           }
         ;
 
 y_MinDeviationStats_StatsLinearType :
           MinDeviationStatsSTART y_StatsLinearType MinDeviationStatsEND
           {$$ = $2;
-           $$->printElement = "MinDeviationStats";
+           $$->setprintElement("MinDeviationStats");
           }
         ;
 
@@ -62265,14 +62263,14 @@ y_MinDeviationStats_StatsLinearType_0 :
           {$$ = 0;}
         | MinDeviationStatsSTART y_StatsLinearType MinDeviationStatsEND
           {$$ = $2;
-           $$->printElement = "MinDeviationStats";
+           $$->setprintElement("MinDeviationStats");
           }
         ;
 
 y_MinDeviationStats_StatsMassType :
           MinDeviationStatsSTART y_StatsMassType MinDeviationStatsEND
           {$$ = $2;
-           $$->printElement = "MinDeviationStats";
+           $$->setprintElement("MinDeviationStats");
           }
         ;
 
@@ -62281,14 +62279,14 @@ y_MinDeviationStats_StatsMassType_0 :
           {$$ = 0;}
         | MinDeviationStatsSTART y_StatsMassType MinDeviationStatsEND
           {$$ = $2;
-           $$->printElement = "MinDeviationStats";
+           $$->setprintElement("MinDeviationStats");
           }
         ;
 
 y_MinDeviationStats_StatsPressureType :
           MinDeviationStatsSTART y_StatsPressureType MinDeviationStatsEND
           {$$ = $2;
-           $$->printElement = "MinDeviationStats";
+           $$->setprintElement("MinDeviationStats");
           }
         ;
 
@@ -62297,14 +62295,14 @@ y_MinDeviationStats_StatsPressureType_0 :
           {$$ = 0;}
         | MinDeviationStatsSTART y_StatsPressureType MinDeviationStatsEND
           {$$ = $2;
-           $$->printElement = "MinDeviationStats";
+           $$->setprintElement("MinDeviationStats");
           }
         ;
 
 y_MinDeviationStats_StatsSpeedType :
           MinDeviationStatsSTART y_StatsSpeedType MinDeviationStatsEND
           {$$ = $2;
-           $$->printElement = "MinDeviationStats";
+           $$->setprintElement("MinDeviationStats");
           }
         ;
 
@@ -62313,7 +62311,7 @@ y_MinDeviationStats_StatsSpeedType_0 :
           {$$ = 0;}
         | MinDeviationStatsSTART y_StatsSpeedType MinDeviationStatsEND
           {$$ = $2;
-           $$->printElement = "MinDeviationStats";
+           $$->setprintElement("MinDeviationStats");
           }
         ;
 
@@ -62321,7 +62319,7 @@ y_MinDeviationStats_StatsTemperatureType :
           MinDeviationStatsSTART y_StatsTemperatureType
           MinDeviationStatsEND
           {$$ = $2;
-           $$->printElement = "MinDeviationStats";
+           $$->setprintElement("MinDeviationStats");
           }
         ;
 
@@ -62331,14 +62329,14 @@ y_MinDeviationStats_StatsTemperatureType_0 :
         | MinDeviationStatsSTART y_StatsTemperatureType
           MinDeviationStatsEND
           {$$ = $2;
-           $$->printElement = "MinDeviationStats";
+           $$->setprintElement("MinDeviationStats");
           }
         ;
 
 y_MinDeviationStats_StatsTimeType :
           MinDeviationStatsSTART y_StatsTimeType MinDeviationStatsEND
           {$$ = $2;
-           $$->printElement = "MinDeviationStats";
+           $$->setprintElement("MinDeviationStats");
           }
         ;
 
@@ -62347,7 +62345,7 @@ y_MinDeviationStats_StatsTimeType_0 :
           {$$ = 0;}
         | MinDeviationStatsSTART y_StatsTimeType MinDeviationStatsEND
           {$$ = $2;
-           $$->printElement = "MinDeviationStats";
+           $$->setprintElement("MinDeviationStats");
           }
         ;
 
@@ -62355,7 +62353,7 @@ y_MinDeviationStats_StatsUserDefinedUnitType :
           MinDeviationStatsSTART y_StatsUserDefinedUnitType
           MinDeviationStatsEND
           {$$ = $2;
-           $$->printElement = "MinDeviationStats";
+           $$->setprintElement("MinDeviationStats");
           }
         ;
 
@@ -62365,7 +62363,7 @@ y_MinDeviationStats_StatsUserDefinedUnitType_0 :
         | MinDeviationStatsSTART y_StatsUserDefinedUnitType
           MinDeviationStatsEND
           {$$ = $2;
-           $$->printElement = "MinDeviationStats";
+           $$->setprintElement("MinDeviationStats");
           }
         ;
 
@@ -62516,7 +62514,7 @@ y_MinType :
 y_MinValueStats_StatsAngularType :
           MinValueStatsSTART y_StatsAngularType MinValueStatsEND
           {$$ = $2;
-           $$->printElement = "MinValueStats";
+           $$->setprintElement("MinValueStats");
           }
         ;
 
@@ -62525,14 +62523,14 @@ y_MinValueStats_StatsAngularType_0 :
           {$$ = 0;}
         | MinValueStatsSTART y_StatsAngularType MinValueStatsEND
           {$$ = $2;
-           $$->printElement = "MinValueStats";
+           $$->setprintElement("MinValueStats");
           }
         ;
 
 y_MinValueStats_StatsAreaType :
           MinValueStatsSTART y_StatsAreaType MinValueStatsEND
           {$$ = $2;
-           $$->printElement = "MinValueStats";
+           $$->setprintElement("MinValueStats");
           }
         ;
 
@@ -62541,14 +62539,14 @@ y_MinValueStats_StatsAreaType_0 :
           {$$ = 0;}
         | MinValueStatsSTART y_StatsAreaType MinValueStatsEND
           {$$ = $2;
-           $$->printElement = "MinValueStats";
+           $$->setprintElement("MinValueStats");
           }
         ;
 
 y_MinValueStats_StatsForceType :
           MinValueStatsSTART y_StatsForceType MinValueStatsEND
           {$$ = $2;
-           $$->printElement = "MinValueStats";
+           $$->setprintElement("MinValueStats");
           }
         ;
 
@@ -62557,14 +62555,14 @@ y_MinValueStats_StatsForceType_0 :
           {$$ = 0;}
         | MinValueStatsSTART y_StatsForceType MinValueStatsEND
           {$$ = $2;
-           $$->printElement = "MinValueStats";
+           $$->setprintElement("MinValueStats");
           }
         ;
 
 y_MinValueStats_StatsLinearType :
           MinValueStatsSTART y_StatsLinearType MinValueStatsEND
           {$$ = $2;
-           $$->printElement = "MinValueStats";
+           $$->setprintElement("MinValueStats");
           }
         ;
 
@@ -62573,14 +62571,14 @@ y_MinValueStats_StatsLinearType_0 :
           {$$ = 0;}
         | MinValueStatsSTART y_StatsLinearType MinValueStatsEND
           {$$ = $2;
-           $$->printElement = "MinValueStats";
+           $$->setprintElement("MinValueStats");
           }
         ;
 
 y_MinValueStats_StatsMassType :
           MinValueStatsSTART y_StatsMassType MinValueStatsEND
           {$$ = $2;
-           $$->printElement = "MinValueStats";
+           $$->setprintElement("MinValueStats");
           }
         ;
 
@@ -62589,14 +62587,14 @@ y_MinValueStats_StatsMassType_0 :
           {$$ = 0;}
         | MinValueStatsSTART y_StatsMassType MinValueStatsEND
           {$$ = $2;
-           $$->printElement = "MinValueStats";
+           $$->setprintElement("MinValueStats");
           }
         ;
 
 y_MinValueStats_StatsPressureType :
           MinValueStatsSTART y_StatsPressureType MinValueStatsEND
           {$$ = $2;
-           $$->printElement = "MinValueStats";
+           $$->setprintElement("MinValueStats");
           }
         ;
 
@@ -62605,14 +62603,14 @@ y_MinValueStats_StatsPressureType_0 :
           {$$ = 0;}
         | MinValueStatsSTART y_StatsPressureType MinValueStatsEND
           {$$ = $2;
-           $$->printElement = "MinValueStats";
+           $$->setprintElement("MinValueStats");
           }
         ;
 
 y_MinValueStats_StatsSpeedType :
           MinValueStatsSTART y_StatsSpeedType MinValueStatsEND
           {$$ = $2;
-           $$->printElement = "MinValueStats";
+           $$->setprintElement("MinValueStats");
           }
         ;
 
@@ -62621,14 +62619,14 @@ y_MinValueStats_StatsSpeedType_0 :
           {$$ = 0;}
         | MinValueStatsSTART y_StatsSpeedType MinValueStatsEND
           {$$ = $2;
-           $$->printElement = "MinValueStats";
+           $$->setprintElement("MinValueStats");
           }
         ;
 
 y_MinValueStats_StatsTemperatureType :
           MinValueStatsSTART y_StatsTemperatureType MinValueStatsEND
           {$$ = $2;
-           $$->printElement = "MinValueStats";
+           $$->setprintElement("MinValueStats");
           }
         ;
 
@@ -62637,14 +62635,14 @@ y_MinValueStats_StatsTemperatureType_0 :
           {$$ = 0;}
         | MinValueStatsSTART y_StatsTemperatureType MinValueStatsEND
           {$$ = $2;
-           $$->printElement = "MinValueStats";
+           $$->setprintElement("MinValueStats");
           }
         ;
 
 y_MinValueStats_StatsTimeType :
           MinValueStatsSTART y_StatsTimeType MinValueStatsEND
           {$$ = $2;
-           $$->printElement = "MinValueStats";
+           $$->setprintElement("MinValueStats");
           }
         ;
 
@@ -62653,14 +62651,14 @@ y_MinValueStats_StatsTimeType_0 :
           {$$ = 0;}
         | MinValueStatsSTART y_StatsTimeType MinValueStatsEND
           {$$ = $2;
-           $$->printElement = "MinValueStats";
+           $$->setprintElement("MinValueStats");
           }
         ;
 
 y_MinValueStats_StatsUserDefinedUnitType :
           MinValueStatsSTART y_StatsUserDefinedUnitType MinValueStatsEND
           {$$ = $2;
-           $$->printElement = "MinValueStats";
+           $$->setprintElement("MinValueStats");
           }
         ;
 
@@ -62669,7 +62667,7 @@ y_MinValueStats_StatsUserDefinedUnitType_0 :
           {$$ = 0;}
         | MinValueStatsSTART y_StatsUserDefinedUnitType MinValueStatsEND
           {$$ = $2;
-           $$->printElement = "MinValueStats";
+           $$->setprintElement("MinValueStats");
           }
         ;
 
@@ -62879,7 +62877,7 @@ y_MinZAxis_LinearValueType :
 y_Min_MinType :
           MinSTART y_MinType MinEND
           {$$ = $2;
-           $$->printElement = "Min";
+           $$->setprintElement("Min");
           }
         ;
 
@@ -62918,7 +62916,7 @@ y_MinimumTolerance_LinearValueType_0 :
 y_Minimum_StatsMeasuredDecimalWithReferenceType :
           MinimumSTART y_StatsMeasuredDecimalWithReferenceType MinimumEND
           {$$ = $2;
-           $$->printElement = "Minimum";
+           $$->setprintElement("Minimum");
           }
         ;
 
@@ -62950,7 +62948,7 @@ y_MinusType :
 y_Minus_MinusType :
           MinusSTART y_MinusType MinusEND
           {$$ = $2;
-           $$->printElement = "Minus";
+           $$->setprintElement("Minus");
           }
         ;
 
@@ -63011,7 +63009,7 @@ y_ModifyingPlaneEnumType :
           {$$ = new ModifyingPlaneEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad ModifyingPlaneEnumType value");
           }
         ;
@@ -63064,7 +63062,7 @@ y_MovePointAxis_PointFeatureMovePointAxisType :
           MovePointAxisSTART y_PointFeatureMovePointAxisType
           MovePointAxisEND
           {$$ = $2;
-           $$->printElement = "MovePointAxis";
+           $$->setprintElement("MovePointAxis");
           }
         ;
 
@@ -63072,14 +63070,14 @@ y_MovePointVector_PointFeatureMovePointVectorType :
           MovePointVectorSTART y_PointFeatureMovePointVectorType
           MovePointVectorEND
           {$$ = $2;
-           $$->printElement = "MovePointVector";
+           $$->setprintElement("MovePointVector");
           }
         ;
 
 y_MovePoint_PointFeatureMovePointType :
           MovePointSTART y_PointFeatureMovePointType MovePointEND
           {$$ = $2;
-           $$->printElement = "MovePoint";
+           $$->setprintElement("MovePoint");
           }
         ;
 
@@ -63087,7 +63085,7 @@ y_MultiLeadSpecification_MultiLeadThreadSpecificationType :
           MultiLeadSpecificationSTART y_MultiLeadThreadSpecificationType
           MultiLeadSpecificationEND
           {$$ = $2;
-           $$->printElement = "MultiLeadSpecification";
+           $$->setprintElement("MultiLeadSpecification");
           }
         ;
 
@@ -63198,21 +63196,21 @@ y_MultipleCarriageCartesianCMM_MultipleCarriageCartesianCMMType :
           y_MultipleCarriageCartesianCMMType
           MultipleCarriageCartesianCMMEND
           {$$ = $2;
-           $$->printElement = "MultipleCarriageCartesianCMM";
+           $$->setprintElement("MultipleCarriageCartesianCMM");
           }
         ;
 
 y_MustNot_QIFMustNotType :
           MustNotSTART y_QIFMustNotType ENDWHOLEITEM
           {$$ = $2;
-           $$->printElement = "MustNot";
+           $$->setprintElement("MustNot");
           }
         ;
 
 y_Must_QIFMustType :
           MustSTART y_QIFMustType ENDWHOLEITEM
           {$$ = $2;
-           $$->printElement = "Must";
+           $$->setprintElement("Must");
           }
         ;
 
@@ -63265,7 +63263,7 @@ y_NaturalType :
           {$$ = new NaturalType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad NaturalType value");
           }
         ;
@@ -63286,7 +63284,7 @@ y_NegateType :
 y_Negate_NegateType :
           NegateSTART y_NegateType NegateEND
           {$$ = $2;
-           $$->printElement = "Negate";
+           $$->setprintElement("Negate");
           }
         ;
 
@@ -63325,7 +63323,7 @@ y_NominalDatumFeature_NominalDatumFeatureType :
           NominalDatumFeatureSTART y_NominalDatumFeatureType
           NominalDatumFeatureEND
           {$$ = $2;
-           $$->printElement = "NominalDatumFeature";
+           $$->setprintElement("NominalDatumFeature");
           }
         ;
 
@@ -63349,7 +63347,7 @@ y_NominalOffset_NominalOffsetAlignmentOperationType :
           NominalOffsetSTART y_NominalOffsetAlignmentOperationType
           NominalOffsetEND
           {$$ = $2;
-           $$->printElement = "NominalOffset";
+           $$->setprintElement("NominalOffset");
           }
         ;
 
@@ -63399,7 +63397,7 @@ y_NominalRotation_NominalRotationAlignmentOperationType :
           NominalRotationSTART y_NominalRotationAlignmentOperationType
           NominalRotationEND
           {$$ = $2;
-           $$->printElement = "NominalRotation";
+           $$->setprintElement("NominalRotation");
           }
         ;
 
@@ -63417,13 +63415,13 @@ y_NominalTransform_TransformMatrixType_0 :
         | NominalTransformSTART ENDWHOLEITEM
           {$$ = new TransformMatrixType();
            yyUnrefMap[$$] = $$;
-           $$->printElement = "NominalTransform";
+           $$->setprintElement("NominalTransform");
           }
         | NominalTransformSTART y_LiztAttributePair ENDWHOLEITEM
           {$$ = new TransformMatrixType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "NominalTransform";
+           $$->setprintElement("NominalTransform");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -63433,7 +63431,7 @@ y_NominalTransform_TransformMatrixType_0 :
           }
         | NominalTransformSTART y_TransformMatrixType NominalTransformEND
           {$$ = $2;
-           $$->printElement = "NominalTransform";
+           $$->setprintElement("NominalTransform");
           }
         ;
 
@@ -63468,7 +63466,7 @@ y_NonDestructiveTestingEnumType :
           {$$ = new NonDestructiveTestingEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad NonDestructiveTestingEnumType value");
           }
         ;
@@ -63518,7 +63516,7 @@ y_NonToleranceEnumType :
           {$$ = new NonToleranceEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad NonToleranceEnumType value");
           }
         ;
@@ -63550,14 +63548,14 @@ y_Normal_UnitVectorSimpleType :
           NormalSTART ENDWHOLEITEM
           {$$ = new UnitVectorSimpleType();
            $$->UnitVectorSimpleTypeCheck();
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad UnitVectorSimpleType value");
            yyUnrefMap[$$] = $$;
           }
         | NormalSTART y_UnitVectorSimpleType NormalEND
           {$$ = $2;
            $2->UnitVectorSimpleTypeCheck();
-           if ($2->bad)
+           if ($2->getbad())
              return yyerror("bad UnitVectorSimpleType value");
           }
         ;
@@ -63577,7 +63575,7 @@ y_Normal_UnitVectorType_0 :
 y_Normality_StatsMeasuredDecimalType :
           NormalitySTART y_StatsMeasuredDecimalType NormalityEND
           {$$ = $2;
-           $$->printElement = "Normality";
+           $$->setprintElement("Normality");
           }
         ;
 
@@ -63627,7 +63625,7 @@ y_NotType :
 y_Not_NotType :
           NotSTART y_NotType NotEND
           {$$ = $2;
-           $$->printElement = "Not";
+           $$->setprintElement("Not");
           }
         ;
 
@@ -63665,7 +63663,7 @@ y_NotableEventType :
 y_NotableEvent_NotableEventType :
           NotableEventSTART y_NotableEventType NotableEventEND
           {$$ = $2;
-           $$->printElement = "NotableEvent";
+           $$->setprintElement("NotableEvent");
           }
         ;
 
@@ -63740,7 +63738,7 @@ y_NoteFlagType :
 y_NoteFlag_NoteFlagType :
           NoteFlagSTART y_NoteFlagType NoteFlagEND
           {$$ = $2;
-           $$->printElement = "NoteFlag";
+           $$->setprintElement("NoteFlag");
           }
         ;
 
@@ -63803,7 +63801,7 @@ y_NoteType :
 y_Note_NoteType :
           NoteSTART y_NoteType NoteEND
           {$$ = $2;
-           $$->printElement = "Note";
+           $$->setprintElement("Note");
           }
         ;
 
@@ -63844,7 +63842,7 @@ y_NotedEventType :
 y_NotedEvent_NotedEventType :
           NotedEventSTART y_NotedEventType NotedEventEND
           {$$ = $2;
-           $$->printElement = "NotedEvent";
+           $$->setprintElement("NotedEvent");
           }
         ;
 
@@ -63905,7 +63903,7 @@ y_NumberFailures_StatsNonNegativeIntegerType :
           NumberFailuresSTART y_StatsNonNegativeIntegerType
           NumberFailuresEND
           {$$ = $2;
-           $$->printElement = "NumberFailures";
+           $$->setprintElement("NumberFailures");
           }
         ;
 
@@ -64005,7 +64003,7 @@ y_NumberOutOfControl_StatsNonNegativeIntegerWithReferencesType :
           NumberOutOfControlSTART
           y_StatsNonNegativeIntegerWithReferencesType NumberOutOfControlEND
           {$$ = $2;
-           $$->printElement = "NumberOutOfControl";
+           $$->setprintElement("NumberOutOfControl");
           }
         ;
 
@@ -64014,7 +64012,7 @@ y_NumberOutOfTolerance_StatsNonNegativeIntegerWithReferencesType :
           y_StatsNonNegativeIntegerWithReferencesType
           NumberOutOfToleranceEND
           {$$ = $2;
-           $$->printElement = "NumberOutOfTolerance";
+           $$->setprintElement("NumberOutOfTolerance");
           }
         ;
 
@@ -64023,7 +64021,7 @@ y_NumberOverUpperTolerance_StatsNonNegativeIntegerWithReferencesType :
           y_StatsNonNegativeIntegerWithReferencesType
           NumberOverUpperToleranceEND
           {$$ = $2;
-           $$->printElement = "NumberOverUpperTolerance";
+           $$->setprintElement("NumberOverUpperTolerance");
           }
         ;
 
@@ -64031,7 +64029,7 @@ y_NumberSubgroups_StatsNonNegativeIntegerType :
           NumberSubgroupsSTART y_StatsNonNegativeIntegerType
           NumberSubgroupsEND
           {$$ = $2;
-           $$->printElement = "NumberSubgroups";
+           $$->setprintElement("NumberSubgroups");
           }
         ;
 
@@ -64040,7 +64038,7 @@ y_NumberUnderLowerTolerance_StatsNonNegativeIntegerWithReferencesType :
           y_StatsNonNegativeIntegerWithReferencesType
           NumberUnderLowerToleranceEND
           {$$ = $2;
-           $$->printElement = "NumberUnderLowerTolerance";
+           $$->setprintElement("NumberUnderLowerTolerance");
           }
         ;
 
@@ -64693,7 +64691,7 @@ y_Nurbs12CoreType_1177_TypeChoicePair :
 y_Nurbs12Core_Nurbs12CoreType :
           Nurbs12CoreSTART y_Nurbs12CoreType Nurbs12CoreEND
           {$$ = $2;
-           $$->printElement = "Nurbs12Core";
+           $$->setprintElement("Nurbs12Core");
           }
         ;
 
@@ -64717,7 +64715,7 @@ y_Nurbs12Type :
 y_Nurbs12_Nurbs12Type :
           Nurbs12START y_Nurbs12Type Nurbs12END
           {$$ = $2;
-           $$->printElement = "Nurbs12";
+           $$->setprintElement("Nurbs12");
           }
         ;
 
@@ -64775,7 +64773,7 @@ y_Nurbs13CoreType_1178_TypeChoicePair :
 y_Nurbs13Core_Nurbs13CoreType :
           Nurbs13CoreSTART y_Nurbs13CoreType Nurbs13CoreEND
           {$$ = $2;
-           $$->printElement = "Nurbs13Core";
+           $$->setprintElement("Nurbs13Core");
           }
         ;
 
@@ -64800,7 +64798,7 @@ y_Nurbs13Type :
 y_Nurbs13_Nurbs13Type :
           Nurbs13START y_Nurbs13Type Nurbs13END
           {$$ = $2;
-           $$->printElement = "Nurbs13";
+           $$->setprintElement("Nurbs13");
           }
         ;
 
@@ -64874,7 +64872,7 @@ y_Nurbs23CoreType_1179_TypeChoicePair :
 y_Nurbs23Core_Nurbs23CoreType :
           Nurbs23CoreSTART y_Nurbs23CoreType Nurbs23CoreEND
           {$$ = $2;
-           $$->printElement = "Nurbs23Core";
+           $$->setprintElement("Nurbs23Core");
           }
         ;
 
@@ -64899,7 +64897,7 @@ y_Nurbs23Type :
 y_Nurbs23_Nurbs23Type :
           Nurbs23START y_Nurbs23Type Nurbs23END
           {$$ = $2;
-           $$->printElement = "Nurbs23";
+           $$->setprintElement("Nurbs23");
           }
         ;
 
@@ -64966,7 +64964,7 @@ y_Offset23CoreType :
 y_Offset23Core_Offset23CoreType :
           Offset23CoreSTART y_Offset23CoreType Offset23CoreEND
           {$$ = $2;
-           $$->printElement = "Offset23Core";
+           $$->setprintElement("Offset23Core");
           }
         ;
 
@@ -64992,7 +64990,7 @@ y_Offset23Type :
 y_Offset23_Offset23Type :
           Offset23START y_Offset23Type Offset23END
           {$$ = $2;
-           $$->printElement = "Offset23";
+           $$->setprintElement("Offset23");
           }
         ;
 
@@ -65032,7 +65030,7 @@ y_Offset_LinearValueType_0 :
 y_Offset_PlaneOffsetType :
           OffsetSTART y_PlaneOffsetType OffsetEND
           {$$ = $2;
-           $$->printElement = "Offset";
+           $$->setprintElement("Offset");
           }
         ;
 
@@ -65065,14 +65063,14 @@ y_OneOfActionGroupType :
 y_OneOfActionGroup_OneOfActionGroupType :
           OneOfActionGroupSTART y_OneOfActionGroupType OneOfActionGroupEND
           {$$ = $2;
-           $$->printElement = "OneOfActionGroup";
+           $$->setprintElement("OneOfActionGroup");
           }
         ;
 
 y_OneOfPlanRoot_OneOfActionGroupType :
           OneOfPlanRootSTART y_OneOfActionGroupType OneOfPlanRootEND
           {$$ = $2;
-           $$->printElement = "OneOfPlanRoot";
+           $$->setprintElement("OneOfPlanRoot");
           }
         ;
 
@@ -65080,11 +65078,11 @@ y_OneSide_WeldFilletOneSideType :
           OneSideSTART ENDWHOLEITEM
           {$$ = new WeldFilletOneSideType();
            yyUnrefMap[$$] = $$;
-           $$->printElement = "OneSide";
+           $$->setprintElement("OneSide");
           }
         | OneSideSTART y_WeldFilletOneSideType OneSideEND
           {$$ = $2;
-           $$->printElement = "OneSide";
+           $$->setprintElement("OneSide");
           }
         ;
 
@@ -65098,7 +65096,7 @@ y_OneSidedCapabilityCalculationEnumType :
           {$$ = new OneSidedCapabilityCalculationEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad OneSidedCapabilityCalculationEnumType value");
           }
         ;
@@ -65113,7 +65111,7 @@ y_OpenCurvePointSamplingStrategyEnumType :
           {$$ = new OpenCurvePointSamplingStrategyEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad OpenCurvePointSamplingStrategyEnumType value");
           }
         ;
@@ -65300,7 +65298,7 @@ y_OppositeAngledLinesFeatureDefinition_OppositeAngledLinesFeatureDefinitionType 
           y_OppositeAngledLinesFeatureDefinitionType
           OppositeAngledLinesFeatureDefinitionEND
           {$$ = $2;
-           $$->printElement = "OppositeAngledLinesFeatureDefinition";
+           $$->setprintElement("OppositeAngledLinesFeatureDefinition");
           }
         ;
 
@@ -65342,7 +65340,7 @@ y_OppositeAngledLinesFeatureItem_OppositeAngledLinesFeatureItemType :
           y_OppositeAngledLinesFeatureItemType
           OppositeAngledLinesFeatureItemEND
           {$$ = $2;
-           $$->printElement = "OppositeAngledLinesFeatureItem";
+           $$->setprintElement("OppositeAngledLinesFeatureItem");
           }
         ;
 
@@ -65412,7 +65410,7 @@ y_OppositeAngledLinesFeatureMeasurement_OppositeAngledLinesFeatureMeasurementTyp
           {$$ = new OppositeAngledLinesFeatureMeasurementType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "OppositeAngledLinesFeatureMeasurement";
+           $$->setprintElement("OppositeAngledLinesFeatureMeasurement");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -65424,7 +65422,7 @@ y_OppositeAngledLinesFeatureMeasurement_OppositeAngledLinesFeatureMeasurementTyp
           y_OppositeAngledLinesFeatureMeasurementType
           OppositeAngledLinesFeatureMeasurementEND
           {$$ = $2;
-           $$->printElement = "OppositeAngledLinesFeatureMeasurement";
+           $$->setprintElement("OppositeAngledLinesFeatureMeasurement");
           }
         ;
 
@@ -65470,7 +65468,7 @@ y_OppositeAngledLinesFeatureNominal_OppositeAngledLinesFeatureNominalType :
           y_OppositeAngledLinesFeatureNominalType
           OppositeAngledLinesFeatureNominalEND
           {$$ = $2;
-           $$->printElement = "OppositeAngledLinesFeatureNominal";
+           $$->setprintElement("OppositeAngledLinesFeatureNominal");
           }
         ;
 
@@ -65807,7 +65805,7 @@ y_OppositeAngledPlanesFeatureDefinition_OppositeAngledPlanesFeatureDefinitionTyp
           y_OppositeAngledPlanesFeatureDefinitionType
           OppositeAngledPlanesFeatureDefinitionEND
           {$$ = $2;
-           $$->printElement = "OppositeAngledPlanesFeatureDefinition";
+           $$->setprintElement("OppositeAngledPlanesFeatureDefinition");
           }
         ;
 
@@ -65849,7 +65847,7 @@ y_OppositeAngledPlanesFeatureItem_OppositeAngledPlanesFeatureItemType :
           y_OppositeAngledPlanesFeatureItemType
           OppositeAngledPlanesFeatureItemEND
           {$$ = $2;
-           $$->printElement = "OppositeAngledPlanesFeatureItem";
+           $$->setprintElement("OppositeAngledPlanesFeatureItem");
           }
         ;
 
@@ -65923,7 +65921,7 @@ y_OppositeAngledPlanesFeatureMeasurement_OppositeAngledPlanesFeatureMeasurementT
           {$$ = new OppositeAngledPlanesFeatureMeasurementType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "OppositeAngledPlanesFeatureMeasurement";
+           $$->setprintElement("OppositeAngledPlanesFeatureMeasurement");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -65935,7 +65933,7 @@ y_OppositeAngledPlanesFeatureMeasurement_OppositeAngledPlanesFeatureMeasurementT
           y_OppositeAngledPlanesFeatureMeasurementType
           OppositeAngledPlanesFeatureMeasurementEND
           {$$ = $2;
-           $$->printElement = "OppositeAngledPlanesFeatureMeasurement";
+           $$->setprintElement("OppositeAngledPlanesFeatureMeasurement");
           }
         ;
 
@@ -65982,7 +65980,7 @@ y_OppositeAngledPlanesFeatureNominal_OppositeAngledPlanesFeatureNominalType :
           y_OppositeAngledPlanesFeatureNominalType
           OppositeAngledPlanesFeatureNominalEND
           {$$ = $2;
-           $$->printElement = "OppositeAngledPlanesFeatureNominal";
+           $$->setprintElement("OppositeAngledPlanesFeatureNominal");
           }
         ;
 
@@ -66240,7 +66238,7 @@ y_OppositeParallelLinesFeatureDefinition_OppositeParallelLinesFeatureDefinitionT
           y_OppositeParallelLinesFeatureDefinitionType
           OppositeParallelLinesFeatureDefinitionEND
           {$$ = $2;
-           $$->printElement = "OppositeParallelLinesFeatureDefinition";
+           $$->setprintElement("OppositeParallelLinesFeatureDefinition");
           }
         ;
 
@@ -66282,7 +66280,7 @@ y_OppositeParallelLinesFeatureItem_OppositeParallelLinesFeatureItemType :
           y_OppositeParallelLinesFeatureItemType
           OppositeParallelLinesFeatureItemEND
           {$$ = $2;
-           $$->printElement = "OppositeParallelLinesFeatureItem";
+           $$->setprintElement("OppositeParallelLinesFeatureItem");
           }
         ;
 
@@ -66350,7 +66348,7 @@ y_OppositeParallelLinesFeatureMeasurement_OppositeParallelLinesFeatureMeasuremen
           {$$ = new OppositeParallelLinesFeatureMeasurementType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "OppositeParallelLinesFeatureMeasurement";
+           $$->setprintElement("OppositeParallelLinesFeatureMeasurement");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -66362,7 +66360,7 @@ y_OppositeParallelLinesFeatureMeasurement_OppositeParallelLinesFeatureMeasuremen
           y_OppositeParallelLinesFeatureMeasurementType
           OppositeParallelLinesFeatureMeasurementEND
           {$$ = $2;
-           $$->printElement = "OppositeParallelLinesFeatureMeasurement";
+           $$->setprintElement("OppositeParallelLinesFeatureMeasurement");
           }
         ;
 
@@ -66408,7 +66406,7 @@ y_OppositeParallelLinesFeatureNominal_OppositeParallelLinesFeatureNominalType :
           y_OppositeParallelLinesFeatureNominalType
           OppositeParallelLinesFeatureNominalEND
           {$$ = $2;
-           $$->printElement = "OppositeParallelLinesFeatureNominal";
+           $$->setprintElement("OppositeParallelLinesFeatureNominal");
           }
         ;
 
@@ -66683,7 +66681,7 @@ y_OppositeParallelPlanesFeatureDefinition_OppositeParallelPlanesFeatureDefinitio
           y_OppositeParallelPlanesFeatureDefinitionType
           OppositeParallelPlanesFeatureDefinitionEND
           {$$ = $2;
-           $$->printElement = "OppositeParallelPlanesFeatureDefinition";
+           $$->setprintElement("OppositeParallelPlanesFeatureDefinition");
           }
         ;
 
@@ -66725,7 +66723,7 @@ y_OppositeParallelPlanesFeatureItem_OppositeParallelPlanesFeatureItemType :
           y_OppositeParallelPlanesFeatureItemType
           OppositeParallelPlanesFeatureItemEND
           {$$ = $2;
-           $$->printElement = "OppositeParallelPlanesFeatureItem";
+           $$->setprintElement("OppositeParallelPlanesFeatureItem");
           }
         ;
 
@@ -66797,7 +66795,7 @@ y_OppositeParallelPlanesFeatureMeasurement_OppositeParallelPlanesFeatureMeasurem
           {$$ = new OppositeParallelPlanesFeatureMeasurementType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "OppositeParallelPlanesFeatureMeasurement";
+           $$->setprintElement("OppositeParallelPlanesFeatureMeasurement");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -66809,7 +66807,7 @@ y_OppositeParallelPlanesFeatureMeasurement_OppositeParallelPlanesFeatureMeasurem
           y_OppositeParallelPlanesFeatureMeasurementType
           OppositeParallelPlanesFeatureMeasurementEND
           {$$ = $2;
-           $$->printElement = "OppositeParallelPlanesFeatureMeasurement";
+           $$->setprintElement("OppositeParallelPlanesFeatureMeasurement");
           }
         ;
 
@@ -66855,7 +66853,7 @@ y_OppositeParallelPlanesFeatureNominal_OppositeParallelPlanesFeatureNominalType 
           y_OppositeParallelPlanesFeatureNominalType
           OppositeParallelPlanesFeatureNominalEND
           {$$ = $2;
-           $$->printElement = "OppositeParallelPlanesFeatureNominal";
+           $$->setprintElement("OppositeParallelPlanesFeatureNominal");
           }
         ;
 
@@ -67003,49 +67001,7 @@ y_OpticalComparator_OpticalComparatorType :
           OpticalComparatorSTART y_OpticalComparatorType
           OpticalComparatorEND
           {$$ = $2;
-           $$->printElement = "OpticalComparator";
-          }
-        ;
-
-y_OpticalDigitizerMeasureFeatureMethodType :
-          y_LiztAttributePair ENDITEM
-          y_ChosenResourceIds_ArrayReferenceType_0
-          y_WorkInstructionIds_ArrayReferenceType_0
-          y_Attributes_AttributesType_0
-          {$$ = new OpticalDigitizerMeasureFeatureMethodType($3, $4, $5);
-           yyUnrefMap[$$] = $$;
-           if ($3) yyUnrefMap.erase($3);
-           if ($4) yyUnrefMap.erase($4);
-           if ($5) yyUnrefMap.erase($5);
-           yyUnrefMap.erase($1);
-           if ($$->badAttributes($1))
-             {
-               delete $1;
-               return yyerror("Bad OpticalDigitizerMeasureFeatureMethodType attributes");
-             }
-           delete $1;
-          }
-        ;
-
-y_OpticalDigitizerMeasureFeatureMethod_OpticalDigitizerMeasureFeatureMethodType :
-          OpticalDigitizerMeasureFeatureMethodSTART y_LiztAttributePair
-          ENDWHOLEITEM
-          {$$ = new OpticalDigitizerMeasureFeatureMethodType();
-           yyUnrefMap[$$] = $$;
-           yyUnrefMap.erase($2);
-           $$->printElement = "OpticalDigitizerMeasureFeatureMethod";
-           if ($$->badAttributes($2))
-             {
-               delete $2;
-               return yyerror("Bad OpticalDigitizerMeasureFeatureMethodType attributes");
-             }
-           delete $2;
-          }
-        | OpticalDigitizerMeasureFeatureMethodSTART
-          y_OpticalDigitizerMeasureFeatureMethodType
-          OpticalDigitizerMeasureFeatureMethodEND
-          {$$ = $2;
-           $$->printElement = "OpticalDigitizerMeasureFeatureMethod";
+           $$->setprintElement("OpticalComparator");
           }
         ;
 
@@ -67076,7 +67032,7 @@ y_OrType :
 y_Or_OrType :
           OrSTART y_OrType OrEND
           {$$ = $2;
-           $$->printElement = "Or";
+           $$->setprintElement("Or");
           }
         ;
 
@@ -67123,14 +67079,14 @@ y_OrderedActionGroup_OrderedActionGroupType :
           OrderedActionGroupSTART y_OrderedActionGroupType
           OrderedActionGroupEND
           {$$ = $2;
-           $$->printElement = "OrderedActionGroup";
+           $$->setprintElement("OrderedActionGroup");
           }
         ;
 
 y_OrderedPlanRoot_OrderedActionGroupType :
           OrderedPlanRootSTART y_OrderedActionGroupType OrderedPlanRootEND
           {$$ = $2;
-           $$->printElement = "OrderedPlanRoot";
+           $$->setprintElement("OrderedPlanRoot");
           }
         ;
 
@@ -67243,7 +67199,7 @@ y_OrientationCharacteristicStats_OrientationCharacteristicStatsEvalType :
           y_OrientationCharacteristicStatsEvalType
           OrientationCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "OrientationCharacteristicStats";
+           $$->setprintElement("OrientationCharacteristicStats");
           }
         ;
 
@@ -67403,14 +67359,14 @@ y_Origin_Point2dSimpleType :
           OriginSTART ENDWHOLEITEM
           {$$ = new Point2dSimpleType();
            $$->Point2dSimpleTypeCheck();
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad Point2dSimpleType value");
            yyUnrefMap[$$] = $$;
           }
         | OriginSTART y_Point2dSimpleType OriginEND
           {$$ = $2;
            $2->Point2dSimpleTypeCheck();
-           if ($2->bad)
+           if ($2->getbad())
              return yyerror("bad Point2dSimpleType value");
           }
         ;
@@ -67419,14 +67375,14 @@ y_Origin_PointSimpleType :
           OriginSTART ENDWHOLEITEM
           {$$ = new PointSimpleType();
            $$->PointSimpleTypeCheck();
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad PointSimpleType value");
            yyUnrefMap[$$] = $$;
           }
         | OriginSTART y_PointSimpleType OriginEND
           {$$ = $2;
            $2->PointSimpleTypeCheck();
-           if ($2->bad)
+           if ($2->getbad())
              return yyerror("bad PointSimpleType value");
           }
         ;
@@ -67437,14 +67393,14 @@ y_Origin_PointSimpleType_0 :
         | OriginSTART ENDWHOLEITEM
           {$$ = new PointSimpleType();
            $$->PointSimpleTypeCheck();
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad PointSimpleType value");
            yyUnrefMap[$$] = $$;
           }
         | OriginSTART y_PointSimpleType OriginEND
           {$$ = $2;
            $2->PointSimpleTypeCheck();
-           if ($2->bad)
+           if ($2->getbad())
              return yyerror("bad PointSimpleType value");
           }
         ;
@@ -67612,7 +67568,7 @@ y_OtherCurveFeatureDefinition_OtherCurveFeatureDefinitionType :
           {$$ = new OtherCurveFeatureDefinitionType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "OtherCurveFeatureDefinition";
+           $$->setprintElement("OtherCurveFeatureDefinition");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -67623,7 +67579,7 @@ y_OtherCurveFeatureDefinition_OtherCurveFeatureDefinitionType :
         | OtherCurveFeatureDefinitionSTART
           y_OtherCurveFeatureDefinitionType OtherCurveFeatureDefinitionEND
           {$$ = $2;
-           $$->printElement = "OtherCurveFeatureDefinition";
+           $$->setprintElement("OtherCurveFeatureDefinition");
           }
         ;
 
@@ -67664,7 +67620,7 @@ y_OtherCurveFeatureItem_OtherCurveFeatureItemType :
           OtherCurveFeatureItemSTART y_OtherCurveFeatureItemType
           OtherCurveFeatureItemEND
           {$$ = $2;
-           $$->printElement = "OtherCurveFeatureItem";
+           $$->setprintElement("OtherCurveFeatureItem");
           }
         ;
 
@@ -67710,7 +67666,7 @@ y_OtherCurveFeatureMeasurement_OtherCurveFeatureMeasurementType :
           {$$ = new OtherCurveFeatureMeasurementType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "OtherCurveFeatureMeasurement";
+           $$->setprintElement("OtherCurveFeatureMeasurement");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -67722,7 +67678,7 @@ y_OtherCurveFeatureMeasurement_OtherCurveFeatureMeasurementType :
           y_OtherCurveFeatureMeasurementType
           OtherCurveFeatureMeasurementEND
           {$$ = $2;
-           $$->printElement = "OtherCurveFeatureMeasurement";
+           $$->setprintElement("OtherCurveFeatureMeasurement");
           }
         ;
 
@@ -67764,7 +67720,7 @@ y_OtherCurveFeatureNominal_OtherCurveFeatureNominalType :
           OtherCurveFeatureNominalSTART y_OtherCurveFeatureNominalType
           OtherCurveFeatureNominalEND
           {$$ = $2;
-           $$->printElement = "OtherCurveFeatureNominal";
+           $$->setprintElement("OtherCurveFeatureNominal");
           }
         ;
 
@@ -67887,7 +67843,7 @@ y_OtherFormCharacteristicDefinition_OtherFormCharacteristicDefinitionType :
           y_OtherFormCharacteristicDefinitionType
           OtherFormCharacteristicDefinitionEND
           {$$ = $2;
-           $$->printElement = "OtherFormCharacteristicDefinition";
+           $$->setprintElement("OtherFormCharacteristicDefinition");
           }
         ;
 
@@ -67929,7 +67885,7 @@ y_OtherFormCharacteristicItem_OtherFormCharacteristicItemType :
           OtherFormCharacteristicItemSTART
           y_OtherFormCharacteristicItemType OtherFormCharacteristicItemEND
           {$$ = $2;
-           $$->printElement = "OtherFormCharacteristicItem";
+           $$->setprintElement("OtherFormCharacteristicItem");
           }
         ;
 
@@ -67979,7 +67935,7 @@ y_OtherFormCharacteristicMeasurement_OtherFormCharacteristicMeasurementType :
           y_OtherFormCharacteristicMeasurementType
           OtherFormCharacteristicMeasurementEND
           {$$ = $2;
-           $$->printElement = "OtherFormCharacteristicMeasurement";
+           $$->setprintElement("OtherFormCharacteristicMeasurement");
           }
         ;
 
@@ -68020,7 +67976,7 @@ y_OtherFormCharacteristicNominal_OtherFormCharacteristicNominalType :
           y_OtherFormCharacteristicNominalType
           OtherFormCharacteristicNominalEND
           {$$ = $2;
-           $$->printElement = "OtherFormCharacteristicNominal";
+           $$->setprintElement("OtherFormCharacteristicNominal");
           }
         ;
 
@@ -68054,7 +68010,7 @@ y_OtherFormCharacteristicStats_OtherFormCharacteristicStatsEvalType :
           y_OtherFormCharacteristicStatsEvalType
           OtherFormCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "OtherFormCharacteristicStats";
+           $$->setprintElement("OtherFormCharacteristicStats");
           }
         ;
 
@@ -68131,7 +68087,7 @@ y_OtherMeasureFeatureMethod_OtherMeasureFeatureMethodType :
           {$$ = new OtherMeasureFeatureMethodType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "OtherMeasureFeatureMethod";
+           $$->setprintElement("OtherMeasureFeatureMethod");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -68142,7 +68098,7 @@ y_OtherMeasureFeatureMethod_OtherMeasureFeatureMethodType :
         | OtherMeasureFeatureMethodSTART y_OtherMeasureFeatureMethodType
           OtherMeasureFeatureMethodEND
           {$$ = $2;
-           $$->printElement = "OtherMeasureFeatureMethod";
+           $$->setprintElement("OtherMeasureFeatureMethod");
           }
         ;
 
@@ -68176,7 +68132,7 @@ y_OtherNonShapeFeatureDefinition_OtherNonShapeFeatureDefinitionType :
           y_OtherNonShapeFeatureDefinitionType
           OtherNonShapeFeatureDefinitionEND
           {$$ = $2;
-           $$->printElement = "OtherNonShapeFeatureDefinition";
+           $$->setprintElement("OtherNonShapeFeatureDefinition");
           }
         ;
 
@@ -68209,7 +68165,7 @@ y_OtherNonShapeFeatureItem_OtherNonShapeFeatureItemType :
           OtherNonShapeFeatureItemSTART y_OtherNonShapeFeatureItemType
           OtherNonShapeFeatureItemEND
           {$$ = $2;
-           $$->printElement = "OtherNonShapeFeatureItem";
+           $$->setprintElement("OtherNonShapeFeatureItem");
           }
         ;
 
@@ -68249,7 +68205,7 @@ y_OtherNonShapeFeatureMeasurement_OtherNonShapeFeatureMeasurementType :
           {$$ = new OtherNonShapeFeatureMeasurementType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "OtherNonShapeFeatureMeasurement";
+           $$->setprintElement("OtherNonShapeFeatureMeasurement");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -68261,7 +68217,7 @@ y_OtherNonShapeFeatureMeasurement_OtherNonShapeFeatureMeasurementType :
           y_OtherNonShapeFeatureMeasurementType
           OtherNonShapeFeatureMeasurementEND
           {$$ = $2;
-           $$->printElement = "OtherNonShapeFeatureMeasurement";
+           $$->setprintElement("OtherNonShapeFeatureMeasurement");
           }
         ;
 
@@ -68297,7 +68253,7 @@ y_OtherNonShapeFeatureNominal_OtherNonShapeFeatureNominalType :
           OtherNonShapeFeatureNominalSTART
           y_OtherNonShapeFeatureNominalType OtherNonShapeFeatureNominalEND
           {$$ = $2;
-           $$->printElement = "OtherNonShapeFeatureNominal";
+           $$->setprintElement("OtherNonShapeFeatureNominal");
           }
         ;
 
@@ -68417,7 +68373,7 @@ y_OtherShapeFeatureDefinition_OtherShapeFeatureDefinitionType :
           OtherShapeFeatureDefinitionSTART
           y_OtherShapeFeatureDefinitionType OtherShapeFeatureDefinitionEND
           {$$ = $2;
-           $$->printElement = "OtherShapeFeatureDefinition";
+           $$->setprintElement("OtherShapeFeatureDefinition");
           }
         ;
 
@@ -68458,7 +68414,7 @@ y_OtherShapeFeatureItem_OtherShapeFeatureItemType :
           OtherShapeFeatureItemSTART y_OtherShapeFeatureItemType
           OtherShapeFeatureItemEND
           {$$ = $2;
-           $$->printElement = "OtherShapeFeatureItem";
+           $$->setprintElement("OtherShapeFeatureItem");
           }
         ;
 
@@ -68504,7 +68460,7 @@ y_OtherShapeFeatureMeasurement_OtherShapeFeatureMeasurementType :
           {$$ = new OtherShapeFeatureMeasurementType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "OtherShapeFeatureMeasurement";
+           $$->setprintElement("OtherShapeFeatureMeasurement");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -68516,7 +68472,7 @@ y_OtherShapeFeatureMeasurement_OtherShapeFeatureMeasurementType :
           y_OtherShapeFeatureMeasurementType
           OtherShapeFeatureMeasurementEND
           {$$ = $2;
-           $$->printElement = "OtherShapeFeatureMeasurement";
+           $$->setprintElement("OtherShapeFeatureMeasurement");
           }
         ;
 
@@ -68556,7 +68512,7 @@ y_OtherShapeFeatureNominal_OtherShapeFeatureNominalType :
           OtherShapeFeatureNominalSTART y_OtherShapeFeatureNominalType
           OtherShapeFeatureNominalEND
           {$$ = $2;
-           $$->printElement = "OtherShapeFeatureNominal";
+           $$->setprintElement("OtherShapeFeatureNominal");
           }
         ;
 
@@ -68591,7 +68547,7 @@ y_OtherSideContourSymbol_WeldContourSymbolType_0 :
         | OtherSideContourSymbolSTART y_WeldContourSymbolType
           OtherSideContourSymbolEND
           {$$ = $2;
-           $$->printElement = "OtherSideContourSymbol";
+           $$->setprintElement("OtherSideContourSymbol");
           }
         ;
 
@@ -68601,12 +68557,12 @@ y_OtherSideParameters_WeldGrooveOneSideParametersType_0 :
         | OtherSideParametersSTART ENDWHOLEITEM
           {$$ = new WeldGrooveOneSideParametersType();
            yyUnrefMap[$$] = $$;
-           $$->printElement = "OtherSideParameters";
+           $$->setprintElement("OtherSideParameters");
           }
         | OtherSideParametersSTART y_WeldGrooveOneSideParametersType
           OtherSideParametersEND
           {$$ = $2;
-           $$->printElement = "OtherSideParameters";
+           $$->setprintElement("OtherSideParameters");
           }
         ;
 
@@ -68616,11 +68572,11 @@ y_OtherSide_WeldFilletOneSideInBothSidesType_0 :
         | OtherSideSTART ENDWHOLEITEM
           {$$ = new WeldFilletOneSideInBothSidesType();
            yyUnrefMap[$$] = $$;
-           $$->printElement = "OtherSide";
+           $$->setprintElement("OtherSide");
           }
         | OtherSideSTART y_WeldFilletOneSideInBothSidesType OtherSideEND
           {$$ = $2;
-           $$->printElement = "OtherSide";
+           $$->setprintElement("OtherSide");
           }
         ;
 
@@ -68740,7 +68696,7 @@ y_OtherSurfaceFeatureDefinition_OtherSurfaceFeatureDefinitionType :
           {$$ = new OtherSurfaceFeatureDefinitionType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "OtherSurfaceFeatureDefinition";
+           $$->setprintElement("OtherSurfaceFeatureDefinition");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -68752,7 +68708,7 @@ y_OtherSurfaceFeatureDefinition_OtherSurfaceFeatureDefinitionType :
           y_OtherSurfaceFeatureDefinitionType
           OtherSurfaceFeatureDefinitionEND
           {$$ = $2;
-           $$->printElement = "OtherSurfaceFeatureDefinition";
+           $$->setprintElement("OtherSurfaceFeatureDefinition");
           }
         ;
 
@@ -68793,7 +68749,7 @@ y_OtherSurfaceFeatureItem_OtherSurfaceFeatureItemType :
           OtherSurfaceFeatureItemSTART y_OtherSurfaceFeatureItemType
           OtherSurfaceFeatureItemEND
           {$$ = $2;
-           $$->printElement = "OtherSurfaceFeatureItem";
+           $$->setprintElement("OtherSurfaceFeatureItem");
           }
         ;
 
@@ -68840,7 +68796,7 @@ y_OtherSurfaceFeatureMeasurement_OtherSurfaceFeatureMeasurementType :
           {$$ = new OtherSurfaceFeatureMeasurementType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "OtherSurfaceFeatureMeasurement";
+           $$->setprintElement("OtherSurfaceFeatureMeasurement");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -68852,7 +68808,7 @@ y_OtherSurfaceFeatureMeasurement_OtherSurfaceFeatureMeasurementType :
           y_OtherSurfaceFeatureMeasurementType
           OtherSurfaceFeatureMeasurementEND
           {$$ = $2;
-           $$->printElement = "OtherSurfaceFeatureMeasurement";
+           $$->setprintElement("OtherSurfaceFeatureMeasurement");
           }
         ;
 
@@ -68918,7 +68874,7 @@ y_OtherSurfaceFeatureNominal_OtherSurfaceFeatureNominalType :
           OtherSurfaceFeatureNominalSTART y_OtherSurfaceFeatureNominalType
           OtherSurfaceFeatureNominalEND
           {$$ = $2;
-           $$->printElement = "OtherSurfaceFeatureNominal";
+           $$->setprintElement("OtherSurfaceFeatureNominal");
           }
         ;
 
@@ -69190,12 +69146,12 @@ y_ParallelLinkCMMSpeeds_ParallelLinkCMMSpeedsType :
           ParallelLinkCMMSpeedsSTART ENDWHOLEITEM
           {$$ = new ParallelLinkCMMSpeedsType();
            yyUnrefMap[$$] = $$;
-           $$->printElement = "ParallelLinkCMMSpeeds";
+           $$->setprintElement("ParallelLinkCMMSpeeds");
           }
         | ParallelLinkCMMSpeedsSTART y_ParallelLinkCMMSpeedsType
           ParallelLinkCMMSpeedsEND
           {$$ = $2;
-           $$->printElement = "ParallelLinkCMMSpeeds";
+           $$->setprintElement("ParallelLinkCMMSpeeds");
           }
         ;
 
@@ -69259,7 +69215,7 @@ y_ParallelLinkCMMType :
 y_ParallelLinkCMM_ParallelLinkCMMType :
           ParallelLinkCMMSTART y_ParallelLinkCMMType ParallelLinkCMMEND
           {$$ = $2;
-           $$->printElement = "ParallelLinkCMM";
+           $$->setprintElement("ParallelLinkCMM");
           }
         ;
 
@@ -69272,14 +69228,14 @@ y_ParallelScaleFactor_XmlDecimal :
 y_Parallel_LineParallelType :
           ParallelSTART y_LineParallelType ParallelEND
           {$$ = $2;
-           $$->printElement = "Parallel";
+           $$->setprintElement("Parallel");
           }
         ;
 
 y_Parallel_PlaneParallelType :
           ParallelSTART y_PlaneParallelType ParallelEND
           {$$ = $2;
-           $$->printElement = "Parallel";
+           $$->setprintElement("Parallel");
           }
         ;
 
@@ -69352,7 +69308,7 @@ y_ParallelismCharacteristicDefinition_ParallelismCharacteristicDefinitionType :
           y_ParallelismCharacteristicDefinitionType
           ParallelismCharacteristicDefinitionEND
           {$$ = $2;
-           $$->printElement = "ParallelismCharacteristicDefinition";
+           $$->setprintElement("ParallelismCharacteristicDefinition");
           }
         ;
 
@@ -69395,7 +69351,7 @@ y_ParallelismCharacteristicItem_ParallelismCharacteristicItemType :
           y_ParallelismCharacteristicItemType
           ParallelismCharacteristicItemEND
           {$$ = $2;
-           $$->printElement = "ParallelismCharacteristicItem";
+           $$->setprintElement("ParallelismCharacteristicItem");
           }
         ;
 
@@ -69452,7 +69408,7 @@ y_ParallelismCharacteristicMeasurement_ParallelismCharacteristicMeasurementType 
           y_ParallelismCharacteristicMeasurementType
           ParallelismCharacteristicMeasurementEND
           {$$ = $2;
-           $$->printElement = "ParallelismCharacteristicMeasurement";
+           $$->setprintElement("ParallelismCharacteristicMeasurement");
           }
         ;
 
@@ -69493,7 +69449,7 @@ y_ParallelismCharacteristicNominal_ParallelismCharacteristicNominalType :
           y_ParallelismCharacteristicNominalType
           ParallelismCharacteristicNominalEND
           {$$ = $2;
-           $$->printElement = "ParallelismCharacteristicNominal";
+           $$->setprintElement("ParallelismCharacteristicNominal");
           }
         ;
 
@@ -69533,7 +69489,7 @@ y_ParallelismCharacteristicStats_ParallelismCharacteristicStatsEvalType :
           y_ParallelismCharacteristicStatsEvalType
           ParallelismCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "ParallelismCharacteristicStats";
+           $$->setprintElement("ParallelismCharacteristicStats");
           }
         ;
 
@@ -69720,7 +69676,7 @@ y_PartNote_PartNoteType :
           {$$ = new PartNoteType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "PartNote";
+           $$->setprintElement("PartNote");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -69730,7 +69686,7 @@ y_PartNote_PartNoteType :
           }
         | PartNoteSTART y_PartNoteType PartNoteEND
           {$$ = $2;
-           $$->printElement = "PartNote";
+           $$->setprintElement("PartNote");
           }
         ;
 
@@ -69816,7 +69772,7 @@ y_PartType :
 y_PartVariation_StatsMeasuredDecimalType :
           PartVariationSTART y_StatsMeasuredDecimalType PartVariationEND
           {$$ = $2;
-           $$->printElement = "PartVariation";
+           $$->setprintElement("PartVariation");
           }
         ;
 
@@ -69830,7 +69786,7 @@ y_Part_PartType :
           {$$ = new PartType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "Part";
+           $$->setprintElement("Part");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -69840,7 +69796,7 @@ y_Part_PartType :
           }
         | PartSTART y_PartType PartEND
           {$$ = $2;
-           $$->printElement = "Part";
+           $$->setprintElement("Part");
           }
         ;
 
@@ -69882,7 +69838,7 @@ y_PartiallyOrderedActionGroup_PartiallyOrderedActionGroupType :
           PartiallyOrderedActionGroupSTART
           y_PartiallyOrderedActionGroupType PartiallyOrderedActionGroupEND
           {$$ = $2;
-           $$->printElement = "PartiallyOrderedActionGroup";
+           $$->setprintElement("PartiallyOrderedActionGroup");
           }
         ;
 
@@ -69890,7 +69846,7 @@ y_PartiallyOrderedPlanRoot_PartiallyOrderedActionGroupType :
           PartiallyOrderedPlanRootSTART y_PartiallyOrderedActionGroupType
           PartiallyOrderedPlanRootEND
           {$$ = $2;
-           $$->printElement = "PartiallyOrderedPlanRoot";
+           $$->setprintElement("PartiallyOrderedPlanRoot");
           }
         ;
 
@@ -69973,7 +69929,7 @@ y_PathTriangulation_PathTriangulationType :
           PathTriangulationSTART y_PathTriangulationType
           PathTriangulationEND
           {$$ = $2;
-           $$->printElement = "PathTriangulation";
+           $$->setprintElement("PathTriangulation");
           }
         ;
 
@@ -70028,7 +69984,7 @@ y_PatternFeatureCircleDefinition_PatternFeatureCircleDefinitionType :
           y_PatternFeatureCircleDefinitionType
           PatternFeatureCircleDefinitionEND
           {$$ = $2;
-           $$->printElement = "PatternFeatureCircleDefinition";
+           $$->setprintElement("PatternFeatureCircleDefinition");
           }
         ;
 
@@ -70067,7 +70023,7 @@ y_PatternFeatureCircleItem_PatternFeatureCircleItemType :
           PatternFeatureCircleItemSTART y_PatternFeatureCircleItemType
           PatternFeatureCircleItemEND
           {$$ = $2;
-           $$->printElement = "PatternFeatureCircleItem";
+           $$->setprintElement("PatternFeatureCircleItem");
           }
         ;
 
@@ -70112,7 +70068,7 @@ y_PatternFeatureCircleNominal_PatternFeatureCircleNominalType :
           PatternFeatureCircleNominalSTART
           y_PatternFeatureCircleNominalType PatternFeatureCircleNominalEND
           {$$ = $2;
-           $$->printElement = "PatternFeatureCircleNominal";
+           $$->setprintElement("PatternFeatureCircleNominal");
           }
         ;
 
@@ -70148,7 +70104,7 @@ y_PatternFeatureCircularArcDefinition_PatternFeatureCircularArcDefinitionType :
           y_PatternFeatureCircularArcDefinitionType
           PatternFeatureCircularArcDefinitionEND
           {$$ = $2;
-           $$->printElement = "PatternFeatureCircularArcDefinition";
+           $$->setprintElement("PatternFeatureCircularArcDefinition");
           }
         ;
 
@@ -70188,7 +70144,7 @@ y_PatternFeatureCircularArcItem_PatternFeatureCircularArcItemType :
           y_PatternFeatureCircularArcItemType
           PatternFeatureCircularArcItemEND
           {$$ = $2;
-           $$->printElement = "PatternFeatureCircularArcItem";
+           $$->setprintElement("PatternFeatureCircularArcItem");
           }
         ;
 
@@ -70234,7 +70190,7 @@ y_PatternFeatureCircularArcNominal_PatternFeatureCircularArcNominalType :
           y_PatternFeatureCircularArcNominalType
           PatternFeatureCircularArcNominalEND
           {$$ = $2;
-           $$->printElement = "PatternFeatureCircularArcNominal";
+           $$->setprintElement("PatternFeatureCircularArcNominal");
           }
         ;
 
@@ -70271,7 +70227,7 @@ y_PatternFeatureLinearDefinition_PatternFeatureLinearDefinitionType :
           y_PatternFeatureLinearDefinitionType
           PatternFeatureLinearDefinitionEND
           {$$ = $2;
-           $$->printElement = "PatternFeatureLinearDefinition";
+           $$->setprintElement("PatternFeatureLinearDefinition");
           }
         ;
 
@@ -70310,7 +70266,7 @@ y_PatternFeatureLinearItem_PatternFeatureLinearItemType :
           PatternFeatureLinearItemSTART y_PatternFeatureLinearItemType
           PatternFeatureLinearItemEND
           {$$ = $2;
-           $$->printElement = "PatternFeatureLinearItem";
+           $$->setprintElement("PatternFeatureLinearItem");
           }
         ;
 
@@ -70352,7 +70308,7 @@ y_PatternFeatureLinearNominal_PatternFeatureLinearNominalType :
           PatternFeatureLinearNominalSTART
           y_PatternFeatureLinearNominalType PatternFeatureLinearNominalEND
           {$$ = $2;
-           $$->printElement = "PatternFeatureLinearNominal";
+           $$->setprintElement("PatternFeatureLinearNominal");
           }
         ;
 
@@ -70394,7 +70350,7 @@ y_PatternFeatureParallelogramDefinition_PatternFeatureParallelogramDefinitionTyp
           y_PatternFeatureParallelogramDefinitionType
           PatternFeatureParallelogramDefinitionEND
           {$$ = $2;
-           $$->printElement = "PatternFeatureParallelogramDefinition";
+           $$->setprintElement("PatternFeatureParallelogramDefinition");
           }
         ;
 
@@ -70434,7 +70390,7 @@ y_PatternFeatureParallelogramItem_PatternFeatureParallelogramItemType :
           y_PatternFeatureParallelogramItemType
           PatternFeatureParallelogramItemEND
           {$$ = $2;
-           $$->printElement = "PatternFeatureParallelogramItem";
+           $$->setprintElement("PatternFeatureParallelogramItem");
           }
         ;
 
@@ -70477,7 +70433,7 @@ y_PatternFeatureParallelogramNominal_PatternFeatureParallelogramNominalType :
           y_PatternFeatureParallelogramNominalType
           PatternFeatureParallelogramNominalEND
           {$$ = $2;
-           $$->printElement = "PatternFeatureParallelogramNominal";
+           $$->setprintElement("PatternFeatureParallelogramNominal");
           }
         ;
 
@@ -70516,14 +70472,14 @@ y_PerpendicularScaleFactor_XmlDecimal :
 y_Perpendicular_LinePerpendicularType :
           PerpendicularSTART y_LinePerpendicularType PerpendicularEND
           {$$ = $2;
-           $$->printElement = "Perpendicular";
+           $$->setprintElement("Perpendicular");
           }
         ;
 
 y_Perpendicular_PlanePerpendicularType :
           PerpendicularSTART y_PlanePerpendicularType PerpendicularEND
           {$$ = $2;
-           $$->printElement = "Perpendicular";
+           $$->setprintElement("Perpendicular");
           }
         ;
 
@@ -70596,7 +70552,7 @@ y_PerpendicularityCharacteristicDefinition_PerpendicularityCharacteristicDefinit
           y_PerpendicularityCharacteristicDefinitionType
           PerpendicularityCharacteristicDefinitionEND
           {$$ = $2;
-           $$->printElement = "PerpendicularityCharacteristicDefinition";
+           $$->setprintElement("PerpendicularityCharacteristicDefinition");
           }
         ;
 
@@ -70639,7 +70595,7 @@ y_PerpendicularityCharacteristicItem_PerpendicularityCharacteristicItemType :
           y_PerpendicularityCharacteristicItemType
           PerpendicularityCharacteristicItemEND
           {$$ = $2;
-           $$->printElement = "PerpendicularityCharacteristicItem";
+           $$->setprintElement("PerpendicularityCharacteristicItem");
           }
         ;
 
@@ -70696,7 +70652,7 @@ y_PerpendicularityCharacteristicMeasurement_PerpendicularityCharacteristicMeasur
           y_PerpendicularityCharacteristicMeasurementType
           PerpendicularityCharacteristicMeasurementEND
           {$$ = $2;
-           $$->printElement = "PerpendicularityCharacteristicMeasurement";
+           $$->setprintElement("PerpendicularityCharacteristicMeasurement");
           }
         ;
 
@@ -70737,7 +70693,7 @@ y_PerpendicularityCharacteristicNominal_PerpendicularityCharacteristicNominalTyp
           y_PerpendicularityCharacteristicNominalType
           PerpendicularityCharacteristicNominalEND
           {$$ = $2;
-           $$->printElement = "PerpendicularityCharacteristicNominal";
+           $$->setprintElement("PerpendicularityCharacteristicNominal");
           }
         ;
 
@@ -70777,7 +70733,7 @@ y_PerpendicularityCharacteristicStats_PerpendicularityCharacteristicStatsEvalTyp
           y_PerpendicularityCharacteristicStatsEvalType
           PerpendicularityCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "PerpendicularityCharacteristicStats";
+           $$->setprintElement("PerpendicularityCharacteristicStats");
           }
         ;
 
@@ -70854,7 +70810,7 @@ y_PickSomeActionGroup_PickSomeActionGroupType :
           PickSomeActionGroupSTART y_PickSomeActionGroupType
           PickSomeActionGroupEND
           {$$ = $2;
-           $$->printElement = "PickSomeActionGroup";
+           $$->setprintElement("PickSomeActionGroup");
           }
         ;
 
@@ -70862,14 +70818,14 @@ y_PickSomePlanRoot_PickSomeActionGroupType :
           PickSomePlanRootSTART y_PickSomeActionGroupType
           PickSomePlanRootEND
           {$$ = $2;
-           $$->printElement = "PickSomePlanRoot";
+           $$->setprintElement("PickSomePlanRoot");
           }
         ;
 
 y_Pierce_PointFeaturePierceType :
           PierceSTART y_PointFeaturePierceType PierceEND
           {$$ = $2;
-           $$->printElement = "Pierce";
+           $$->setprintElement("Pierce");
           }
         ;
 
@@ -70878,7 +70834,7 @@ y_PitchDiameterStats_StatsLinearType_0 :
           {$$ = 0;}
         | PitchDiameterStatsSTART y_StatsLinearType PitchDiameterStatsEND
           {$$ = $2;
-           $$->printElement = "PitchDiameterStats";
+           $$->setprintElement("PitchDiameterStats");
           }
         ;
 
@@ -71068,7 +71024,7 @@ y_Plane23CoreType :
 y_Plane23Core_Plane23CoreType :
           Plane23CoreSTART y_Plane23CoreType Plane23CoreEND
           {$$ = $2;
-           $$->printElement = "Plane23Core";
+           $$->setprintElement("Plane23Core");
           }
         ;
 
@@ -71093,7 +71049,7 @@ y_Plane23Type :
 y_Plane23_Plane23Type :
           Plane23START y_Plane23Type Plane23END
           {$$ = $2;
-           $$->printElement = "Plane23";
+           $$->setprintElement("Plane23");
           }
         ;
 
@@ -71294,7 +71250,7 @@ y_PlaneFeatureDefinition_PlaneFeatureDefinitionType :
           {$$ = new PlaneFeatureDefinitionType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "PlaneFeatureDefinition";
+           $$->setprintElement("PlaneFeatureDefinition");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -71305,7 +71261,7 @@ y_PlaneFeatureDefinition_PlaneFeatureDefinitionType :
         | PlaneFeatureDefinitionSTART y_PlaneFeatureDefinitionType
           PlaneFeatureDefinitionEND
           {$$ = $2;
-           $$->printElement = "PlaneFeatureDefinition";
+           $$->setprintElement("PlaneFeatureDefinition");
           }
         ;
 
@@ -71345,7 +71301,7 @@ y_PlaneFeatureItemType :
 y_PlaneFeatureItem_PlaneFeatureItemType :
           PlaneFeatureItemSTART y_PlaneFeatureItemType PlaneFeatureItemEND
           {$$ = $2;
-           $$->printElement = "PlaneFeatureItem";
+           $$->setprintElement("PlaneFeatureItem");
           }
         ;
 
@@ -71396,7 +71352,7 @@ y_PlaneFeatureMeasurement_PlaneFeatureMeasurementType :
           {$$ = new PlaneFeatureMeasurementType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "PlaneFeatureMeasurement";
+           $$->setprintElement("PlaneFeatureMeasurement");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -71407,7 +71363,7 @@ y_PlaneFeatureMeasurement_PlaneFeatureMeasurementType :
         | PlaneFeatureMeasurementSTART y_PlaneFeatureMeasurementType
           PlaneFeatureMeasurementEND
           {$$ = $2;
-           $$->printElement = "PlaneFeatureMeasurement";
+           $$->setprintElement("PlaneFeatureMeasurement");
           }
         ;
 
@@ -71491,7 +71447,7 @@ y_PlaneFeatureNominal_PlaneFeatureNominalType :
           PlaneFeatureNominalSTART y_PlaneFeatureNominalType
           PlaneFeatureNominalEND
           {$$ = $2;
-           $$->printElement = "PlaneFeatureNominal";
+           $$->setprintElement("PlaneFeatureNominal");
           }
         ;
 
@@ -71587,7 +71543,7 @@ y_PlanePointSamplingStrategyEnumType :
           {$$ = new PlanePointSamplingStrategyEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad PlanePointSamplingStrategyEnumType value");
           }
         ;
@@ -71647,7 +71603,7 @@ y_PlaneReferenceType :
 y_PlaneReference_PlaneReferenceType :
           PlaneReferenceSTART y_PlaneReferenceType PlaneReferenceEND
           {$$ = $2;
-           $$->printElement = "PlaneReference";
+           $$->setprintElement("PlaneReference");
           }
         ;
 
@@ -71733,7 +71689,7 @@ y_Plane_PlaneType_0 :
 y_Plane_PlaneXType :
           PlaneSTART y_PlaneXType PlaneEND
           {$$ = $2;
-           $$->printElement = "Plane";
+           $$->setprintElement("Plane");
           }
         ;
 
@@ -71765,7 +71721,7 @@ y_PlusType :
 y_Plus_PlusType :
           PlusSTART y_PlusType PlusEND
           {$$ = $2;
-           $$->printElement = "Plus";
+           $$->setprintElement("Plus");
           }
         ;
 
@@ -71819,7 +71775,7 @@ y_PointAuxiliaryType :
 y_PointAuxiliary_PointAuxiliaryType :
           PointAuxiliarySTART y_PointAuxiliaryType PointAuxiliaryEND
           {$$ = $2;
-           $$->printElement = "PointAuxiliary";
+           $$->setprintElement("PointAuxiliary");
           }
         ;
 
@@ -72051,7 +72007,7 @@ y_PointCloudType_1186_TypeChoicePair_0 :
 y_PointCloud_PointCloudType :
           PointCloudSTART y_PointCloudType PointCloudEND
           {$$ = $2;
-           $$->printElement = "PointCloud";
+           $$->setprintElement("PointCloud");
           }
         ;
 
@@ -72059,14 +72015,14 @@ y_PointConnection_Point2dSimpleType :
           PointConnectionSTART ENDWHOLEITEM
           {$$ = new Point2dSimpleType();
            $$->Point2dSimpleTypeCheck();
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad Point2dSimpleType value");
            yyUnrefMap[$$] = $$;
           }
         | PointConnectionSTART y_Point2dSimpleType PointConnectionEND
           {$$ = $2;
            $2->Point2dSimpleTypeCheck();
-           if ($2->bad)
+           if ($2->getbad())
              return yyerror("bad Point2dSimpleType value");
           }
         ;
@@ -72328,7 +72284,7 @@ y_PointDefinedCurveFeatureDefinition_PointDefinedCurveFeatureDefinitionType :
           {$$ = new PointDefinedCurveFeatureDefinitionType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "PointDefinedCurveFeatureDefinition";
+           $$->setprintElement("PointDefinedCurveFeatureDefinition");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -72340,7 +72296,7 @@ y_PointDefinedCurveFeatureDefinition_PointDefinedCurveFeatureDefinitionType :
           y_PointDefinedCurveFeatureDefinitionType
           PointDefinedCurveFeatureDefinitionEND
           {$$ = $2;
-           $$->printElement = "PointDefinedCurveFeatureDefinition";
+           $$->setprintElement("PointDefinedCurveFeatureDefinition");
           }
         ;
 
@@ -72382,7 +72338,7 @@ y_PointDefinedCurveFeatureItem_PointDefinedCurveFeatureItemType :
           y_PointDefinedCurveFeatureItemType
           PointDefinedCurveFeatureItemEND
           {$$ = $2;
-           $$->printElement = "PointDefinedCurveFeatureItem";
+           $$->setprintElement("PointDefinedCurveFeatureItem");
           }
         ;
 
@@ -72433,7 +72389,7 @@ y_PointDefinedCurveFeatureMeasurement_PointDefinedCurveFeatureMeasurementType :
           {$$ = new PointDefinedCurveFeatureMeasurementType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "PointDefinedCurveFeatureMeasurement";
+           $$->setprintElement("PointDefinedCurveFeatureMeasurement");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -72445,7 +72401,7 @@ y_PointDefinedCurveFeatureMeasurement_PointDefinedCurveFeatureMeasurementType :
           y_PointDefinedCurveFeatureMeasurementType
           PointDefinedCurveFeatureMeasurementEND
           {$$ = $2;
-           $$->printElement = "PointDefinedCurveFeatureMeasurement";
+           $$->setprintElement("PointDefinedCurveFeatureMeasurement");
           }
         ;
 
@@ -72491,7 +72447,7 @@ y_PointDefinedCurveFeatureNominal_PointDefinedCurveFeatureNominalType :
           y_PointDefinedCurveFeatureNominalType
           PointDefinedCurveFeatureNominalEND
           {$$ = $2;
-           $$->printElement = "PointDefinedCurveFeatureNominal";
+           $$->setprintElement("PointDefinedCurveFeatureNominal");
           }
         ;
 
@@ -72583,7 +72539,7 @@ y_PointDefinedPointSamplingStrategyEnumType :
           {$$ = new PointDefinedPointSamplingStrategyEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad PointDefinedPointSamplingStrategyEnumType value");
           }
         ;
@@ -72727,7 +72683,7 @@ y_PointDefinedSurfaceFeatureDefinition_PointDefinedSurfaceFeatureDefinitionType 
           {$$ = new PointDefinedSurfaceFeatureDefinitionType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "PointDefinedSurfaceFeatureDefinition";
+           $$->setprintElement("PointDefinedSurfaceFeatureDefinition");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -72739,7 +72695,7 @@ y_PointDefinedSurfaceFeatureDefinition_PointDefinedSurfaceFeatureDefinitionType 
           y_PointDefinedSurfaceFeatureDefinitionType
           PointDefinedSurfaceFeatureDefinitionEND
           {$$ = $2;
-           $$->printElement = "PointDefinedSurfaceFeatureDefinition";
+           $$->setprintElement("PointDefinedSurfaceFeatureDefinition");
           }
         ;
 
@@ -72781,7 +72737,7 @@ y_PointDefinedSurfaceFeatureItem_PointDefinedSurfaceFeatureItemType :
           y_PointDefinedSurfaceFeatureItemType
           PointDefinedSurfaceFeatureItemEND
           {$$ = $2;
-           $$->printElement = "PointDefinedSurfaceFeatureItem";
+           $$->setprintElement("PointDefinedSurfaceFeatureItem");
           }
         ;
 
@@ -72831,7 +72787,7 @@ y_PointDefinedSurfaceFeatureMeasurement_PointDefinedSurfaceFeatureMeasurementTyp
           {$$ = new PointDefinedSurfaceFeatureMeasurementType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "PointDefinedSurfaceFeatureMeasurement";
+           $$->setprintElement("PointDefinedSurfaceFeatureMeasurement");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -72843,7 +72799,7 @@ y_PointDefinedSurfaceFeatureMeasurement_PointDefinedSurfaceFeatureMeasurementTyp
           y_PointDefinedSurfaceFeatureMeasurementType
           PointDefinedSurfaceFeatureMeasurementEND
           {$$ = $2;
-           $$->printElement = "PointDefinedSurfaceFeatureMeasurement";
+           $$->setprintElement("PointDefinedSurfaceFeatureMeasurement");
           }
         ;
 
@@ -72886,7 +72842,7 @@ y_PointDefinedSurfaceFeatureNominal_PointDefinedSurfaceFeatureNominalType :
           y_PointDefinedSurfaceFeatureNominalType
           PointDefinedSurfaceFeatureNominalEND
           {$$ = $2;
-           $$->printElement = "PointDefinedSurfaceFeatureNominal";
+           $$->setprintElement("PointDefinedSurfaceFeatureNominal");
           }
         ;
 
@@ -73068,14 +73024,14 @@ y_PointExtension_Point2dSimpleType :
           PointExtensionSTART ENDWHOLEITEM
           {$$ = new Point2dSimpleType();
            $$->Point2dSimpleTypeCheck();
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad Point2dSimpleType value");
            yyUnrefMap[$$] = $$;
           }
         | PointExtensionSTART y_Point2dSimpleType PointExtensionEND
           {$$ = $2;
            $2->Point2dSimpleTypeCheck();
-           if ($2->bad)
+           if ($2->getbad())
              return yyerror("bad Point2dSimpleType value");
           }
         ;
@@ -73137,7 +73093,7 @@ y_PointFeatureDefinition_PointFeatureDefinitionType :
           {$$ = new PointFeatureDefinitionType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "PointFeatureDefinition";
+           $$->setprintElement("PointFeatureDefinition");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -73148,7 +73104,7 @@ y_PointFeatureDefinition_PointFeatureDefinitionType :
         | PointFeatureDefinitionSTART y_PointFeatureDefinitionType
           PointFeatureDefinitionEND
           {$$ = $2;
-           $$->printElement = "PointFeatureDefinition";
+           $$->setprintElement("PointFeatureDefinition");
           }
         ;
 
@@ -73292,7 +73248,7 @@ y_PointFeatureItemType :
 y_PointFeatureItem_PointFeatureItemType :
           PointFeatureItemSTART y_PointFeatureItemType PointFeatureItemEND
           {$$ = $2;
-           $$->printElement = "PointFeatureItem";
+           $$->setprintElement("PointFeatureItem");
           }
         ;
 
@@ -73340,7 +73296,7 @@ y_PointFeatureMeasurement_PointFeatureMeasurementType :
           {$$ = new PointFeatureMeasurementType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "PointFeatureMeasurement";
+           $$->setprintElement("PointFeatureMeasurement");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -73351,7 +73307,7 @@ y_PointFeatureMeasurement_PointFeatureMeasurementType :
         | PointFeatureMeasurementSTART y_PointFeatureMeasurementType
           PointFeatureMeasurementEND
           {$$ = $2;
-           $$->printElement = "PointFeatureMeasurement";
+           $$->setprintElement("PointFeatureMeasurement");
           }
         ;
 
@@ -73493,7 +73449,7 @@ y_PointFeatureNominal_PointFeatureNominalType :
           PointFeatureNominalSTART y_PointFeatureNominalType
           PointFeatureNominalEND
           {$$ = $2;
-           $$->printElement = "PointFeatureNominal";
+           $$->setprintElement("PointFeatureNominal");
           }
         ;
 
@@ -73610,14 +73566,14 @@ y_PointMax_PointSimpleType :
           PointMaxSTART ENDWHOLEITEM
           {$$ = new PointSimpleType();
            $$->PointSimpleTypeCheck();
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad PointSimpleType value");
            yyUnrefMap[$$] = $$;
           }
         | PointMaxSTART y_PointSimpleType PointMaxEND
           {$$ = $2;
            $2->PointSimpleTypeCheck();
-           if ($2->bad)
+           if ($2->getbad())
              return yyerror("bad PointSimpleType value");
           }
         ;
@@ -73651,14 +73607,14 @@ y_PointMin_PointSimpleType :
           PointMinSTART ENDWHOLEITEM
           {$$ = new PointSimpleType();
            $$->PointSimpleTypeCheck();
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad PointSimpleType value");
            yyUnrefMap[$$] = $$;
           }
         | PointMinSTART y_PointSimpleType PointMinEND
           {$$ = $2;
            $2->PointSimpleTypeCheck();
-           if ($2->bad)
+           if ($2->getbad())
              return yyerror("bad PointSimpleType value");
           }
         ;
@@ -73668,7 +73624,7 @@ y_PointPointSamplingStrategyEnumType :
           {$$ = new PointPointSamplingStrategyEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad PointPointSamplingStrategyEnumType value");
           }
         ;
@@ -73767,7 +73723,7 @@ y_PointProfileCharacteristicDefinition_PointProfileCharacteristicDefinitionType 
           y_PointProfileCharacteristicDefinitionType
           PointProfileCharacteristicDefinitionEND
           {$$ = $2;
-           $$->printElement = "PointProfileCharacteristicDefinition";
+           $$->setprintElement("PointProfileCharacteristicDefinition");
           }
         ;
 
@@ -73810,7 +73766,7 @@ y_PointProfileCharacteristicItem_PointProfileCharacteristicItemType :
           y_PointProfileCharacteristicItemType
           PointProfileCharacteristicItemEND
           {$$ = $2;
-           $$->printElement = "PointProfileCharacteristicItem";
+           $$->setprintElement("PointProfileCharacteristicItem");
           }
         ;
 
@@ -73875,7 +73831,7 @@ y_PointProfileCharacteristicMeasurement_PointProfileCharacteristicMeasurementTyp
           y_PointProfileCharacteristicMeasurementType
           PointProfileCharacteristicMeasurementEND
           {$$ = $2;
-           $$->printElement = "PointProfileCharacteristicMeasurement";
+           $$->setprintElement("PointProfileCharacteristicMeasurement");
           }
         ;
 
@@ -73918,7 +73874,7 @@ y_PointProfileCharacteristicNominal_PointProfileCharacteristicNominalType :
           y_PointProfileCharacteristicNominalType
           PointProfileCharacteristicNominalEND
           {$$ = $2;
-           $$->printElement = "PointProfileCharacteristicNominal";
+           $$->setprintElement("PointProfileCharacteristicNominal");
           }
         ;
 
@@ -73962,7 +73918,7 @@ y_PointProfileCharacteristicStats_PointProfileCharacteristicStatsEvalType :
           y_PointProfileCharacteristicStatsEvalType
           PointProfileCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "PointProfileCharacteristicStats";
+           $$->setprintElement("PointProfileCharacteristicStats");
           }
         ;
 
@@ -74081,7 +74037,7 @@ y_PointSetReferenceRangeType :
           {$$ = new PointSetReferenceRangeType($4);
            yyUnrefMap[$$] = $$;
            free($4);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad PointSetReferenceRangeType value");
            yyUnrefMap.erase($1);
            if ($$->badAttributes($1))
@@ -74098,7 +74054,7 @@ y_PointSetReferenceSingleType :
           {$$ = new PointSetReferenceSingleType($4);
            yyUnrefMap[$$] = $$;
            free($4);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad PointSetReferenceSingleType value");
            yyUnrefMap.erase($1);
            if ($$->badAttributes($1))
@@ -74115,14 +74071,14 @@ y_PointSetReferenceWholeType :
           {$$ = new PointSetReferenceWholeType($3);
            yyUnrefMap[$$] = $$;
            free($3);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad PointSetReferenceWholeType value");
           }
         | y_LiztAttributePair ENDITEM {yyReadData = 1;} DATASTRING
           {$$ = new PointSetReferenceWholeType($4);
            yyUnrefMap[$$] = $$;
            free($4);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad PointSetReferenceWholeType value");
            yyUnrefMap.erase($1);
            if ($$->badAttributes($1))
@@ -74208,14 +74164,14 @@ y_Point_Point2dSimpleType :
           PointSTART ENDWHOLEITEM
           {$$ = new Point2dSimpleType();
            $$->Point2dSimpleTypeCheck();
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad Point2dSimpleType value");
            yyUnrefMap[$$] = $$;
           }
         | PointSTART y_Point2dSimpleType PointEND
           {$$ = $2;
            $2->Point2dSimpleTypeCheck();
-           if ($2->bad)
+           if ($2->getbad())
              return yyerror("bad Point2dSimpleType value");
           }
         ;
@@ -74223,7 +74179,7 @@ y_Point_Point2dSimpleType :
 y_Point_PointEntityType :
           PointSTART y_PointEntityType PointEND
           {$$ = $2;
-           $$->printElement = "Point";
+           $$->setprintElement("Point");
           }
         ;
 
@@ -74237,7 +74193,7 @@ y_PointingLaser_LaserType_0 :
           {$$ = 0;}
         | PointingLaserSTART y_LaserType PointingLaserEND
           {$$ = $2;
-           $$->printElement = "PointingLaser";
+           $$->setprintElement("PointingLaser");
           }
         ;
 
@@ -74379,7 +74335,7 @@ y_Polyline12CoreTypeChoicePair :
 y_Polyline12Core_Polyline12CoreType :
           Polyline12CoreSTART y_Polyline12CoreType Polyline12CoreEND
           {$$ = $2;
-           $$->printElement = "Polyline12Core";
+           $$->setprintElement("Polyline12Core");
           }
         ;
 
@@ -74403,7 +74359,7 @@ y_Polyline12Type :
 y_Polyline12_Polyline12Type :
           Polyline12START y_Polyline12Type Polyline12END
           {$$ = $2;
-           $$->printElement = "Polyline12";
+           $$->setprintElement("Polyline12");
           }
         ;
 
@@ -74442,7 +74398,7 @@ y_Polyline13CoreTypeChoicePair :
 y_Polyline13Core_Polyline13CoreType :
           Polyline13CoreSTART y_Polyline13CoreType Polyline13CoreEND
           {$$ = $2;
-           $$->printElement = "Polyline13Core";
+           $$->setprintElement("Polyline13Core");
           }
         ;
 
@@ -74468,7 +74424,7 @@ y_Polyline13Type :
 y_Polyline13_Polyline13Type :
           Polyline13START y_Polyline13Type Polyline13END
           {$$ = $2;
-           $$->printElement = "Polyline13";
+           $$->setprintElement("Polyline13");
           }
         ;
 
@@ -74541,7 +74497,7 @@ y_PositionCapabilityCalculationEnumType :
           {$$ = new PositionCapabilityCalculationEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad PositionCapabilityCalculationEnumType value");
           }
         ;
@@ -74622,7 +74578,7 @@ y_PositionCharacteristicDefinition_PositionCharacteristicDefinitionType :
           y_PositionCharacteristicDefinitionType
           PositionCharacteristicDefinitionEND
           {$$ = $2;
-           $$->printElement = "PositionCharacteristicDefinition";
+           $$->setprintElement("PositionCharacteristicDefinition");
           }
         ;
 
@@ -74664,7 +74620,7 @@ y_PositionCharacteristicItem_PositionCharacteristicItemType :
           PositionCharacteristicItemSTART y_PositionCharacteristicItemType
           PositionCharacteristicItemEND
           {$$ = $2;
-           $$->printElement = "PositionCharacteristicItem";
+           $$->setprintElement("PositionCharacteristicItem");
           }
         ;
 
@@ -74727,7 +74683,7 @@ y_PositionCharacteristicMeasurement_PositionCharacteristicMeasurementType :
           y_PositionCharacteristicMeasurementType
           PositionCharacteristicMeasurementEND
           {$$ = $2;
-           $$->printElement = "PositionCharacteristicMeasurement";
+           $$->setprintElement("PositionCharacteristicMeasurement");
           }
         ;
 
@@ -74770,7 +74726,7 @@ y_PositionCharacteristicNominal_PositionCharacteristicNominalType :
           y_PositionCharacteristicNominalType
           PositionCharacteristicNominalEND
           {$$ = $2;
-           $$->printElement = "PositionCharacteristicNominal";
+           $$->setprintElement("PositionCharacteristicNominal");
           }
         ;
 
@@ -74810,7 +74766,7 @@ y_PositionCharacteristicStats_PositionCharacteristicStatsEvalType :
           y_PositionCharacteristicStatsEvalType
           PositionCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "PositionCharacteristicStats";
+           $$->setprintElement("PositionCharacteristicStats");
           }
         ;
 
@@ -74819,7 +74775,7 @@ y_PositionCoordinateMethodEnumType :
           {$$ = new PositionCoordinateMethodEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad PositionCoordinateMethodEnumType value");
           }
         ;
@@ -74907,7 +74863,7 @@ y_PositiveDecimalType :
           {$$ = new PositiveDecimalType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad PositiveDecimalType value");
           }
         ;
@@ -74939,7 +74895,7 @@ y_PpThreshold_CriterionDecimalType :
 y_Pp_StatsMeasuredDecimalType :
           PpSTART y_StatsMeasuredDecimalType PpEND
           {$$ = $2;
-           $$->printElement = "Pp";
+           $$->setprintElement("Pp");
           }
         ;
 
@@ -74951,7 +74907,7 @@ y_PpkThreshold_CriterionDecimalType :
 y_Ppk_StatsMeasuredDecimalType :
           PpkSTART y_StatsMeasuredDecimalType PpkEND
           {$$ = $2;
-           $$->printElement = "Ppk";
+           $$->setprintElement("Ppk");
           }
         ;
 
@@ -75039,7 +74995,7 @@ y_PrecedenceEnumType :
           {$$ = new PrecedenceEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad PrecedenceEnumType value");
           }
         ;
@@ -75154,7 +75110,7 @@ y_PressureCriterion_CriterionPressureType_0 :
         | PressureCriterionSTART y_CriterionPressureType
           PressureCriterionEND
           {$$ = $2;
-           $$->printElement = "PressureCriterion";
+           $$->setprintElement("PressureCriterion");
           }
         ;
 
@@ -75185,7 +75141,7 @@ y_PressureStatsSummary_SummaryStatisticsPressureType :
           PressureStatsSummarySTART y_SummaryStatisticsPressureType
           PressureStatsSummaryEND
           {$$ = $2;
-           $$->printElement = "PressureStatsSummary";
+           $$->setprintElement("PressureStatsSummary");
           }
         ;
 
@@ -75272,14 +75228,14 @@ y_PressureValueType :
           {$$ = new PressureValueType($3);
            yyUnrefMap[$$] = $$;
            free($3);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad PressureValueType value");
           }
         | y_LiztAttributePair ENDITEM {yyReadData = 1;} DATASTRING
           {$$ = new PressureValueType($4);
            yyUnrefMap[$$] = $$;
            free($4);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad PressureValueType value");
            yyUnrefMap.erase($1);
            if ($$->badAttributes($1))
@@ -75316,7 +75272,7 @@ y_PrimaryAlignment_PrimaryAlignmentOperationType :
           PrimaryAlignmentSTART y_PrimaryAlignmentOperationType
           PrimaryAlignmentEND
           {$$ = $2;
-           $$->printElement = "PrimaryAlignment";
+           $$->setprintElement("PrimaryAlignment");
           }
         ;
 
@@ -75465,7 +75421,7 @@ y_ProbeTipType :
 y_ProbeTip_ProbeTipType :
           ProbeTipSTART y_ProbeTipType ProbeTipEND
           {$$ = $2;
-           $$->printElement = "ProbeTip";
+           $$->setprintElement("ProbeTip");
           }
         ;
 
@@ -75545,7 +75501,7 @@ y_ProcessDifferenceStudyPlan_ProcessDifferenceStudyPlanType :
           ProcessDifferenceStudyPlanSTART y_ProcessDifferenceStudyPlanType
           ProcessDifferenceStudyPlanEND
           {$$ = $2;
-           $$->printElement = "ProcessDifferenceStudyPlan";
+           $$->setprintElement("ProcessDifferenceStudyPlan");
           }
         ;
 
@@ -75622,7 +75578,7 @@ y_ProcessDifferenceStudyResults_ProcessDifferenceStudyResultsType :
           y_ProcessDifferenceStudyResultsType
           ProcessDifferenceStudyResultsEND
           {$$ = $2;
-           $$->printElement = "ProcessDifferenceStudyResults";
+           $$->setprintElement("ProcessDifferenceStudyResults");
           }
         ;
 
@@ -75663,7 +75619,7 @@ y_ProcessVariation_StatsMeasuredDecimalType :
           ProcessVariationSTART y_StatsMeasuredDecimalType
           ProcessVariationEND
           {$$ = $2;
-           $$->printElement = "ProcessVariation";
+           $$->setprintElement("ProcessVariation");
           }
         ;
 
@@ -75718,7 +75674,7 @@ y_ProductDataQualityAreaEnumType :
           {$$ = new ProductDataQualityAreaEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad ProductDataQualityAreaEnumType value");
           }
         ;
@@ -76079,7 +76035,7 @@ y_ProductionStudyPlan_ProductionStudyPlanType :
           ProductionStudyPlanSTART y_ProductionStudyPlanType
           ProductionStudyPlanEND
           {$$ = $2;
-           $$->printElement = "ProductionStudyPlan";
+           $$->setprintElement("ProductionStudyPlan");
           }
         ;
 
@@ -76151,7 +76107,7 @@ y_ProductionStudyResults_ProductionStudyResultsType :
           ProductionStudyResultsSTART y_ProductionStudyResultsType
           ProductionStudyResultsEND
           {$$ = $2;
-           $$->printElement = "ProductionStudyResults";
+           $$->setprintElement("ProductionStudyResults");
           }
         ;
 
@@ -76220,7 +76176,7 @@ y_ProfileProjectorMeasureFeatureMethod_ProfileProjectorMeasureFeatureMethodType 
           {$$ = new ProfileProjectorMeasureFeatureMethodType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "ProfileProjectorMeasureFeatureMethod";
+           $$->setprintElement("ProfileProjectorMeasureFeatureMethod");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -76232,7 +76188,7 @@ y_ProfileProjectorMeasureFeatureMethod_ProfileProjectorMeasureFeatureMethodType 
           y_ProfileProjectorMeasureFeatureMethodType
           ProfileProjectorMeasureFeatureMethodEND
           {$$ = $2;
-           $$->printElement = "ProfileProjectorMeasureFeatureMethod";
+           $$->setprintElement("ProfileProjectorMeasureFeatureMethod");
           }
         ;
 
@@ -76299,42 +76255,42 @@ y_ProjectionPlane_BaseFeatureType :
 y_Projection_CircleProjectionType :
           ProjectionSTART y_CircleProjectionType ProjectionEND
           {$$ = $2;
-           $$->printElement = "Projection";
+           $$->setprintElement("Projection");
           }
         ;
 
 y_Projection_CircularArcProjectionType :
           ProjectionSTART y_CircularArcProjectionType ProjectionEND
           {$$ = $2;
-           $$->printElement = "Projection";
+           $$->setprintElement("Projection");
           }
         ;
 
 y_Projection_EllipseProjectionType :
           ProjectionSTART y_EllipseProjectionType ProjectionEND
           {$$ = $2;
-           $$->printElement = "Projection";
+           $$->setprintElement("Projection");
           }
         ;
 
 y_Projection_EllipticalArcProjectionType :
           ProjectionSTART y_EllipticalArcProjectionType ProjectionEND
           {$$ = $2;
-           $$->printElement = "Projection";
+           $$->setprintElement("Projection");
           }
         ;
 
 y_Projection_LineProjectionType :
           ProjectionSTART y_LineProjectionType ProjectionEND
           {$$ = $2;
-           $$->printElement = "Projection";
+           $$->setprintElement("Projection");
           }
         ;
 
 y_Projection_OppositeAngledLinesProjectionType :
           ProjectionSTART y_OppositeAngledLinesProjectionType ProjectionEND
           {$$ = $2;
-           $$->printElement = "Projection";
+           $$->setprintElement("Projection");
           }
         ;
 
@@ -76342,14 +76298,14 @@ y_Projection_OppositeParallelLinesProjectionType :
           ProjectionSTART y_OppositeParallelLinesProjectionType
           ProjectionEND
           {$$ = $2;
-           $$->printElement = "Projection";
+           $$->setprintElement("Projection");
           }
         ;
 
 y_Projection_PointFeatureProjectionType :
           ProjectionSTART y_PointFeatureProjectionType ProjectionEND
           {$$ = $2;
-           $$->printElement = "Projection";
+           $$->setprintElement("Projection");
           }
         ;
 
@@ -76516,14 +76472,14 @@ y_QIFReferenceActiveType :
           {$$ = new QIFReferenceActiveType($3);
            yyUnrefMap[$$] = $$;
            free($3);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad QIFReferenceActiveType value");
           }
         | y_LiztAttributePair ENDITEM {yyReadData = 1;} DATASTRING
           {$$ = new QIFReferenceActiveType($4);
            yyUnrefMap[$$] = $$;
            free($4);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad QIFReferenceActiveType value");
            yyUnrefMap.erase($1);
            if ($$->badAttributes($1))
@@ -76540,14 +76496,14 @@ y_QIFReferenceFullType :
           {$$ = new QIFReferenceFullType($3);
            yyUnrefMap[$$] = $$;
            free($3);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad QIFReferenceFullType value");
           }
         | y_LiztAttributePair ENDITEM {yyReadData = 1;} DATASTRING
           {$$ = new QIFReferenceFullType($4);
            yyUnrefMap[$$] = $$;
            free($4);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad QIFReferenceFullType value");
            yyUnrefMap.erase($1);
            if ($$->badAttributes($1))
@@ -76564,7 +76520,7 @@ y_QIFReferenceSimpleType :
           {$$ = new QIFReferenceSimpleType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad QIFReferenceSimpleType value");
           }
         ;
@@ -76574,14 +76530,14 @@ y_QIFReferenceType :
           {$$ = new QIFReferenceType($3);
            yyUnrefMap[$$] = $$;
            free($3);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad QIFReferenceType value");
           }
         | y_LiztAttributePair ENDITEM {yyReadData = 1;} DATASTRING
           {$$ = new QIFReferenceType($4);
            yyUnrefMap[$$] = $$;
            free($4);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad QIFReferenceType value");
            yyUnrefMap.erase($1);
            if ($$->badAttributes($1))
@@ -76621,7 +76577,7 @@ y_QPIdReferenceType :
           {$$ = new QPIdReferenceType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad QPIdReferenceType value");
           }
         ;
@@ -76639,7 +76595,7 @@ y_QPIdType :
           {$$ = new QPIdType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad QPIdType value");
           }
         ;
@@ -76726,8 +76682,10 @@ y_RAPZResolutionType :
           }
         ;
 
-y_RAPZResolution_RAPZResolutionType :
-          RAPZResolutionSTART y_RAPZResolutionType RAPZResolutionEND
+y_RAPZResolution_RAPZResolutionType_0 :
+          /* empty */
+          {$$ = 0;}
+        | RAPZResolutionSTART y_RAPZResolutionType RAPZResolutionEND
           {$$ = $2;}
         ;
 
@@ -76818,7 +76776,7 @@ y_RadiusCharacteristicDefinition_RadiusCharacteristicDefinitionType :
           y_RadiusCharacteristicDefinitionType
           RadiusCharacteristicDefinitionEND
           {$$ = $2;
-           $$->printElement = "RadiusCharacteristicDefinition";
+           $$->setprintElement("RadiusCharacteristicDefinition");
           }
         ;
 
@@ -76860,7 +76818,7 @@ y_RadiusCharacteristicItem_RadiusCharacteristicItemType :
           RadiusCharacteristicItemSTART y_RadiusCharacteristicItemType
           RadiusCharacteristicItemEND
           {$$ = $2;
-           $$->printElement = "RadiusCharacteristicItem";
+           $$->setprintElement("RadiusCharacteristicItem");
           }
         ;
 
@@ -76910,7 +76868,7 @@ y_RadiusCharacteristicMeasurement_RadiusCharacteristicMeasurementType :
           y_RadiusCharacteristicMeasurementType
           RadiusCharacteristicMeasurementEND
           {$$ = $2;
-           $$->printElement = "RadiusCharacteristicMeasurement";
+           $$->setprintElement("RadiusCharacteristicMeasurement");
           }
         ;
 
@@ -76954,7 +76912,7 @@ y_RadiusCharacteristicNominal_RadiusCharacteristicNominalType :
           RadiusCharacteristicNominalSTART
           y_RadiusCharacteristicNominalType RadiusCharacteristicNominalEND
           {$$ = $2;
-           $$->printElement = "RadiusCharacteristicNominal";
+           $$->setprintElement("RadiusCharacteristicNominal");
           }
         ;
 
@@ -76981,7 +76939,7 @@ y_RadiusCharacteristicStats_RadiusCharacteristicStatsEvalType :
           RadiusCharacteristicStatsSTART
           y_RadiusCharacteristicStatsEvalType RadiusCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "RadiusCharacteristicStats";
+           $$->setprintElement("RadiusCharacteristicStats");
           }
         ;
 
@@ -77050,7 +77008,7 @@ y_RangePointSetId_PointSetReferenceRangeType :
           RangePointSetIdSTART y_PointSetReferenceRangeType
           RangePointSetIdEND
           {$$ = $2;
-           $$->printElement = "RangePointSetId";
+           $$->setprintElement("RangePointSetId");
           }
         ;
 
@@ -77067,7 +77025,7 @@ y_Range_PointRangeType :
 y_Range_StatsMeasuredDecimalType :
           RangeSTART y_StatsMeasuredDecimalType RangeEND
           {$$ = $2;
-           $$->printElement = "Range";
+           $$->setprintElement("Range");
           }
         ;
 
@@ -77092,35 +77050,35 @@ y_Reason_ExclusionReasonType :
 y_Recompensated_CircleRecompType :
           RecompensatedSTART y_CircleRecompType RecompensatedEND
           {$$ = $2;
-           $$->printElement = "Recompensated";
+           $$->setprintElement("Recompensated");
           }
         ;
 
 y_Recompensated_CircularArcRecompType :
           RecompensatedSTART y_CircularArcRecompType RecompensatedEND
           {$$ = $2;
-           $$->printElement = "Recompensated";
+           $$->setprintElement("Recompensated");
           }
         ;
 
 y_Recompensated_ConeRecompType :
           RecompensatedSTART y_ConeRecompType RecompensatedEND
           {$$ = $2;
-           $$->printElement = "Recompensated";
+           $$->setprintElement("Recompensated");
           }
         ;
 
 y_Recompensated_ConicalSegmentRecompType :
           RecompensatedSTART y_ConicalSegmentRecompType RecompensatedEND
           {$$ = $2;
-           $$->printElement = "Recompensated";
+           $$->setprintElement("Recompensated");
           }
         ;
 
 y_Recompensated_CylinderRecompType :
           RecompensatedSTART y_CylinderRecompType RecompensatedEND
           {$$ = $2;
-           $$->printElement = "Recompensated";
+           $$->setprintElement("Recompensated");
           }
         ;
 
@@ -77128,35 +77086,35 @@ y_Recompensated_CylindricalSegmentRecompType :
           RecompensatedSTART y_CylindricalSegmentRecompType
           RecompensatedEND
           {$$ = $2;
-           $$->printElement = "Recompensated";
+           $$->setprintElement("Recompensated");
           }
         ;
 
 y_Recompensated_EllipseRecompType :
           RecompensatedSTART y_EllipseRecompType RecompensatedEND
           {$$ = $2;
-           $$->printElement = "Recompensated";
+           $$->setprintElement("Recompensated");
           }
         ;
 
 y_Recompensated_EllipticalArcRecompType :
           RecompensatedSTART y_EllipticalArcRecompType RecompensatedEND
           {$$ = $2;
-           $$->printElement = "Recompensated";
+           $$->setprintElement("Recompensated");
           }
         ;
 
 y_Recompensated_ElongatedCircleRecompType :
           RecompensatedSTART y_ElongatedCircleRecompType RecompensatedEND
           {$$ = $2;
-           $$->printElement = "Recompensated";
+           $$->setprintElement("Recompensated");
           }
         ;
 
 y_Recompensated_ElongatedCylinderRecompType :
           RecompensatedSTART y_ElongatedCylinderRecompType RecompensatedEND
           {$$ = $2;
-           $$->printElement = "Recompensated";
+           $$->setprintElement("Recompensated");
           }
         ;
 
@@ -77164,14 +77122,14 @@ y_Recompensated_ExtrudedCrossSectionRecompType :
           RecompensatedSTART y_ExtrudedCrossSectionRecompType
           RecompensatedEND
           {$$ = $2;
-           $$->printElement = "Recompensated";
+           $$->setprintElement("Recompensated");
           }
         ;
 
 y_Recompensated_LineRecompType :
           RecompensatedSTART y_LineRecompType RecompensatedEND
           {$$ = $2;
-           $$->printElement = "Recompensated";
+           $$->setprintElement("Recompensated");
           }
         ;
 
@@ -77179,7 +77137,7 @@ y_Recompensated_OppositeAngledLinesRecompType :
           RecompensatedSTART y_OppositeAngledLinesRecompType
           RecompensatedEND
           {$$ = $2;
-           $$->printElement = "Recompensated";
+           $$->setprintElement("Recompensated");
           }
         ;
 
@@ -77187,7 +77145,7 @@ y_Recompensated_OppositeAngledPlanesRecompType :
           RecompensatedSTART y_OppositeAngledPlanesRecompType
           RecompensatedEND
           {$$ = $2;
-           $$->printElement = "Recompensated";
+           $$->setprintElement("Recompensated");
           }
         ;
 
@@ -77195,7 +77153,7 @@ y_Recompensated_OppositeParallelLinesRecompType :
           RecompensatedSTART y_OppositeParallelLinesRecompType
           RecompensatedEND
           {$$ = $2;
-           $$->printElement = "Recompensated";
+           $$->setprintElement("Recompensated");
           }
         ;
 
@@ -77203,21 +77161,21 @@ y_Recompensated_OppositeParallelPlanesRecompType :
           RecompensatedSTART y_OppositeParallelPlanesRecompType
           RecompensatedEND
           {$$ = $2;
-           $$->printElement = "Recompensated";
+           $$->setprintElement("Recompensated");
           }
         ;
 
 y_Recompensated_PlaneRecompType :
           RecompensatedSTART y_PlaneRecompType RecompensatedEND
           {$$ = $2;
-           $$->printElement = "Recompensated";
+           $$->setprintElement("Recompensated");
           }
         ;
 
 y_Recompensated_PointDefinedCurveRecompType :
           RecompensatedSTART y_PointDefinedCurveRecompType RecompensatedEND
           {$$ = $2;
-           $$->printElement = "Recompensated";
+           $$->setprintElement("Recompensated");
           }
         ;
 
@@ -77225,21 +77183,21 @@ y_Recompensated_PointDefinedSurfaceRecompType :
           RecompensatedSTART y_PointDefinedSurfaceRecompType
           RecompensatedEND
           {$$ = $2;
-           $$->printElement = "Recompensated";
+           $$->setprintElement("Recompensated");
           }
         ;
 
 y_Recompensated_SphereRecompType :
           RecompensatedSTART y_SphereRecompType RecompensatedEND
           {$$ = $2;
-           $$->printElement = "Recompensated";
+           $$->setprintElement("Recompensated");
           }
         ;
 
 y_Recompensated_SphericalSegmentRecompType :
           RecompensatedSTART y_SphericalSegmentRecompType RecompensatedEND
           {$$ = $2;
-           $$->printElement = "Recompensated";
+           $$->setprintElement("Recompensated");
           }
         ;
 
@@ -77247,28 +77205,28 @@ y_Recompensated_SurfaceOfRevolutionRecompType :
           RecompensatedSTART y_SurfaceOfRevolutionRecompType
           RecompensatedEND
           {$$ = $2;
-           $$->printElement = "Recompensated";
+           $$->setprintElement("Recompensated");
           }
         ;
 
 y_Recompensated_ThreadedFeatureRecompType :
           RecompensatedSTART y_ThreadedFeatureRecompType RecompensatedEND
           {$$ = $2;
-           $$->printElement = "Recompensated";
+           $$->setprintElement("Recompensated");
           }
         ;
 
 y_Recompensated_ToroidalSegmentRecompType :
           RecompensatedSTART y_ToroidalSegmentRecompType RecompensatedEND
           {$$ = $2;
-           $$->printElement = "Recompensated";
+           $$->setprintElement("Recompensated");
           }
         ;
 
 y_Recompensated_TorusRecompType :
           RecompensatedSTART y_TorusRecompType RecompensatedEND
           {$$ = $2;
-           $$->printElement = "Recompensated";
+           $$->setprintElement("Recompensated");
           }
         ;
 
@@ -77334,7 +77292,7 @@ y_ReducedDatumEnumType :
           {$$ = new ReducedDatumEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad ReducedDatumEnumType value");
           }
         ;
@@ -77352,7 +77310,7 @@ y_ReferenceFeatureAssociationSpecificationElementEnumType :
           {$$ = new ReferenceFeatureAssociationSpecificationElementEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad ReferenceFeatureAssociationSpecificationElementEnumType value");
           }
         ;
@@ -77381,7 +77339,7 @@ y_ReferenceFeatureAssociationSpecificationParameterEnumType :
           {$$ = new ReferenceFeatureAssociationSpecificationParameterEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad ReferenceFeatureAssociationSpecificationParameterEnumType value");
           }
         ;
@@ -77408,7 +77366,7 @@ y_ReferenceLengthStats_StatsLinearType_0 :
         | ReferenceLengthStatsSTART y_StatsLinearType
           ReferenceLengthStatsEND
           {$$ = $2;
-           $$->printElement = "ReferenceLengthStats";
+           $$->setprintElement("ReferenceLengthStats");
           }
         ;
 
@@ -77428,7 +77386,7 @@ y_ReferenceLineBeginPoint_Point2dSimpleType :
           ReferenceLineBeginPointSTART ENDWHOLEITEM
           {$$ = new Point2dSimpleType();
            $$->Point2dSimpleTypeCheck();
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad Point2dSimpleType value");
            yyUnrefMap[$$] = $$;
           }
@@ -77436,7 +77394,7 @@ y_ReferenceLineBeginPoint_Point2dSimpleType :
           ReferenceLineBeginPointEND
           {$$ = $2;
            $2->Point2dSimpleTypeCheck();
-           if ($2->bad)
+           if ($2->getbad())
              return yyerror("bad Point2dSimpleType value");
           }
         ;
@@ -77445,7 +77403,7 @@ y_ReferenceLineEndPoint_Point2dSimpleType :
           ReferenceLineEndPointSTART ENDWHOLEITEM
           {$$ = new Point2dSimpleType();
            $$->Point2dSimpleTypeCheck();
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad Point2dSimpleType value");
            yyUnrefMap[$$] = $$;
           }
@@ -77453,7 +77411,7 @@ y_ReferenceLineEndPoint_Point2dSimpleType :
           ReferenceLineEndPointEND
           {$$ = $2;
            $2->Point2dSimpleTypeCheck();
-           if ($2->bad)
+           if ($2->getbad())
              return yyerror("bad Point2dSimpleType value");
           }
         ;
@@ -77468,7 +77426,7 @@ y_ReferencedComponentEnumType :
           {$$ = new ReferencedComponentEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad ReferencedComponentEnumType value");
           }
         ;
@@ -77512,7 +77470,7 @@ y_RegressionIntercept_StatsMeasuredDecimalType :
           RegressionInterceptSTART y_StatsMeasuredDecimalType
           RegressionInterceptEND
           {$$ = $2;
-           $$->printElement = "RegressionIntercept";
+           $$->setprintElement("RegressionIntercept");
           }
         ;
 
@@ -77520,7 +77478,7 @@ y_RegressionSlope_StatsMeasuredDecimalType :
           RegressionSlopeSTART y_StatsMeasuredDecimalType
           RegressionSlopeEND
           {$$ = $2;
-           $$->printElement = "RegressionSlope";
+           $$->setprintElement("RegressionSlope");
           }
         ;
 
@@ -77528,14 +77486,14 @@ y_RelativeAppraiserVariation_StatsMeasuredDecimalType :
           RelativeAppraiserVariationSTART y_StatsMeasuredDecimalType
           RelativeAppraiserVariationEND
           {$$ = $2;
-           $$->printElement = "RelativeAppraiserVariation";
+           $$->setprintElement("RelativeAppraiserVariation");
           }
         ;
 
 y_RelativeBias_StatsMeasuredDecimalType :
           RelativeBiasSTART y_StatsMeasuredDecimalType RelativeBiasEND
           {$$ = $2;
-           $$->printElement = "RelativeBias";
+           $$->setprintElement("RelativeBias");
           }
         ;
 
@@ -77557,7 +77515,7 @@ y_RelativeEquipmentVariation_StatsMeasuredDecimalType :
           RelativeEquipmentVariationSTART y_StatsMeasuredDecimalType
           RelativeEquipmentVariationEND
           {$$ = $2;
-           $$->printElement = "RelativeEquipmentVariation";
+           $$->setprintElement("RelativeEquipmentVariation");
           }
         ;
 
@@ -77565,7 +77523,7 @@ y_RelativeGageRandR_StatsMeasuredDecimalType :
           RelativeGageRandRSTART y_StatsMeasuredDecimalType
           RelativeGageRandREND
           {$$ = $2;
-           $$->printElement = "RelativeGageRandR";
+           $$->setprintElement("RelativeGageRandR");
           }
         ;
 
@@ -77604,7 +77562,7 @@ y_RelativeInteraction_StatsMeasuredDecimalType :
           RelativeInteractionSTART y_StatsMeasuredDecimalType
           RelativeInteractionEND
           {$$ = $2;
-           $$->printElement = "RelativeInteraction";
+           $$->setprintElement("RelativeInteraction");
           }
         ;
 
@@ -77625,7 +77583,7 @@ y_RelativeLinearity_StatsMeasuredDecimalType :
           RelativeLinearitySTART y_StatsMeasuredDecimalType
           RelativeLinearityEND
           {$$ = $2;
-           $$->printElement = "RelativeLinearity";
+           $$->setprintElement("RelativeLinearity");
           }
         ;
 
@@ -77646,7 +77604,7 @@ y_RelativePartVariation_StatsMeasuredDecimalType :
           RelativePartVariationSTART y_StatsMeasuredDecimalType
           RelativePartVariationEND
           {$$ = $2;
-           $$->printElement = "RelativePartVariation";
+           $$->setprintElement("RelativePartVariation");
           }
         ;
 
@@ -77654,7 +77612,7 @@ y_RelativeTotalVariation_StatsMeasuredDecimalType :
           RelativeTotalVariationSTART y_StatsMeasuredDecimalType
           RelativeTotalVariationEND
           {$$ = $2;
-           $$->printElement = "RelativeTotalVariation";
+           $$->setprintElement("RelativeTotalVariation");
           }
         ;
 
@@ -77826,7 +77784,7 @@ y_RetrievalMethodEnumType :
           {$$ = new RetrievalMethodEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad RetrievalMethodEnumType value");
           }
         ;
@@ -77866,7 +77824,7 @@ y_Revolution23CoreType :
 y_Revolution23Core_Revolution23CoreType :
           Revolution23CoreSTART y_Revolution23CoreType Revolution23CoreEND
           {$$ = $2;
-           $$->printElement = "Revolution23Core";
+           $$->setprintElement("Revolution23Core");
           }
         ;
 
@@ -77892,7 +77850,7 @@ y_Revolution23Type :
 y_Revolution23_Revolution23Type :
           Revolution23START y_Revolution23Type Revolution23END
           {$$ = $2;
-           $$->printElement = "Revolution23";
+           $$->setprintElement("Revolution23");
           }
         ;
 
@@ -77909,7 +77867,7 @@ y_RootComponent_ElementReferenceType :
 y_RootMeanSquare_StatsMeasuredDecimalType :
           RootMeanSquareSTART y_StatsMeasuredDecimalType RootMeanSquareEND
           {$$ = $2;
-           $$->printElement = "RootMeanSquare";
+           $$->setprintElement("RootMeanSquare");
           }
         ;
 
@@ -77938,7 +77896,7 @@ y_RotaryAxisType :
 y_RotaryAxis_RotaryAxisType :
           RotaryAxisSTART y_RotaryAxisType RotaryAxisEND
           {$$ = $2;
-           $$->printElement = "RotaryAxis";
+           $$->setprintElement("RotaryAxis");
           }
         ;
 
@@ -77992,7 +77950,7 @@ y_RoughnessApplicabilityEnumType :
           {$$ = new RoughnessApplicabilityEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad RoughnessApplicabilityEnumType value");
           }
         ;
@@ -78003,7 +77961,7 @@ y_RoughnessAverageValueStats_StatsWithTolLinearType_0 :
         | RoughnessAverageValueStatsSTART y_StatsWithTolLinearType
           RoughnessAverageValueStatsEND
           {$$ = $2;
-           $$->printElement = "RoughnessAverageValueStats";
+           $$->setprintElement("RoughnessAverageValueStats");
           }
         ;
 
@@ -78025,7 +77983,7 @@ y_RoughnessLayEnumType :
           {$$ = new RoughnessLayEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad RoughnessLayEnumType value");
           }
         ;
@@ -78035,7 +77993,7 @@ y_RoughnessObtentionEnumType :
           {$$ = new RoughnessObtentionEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad RoughnessObtentionEnumType value");
           }
         ;
@@ -78069,7 +78027,7 @@ y_Ruled23CoreType :
 y_Ruled23Core_Ruled23CoreType :
           Ruled23CoreSTART y_Ruled23CoreType Ruled23CoreEND
           {$$ = $2;
-           $$->printElement = "Ruled23Core";
+           $$->setprintElement("Ruled23Core");
           }
         ;
 
@@ -78094,7 +78052,7 @@ y_Ruled23Type :
 y_Ruled23_Ruled23Type :
           Ruled23START y_Ruled23Type Ruled23END
           {$$ = $2;
-           $$->printElement = "Ruled23";
+           $$->setprintElement("Ruled23");
           }
         ;
 
@@ -78245,7 +78203,7 @@ y_SamplingCategoryIsType :
 y_SamplingCategoryIs_SamplingCategoryIsType :
           SamplingCategoryIsSTART y_SamplingCategoryIsType ENDWHOLEITEM
           {$$ = $2;
-           $$->printElement = "SamplingCategoryIs";
+           $$->setprintElement("SamplingCategoryIs");
           }
         ;
 
@@ -78268,7 +78226,7 @@ y_SamplingIntervalEnumType :
           {$$ = new SamplingIntervalEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad SamplingIntervalEnumType value");
           }
         ;
@@ -78444,7 +78402,7 @@ y_SavedView_SavedViewType :
           {$$ = new SavedViewType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "SavedView";
+           $$->setprintElement("SavedView");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -78454,7 +78412,7 @@ y_SavedView_SavedViewType :
           }
         | SavedViewSTART y_SavedViewType SavedViewEND
           {$$ = $2;
-           $$->printElement = "SavedView";
+           $$->setprintElement("SavedView");
           }
         ;
 
@@ -78503,7 +78461,7 @@ y_ScaleReferenceEnumType :
           {$$ = new ScaleReferenceEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad ScaleReferenceEnumType value");
           }
         ;
@@ -78620,7 +78578,7 @@ y_SearchRadius_LinearValueType :
 y_SecondAxis_UserDefinedAxisType :
           SecondAxisSTART y_UserDefinedAxisType SecondAxisEND
           {$$ = $2;
-           $$->printElement = "SecondAxis";
+           $$->setprintElement("SecondAxis");
           }
         ;
 
@@ -78631,7 +78589,7 @@ y_SecondCompositeSegmentPositionDefinition_CompositeSegmentPositionDefinitionTyp
           y_CompositeSegmentPositionDefinitionType
           SecondCompositeSegmentPositionDefinitionEND
           {$$ = $2;
-           $$->printElement = "SecondCompositeSegmentPositionDefinition";
+           $$->setprintElement("SecondCompositeSegmentPositionDefinition");
           }
         ;
 
@@ -78642,7 +78600,7 @@ y_SecondCompositeSegmentPositionMeasurement_CompositeSegmentPositionMeasurementT
           y_CompositeSegmentPositionMeasurementType
           SecondCompositeSegmentPositionMeasurementEND
           {$$ = $2;
-           $$->printElement = "SecondCompositeSegmentPositionMeasurement";
+           $$->setprintElement("SecondCompositeSegmentPositionMeasurement");
           }
         ;
 
@@ -78650,13 +78608,13 @@ y_SecondCompositeSegmentPositionStats_CompositeSegmentPositionStatsEvalType :
           SecondCompositeSegmentPositionStatsSTART ENDWHOLEITEM
           {$$ = new CompositeSegmentPositionStatsEvalType();
            yyUnrefMap[$$] = $$;
-           $$->printElement = "SecondCompositeSegmentPositionStats";
+           $$->setprintElement("SecondCompositeSegmentPositionStats");
           }
         | SecondCompositeSegmentPositionStatsSTART
           y_CompositeSegmentPositionStatsEvalType
           SecondCompositeSegmentPositionStatsEND
           {$$ = $2;
-           $$->printElement = "SecondCompositeSegmentPositionStats";
+           $$->setprintElement("SecondCompositeSegmentPositionStats");
           }
         ;
 
@@ -78667,7 +78625,7 @@ y_SecondCompositeSegmentProfileDefinition_CompositeSegmentProfileDefinitionType_
           y_CompositeSegmentProfileDefinitionType
           SecondCompositeSegmentProfileDefinitionEND
           {$$ = $2;
-           $$->printElement = "SecondCompositeSegmentProfileDefinition";
+           $$->setprintElement("SecondCompositeSegmentProfileDefinition");
           }
         ;
 
@@ -78678,7 +78636,7 @@ y_SecondCompositeSegmentProfileMeasurement_CompositeSegmentProfileMeasurementTyp
           y_CompositeSegmentProfileMeasurementType
           SecondCompositeSegmentProfileMeasurementEND
           {$$ = $2;
-           $$->printElement = "SecondCompositeSegmentProfileMeasurement";
+           $$->setprintElement("SecondCompositeSegmentProfileMeasurement");
           }
         ;
 
@@ -78686,13 +78644,13 @@ y_SecondCompositeSegmentProfileStats_CompositeSegmentProfileStatsEvalType :
           SecondCompositeSegmentProfileStatsSTART ENDWHOLEITEM
           {$$ = new CompositeSegmentProfileStatsEvalType();
            yyUnrefMap[$$] = $$;
-           $$->printElement = "SecondCompositeSegmentProfileStats";
+           $$->setprintElement("SecondCompositeSegmentProfileStats");
           }
         | SecondCompositeSegmentProfileStatsSTART
           y_CompositeSegmentProfileStatsEvalType
           SecondCompositeSegmentProfileStatsEND
           {$$ = $2;
-           $$->printElement = "SecondCompositeSegmentProfileStats";
+           $$->setprintElement("SecondCompositeSegmentProfileStats");
           }
         ;
 
@@ -78703,7 +78661,7 @@ y_SecondCompositeSegmentSymmetryDefinition_CompositeSegmentSymmetryDefinitionTyp
           y_CompositeSegmentSymmetryDefinitionType
           SecondCompositeSegmentSymmetryDefinitionEND
           {$$ = $2;
-           $$->printElement = "SecondCompositeSegmentSymmetryDefinition";
+           $$->setprintElement("SecondCompositeSegmentSymmetryDefinition");
           }
         ;
 
@@ -78714,7 +78672,7 @@ y_SecondCompositeSegmentSymmetryMeasurement_CompositeSegmentSymmetryMeasurementT
           y_CompositeSegmentSymmetryMeasurementType
           SecondCompositeSegmentSymmetryMeasurementEND
           {$$ = $2;
-           $$->printElement = "SecondCompositeSegmentSymmetryMeasurement";
+           $$->setprintElement("SecondCompositeSegmentSymmetryMeasurement");
           }
         ;
 
@@ -78722,13 +78680,13 @@ y_SecondCompositeSegmentSymmetryStats_CompositeSegmentSymmetryStatsEvalType :
           SecondCompositeSegmentSymmetryStatsSTART ENDWHOLEITEM
           {$$ = new CompositeSegmentSymmetryStatsEvalType();
            yyUnrefMap[$$] = $$;
-           $$->printElement = "SecondCompositeSegmentSymmetryStats";
+           $$->setprintElement("SecondCompositeSegmentSymmetryStats");
           }
         | SecondCompositeSegmentSymmetryStatsSTART
           y_CompositeSegmentSymmetryStatsEvalType
           SecondCompositeSegmentSymmetryStatsEND
           {$$ = $2;
-           $$->printElement = "SecondCompositeSegmentSymmetryStats";
+           $$->setprintElement("SecondCompositeSegmentSymmetryStats");
           }
         ;
 
@@ -78778,14 +78736,14 @@ y_SecondLineOrigin_Point2dSimpleType :
           SecondLineOriginSTART ENDWHOLEITEM
           {$$ = new Point2dSimpleType();
            $$->Point2dSimpleTypeCheck();
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad Point2dSimpleType value");
            yyUnrefMap[$$] = $$;
           }
         | SecondLineOriginSTART y_Point2dSimpleType SecondLineOriginEND
           {$$ = $2;
            $2->Point2dSimpleTypeCheck();
-           if ($2->bad)
+           if ($2->getbad())
              return yyerror("bad Point2dSimpleType value");
           }
         ;
@@ -78816,7 +78774,7 @@ y_SecondaryAlignment_SecondaryAlignmentOperationType :
           SecondaryAlignmentSTART y_SecondaryAlignmentOperationType
           SecondaryAlignmentEND
           {$$ = $2;
-           $$->printElement = "SecondaryAlignment";
+           $$->setprintElement("SecondaryAlignment");
           }
         ;
 
@@ -78950,7 +78908,7 @@ y_SectionModifierEnumType :
           {$$ = new SectionModifierEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad SectionModifierEnumType value");
           }
         ;
@@ -79016,7 +78974,7 @@ y_SecurityClassificationEnumType :
           {$$ = new SecurityClassificationEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad SecurityClassificationEnumType value");
           }
         ;
@@ -79080,7 +79038,7 @@ y_Segment12CoreType :
 y_Segment12Core_Segment12CoreType :
           Segment12CoreSTART y_Segment12CoreType Segment12CoreEND
           {$$ = $2;
-           $$->printElement = "Segment12Core";
+           $$->setprintElement("Segment12Core");
           }
         ;
 
@@ -79104,7 +79062,7 @@ y_Segment12Type :
 y_Segment12_Segment12Type :
           Segment12START y_Segment12Type Segment12END
           {$$ = $2;
-           $$->printElement = "Segment12";
+           $$->setprintElement("Segment12");
           }
         ;
 
@@ -79128,7 +79086,7 @@ y_Segment13CoreType :
 y_Segment13Core_Segment13CoreType :
           Segment13CoreSTART y_Segment13CoreType Segment13CoreEND
           {$$ = $2;
-           $$->printElement = "Segment13Core";
+           $$->setprintElement("Segment13Core");
           }
         ;
 
@@ -79154,7 +79112,7 @@ y_Segment13Type :
 y_Segment13_Segment13Type :
           Segment13START y_Segment13Type Segment13END
           {$$ = $2;
-           $$->printElement = "Segment13";
+           $$->setprintElement("Segment13");
           }
         ;
 
@@ -79315,7 +79273,7 @@ y_ShapeClassEnumType :
           {$$ = new ShapeClassEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad ShapeClassEnumType value");
           }
         ;
@@ -79343,7 +79301,7 @@ y_ShapeClassIsType :
 y_ShapeClassIs_ShapeClassIsType :
           ShapeClassIsSTART y_ShapeClassIsType ENDWHOLEITEM
           {$$ = $2;
-           $$->printElement = "ShapeClassIs";
+           $$->setprintElement("ShapeClassIs");
           }
         ;
 
@@ -79438,7 +79396,7 @@ y_Shell_ShellType :
           {$$ = new ShellType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "Shell";
+           $$->setprintElement("Shell");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -79448,7 +79406,7 @@ y_Shell_ShellType :
           }
         | ShellSTART y_ShellType ShellEND
           {$$ = $2;
-           $$->printElement = "Shell";
+           $$->setprintElement("Shell");
           }
         ;
 
@@ -79483,12 +79441,12 @@ y_SideParameters_WeldGrooveOneSideParametersType_0 :
         | SideParametersSTART ENDWHOLEITEM
           {$$ = new WeldGrooveOneSideParametersType();
            yyUnrefMap[$$] = $$;
-           $$->printElement = "SideParameters";
+           $$->setprintElement("SideParameters");
           }
         | SideParametersSTART y_WeldGrooveOneSideParametersType
           SideParametersEND
           {$$ = $2;
-           $$->printElement = "SideParameters";
+           $$->setprintElement("SideParameters");
           }
         ;
 
@@ -79498,12 +79456,12 @@ y_SideParameters_WeldOneSideParametersExtendSizeType_0 :
         | SideParametersSTART ENDWHOLEITEM
           {$$ = new WeldOneSideParametersExtendSizeType();
            yyUnrefMap[$$] = $$;
-           $$->printElement = "SideParameters";
+           $$->setprintElement("SideParameters");
           }
         | SideParametersSTART y_WeldOneSideParametersExtendSizeType
           SideParametersEND
           {$$ = $2;
-           $$->printElement = "SideParameters";
+           $$->setprintElement("SideParameters");
           }
         ;
 
@@ -79513,12 +79471,12 @@ y_SideParameters_WeldOneSideParametersExtendType_0 :
         | SideParametersSTART ENDWHOLEITEM
           {$$ = new WeldOneSideParametersExtendType();
            yyUnrefMap[$$] = $$;
-           $$->printElement = "SideParameters";
+           $$->setprintElement("SideParameters");
           }
         | SideParametersSTART y_WeldOneSideParametersExtendType
           SideParametersEND
           {$$ = $2;
-           $$->printElement = "SideParameters";
+           $$->setprintElement("SideParameters");
           }
         ;
 
@@ -79528,12 +79486,12 @@ y_SideParameters_WeldPlugOneSideParametersType_0 :
         | SideParametersSTART ENDWHOLEITEM
           {$$ = new WeldPlugOneSideParametersType();
            yyUnrefMap[$$] = $$;
-           $$->printElement = "SideParameters";
+           $$->setprintElement("SideParameters");
           }
         | SideParametersSTART y_WeldPlugOneSideParametersType
           SideParametersEND
           {$$ = $2;
-           $$->printElement = "SideParameters";
+           $$->setprintElement("SideParameters");
           }
         ;
 
@@ -79543,12 +79501,12 @@ y_SideParameters_WeldSpotOneSideParametersType_0 :
         | SideParametersSTART ENDWHOLEITEM
           {$$ = new WeldSpotOneSideParametersType();
            yyUnrefMap[$$] = $$;
-           $$->printElement = "SideParameters";
+           $$->setprintElement("SideParameters");
           }
         | SideParametersSTART y_WeldSpotOneSideParametersType
           SideParametersEND
           {$$ = $2;
-           $$->printElement = "SideParameters";
+           $$->setprintElement("SideParameters");
           }
         ;
 
@@ -79606,7 +79564,7 @@ y_SignificantDimensionEnumType :
           {$$ = new SignificantDimensionEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad SignificantDimensionEnumType value");
           }
         ;
@@ -79657,7 +79615,7 @@ y_SimpleStudyPlanType :
 y_SimpleStudyPlan_SimpleStudyPlanType :
           SimpleStudyPlanSTART y_SimpleStudyPlanType SimpleStudyPlanEND
           {$$ = $2;
-           $$->printElement = "SimpleStudyPlan";
+           $$->setprintElement("SimpleStudyPlan");
           }
         ;
 
@@ -79727,7 +79685,7 @@ y_SimpleStudyResults_SimpleStudyResultsType :
           SimpleStudyResultsSTART y_SimpleStudyResultsType
           SimpleStudyResultsEND
           {$$ = $2;
-           $$->printElement = "SimpleStudyResults";
+           $$->setprintElement("SimpleStudyResults");
           }
         ;
 
@@ -79783,7 +79741,7 @@ y_SimpleTactileProbeSensor_SimpleTactileProbeSensorType :
           SimpleTactileProbeSensorSTART y_SimpleTactileProbeSensorType
           SimpleTactileProbeSensorEND
           {$$ = $2;
-           $$->printElement = "SimpleTactileProbeSensor";
+           $$->setprintElement("SimpleTactileProbeSensor");
           }
         ;
 
@@ -79792,7 +79750,7 @@ y_SimplifiedRepresentationFormEnumType :
           {$$ = new SimplifiedRepresentationFormEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad SimplifiedRepresentationFormEnumType value");
           }
         ;
@@ -79896,7 +79854,7 @@ y_SimplifiedRepresentation_SimplifiedRepresentationType :
           SimplifiedRepresentationSTART y_SimplifiedRepresentationType
           SimplifiedRepresentationEND
           {$$ = $2;
-           $$->printElement = "SimplifiedRepresentation";
+           $$->setprintElement("SimplifiedRepresentation");
           }
         ;
 
@@ -79905,7 +79863,7 @@ y_SimultaneousRequirementEnumType :
           {$$ = new SimultaneousRequirementEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad SimultaneousRequirementEnumType value");
           }
         ;
@@ -80004,7 +79962,7 @@ y_SineBarType :
 y_SineBar_SineBarType :
           SineBarSTART y_SineBarType SineBarEND
           {$$ = $2;
-           $$->printElement = "SineBar";
+           $$->setprintElement("SineBar");
           }
         ;
 
@@ -80012,7 +79970,7 @@ y_SingleLeadSpecification_SingleLeadThreadSpecificationType :
           SingleLeadSpecificationSTART y_SingleLeadThreadSpecificationType
           SingleLeadSpecificationEND
           {$$ = $2;
-           $$->printElement = "SingleLeadSpecification";
+           $$->setprintElement("SingleLeadSpecification");
           }
         ;
 
@@ -80051,7 +80009,7 @@ y_SingleNestingIndexFilterSymbolEnumType :
           {$$ = new SingleNestingIndexFilterSymbolEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad SingleNestingIndexFilterSymbolEnumType value");
           }
         ;
@@ -80113,7 +80071,7 @@ y_SinglePointSetId_PointSetReferenceSingleType :
           SinglePointSetIdSTART y_PointSetReferenceSingleType
           SinglePointSetIdEND
           {$$ = $2;
-           $$->printElement = "SinglePointSetId";
+           $$->setprintElement("SinglePointSetId");
           }
         ;
 
@@ -80136,11 +80094,11 @@ y_Size_CartesianWorkingVolumeType_0 :
         | SizeSTART ENDWHOLEITEM
           {$$ = new CartesianWorkingVolumeType();
            yyUnrefMap[$$] = $$;
-           $$->printElement = "Size";
+           $$->setprintElement("Size");
           }
         | SizeSTART y_CartesianWorkingVolumeType SizeEND
           {$$ = $2;
-           $$->printElement = "Size";
+           $$->setprintElement("Size");
           }
         ;
 
@@ -80164,7 +80122,7 @@ y_SkewGrouping_CriterionIntegerType :
 y_Skew_StatsMeasuredDecimalType :
           SkewSTART y_StatsMeasuredDecimalType SkewEND
           {$$ = $2;
-           $$->printElement = "Skew";
+           $$->setprintElement("Skew");
           }
         ;
 
@@ -80173,7 +80131,7 @@ y_SlotEndEnumType :
           {$$ = new SlotEndEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad SlotEndEnumType value");
           }
         ;
@@ -80330,14 +80288,14 @@ y_SpecifiedDecimalType :
           {$$ = new SpecifiedDecimalType($3);
            yyUnrefMap[$$] = $$;
            free($3);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad SpecifiedDecimalType value");
           }
         | y_LiztAttributePair ENDITEM {yyReadData = 1;} DATASTRING
           {$$ = new SpecifiedDecimalType($4);
            yyUnrefMap[$$] = $$;
            free($4);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad SpecifiedDecimalType value");
            yyUnrefMap.erase($1);
            if ($$->badAttributes($1))
@@ -80377,7 +80335,7 @@ y_SpeedCriterion_CriterionSpeedType_0 :
           {$$ = 0;}
         | SpeedCriterionSTART y_CriterionSpeedType SpeedCriterionEND
           {$$ = $2;
-           $$->printElement = "SpeedCriterion";
+           $$->setprintElement("SpeedCriterion");
           }
         ;
 
@@ -80408,7 +80366,7 @@ y_SpeedStatsSummary_SummaryStatisticsSpeedType :
           SpeedStatsSummarySTART y_SummaryStatisticsSpeedType
           SpeedStatsSummaryEND
           {$$ = $2;
-           $$->printElement = "SpeedStatsSummary";
+           $$->setprintElement("SpeedStatsSummary");
           }
         ;
 
@@ -80495,14 +80453,14 @@ y_SpeedValueType :
           {$$ = new SpeedValueType($3);
            yyUnrefMap[$$] = $$;
            free($3);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad SpeedValueType value");
           }
         | y_LiztAttributePair ENDITEM {yyReadData = 1;} DATASTRING
           {$$ = new SpeedValueType($4);
            yyUnrefMap[$$] = $$;
            free($4);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad SpeedValueType value");
            yyUnrefMap.erase($1);
            if ($$->badAttributes($1))
@@ -80544,7 +80502,7 @@ y_Sphere23CoreType :
 y_Sphere23Core_Sphere23CoreType :
           Sphere23CoreSTART y_Sphere23CoreType Sphere23CoreEND
           {$$ = $2;
-           $$->printElement = "Sphere23Core";
+           $$->setprintElement("Sphere23Core");
           }
         ;
 
@@ -80570,7 +80528,7 @@ y_Sphere23Type :
 y_Sphere23_Sphere23Type :
           Sphere23START y_Sphere23Type Sphere23END
           {$$ = $2;
-           $$->printElement = "Sphere23";
+           $$->setprintElement("Sphere23");
           }
         ;
 
@@ -80722,7 +80680,7 @@ y_SphereFeatureDefinition_SphereFeatureDefinitionType :
           SphereFeatureDefinitionSTART y_SphereFeatureDefinitionType
           SphereFeatureDefinitionEND
           {$$ = $2;
-           $$->printElement = "SphereFeatureDefinition";
+           $$->setprintElement("SphereFeatureDefinition");
           }
         ;
 
@@ -80763,7 +80721,7 @@ y_SphereFeatureItem_SphereFeatureItemType :
           SphereFeatureItemSTART y_SphereFeatureItemType
           SphereFeatureItemEND
           {$$ = $2;
-           $$->printElement = "SphereFeatureItem";
+           $$->setprintElement("SphereFeatureItem");
           }
         ;
 
@@ -80822,7 +80780,7 @@ y_SphereFeatureMeasurement_SphereFeatureMeasurementType :
           {$$ = new SphereFeatureMeasurementType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "SphereFeatureMeasurement";
+           $$->setprintElement("SphereFeatureMeasurement");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -80833,7 +80791,7 @@ y_SphereFeatureMeasurement_SphereFeatureMeasurementType :
         | SphereFeatureMeasurementSTART y_SphereFeatureMeasurementType
           SphereFeatureMeasurementEND
           {$$ = $2;
-           $$->printElement = "SphereFeatureMeasurement";
+           $$->setprintElement("SphereFeatureMeasurement");
           }
         ;
 
@@ -80877,7 +80835,7 @@ y_SphereFeatureNominal_SphereFeatureNominalType :
           SphereFeatureNominalSTART y_SphereFeatureNominalType
           SphereFeatureNominalEND
           {$$ = $2;
-           $$->printElement = "SphereFeatureNominal";
+           $$->setprintElement("SphereFeatureNominal");
           }
         ;
 
@@ -80924,7 +80882,7 @@ y_SpherePointSamplingStrategyEnumType :
           {$$ = new SpherePointSamplingStrategyEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad SpherePointSamplingStrategyEnumType value");
           }
         ;
@@ -81036,7 +80994,7 @@ y_SphericalDiameterCharacteristicDefinition_SphericalDiameterCharacteristicDefin
           y_SphericalDiameterCharacteristicDefinitionType
           SphericalDiameterCharacteristicDefinitionEND
           {$$ = $2;
-           $$->printElement = "SphericalDiameterCharacteristicDefinition";
+           $$->setprintElement("SphericalDiameterCharacteristicDefinition");
           }
         ;
 
@@ -81079,7 +81037,7 @@ y_SphericalDiameterCharacteristicItem_SphericalDiameterCharacteristicItemType :
           y_SphericalDiameterCharacteristicItemType
           SphericalDiameterCharacteristicItemEND
           {$$ = $2;
-           $$->printElement = "SphericalDiameterCharacteristicItem";
+           $$->setprintElement("SphericalDiameterCharacteristicItem");
           }
         ;
 
@@ -81129,7 +81087,7 @@ y_SphericalDiameterCharacteristicMeasurement_SphericalDiameterCharacteristicMeas
           y_SphericalDiameterCharacteristicMeasurementType
           SphericalDiameterCharacteristicMeasurementEND
           {$$ = $2;
-           $$->printElement = "SphericalDiameterCharacteristicMeasurement";
+           $$->setprintElement("SphericalDiameterCharacteristicMeasurement");
           }
         ;
 
@@ -81174,7 +81132,7 @@ y_SphericalDiameterCharacteristicNominal_SphericalDiameterCharacteristicNominalT
           y_SphericalDiameterCharacteristicNominalType
           SphericalDiameterCharacteristicNominalEND
           {$$ = $2;
-           $$->printElement = "SphericalDiameterCharacteristicNominal";
+           $$->setprintElement("SphericalDiameterCharacteristicNominal");
           }
         ;
 
@@ -81202,7 +81160,7 @@ y_SphericalDiameterCharacteristicStats_SphericalDiameterCharacteristicStatsEvalT
           y_SphericalDiameterCharacteristicStatsEvalType
           SphericalDiameterCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "SphericalDiameterCharacteristicStats";
+           $$->setprintElement("SphericalDiameterCharacteristicStats");
           }
         ;
 
@@ -81252,7 +81210,7 @@ y_SphericalRadiusCharacteristicDefinition_SphericalRadiusCharacteristicDefinitio
           y_SphericalRadiusCharacteristicDefinitionType
           SphericalRadiusCharacteristicDefinitionEND
           {$$ = $2;
-           $$->printElement = "SphericalRadiusCharacteristicDefinition";
+           $$->setprintElement("SphericalRadiusCharacteristicDefinition");
           }
         ;
 
@@ -81295,7 +81253,7 @@ y_SphericalRadiusCharacteristicItem_SphericalRadiusCharacteristicItemType :
           y_SphericalRadiusCharacteristicItemType
           SphericalRadiusCharacteristicItemEND
           {$$ = $2;
-           $$->printElement = "SphericalRadiusCharacteristicItem";
+           $$->setprintElement("SphericalRadiusCharacteristicItem");
           }
         ;
 
@@ -81345,7 +81303,7 @@ y_SphericalRadiusCharacteristicMeasurement_SphericalRadiusCharacteristicMeasurem
           y_SphericalRadiusCharacteristicMeasurementType
           SphericalRadiusCharacteristicMeasurementEND
           {$$ = $2;
-           $$->printElement = "SphericalRadiusCharacteristicMeasurement";
+           $$->setprintElement("SphericalRadiusCharacteristicMeasurement");
           }
         ;
 
@@ -81390,7 +81348,7 @@ y_SphericalRadiusCharacteristicNominal_SphericalRadiusCharacteristicNominalType 
           y_SphericalRadiusCharacteristicNominalType
           SphericalRadiusCharacteristicNominalEND
           {$$ = $2;
-           $$->printElement = "SphericalRadiusCharacteristicNominal";
+           $$->setprintElement("SphericalRadiusCharacteristicNominal");
           }
         ;
 
@@ -81418,7 +81376,7 @@ y_SphericalRadiusCharacteristicStats_SphericalRadiusCharacteristicStatsEvalType 
           y_SphericalRadiusCharacteristicStatsEvalType
           SphericalRadiusCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "SphericalRadiusCharacteristicStats";
+           $$->setprintElement("SphericalRadiusCharacteristicStats");
           }
         ;
 
@@ -81429,7 +81387,7 @@ y_SphericalResolu_1197_SphericalResolu_1197_Type :
 
 y_SphericalResolu_1197_Type :
           y_CombinedSphericalResolution_CombinedSphericalResolutionType
-          y_RAPZResolution_RAPZResolutionType
+          y_RAPZResolution_RAPZResolutionType_0
           {$$ = new SphericalResolu_1197_Type($1, $2);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
@@ -81466,7 +81424,7 @@ y_SphericalResolution_SphericalResolutionType :
           SphericalResolutionSTART y_SphericalResolutionType
           SphericalResolutionEND
           {$$ = $2;
-           $$->printElement = "SphericalResolution";
+           $$->setprintElement("SphericalResolution");
           }
         ;
 
@@ -81612,7 +81570,7 @@ y_SphericalSegmentFeatureDefinition_SphericalSegmentFeatureDefinitionType :
           y_SphericalSegmentFeatureDefinitionType
           SphericalSegmentFeatureDefinitionEND
           {$$ = $2;
-           $$->printElement = "SphericalSegmentFeatureDefinition";
+           $$->setprintElement("SphericalSegmentFeatureDefinition");
           }
         ;
 
@@ -81653,7 +81611,7 @@ y_SphericalSegmentFeatureItem_SphericalSegmentFeatureItemType :
           SphericalSegmentFeatureItemSTART
           y_SphericalSegmentFeatureItemType SphericalSegmentFeatureItemEND
           {$$ = $2;
-           $$->printElement = "SphericalSegmentFeatureItem";
+           $$->setprintElement("SphericalSegmentFeatureItem");
           }
         ;
 
@@ -81713,7 +81671,7 @@ y_SphericalSegmentFeatureMeasurement_SphericalSegmentFeatureMeasurementType :
           {$$ = new SphericalSegmentFeatureMeasurementType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "SphericalSegmentFeatureMeasurement";
+           $$->setprintElement("SphericalSegmentFeatureMeasurement");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -81725,7 +81683,7 @@ y_SphericalSegmentFeatureMeasurement_SphericalSegmentFeatureMeasurementType :
           y_SphericalSegmentFeatureMeasurementType
           SphericalSegmentFeatureMeasurementEND
           {$$ = $2;
-           $$->printElement = "SphericalSegmentFeatureMeasurement";
+           $$->setprintElement("SphericalSegmentFeatureMeasurement");
           }
         ;
 
@@ -81770,7 +81728,7 @@ y_SphericalSegmentFeatureNominal_SphericalSegmentFeatureNominalType :
           y_SphericalSegmentFeatureNominalType
           SphericalSegmentFeatureNominalEND
           {$$ = $2;
-           $$->printElement = "SphericalSegmentFeatureNominal";
+           $$->setprintElement("SphericalSegmentFeatureNominal");
           }
         ;
 
@@ -81866,7 +81824,7 @@ y_SphericalWorkingVolume_SphericalWorkingVolumeType :
           SphericalWorkingVolumeSTART y_SphericalWorkingVolumeType
           SphericalWorkingVolumeEND
           {$$ = $2;
-           $$->printElement = "SphericalWorkingVolume";
+           $$->setprintElement("SphericalWorkingVolume");
           }
         ;
 
@@ -81954,7 +81912,7 @@ y_SphericityCharacteristicDefinition_SphericityCharacteristicDefinitionType :
           y_SphericityCharacteristicDefinitionType
           SphericityCharacteristicDefinitionEND
           {$$ = $2;
-           $$->printElement = "SphericityCharacteristicDefinition";
+           $$->setprintElement("SphericityCharacteristicDefinition");
           }
         ;
 
@@ -81997,7 +81955,7 @@ y_SphericityCharacteristicItem_SphericityCharacteristicItemType :
           y_SphericityCharacteristicItemType
           SphericityCharacteristicItemEND
           {$$ = $2;
-           $$->printElement = "SphericityCharacteristicItem";
+           $$->setprintElement("SphericityCharacteristicItem");
           }
         ;
 
@@ -82049,7 +82007,7 @@ y_SphericityCharacteristicMeasurement_SphericityCharacteristicMeasurementType :
           y_SphericityCharacteristicMeasurementType
           SphericityCharacteristicMeasurementEND
           {$$ = $2;
-           $$->printElement = "SphericityCharacteristicMeasurement";
+           $$->setprintElement("SphericityCharacteristicMeasurement");
           }
         ;
 
@@ -82090,7 +82048,7 @@ y_SphericityCharacteristicNominal_SphericityCharacteristicNominalType :
           y_SphericityCharacteristicNominalType
           SphericityCharacteristicNominalEND
           {$$ = $2;
-           $$->printElement = "SphericityCharacteristicNominal";
+           $$->setprintElement("SphericityCharacteristicNominal");
           }
         ;
 
@@ -82124,7 +82082,7 @@ y_SphericityCharacteristicStats_SphericityCharacteristicStatsEvalType :
           y_SphericityCharacteristicStatsEvalType
           SphericityCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "SphericityCharacteristicStats";
+           $$->setprintElement("SphericityCharacteristicStats");
           }
         ;
 
@@ -82149,7 +82107,7 @@ y_Spline12CoreType :
 y_Spline12Core_Spline12CoreType :
           Spline12CoreSTART y_Spline12CoreType Spline12CoreEND
           {$$ = $2;
-           $$->printElement = "Spline12Core";
+           $$->setprintElement("Spline12Core");
           }
         ;
 
@@ -82173,7 +82131,7 @@ y_Spline12Type :
 y_Spline12_Spline12Type :
           Spline12START y_Spline12Type Spline12END
           {$$ = $2;
-           $$->printElement = "Spline12";
+           $$->setprintElement("Spline12");
           }
         ;
 
@@ -82198,7 +82156,7 @@ y_Spline13CoreType :
 y_Spline13Core_Spline13CoreType :
           Spline13CoreSTART y_Spline13CoreType Spline13CoreEND
           {$$ = $2;
-           $$->printElement = "Spline13Core";
+           $$->setprintElement("Spline13Core");
           }
         ;
 
@@ -82224,7 +82182,7 @@ y_Spline13Type :
 y_Spline13_Spline13Type :
           Spline13START y_Spline13Type Spline13END
           {$$ = $2;
-           $$->printElement = "Spline13";
+           $$->setprintElement("Spline13");
           }
         ;
 
@@ -82263,7 +82221,7 @@ y_Spline23CoreType :
 y_Spline23Core_Spline23CoreType :
           Spline23CoreSTART y_Spline23CoreType Spline23CoreEND
           {$$ = $2;
-           $$->printElement = "Spline23Core";
+           $$->setprintElement("Spline23Core");
           }
         ;
 
@@ -82289,7 +82247,7 @@ y_Spline23Type :
 y_Spline23_Spline23Type :
           Spline23START y_Spline23Type Spline23END
           {$$ = $2;
-           $$->printElement = "Spline23";
+           $$->setprintElement("Spline23");
           }
         ;
 
@@ -82346,7 +82304,7 @@ y_SquareCharacteristicDefinition_SquareCharacteristicDefinitionType :
           y_SquareCharacteristicDefinitionType
           SquareCharacteristicDefinitionEND
           {$$ = $2;
-           $$->printElement = "SquareCharacteristicDefinition";
+           $$->setprintElement("SquareCharacteristicDefinition");
           }
         ;
 
@@ -82388,7 +82346,7 @@ y_SquareCharacteristicItem_SquareCharacteristicItemType :
           SquareCharacteristicItemSTART y_SquareCharacteristicItemType
           SquareCharacteristicItemEND
           {$$ = $2;
-           $$->printElement = "SquareCharacteristicItem";
+           $$->setprintElement("SquareCharacteristicItem");
           }
         ;
 
@@ -82438,7 +82396,7 @@ y_SquareCharacteristicMeasurement_SquareCharacteristicMeasurementType :
           y_SquareCharacteristicMeasurementType
           SquareCharacteristicMeasurementEND
           {$$ = $2;
-           $$->printElement = "SquareCharacteristicMeasurement";
+           $$->setprintElement("SquareCharacteristicMeasurement");
           }
         ;
 
@@ -82482,7 +82440,7 @@ y_SquareCharacteristicNominal_SquareCharacteristicNominalType :
           SquareCharacteristicNominalSTART
           y_SquareCharacteristicNominalType SquareCharacteristicNominalEND
           {$$ = $2;
-           $$->printElement = "SquareCharacteristicNominal";
+           $$->setprintElement("SquareCharacteristicNominal");
           }
         ;
 
@@ -82509,7 +82467,7 @@ y_SquareCharacteristicStats_SquareCharacteristicStatsEvalType :
           SquareCharacteristicStatsSTART
           y_SquareCharacteristicStatsEvalType SquareCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "SquareCharacteristicStats";
+           $$->setprintElement("SquareCharacteristicStats");
           }
         ;
 
@@ -82559,7 +82517,7 @@ y_StabilityStudyPlan_StabilityStudyPlanType :
           StabilityStudyPlanSTART y_StabilityStudyPlanType
           StabilityStudyPlanEND
           {$$ = $2;
-           $$->printElement = "StabilityStudyPlan";
+           $$->setprintElement("StabilityStudyPlan");
           }
         ;
 
@@ -82629,7 +82587,7 @@ y_StabilityStudyResults_StabilityStudyResultsType :
           StabilityStudyResultsSTART y_StabilityStudyResultsType
           StabilityStudyResultsEND
           {$$ = $2;
-           $$->printElement = "StabilityStudyResults";
+           $$->setprintElement("StabilityStudyResults");
           }
         ;
 
@@ -82686,7 +82644,7 @@ y_StandardDeviation_StatsMeasuredDecimalType :
           StandardDeviationSTART y_StatsMeasuredDecimalType
           StandardDeviationEND
           {$$ = $2;
-           $$->printElement = "StandardDeviation";
+           $$->setprintElement("StandardDeviation");
           }
         ;
 
@@ -82755,7 +82713,7 @@ y_StandardsOrganizationEnumType :
           {$$ = new StandardsOrganizationEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad StandardsOrganizationEnumType value");
           }
         ;
@@ -82822,14 +82780,14 @@ y_StartPoint_Point2dSimpleType :
           StartPointSTART ENDWHOLEITEM
           {$$ = new Point2dSimpleType();
            $$->Point2dSimpleTypeCheck();
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad Point2dSimpleType value");
            yyUnrefMap[$$] = $$;
           }
         | StartPointSTART y_Point2dSimpleType StartPointEND
           {$$ = $2;
            $2->Point2dSimpleTypeCheck();
-           if ($2->bad)
+           if ($2->getbad())
              return yyerror("bad Point2dSimpleType value");
           }
         ;
@@ -82838,14 +82796,14 @@ y_StartPoint_PointSimpleType :
           StartPointSTART ENDWHOLEITEM
           {$$ = new PointSimpleType();
            $$->PointSimpleTypeCheck();
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad PointSimpleType value");
            yyUnrefMap[$$] = $$;
           }
         | StartPointSTART y_PointSimpleType StartPointEND
           {$$ = $2;
            $2->PointSimpleTypeCheck();
-           if ($2->bad)
+           if ($2->getbad())
              return yyerror("bad PointSimpleType value");
           }
         ;
@@ -83252,7 +83210,7 @@ y_StatsEvalStatusEnumType :
           {$$ = new StatsEvalStatusEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad StatsEvalStatusEnumType value");
           }
         ;
@@ -83544,7 +83502,7 @@ y_StatsValuesEnumType :
           {$$ = new StatsValuesEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad StatsValuesEnumType value");
           }
         ;
@@ -83553,7 +83511,7 @@ y_StatsValuesPerChar_ListAccumulatedStatsValuesType :
           StatsValuesPerCharSTART y_ListAccumulatedStatsValuesType
           StatsValuesPerCharEND
           {$$ = $2;
-           $$->printElement = "StatsValuesPerChar";
+           $$->setprintElement("StatsValuesPerChar");
           }
         ;
 
@@ -83561,7 +83519,7 @@ y_StatsValuesPerSubgroup_ListSubgroupStatsValuesType :
           StatsValuesPerSubgroupSTART y_ListSubgroupStatsValuesType
           StatsValuesPerSubgroupEND
           {$$ = $2;
-           $$->printElement = "StatsValuesPerSubgroup";
+           $$->setprintElement("StatsValuesPerSubgroup");
           }
         ;
 
@@ -84076,7 +84034,7 @@ y_StraightnessCharacteristicDefinition_StraightnessCharacteristicDefinitionType 
           y_StraightnessCharacteristicDefinitionType
           StraightnessCharacteristicDefinitionEND
           {$$ = $2;
-           $$->printElement = "StraightnessCharacteristicDefinition";
+           $$->setprintElement("StraightnessCharacteristicDefinition");
           }
         ;
 
@@ -84119,7 +84077,7 @@ y_StraightnessCharacteristicItem_StraightnessCharacteristicItemType :
           y_StraightnessCharacteristicItemType
           StraightnessCharacteristicItemEND
           {$$ = $2;
-           $$->printElement = "StraightnessCharacteristicItem";
+           $$->setprintElement("StraightnessCharacteristicItem");
           }
         ;
 
@@ -84177,7 +84135,7 @@ y_StraightnessCharacteristicMeasurement_StraightnessCharacteristicMeasurementTyp
           y_StraightnessCharacteristicMeasurementType
           StraightnessCharacteristicMeasurementEND
           {$$ = $2;
-           $$->printElement = "StraightnessCharacteristicMeasurement";
+           $$->setprintElement("StraightnessCharacteristicMeasurement");
           }
         ;
 
@@ -84220,7 +84178,7 @@ y_StraightnessCharacteristicNominal_StraightnessCharacteristicNominalType :
           y_StraightnessCharacteristicNominalType
           StraightnessCharacteristicNominalEND
           {$$ = $2;
-           $$->printElement = "StraightnessCharacteristicNominal";
+           $$->setprintElement("StraightnessCharacteristicNominal");
           }
         ;
 
@@ -84258,7 +84216,7 @@ y_StraightnessCharacteristicStats_StraightnessCharacteristicStatsEvalType :
           y_StraightnessCharacteristicStatsEvalType
           StraightnessCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "StraightnessCharacteristicStats";
+           $$->setprintElement("StraightnessCharacteristicStats");
           }
         ;
 
@@ -84408,7 +84366,7 @@ y_StructuredLightSensor_StructuredLightSensorType :
           StructuredLightSensorSTART y_StructuredLightSensorType
           StructuredLightSensorEND
           {$$ = $2;
-           $$->printElement = "StructuredLightSensor";
+           $$->setprintElement("StructuredLightSensor");
           }
         ;
 
@@ -84543,7 +84501,7 @@ y_SubCurves_ArraySubCurve13Type :
 y_SubgroupAverages_SubgroupDecimalsType :
           SubgroupAveragesSTART y_SubgroupDecimalsType SubgroupAveragesEND
           {$$ = $2;
-           $$->printElement = "SubgroupAverages";
+           $$->setprintElement("SubgroupAverages");
           }
         ;
 
@@ -84568,7 +84526,7 @@ y_SubgroupDecimalType :
           {$$ = new SubgroupDecimalType($4);
            yyUnrefMap[$$] = $$;
            free($4);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad SubgroupDecimalType value");
            yyUnrefMap.erase($1);
            if ($$->badAttributes($1))
@@ -84599,7 +84557,7 @@ y_SubgroupDifferences_SubgroupDecimalsType :
           SubgroupDifferencesSTART y_SubgroupDecimalsType
           SubgroupDifferencesEND
           {$$ = $2;
-           $$->printElement = "SubgroupDifferences";
+           $$->setprintElement("SubgroupDifferences");
           }
         ;
 
@@ -84607,7 +84565,7 @@ y_SubgroupEffectiveNumbers_SubgroupIntegersType :
           SubgroupEffectiveNumbersSTART y_SubgroupIntegersType
           SubgroupEffectiveNumbersEND
           {$$ = $2;
-           $$->printElement = "SubgroupEffectiveNumbers";
+           $$->setprintElement("SubgroupEffectiveNumbers");
           }
         ;
 
@@ -84637,7 +84595,7 @@ y_SubgroupIntegerType :
           {$$ = new SubgroupIntegerType($4);
            yyUnrefMap[$$] = $$;
            free($4);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad SubgroupIntegerType value");
            yyUnrefMap.erase($1);
            if ($$->badAttributes($1))
@@ -84667,14 +84625,14 @@ y_SubgroupIntegersType :
 y_SubgroupMaxima_SubgroupDecimalsType :
           SubgroupMaximaSTART y_SubgroupDecimalsType SubgroupMaximaEND
           {$$ = $2;
-           $$->printElement = "SubgroupMaxima";
+           $$->setprintElement("SubgroupMaxima");
           }
         ;
 
 y_SubgroupMinima_SubgroupDecimalsType :
           SubgroupMinimaSTART y_SubgroupDecimalsType SubgroupMinimaEND
           {$$ = $2;
-           $$->printElement = "SubgroupMinima";
+           $$->setprintElement("SubgroupMinima");
           }
         ;
 
@@ -84682,7 +84640,7 @@ y_SubgroupNumbersOutOfTolerance_SubgroupIntegersType :
           SubgroupNumbersOutOfToleranceSTART y_SubgroupIntegersType
           SubgroupNumbersOutOfToleranceEND
           {$$ = $2;
-           $$->printElement = "SubgroupNumbersOutOfTolerance";
+           $$->setprintElement("SubgroupNumbersOutOfTolerance");
           }
         ;
 
@@ -84690,7 +84648,7 @@ y_SubgroupNumbersOverUpperTolerance_SubgroupIntegersType :
           SubgroupNumbersOverUpperToleranceSTART y_SubgroupIntegersType
           SubgroupNumbersOverUpperToleranceEND
           {$$ = $2;
-           $$->printElement = "SubgroupNumbersOverUpperTolerance";
+           $$->setprintElement("SubgroupNumbersOverUpperTolerance");
           }
         ;
 
@@ -84698,14 +84656,14 @@ y_SubgroupNumbersUnderLowerTolerance_SubgroupIntegersType :
           SubgroupNumbersUnderLowerToleranceSTART y_SubgroupIntegersType
           SubgroupNumbersUnderLowerToleranceEND
           {$$ = $2;
-           $$->printElement = "SubgroupNumbersUnderLowerTolerance";
+           $$->setprintElement("SubgroupNumbersUnderLowerTolerance");
           }
         ;
 
 y_SubgroupRanges_SubgroupDecimalsType :
           SubgroupRangesSTART y_SubgroupDecimalsType SubgroupRangesEND
           {$$ = $2;
-           $$->printElement = "SubgroupRanges";
+           $$->setprintElement("SubgroupRanges");
           }
         ;
 
@@ -84728,7 +84686,7 @@ y_SubgroupStatsValuesEnumType :
           {$$ = new SubgroupStatsValuesEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad SubgroupStatsValuesEnumType value");
           }
         ;
@@ -84737,7 +84695,7 @@ y_SubgroupTotalNumbers_SubgroupIntegersType :
           SubgroupTotalNumbersSTART y_SubgroupIntegersType
           SubgroupTotalNumbersEND
           {$$ = $2;
-           $$->printElement = "SubgroupTotalNumbers";
+           $$->setprintElement("SubgroupTotalNumbers");
           }
         ;
 
@@ -84848,7 +84806,7 @@ y_SubstituteFeatureAlgorithmEnumType :
           {$$ = new SubstituteFeatureAlgorithmEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad SubstituteFeatureAlgorithmEnumType value");
           }
         ;
@@ -85071,28 +85029,28 @@ y_SummariesStatisticsUserDefinedUnitType :
 y_SummaryAverage_StatsMeasuredDecimalType :
           SummaryAverageSTART y_StatsMeasuredDecimalType SummaryAverageEND
           {$$ = $2;
-           $$->printElement = "SummaryAverage";
+           $$->setprintElement("SummaryAverage");
           }
         ;
 
 y_SummaryMaximum_StatsMeasuredDecimalType :
           SummaryMaximumSTART y_StatsMeasuredDecimalType SummaryMaximumEND
           {$$ = $2;
-           $$->printElement = "SummaryMaximum";
+           $$->setprintElement("SummaryMaximum");
           }
         ;
 
 y_SummaryMinimum_StatsMeasuredDecimalType :
           SummaryMinimumSTART y_StatsMeasuredDecimalType SummaryMinimumEND
           {$$ = $2;
-           $$->printElement = "SummaryMinimum";
+           $$->setprintElement("SummaryMinimum");
           }
         ;
 
 y_SummaryRange_StatsMeasuredDecimalType :
           SummaryRangeSTART y_StatsMeasuredDecimalType SummaryRangeEND
           {$$ = $2;
-           $$->printElement = "SummaryRange";
+           $$->setprintElement("SummaryRange");
           }
         ;
 
@@ -85100,7 +85058,7 @@ y_SummaryStandardDeviation_StatsMeasuredDecimalType :
           SummaryStandardDeviationSTART y_StatsMeasuredDecimalType
           SummaryStandardDeviationEND
           {$$ = $2;
-           $$->printElement = "SummaryStandardDeviation";
+           $$->setprintElement("SummaryStandardDeviation");
           }
         ;
 
@@ -85420,7 +85378,7 @@ y_SummaryStatsValuesEnumType :
           {$$ = new SummaryStatsValuesEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad SummaryStatsValuesEnumType value");
           }
         ;
@@ -85460,7 +85418,7 @@ y_SummaryStatsValues_SummaryStatsValuesType :
 y_SummaryStats_ListSummaryStatsValuesType :
           SummaryStatsSTART y_ListSummaryStatsValuesType SummaryStatsEND
           {$$ = $2;
-           $$->printElement = "SummaryStats";
+           $$->setprintElement("SummaryStats");
           }
         ;
 
@@ -85484,7 +85442,7 @@ y_SupplementarySymbol_WeldSupplementarySymbolType_0 :
         | SupplementarySymbolSTART y_WeldSupplementarySymbolType
           SupplementarySymbolEND
           {$$ = $2;
-           $$->printElement = "SupplementarySymbol";
+           $$->setprintElement("SupplementarySymbol");
           }
         ;
 
@@ -85758,7 +85716,7 @@ y_SurfaceOfRevolutionFeatureDefinition_SurfaceOfRevolutionFeatureDefinitionType 
           y_SurfaceOfRevolutionFeatureDefinitionType
           SurfaceOfRevolutionFeatureDefinitionEND
           {$$ = $2;
-           $$->printElement = "SurfaceOfRevolutionFeatureDefinition";
+           $$->setprintElement("SurfaceOfRevolutionFeatureDefinition");
           }
         ;
 
@@ -85800,7 +85758,7 @@ y_SurfaceOfRevolutionFeatureItem_SurfaceOfRevolutionFeatureItemType :
           y_SurfaceOfRevolutionFeatureItemType
           SurfaceOfRevolutionFeatureItemEND
           {$$ = $2;
-           $$->printElement = "SurfaceOfRevolutionFeatureItem";
+           $$->setprintElement("SurfaceOfRevolutionFeatureItem");
           }
         ;
 
@@ -85854,7 +85812,7 @@ y_SurfaceOfRevolutionFeatureMeasurement_SurfaceOfRevolutionFeatureMeasurementTyp
           {$$ = new SurfaceOfRevolutionFeatureMeasurementType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "SurfaceOfRevolutionFeatureMeasurement";
+           $$->setprintElement("SurfaceOfRevolutionFeatureMeasurement");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -85866,7 +85824,7 @@ y_SurfaceOfRevolutionFeatureMeasurement_SurfaceOfRevolutionFeatureMeasurementTyp
           y_SurfaceOfRevolutionFeatureMeasurementType
           SurfaceOfRevolutionFeatureMeasurementEND
           {$$ = $2;
-           $$->printElement = "SurfaceOfRevolutionFeatureMeasurement";
+           $$->setprintElement("SurfaceOfRevolutionFeatureMeasurement");
           }
         ;
 
@@ -85912,7 +85870,7 @@ y_SurfaceOfRevolutionFeatureNominal_SurfaceOfRevolutionFeatureNominalType :
           y_SurfaceOfRevolutionFeatureNominalType
           SurfaceOfRevolutionFeatureNominalEND
           {$$ = $2;
-           $$->printElement = "SurfaceOfRevolutionFeatureNominal";
+           $$->setprintElement("SurfaceOfRevolutionFeatureNominal");
           }
         ;
 
@@ -85947,7 +85905,7 @@ y_SurfaceOfRevolutionPointSamplingStrategyEnumType :
           {$$ = new SurfaceOfRevolutionPointSamplingStrategyEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad SurfaceOfRevolutionPointSamplingStrategyEnumType value");
           }
         ;
@@ -86076,7 +86034,7 @@ y_SurfaceProfileCharacteristicDefinition_SurfaceProfileCharacteristicDefinitionT
           y_SurfaceProfileCharacteristicDefinitionType
           SurfaceProfileCharacteristicDefinitionEND
           {$$ = $2;
-           $$->printElement = "SurfaceProfileCharacteristicDefinition";
+           $$->setprintElement("SurfaceProfileCharacteristicDefinition");
           }
         ;
 
@@ -86119,7 +86077,7 @@ y_SurfaceProfileCharacteristicItem_SurfaceProfileCharacteristicItemType :
           y_SurfaceProfileCharacteristicItemType
           SurfaceProfileCharacteristicItemEND
           {$$ = $2;
-           $$->printElement = "SurfaceProfileCharacteristicItem";
+           $$->setprintElement("SurfaceProfileCharacteristicItem");
           }
         ;
 
@@ -86184,7 +86142,7 @@ y_SurfaceProfileCharacteristicMeasurement_SurfaceProfileCharacteristicMeasuremen
           y_SurfaceProfileCharacteristicMeasurementType
           SurfaceProfileCharacteristicMeasurementEND
           {$$ = $2;
-           $$->printElement = "SurfaceProfileCharacteristicMeasurement";
+           $$->setprintElement("SurfaceProfileCharacteristicMeasurement");
           }
         ;
 
@@ -86227,7 +86185,7 @@ y_SurfaceProfileCharacteristicNominal_SurfaceProfileCharacteristicNominalType :
           y_SurfaceProfileCharacteristicNominalType
           SurfaceProfileCharacteristicNominalEND
           {$$ = $2;
-           $$->printElement = "SurfaceProfileCharacteristicNominal";
+           $$->setprintElement("SurfaceProfileCharacteristicNominal");
           }
         ;
 
@@ -86271,7 +86229,7 @@ y_SurfaceProfileCharacteristicStats_SurfaceProfileCharacteristicStatsEvalType :
           y_SurfaceProfileCharacteristicStatsEvalType
           SurfaceProfileCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "SurfaceProfileCharacteristicStats";
+           $$->setprintElement("SurfaceProfileCharacteristicStats");
           }
         ;
 
@@ -86380,7 +86338,7 @@ y_SurfaceProfileNonUniformCharacteristicDefinition_SurfaceProfileNonUniformChara
           y_SurfaceProfileNonUniformCharacteristicDefinitionType
           SurfaceProfileNonUniformCharacteristicDefinitionEND
           {$$ = $2;
-           $$->printElement = "SurfaceProfileNonUniformCharacteristicDefinition";
+           $$->setprintElement("SurfaceProfileNonUniformCharacteristicDefinition");
           }
         ;
 
@@ -86423,7 +86381,7 @@ y_SurfaceProfileNonUniformCharacteristicItem_SurfaceProfileNonUniformCharacteris
           y_SurfaceProfileNonUniformCharacteristicItemType
           SurfaceProfileNonUniformCharacteristicItemEND
           {$$ = $2;
-           $$->printElement = "SurfaceProfileNonUniformCharacteristicItem";
+           $$->setprintElement("SurfaceProfileNonUniformCharacteristicItem");
           }
         ;
 
@@ -86488,7 +86446,7 @@ y_SurfaceProfileNonUniformCharacteristicMeasurement_SurfaceProfileNonUniformChar
           y_SurfaceProfileNonUniformCharacteristicMeasurementType
           SurfaceProfileNonUniformCharacteristicMeasurementEND
           {$$ = $2;
-           $$->printElement = "SurfaceProfileNonUniformCharacteristicMeasurement";
+           $$->setprintElement("SurfaceProfileNonUniformCharacteristicMeasurement");
           }
         ;
 
@@ -86531,7 +86489,7 @@ y_SurfaceProfileNonUniformCharacteristicNominal_SurfaceProfileNonUniformCharacte
           y_SurfaceProfileNonUniformCharacteristicNominalType
           SurfaceProfileNonUniformCharacteristicNominalEND
           {$$ = $2;
-           $$->printElement = "SurfaceProfileNonUniformCharacteristicNominal";
+           $$->setprintElement("SurfaceProfileNonUniformCharacteristicNominal");
           }
         ;
 
@@ -86575,7 +86533,7 @@ y_SurfaceProfileNonUniformCharacteristicStats_SurfaceProfileNonUniformCharacteri
           y_SurfaceProfileNonUniformCharacteristicStatsEvalType
           SurfaceProfileNonUniformCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "SurfaceProfileNonUniformCharacteristicStats";
+           $$->setprintElement("SurfaceProfileNonUniformCharacteristicStats");
           }
         ;
 
@@ -86642,7 +86600,7 @@ y_SurfaceTextureCharacteristicDefinition_SurfaceTextureCharacteristicDefinitionT
           y_SurfaceTextureCharacteristicDefinitionType
           SurfaceTextureCharacteristicDefinitionEND
           {$$ = $2;
-           $$->printElement = "SurfaceTextureCharacteristicDefinition";
+           $$->setprintElement("SurfaceTextureCharacteristicDefinition");
           }
         ;
 
@@ -86685,7 +86643,7 @@ y_SurfaceTextureCharacteristicItem_SurfaceTextureCharacteristicItemType :
           y_SurfaceTextureCharacteristicItemType
           SurfaceTextureCharacteristicItemEND
           {$$ = $2;
-           $$->printElement = "SurfaceTextureCharacteristicItem";
+           $$->setprintElement("SurfaceTextureCharacteristicItem");
           }
         ;
 
@@ -86731,7 +86689,7 @@ y_SurfaceTextureCharacteristicMeasurement_SurfaceTextureCharacteristicMeasuremen
           y_SurfaceTextureCharacteristicMeasurementType
           SurfaceTextureCharacteristicMeasurementEND
           {$$ = $2;
-           $$->printElement = "SurfaceTextureCharacteristicMeasurement";
+           $$->setprintElement("SurfaceTextureCharacteristicMeasurement");
           }
         ;
 
@@ -86787,7 +86745,7 @@ y_SurfaceTextureCharacteristicNominal_SurfaceTextureCharacteristicNominalType :
           y_SurfaceTextureCharacteristicNominalType
           SurfaceTextureCharacteristicNominalEND
           {$$ = $2;
-           $$->printElement = "SurfaceTextureCharacteristicNominal";
+           $$->setprintElement("SurfaceTextureCharacteristicNominal");
           }
         ;
 
@@ -86815,7 +86773,7 @@ y_SurfaceTextureCharacteristicStats_SurfaceTextureCharacteristicStatsEvalType :
           y_SurfaceTextureCharacteristicStatsEvalType
           SurfaceTextureCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "SurfaceTextureCharacteristicStats";
+           $$->setprintElement("SurfaceTextureCharacteristicStats");
           }
         ;
 
@@ -87020,7 +86978,7 @@ y_SymmetryCharacteristicDefinition_SymmetryCharacteristicDefinitionType :
           y_SymmetryCharacteristicDefinitionType
           SymmetryCharacteristicDefinitionEND
           {$$ = $2;
-           $$->printElement = "SymmetryCharacteristicDefinition";
+           $$->setprintElement("SymmetryCharacteristicDefinition");
           }
         ;
 
@@ -87062,7 +87020,7 @@ y_SymmetryCharacteristicItem_SymmetryCharacteristicItemType :
           SymmetryCharacteristicItemSTART y_SymmetryCharacteristicItemType
           SymmetryCharacteristicItemEND
           {$$ = $2;
-           $$->printElement = "SymmetryCharacteristicItem";
+           $$->setprintElement("SymmetryCharacteristicItem");
           }
         ;
 
@@ -87119,7 +87077,7 @@ y_SymmetryCharacteristicMeasurement_SymmetryCharacteristicMeasurementType :
           y_SymmetryCharacteristicMeasurementType
           SymmetryCharacteristicMeasurementEND
           {$$ = $2;
-           $$->printElement = "SymmetryCharacteristicMeasurement";
+           $$->setprintElement("SymmetryCharacteristicMeasurement");
           }
         ;
 
@@ -87160,7 +87118,7 @@ y_SymmetryCharacteristicNominal_SymmetryCharacteristicNominalType :
           y_SymmetryCharacteristicNominalType
           SymmetryCharacteristicNominalEND
           {$$ = $2;
-           $$->printElement = "SymmetryCharacteristicNominal";
+           $$->setprintElement("SymmetryCharacteristicNominal");
           }
         ;
 
@@ -87198,14 +87156,14 @@ y_SymmetryCharacteristicStats_SymmetryCharacteristicStatsEvalType :
           y_SymmetryCharacteristicStatsEvalType
           SymmetryCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "SymmetryCharacteristicStats";
+           $$->setprintElement("SymmetryCharacteristicStats");
           }
         ;
 
 y_TDistribution_StatsMeasuredDecimalType :
           TDistributionSTART y_StatsMeasuredDecimalType TDistributionEND
           {$$ = $2;
-           $$->printElement = "TDistribution";
+           $$->setprintElement("TDistribution");
           }
         ;
 
@@ -87245,7 +87203,7 @@ y_TangentFeature_BaseFeatureType :
 y_TangentFeature_SequencedBaseFeatureType :
           TangentFeatureSTART y_SequencedBaseFeatureType TangentFeatureEND
           {$$ = $2;
-           $$->printElement = "TangentFeature";
+           $$->setprintElement("TangentFeature");
           }
         ;
 
@@ -87260,28 +87218,28 @@ y_TangentPlane_XmlBoolean_0 :
 y_TangentThrough_CircleTangentThroughType :
           TangentThroughSTART y_CircleTangentThroughType TangentThroughEND
           {$$ = $2;
-           $$->printElement = "TangentThrough";
+           $$->setprintElement("TangentThrough");
           }
         ;
 
 y_TangentThrough_LineTangentThroughType :
           TangentThroughSTART y_LineTangentThroughType TangentThroughEND
           {$$ = $2;
-           $$->printElement = "TangentThrough";
+           $$->setprintElement("TangentThrough");
           }
         ;
 
 y_TangentThrough_PlaneTangentThroughType :
           TangentThroughSTART y_PlaneTangentThroughType TangentThroughEND
           {$$ = $2;
-           $$->printElement = "TangentThrough";
+           $$->setprintElement("TangentThrough");
           }
         ;
 
 y_Tangent_CircleTangentType :
           TangentSTART y_CircleTangentType TangentEND
           {$$ = $2;
-           $$->printElement = "Tangent";
+           $$->setprintElement("Tangent");
           }
         ;
 
@@ -87319,7 +87277,7 @@ y_TargetMirrorEnumType :
           {$$ = new TargetMirrorEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad TargetMirrorEnumType value");
           }
         ;
@@ -87455,7 +87413,7 @@ y_TemperatureCompensationEnumType :
           {$$ = new TemperatureCompensationEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad TemperatureCompensationEnumType value");
           }
         ;
@@ -87517,7 +87475,7 @@ y_TemperatureCriterion_CriterionTemperatureType_0 :
         | TemperatureCriterionSTART y_CriterionTemperatureType
           TemperatureCriterionEND
           {$$ = $2;
-           $$->printElement = "TemperatureCriterion";
+           $$->setprintElement("TemperatureCriterion");
           }
         ;
 
@@ -87566,7 +87524,7 @@ y_TemperatureStatsSummary_SummaryStatisticsTemperatureType :
           TemperatureStatsSummarySTART y_SummaryStatisticsTemperatureType
           TemperatureStatsSummaryEND
           {$$ = $2;
-           $$->printElement = "TemperatureStatsSummary";
+           $$->setprintElement("TemperatureStatsSummary");
           }
         ;
 
@@ -87664,14 +87622,14 @@ y_TemperatureValueType :
           {$$ = new TemperatureValueType($3);
            yyUnrefMap[$$] = $$;
            free($3);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad TemperatureValueType value");
           }
         | y_LiztAttributePair ENDITEM {yyReadData = 1;} DATASTRING
           {$$ = new TemperatureValueType($4);
            yyUnrefMap[$$] = $$;
            free($4);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad TemperatureValueType value");
            yyUnrefMap.erase($1);
            if ($$->badAttributes($1))
@@ -87727,14 +87685,14 @@ y_TerminationPoint_PointSimpleType :
           TerminationPointSTART ENDWHOLEITEM
           {$$ = new PointSimpleType();
            $$->PointSimpleTypeCheck();
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad PointSimpleType value");
            yyUnrefMap[$$] = $$;
           }
         | TerminationPointSTART y_PointSimpleType TerminationPointEND
           {$$ = $2;
            $2->PointSimpleTypeCheck();
-           if ($2->bad)
+           if ($2->getbad())
              return yyerror("bad PointSimpleType value");
           }
         ;
@@ -87779,7 +87737,7 @@ y_TextInstructionType :
 y_TextInstruction_TextInstructionType :
           TextInstructionSTART y_TextInstructionType TextInstructionEND
           {$$ = $2;
-           $$->printElement = "TextInstruction";
+           $$->setprintElement("TextInstruction");
           }
         ;
 
@@ -88177,7 +88135,7 @@ y_TheodoliteMeasureFeatureMethod_TheodoliteMeasureFeatureMethodType :
           {$$ = new TheodoliteMeasureFeatureMethodType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "TheodoliteMeasureFeatureMethod";
+           $$->setprintElement("TheodoliteMeasureFeatureMethod");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -88189,7 +88147,7 @@ y_TheodoliteMeasureFeatureMethod_TheodoliteMeasureFeatureMethodType :
           y_TheodoliteMeasureFeatureMethodType
           TheodoliteMeasureFeatureMethodEND
           {$$ = $2;
-           $$->printElement = "TheodoliteMeasureFeatureMethod";
+           $$->setprintElement("TheodoliteMeasureFeatureMethod");
           }
         ;
 
@@ -88266,7 +88224,7 @@ y_TheodoliteType :
 y_Theodolite_TheodoliteType :
           TheodoliteSTART y_TheodoliteType TheodoliteEND
           {$$ = $2;
-           $$->printElement = "Theodolite";
+           $$->setprintElement("Theodolite");
           }
         ;
 
@@ -88332,7 +88290,7 @@ y_ThicknessCharacteristicDefinition_ThicknessCharacteristicDefinitionType :
           y_ThicknessCharacteristicDefinitionType
           ThicknessCharacteristicDefinitionEND
           {$$ = $2;
-           $$->printElement = "ThicknessCharacteristicDefinition";
+           $$->setprintElement("ThicknessCharacteristicDefinition");
           }
         ;
 
@@ -88374,7 +88332,7 @@ y_ThicknessCharacteristicItem_ThicknessCharacteristicItemType :
           ThicknessCharacteristicItemSTART
           y_ThicknessCharacteristicItemType ThicknessCharacteristicItemEND
           {$$ = $2;
-           $$->printElement = "ThicknessCharacteristicItem";
+           $$->setprintElement("ThicknessCharacteristicItem");
           }
         ;
 
@@ -88424,7 +88382,7 @@ y_ThicknessCharacteristicMeasurement_ThicknessCharacteristicMeasurementType :
           y_ThicknessCharacteristicMeasurementType
           ThicknessCharacteristicMeasurementEND
           {$$ = $2;
-           $$->printElement = "ThicknessCharacteristicMeasurement";
+           $$->setprintElement("ThicknessCharacteristicMeasurement");
           }
         ;
 
@@ -88469,7 +88427,7 @@ y_ThicknessCharacteristicNominal_ThicknessCharacteristicNominalType :
           y_ThicknessCharacteristicNominalType
           ThicknessCharacteristicNominalEND
           {$$ = $2;
-           $$->printElement = "ThicknessCharacteristicNominal";
+           $$->setprintElement("ThicknessCharacteristicNominal");
           }
         ;
 
@@ -88497,14 +88455,14 @@ y_ThicknessCharacteristicStats_ThicknessCharacteristicStatsEvalType :
           y_ThicknessCharacteristicStatsEvalType
           ThicknessCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "ThicknessCharacteristicStats";
+           $$->setprintElement("ThicknessCharacteristicStats");
           }
         ;
 
 y_ThirdAxis_UserDefinedAxisType :
           ThirdAxisSTART y_UserDefinedAxisType ThirdAxisEND
           {$$ = $2;
-           $$->printElement = "ThirdAxis";
+           $$->setprintElement("ThirdAxis");
           }
         ;
 
@@ -88515,7 +88473,7 @@ y_ThirdCompositeSegmentPositionDefinition_CompositeSegmentPositionDefinitionType
           y_CompositeSegmentPositionDefinitionType
           ThirdCompositeSegmentPositionDefinitionEND
           {$$ = $2;
-           $$->printElement = "ThirdCompositeSegmentPositionDefinition";
+           $$->setprintElement("ThirdCompositeSegmentPositionDefinition");
           }
         ;
 
@@ -88526,7 +88484,7 @@ y_ThirdCompositeSegmentPositionMeasurement_CompositeSegmentPositionMeasurementTy
           y_CompositeSegmentPositionMeasurementType
           ThirdCompositeSegmentPositionMeasurementEND
           {$$ = $2;
-           $$->printElement = "ThirdCompositeSegmentPositionMeasurement";
+           $$->setprintElement("ThirdCompositeSegmentPositionMeasurement");
           }
         ;
 
@@ -88536,13 +88494,13 @@ y_ThirdCompositeSegmentPositionStats_CompositeSegmentPositionStatsEvalType_0 :
         | ThirdCompositeSegmentPositionStatsSTART ENDWHOLEITEM
           {$$ = new CompositeSegmentPositionStatsEvalType();
            yyUnrefMap[$$] = $$;
-           $$->printElement = "ThirdCompositeSegmentPositionStats";
+           $$->setprintElement("ThirdCompositeSegmentPositionStats");
           }
         | ThirdCompositeSegmentPositionStatsSTART
           y_CompositeSegmentPositionStatsEvalType
           ThirdCompositeSegmentPositionStatsEND
           {$$ = $2;
-           $$->printElement = "ThirdCompositeSegmentPositionStats";
+           $$->setprintElement("ThirdCompositeSegmentPositionStats");
           }
         ;
 
@@ -88553,7 +88511,7 @@ y_ThirdCompositeSegmentProfileDefinition_CompositeSegmentProfileDefinitionType_0
           y_CompositeSegmentProfileDefinitionType
           ThirdCompositeSegmentProfileDefinitionEND
           {$$ = $2;
-           $$->printElement = "ThirdCompositeSegmentProfileDefinition";
+           $$->setprintElement("ThirdCompositeSegmentProfileDefinition");
           }
         ;
 
@@ -88564,7 +88522,7 @@ y_ThirdCompositeSegmentProfileMeasurement_CompositeSegmentProfileMeasurementType
           y_CompositeSegmentProfileMeasurementType
           ThirdCompositeSegmentProfileMeasurementEND
           {$$ = $2;
-           $$->printElement = "ThirdCompositeSegmentProfileMeasurement";
+           $$->setprintElement("ThirdCompositeSegmentProfileMeasurement");
           }
         ;
 
@@ -88574,13 +88532,13 @@ y_ThirdCompositeSegmentProfileStats_CompositeSegmentProfileStatsEvalType_0 :
         | ThirdCompositeSegmentProfileStatsSTART ENDWHOLEITEM
           {$$ = new CompositeSegmentProfileStatsEvalType();
            yyUnrefMap[$$] = $$;
-           $$->printElement = "ThirdCompositeSegmentProfileStats";
+           $$->setprintElement("ThirdCompositeSegmentProfileStats");
           }
         | ThirdCompositeSegmentProfileStatsSTART
           y_CompositeSegmentProfileStatsEvalType
           ThirdCompositeSegmentProfileStatsEND
           {$$ = $2;
-           $$->printElement = "ThirdCompositeSegmentProfileStats";
+           $$->setprintElement("ThirdCompositeSegmentProfileStats");
           }
         ;
 
@@ -88591,7 +88549,7 @@ y_ThirdCompositeSegmentSymmetryDefinition_CompositeSegmentSymmetryDefinitionType
           y_CompositeSegmentSymmetryDefinitionType
           ThirdCompositeSegmentSymmetryDefinitionEND
           {$$ = $2;
-           $$->printElement = "ThirdCompositeSegmentSymmetryDefinition";
+           $$->setprintElement("ThirdCompositeSegmentSymmetryDefinition");
           }
         ;
 
@@ -88602,7 +88560,7 @@ y_ThirdCompositeSegmentSymmetryMeasurement_CompositeSegmentSymmetryMeasurementTy
           y_CompositeSegmentSymmetryMeasurementType
           ThirdCompositeSegmentSymmetryMeasurementEND
           {$$ = $2;
-           $$->printElement = "ThirdCompositeSegmentSymmetryMeasurement";
+           $$->setprintElement("ThirdCompositeSegmentSymmetryMeasurement");
           }
         ;
 
@@ -88612,13 +88570,13 @@ y_ThirdCompositeSegmentSymmetryStats_CompositeSegmentSymmetryStatsEvalType_0 :
         | ThirdCompositeSegmentSymmetryStatsSTART ENDWHOLEITEM
           {$$ = new CompositeSegmentSymmetryStatsEvalType();
            yyUnrefMap[$$] = $$;
-           $$->printElement = "ThirdCompositeSegmentSymmetryStats";
+           $$->setprintElement("ThirdCompositeSegmentSymmetryStats");
           }
         | ThirdCompositeSegmentSymmetryStatsSTART
           y_CompositeSegmentSymmetryStatsEvalType
           ThirdCompositeSegmentSymmetryStatsEND
           {$$ = $2;
-           $$->printElement = "ThirdCompositeSegmentSymmetryStats";
+           $$->setprintElement("ThirdCompositeSegmentSymmetryStats");
           }
         ;
 
@@ -88688,7 +88646,7 @@ y_ThreadCharacteristicDefinition_ThreadCharacteristicDefinitionType :
           y_ThreadCharacteristicDefinitionType
           ThreadCharacteristicDefinitionEND
           {$$ = $2;
-           $$->printElement = "ThreadCharacteristicDefinition";
+           $$->setprintElement("ThreadCharacteristicDefinition");
           }
         ;
 
@@ -88730,7 +88688,7 @@ y_ThreadCharacteristicItem_ThreadCharacteristicItemType :
           ThreadCharacteristicItemSTART y_ThreadCharacteristicItemType
           ThreadCharacteristicItemEND
           {$$ = $2;
-           $$->printElement = "ThreadCharacteristicItem";
+           $$->setprintElement("ThreadCharacteristicItem");
           }
         ;
 
@@ -88778,7 +88736,7 @@ y_ThreadCharacteristicMeasurement_ThreadCharacteristicMeasurementType :
           y_ThreadCharacteristicMeasurementType
           ThreadCharacteristicMeasurementEND
           {$$ = $2;
-           $$->printElement = "ThreadCharacteristicMeasurement";
+           $$->setprintElement("ThreadCharacteristicMeasurement");
           }
         ;
 
@@ -88818,7 +88776,7 @@ y_ThreadCharacteristicNominal_ThreadCharacteristicNominalType :
           ThreadCharacteristicNominalSTART
           y_ThreadCharacteristicNominalType ThreadCharacteristicNominalEND
           {$$ = $2;
-           $$->printElement = "ThreadCharacteristicNominal";
+           $$->setprintElement("ThreadCharacteristicNominal");
           }
         ;
 
@@ -88849,7 +88807,7 @@ y_ThreadCharacteristicStats_ThreadCharacteristicStatsEvalType :
           ThreadCharacteristicStatsSTART
           y_ThreadCharacteristicStatsEvalType ThreadCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "ThreadCharacteristicStats";
+           $$->setprintElement("ThreadCharacteristicStats");
           }
         ;
 
@@ -88858,7 +88816,7 @@ y_ThreadClassEnumType :
           {$$ = new ThreadClassEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad ThreadClassEnumType value");
           }
         ;
@@ -88928,7 +88886,7 @@ y_ThreadSeriesEnumType :
           {$$ = new ThreadSeriesEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad ThreadSeriesEnumType value");
           }
         ;
@@ -89050,7 +89008,7 @@ y_ThreadStats_StatsPassFailType_0 :
           {$$ = 0;}
         | ThreadStatsSTART y_StatsPassFailType ThreadStatsEND
           {$$ = $2;
-           $$->printElement = "ThreadStats";
+           $$->setprintElement("ThreadStats");
           }
         ;
 
@@ -89211,7 +89169,7 @@ y_ThreadedFeatureDefinition_ThreadedFeatureDefinitionType :
           ThreadedFeatureDefinitionSTART y_ThreadedFeatureDefinitionType
           ThreadedFeatureDefinitionEND
           {$$ = $2;
-           $$->printElement = "ThreadedFeatureDefinition";
+           $$->setprintElement("ThreadedFeatureDefinition");
           }
         ;
 
@@ -89263,7 +89221,7 @@ y_ThreadedFeatureItem_ThreadedFeatureItemType :
           ThreadedFeatureItemSTART y_ThreadedFeatureItemType
           ThreadedFeatureItemEND
           {$$ = $2;
-           $$->printElement = "ThreadedFeatureItem";
+           $$->setprintElement("ThreadedFeatureItem");
           }
         ;
 
@@ -89340,7 +89298,7 @@ y_ThreadedFeatureMeasurement_ThreadedFeatureMeasurementType :
           {$$ = new ThreadedFeatureMeasurementType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "ThreadedFeatureMeasurement";
+           $$->setprintElement("ThreadedFeatureMeasurement");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -89351,7 +89309,7 @@ y_ThreadedFeatureMeasurement_ThreadedFeatureMeasurementType :
         | ThreadedFeatureMeasurementSTART y_ThreadedFeatureMeasurementType
           ThreadedFeatureMeasurementEND
           {$$ = $2;
-           $$->printElement = "ThreadedFeatureMeasurement";
+           $$->setprintElement("ThreadedFeatureMeasurement");
           }
         ;
 
@@ -89393,7 +89351,7 @@ y_ThreadedFeatureNominal_ThreadedFeatureNominalType :
           ThreadedFeatureNominalSTART y_ThreadedFeatureNominalType
           ThreadedFeatureNominalEND
           {$$ = $2;
-           $$->printElement = "ThreadedFeatureNominal";
+           $$->setprintElement("ThreadedFeatureNominal");
           }
         ;
 
@@ -89422,7 +89380,7 @@ y_ThreadedFeatureTransformType :
 y_Through_PlaneThroughType :
           ThroughSTART y_PlaneThroughType ThroughEND
           {$$ = $2;
-           $$->printElement = "Through";
+           $$->setprintElement("Through");
           }
         ;
 
@@ -89462,7 +89420,7 @@ y_TimeCriterion_CriterionTimeType_0 :
           {$$ = 0;}
         | TimeCriterionSTART y_CriterionTimeType TimeCriterionEND
           {$$ = $2;
-           $$->printElement = "TimeCriterion";
+           $$->setprintElement("TimeCriterion");
           }
         ;
 
@@ -89471,7 +89429,7 @@ y_TimeDescriptionEnumType :
           {$$ = new TimeDescriptionEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad TimeDescriptionEnumType value");
           }
         ;
@@ -89567,7 +89525,7 @@ y_TimeStatsSummary_SummaryStatisticsTimeType :
           TimeStatsSummarySTART y_SummaryStatisticsTimeType
           TimeStatsSummaryEND
           {$$ = $2;
-           $$->printElement = "TimeStatsSummary";
+           $$->setprintElement("TimeStatsSummary");
           }
         ;
 
@@ -89654,14 +89612,14 @@ y_TimeValueType :
           {$$ = new TimeValueType($3);
            yyUnrefMap[$$] = $$;
            free($3);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad TimeValueType value");
           }
         | y_LiztAttributePair ENDITEM {yyReadData = 1;} DATASTRING
           {$$ = new TimeValueType($4);
            yyUnrefMap[$$] = $$;
            free($4);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad TimeValueType value");
            yyUnrefMap.erase($1);
            if ($$->badAttributes($1))
@@ -89684,7 +89642,7 @@ y_TimesType :
 y_Times_TimesType :
           TimesSTART y_TimesType TimesEND
           {$$ = $2;
-           $$->printElement = "Times";
+           $$->setprintElement("Times");
           }
         ;
 
@@ -89700,7 +89658,7 @@ y_TipEndGeometryEnumType :
           {$$ = new TipEndGeometryEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad TipEndGeometryEnumType value");
           }
         ;
@@ -89837,7 +89795,7 @@ y_TokenConstantType :
 y_TokenConstant_TokenConstantType :
           TokenConstantSTART y_TokenConstantType ENDWHOLEITEM
           {$$ = $2;
-           $$->printElement = "TokenConstant";
+           $$->setprintElement("TokenConstant");
           }
         ;
 
@@ -89852,7 +89810,7 @@ y_TokenEqualType :
 y_TokenEqual_TokenEqualType :
           TokenEqualSTART y_TokenEqualType TokenEqualEND
           {$$ = $2;
-           $$->printElement = "TokenEqual";
+           $$->setprintElement("TokenEqual");
           }
         ;
 
@@ -89882,7 +89840,7 @@ y_TokenParameterValue_TokenParameterValueType :
           TokenParameterValueSTART y_TokenParameterValueType
           TokenParameterValueEND
           {$$ = $2;
-           $$->printElement = "TokenParameterValue";
+           $$->setprintElement("TokenParameterValue");
           }
         ;
 
@@ -90142,7 +90100,7 @@ y_ToolWithCCDCameraSensor_ToolWithCCDCameraSensorType :
           ToolWithCCDCameraSensorSTART y_ToolWithCCDCameraSensorType
           ToolWithCCDCameraSensorEND
           {$$ = $2;
-           $$->printElement = "ToolWithCCDCameraSensor";
+           $$->setprintElement("ToolWithCCDCameraSensor");
           }
         ;
 
@@ -90180,7 +90138,7 @@ y_ToolWithCapacitiveSensor_ToolWithCapacitiveSensorType :
           ToolWithCapacitiveSensorSTART y_ToolWithCapacitiveSensorType
           ToolWithCapacitiveSensorEND
           {$$ = $2;
-           $$->printElement = "ToolWithCapacitiveSensor";
+           $$->setprintElement("ToolWithCapacitiveSensor");
           }
         ;
 
@@ -90219,7 +90177,7 @@ y_ToolWithComplexTactileProbeSensor_ToolWithComplexTactileProbeSensorType :
           y_ToolWithComplexTactileProbeSensorType
           ToolWithComplexTactileProbeSensorEND
           {$$ = $2;
-           $$->printElement = "ToolWithComplexTactileProbeSensor";
+           $$->setprintElement("ToolWithComplexTactileProbeSensor");
           }
         ;
 
@@ -90258,7 +90216,7 @@ y_ToolWithConfocalChromaticSensor_ToolWithConfocalChromaticSensorType :
           y_ToolWithConfocalChromaticSensorType
           ToolWithConfocalChromaticSensorEND
           {$$ = $2;
-           $$->printElement = "ToolWithConfocalChromaticSensor";
+           $$->setprintElement("ToolWithConfocalChromaticSensor");
           }
         ;
 
@@ -90296,7 +90254,7 @@ y_ToolWithDVRTSensor_ToolWithDVRTSensorType :
           ToolWithDVRTSensorSTART y_ToolWithDVRTSensorType
           ToolWithDVRTSensorEND
           {$$ = $2;
-           $$->printElement = "ToolWithDVRTSensor";
+           $$->setprintElement("ToolWithDVRTSensor");
           }
         ;
 
@@ -90333,7 +90291,7 @@ y_ToolWithDetachableSensors_ToolWithDetachableSensorsType :
           ToolWithDetachableSensorsSTART y_ToolWithDetachableSensorsType
           ToolWithDetachableSensorsEND
           {$$ = $2;
-           $$->printElement = "ToolWithDetachableSensors";
+           $$->setprintElement("ToolWithDetachableSensors");
           }
         ;
 
@@ -90370,7 +90328,7 @@ y_ToolWithDrawWireSensor_ToolWithDrawWireSensorType :
           ToolWithDrawWireSensorSTART y_ToolWithDrawWireSensorType
           ToolWithDrawWireSensorEND
           {$$ = $2;
-           $$->printElement = "ToolWithDrawWireSensor";
+           $$->setprintElement("ToolWithDrawWireSensor");
           }
         ;
 
@@ -90408,7 +90366,7 @@ y_ToolWithEddyCurrentSensor_ToolWithEddyCurrentSensorType :
           ToolWithEddyCurrentSensorSTART y_ToolWithEddyCurrentSensorType
           ToolWithEddyCurrentSensorEND
           {$$ = $2;
-           $$->printElement = "ToolWithEddyCurrentSensor";
+           $$->setprintElement("ToolWithEddyCurrentSensor");
           }
         ;
 
@@ -90446,7 +90404,7 @@ y_ToolWithLVDTSensor_ToolWithLVDTSensorType :
           ToolWithLVDTSensorSTART y_ToolWithLVDTSensorType
           ToolWithLVDTSensorEND
           {$$ = $2;
-           $$->printElement = "ToolWithLVDTSensor";
+           $$->setprintElement("ToolWithLVDTSensor");
           }
         ;
 
@@ -90485,7 +90443,7 @@ y_ToolWithLaserTriangulationSensor_ToolWithLaserTriangulationSensorType :
           y_ToolWithLaserTriangulationSensorType
           ToolWithLaserTriangulationSensorEND
           {$$ = $2;
-           $$->printElement = "ToolWithLaserTriangulationSensor";
+           $$->setprintElement("ToolWithLaserTriangulationSensor");
           }
         ;
 
@@ -90524,7 +90482,7 @@ y_ToolWithMagnetoInductiveSensor_ToolWithMagnetoInductiveSensorType :
           y_ToolWithMagnetoInductiveSensorType
           ToolWithMagnetoInductiveSensorEND
           {$$ = $2;
-           $$->printElement = "ToolWithMagnetoInductiveSensor";
+           $$->setprintElement("ToolWithMagnetoInductiveSensor");
           }
         ;
 
@@ -90563,7 +90521,7 @@ y_ToolWithSimpleTactileProbeSensor_ToolWithSimpleTactileProbeSensorType :
           y_ToolWithSimpleTactileProbeSensorType
           ToolWithSimpleTactileProbeSensorEND
           {$$ = $2;
-           $$->printElement = "ToolWithSimpleTactileProbeSensor";
+           $$->setprintElement("ToolWithSimpleTactileProbeSensor");
           }
         ;
 
@@ -90602,7 +90560,7 @@ y_ToolWithStructuredLightSensor_ToolWithStructuredLightSensorType :
           y_ToolWithStructuredLightSensorType
           ToolWithStructuredLightSensorEND
           {$$ = $2;
-           $$->printElement = "ToolWithStructuredLightSensor";
+           $$->setprintElement("ToolWithStructuredLightSensor");
           }
         ;
 
@@ -90640,7 +90598,7 @@ y_ToolWithUltrasonicSensor_ToolWithUltrasonicSensorType :
           ToolWithUltrasonicSensorSTART y_ToolWithUltrasonicSensorType
           ToolWithUltrasonicSensorEND
           {$$ = $2;
-           $$->printElement = "ToolWithUltrasonicSensor";
+           $$->setprintElement("ToolWithUltrasonicSensor");
           }
         ;
 
@@ -90751,7 +90709,7 @@ y_TopologyEnumType :
           {$$ = new TopologyEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad TopologyEnumType value");
           }
         ;
@@ -90935,7 +90893,7 @@ y_ToroidalSegmentFeatureDefinition_ToroidalSegmentFeatureDefinitionType :
           y_ToroidalSegmentFeatureDefinitionType
           ToroidalSegmentFeatureDefinitionEND
           {$$ = $2;
-           $$->printElement = "ToroidalSegmentFeatureDefinition";
+           $$->setprintElement("ToroidalSegmentFeatureDefinition");
           }
         ;
 
@@ -90976,7 +90934,7 @@ y_ToroidalSegmentFeatureItem_ToroidalSegmentFeatureItemType :
           ToroidalSegmentFeatureItemSTART y_ToroidalSegmentFeatureItemType
           ToroidalSegmentFeatureItemEND
           {$$ = $2;
-           $$->printElement = "ToroidalSegmentFeatureItem";
+           $$->setprintElement("ToroidalSegmentFeatureItem");
           }
         ;
 
@@ -91036,7 +90994,7 @@ y_ToroidalSegmentFeatureMeasurement_ToroidalSegmentFeatureMeasurementType :
           {$$ = new ToroidalSegmentFeatureMeasurementType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "ToroidalSegmentFeatureMeasurement";
+           $$->setprintElement("ToroidalSegmentFeatureMeasurement");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -91048,7 +91006,7 @@ y_ToroidalSegmentFeatureMeasurement_ToroidalSegmentFeatureMeasurementType :
           y_ToroidalSegmentFeatureMeasurementType
           ToroidalSegmentFeatureMeasurementEND
           {$$ = $2;
-           $$->printElement = "ToroidalSegmentFeatureMeasurement";
+           $$->setprintElement("ToroidalSegmentFeatureMeasurement");
           }
         ;
 
@@ -91094,7 +91052,7 @@ y_ToroidalSegmentFeatureNominal_ToroidalSegmentFeatureNominalType :
           y_ToroidalSegmentFeatureNominalType
           ToroidalSegmentFeatureNominalEND
           {$$ = $2;
-           $$->printElement = "ToroidalSegmentFeatureNominal";
+           $$->setprintElement("ToroidalSegmentFeatureNominal");
           }
         ;
 
@@ -91224,7 +91182,7 @@ y_ToroidicityCharacteristicDefinition_ToroidicityCharacteristicDefinitionType :
           y_ToroidicityCharacteristicDefinitionType
           ToroidicityCharacteristicDefinitionEND
           {$$ = $2;
-           $$->printElement = "ToroidicityCharacteristicDefinition";
+           $$->setprintElement("ToroidicityCharacteristicDefinition");
           }
         ;
 
@@ -91267,7 +91225,7 @@ y_ToroidicityCharacteristicItem_ToroidicityCharacteristicItemType :
           y_ToroidicityCharacteristicItemType
           ToroidicityCharacteristicItemEND
           {$$ = $2;
-           $$->printElement = "ToroidicityCharacteristicItem";
+           $$->setprintElement("ToroidicityCharacteristicItem");
           }
         ;
 
@@ -91317,7 +91275,7 @@ y_ToroidicityCharacteristicMeasurement_ToroidicityCharacteristicMeasurementType 
           y_ToroidicityCharacteristicMeasurementType
           ToroidicityCharacteristicMeasurementEND
           {$$ = $2;
-           $$->printElement = "ToroidicityCharacteristicMeasurement";
+           $$->setprintElement("ToroidicityCharacteristicMeasurement");
           }
         ;
 
@@ -91358,7 +91316,7 @@ y_ToroidicityCharacteristicNominal_ToroidicityCharacteristicNominalType :
           y_ToroidicityCharacteristicNominalType
           ToroidicityCharacteristicNominalEND
           {$$ = $2;
-           $$->printElement = "ToroidicityCharacteristicNominal";
+           $$->setprintElement("ToroidicityCharacteristicNominal");
           }
         ;
 
@@ -91392,7 +91350,7 @@ y_ToroidicityCharacteristicStats_ToroidicityCharacteristicStatsEvalType :
           y_ToroidicityCharacteristicStatsEvalType
           ToroidicityCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "ToroidicityCharacteristicStats";
+           $$->setprintElement("ToroidicityCharacteristicStats");
           }
         ;
 
@@ -91429,7 +91387,7 @@ y_Torus23CoreType :
 y_Torus23Core_Torus23CoreType :
           Torus23CoreSTART y_Torus23CoreType Torus23CoreEND
           {$$ = $2;
-           $$->printElement = "Torus23Core";
+           $$->setprintElement("Torus23Core");
           }
         ;
 
@@ -91454,7 +91412,7 @@ y_Torus23Type :
 y_Torus23_Torus23Type :
           Torus23START y_Torus23Type Torus23END
           {$$ = $2;
-           $$->printElement = "Torus23";
+           $$->setprintElement("Torus23");
           }
         ;
 
@@ -91607,7 +91565,7 @@ y_TorusFeatureDefinition_TorusFeatureDefinitionType :
           TorusFeatureDefinitionSTART y_TorusFeatureDefinitionType
           TorusFeatureDefinitionEND
           {$$ = $2;
-           $$->printElement = "TorusFeatureDefinition";
+           $$->setprintElement("TorusFeatureDefinition");
           }
         ;
 
@@ -91647,7 +91605,7 @@ y_TorusFeatureItemType :
 y_TorusFeatureItem_TorusFeatureItemType :
           TorusFeatureItemSTART y_TorusFeatureItemType TorusFeatureItemEND
           {$$ = $2;
-           $$->printElement = "TorusFeatureItem";
+           $$->setprintElement("TorusFeatureItem");
           }
         ;
 
@@ -91706,7 +91664,7 @@ y_TorusFeatureMeasurement_TorusFeatureMeasurementType :
           {$$ = new TorusFeatureMeasurementType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "TorusFeatureMeasurement";
+           $$->setprintElement("TorusFeatureMeasurement");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -91717,7 +91675,7 @@ y_TorusFeatureMeasurement_TorusFeatureMeasurementType :
         | TorusFeatureMeasurementSTART y_TorusFeatureMeasurementType
           TorusFeatureMeasurementEND
           {$$ = $2;
-           $$->printElement = "TorusFeatureMeasurement";
+           $$->setprintElement("TorusFeatureMeasurement");
           }
         ;
 
@@ -91762,7 +91720,7 @@ y_TorusFeatureNominal_TorusFeatureNominalType :
           TorusFeatureNominalSTART y_TorusFeatureNominalType
           TorusFeatureNominalEND
           {$$ = $2;
-           $$->printElement = "TorusFeatureNominal";
+           $$->setprintElement("TorusFeatureNominal");
           }
         ;
 
@@ -91860,7 +91818,7 @@ y_TotalMagnification_XmlDecimal_0 :
 y_TotalNumber_StatsNonNegativeIntegerType :
           TotalNumberSTART y_StatsNonNegativeIntegerType TotalNumberEND
           {$$ = $2;
-           $$->printElement = "TotalNumber";
+           $$->setprintElement("TotalNumber");
           }
         ;
 
@@ -91920,7 +91878,7 @@ y_TotalRunoutCharacteristicDefinition_TotalRunoutCharacteristicDefinitionType :
           y_TotalRunoutCharacteristicDefinitionType
           TotalRunoutCharacteristicDefinitionEND
           {$$ = $2;
-           $$->printElement = "TotalRunoutCharacteristicDefinition";
+           $$->setprintElement("TotalRunoutCharacteristicDefinition");
           }
         ;
 
@@ -91963,7 +91921,7 @@ y_TotalRunoutCharacteristicItem_TotalRunoutCharacteristicItemType :
           y_TotalRunoutCharacteristicItemType
           TotalRunoutCharacteristicItemEND
           {$$ = $2;
-           $$->printElement = "TotalRunoutCharacteristicItem";
+           $$->setprintElement("TotalRunoutCharacteristicItem");
           }
         ;
 
@@ -92014,7 +91972,7 @@ y_TotalRunoutCharacteristicMeasurement_TotalRunoutCharacteristicMeasurementType 
           y_TotalRunoutCharacteristicMeasurementType
           TotalRunoutCharacteristicMeasurementEND
           {$$ = $2;
-           $$->printElement = "TotalRunoutCharacteristicMeasurement";
+           $$->setprintElement("TotalRunoutCharacteristicMeasurement");
           }
         ;
 
@@ -92055,7 +92013,7 @@ y_TotalRunoutCharacteristicNominal_TotalRunoutCharacteristicNominalType :
           y_TotalRunoutCharacteristicNominalType
           TotalRunoutCharacteristicNominalEND
           {$$ = $2;
-           $$->printElement = "TotalRunoutCharacteristicNominal";
+           $$->setprintElement("TotalRunoutCharacteristicNominal");
           }
         ;
 
@@ -92091,14 +92049,14 @@ y_TotalRunoutCharacteristicStats_TotalRunoutCharacteristicStatsEvalType :
           y_TotalRunoutCharacteristicStatsEvalType
           TotalRunoutCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "TotalRunoutCharacteristicStats";
+           $$->setprintElement("TotalRunoutCharacteristicStats");
           }
         ;
 
 y_TotalVariation_StatsMeasuredDecimalType :
           TotalVariationSTART y_StatsMeasuredDecimalType TotalVariationEND
           {$$ = $2;
-           $$->printElement = "TotalVariation";
+           $$->setprintElement("TotalVariation");
           }
         ;
 
@@ -92345,49 +92303,49 @@ y_TransformRotationType :
 y_Transform_CircleTransformType :
           TransformSTART y_CircleTransformType TransformEND
           {$$ = $2;
-           $$->printElement = "Transform";
+           $$->setprintElement("Transform");
           }
         ;
 
 y_Transform_CircularArcTransformType :
           TransformSTART y_CircularArcTransformType TransformEND
           {$$ = $2;
-           $$->printElement = "Transform";
+           $$->setprintElement("Transform");
           }
         ;
 
 y_Transform_ConeTransformType :
           TransformSTART y_ConeTransformType TransformEND
           {$$ = $2;
-           $$->printElement = "Transform";
+           $$->setprintElement("Transform");
           }
         ;
 
 y_Transform_ConicalSegmentTransformType :
           TransformSTART y_ConicalSegmentTransformType TransformEND
           {$$ = $2;
-           $$->printElement = "Transform";
+           $$->setprintElement("Transform");
           }
         ;
 
 y_Transform_CylinderTransformType :
           TransformSTART y_CylinderTransformType TransformEND
           {$$ = $2;
-           $$->printElement = "Transform";
+           $$->setprintElement("Transform");
           }
         ;
 
 y_Transform_CylindricalSegmentTransformType :
           TransformSTART y_CylindricalSegmentTransformType TransformEND
           {$$ = $2;
-           $$->printElement = "Transform";
+           $$->setprintElement("Transform");
           }
         ;
 
 y_Transform_EdgePointTransformType :
           TransformSTART y_EdgePointTransformType TransformEND
           {$$ = $2;
-           $$->printElement = "Transform";
+           $$->setprintElement("Transform");
           }
         ;
 
@@ -92401,140 +92359,140 @@ y_Transform_ElementReferenceType_0 :
 y_Transform_EllipseTransformType :
           TransformSTART y_EllipseTransformType TransformEND
           {$$ = $2;
-           $$->printElement = "Transform";
+           $$->setprintElement("Transform");
           }
         ;
 
 y_Transform_EllipticalArcTransformType :
           TransformSTART y_EllipticalArcTransformType TransformEND
           {$$ = $2;
-           $$->printElement = "Transform";
+           $$->setprintElement("Transform");
           }
         ;
 
 y_Transform_ElongatedCircleTransformType :
           TransformSTART y_ElongatedCircleTransformType TransformEND
           {$$ = $2;
-           $$->printElement = "Transform";
+           $$->setprintElement("Transform");
           }
         ;
 
 y_Transform_ElongatedCylinderTransformType :
           TransformSTART y_ElongatedCylinderTransformType TransformEND
           {$$ = $2;
-           $$->printElement = "Transform";
+           $$->setprintElement("Transform");
           }
         ;
 
 y_Transform_ExtrudedCrossSectionTransformType :
           TransformSTART y_ExtrudedCrossSectionTransformType TransformEND
           {$$ = $2;
-           $$->printElement = "Transform";
+           $$->setprintElement("Transform");
           }
         ;
 
 y_Transform_LineTransformType :
           TransformSTART y_LineTransformType TransformEND
           {$$ = $2;
-           $$->printElement = "Transform";
+           $$->setprintElement("Transform");
           }
         ;
 
 y_Transform_OppositeAngledLinesTransformType :
           TransformSTART y_OppositeAngledLinesTransformType TransformEND
           {$$ = $2;
-           $$->printElement = "Transform";
+           $$->setprintElement("Transform");
           }
         ;
 
 y_Transform_OppositeAngledPlanesTransformType :
           TransformSTART y_OppositeAngledPlanesTransformType TransformEND
           {$$ = $2;
-           $$->printElement = "Transform";
+           $$->setprintElement("Transform");
           }
         ;
 
 y_Transform_OppositeParallelLinesTransformType :
           TransformSTART y_OppositeParallelLinesTransformType TransformEND
           {$$ = $2;
-           $$->printElement = "Transform";
+           $$->setprintElement("Transform");
           }
         ;
 
 y_Transform_OppositeParallelPlanesTransformType :
           TransformSTART y_OppositeParallelPlanesTransformType TransformEND
           {$$ = $2;
-           $$->printElement = "Transform";
+           $$->setprintElement("Transform");
           }
         ;
 
 y_Transform_PlaneTransformType :
           TransformSTART y_PlaneTransformType TransformEND
           {$$ = $2;
-           $$->printElement = "Transform";
+           $$->setprintElement("Transform");
           }
         ;
 
 y_Transform_PointDefinedCurveTransformType :
           TransformSTART y_PointDefinedCurveTransformType TransformEND
           {$$ = $2;
-           $$->printElement = "Transform";
+           $$->setprintElement("Transform");
           }
         ;
 
 y_Transform_PointDefinedSurfaceTransformType :
           TransformSTART y_PointDefinedSurfaceTransformType TransformEND
           {$$ = $2;
-           $$->printElement = "Transform";
+           $$->setprintElement("Transform");
           }
         ;
 
 y_Transform_PointFeatureTransformType :
           TransformSTART y_PointFeatureTransformType TransformEND
           {$$ = $2;
-           $$->printElement = "Transform";
+           $$->setprintElement("Transform");
           }
         ;
 
 y_Transform_SphereTransformType :
           TransformSTART y_SphereTransformType TransformEND
           {$$ = $2;
-           $$->printElement = "Transform";
+           $$->setprintElement("Transform");
           }
         ;
 
 y_Transform_SphericalSegmentTransformType :
           TransformSTART y_SphericalSegmentTransformType TransformEND
           {$$ = $2;
-           $$->printElement = "Transform";
+           $$->setprintElement("Transform");
           }
         ;
 
 y_Transform_SurfaceOfRevolutionTransformType :
           TransformSTART y_SurfaceOfRevolutionTransformType TransformEND
           {$$ = $2;
-           $$->printElement = "Transform";
+           $$->setprintElement("Transform");
           }
         ;
 
 y_Transform_ThreadedFeatureTransformType :
           TransformSTART y_ThreadedFeatureTransformType TransformEND
           {$$ = $2;
-           $$->printElement = "Transform";
+           $$->setprintElement("Transform");
           }
         ;
 
 y_Transform_ToroidalSegmentTransformType :
           TransformSTART y_ToroidalSegmentTransformType TransformEND
           {$$ = $2;
-           $$->printElement = "Transform";
+           $$->setprintElement("Transform");
           }
         ;
 
 y_Transform_TorusTransformType :
           TransformSTART y_TorusTransformType TransformEND
           {$$ = $2;
-           $$->printElement = "Transform";
+           $$->setprintElement("Transform");
           }
         ;
 
@@ -92543,7 +92501,7 @@ y_Transform_TransformInstanceType :
           {$$ = new TransformInstanceType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "Transform";
+           $$->setprintElement("Transform");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -92553,7 +92511,7 @@ y_Transform_TransformInstanceType :
           }
         | TransformSTART y_TransformInstanceType TransformEND
           {$$ = $2;
-           $$->printElement = "Transform";
+           $$->setprintElement("Transform");
           }
         ;
 
@@ -92600,7 +92558,7 @@ y_TransparencyType :
           {$$ = new TransparencyType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad TransparencyType value");
           }
         ;
@@ -92865,7 +92823,7 @@ y_TypeOfScaleEnumType :
           {$$ = new TypeOfScaleEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad TypeOfScaleEnumType value");
           }
         ;
@@ -93010,7 +92968,7 @@ y_UltrasonicSensorType :
 y_UltrasonicSensor_UltrasonicSensorType :
           UltrasonicSensorSTART y_UltrasonicSensorType UltrasonicSensorEND
           {$$ = $2;
-           $$->printElement = "UltrasonicSensor";
+           $$->setprintElement("UltrasonicSensor");
           }
         ;
 
@@ -93175,7 +93133,7 @@ y_UniversalLengthMeasureFeatureMethod_UniversalLengthMeasureFeatureMethodType :
           {$$ = new UniversalLengthMeasureFeatureMethodType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "UniversalLengthMeasureFeatureMethod";
+           $$->setprintElement("UniversalLengthMeasureFeatureMethod");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -93187,7 +93145,7 @@ y_UniversalLengthMeasureFeatureMethod_UniversalLengthMeasureFeatureMethodType :
           y_UniversalLengthMeasureFeatureMethodType
           UniversalLengthMeasureFeatureMethodEND
           {$$ = $2;
-           $$->printElement = "UniversalLengthMeasureFeatureMethod";
+           $$->setprintElement("UniversalLengthMeasureFeatureMethod");
           }
         ;
 
@@ -93245,7 +93203,7 @@ y_UniversalLengthMeasuring_UniversalLengthMeasuringType :
           UniversalLengthMeasuringSTART y_UniversalLengthMeasuringType
           UniversalLengthMeasuringEND
           {$$ = $2;
-           $$->printElement = "UniversalLengthMeasuring";
+           $$->setprintElement("UniversalLengthMeasuring");
           }
         ;
 
@@ -93282,7 +93240,7 @@ y_UnorderedActionGroup_UnorderedActionGroupType :
           UnorderedActionGroupSTART y_UnorderedActionGroupType
           UnorderedActionGroupEND
           {$$ = $2;
-           $$->printElement = "UnorderedActionGroup";
+           $$->setprintElement("UnorderedActionGroup");
           }
         ;
 
@@ -93290,7 +93248,7 @@ y_UnorderedPlanRoot_UnorderedActionGroupType :
           UnorderedPlanRootSTART y_UnorderedActionGroupType
           UnorderedPlanRootEND
           {$$ = $2;
-           $$->printElement = "UnorderedPlanRoot";
+           $$->setprintElement("UnorderedPlanRoot");
           }
         ;
 
@@ -93298,7 +93256,7 @@ y_UpperConfidenceLimit_StatsMeasuredDecimalType :
           UpperConfidenceLimitSTART y_StatsMeasuredDecimalType
           UpperConfidenceLimitEND
           {$$ = $2;
-           $$->printElement = "UpperConfidenceLimit";
+           $$->setprintElement("UpperConfidenceLimit");
           }
         ;
 
@@ -93306,7 +93264,7 @@ y_UpperControlLimitRange_StatsMeasuredDecimalType :
           UpperControlLimitRangeSTART y_StatsMeasuredDecimalType
           UpperControlLimitRangeEND
           {$$ = $2;
-           $$->printElement = "UpperControlLimitRange";
+           $$->setprintElement("UpperControlLimitRange");
           }
         ;
 
@@ -93314,7 +93272,7 @@ y_UpperControlLimit_StatsMeasuredDecimalType :
           UpperControlLimitSTART y_StatsMeasuredDecimalType
           UpperControlLimitEND
           {$$ = $2;
-           $$->printElement = "UpperControlLimit";
+           $$->setprintElement("UpperControlLimit");
           }
         ;
 
@@ -93322,14 +93280,14 @@ y_UpperPoint_Point2dSimpleType :
           UpperPointSTART ENDWHOLEITEM
           {$$ = new Point2dSimpleType();
            $$->Point2dSimpleTypeCheck();
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad Point2dSimpleType value");
            yyUnrefMap[$$] = $$;
           }
         | UpperPointSTART y_Point2dSimpleType UpperPointEND
           {$$ = $2;
            $2->Point2dSimpleTypeCheck();
-           if ($2->bad)
+           if ($2->getbad())
              return yyerror("bad Point2dSimpleType value");
           }
         ;
@@ -93479,7 +93437,7 @@ y_UserDefinedAngularCharacteristicDefinition_UserDefinedAngularCharacteristicDef
           y_UserDefinedAngularCharacteristicDefinitionType
           UserDefinedAngularCharacteristicDefinitionEND
           {$$ = $2;
-           $$->printElement = "UserDefinedAngularCharacteristicDefinition";
+           $$->setprintElement("UserDefinedAngularCharacteristicDefinition");
           }
         ;
 
@@ -93522,7 +93480,7 @@ y_UserDefinedAngularCharacteristicItem_UserDefinedAngularCharacteristicItemType 
           y_UserDefinedAngularCharacteristicItemType
           UserDefinedAngularCharacteristicItemEND
           {$$ = $2;
-           $$->printElement = "UserDefinedAngularCharacteristicItem";
+           $$->setprintElement("UserDefinedAngularCharacteristicItem");
           }
         ;
 
@@ -93572,7 +93530,7 @@ y_UserDefinedAngularCharacteristicMeasurement_UserDefinedAngularCharacteristicMe
           y_UserDefinedAngularCharacteristicMeasurementType
           UserDefinedAngularCharacteristicMeasurementEND
           {$$ = $2;
-           $$->printElement = "UserDefinedAngularCharacteristicMeasurement";
+           $$->setprintElement("UserDefinedAngularCharacteristicMeasurement");
           }
         ;
 
@@ -93615,7 +93573,7 @@ y_UserDefinedAngularCharacteristicNominal_UserDefinedAngularCharacteristicNomina
           y_UserDefinedAngularCharacteristicNominalType
           UserDefinedAngularCharacteristicNominalEND
           {$$ = $2;
-           $$->printElement = "UserDefinedAngularCharacteristicNominal";
+           $$->setprintElement("UserDefinedAngularCharacteristicNominal");
           }
         ;
 
@@ -93688,7 +93646,7 @@ y_UserDefinedAngularCharacteristicStats_UserDefinedAngularCharacteristicStatsEva
           y_UserDefinedAngularCharacteristicStatsEvalType
           UserDefinedAngularCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "UserDefinedAngularCharacteristicStats";
+           $$->setprintElement("UserDefinedAngularCharacteristicStats");
           }
         ;
 
@@ -93736,7 +93694,7 @@ y_UserDefinedAreaCharacteristicDefinition_UserDefinedAreaCharacteristicDefinitio
           y_UserDefinedAreaCharacteristicDefinitionType
           UserDefinedAreaCharacteristicDefinitionEND
           {$$ = $2;
-           $$->printElement = "UserDefinedAreaCharacteristicDefinition";
+           $$->setprintElement("UserDefinedAreaCharacteristicDefinition");
           }
         ;
 
@@ -93779,7 +93737,7 @@ y_UserDefinedAreaCharacteristicItem_UserDefinedAreaCharacteristicItemType :
           y_UserDefinedAreaCharacteristicItemType
           UserDefinedAreaCharacteristicItemEND
           {$$ = $2;
-           $$->printElement = "UserDefinedAreaCharacteristicItem";
+           $$->setprintElement("UserDefinedAreaCharacteristicItem");
           }
         ;
 
@@ -93829,7 +93787,7 @@ y_UserDefinedAreaCharacteristicMeasurement_UserDefinedAreaCharacteristicMeasurem
           y_UserDefinedAreaCharacteristicMeasurementType
           UserDefinedAreaCharacteristicMeasurementEND
           {$$ = $2;
-           $$->printElement = "UserDefinedAreaCharacteristicMeasurement";
+           $$->setprintElement("UserDefinedAreaCharacteristicMeasurement");
           }
         ;
 
@@ -93872,7 +93830,7 @@ y_UserDefinedAreaCharacteristicNominal_UserDefinedAreaCharacteristicNominalType 
           y_UserDefinedAreaCharacteristicNominalType
           UserDefinedAreaCharacteristicNominalEND
           {$$ = $2;
-           $$->printElement = "UserDefinedAreaCharacteristicNominal";
+           $$->setprintElement("UserDefinedAreaCharacteristicNominal");
           }
         ;
 
@@ -93945,7 +93903,7 @@ y_UserDefinedAreaCharacteristicStats_UserDefinedAreaCharacteristicStatsEvalType 
           y_UserDefinedAreaCharacteristicStatsEvalType
           UserDefinedAreaCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "UserDefinedAreaCharacteristicStats";
+           $$->setprintElement("UserDefinedAreaCharacteristicStats");
           }
         ;
 
@@ -94052,7 +94010,7 @@ y_UserDefinedAttributeCharacteristicDefinition_UserDefinedAttributeCharacteristi
           y_UserDefinedAttributeCharacteristicDefinitionType
           UserDefinedAttributeCharacteristicDefinitionEND
           {$$ = $2;
-           $$->printElement = "UserDefinedAttributeCharacteristicDefinition";
+           $$->setprintElement("UserDefinedAttributeCharacteristicDefinition");
           }
         ;
 
@@ -94095,7 +94053,7 @@ y_UserDefinedAttributeCharacteristicItem_UserDefinedAttributeCharacteristicItemT
           y_UserDefinedAttributeCharacteristicItemType
           UserDefinedAttributeCharacteristicItemEND
           {$$ = $2;
-           $$->printElement = "UserDefinedAttributeCharacteristicItem";
+           $$->setprintElement("UserDefinedAttributeCharacteristicItem");
           }
         ;
 
@@ -94140,7 +94098,7 @@ y_UserDefinedAttributeCharacteristicMeasurement_UserDefinedAttributeCharacterist
           y_UserDefinedAttributeCharacteristicMeasurementType
           UserDefinedAttributeCharacteristicMeasurementEND
           {$$ = $2;
-           $$->printElement = "UserDefinedAttributeCharacteristicMeasurement";
+           $$->setprintElement("UserDefinedAttributeCharacteristicMeasurement");
           }
         ;
 
@@ -94184,7 +94142,7 @@ y_UserDefinedAttributeCharacteristicNominal_UserDefinedAttributeCharacteristicNo
           y_UserDefinedAttributeCharacteristicNominalType
           UserDefinedAttributeCharacteristicNominalEND
           {$$ = $2;
-           $$->printElement = "UserDefinedAttributeCharacteristicNominal";
+           $$->setprintElement("UserDefinedAttributeCharacteristicNominal");
           }
         ;
 
@@ -94212,7 +94170,7 @@ y_UserDefinedAttributeCharacteristicStats_UserDefinedAttributeCharacteristicStat
           y_UserDefinedAttributeCharacteristicStatsEvalType
           UserDefinedAttributeCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "UserDefinedAttributeCharacteristicStats";
+           $$->setprintElement("UserDefinedAttributeCharacteristicStats");
           }
         ;
 
@@ -94333,7 +94291,7 @@ y_UserDefinedForceCharacteristicDefinition_UserDefinedForceCharacteristicDefinit
           y_UserDefinedForceCharacteristicDefinitionType
           UserDefinedForceCharacteristicDefinitionEND
           {$$ = $2;
-           $$->printElement = "UserDefinedForceCharacteristicDefinition";
+           $$->setprintElement("UserDefinedForceCharacteristicDefinition");
           }
         ;
 
@@ -94376,7 +94334,7 @@ y_UserDefinedForceCharacteristicItem_UserDefinedForceCharacteristicItemType :
           y_UserDefinedForceCharacteristicItemType
           UserDefinedForceCharacteristicItemEND
           {$$ = $2;
-           $$->printElement = "UserDefinedForceCharacteristicItem";
+           $$->setprintElement("UserDefinedForceCharacteristicItem");
           }
         ;
 
@@ -94426,7 +94384,7 @@ y_UserDefinedForceCharacteristicMeasurement_UserDefinedForceCharacteristicMeasur
           y_UserDefinedForceCharacteristicMeasurementType
           UserDefinedForceCharacteristicMeasurementEND
           {$$ = $2;
-           $$->printElement = "UserDefinedForceCharacteristicMeasurement";
+           $$->setprintElement("UserDefinedForceCharacteristicMeasurement");
           }
         ;
 
@@ -94469,7 +94427,7 @@ y_UserDefinedForceCharacteristicNominal_UserDefinedForceCharacteristicNominalTyp
           y_UserDefinedForceCharacteristicNominalType
           UserDefinedForceCharacteristicNominalEND
           {$$ = $2;
-           $$->printElement = "UserDefinedForceCharacteristicNominal";
+           $$->setprintElement("UserDefinedForceCharacteristicNominal");
           }
         ;
 
@@ -94542,7 +94500,7 @@ y_UserDefinedForceCharacteristicStats_UserDefinedForceCharacteristicStatsEvalTyp
           y_UserDefinedForceCharacteristicStatsEvalType
           UserDefinedForceCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "UserDefinedForceCharacteristicStats";
+           $$->setprintElement("UserDefinedForceCharacteristicStats");
           }
         ;
 
@@ -94657,7 +94615,7 @@ y_UserDefinedLinearCharacteristicDefinition_UserDefinedLinearCharacteristicDefin
           y_UserDefinedLinearCharacteristicDefinitionType
           UserDefinedLinearCharacteristicDefinitionEND
           {$$ = $2;
-           $$->printElement = "UserDefinedLinearCharacteristicDefinition";
+           $$->setprintElement("UserDefinedLinearCharacteristicDefinition");
           }
         ;
 
@@ -94700,7 +94658,7 @@ y_UserDefinedLinearCharacteristicItem_UserDefinedLinearCharacteristicItemType :
           y_UserDefinedLinearCharacteristicItemType
           UserDefinedLinearCharacteristicItemEND
           {$$ = $2;
-           $$->printElement = "UserDefinedLinearCharacteristicItem";
+           $$->setprintElement("UserDefinedLinearCharacteristicItem");
           }
         ;
 
@@ -94750,7 +94708,7 @@ y_UserDefinedLinearCharacteristicMeasurement_UserDefinedLinearCharacteristicMeas
           y_UserDefinedLinearCharacteristicMeasurementType
           UserDefinedLinearCharacteristicMeasurementEND
           {$$ = $2;
-           $$->printElement = "UserDefinedLinearCharacteristicMeasurement";
+           $$->setprintElement("UserDefinedLinearCharacteristicMeasurement");
           }
         ;
 
@@ -94795,7 +94753,7 @@ y_UserDefinedLinearCharacteristicNominal_UserDefinedLinearCharacteristicNominalT
           y_UserDefinedLinearCharacteristicNominalType
           UserDefinedLinearCharacteristicNominalEND
           {$$ = $2;
-           $$->printElement = "UserDefinedLinearCharacteristicNominal";
+           $$->setprintElement("UserDefinedLinearCharacteristicNominal");
           }
         ;
 
@@ -94868,7 +94826,7 @@ y_UserDefinedLinearCharacteristicStats_UserDefinedLinearCharacteristicStatsEvalT
           y_UserDefinedLinearCharacteristicStatsEvalType
           UserDefinedLinearCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "UserDefinedLinearCharacteristicStats";
+           $$->setprintElement("UserDefinedLinearCharacteristicStats");
           }
         ;
 
@@ -94916,7 +94874,7 @@ y_UserDefinedMassCharacteristicDefinition_UserDefinedMassCharacteristicDefinitio
           y_UserDefinedMassCharacteristicDefinitionType
           UserDefinedMassCharacteristicDefinitionEND
           {$$ = $2;
-           $$->printElement = "UserDefinedMassCharacteristicDefinition";
+           $$->setprintElement("UserDefinedMassCharacteristicDefinition");
           }
         ;
 
@@ -94959,7 +94917,7 @@ y_UserDefinedMassCharacteristicItem_UserDefinedMassCharacteristicItemType :
           y_UserDefinedMassCharacteristicItemType
           UserDefinedMassCharacteristicItemEND
           {$$ = $2;
-           $$->printElement = "UserDefinedMassCharacteristicItem";
+           $$->setprintElement("UserDefinedMassCharacteristicItem");
           }
         ;
 
@@ -95009,7 +94967,7 @@ y_UserDefinedMassCharacteristicMeasurement_UserDefinedMassCharacteristicMeasurem
           y_UserDefinedMassCharacteristicMeasurementType
           UserDefinedMassCharacteristicMeasurementEND
           {$$ = $2;
-           $$->printElement = "UserDefinedMassCharacteristicMeasurement";
+           $$->setprintElement("UserDefinedMassCharacteristicMeasurement");
           }
         ;
 
@@ -95052,7 +95010,7 @@ y_UserDefinedMassCharacteristicNominal_UserDefinedMassCharacteristicNominalType 
           y_UserDefinedMassCharacteristicNominalType
           UserDefinedMassCharacteristicNominalEND
           {$$ = $2;
-           $$->printElement = "UserDefinedMassCharacteristicNominal";
+           $$->setprintElement("UserDefinedMassCharacteristicNominal");
           }
         ;
 
@@ -95125,7 +95083,7 @@ y_UserDefinedMassCharacteristicStats_UserDefinedMassCharacteristicStatsEvalType 
           y_UserDefinedMassCharacteristicStatsEvalType
           UserDefinedMassCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "UserDefinedMassCharacteristicStats";
+           $$->setprintElement("UserDefinedMassCharacteristicStats");
           }
         ;
 
@@ -95299,7 +95257,7 @@ y_UserDefinedPressureCharacteristicDefinition_UserDefinedPressureCharacteristicD
           y_UserDefinedPressureCharacteristicDefinitionType
           UserDefinedPressureCharacteristicDefinitionEND
           {$$ = $2;
-           $$->printElement = "UserDefinedPressureCharacteristicDefinition";
+           $$->setprintElement("UserDefinedPressureCharacteristicDefinition");
           }
         ;
 
@@ -95342,7 +95300,7 @@ y_UserDefinedPressureCharacteristicItem_UserDefinedPressureCharacteristicItemTyp
           y_UserDefinedPressureCharacteristicItemType
           UserDefinedPressureCharacteristicItemEND
           {$$ = $2;
-           $$->printElement = "UserDefinedPressureCharacteristicItem";
+           $$->setprintElement("UserDefinedPressureCharacteristicItem");
           }
         ;
 
@@ -95392,7 +95350,7 @@ y_UserDefinedPressureCharacteristicMeasurement_UserDefinedPressureCharacteristic
           y_UserDefinedPressureCharacteristicMeasurementType
           UserDefinedPressureCharacteristicMeasurementEND
           {$$ = $2;
-           $$->printElement = "UserDefinedPressureCharacteristicMeasurement";
+           $$->setprintElement("UserDefinedPressureCharacteristicMeasurement");
           }
         ;
 
@@ -95435,7 +95393,7 @@ y_UserDefinedPressureCharacteristicNominal_UserDefinedPressureCharacteristicNomi
           y_UserDefinedPressureCharacteristicNominalType
           UserDefinedPressureCharacteristicNominalEND
           {$$ = $2;
-           $$->printElement = "UserDefinedPressureCharacteristicNominal";
+           $$->setprintElement("UserDefinedPressureCharacteristicNominal");
           }
         ;
 
@@ -95508,13 +95466,13 @@ y_UserDefinedPressureCharacteristicStats_UserDefinedPressureCharacteristicStatsE
           y_UserDefinedPressureCharacteristicStatsEvalType
           UserDefinedPressureCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "UserDefinedPressureCharacteristicStats";
+           $$->setprintElement("UserDefinedPressureCharacteristicStats");
           }
         ;
 
 y_UserDefinedReso_1198_Type :
           y_CombinedUserDefinedResolution_CombinedUserDefinedResolutionType
-          y_ABCResolution_ABCResolutionType
+          y_ABCResolution_ABCResolutionType_0
           {$$ = new UserDefinedReso_1198_Type($1, $2);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
@@ -95556,7 +95514,7 @@ y_UserDefinedResolution_UserDefinedResolutionType :
           UserDefinedResolutionSTART y_UserDefinedResolutionType
           UserDefinedResolutionEND
           {$$ = $2;
-           $$->printElement = "UserDefinedResolution";
+           $$->setprintElement("UserDefinedResolution");
           }
         ;
 
@@ -95666,7 +95624,7 @@ y_UserDefinedSpeedCharacteristicDefinition_UserDefinedSpeedCharacteristicDefinit
           y_UserDefinedSpeedCharacteristicDefinitionType
           UserDefinedSpeedCharacteristicDefinitionEND
           {$$ = $2;
-           $$->printElement = "UserDefinedSpeedCharacteristicDefinition";
+           $$->setprintElement("UserDefinedSpeedCharacteristicDefinition");
           }
         ;
 
@@ -95709,7 +95667,7 @@ y_UserDefinedSpeedCharacteristicItem_UserDefinedSpeedCharacteristicItemType :
           y_UserDefinedSpeedCharacteristicItemType
           UserDefinedSpeedCharacteristicItemEND
           {$$ = $2;
-           $$->printElement = "UserDefinedSpeedCharacteristicItem";
+           $$->setprintElement("UserDefinedSpeedCharacteristicItem");
           }
         ;
 
@@ -95759,7 +95717,7 @@ y_UserDefinedSpeedCharacteristicMeasurement_UserDefinedSpeedCharacteristicMeasur
           y_UserDefinedSpeedCharacteristicMeasurementType
           UserDefinedSpeedCharacteristicMeasurementEND
           {$$ = $2;
-           $$->printElement = "UserDefinedSpeedCharacteristicMeasurement";
+           $$->setprintElement("UserDefinedSpeedCharacteristicMeasurement");
           }
         ;
 
@@ -95802,7 +95760,7 @@ y_UserDefinedSpeedCharacteristicNominal_UserDefinedSpeedCharacteristicNominalTyp
           y_UserDefinedSpeedCharacteristicNominalType
           UserDefinedSpeedCharacteristicNominalEND
           {$$ = $2;
-           $$->printElement = "UserDefinedSpeedCharacteristicNominal";
+           $$->setprintElement("UserDefinedSpeedCharacteristicNominal");
           }
         ;
 
@@ -95875,7 +95833,7 @@ y_UserDefinedSpeedCharacteristicStats_UserDefinedSpeedCharacteristicStatsEvalTyp
           y_UserDefinedSpeedCharacteristicStatsEvalType
           UserDefinedSpeedCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "UserDefinedSpeedCharacteristicStats";
+           $$->setprintElement("UserDefinedSpeedCharacteristicStats");
           }
         ;
 
@@ -95995,7 +95953,7 @@ y_UserDefinedTemperatureCharacteristicDefinition_UserDefinedTemperatureCharacter
           y_UserDefinedTemperatureCharacteristicDefinitionType
           UserDefinedTemperatureCharacteristicDefinitionEND
           {$$ = $2;
-           $$->printElement = "UserDefinedTemperatureCharacteristicDefinition";
+           $$->setprintElement("UserDefinedTemperatureCharacteristicDefinition");
           }
         ;
 
@@ -96038,7 +95996,7 @@ y_UserDefinedTemperatureCharacteristicItem_UserDefinedTemperatureCharacteristicI
           y_UserDefinedTemperatureCharacteristicItemType
           UserDefinedTemperatureCharacteristicItemEND
           {$$ = $2;
-           $$->printElement = "UserDefinedTemperatureCharacteristicItem";
+           $$->setprintElement("UserDefinedTemperatureCharacteristicItem");
           }
         ;
 
@@ -96088,7 +96046,7 @@ y_UserDefinedTemperatureCharacteristicMeasurement_UserDefinedTemperatureCharacte
           y_UserDefinedTemperatureCharacteristicMeasurementType
           UserDefinedTemperatureCharacteristicMeasurementEND
           {$$ = $2;
-           $$->printElement = "UserDefinedTemperatureCharacteristicMeasurement";
+           $$->setprintElement("UserDefinedTemperatureCharacteristicMeasurement");
           }
         ;
 
@@ -96131,7 +96089,7 @@ y_UserDefinedTemperatureCharacteristicNominal_UserDefinedTemperatureCharacterist
           y_UserDefinedTemperatureCharacteristicNominalType
           UserDefinedTemperatureCharacteristicNominalEND
           {$$ = $2;
-           $$->printElement = "UserDefinedTemperatureCharacteristicNominal";
+           $$->setprintElement("UserDefinedTemperatureCharacteristicNominal");
           }
         ;
 
@@ -96204,7 +96162,7 @@ y_UserDefinedTemperatureCharacteristicStats_UserDefinedTemperatureCharacteristic
           y_UserDefinedTemperatureCharacteristicStatsEvalType
           UserDefinedTemperatureCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "UserDefinedTemperatureCharacteristicStats";
+           $$->setprintElement("UserDefinedTemperatureCharacteristicStats");
           }
         ;
 
@@ -96252,7 +96210,7 @@ y_UserDefinedTimeCharacteristicDefinition_UserDefinedTimeCharacteristicDefinitio
           y_UserDefinedTimeCharacteristicDefinitionType
           UserDefinedTimeCharacteristicDefinitionEND
           {$$ = $2;
-           $$->printElement = "UserDefinedTimeCharacteristicDefinition";
+           $$->setprintElement("UserDefinedTimeCharacteristicDefinition");
           }
         ;
 
@@ -96295,7 +96253,7 @@ y_UserDefinedTimeCharacteristicItem_UserDefinedTimeCharacteristicItemType :
           y_UserDefinedTimeCharacteristicItemType
           UserDefinedTimeCharacteristicItemEND
           {$$ = $2;
-           $$->printElement = "UserDefinedTimeCharacteristicItem";
+           $$->setprintElement("UserDefinedTimeCharacteristicItem");
           }
         ;
 
@@ -96345,7 +96303,7 @@ y_UserDefinedTimeCharacteristicMeasurement_UserDefinedTimeCharacteristicMeasurem
           y_UserDefinedTimeCharacteristicMeasurementType
           UserDefinedTimeCharacteristicMeasurementEND
           {$$ = $2;
-           $$->printElement = "UserDefinedTimeCharacteristicMeasurement";
+           $$->setprintElement("UserDefinedTimeCharacteristicMeasurement");
           }
         ;
 
@@ -96388,7 +96346,7 @@ y_UserDefinedTimeCharacteristicNominal_UserDefinedTimeCharacteristicNominalType 
           y_UserDefinedTimeCharacteristicNominalType
           UserDefinedTimeCharacteristicNominalEND
           {$$ = $2;
-           $$->printElement = "UserDefinedTimeCharacteristicNominal";
+           $$->setprintElement("UserDefinedTimeCharacteristicNominal");
           }
         ;
 
@@ -96461,7 +96419,7 @@ y_UserDefinedTimeCharacteristicStats_UserDefinedTimeCharacteristicStatsEvalType 
           y_UserDefinedTimeCharacteristicStatsEvalType
           UserDefinedTimeCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "UserDefinedTimeCharacteristicStats";
+           $$->setprintElement("UserDefinedTimeCharacteristicStats");
           }
         ;
 
@@ -96575,7 +96533,7 @@ y_UserDefinedUnitCharacteristicDefinition_UserDefinedUnitCharacteristicDefinitio
           {$$ = new UserDefinedUnitCharacteristicDefinitionType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "UserDefinedUnitCharacteristicDefinition";
+           $$->setprintElement("UserDefinedUnitCharacteristicDefinition");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -96587,7 +96545,7 @@ y_UserDefinedUnitCharacteristicDefinition_UserDefinedUnitCharacteristicDefinitio
           y_UserDefinedUnitCharacteristicDefinitionType
           UserDefinedUnitCharacteristicDefinitionEND
           {$$ = $2;
-           $$->printElement = "UserDefinedUnitCharacteristicDefinition";
+           $$->setprintElement("UserDefinedUnitCharacteristicDefinition");
           }
         ;
 
@@ -96630,7 +96588,7 @@ y_UserDefinedUnitCharacteristicItem_UserDefinedUnitCharacteristicItemType :
           y_UserDefinedUnitCharacteristicItemType
           UserDefinedUnitCharacteristicItemEND
           {$$ = $2;
-           $$->printElement = "UserDefinedUnitCharacteristicItem";
+           $$->setprintElement("UserDefinedUnitCharacteristicItem");
           }
         ;
 
@@ -96680,7 +96638,7 @@ y_UserDefinedUnitCharacteristicMeasurement_UserDefinedUnitCharacteristicMeasurem
           y_UserDefinedUnitCharacteristicMeasurementType
           UserDefinedUnitCharacteristicMeasurementEND
           {$$ = $2;
-           $$->printElement = "UserDefinedUnitCharacteristicMeasurement";
+           $$->setprintElement("UserDefinedUnitCharacteristicMeasurement");
           }
         ;
 
@@ -96727,7 +96685,7 @@ y_UserDefinedUnitCharacteristicNominal_UserDefinedUnitCharacteristicNominalType 
           y_UserDefinedUnitCharacteristicNominalType
           UserDefinedUnitCharacteristicNominalEND
           {$$ = $2;
-           $$->printElement = "UserDefinedUnitCharacteristicNominal";
+           $$->setprintElement("UserDefinedUnitCharacteristicNominal");
           }
         ;
 
@@ -96800,7 +96758,7 @@ y_UserDefinedUnitCharacteristicStats_UserDefinedUnitCharacteristicStatsEvalType 
           y_UserDefinedUnitCharacteristicStatsEvalType
           UserDefinedUnitCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "UserDefinedUnitCharacteristicStats";
+           $$->setprintElement("UserDefinedUnitCharacteristicStats");
           }
         ;
 
@@ -96808,7 +96766,7 @@ y_UserDefinedUnitCriterion_CriterionUserDefinedUnitType :
           UserDefinedUnitCriterionSTART y_CriterionUserDefinedUnitType
           UserDefinedUnitCriterionEND
           {$$ = $2;
-           $$->printElement = "UserDefinedUnitCriterion";
+           $$->setprintElement("UserDefinedUnitCriterion");
           }
         ;
 
@@ -96838,7 +96796,7 @@ y_UserDefinedUnitStatsSummary_SummaryStatisticsUserDefinedUnitType :
           y_SummaryStatisticsUserDefinedUnitType
           UserDefinedUnitStatsSummaryEND
           {$$ = $2;
-           $$->printElement = "UserDefinedUnitStatsSummary";
+           $$->setprintElement("UserDefinedUnitStatsSummary");
           }
         ;
 
@@ -96858,7 +96816,7 @@ y_UserDefinedUnitValueType :
           {$$ = new UserDefinedUnitValueType($4);
            yyUnrefMap[$$] = $$;
            free($4);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad UserDefinedUnitValueType value");
            yyUnrefMap.erase($1);
            if ($$->badAttributes($1))
@@ -97028,7 +96986,7 @@ y_UserDefinedWorkingVolume_UserDefinedWorkingVolumeType :
           UserDefinedWorkingVolumeSTART y_UserDefinedWorkingVolumeType
           UserDefinedWorkingVolumeEND
           {$$ = $2;
-           $$->printElement = "UserDefinedWorkingVolume";
+           $$->setprintElement("UserDefinedWorkingVolume");
           }
         ;
 
@@ -97342,28 +97300,28 @@ y_Validation_ValidationPartAssemblyType_0 :
 y_ValueStats_StatsWithTolAngularType :
           ValueStatsSTART y_StatsWithTolAngularType ValueStatsEND
           {$$ = $2;
-           $$->printElement = "ValueStats";
+           $$->setprintElement("ValueStats");
           }
         ;
 
 y_ValueStats_StatsWithTolAreaType :
           ValueStatsSTART y_StatsWithTolAreaType ValueStatsEND
           {$$ = $2;
-           $$->printElement = "ValueStats";
+           $$->setprintElement("ValueStats");
           }
         ;
 
 y_ValueStats_StatsWithTolForceType :
           ValueStatsSTART y_StatsWithTolForceType ValueStatsEND
           {$$ = $2;
-           $$->printElement = "ValueStats";
+           $$->setprintElement("ValueStats");
           }
         ;
 
 y_ValueStats_StatsWithTolLinearType :
           ValueStatsSTART y_StatsWithTolLinearType ValueStatsEND
           {$$ = $2;
-           $$->printElement = "ValueStats";
+           $$->setprintElement("ValueStats");
           }
         ;
 
@@ -97372,49 +97330,49 @@ y_ValueStats_StatsWithTolLinearType_0 :
           {$$ = 0;}
         | ValueStatsSTART y_StatsWithTolLinearType ValueStatsEND
           {$$ = $2;
-           $$->printElement = "ValueStats";
+           $$->setprintElement("ValueStats");
           }
         ;
 
 y_ValueStats_StatsWithTolMassType :
           ValueStatsSTART y_StatsWithTolMassType ValueStatsEND
           {$$ = $2;
-           $$->printElement = "ValueStats";
+           $$->setprintElement("ValueStats");
           }
         ;
 
 y_ValueStats_StatsWithTolPressureType :
           ValueStatsSTART y_StatsWithTolPressureType ValueStatsEND
           {$$ = $2;
-           $$->printElement = "ValueStats";
+           $$->setprintElement("ValueStats");
           }
         ;
 
 y_ValueStats_StatsWithTolSpeedType :
           ValueStatsSTART y_StatsWithTolSpeedType ValueStatsEND
           {$$ = $2;
-           $$->printElement = "ValueStats";
+           $$->setprintElement("ValueStats");
           }
         ;
 
 y_ValueStats_StatsWithTolTemperatureType :
           ValueStatsSTART y_StatsWithTolTemperatureType ValueStatsEND
           {$$ = $2;
-           $$->printElement = "ValueStats";
+           $$->setprintElement("ValueStats");
           }
         ;
 
 y_ValueStats_StatsWithTolTimeType :
           ValueStatsSTART y_StatsWithTolTimeType ValueStatsEND
           {$$ = $2;
-           $$->printElement = "ValueStats";
+           $$->setprintElement("ValueStats");
           }
         ;
 
 y_ValueStats_StatsWithTolUserDefinedUnitType :
           ValueStatsSTART y_StatsWithTolUserDefinedUnitType ValueStatsEND
           {$$ = $2;
-           $$->printElement = "ValueStats";
+           $$->setprintElement("ValueStats");
           }
         ;
 
@@ -97422,14 +97380,14 @@ y_Value_D4Type :
           ValueSTART ENDWHOLEITEM
           {$$ = new D4Type();
            $$->D4TypeCheck();
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad D4Type value");
            yyUnrefMap[$$] = $$;
           }
         | ValueSTART y_D4Type ValueEND
           {$$ = $2;
            $2->D4TypeCheck();
-           if ($2->bad)
+           if ($2->getbad())
              return yyerror("bad D4Type value");
           }
         ;
@@ -97588,7 +97546,7 @@ y_VariableSetType :
 y_VariableSet_VariableSetType :
           VariableSetSTART y_VariableSetType VariableSetEND
           {$$ = $2;
-           $$->printElement = "VariableSet";
+           $$->setprintElement("VariableSet");
           }
         ;
 
@@ -97603,7 +97561,7 @@ y_VariableValueType :
 y_VariableValue_VariableValueType :
           VariableValueSTART y_VariableValueType VariableValueEND
           {$$ = $2;
-           $$->printElement = "VariableValue";
+           $$->setprintElement("VariableValue");
           }
         ;
 
@@ -97746,11 +97704,11 @@ y_Version_VersionType_0 :
         | VersionSTART ENDWHOLEITEM
           {$$ = new VersionType();
            yyUnrefMap[$$] = $$;
-           $$->printElement = "Version";
+           $$->setprintElement("Version");
           }
         | VersionSTART y_VersionType VersionEND
           {$$ = $2;
-           $$->printElement = "Version";
+           $$->setprintElement("Version");
           }
         ;
 
@@ -97850,7 +97808,7 @@ y_Vertex_PointType_0 :
 y_Vertex_VertexType :
           VertexSTART y_VertexType VertexEND
           {$$ = $2;
-           $$->printElement = "Vertex";
+           $$->setprintElement("Vertex");
           }
         ;
 
@@ -97911,7 +97869,7 @@ y_VideoInstructionType :
 y_VideoInstruction_VideoInstructionType :
           VideoInstructionSTART y_VideoInstructionType VideoInstructionEND
           {$$ = $2;
-           $$->printElement = "VideoInstruction";
+           $$->setprintElement("VideoInstruction");
           }
         ;
 
@@ -97931,14 +97889,14 @@ y_ViewPlaneOrigin_PointSimpleType :
           ViewPlaneOriginSTART ENDWHOLEITEM
           {$$ = new PointSimpleType();
            $$->PointSimpleTypeCheck();
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad PointSimpleType value");
            yyUnrefMap[$$] = $$;
           }
         | ViewPlaneOriginSTART y_PointSimpleType ViewPlaneOriginEND
           {$$ = $2;
            $2->PointSimpleTypeCheck();
-           if ($2->bad)
+           if ($2->getbad())
              return yyerror("bad PointSimpleType value");
           }
         ;
@@ -98110,7 +98068,7 @@ y_WeldBevelCharacteristicDefinition_WeldBevelCharacteristicDefinitionType :
           {$$ = new WeldBevelCharacteristicDefinitionType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "WeldBevelCharacteristicDefinition";
+           $$->setprintElement("WeldBevelCharacteristicDefinition");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -98122,7 +98080,7 @@ y_WeldBevelCharacteristicDefinition_WeldBevelCharacteristicDefinitionType :
           y_WeldBevelCharacteristicDefinitionType
           WeldBevelCharacteristicDefinitionEND
           {$$ = $2;
-           $$->printElement = "WeldBevelCharacteristicDefinition";
+           $$->setprintElement("WeldBevelCharacteristicDefinition");
           }
         ;
 
@@ -98164,7 +98122,7 @@ y_WeldBevelCharacteristicItem_WeldBevelCharacteristicItemType :
           WeldBevelCharacteristicItemSTART
           y_WeldBevelCharacteristicItemType WeldBevelCharacteristicItemEND
           {$$ = $2;
-           $$->printElement = "WeldBevelCharacteristicItem";
+           $$->setprintElement("WeldBevelCharacteristicItem");
           }
         ;
 
@@ -98210,7 +98168,7 @@ y_WeldBevelCharacteristicMeasurement_WeldBevelCharacteristicMeasurementType :
           y_WeldBevelCharacteristicMeasurementType
           WeldBevelCharacteristicMeasurementEND
           {$$ = $2;
-           $$->printElement = "WeldBevelCharacteristicMeasurement";
+           $$->setprintElement("WeldBevelCharacteristicMeasurement");
           }
         ;
 
@@ -98261,7 +98219,7 @@ y_WeldBevelCharacteristicNominal_WeldBevelCharacteristicNominalType :
           y_WeldBevelCharacteristicNominalType
           WeldBevelCharacteristicNominalEND
           {$$ = $2;
-           $$->printElement = "WeldBevelCharacteristicNominal";
+           $$->setprintElement("WeldBevelCharacteristicNominal");
           }
         ;
 
@@ -98289,7 +98247,7 @@ y_WeldBevelCharacteristicStats_WeldBevelCharacteristicStatsEvalType :
           y_WeldBevelCharacteristicStatsEvalType
           WeldBevelCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "WeldBevelCharacteristicStats";
+           $$->setprintElement("WeldBevelCharacteristicStats");
           }
         ;
 
@@ -98359,7 +98317,7 @@ y_WeldCompoundCharacteristicDefinition_WeldCompoundCharacteristicDefinitionType 
           y_WeldCompoundCharacteristicDefinitionType
           WeldCompoundCharacteristicDefinitionEND
           {$$ = $2;
-           $$->printElement = "WeldCompoundCharacteristicDefinition";
+           $$->setprintElement("WeldCompoundCharacteristicDefinition");
           }
         ;
 
@@ -98404,7 +98362,7 @@ y_WeldCompoundCharacteristicItem_WeldCompoundCharacteristicItemType :
           y_WeldCompoundCharacteristicItemType
           WeldCompoundCharacteristicItemEND
           {$$ = $2;
-           $$->printElement = "WeldCompoundCharacteristicItem";
+           $$->setprintElement("WeldCompoundCharacteristicItem");
           }
         ;
 
@@ -98450,7 +98408,7 @@ y_WeldCompoundCharacteristicMeasurement_WeldCompoundCharacteristicMeasurementTyp
           y_WeldCompoundCharacteristicMeasurementType
           WeldCompoundCharacteristicMeasurementEND
           {$$ = $2;
-           $$->printElement = "WeldCompoundCharacteristicMeasurement";
+           $$->setprintElement("WeldCompoundCharacteristicMeasurement");
           }
         ;
 
@@ -98501,7 +98459,7 @@ y_WeldCompoundCharacteristicNominal_WeldCompoundCharacteristicNominalType :
           y_WeldCompoundCharacteristicNominalType
           WeldCompoundCharacteristicNominalEND
           {$$ = $2;
-           $$->printElement = "WeldCompoundCharacteristicNominal";
+           $$->setprintElement("WeldCompoundCharacteristicNominal");
           }
         ;
 
@@ -98529,7 +98487,7 @@ y_WeldCompoundCharacteristicStats_WeldCompoundCharacteristicStatsEvalType :
           y_WeldCompoundCharacteristicStatsEvalType
           WeldCompoundCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "WeldCompoundCharacteristicStats";
+           $$->setprintElement("WeldCompoundCharacteristicStats");
           }
         ;
 
@@ -98538,7 +98496,7 @@ y_WeldContourSymbolEnumType :
           {$$ = new WeldContourSymbolEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad WeldContourSymbolEnumType value");
           }
         ;
@@ -98594,7 +98552,7 @@ y_WeldEdgeCharacteristicDefinition_WeldEdgeCharacteristicDefinitionType :
           {$$ = new WeldEdgeCharacteristicDefinitionType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "WeldEdgeCharacteristicDefinition";
+           $$->setprintElement("WeldEdgeCharacteristicDefinition");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -98606,7 +98564,7 @@ y_WeldEdgeCharacteristicDefinition_WeldEdgeCharacteristicDefinitionType :
           y_WeldEdgeCharacteristicDefinitionType
           WeldEdgeCharacteristicDefinitionEND
           {$$ = $2;
-           $$->printElement = "WeldEdgeCharacteristicDefinition";
+           $$->setprintElement("WeldEdgeCharacteristicDefinition");
           }
         ;
 
@@ -98648,7 +98606,7 @@ y_WeldEdgeCharacteristicItem_WeldEdgeCharacteristicItemType :
           WeldEdgeCharacteristicItemSTART y_WeldEdgeCharacteristicItemType
           WeldEdgeCharacteristicItemEND
           {$$ = $2;
-           $$->printElement = "WeldEdgeCharacteristicItem";
+           $$->setprintElement("WeldEdgeCharacteristicItem");
           }
         ;
 
@@ -98696,7 +98654,7 @@ y_WeldEdgeCharacteristicMeasurement_WeldEdgeCharacteristicMeasurementType :
           y_WeldEdgeCharacteristicMeasurementType
           WeldEdgeCharacteristicMeasurementEND
           {$$ = $2;
-           $$->printElement = "WeldEdgeCharacteristicMeasurement";
+           $$->setprintElement("WeldEdgeCharacteristicMeasurement");
           }
         ;
 
@@ -98749,7 +98707,7 @@ y_WeldEdgeCharacteristicNominal_WeldEdgeCharacteristicNominalType :
           y_WeldEdgeCharacteristicNominalType
           WeldEdgeCharacteristicNominalEND
           {$$ = $2;
-           $$->printElement = "WeldEdgeCharacteristicNominal";
+           $$->setprintElement("WeldEdgeCharacteristicNominal");
           }
         ;
 
@@ -98777,7 +98735,7 @@ y_WeldEdgeCharacteristicStats_WeldEdgeCharacteristicStatsEvalType :
           y_WeldEdgeCharacteristicStatsEvalType
           WeldEdgeCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "WeldEdgeCharacteristicStats";
+           $$->setprintElement("WeldEdgeCharacteristicStats");
           }
         ;
 
@@ -98898,7 +98856,7 @@ y_WeldFilletCharacteristicDefinition_WeldFilletCharacteristicDefinitionType :
           {$$ = new WeldFilletCharacteristicDefinitionType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "WeldFilletCharacteristicDefinition";
+           $$->setprintElement("WeldFilletCharacteristicDefinition");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -98910,7 +98868,7 @@ y_WeldFilletCharacteristicDefinition_WeldFilletCharacteristicDefinitionType :
           y_WeldFilletCharacteristicDefinitionType
           WeldFilletCharacteristicDefinitionEND
           {$$ = $2;
-           $$->printElement = "WeldFilletCharacteristicDefinition";
+           $$->setprintElement("WeldFilletCharacteristicDefinition");
           }
         ;
 
@@ -98953,7 +98911,7 @@ y_WeldFilletCharacteristicItem_WeldFilletCharacteristicItemType :
           y_WeldFilletCharacteristicItemType
           WeldFilletCharacteristicItemEND
           {$$ = $2;
-           $$->printElement = "WeldFilletCharacteristicItem";
+           $$->setprintElement("WeldFilletCharacteristicItem");
           }
         ;
 
@@ -99001,7 +98959,7 @@ y_WeldFilletCharacteristicMeasurement_WeldFilletCharacteristicMeasurementType :
           y_WeldFilletCharacteristicMeasurementType
           WeldFilletCharacteristicMeasurementEND
           {$$ = $2;
-           $$->printElement = "WeldFilletCharacteristicMeasurement";
+           $$->setprintElement("WeldFilletCharacteristicMeasurement");
           }
         ;
 
@@ -99054,7 +99012,7 @@ y_WeldFilletCharacteristicNominal_WeldFilletCharacteristicNominalType :
           y_WeldFilletCharacteristicNominalType
           WeldFilletCharacteristicNominalEND
           {$$ = $2;
-           $$->printElement = "WeldFilletCharacteristicNominal";
+           $$->setprintElement("WeldFilletCharacteristicNominal");
           }
         ;
 
@@ -99082,7 +99040,7 @@ y_WeldFilletCharacteristicStats_WeldFilletCharacteristicStatsEvalType :
           y_WeldFilletCharacteristicStatsEvalType
           WeldFilletCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "WeldFilletCharacteristicStats";
+           $$->setprintElement("WeldFilletCharacteristicStats");
           }
         ;
 
@@ -99153,7 +99111,7 @@ y_WeldFinishingDesignatorEnumType :
           {$$ = new WeldFinishingDesignatorEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad WeldFinishingDesignatorEnumType value");
           }
         ;
@@ -99209,7 +99167,7 @@ y_WeldFlareBevelCharacteristicDefinition_WeldFlareBevelCharacteristicDefinitionT
           {$$ = new WeldFlareBevelCharacteristicDefinitionType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "WeldFlareBevelCharacteristicDefinition";
+           $$->setprintElement("WeldFlareBevelCharacteristicDefinition");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -99221,7 +99179,7 @@ y_WeldFlareBevelCharacteristicDefinition_WeldFlareBevelCharacteristicDefinitionT
           y_WeldFlareBevelCharacteristicDefinitionType
           WeldFlareBevelCharacteristicDefinitionEND
           {$$ = $2;
-           $$->printElement = "WeldFlareBevelCharacteristicDefinition";
+           $$->setprintElement("WeldFlareBevelCharacteristicDefinition");
           }
         ;
 
@@ -99264,7 +99222,7 @@ y_WeldFlareBevelCharacteristicItem_WeldFlareBevelCharacteristicItemType :
           y_WeldFlareBevelCharacteristicItemType
           WeldFlareBevelCharacteristicItemEND
           {$$ = $2;
-           $$->printElement = "WeldFlareBevelCharacteristicItem";
+           $$->setprintElement("WeldFlareBevelCharacteristicItem");
           }
         ;
 
@@ -99310,7 +99268,7 @@ y_WeldFlareBevelCharacteristicMeasurement_WeldFlareBevelCharacteristicMeasuremen
           y_WeldFlareBevelCharacteristicMeasurementType
           WeldFlareBevelCharacteristicMeasurementEND
           {$$ = $2;
-           $$->printElement = "WeldFlareBevelCharacteristicMeasurement";
+           $$->setprintElement("WeldFlareBevelCharacteristicMeasurement");
           }
         ;
 
@@ -99361,7 +99319,7 @@ y_WeldFlareBevelCharacteristicNominal_WeldFlareBevelCharacteristicNominalType :
           y_WeldFlareBevelCharacteristicNominalType
           WeldFlareBevelCharacteristicNominalEND
           {$$ = $2;
-           $$->printElement = "WeldFlareBevelCharacteristicNominal";
+           $$->setprintElement("WeldFlareBevelCharacteristicNominal");
           }
         ;
 
@@ -99389,7 +99347,7 @@ y_WeldFlareBevelCharacteristicStats_WeldFlareBevelCharacteristicStatsEvalType :
           y_WeldFlareBevelCharacteristicStatsEvalType
           WeldFlareBevelCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "WeldFlareBevelCharacteristicStats";
+           $$->setprintElement("WeldFlareBevelCharacteristicStats");
           }
         ;
 
@@ -99434,7 +99392,7 @@ y_WeldFlareVCharacteristicDefinition_WeldFlareVCharacteristicDefinitionType :
           {$$ = new WeldFlareVCharacteristicDefinitionType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "WeldFlareVCharacteristicDefinition";
+           $$->setprintElement("WeldFlareVCharacteristicDefinition");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -99446,7 +99404,7 @@ y_WeldFlareVCharacteristicDefinition_WeldFlareVCharacteristicDefinitionType :
           y_WeldFlareVCharacteristicDefinitionType
           WeldFlareVCharacteristicDefinitionEND
           {$$ = $2;
-           $$->printElement = "WeldFlareVCharacteristicDefinition";
+           $$->setprintElement("WeldFlareVCharacteristicDefinition");
           }
         ;
 
@@ -99489,7 +99447,7 @@ y_WeldFlareVCharacteristicItem_WeldFlareVCharacteristicItemType :
           y_WeldFlareVCharacteristicItemType
           WeldFlareVCharacteristicItemEND
           {$$ = $2;
-           $$->printElement = "WeldFlareVCharacteristicItem";
+           $$->setprintElement("WeldFlareVCharacteristicItem");
           }
         ;
 
@@ -99535,7 +99493,7 @@ y_WeldFlareVCharacteristicMeasurement_WeldFlareVCharacteristicMeasurementType :
           y_WeldFlareVCharacteristicMeasurementType
           WeldFlareVCharacteristicMeasurementEND
           {$$ = $2;
-           $$->printElement = "WeldFlareVCharacteristicMeasurement";
+           $$->setprintElement("WeldFlareVCharacteristicMeasurement");
           }
         ;
 
@@ -99586,7 +99544,7 @@ y_WeldFlareVCharacteristicNominal_WeldFlareVCharacteristicNominalType :
           y_WeldFlareVCharacteristicNominalType
           WeldFlareVCharacteristicNominalEND
           {$$ = $2;
-           $$->printElement = "WeldFlareVCharacteristicNominal";
+           $$->setprintElement("WeldFlareVCharacteristicNominal");
           }
         ;
 
@@ -99614,7 +99572,7 @@ y_WeldFlareVCharacteristicStats_WeldFlareVCharacteristicStatsEvalType :
           y_WeldFlareVCharacteristicStatsEvalType
           WeldFlareVCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "WeldFlareVCharacteristicStats";
+           $$->setprintElement("WeldFlareVCharacteristicStats");
           }
         ;
 
@@ -99752,7 +99710,7 @@ y_WeldJCharacteristicDefinition_WeldJCharacteristicDefinitionType :
           {$$ = new WeldJCharacteristicDefinitionType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "WeldJCharacteristicDefinition";
+           $$->setprintElement("WeldJCharacteristicDefinition");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -99764,7 +99722,7 @@ y_WeldJCharacteristicDefinition_WeldJCharacteristicDefinitionType :
           y_WeldJCharacteristicDefinitionType
           WeldJCharacteristicDefinitionEND
           {$$ = $2;
-           $$->printElement = "WeldJCharacteristicDefinition";
+           $$->setprintElement("WeldJCharacteristicDefinition");
           }
         ;
 
@@ -99806,7 +99764,7 @@ y_WeldJCharacteristicItem_WeldJCharacteristicItemType :
           WeldJCharacteristicItemSTART y_WeldJCharacteristicItemType
           WeldJCharacteristicItemEND
           {$$ = $2;
-           $$->printElement = "WeldJCharacteristicItem";
+           $$->setprintElement("WeldJCharacteristicItem");
           }
         ;
 
@@ -99852,7 +99810,7 @@ y_WeldJCharacteristicMeasurement_WeldJCharacteristicMeasurementType :
           y_WeldJCharacteristicMeasurementType
           WeldJCharacteristicMeasurementEND
           {$$ = $2;
-           $$->printElement = "WeldJCharacteristicMeasurement";
+           $$->setprintElement("WeldJCharacteristicMeasurement");
           }
         ;
 
@@ -99902,7 +99860,7 @@ y_WeldJCharacteristicNominal_WeldJCharacteristicNominalType :
           WeldJCharacteristicNominalSTART y_WeldJCharacteristicNominalType
           WeldJCharacteristicNominalEND
           {$$ = $2;
-           $$->printElement = "WeldJCharacteristicNominal";
+           $$->setprintElement("WeldJCharacteristicNominal");
           }
         ;
 
@@ -99929,7 +99887,7 @@ y_WeldJCharacteristicStats_WeldJCharacteristicStatsEvalType :
           WeldJCharacteristicStatsSTART y_WeldJCharacteristicStatsEvalType
           WeldJCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "WeldJCharacteristicStats";
+           $$->setprintElement("WeldJCharacteristicStats");
           }
         ;
 
@@ -99938,7 +99896,7 @@ y_WeldMainSymbolEnumType :
           {$$ = new WeldMainSymbolEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad WeldMainSymbolEnumType value");
           }
         ;
@@ -100025,7 +99983,7 @@ y_WeldPlugCharacteristicDefinition_WeldPlugCharacteristicDefinitionType :
           {$$ = new WeldPlugCharacteristicDefinitionType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "WeldPlugCharacteristicDefinition";
+           $$->setprintElement("WeldPlugCharacteristicDefinition");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -100037,7 +99995,7 @@ y_WeldPlugCharacteristicDefinition_WeldPlugCharacteristicDefinitionType :
           y_WeldPlugCharacteristicDefinitionType
           WeldPlugCharacteristicDefinitionEND
           {$$ = $2;
-           $$->printElement = "WeldPlugCharacteristicDefinition";
+           $$->setprintElement("WeldPlugCharacteristicDefinition");
           }
         ;
 
@@ -100079,7 +100037,7 @@ y_WeldPlugCharacteristicItem_WeldPlugCharacteristicItemType :
           WeldPlugCharacteristicItemSTART y_WeldPlugCharacteristicItemType
           WeldPlugCharacteristicItemEND
           {$$ = $2;
-           $$->printElement = "WeldPlugCharacteristicItem";
+           $$->setprintElement("WeldPlugCharacteristicItem");
           }
         ;
 
@@ -100127,7 +100085,7 @@ y_WeldPlugCharacteristicMeasurement_WeldPlugCharacteristicMeasurementType :
           y_WeldPlugCharacteristicMeasurementType
           WeldPlugCharacteristicMeasurementEND
           {$$ = $2;
-           $$->printElement = "WeldPlugCharacteristicMeasurement";
+           $$->setprintElement("WeldPlugCharacteristicMeasurement");
           }
         ;
 
@@ -100180,7 +100138,7 @@ y_WeldPlugCharacteristicNominal_WeldPlugCharacteristicNominalType :
           y_WeldPlugCharacteristicNominalType
           WeldPlugCharacteristicNominalEND
           {$$ = $2;
-           $$->printElement = "WeldPlugCharacteristicNominal";
+           $$->setprintElement("WeldPlugCharacteristicNominal");
           }
         ;
 
@@ -100208,7 +100166,7 @@ y_WeldPlugCharacteristicStats_WeldPlugCharacteristicStatsEvalType :
           y_WeldPlugCharacteristicStatsEvalType
           WeldPlugCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "WeldPlugCharacteristicStats";
+           $$->setprintElement("WeldPlugCharacteristicStats");
           }
         ;
 
@@ -100270,7 +100228,7 @@ y_WeldScarfCharacteristicDefinition_WeldScarfCharacteristicDefinitionType :
           {$$ = new WeldScarfCharacteristicDefinitionType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "WeldScarfCharacteristicDefinition";
+           $$->setprintElement("WeldScarfCharacteristicDefinition");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -100282,7 +100240,7 @@ y_WeldScarfCharacteristicDefinition_WeldScarfCharacteristicDefinitionType :
           y_WeldScarfCharacteristicDefinitionType
           WeldScarfCharacteristicDefinitionEND
           {$$ = $2;
-           $$->printElement = "WeldScarfCharacteristicDefinition";
+           $$->setprintElement("WeldScarfCharacteristicDefinition");
           }
         ;
 
@@ -100324,7 +100282,7 @@ y_WeldScarfCharacteristicItem_WeldScarfCharacteristicItemType :
           WeldScarfCharacteristicItemSTART
           y_WeldScarfCharacteristicItemType WeldScarfCharacteristicItemEND
           {$$ = $2;
-           $$->printElement = "WeldScarfCharacteristicItem";
+           $$->setprintElement("WeldScarfCharacteristicItem");
           }
         ;
 
@@ -100370,7 +100328,7 @@ y_WeldScarfCharacteristicMeasurement_WeldScarfCharacteristicMeasurementType :
           y_WeldScarfCharacteristicMeasurementType
           WeldScarfCharacteristicMeasurementEND
           {$$ = $2;
-           $$->printElement = "WeldScarfCharacteristicMeasurement";
+           $$->setprintElement("WeldScarfCharacteristicMeasurement");
           }
         ;
 
@@ -100421,7 +100379,7 @@ y_WeldScarfCharacteristicNominal_WeldScarfCharacteristicNominalType :
           y_WeldScarfCharacteristicNominalType
           WeldScarfCharacteristicNominalEND
           {$$ = $2;
-           $$->printElement = "WeldScarfCharacteristicNominal";
+           $$->setprintElement("WeldScarfCharacteristicNominal");
           }
         ;
 
@@ -100449,7 +100407,7 @@ y_WeldScarfCharacteristicStats_WeldScarfCharacteristicStatsEvalType :
           y_WeldScarfCharacteristicStatsEvalType
           WeldScarfCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "WeldScarfCharacteristicStats";
+           $$->setprintElement("WeldScarfCharacteristicStats");
           }
         ;
 
@@ -100494,7 +100452,7 @@ y_WeldSeamCharacteristicDefinition_WeldSeamCharacteristicDefinitionType :
           {$$ = new WeldSeamCharacteristicDefinitionType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "WeldSeamCharacteristicDefinition";
+           $$->setprintElement("WeldSeamCharacteristicDefinition");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -100506,7 +100464,7 @@ y_WeldSeamCharacteristicDefinition_WeldSeamCharacteristicDefinitionType :
           y_WeldSeamCharacteristicDefinitionType
           WeldSeamCharacteristicDefinitionEND
           {$$ = $2;
-           $$->printElement = "WeldSeamCharacteristicDefinition";
+           $$->setprintElement("WeldSeamCharacteristicDefinition");
           }
         ;
 
@@ -100548,7 +100506,7 @@ y_WeldSeamCharacteristicItem_WeldSeamCharacteristicItemType :
           WeldSeamCharacteristicItemSTART y_WeldSeamCharacteristicItemType
           WeldSeamCharacteristicItemEND
           {$$ = $2;
-           $$->printElement = "WeldSeamCharacteristicItem";
+           $$->setprintElement("WeldSeamCharacteristicItem");
           }
         ;
 
@@ -100596,7 +100554,7 @@ y_WeldSeamCharacteristicMeasurement_WeldSeamCharacteristicMeasurementType :
           y_WeldSeamCharacteristicMeasurementType
           WeldSeamCharacteristicMeasurementEND
           {$$ = $2;
-           $$->printElement = "WeldSeamCharacteristicMeasurement";
+           $$->setprintElement("WeldSeamCharacteristicMeasurement");
           }
         ;
 
@@ -100649,7 +100607,7 @@ y_WeldSeamCharacteristicNominal_WeldSeamCharacteristicNominalType :
           y_WeldSeamCharacteristicNominalType
           WeldSeamCharacteristicNominalEND
           {$$ = $2;
-           $$->printElement = "WeldSeamCharacteristicNominal";
+           $$->setprintElement("WeldSeamCharacteristicNominal");
           }
         ;
 
@@ -100677,7 +100635,7 @@ y_WeldSeamCharacteristicStats_WeldSeamCharacteristicStatsEvalType :
           y_WeldSeamCharacteristicStatsEvalType
           WeldSeamCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "WeldSeamCharacteristicStats";
+           $$->setprintElement("WeldSeamCharacteristicStats");
           }
         ;
 
@@ -100722,7 +100680,7 @@ y_WeldSlotCharacteristicDefinition_WeldSlotCharacteristicDefinitionType :
           {$$ = new WeldSlotCharacteristicDefinitionType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "WeldSlotCharacteristicDefinition";
+           $$->setprintElement("WeldSlotCharacteristicDefinition");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -100734,7 +100692,7 @@ y_WeldSlotCharacteristicDefinition_WeldSlotCharacteristicDefinitionType :
           y_WeldSlotCharacteristicDefinitionType
           WeldSlotCharacteristicDefinitionEND
           {$$ = $2;
-           $$->printElement = "WeldSlotCharacteristicDefinition";
+           $$->setprintElement("WeldSlotCharacteristicDefinition");
           }
         ;
 
@@ -100776,7 +100734,7 @@ y_WeldSlotCharacteristicItem_WeldSlotCharacteristicItemType :
           WeldSlotCharacteristicItemSTART y_WeldSlotCharacteristicItemType
           WeldSlotCharacteristicItemEND
           {$$ = $2;
-           $$->printElement = "WeldSlotCharacteristicItem";
+           $$->setprintElement("WeldSlotCharacteristicItem");
           }
         ;
 
@@ -100824,7 +100782,7 @@ y_WeldSlotCharacteristicMeasurement_WeldSlotCharacteristicMeasurementType :
           y_WeldSlotCharacteristicMeasurementType
           WeldSlotCharacteristicMeasurementEND
           {$$ = $2;
-           $$->printElement = "WeldSlotCharacteristicMeasurement";
+           $$->setprintElement("WeldSlotCharacteristicMeasurement");
           }
         ;
 
@@ -100877,7 +100835,7 @@ y_WeldSlotCharacteristicNominal_WeldSlotCharacteristicNominalType :
           y_WeldSlotCharacteristicNominalType
           WeldSlotCharacteristicNominalEND
           {$$ = $2;
-           $$->printElement = "WeldSlotCharacteristicNominal";
+           $$->setprintElement("WeldSlotCharacteristicNominal");
           }
         ;
 
@@ -100905,7 +100863,7 @@ y_WeldSlotCharacteristicStats_WeldSlotCharacteristicStatsEvalType :
           y_WeldSlotCharacteristicStatsEvalType
           WeldSlotCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "WeldSlotCharacteristicStats";
+           $$->setprintElement("WeldSlotCharacteristicStats");
           }
         ;
 
@@ -100950,7 +100908,7 @@ y_WeldSpotCharacteristicDefinition_WeldSpotCharacteristicDefinitionType :
           {$$ = new WeldSpotCharacteristicDefinitionType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "WeldSpotCharacteristicDefinition";
+           $$->setprintElement("WeldSpotCharacteristicDefinition");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -100962,7 +100920,7 @@ y_WeldSpotCharacteristicDefinition_WeldSpotCharacteristicDefinitionType :
           y_WeldSpotCharacteristicDefinitionType
           WeldSpotCharacteristicDefinitionEND
           {$$ = $2;
-           $$->printElement = "WeldSpotCharacteristicDefinition";
+           $$->setprintElement("WeldSpotCharacteristicDefinition");
           }
         ;
 
@@ -101004,7 +100962,7 @@ y_WeldSpotCharacteristicItem_WeldSpotCharacteristicItemType :
           WeldSpotCharacteristicItemSTART y_WeldSpotCharacteristicItemType
           WeldSpotCharacteristicItemEND
           {$$ = $2;
-           $$->printElement = "WeldSpotCharacteristicItem";
+           $$->setprintElement("WeldSpotCharacteristicItem");
           }
         ;
 
@@ -101054,7 +101012,7 @@ y_WeldSpotCharacteristicMeasurement_WeldSpotCharacteristicMeasurementType :
           y_WeldSpotCharacteristicMeasurementType
           WeldSpotCharacteristicMeasurementEND
           {$$ = $2;
-           $$->printElement = "WeldSpotCharacteristicMeasurement";
+           $$->setprintElement("WeldSpotCharacteristicMeasurement");
           }
         ;
 
@@ -101109,7 +101067,7 @@ y_WeldSpotCharacteristicNominal_WeldSpotCharacteristicNominalType :
           y_WeldSpotCharacteristicNominalType
           WeldSpotCharacteristicNominalEND
           {$$ = $2;
-           $$->printElement = "WeldSpotCharacteristicNominal";
+           $$->setprintElement("WeldSpotCharacteristicNominal");
           }
         ;
 
@@ -101137,7 +101095,7 @@ y_WeldSpotCharacteristicStats_WeldSpotCharacteristicStatsEvalType :
           y_WeldSpotCharacteristicStatsEvalType
           WeldSpotCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "WeldSpotCharacteristicStats";
+           $$->setprintElement("WeldSpotCharacteristicStats");
           }
         ;
 
@@ -101194,7 +101152,7 @@ y_WeldSquareCharacteristicDefinition_WeldSquareCharacteristicDefinitionType :
           {$$ = new WeldSquareCharacteristicDefinitionType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "WeldSquareCharacteristicDefinition";
+           $$->setprintElement("WeldSquareCharacteristicDefinition");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -101206,7 +101164,7 @@ y_WeldSquareCharacteristicDefinition_WeldSquareCharacteristicDefinitionType :
           y_WeldSquareCharacteristicDefinitionType
           WeldSquareCharacteristicDefinitionEND
           {$$ = $2;
-           $$->printElement = "WeldSquareCharacteristicDefinition";
+           $$->setprintElement("WeldSquareCharacteristicDefinition");
           }
         ;
 
@@ -101249,7 +101207,7 @@ y_WeldSquareCharacteristicItem_WeldSquareCharacteristicItemType :
           y_WeldSquareCharacteristicItemType
           WeldSquareCharacteristicItemEND
           {$$ = $2;
-           $$->printElement = "WeldSquareCharacteristicItem";
+           $$->setprintElement("WeldSquareCharacteristicItem");
           }
         ;
 
@@ -101295,7 +101253,7 @@ y_WeldSquareCharacteristicMeasurement_WeldSquareCharacteristicMeasurementType :
           y_WeldSquareCharacteristicMeasurementType
           WeldSquareCharacteristicMeasurementEND
           {$$ = $2;
-           $$->printElement = "WeldSquareCharacteristicMeasurement";
+           $$->setprintElement("WeldSquareCharacteristicMeasurement");
           }
         ;
 
@@ -101346,7 +101304,7 @@ y_WeldSquareCharacteristicNominal_WeldSquareCharacteristicNominalType :
           y_WeldSquareCharacteristicNominalType
           WeldSquareCharacteristicNominalEND
           {$$ = $2;
-           $$->printElement = "WeldSquareCharacteristicNominal";
+           $$->setprintElement("WeldSquareCharacteristicNominal");
           }
         ;
 
@@ -101374,7 +101332,7 @@ y_WeldSquareCharacteristicStats_WeldSquareCharacteristicStatsEvalType :
           y_WeldSquareCharacteristicStatsEvalType
           WeldSquareCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "WeldSquareCharacteristicStats";
+           $$->setprintElement("WeldSquareCharacteristicStats");
           }
         ;
 
@@ -101383,7 +101341,7 @@ y_WeldStats_StatsPassFailType_0 :
           {$$ = 0;}
         | WeldStatsSTART y_StatsPassFailType WeldStatsEND
           {$$ = $2;
-           $$->printElement = "WeldStats";
+           $$->setprintElement("WeldStats");
           }
         ;
 
@@ -101428,7 +101386,7 @@ y_WeldStudCharacteristicDefinition_WeldStudCharacteristicDefinitionType :
           {$$ = new WeldStudCharacteristicDefinitionType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "WeldStudCharacteristicDefinition";
+           $$->setprintElement("WeldStudCharacteristicDefinition");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -101440,7 +101398,7 @@ y_WeldStudCharacteristicDefinition_WeldStudCharacteristicDefinitionType :
           y_WeldStudCharacteristicDefinitionType
           WeldStudCharacteristicDefinitionEND
           {$$ = $2;
-           $$->printElement = "WeldStudCharacteristicDefinition";
+           $$->setprintElement("WeldStudCharacteristicDefinition");
           }
         ;
 
@@ -101482,7 +101440,7 @@ y_WeldStudCharacteristicItem_WeldStudCharacteristicItemType :
           WeldStudCharacteristicItemSTART y_WeldStudCharacteristicItemType
           WeldStudCharacteristicItemEND
           {$$ = $2;
-           $$->printElement = "WeldStudCharacteristicItem";
+           $$->setprintElement("WeldStudCharacteristicItem");
           }
         ;
 
@@ -101528,7 +101486,7 @@ y_WeldStudCharacteristicMeasurement_WeldStudCharacteristicMeasurementType :
           y_WeldStudCharacteristicMeasurementType
           WeldStudCharacteristicMeasurementEND
           {$$ = $2;
-           $$->printElement = "WeldStudCharacteristicMeasurement";
+           $$->setprintElement("WeldStudCharacteristicMeasurement");
           }
         ;
 
@@ -101579,7 +101537,7 @@ y_WeldStudCharacteristicNominal_WeldStudCharacteristicNominalType :
           y_WeldStudCharacteristicNominalType
           WeldStudCharacteristicNominalEND
           {$$ = $2;
-           $$->printElement = "WeldStudCharacteristicNominal";
+           $$->setprintElement("WeldStudCharacteristicNominal");
           }
         ;
 
@@ -101607,7 +101565,7 @@ y_WeldStudCharacteristicStats_WeldStudCharacteristicStatsEvalType :
           y_WeldStudCharacteristicStatsEvalType
           WeldStudCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "WeldStudCharacteristicStats";
+           $$->setprintElement("WeldStudCharacteristicStats");
           }
         ;
 
@@ -101616,7 +101574,7 @@ y_WeldSupplementarySymbolEnumType :
           {$$ = new WeldSupplementarySymbolEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad WeldSupplementarySymbolEnumType value");
           }
         ;
@@ -101672,7 +101630,7 @@ y_WeldSurfacingCharacteristicDefinition_WeldSurfacingCharacteristicDefinitionTyp
           {$$ = new WeldSurfacingCharacteristicDefinitionType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "WeldSurfacingCharacteristicDefinition";
+           $$->setprintElement("WeldSurfacingCharacteristicDefinition");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -101684,7 +101642,7 @@ y_WeldSurfacingCharacteristicDefinition_WeldSurfacingCharacteristicDefinitionTyp
           y_WeldSurfacingCharacteristicDefinitionType
           WeldSurfacingCharacteristicDefinitionEND
           {$$ = $2;
-           $$->printElement = "WeldSurfacingCharacteristicDefinition";
+           $$->setprintElement("WeldSurfacingCharacteristicDefinition");
           }
         ;
 
@@ -101727,7 +101685,7 @@ y_WeldSurfacingCharacteristicItem_WeldSurfacingCharacteristicItemType :
           y_WeldSurfacingCharacteristicItemType
           WeldSurfacingCharacteristicItemEND
           {$$ = $2;
-           $$->printElement = "WeldSurfacingCharacteristicItem";
+           $$->setprintElement("WeldSurfacingCharacteristicItem");
           }
         ;
 
@@ -101773,7 +101731,7 @@ y_WeldSurfacingCharacteristicMeasurement_WeldSurfacingCharacteristicMeasurementT
           y_WeldSurfacingCharacteristicMeasurementType
           WeldSurfacingCharacteristicMeasurementEND
           {$$ = $2;
-           $$->printElement = "WeldSurfacingCharacteristicMeasurement";
+           $$->setprintElement("WeldSurfacingCharacteristicMeasurement");
           }
         ;
 
@@ -101824,7 +101782,7 @@ y_WeldSurfacingCharacteristicNominal_WeldSurfacingCharacteristicNominalType :
           y_WeldSurfacingCharacteristicNominalType
           WeldSurfacingCharacteristicNominalEND
           {$$ = $2;
-           $$->printElement = "WeldSurfacingCharacteristicNominal";
+           $$->setprintElement("WeldSurfacingCharacteristicNominal");
           }
         ;
 
@@ -101852,7 +101810,7 @@ y_WeldSurfacingCharacteristicStats_WeldSurfacingCharacteristicStatsEvalType :
           y_WeldSurfacingCharacteristicStatsEvalType
           WeldSurfacingCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "WeldSurfacingCharacteristicStats";
+           $$->setprintElement("WeldSurfacingCharacteristicStats");
           }
         ;
 
@@ -101905,7 +101863,7 @@ y_WeldUCharacteristicDefinition_WeldUCharacteristicDefinitionType :
           {$$ = new WeldUCharacteristicDefinitionType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "WeldUCharacteristicDefinition";
+           $$->setprintElement("WeldUCharacteristicDefinition");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -101917,7 +101875,7 @@ y_WeldUCharacteristicDefinition_WeldUCharacteristicDefinitionType :
           y_WeldUCharacteristicDefinitionType
           WeldUCharacteristicDefinitionEND
           {$$ = $2;
-           $$->printElement = "WeldUCharacteristicDefinition";
+           $$->setprintElement("WeldUCharacteristicDefinition");
           }
         ;
 
@@ -101959,7 +101917,7 @@ y_WeldUCharacteristicItem_WeldUCharacteristicItemType :
           WeldUCharacteristicItemSTART y_WeldUCharacteristicItemType
           WeldUCharacteristicItemEND
           {$$ = $2;
-           $$->printElement = "WeldUCharacteristicItem";
+           $$->setprintElement("WeldUCharacteristicItem");
           }
         ;
 
@@ -102005,7 +101963,7 @@ y_WeldUCharacteristicMeasurement_WeldUCharacteristicMeasurementType :
           y_WeldUCharacteristicMeasurementType
           WeldUCharacteristicMeasurementEND
           {$$ = $2;
-           $$->printElement = "WeldUCharacteristicMeasurement";
+           $$->setprintElement("WeldUCharacteristicMeasurement");
           }
         ;
 
@@ -102055,7 +102013,7 @@ y_WeldUCharacteristicNominal_WeldUCharacteristicNominalType :
           WeldUCharacteristicNominalSTART y_WeldUCharacteristicNominalType
           WeldUCharacteristicNominalEND
           {$$ = $2;
-           $$->printElement = "WeldUCharacteristicNominal";
+           $$->setprintElement("WeldUCharacteristicNominal");
           }
         ;
 
@@ -102082,7 +102040,7 @@ y_WeldUCharacteristicStats_WeldUCharacteristicStatsEvalType :
           WeldUCharacteristicStatsSTART y_WeldUCharacteristicStatsEvalType
           WeldUCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "WeldUCharacteristicStats";
+           $$->setprintElement("WeldUCharacteristicStats");
           }
         ;
 
@@ -102127,7 +102085,7 @@ y_WeldVCharacteristicDefinition_WeldVCharacteristicDefinitionType :
           {$$ = new WeldVCharacteristicDefinitionType();
            yyUnrefMap[$$] = $$;
            yyUnrefMap.erase($2);
-           $$->printElement = "WeldVCharacteristicDefinition";
+           $$->setprintElement("WeldVCharacteristicDefinition");
            if ($$->badAttributes($2))
              {
                delete $2;
@@ -102139,7 +102097,7 @@ y_WeldVCharacteristicDefinition_WeldVCharacteristicDefinitionType :
           y_WeldVCharacteristicDefinitionType
           WeldVCharacteristicDefinitionEND
           {$$ = $2;
-           $$->printElement = "WeldVCharacteristicDefinition";
+           $$->setprintElement("WeldVCharacteristicDefinition");
           }
         ;
 
@@ -102181,7 +102139,7 @@ y_WeldVCharacteristicItem_WeldVCharacteristicItemType :
           WeldVCharacteristicItemSTART y_WeldVCharacteristicItemType
           WeldVCharacteristicItemEND
           {$$ = $2;
-           $$->printElement = "WeldVCharacteristicItem";
+           $$->setprintElement("WeldVCharacteristicItem");
           }
         ;
 
@@ -102227,7 +102185,7 @@ y_WeldVCharacteristicMeasurement_WeldVCharacteristicMeasurementType :
           y_WeldVCharacteristicMeasurementType
           WeldVCharacteristicMeasurementEND
           {$$ = $2;
-           $$->printElement = "WeldVCharacteristicMeasurement";
+           $$->setprintElement("WeldVCharacteristicMeasurement");
           }
         ;
 
@@ -102277,7 +102235,7 @@ y_WeldVCharacteristicNominal_WeldVCharacteristicNominalType :
           WeldVCharacteristicNominalSTART y_WeldVCharacteristicNominalType
           WeldVCharacteristicNominalEND
           {$$ = $2;
-           $$->printElement = "WeldVCharacteristicNominal";
+           $$->setprintElement("WeldVCharacteristicNominal");
           }
         ;
 
@@ -102304,7 +102262,7 @@ y_WeldVCharacteristicStats_WeldVCharacteristicStatsEvalType :
           WeldVCharacteristicStatsSTART y_WeldVCharacteristicStatsEvalType
           WeldVCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "WeldVCharacteristicStats";
+           $$->setprintElement("WeldVCharacteristicStats");
           }
         ;
 
@@ -102313,7 +102271,7 @@ y_WeldingProcessEnumType :
           {$$ = new WeldingProcessEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad WeldingProcessEnumType value");
           }
         ;
@@ -102323,7 +102281,7 @@ y_WeldingProcessSuffixEnumType :
           {$$ = new WeldingProcessSuffixEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad WeldingProcessSuffixEnumType value");
           }
         ;
@@ -102379,7 +102337,7 @@ y_WhileActionGroupType :
 y_WhileActionGroup_WhileActionGroupType :
           WhileActionGroupSTART y_WhileActionGroupType WhileActionGroupEND
           {$$ = $2;
-           $$->printElement = "WhileActionGroup";
+           $$->setprintElement("WhileActionGroup");
           }
         ;
 
@@ -102387,7 +102345,7 @@ y_WholePointSetId_PointSetReferenceWholeType :
           WholePointSetIdSTART y_PointSetReferenceWholeType
           WholePointSetIdEND
           {$$ = $2;
-           $$->printElement = "WholePointSetId";
+           $$->setprintElement("WholePointSetId");
           }
         ;
 
@@ -102437,7 +102395,7 @@ y_WidthCharacteristicDefinition_WidthCharacteristicDefinitionType :
           y_WidthCharacteristicDefinitionType
           WidthCharacteristicDefinitionEND
           {$$ = $2;
-           $$->printElement = "WidthCharacteristicDefinition";
+           $$->setprintElement("WidthCharacteristicDefinition");
           }
         ;
 
@@ -102479,7 +102437,7 @@ y_WidthCharacteristicItem_WidthCharacteristicItemType :
           WidthCharacteristicItemSTART y_WidthCharacteristicItemType
           WidthCharacteristicItemEND
           {$$ = $2;
-           $$->printElement = "WidthCharacteristicItem";
+           $$->setprintElement("WidthCharacteristicItem");
           }
         ;
 
@@ -102529,7 +102487,7 @@ y_WidthCharacteristicMeasurement_WidthCharacteristicMeasurementType :
           y_WidthCharacteristicMeasurementType
           WidthCharacteristicMeasurementEND
           {$$ = $2;
-           $$->printElement = "WidthCharacteristicMeasurement";
+           $$->setprintElement("WidthCharacteristicMeasurement");
           }
         ;
 
@@ -102573,7 +102531,7 @@ y_WidthCharacteristicNominal_WidthCharacteristicNominalType :
           WidthCharacteristicNominalSTART y_WidthCharacteristicNominalType
           WidthCharacteristicNominalEND
           {$$ = $2;
-           $$->printElement = "WidthCharacteristicNominal";
+           $$->setprintElement("WidthCharacteristicNominal");
           }
         ;
 
@@ -102600,7 +102558,7 @@ y_WidthCharacteristicStats_WidthCharacteristicStatsEvalType :
           WidthCharacteristicStatsSTART y_WidthCharacteristicStatsEvalType
           WidthCharacteristicStatsEND
           {$$ = $2;
-           $$->printElement = "WidthCharacteristicStats";
+           $$->setprintElement("WidthCharacteristicStats");
           }
         ;
 
@@ -102824,7 +102782,7 @@ y_WorstNegativeDeviationStats_StatsLinearType_0 :
         | WorstNegativeDeviationStatsSTART y_StatsLinearType
           WorstNegativeDeviationStatsEND
           {$$ = $2;
-           $$->printElement = "WorstNegativeDeviationStats";
+           $$->setprintElement("WorstNegativeDeviationStats");
           }
         ;
 
@@ -102842,7 +102800,7 @@ y_WorstPositiveDeviationStats_StatsLinearType_0 :
         | WorstPositiveDeviationStatsSTART y_StatsLinearType
           WorstPositiveDeviationStatsEND
           {$$ = $2;
-           $$->printElement = "WorstPositiveDeviationStats";
+           $$->setprintElement("WorstPositiveDeviationStats");
           }
         ;
 
@@ -102870,14 +102828,14 @@ y_XAxisLength_LinearValueType_0 :
 y_XAxisPitch_AngleFunctionDiscreteType :
           XAxisPitchSTART y_AngleFunctionDiscreteType XAxisPitchEND
           {$$ = $2;
-           $$->printElement = "XAxisPitch";
+           $$->setprintElement("XAxisPitch");
           }
         ;
 
 y_XAxisRoll_AngleFunctionDiscreteType :
           XAxisRollSTART y_AngleFunctionDiscreteType XAxisRollEND
           {$$ = $2;
-           $$->printElement = "XAxisRoll";
+           $$->setprintElement("XAxisRoll");
           }
         ;
 
@@ -102885,7 +102843,7 @@ y_XAxisStraightnessY_LengthFunctionDiscreteType :
           XAxisStraightnessYSTART y_LengthFunctionDiscreteType
           XAxisStraightnessYEND
           {$$ = $2;
-           $$->printElement = "XAxisStraightnessY";
+           $$->setprintElement("XAxisStraightnessY");
           }
         ;
 
@@ -102893,14 +102851,14 @@ y_XAxisStraightnessZ_LengthFunctionDiscreteType :
           XAxisStraightnessZSTART y_LengthFunctionDiscreteType
           XAxisStraightnessZEND
           {$$ = $2;
-           $$->printElement = "XAxisStraightnessZ";
+           $$->setprintElement("XAxisStraightnessZ");
           }
         ;
 
 y_XAxisYaw_AngleFunctionDiscreteType :
           XAxisYawSTART y_AngleFunctionDiscreteType XAxisYawEND
           {$$ = $2;
-           $$->printElement = "XAxisYaw";
+           $$->setprintElement("XAxisYaw");
           }
         ;
 
@@ -102908,14 +102866,14 @@ y_XDirection_UnitVectorSimpleType :
           XDirectionSTART ENDWHOLEITEM
           {$$ = new UnitVectorSimpleType();
            $$->UnitVectorSimpleTypeCheck();
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad UnitVectorSimpleType value");
            yyUnrefMap[$$] = $$;
           }
         | XDirectionSTART y_UnitVectorSimpleType XDirectionEND
           {$$ = $2;
            $2->UnitVectorSimpleTypeCheck();
-           if ($2->bad)
+           if ($2->getbad())
              return yyerror("bad UnitVectorSimpleType value");
           }
         ;
@@ -102938,7 +102896,7 @@ y_XLinearAccuracy_LinearValueType :
 y_XLinearity_LengthFunctionDiscreteType :
           XLinearitySTART y_LengthFunctionDiscreteType XLinearityEND
           {$$ = $2;
-           $$->printElement = "XLinearity";
+           $$->setprintElement("XLinearity");
           }
         ;
 
@@ -103013,14 +102971,14 @@ y_XYZ_PointSimpleType :
           XYZSTART ENDWHOLEITEM
           {$$ = new PointSimpleType();
            $$->PointSimpleTypeCheck();
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad PointSimpleType value");
            yyUnrefMap[$$] = $$;
           }
         | XYZSTART y_PointSimpleType XYZEND
           {$$ = $2;
            $2->PointSimpleTypeCheck();
-           if ($2->bad)
+           if ($2->getbad())
              return yyerror("bad PointSimpleType value");
           }
         ;
@@ -103034,14 +102992,14 @@ y_XY_Point2dSimpleType :
           XYSTART ENDWHOLEITEM
           {$$ = new Point2dSimpleType();
            $$->Point2dSimpleTypeCheck();
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad Point2dSimpleType value");
            yyUnrefMap[$$] = $$;
           }
         | XYSTART y_Point2dSimpleType XYEND
           {$$ = $2;
            $2->Point2dSimpleTypeCheck();
-           if ($2->bad)
+           if ($2->getbad())
              return yyerror("bad Point2dSimpleType value");
           }
         ;
@@ -103094,14 +103052,14 @@ y_YAxisLength_LinearValueType_0 :
 y_YAxisPitch_AngleFunctionDiscreteType :
           YAxisPitchSTART y_AngleFunctionDiscreteType YAxisPitchEND
           {$$ = $2;
-           $$->printElement = "YAxisPitch";
+           $$->setprintElement("YAxisPitch");
           }
         ;
 
 y_YAxisRoll_AngleFunctionDiscreteType :
           YAxisRollSTART y_AngleFunctionDiscreteType YAxisRollEND
           {$$ = $2;
-           $$->printElement = "YAxisRoll";
+           $$->setprintElement("YAxisRoll");
           }
         ;
 
@@ -103109,7 +103067,7 @@ y_YAxisStraightnessX_LengthFunctionDiscreteType :
           YAxisStraightnessXSTART y_LengthFunctionDiscreteType
           YAxisStraightnessXEND
           {$$ = $2;
-           $$->printElement = "YAxisStraightnessX";
+           $$->setprintElement("YAxisStraightnessX");
           }
         ;
 
@@ -103117,14 +103075,14 @@ y_YAxisStraightnessZ_LengthFunctionDiscreteType :
           YAxisStraightnessZSTART y_LengthFunctionDiscreteType
           YAxisStraightnessZEND
           {$$ = $2;
-           $$->printElement = "YAxisStraightnessZ";
+           $$->setprintElement("YAxisStraightnessZ");
           }
         ;
 
 y_YAxisYaw_AngleFunctionDiscreteType :
           YAxisYawSTART y_AngleFunctionDiscreteType YAxisYawEND
           {$$ = $2;
-           $$->printElement = "YAxisYaw";
+           $$->setprintElement("YAxisYaw");
           }
         ;
 
@@ -103132,14 +103090,14 @@ y_YDirection_UnitVectorSimpleType :
           YDirectionSTART ENDWHOLEITEM
           {$$ = new UnitVectorSimpleType();
            $$->UnitVectorSimpleTypeCheck();
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad UnitVectorSimpleType value");
            yyUnrefMap[$$] = $$;
           }
         | YDirectionSTART y_UnitVectorSimpleType YDirectionEND
           {$$ = $2;
            $2->UnitVectorSimpleTypeCheck();
-           if ($2->bad)
+           if ($2->getbad())
              return yyerror("bad UnitVectorSimpleType value");
           }
         ;
@@ -103152,7 +103110,7 @@ y_YLinearAccuracy_LinearValueType :
 y_YLinearity_LengthFunctionDiscreteType :
           YLinearitySTART y_LengthFunctionDiscreteType YLinearityEND
           {$$ = $2;
-           $$->printElement = "YLinearity";
+           $$->setprintElement("YLinearity");
           }
         ;
 
@@ -103246,14 +103204,14 @@ y_ZAxisLength_LinearValueType_0 :
 y_ZAxisPitch_AngleFunctionDiscreteType :
           ZAxisPitchSTART y_AngleFunctionDiscreteType ZAxisPitchEND
           {$$ = $2;
-           $$->printElement = "ZAxisPitch";
+           $$->setprintElement("ZAxisPitch");
           }
         ;
 
 y_ZAxisRoll_AngleFunctionDiscreteType :
           ZAxisRollSTART y_AngleFunctionDiscreteType ZAxisRollEND
           {$$ = $2;
-           $$->printElement = "ZAxisRoll";
+           $$->setprintElement("ZAxisRoll");
           }
         ;
 
@@ -103261,7 +103219,7 @@ y_ZAxisStraightnessX_LengthFunctionDiscreteType :
           ZAxisStraightnessXSTART y_LengthFunctionDiscreteType
           ZAxisStraightnessXEND
           {$$ = $2;
-           $$->printElement = "ZAxisStraightnessX";
+           $$->setprintElement("ZAxisStraightnessX");
           }
         ;
 
@@ -103269,14 +103227,14 @@ y_ZAxisStraightnessY_LengthFunctionDiscreteType :
           ZAxisStraightnessYSTART y_LengthFunctionDiscreteType
           ZAxisStraightnessYEND
           {$$ = $2;
-           $$->printElement = "ZAxisStraightnessY";
+           $$->setprintElement("ZAxisStraightnessY");
           }
         ;
 
 y_ZAxisYaw_AngleFunctionDiscreteType :
           ZAxisYawSTART y_AngleFunctionDiscreteType ZAxisYawEND
           {$$ = $2;
-           $$->printElement = "ZAxisYaw";
+           $$->setprintElement("ZAxisYaw");
           }
         ;
 
@@ -103284,14 +103242,14 @@ y_ZDirection_UnitVectorSimpleType :
           ZDirectionSTART ENDWHOLEITEM
           {$$ = new UnitVectorSimpleType();
            $$->UnitVectorSimpleTypeCheck();
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad UnitVectorSimpleType value");
            yyUnrefMap[$$] = $$;
           }
         | ZDirectionSTART y_UnitVectorSimpleType ZDirectionEND
           {$$ = $2;
            $2->UnitVectorSimpleTypeCheck();
-           if ($2->bad)
+           if ($2->getbad())
              return yyerror("bad UnitVectorSimpleType value");
           }
         ;
@@ -103304,7 +103262,7 @@ y_ZLinearAccuracy_LinearValueType :
 y_ZLinearity_LengthFunctionDiscreteType :
           ZLinearitySTART y_LengthFunctionDiscreteType ZLinearityEND
           {$$ = $2;
-           $$->printElement = "ZLinearity";
+           $$->setprintElement("ZLinearity");
           }
         ;
 
@@ -103365,14 +103323,14 @@ y_ZextensionPoint1_PointSimpleType_0 :
         | ZextensionPoint1START ENDWHOLEITEM
           {$$ = new PointSimpleType();
            $$->PointSimpleTypeCheck();
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad PointSimpleType value");
            yyUnrefMap[$$] = $$;
           }
         | ZextensionPoint1START y_PointSimpleType ZextensionPoint1END
           {$$ = $2;
            $2->PointSimpleTypeCheck();
-           if ($2->bad)
+           if ($2->getbad())
              return yyerror("bad PointSimpleType value");
           }
         ;
@@ -103383,14 +103341,14 @@ y_ZextensionPoint2_PointSimpleType_0 :
         | ZextensionPoint2START ENDWHOLEITEM
           {$$ = new PointSimpleType();
            $$->PointSimpleTypeCheck();
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad PointSimpleType value");
            yyUnrefMap[$$] = $$;
           }
         | ZextensionPoint2START y_PointSimpleType ZextensionPoint2END
           {$$ = $2;
            $2->PointSimpleTypeCheck();
-           if ($2->bad)
+           if ($2->getbad())
              return yyerror("bad PointSimpleType value");
           }
         ;
@@ -103398,7 +103356,7 @@ y_ZextensionPoint2_PointSimpleType_0 :
 y_ZoneAxis_MeasuredZoneAxisType :
           ZoneAxisSTART y_MeasuredZoneAxisType ZoneAxisEND
           {$$ = $2;
-           $$->printElement = "ZoneAxis";
+           $$->setprintElement("ZoneAxis");
           }
         ;
 
@@ -103452,7 +103410,7 @@ y_ZoneLine_MeasuredZoneAxisType_0 :
           {$$ = 0;}
         | ZoneLineSTART y_MeasuredZoneAxisType ZoneLineEND
           {$$ = $2;
-           $$->printElement = "ZoneLine";
+           $$->setprintElement("ZoneLine");
           }
         ;
 
@@ -103461,7 +103419,7 @@ y_ZoneOrientationEnumType :
           {$$ = new ZoneOrientationEnumType($1);
            yyUnrefMap[$$] = $$;
            free($1);
-           if ($$->bad)
+           if ($$->getbad())
              return yyerror("bad ZoneOrientationEnumType value");
           }
         ;
@@ -103595,7 +103553,7 @@ y_ZoneSectionType :
 y_ZoneSection_ZoneSectionType :
           ZoneSectionSTART y_ZoneSectionType ZoneSectionEND
           {$$ = $2;
-           $$->printElement = "ZoneSection";
+           $$->setprintElement("ZoneSection");
           }
         ;
 

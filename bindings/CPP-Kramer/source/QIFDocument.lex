@@ -3232,8 +3232,6 @@ W [ \t\n\r]*
 "<"{W}"OppositeParallelPlanesFeatureNominal" {ECH; return OppositeParallelPlanesFeatureNominalSTART;}
 "</"{W}"OpticalComparator"{W}">" {ECH; return OpticalComparatorEND;}
 "<"{W}"OpticalComparator"     {ECH; return OpticalComparatorSTART;}
-"</"{W}"OpticalDigitizerMeasureFeatureMethod"{W}">" {ECH; return OpticalDigitizerMeasureFeatureMethodEND;}
-"<"{W}"OpticalDigitizerMeasureFeatureMethod" {ECH; return OpticalDigitizerMeasureFeatureMethodSTART;}
 "</"{W}"OpticalFiberCableLength"{W}">" {ECH; return OpticalFiberCableLengthEND;}
 "<"{W}"OpticalFiberCableLength" {ECH; return OpticalFiberCableLengthSTART;}
 "</"{W}"Or"{W}">"             {ECH; return OrEND;}
