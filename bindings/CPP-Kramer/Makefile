@@ -149,7 +149,7 @@ ofiles/QIFDocumentClasses.o : source/QIFDocumentClasses.hh             \
                               source/QIFDocumentYACC.hh                \
                               source/xmlSchemaInstance.hh              \
                               source/QIFDocumentClasses.cc
-	$(LINCOMPILE) -o $@ $(INCLUD) source/QIFDocumentClasses.cc
+	$(LINCOMPILE) -o $@  -DACCESSGETSET $(INCLUD) source/QIFDocumentClasses.cc
 
 ofiles/QIFDocumentClassesNoDest.o : source/QIFDocumentClasses.hh       \
                               source/QIFMeasurementResourcesClasses.hh \
@@ -175,7 +175,7 @@ ofiles/QIFDocumentClassesNoDest.o : source/QIFDocumentClasses.hh       \
                               source/QIFDocumentYACC.hh                \
                               source/xmlSchemaInstance.hh              \
                               source/QIFDocumentClasses.cc
-	$(LINCOMPILE) -o $@ -DNODESTRUCT $(INCLUD) source/QIFDocumentClasses.cc
+	$(LINCOMPILE) -o $@  -DACCESSGETSET -DNODESTRUCT $(INCLUD) source/QIFDocumentClasses.cc
 
 ofiles/QIF_CPlusPlusDlg.o :source/QIFDocumentClasses.hh             \
                            source/QIFMeasurementResourcesClasses.hh \
@@ -267,7 +267,7 @@ ofiles/QIFMeasurementResourcesClasses.o :                        \
                         source/GeometryClasses.hh                \
                         source/xmlSchemaInstance.hh              \
                         source/QIFMeasurementResourcesClasses.cc
-	$(LINCOMPILE) -o $@ $(INCLUD) source/QIFMeasurementResourcesClasses.cc
+	$(LINCOMPILE) -o $@ -DACCESSGETSET $(INCLUD) source/QIFMeasurementResourcesClasses.cc
 
 ofiles/QIFMeasurementResourcesClassesNoDest.o :                  \
                         source/QIFMeasurementResourcesClasses.hh \
@@ -280,21 +280,21 @@ ofiles/QIFMeasurementResourcesClassesNoDest.o :                  \
                         source/GeometryClasses.hh                \
                         source/xmlSchemaInstance.hh              \
                         source/QIFMeasurementResourcesClasses.cc
-	$(LINCOMPILE) -o $@ -DNODESTRUCT $(INCLUD) source/QIFMeasurementResourcesClasses.cc
+	$(LINCOMPILE) -o $@ -DACCESSGETSET -DNODESTRUCT $(INCLUD) source/QIFMeasurementResourcesClasses.cc
 
 ofiles/QIFPlanClasses.o : source/QIFPlanClasses.hh            \
                           source/ExpressionsClasses.hh        \
                           source/IntermediatesPMIClasses.hh   \
                           source/xmlSchemaInstance.hh         \
                           source/QIFPlanClasses.cc
-	$(LINCOMPILE) -o $@ $(INCLUD) source/QIFPlanClasses.cc
+	$(LINCOMPILE) -o $@ -DACCESSGETSET $(INCLUD) source/QIFPlanClasses.cc
 
 ofiles/QIFPlanClassesNoDest.o : source/QIFPlanClasses.hh      \
                           source/ExpressionsClasses.hh        \
                           source/IntermediatesPMIClasses.hh   \
                           source/xmlSchemaInstance.hh         \
                           source/QIFPlanClasses.cc
-	$(LINCOMPILE) -o $@ -DNODESTRUCT $(INCLUD) source/QIFPlanClasses.cc
+	$(LINCOMPILE) -o $@ -DACCESSGETSET -DNODESTRUCT $(INCLUD) source/QIFPlanClasses.cc
 
 ofiles/QIFProductClasses.o : source/QIFProductClasses.hh     \
                              source/AuxiliaryClasses.hh      \
@@ -304,7 +304,7 @@ ofiles/QIFProductClasses.o : source/QIFProductClasses.hh     \
                              source/VisualizationClasses.hh  \
                              source/xmlSchemaInstance.hh     \
                              source/QIFProductClasses.cc
-	$(LINCOMPILE) -o $@ $(INCLUD) source/QIFProductClasses.cc
+	$(LINCOMPILE) -o $@ -DACCESSGETSET $(INCLUD) source/QIFProductClasses.cc
 
 ofiles/QIFProductClassesNoDest.o : source/QIFProductClasses.hh \
                              source/AuxiliaryClasses.hh        \
@@ -314,7 +314,7 @@ ofiles/QIFProductClassesNoDest.o : source/QIFProductClasses.hh \
                              source/VisualizationClasses.hh    \
                              source/xmlSchemaInstance.hh       \
                              source/QIFProductClasses.cc
-	$(LINCOMPILE) -o $@ -DNODESTRUCT $(INCLUD) source/QIFProductClasses.cc
+	$(LINCOMPILE) -o $@ -DACCESSGETSET -DNODESTRUCT $(INCLUD) source/QIFProductClasses.cc
 
 ofiles/QIFResultsClasses.o : source/QIFResultsClasses.hh      \
                              source/CharacteristicsClasses.hh \
@@ -322,7 +322,7 @@ ofiles/QIFResultsClasses.o : source/QIFResultsClasses.hh      \
                              source/TraceabilityClasses.hh    \
                              source/xmlSchemaInstance.hh      \
                              source/QIFResultsClasses.cc
-	$(LINCOMPILE) -o $@ $(INCLUD) source/QIFResultsClasses.cc
+	$(LINCOMPILE) -o $@ -DACCESSGETSET $(INCLUD) source/QIFResultsClasses.cc
 
 
 ofiles/QIFResultsClassesNoDest.o : source/QIFResultsClasses.hh \
@@ -331,7 +331,7 @@ ofiles/QIFResultsClassesNoDest.o : source/QIFResultsClasses.hh \
                              source/TraceabilityClasses.hh     \
                              source/xmlSchemaInstance.hh       \
                              source/QIFResultsClasses.cc
-	$(LINCOMPILE) -o $@ -DNODESTRUCT $(INCLUD) source/QIFResultsClasses.cc
+	$(LINCOMPILE) -o $@ -DACCESSGETSET -DNODESTRUCT $(INCLUD) source/QIFResultsClasses.cc
 
 
 ofiles/QIFRulesClasses.o : source/QIFRulesClasses.hh     \
@@ -339,7 +339,7 @@ ofiles/QIFRulesClasses.o : source/QIFRulesClasses.hh     \
                            source/ExpressionsClasses.hh  \
                            source/xmlSchemaInstance.hh   \
                            source/QIFRulesClasses.cc
-	$(LINCOMPILE) -o $@ $(INCLUD) source/QIFRulesClasses.cc
+	$(LINCOMPILE) -o $@ -DACCESSGETSET $(INCLUD) source/QIFRulesClasses.cc
 
 
 ofiles/QIFRulesClassesNoDest.o : source/QIFRulesClasses.hh     \
@@ -347,7 +347,7 @@ ofiles/QIFRulesClassesNoDest.o : source/QIFRulesClasses.hh     \
                            source/ExpressionsClasses.hh  \
                            source/xmlSchemaInstance.hh   \
                            source/QIFRulesClasses.cc
-	$(LINCOMPILE) -o $@ -DNODESTRUCT $(INCLUD) source/QIFRulesClasses.cc
+	$(LINCOMPILE) -o $@ -DACCESSGETSET -DNODESTRUCT $(INCLUD) source/QIFRulesClasses.cc
 
 
 ofiles/QIFStatisticsClasses.o : source/QIFStatisticsClasses.hh     \
@@ -359,7 +359,7 @@ ofiles/QIFStatisticsClasses.o : source/QIFStatisticsClasses.hh     \
                                 source/TraceabilityClasses.hh      \
                                 source/xmlSchemaInstance.hh        \
                                 source/QIFStatisticsClasses.cc
-	$(LINCOMPILE) -o $@ $(INCLUD) source/QIFStatisticsClasses.cc
+	$(LINCOMPILE) -o $@ -DACCESSGETSET $(INCLUD) source/QIFStatisticsClasses.cc
 
 ofiles/QIFStatisticsClassesNoDest.o : source/QIFStatisticsClasses.hh \
                                 source/PrimitivesClasses.hh          \
@@ -370,21 +370,21 @@ ofiles/QIFStatisticsClassesNoDest.o : source/QIFStatisticsClasses.hh \
                                 source/TraceabilityClasses.hh        \
                                 source/xmlSchemaInstance.hh          \
                                 source/QIFStatisticsClasses.cc
-	$(LINCOMPILE) -o $@ -DNODESTRUCT $(INCLUD) source/QIFStatisticsClasses.cc
+	$(LINCOMPILE) -o $@ -DACCESSGETSET -DNODESTRUCT $(INCLUD) source/QIFStatisticsClasses.cc
 
 ofiles/AuxiliaryClasses.o : source/AuxiliaryClasses.hh     \
                             source/PrimitivesClasses.hh    \
                             source/PrimitivesPDClasses.hh  \
                             source/xmlSchemaInstance.hh    \
                             source/AuxiliaryClasses.cc
-	$(LINCOMPILE) -o $@ $(INCLUD) source/AuxiliaryClasses.cc
+	$(LINCOMPILE) -o $@ -DACCESSGETSET $(INCLUD) source/AuxiliaryClasses.cc
 
 ofiles/AuxiliaryClassesNoDest.o : source/AuxiliaryClasses.hh \
                             source/PrimitivesClasses.hh      \
                             source/PrimitivesPDClasses.hh    \
                             source/xmlSchemaInstance.hh      \
                             source/AuxiliaryClasses.cc
-	$(LINCOMPILE) -o $@ -DNODESTRUCT $(INCLUD) source/AuxiliaryClasses.cc
+	$(LINCOMPILE) -o $@ -DACCESSGETSET -DNODESTRUCT $(INCLUD) source/AuxiliaryClasses.cc
 
 ofiles/CharacteristicsClasses.o : source/CharacteristicsClasses.hh  \
                                   source/IntermediatesPMIClasses.hh \
@@ -393,7 +393,7 @@ ofiles/CharacteristicsClasses.o : source/CharacteristicsClasses.hh  \
                                   source/UnitsClasses.hh            \
                                   source/xmlSchemaInstance.hh       \
                                   source/CharacteristicsClasses.cc
-	$(LINCOMPILE) -o $@ $(INCLUD) source/CharacteristicsClasses.cc
+	$(LINCOMPILE) -o $@ -DACCESSGETSET $(INCLUD) source/CharacteristicsClasses.cc
 
 ofiles/CharacteristicsClassesNoDest.o : source/CharacteristicsClasses.hh \
                                   source/IntermediatesPMIClasses.hh      \
@@ -402,45 +402,45 @@ ofiles/CharacteristicsClassesNoDest.o : source/CharacteristicsClasses.hh \
                                   source/UnitsClasses.hh                 \
                                   source/xmlSchemaInstance.hh            \
                                   source/CharacteristicsClasses.cc
-	$(LINCOMPILE) -o $@ -DNODESTRUCT $(INCLUD) source/CharacteristicsClasses.cc
+	$(LINCOMPILE) -o $@ -DACCESSGETSET -DNODESTRUCT $(INCLUD) source/CharacteristicsClasses.cc
 
 ofiles/ExpressionsClasses.o : source/ExpressionsClasses.hh        \
                               source/xmlSchemaInstance.hh         \
                               source/ExpressionsClasses.cc
-	$(LINCOMPILE) -o $@ $(INCLUD) source/ExpressionsClasses.cc
+	$(LINCOMPILE) -o $@ -DACCESSGETSET $(INCLUD) source/ExpressionsClasses.cc
 
 ofiles/ExpressionsClassesNoDest.o : source/ExpressionsClasses.hh  \
                               source/xmlSchemaInstance.hh         \
                               source/ExpressionsClasses.cc
-	$(LINCOMPILE) -o $@ -DNODESTRUCT $(INCLUD) source/ExpressionsClasses.cc
+	$(LINCOMPILE) -o $@ -DACCESSGETSET -DNODESTRUCT $(INCLUD) source/ExpressionsClasses.cc
 
 ofiles/FeaturesClasses.o : source/FeaturesClasses.hh      \
                            source/PrimitivesClasses.hh    \
                            source/PrimitivesPMIClasses.hh \
                            source/xmlSchemaInstance.hh    \
                            source/FeaturesClasses.cc
-	$(LINCOMPILE) -o $@ $(INCLUD) source/FeaturesClasses.cc
+	$(LINCOMPILE) -o $@ -DACCESSGETSET $(INCLUD) source/FeaturesClasses.cc
 
 ofiles/FeaturesClassesNoDest.o : source/FeaturesClasses.hh \
                            source/PrimitivesClasses.hh     \
                            source/PrimitivesPMIClasses.hh  \
                            source/xmlSchemaInstance.hh     \
                            source/FeaturesClasses.cc
-	$(LINCOMPILE) -o $@ -DNODESTRUCT $(INCLUD) source/FeaturesClasses.cc
+	$(LINCOMPILE) -o $@ -DACCESSGETSET -DNODESTRUCT $(INCLUD) source/FeaturesClasses.cc
 
 ofiles/GeometryClasses.o : source/GeometryClasses.hh     \
                            source/PrimitivesClasses.hh   \
                            source/PrimitivesPDClasses.hh \
                            source/xmlSchemaInstance.hh   \
                            source/GeometryClasses.cc
-	$(LINCOMPILE) -o $@ $(INCLUD) source/GeometryClasses.cc
+	$(LINCOMPILE) -o $@ -DACCESSGETSET $(INCLUD) source/GeometryClasses.cc
 
 ofiles/GeometryClassesNoDest.o : source/GeometryClasses.hh \
                            source/PrimitivesClasses.hh     \
                            source/PrimitivesPDClasses.hh   \
                            source/xmlSchemaInstance.hh     \
                            source/GeometryClasses.cc
-	$(LINCOMPILE) -o $@ -DNODESTRUCT $(INCLUD) source/GeometryClasses.cc
+	$(LINCOMPILE) -o $@ -DACCESSGETSET -DNODESTRUCT $(INCLUD) source/GeometryClasses.cc
 
 ofiles/IntermediatesPMIClasses.o : source/IntermediatesPMIClasses.hh \
                                    source/PrimitivesClasses.hh       \
@@ -448,7 +448,7 @@ ofiles/IntermediatesPMIClasses.o : source/IntermediatesPMIClasses.hh \
                                    source/UnitsClasses.hh            \
                                    source/xmlSchemaInstance.hh       \
                                    source/IntermediatesPMIClasses.cc
-	$(LINCOMPILE) -o $@ $(INCLUD) source/IntermediatesPMIClasses.cc
+	$(LINCOMPILE) -o $@ -DACCESSGETSET $(INCLUD) source/IntermediatesPMIClasses.cc
 
 ofiles/IntermediatesPMIClassesNoDest.o : source/IntermediatesPMIClasses.hh \
                                    source/PrimitivesClasses.hh             \
@@ -456,45 +456,45 @@ ofiles/IntermediatesPMIClassesNoDest.o : source/IntermediatesPMIClasses.hh \
                                    source/UnitsClasses.hh                  \
                                    source/xmlSchemaInstance.hh             \
                                    source/IntermediatesPMIClasses.cc
-	$(LINCOMPILE) -o $@ -DNODESTRUCT $(INCLUD) source/IntermediatesPMIClasses.cc
+	$(LINCOMPILE) -o $@ -DACCESSGETSET -DNODESTRUCT $(INCLUD) source/IntermediatesPMIClasses.cc
 
 ofiles/PrimitivesClasses.o : source/PrimitivesClasses.hh \
                              source/xmlSchemaInstance.hh \
                              source/PrimitivesClasses.cc
-	$(LINCOMPILE) -o $@ $(INCLUD) source/PrimitivesClasses.cc
+	$(LINCOMPILE) -o $@ -DACCESSGETSET $(INCLUD) source/PrimitivesClasses.cc
 
 ofiles/PrimitivesClassesNoDest.o : source/PrimitivesClasses.hh \
                              source/xmlSchemaInstance.hh       \
                              source/PrimitivesClasses.cc
-	$(LINCOMPILE) -o $@ -DNODESTRUCT $(INCLUD) source/PrimitivesClasses.cc
+	$(LINCOMPILE) -o $@ -DACCESSGETSET -DNODESTRUCT $(INCLUD) source/PrimitivesClasses.cc
 
 ofiles/PrimitivesPDClasses.o : source/PrimitivesClasses.hh   \
                                source/PrimitivesPDClasses.hh \
                                source/UnitsClasses.hh        \
                                source/xmlSchemaInstance.hh   \
                                source/PrimitivesPDClasses.cc
-	$(LINCOMPILE) -o $@ $(INCLUD) source/PrimitivesPDClasses.cc
+	$(LINCOMPILE) -o $@ -DACCESSGETSET $(INCLUD) source/PrimitivesPDClasses.cc
 
 ofiles/PrimitivesPDClassesNoDest.o : source/PrimitivesClasses.hh \
                                source/PrimitivesPDClasses.hh     \
                                source/UnitsClasses.hh            \
                                source/xmlSchemaInstance.hh       \
                                source/PrimitivesPDClasses.cc
-	$(LINCOMPILE) -o $@ -DNODESTRUCT $(INCLUD) source/PrimitivesPDClasses.cc
+	$(LINCOMPILE) -o $@ -DACCESSGETSET -DNODESTRUCT $(INCLUD) source/PrimitivesPDClasses.cc
 
 ofiles/PrimitivesPMIClasses.o : source/PrimitivesClasses.hh     \
                                 source/PrimitivesPMIClasses.hh  \
                                 source/UnitsClasses.hh          \
                                 source/xmlSchemaInstance.hh     \
                                 source/PrimitivesPMIClasses.cc
-	$(LINCOMPILE) -o $@ $(INCLUD) source/PrimitivesPMIClasses.cc
+	$(LINCOMPILE) -o $@ -DACCESSGETSET $(INCLUD) source/PrimitivesPMIClasses.cc
 
 ofiles/PrimitivesPMIClassesNoDest.o : source/PrimitivesClasses.hh \
                                 source/PrimitivesPMIClasses.hh    \
                                 source/UnitsClasses.hh            \
                                 source/xmlSchemaInstance.hh       \
                                 source/PrimitivesPMIClasses.cc
-	$(LINCOMPILE) -o $@ -DNODESTRUCT $(INCLUD) source/PrimitivesPMIClasses.cc
+	$(LINCOMPILE) -o $@ -DACCESSGETSET -DNODESTRUCT $(INCLUD) source/PrimitivesPMIClasses.cc
 
 ofiles/StatisticsClasses.o : source/FeaturesClasses.hh         \
                              source/IntermediatesPMIClasses.hh \
@@ -505,7 +505,7 @@ ofiles/StatisticsClasses.o : source/FeaturesClasses.hh         \
                              source/UnitsClasses.hh            \
                              source/xmlSchemaInstance.hh       \
                              source/StatisticsClasses.cc
-	$(LINCOMPILE) -o $@ $(INCLUD) source/StatisticsClasses.cc
+	$(LINCOMPILE) -o $@ -DACCESSGETSET $(INCLUD) source/StatisticsClasses.cc
 
 ofiles/StatisticsClassesNoDest.o : source/FeaturesClasses.hh   \
                              source/IntermediatesPMIClasses.hh \
@@ -516,47 +516,47 @@ ofiles/StatisticsClassesNoDest.o : source/FeaturesClasses.hh   \
                              source/UnitsClasses.hh            \
                              source/xmlSchemaInstance.hh       \
                              source/StatisticsClasses.cc
-	$(LINCOMPILE) -o $@ -DNODESTRUCT $(INCLUD) source/StatisticsClasses.cc
+	$(LINCOMPILE) -o $@ -DACCESSGETSET -DNODESTRUCT $(INCLUD) source/StatisticsClasses.cc
 
 ofiles/TopologyClasses.o : source/PrimitivesClasses.hh   \
                            source/PrimitivesPDClasses.hh \
                            source/TopologyClasses.hh     \
                            source/xmlSchemaInstance.hh   \
                            source/TopologyClasses.cc
-	$(LINCOMPILE) -o $@ $(INCLUD) source/TopologyClasses.cc
+	$(LINCOMPILE) -o $@ -DACCESSGETSET $(INCLUD) source/TopologyClasses.cc
 
 ofiles/TopologyClassesNoDest.o : source/PrimitivesClasses.hh \
                            source/PrimitivesPDClasses.hh     \
                            source/TopologyClasses.hh         \
                            source/xmlSchemaInstance.hh       \
                            source/TopologyClasses.cc
-	$(LINCOMPILE) -o $@ -DNODESTRUCT $(INCLUD) source/TopologyClasses.cc
+	$(LINCOMPILE) -o $@ -DACCESSGETSET -DNODESTRUCT $(INCLUD) source/TopologyClasses.cc
 
 ofiles/TraceabilityClasses.o : source/PrimitivesClasses.hh     \
                                source/PrimitivesPMIClasses.hh  \
                                source/TraceabilityClasses.hh   \
                                source/xmlSchemaInstance.hh     \
                                source/TraceabilityClasses.cc
-	$(LINCOMPILE) -o $@ $(INCLUD) source/TraceabilityClasses.cc
+	$(LINCOMPILE) -o $@ -DACCESSGETSET $(INCLUD) source/TraceabilityClasses.cc
 
 ofiles/TraceabilityClassesNoDest.o : source/PrimitivesClasses.hh \
                                source/PrimitivesPMIClasses.hh    \
                                source/TraceabilityClasses.hh     \
                                source/xmlSchemaInstance.hh       \
                                source/TraceabilityClasses.cc
-	$(LINCOMPILE) -o $@ -DNODESTRUCT $(INCLUD) source/TraceabilityClasses.cc
+	$(LINCOMPILE) -o $@ -DACCESSGETSET -DNODESTRUCT $(INCLUD) source/TraceabilityClasses.cc
 
 ofiles/UnitsClasses.o : source/PrimitivesClasses.hh  \
                         source/UnitsClasses.hh       \
                         source/xmlSchemaInstance.hh  \
                         source/UnitsClasses.cc
-	$(LINCOMPILE) -o $@ $(INCLUD) source/UnitsClasses.cc
+	$(LINCOMPILE) -o $@ -DACCESSGETSET $(INCLUD) source/UnitsClasses.cc
 
 ofiles/UnitsClassesNoDest.o : source/PrimitivesClasses.hh \
                         source/UnitsClasses.hh            \
                         source/xmlSchemaInstance.hh       \
                         source/UnitsClasses.cc
-	$(LINCOMPILE) -o $@ -DNODESTRUCT $(INCLUD) source/UnitsClasses.cc
+	$(LINCOMPILE) -o $@ -DACCESSGETSET -DNODESTRUCT $(INCLUD) source/UnitsClasses.cc
 
 ofiles/VisualizationClasses.o : source/CharacteristicsClasses.hh  \
                                 source/PrimitivesClasses.hh       \
@@ -564,7 +564,7 @@ ofiles/VisualizationClasses.o : source/CharacteristicsClasses.hh  \
                                 source/VisualizationClasses.hh    \
                                 source/xmlSchemaInstance.hh       \
                                 source/VisualizationClasses.cc
-	$(LINCOMPILE) -o $@ $(INCLUD) source/VisualizationClasses.cc
+	$(LINCOMPILE) -o $@ -DACCESSGETSET $(INCLUD) source/VisualizationClasses.cc
 
 ofiles/VisualizationClassesNoDest.o : source/CharacteristicsClasses.hh \
                                 source/PrimitivesClasses.hh            \
@@ -572,14 +572,14 @@ ofiles/VisualizationClassesNoDest.o : source/CharacteristicsClasses.hh \
                                 source/VisualizationClasses.hh         \
                                 source/xmlSchemaInstance.hh            \
                                 source/VisualizationClasses.cc
-	$(LINCOMPILE) -o $@ -DNODESTRUCT $(INCLUD) source/VisualizationClasses.cc
+	$(LINCOMPILE) -o $@ -DACCESSGETSET -DNODESTRUCT $(INCLUD) source/VisualizationClasses.cc
 
 ofiles/QIFDocumentLex.o : source/QIFDocumentLex.cc  \
                           source/QIFDocumentYACC.hh
-	$(LINCOMPILE) -o $@ $(INCLUD) source/QIFDocumentLex.cc
+	$(LINCOMPILE) -o $@ -DACCESSGETSET $(INCLUD) source/QIFDocumentLex.cc
 
 ofiles/QIFDocumentParser.o : source/QIFDocumentParser.cc
-	$(LINCOMPILE) -o $@ $(INCLUD) source/QIFDocumentParser.cc
+	$(LINCOMPILE) -o $@ -DACCESSGETSET $(INCLUD) source/QIFDocumentParser.cc
 
 ofiles/QIFDocumentYACC.o : source/QIFDocumentClasses.hh             \
                            source/QIFMeasurementResourcesClasses.hh \
@@ -605,7 +605,7 @@ ofiles/QIFDocumentYACC.o : source/QIFDocumentClasses.hh             \
                            source/QIFDocumentYACC.hh                \
                            source/xmlSchemaInstance.hh              \
                            source/QIFDocumentYACC.cc
-	$(LINCOMPILE) -o $@ $(INCLUD) source/QIFDocumentYACC.cc
+	$(LINCOMPILE) -o $@ -DACCESSGETSET $(INCLUD) source/QIFDocumentYACC.cc
 
 ofiles/xmlSchemaInstance.o : source/xmlSchemaInstance.cc \
                              source/xmlSchemaInstance.hh
@@ -615,11 +615,11 @@ ofiles/xmlSchemaInstanceNoDest.o : source/xmlSchemaInstance.cc \
                                    source/xmlSchemaInstance.hh
 	$(LINCOMPILE) -DACCESSGETSET -DNODESTRUCT $(INCLUD) -o $@ source/xmlSchemaInstance.cc
 
-#source/QIFDocumentYACC.hh : source/QIFDocumentYACC.cc
+source/QIFDocumentYACC.hh : source/QIFDocumentYACC.cc
 
-#source/QIFDocumentYACC.cc : source/QIFDocument.y
-#	bison -d -o $@ source/QIFDocument.y
+source/QIFDocumentYACC.cc : source/QIFDocument.y
+	bison -d -o $@ source/QIFDocument.y
 
-#source/QIFDocumentLex.cc : source/QIFDocument.lex \
-#                           source/QIFDocumentYACC.hh
-#	flex -Ca -L -t source/QIFDocument.lex > source/QIFDocumentLex.cc
+source/QIFDocumentLex.cc : source/QIFDocument.lex \
+                           source/QIFDocumentYACC.hh
+	flex -Ca -L -t source/QIFDocument.lex > source/QIFDocumentLex.cc
