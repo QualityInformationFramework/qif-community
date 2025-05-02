@@ -111,12 +111,12 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>LIBXERCES_C_SHARED;WIN32;_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\QIF_30\QIF_30\qifapplications;C:\dev\xsd\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\QIF_30\QIF_30\qifapplications;..\..\..\..\..\xsd\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>C:\dev\xsd\lib\xerces-c.dll.lib;..\..\QIF_30\x64\debug\QIF_30D.lib;Rpcrt4.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>..\..\..\..\..\xsd\lib\xerces-c.dll.lib;..\..\QIF_30\x64\debug\QIF_30D.lib;Rpcrt4.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ShowProgress>NotSet</ShowProgress>
     </Link>
     <Midl>
@@ -166,14 +166,14 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>LIBXERCES_C_SHARED;WIN32;_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\QIF_30\QIF_30\qifapplications;C:\dev\xsd\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\QIF_30\QIF_30\qifapplications;..\..\..\..\..\xsd\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>C:\dev\xsd\lib\xerces-c.dll.lib;..\..\QIF_30\x64\Release\QIF_30.lib;Rpcrt4.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>..\..\..\..\..\xsd\lib\xerces-c.dll.lib;..\..\QIF_30\x64\Release\QIF_30.lib;Rpcrt4.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Midl>
       <MkTypLibCompatible>false</MkTypLibCompatible>
