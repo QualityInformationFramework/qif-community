@@ -116,7 +116,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>C:\dev\xsd\lib\xerces-c.dll.lib;..\..\QIF_30\x64\debug\QIF_30_vc100D.lib;Rpcrt4.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>C:\dev\xsd\lib\xerces-c.dll.lib;..\..\QIF_30\x64\debug\QIF_30D.lib;Rpcrt4.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ShowProgress>NotSet</ShowProgress>
     </Link>
     <Midl>
@@ -173,7 +173,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>C:\dev\xsd\lib\xerces-c.dll.lib;..\..\QIF_30\x64\Release\QIF_30_vc100.lib;Rpcrt4.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>C:\dev\xsd\lib\xerces-c.dll.lib;..\..\QIF_30\x64\Release\QIF_30.lib;Rpcrt4.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Midl>
       <MkTypLibCompatible>false</MkTypLibCompatible>
