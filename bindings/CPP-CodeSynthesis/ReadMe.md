@@ -31,7 +31,6 @@ The 4.2.0 release is here: https://codesynthesis.com/download/xsd/4.2/windows/wi
 ```
 
 > [!IMPORTANT]  
-> 💡
 > If you create a different directory structure, you will need to update some of the Executable Directories, Additional Include Directories, and Linker Addition Dependencies in the Visual Studio projects. Additionally, you will need to update `PostBuildStep.cmd` to reflect the different file locations. 
 
 Once these directories are set up, you are ready to build the QIFlibrary and the demo application. 
