@@ -21,3 +21,12 @@ SHALL THE COPYRIGHT HOLDERS OR ANYONE DISTRIBUTING THE SOFTWARE BE LIABLE
 FOR ANY DAMAGES OR OTHER LIABILITY, WHETHER IN CONTRACT, TORT OR OTHERWISE,
 ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
+
+**Exception: the CodeSynthesis C++ Source Code Bindings:**
+
+The source code bindings found in: 
+
+* qif-community\bindings\CPP-CodeSynthesis\QIF_30\QIF_30\QIFApplications
+* qif-community\bindings\CPP-CodeSynthesis\QIF_30\QIFLibrary
+
+Are subject to the Code Synthesis license found here: https://www.codesynthesis.com/products/xsd/license.xhtml
