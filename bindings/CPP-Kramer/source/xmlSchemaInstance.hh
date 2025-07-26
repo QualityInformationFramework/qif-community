@@ -58,6 +58,12 @@ ACCESSOVERLOAD is defined, all data fields of most types are
 protected, and access functions are provided to get and set the
 fields.
 
+All destructors are marked virtual because there may be derived types
+used via xsi:type with an element that nominally has a basic type. If the
+destructor of the basic type is not virtual in that case, only the destructor
+of the basic type will be called, so the derived type might not be fully
+destructed.
+
 */
 
 /*********************************************************************/
@@ -254,17 +260,17 @@ public:
   virtual ~XmlTypeBase();
 
 #if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
-  const char * GET(printElement)();
+  char * GET(printElement)();
   void SET(printElement)(const char * printElementIn);
 #ifdef USEXSITYPE 
-  const char * GET(printTypp)();
-  const char * SET(printTypp)(const char * printTyppIn);
+  char * GET(printTypp)();
+  void SET(printTypp)(const char * printTyppIn);
 #endif
 protected:
 #endif
-  const char * PROT(printElement);
+  char * PROT(printElement);
 #ifdef USEXSITYPE
-  const char * PROT(printTypp);
+  char * PROT(printTypp);
 #endif
 };
 
@@ -367,6 +373,8 @@ public:
   XmlAnyURI();
   XmlAnyURI(
     const char * valIn);
+  XmlAnyURI(
+    const XmlAnyURI * URIIn);
   ~XmlAnyURI();
   void PRINTSELFDECL;
   void OPRINTSELFDECL;
@@ -397,6 +405,8 @@ public:
   XmlBase64Binary();
   XmlBase64Binary(
     const char * valIn);
+  XmlBase64Binary(
+    const XmlBase64Binary * binIn);
   ~XmlBase64Binary();
   void PRINTSELFDECL;
   void OPRINTSELFDECL;
@@ -414,9 +424,6 @@ protected:
 
 /* class XmlBase64BinaryLisd
 
-It is not a good idea to use this since whitespace is allowed inside
-an instance of base64Binary.
-
 */
 
 class XmlBase64BinaryLisd :
@@ -428,7 +435,7 @@ public:
   XmlBase64BinaryLisd(
     XmlBase64Binary * base64BinaryIn);
   XmlBase64BinaryLisd(
-    XmlBase64BinaryLisd * base64BinaryLisdIn);
+    const XmlBase64BinaryLisd * base64BinaryLisdIn);
   ~XmlBase64BinaryLisd();
   virtual void PRINTNAMEDECL;
   void PRINTSELFDECL;
@@ -450,6 +457,8 @@ public:
   XmlBoolean();
   XmlBoolean(
     const char * valIn);
+  XmlBoolean(
+    const XmlBoolean * XmlBooleanIn);
   ~XmlBoolean();
   void PRINTSELFDECL;
   void OPRINTSELFDECL;
@@ -473,7 +482,7 @@ public:
   XmlBooleanLisd(
     XmlBoolean * booleanIn);
   XmlBooleanLisd(
-    XmlBooleanLisd * booleanLisdIn);
+    const XmlBooleanLisd * booleanLisdIn);
   XmlBooleanLisd(
     const char * valueString);
   ~XmlBooleanLisd();
@@ -497,6 +506,8 @@ public:
   XmlDate();
   XmlDate(
     const char * valIn);
+  XmlDate(
+    const XmlDate * dateIn);
   ~XmlDate();
   void PRINTSELFDECL;
   void OPRINTSELFDECL;
@@ -521,7 +532,7 @@ public:
   XmlDateLisd(
     XmlDate * dateIn);
   XmlDateLisd(
-    XmlDateLisd * dateLisdIn);
+    const XmlDateLisd * dateLisdIn);
   XmlDateLisd(
     const char * valueString);
   ~XmlDateLisd();
@@ -545,6 +556,8 @@ public:
   XmlDateTime();
   XmlDateTime(
     const char * valIn);
+  XmlDateTime(
+    const XmlDateTime * dateTimeIn);
   ~XmlDateTime();
   void PRINTSELFDECL;
   void OPRINTSELFDECL;
@@ -569,7 +582,7 @@ public:
   XmlDateTimeLisd(
     XmlDateTime * dateTimeIn);
   XmlDateTimeLisd(
-    XmlDateTimeLisd * dateTimeLisdIn);
+    const XmlDateTimeLisd * dateTimeLisdIn);
   XmlDateTimeLisd(
     const char * valueString);
   ~XmlDateTimeLisd();
@@ -596,7 +609,9 @@ public:
   XmlDecimal(
     const char * valStringIn);
   XmlDecimal(
-    double valIn);
+    const double valIn);
+  XmlDecimal(
+    const XmlDecimal* decimalIn);
   ~XmlDecimal();
   void PRINTSELFDECL;
   void OPRINTSELFDECL;
@@ -624,7 +639,7 @@ public:
   XmlDecimalLisd(
     XmlDecimal * decimalIn);
   XmlDecimalLisd(
-    XmlDecimalLisd * decimalLisdIn);
+    const XmlDecimalLisd * decimalLisdIn);
   XmlDecimalLisd(
     const char * valueString);
   ~XmlDecimalLisd();
@@ -653,7 +668,9 @@ public:
   XmlDouble(
     const char * valueString);
   XmlDouble(
-    double valIn);
+    const double valIn);
+  XmlDouble(
+    const XmlDouble * doubleIn);
   ~XmlDouble();
   void PRINTSELFDECL;
   void OPRINTSELFDECL;
@@ -684,7 +701,7 @@ public:
   XmlDoubleLisd(
     XmlDouble * doubleIn);
   XmlDoubleLisd(
-    XmlDoubleLisd * doubleLisdIn);
+    const XmlDoubleLisd * doubleLisdIn);
   XmlDoubleLisd(
     const char * valueString);
   ~XmlDoubleLisd();
@@ -714,7 +731,9 @@ public:
   XmlFloat(
     const char * valIn);
   XmlFloat(
-    float valIn);
+    const float valIn);
+  XmlFloat(
+    const XmlFloat * floatIn);
   ~XmlFloat();
   void PRINTSELFDECL;
   void OPRINTSELFDECL;
@@ -745,7 +764,7 @@ public:
   XmlFloatLisd(
     XmlFloat * floatIn);
   XmlFloatLisd(
-    XmlFloatLisd * floatLisdIn);
+    const XmlFloatLisd * floatLisdIn);
   XmlFloatLisd(
     const char * valueString);
   ~XmlFloatLisd();
@@ -772,6 +791,8 @@ public:
   XmlID();
   XmlID(
     const char * valIn);
+  XmlID(
+    const XmlID * IDIn);
   ~XmlID();
   void PRINTSELFDECL;
   void OPRINTSELFDECL;
@@ -801,7 +822,7 @@ public:
   XmlIDLisd(
     XmlID * idIn);
   XmlIDLisd(
-    XmlIDLisd * idLisdIn);
+    const XmlIDLisd * idLisdIn);
   XmlIDLisd(
     const char * valueString);
   ~XmlIDLisd();
@@ -828,6 +849,8 @@ public:
   XmlIDREF();
   XmlIDREF(
     const char * valIn);
+  XmlIDREF(
+    const XmlIDREF * IDREFIn);
   ~XmlIDREF();
   void PRINTSELFDECL;
   void OPRINTSELFDECL;
@@ -856,7 +879,7 @@ public:
   XmlIDREFLisd(
     XmlIDREF * idrefIn);
   XmlIDREFLisd(
-    XmlIDREFLisd * idrefLisdIn);
+    const XmlIDREFLisd * idrefLisdIn);
   XmlIDREFLisd(
     const char * valueString);
   ~XmlIDREFLisd();
@@ -880,6 +903,8 @@ public:
   XmlInt();
   XmlInt(
     const char * valIn);
+  XmlInt(
+    const XmlInt * intIn);
   ~XmlInt();
   void PRINTSELFDECL;
   void OPRINTSELFDECL;
@@ -904,7 +929,7 @@ public:
   XmlIntLisd(
     XmlInt * intIn);
   XmlIntLisd(
-    XmlIntLisd * intLisdIn);
+    const XmlIntLisd * intLisdIn);
   XmlIntLisd(
     const char * valueString);
   ~XmlIntLisd();
@@ -931,6 +956,8 @@ public:
   XmlInteger();
   XmlInteger(
     const char * valIn);
+  XmlInteger(
+    const XmlInteger * integerIn);
   ~XmlInteger();
   void PRINTSELFDECL;
   void OPRINTSELFDECL;
@@ -955,7 +982,7 @@ public:
   XmlIntegerLisd(
     XmlInteger * integerIn);
   XmlIntegerLisd(
-    XmlIntegerLisd * integerLisdIn);
+    const XmlIntegerLisd * integerLisdIn);
   XmlIntegerLisd(
     const char * valueString);
   ~XmlIntegerLisd();
@@ -979,6 +1006,8 @@ public:
   XmlLong();
   XmlLong(
     const char * valIn);
+  XmlLong(
+    const XmlLong * longIn);
   ~XmlLong();
   void PRINTSELFDECL;
   void OPRINTSELFDECL;
@@ -1003,7 +1032,7 @@ public:
   XmlLongLisd(
     XmlLong * longIn);
   XmlLongLisd(
-    XmlLongLisd * longLisdIn);
+    const XmlLongLisd * longLisdIn);
   XmlLongLisd(
     const char * valueString);
   ~XmlLongLisd();
@@ -1027,6 +1056,8 @@ public:
   XmlNCName();
   XmlNCName(
     const char * valIn);
+  XmlNCName(
+    const XmlNCName * nameIn);
   ~XmlNCName();
   void PRINTSELFDECL;
   void OPRINTSELFDECL;
@@ -1049,9 +1080,9 @@ class XmlNCNameLisd :
 public:
   XmlNCNameLisd();
   XmlNCNameLisd(
-    XmlNCName * nmtokenIn);
+    XmlNCName * ncNameIn);
   XmlNCNameLisd(
-    XmlNCNameLisd * nmtokenLisdIn);
+    const XmlNCNameLisd * ncNameLisdIn);
   XmlNCNameLisd(
     const char * valueString);
   ~XmlNCNameLisd();
@@ -1078,6 +1109,8 @@ public:
   XmlNegativeInteger();
   XmlNegativeInteger(
     const char * valIn);
+  XmlNegativeInteger(
+    const XmlNegativeInteger * negIntIn);
   ~XmlNegativeInteger();
   void PRINTSELFDECL;
   void OPRINTSELFDECL;
@@ -1102,7 +1135,7 @@ public:
   XmlNegativeIntegerLisd(
     XmlNegativeInteger * negativeIntegerIn);
   XmlNegativeIntegerLisd(
-    XmlNegativeIntegerLisd * negativeIntegerLisdIn);
+    const XmlNegativeIntegerLisd * negIntLisdIn);
   XmlNegativeIntegerLisd(
     const char * valueString);
   ~XmlNegativeIntegerLisd();
@@ -1126,6 +1159,8 @@ public:
   XmlNMTOKEN();
   XmlNMTOKEN(
     const char * valIn);
+  XmlNMTOKEN(
+    const XmlNMTOKEN * nmTokenIn);
   ~XmlNMTOKEN();
   void PRINTSELFDECL;
   void OPRINTSELFDECL;
@@ -1150,7 +1185,7 @@ public:
   XmlNMTOKENLisd(
     XmlNMTOKEN * nmtokenIn);
   XmlNMTOKENLisd(
-    XmlNMTOKENLisd * nmtokenLisdIn);
+    const XmlNMTOKENLisd * nmtokenLisdIn);
   XmlNMTOKENLisd(
     const char * valueString);
   ~XmlNMTOKENLisd();
@@ -1177,6 +1212,8 @@ public:
   XmlNonNegativeInteger();
   XmlNonNegativeInteger(
     const char * valIn);
+  XmlNonNegativeInteger(
+    const XmlNonNegativeInteger * nonNegIn);
   ~XmlNonNegativeInteger();
   void PRINTSELFDECL;
   void OPRINTSELFDECL;
@@ -1201,7 +1238,7 @@ public:
   XmlNonNegativeIntegerLisd(
     XmlNonNegativeInteger * nonNegativeIntegerIn);
   XmlNonNegativeIntegerLisd(
-    XmlNonNegativeIntegerLisd * nonNegativeIntegerLisdIn);
+    const XmlNonNegativeIntegerLisd * nonNegIntLisdIn);
   XmlNonNegativeIntegerLisd(
     const char * valueString);
   ~XmlNonNegativeIntegerLisd();
@@ -1228,6 +1265,8 @@ public:
   XmlNonPositiveInteger();
   XmlNonPositiveInteger(
     const char * valIn);
+  XmlNonPositiveInteger(
+    const XmlNonPositiveInteger * nonPosIntIn);
   ~XmlNonPositiveInteger();
   void PRINTSELFDECL;
   void OPRINTSELFDECL;
@@ -1252,7 +1291,7 @@ public:
   XmlNonPositiveIntegerLisd(
     XmlNonPositiveInteger * nonPositiveIntegerIn);
   XmlNonPositiveIntegerLisd(
-    XmlNonPositiveIntegerLisd * nonPositiveIntegerLisdIn);
+    const XmlNonPositiveIntegerLisd * nonPosIntLisdIn);
   XmlNonPositiveIntegerLisd(
     const char * valueString);
   ~XmlNonPositiveIntegerLisd();
@@ -1279,6 +1318,8 @@ public:
   XmlPositiveInteger();
   XmlPositiveInteger(
     const char * valIn);
+  XmlPositiveInteger(
+    const XmlPositiveInteger * xmlPosIntIn);
   ~XmlPositiveInteger();
   void PRINTSELFDECL;
   void OPRINTSELFDECL;
@@ -1303,7 +1344,7 @@ public:
   XmlPositiveIntegerLisd(
     XmlPositiveInteger * positiveIntegerIn);
   XmlPositiveIntegerLisd(
-    XmlPositiveIntegerLisd * positiveIntegerLisdIn);
+    const XmlPositiveIntegerLisd * positiveIntegerLisdIn);
   XmlPositiveIntegerLisd(
     const char * valueString);
   ~XmlPositiveIntegerLisd();
@@ -1327,17 +1368,19 @@ public:
   XmlShort();
   XmlShort(
     const char * valIn);
+  XmlShort(
+    const XmlShort * shortIn);
   ~XmlShort();
   void PRINTSELFDECL;
   void OPRINTSELFDECL;
   void printBad(FILE * badFile);
   bool XmlShortIsBad();
 #if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
-  int GET(val)();
-  void SET(val)(int valIn);
+  short GET(val)();
+  void SET(val)(short valIn);
 protected:
 #endif
-  int PROT(val);
+  short PROT(val);
 };
 
 /*********************************************************************/
@@ -1351,7 +1394,7 @@ public:
   XmlShortLisd(
     XmlShort * shortIn);
   XmlShortLisd(
-    XmlShortLisd * shortLisdIn);
+    const XmlShortLisd * shortLisdIn);
   XmlShortLisd(
     const char * valueString);
   ~XmlShortLisd();
@@ -1375,6 +1418,8 @@ public:
   XmlString();
   XmlString(
     const char * valIn);
+  XmlString(
+    const XmlString * stringIn);
   ~XmlString();
   void PRINTSELFDECL;
   void OPRINTSELFDECL;
@@ -1406,7 +1451,7 @@ public:
   XmlStringLisd(
     XmlString * stringIn);
   XmlStringLisd(
-    XmlStringLisd * stringLisdIn);
+    const XmlStringLisd * stringLisdIn);
   ~XmlStringLisd();
   virtual void PRINTNAMEDECL;
   void PRINTSELFDECL;
@@ -1428,6 +1473,8 @@ public:
   XmlTime();
   XmlTime(
     const char * valIn);
+  XmlTime(
+    const XmlTime * timeIn);
   ~XmlTime();
   void PRINTSELFDECL;
   void OPRINTSELFDECL;
@@ -1452,7 +1499,7 @@ public:
   XmlTimeLisd(
     XmlTime * TimeIn);
   XmlTimeLisd(
-    XmlTimeLisd * TimeLisdIn);
+    const XmlTimeLisd * timeLisdIn);
   XmlTimeLisd(
     const char * valueString);
   ~XmlTimeLisd();
@@ -1479,6 +1526,8 @@ public:
   XmlToken();
   XmlToken(
     const char * valIn);
+  XmlToken(
+    const XmlToken * tokenIn);
   ~XmlToken();
   void PRINTSELFDECL;
   void OPRINTSELFDECL;
@@ -1503,7 +1552,7 @@ public:
   XmlTokenLisd(
     XmlToken * tokenIn);
   XmlTokenLisd(
-    XmlTokenLisd * tokenLisdIn);
+    const XmlTokenLisd * tokenLisdIn);
   XmlTokenLisd(
     const char * valueString);
   ~XmlTokenLisd();
@@ -1527,6 +1576,8 @@ public:
   XmlUnsignedByte();
   XmlUnsignedByte(
     const char * valIn);
+  XmlUnsignedByte(
+    const XmlUnsignedByte * unsignedByteIn);
   ~XmlUnsignedByte();
   void PRINTSELFDECL;
   void OPRINTSELFDECL;
@@ -1551,7 +1602,7 @@ public:
   XmlUnsignedByteLisd(
     XmlUnsignedByte * unsignedByteIn);
   XmlUnsignedByteLisd(
-    XmlUnsignedByteLisd * unsignedByteLisdIn);
+    const XmlUnsignedByteLisd * unsignedByteLisdIn);
   XmlUnsignedByteLisd(
     const char * valueString);
   ~XmlUnsignedByteLisd();
@@ -1575,6 +1626,8 @@ public:
   XmlUnsignedInt();
   XmlUnsignedInt(
     const char * valIn);
+  XmlUnsignedInt(
+    const XmlUnsignedInt * unsignedIntIn);
   ~XmlUnsignedInt();
   void PRINTSELFDECL;
   void OPRINTSELFDECL;
@@ -1599,7 +1652,7 @@ public:
   XmlUnsignedIntLisd(
     XmlUnsignedInt * unsignedIntIn);
   XmlUnsignedIntLisd(
-    XmlUnsignedIntLisd * unsignedIntLisdIn);
+    const XmlUnsignedIntLisd * unsignedIntLisdIn);
   XmlUnsignedIntLisd(
     const char * valueString);
   ~XmlUnsignedIntLisd();
@@ -1623,6 +1676,8 @@ public:
   XmlUnsignedLong();
   XmlUnsignedLong(
     const char * valIn);
+  XmlUnsignedLong(
+    const XmlUnsignedLong * unsignedLongIn);
   ~XmlUnsignedLong();
   void PRINTSELFDECL;
   void OPRINTSELFDECL;
@@ -1647,7 +1702,7 @@ public:
   XmlUnsignedLongLisd(
     XmlUnsignedLong * unsignedLongIn);
   XmlUnsignedLongLisd(
-    XmlUnsignedLongLisd * unsignedLongLisdIn);
+    const XmlUnsignedLongLisd * unsignedLongLisdIn);
   XmlUnsignedLongLisd(
     const char * valueString);
   ~XmlUnsignedLongLisd();
@@ -1671,6 +1726,8 @@ public:
   XmlUnsignedShort();
   XmlUnsignedShort(
     const char * valIn);
+  XmlUnsignedShort(
+    const XmlUnsignedShort * unsignedShortIn);
   ~XmlUnsignedShort();
   void PRINTSELFDECL;
   void OPRINTSELFDECL;
@@ -1695,7 +1752,7 @@ public:
   XmlUnsignedShortLisd(
     XmlUnsignedShort * unsignedShortIn);
   XmlUnsignedShortLisd(
-    XmlUnsignedShortLisd * unsignedShortLisdIn);
+    const XmlUnsignedShortLisd * unsignedShortLisdIn);
   XmlUnsignedShortLisd(
     const char * valueString);
   ~XmlUnsignedShortLisd();

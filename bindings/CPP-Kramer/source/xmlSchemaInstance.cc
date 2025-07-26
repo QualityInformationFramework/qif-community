@@ -9,6 +9,9 @@ License: Boost Software License - Version 1.0 - August 17th, 2003
 #include <string.h>             // for strcmp
 #include "xmlSchemaInstance.hh"
 
+#ifdef _WIN32
+#define strdup _strdup
+#endif
 /* 
 
 The handling of the various types of strings should be improved to deal
@@ -317,6 +320,13 @@ XmlAnyURI::XmlAnyURI(
   PROT(bad) = false;
 }
 
+XmlAnyURI::XmlAnyURI(
+  const XmlAnyURI * URIIn)
+{
+  PROT(val) = URIIn->PROT(val); // automatic copy std::string
+  PROT(bad) = URIIn->PROT(bad);
+}
+
 XmlAnyURI::~XmlAnyURI() {}
 
 bool XmlAnyURI::XmlAnyURIIsBad()
@@ -416,6 +426,13 @@ XmlBase64Binary::XmlBase64Binary(
     }
 }
 
+XmlBase64Binary::XmlBase64Binary(
+ const XmlBase64Binary * binIn)
+{
+  PROT(val) = binIn->PROT(val); // automatic copy std::string
+  PROT(bad) = binIn->PROT(bad);
+}
+
 XmlBase64Binary::~XmlBase64Binary() {}
 
 bool XmlBase64Binary::XmlBase64BinaryIsBad()
@@ -481,9 +498,6 @@ void XmlBase64Binary::OPRINTSELFDECL
 
 /* class XmlBase64BinaryLisd
 
-It is not a good idea to use this since whitespace is allowed inside
-an instance of base64Binary.
-
 */
 
 XmlBase64BinaryLisd::XmlBase64BinaryLisd() {}
@@ -495,9 +509,14 @@ XmlBase64BinaryLisd::XmlBase64BinaryLisd(
 }
 
 XmlBase64BinaryLisd::XmlBase64BinaryLisd(
-  XmlBase64BinaryLisd * base64BinaryLisdIn)
+  const XmlBase64BinaryLisd * base64BinaryLisdIn)
 {
-  *this = *base64BinaryLisdIn;
+  std::list<XmlBase64Binary *>::const_iterator iter;
+  for (iter = base64BinaryLisdIn->begin();
+       iter != base64BinaryLisdIn->end(); iter++)
+    {
+      push_back(new XmlBase64Binary(*iter));
+    }
 }
 
 XmlBase64BinaryLisd::~XmlBase64BinaryLisd()
@@ -647,6 +666,13 @@ XmlBoolean::XmlBoolean(
     }
 }
 
+XmlBoolean::XmlBoolean(
+  const XmlBoolean * XmlBooleanIn)
+{
+  PROT(val) = XmlBooleanIn->PROT(val);
+  PROT(bad) = XmlBooleanIn->PROT(bad);
+}
+
 XmlBoolean::~XmlBoolean() {}
 
 bool XmlBoolean::XmlBooleanIsBad()
@@ -695,9 +721,13 @@ XmlBooleanLisd::XmlBooleanLisd(
 }
 
 XmlBooleanLisd::XmlBooleanLisd(
-  XmlBooleanLisd * booleanLisdIn)
+  const XmlBooleanLisd * booleanLisdIn)
 {
-  *this = *booleanLisdIn;
+  std::list<XmlBoolean *>::const_iterator iter;
+  for (iter = booleanLisdIn->begin(); iter != booleanLisdIn->end(); iter++)
+    {
+      push_back(new XmlBoolean(*iter));
+    }
 }
 
 XmlBooleanLisd::XmlBooleanLisd(
@@ -802,6 +832,13 @@ XmlDate::XmlDate(
   PROT(bad) = false;
 }
 
+XmlDate::XmlDate(
+  const XmlDate * dateIn)
+{
+  PROT(val) = dateIn->PROT(val); // automatic write to std::string
+  PROT(bad) = dateIn->PROT(bad);
+}
+
 XmlDate::~XmlDate() {}
 
 bool XmlDate::XmlDateIsBad()
@@ -855,9 +892,13 @@ XmlDateLisd::XmlDateLisd(
 }
 
 XmlDateLisd::XmlDateLisd(
-  XmlDateLisd * dateLisdIn)
+  const XmlDateLisd * dateLisdIn)
 {
-  *this = *dateLisdIn;
+  std::list<XmlDate *>::const_iterator iter;
+  for (iter = dateLisdIn->begin(); iter != dateLisdIn->end(); iter++)
+    {
+      push_back(new XmlDate(*iter));
+    }
 }
 
 XmlDateLisd::XmlDateLisd(
@@ -962,6 +1003,13 @@ XmlDateTime::XmlDateTime(
   PROT(bad) = false;
 }
 
+XmlDateTime::XmlDateTime(
+  const XmlDateTime * dateTimeIn)
+{
+  PROT(val) = dateTimeIn->PROT(val); // automatic write to std::string
+  PROT(bad) = dateTimeIn->PROT(bad);
+}
+
 XmlDateTime::~XmlDateTime() {}
 
 bool XmlDateTime::XmlDateTimeIsBad()
@@ -1015,9 +1063,13 @@ XmlDateTimeLisd::XmlDateTimeLisd(
 }
 
 XmlDateTimeLisd::XmlDateTimeLisd(
-  XmlDateTimeLisd * dateTimeLisdIn)
+  const XmlDateTimeLisd * dateTimeLisdIn)
 {
-  *this = *dateTimeLisdIn;
+  std::list<XmlDateTime *>::const_iterator iter;
+  for (iter = dateTimeLisdIn->begin(); iter != dateTimeLisdIn->end(); iter++)
+    {
+      push_back(new XmlDateTime(*iter));
+    }
 }
 
 XmlDateTimeLisd::XmlDateTimeLisd(
@@ -1143,7 +1195,7 @@ XmlDecimal::XmlDecimal(
 }
 
 XmlDecimal::XmlDecimal(
-  double valIn)
+  const double valIn)
 {
   PROT(val) = valIn;
   PROT(bad) = false;
@@ -1151,6 +1203,15 @@ XmlDecimal::XmlDecimal(
 		  -XmlSchemaInstanceBase::places :
 		  XmlSchemaInstanceBase::places);
 }
+
+XmlDecimal::XmlDecimal(
+  const XmlDecimal* decimalIn)
+{
+  PROT(val) = decimalIn->PROT(val);
+  PROT(bad) = decimalIn->PROT(bad);
+  PROT(places) = decimalIn->PROT(places);
+}
+
 
 XmlDecimal::~XmlDecimal() {}
 
@@ -1211,9 +1272,13 @@ XmlDecimalLisd::XmlDecimalLisd(
 }
 
 XmlDecimalLisd::XmlDecimalLisd(
-  XmlDecimalLisd * decimalLisdIn)
+  const XmlDecimalLisd * decimalLisdIn)
 {
-  *this = *decimalLisdIn;
+  std::list<XmlDecimal *>::const_iterator iter;
+  for (iter = decimalLisdIn->begin(); iter != decimalLisdIn->end(); iter++)
+    {
+      push_back(new XmlDecimal(*iter));
+    }
 }
 
 XmlDecimalLisd::XmlDecimalLisd(
@@ -1365,7 +1430,7 @@ XmlDouble::XmlDouble(
 }
 
 XmlDouble::XmlDouble(
-  double valIn)
+  const double valIn)
 {
   const char formats[] = {'f', 'e', 'E', 'f', 'e', 'E'};
   PROT(val) = valIn;
@@ -1374,6 +1439,15 @@ XmlDouble::XmlDouble(
 		  -XmlSchemaInstanceBase::places :
 		  XmlSchemaInstanceBase::places);
   PROT(format) = formats[XmlSchemaInstanceBase::format];
+}
+
+XmlDouble::XmlDouble(
+  const XmlDouble * doubleIn)
+{
+  PROT(val) = doubleIn->PROT(val);
+  PROT(bad) = doubleIn->PROT(bad);
+  PROT(places) = doubleIn->PROT(places);
+  PROT(format) = doubleIn->PROT(format);
 }
 
 XmlDouble::~XmlDouble() {}
@@ -1445,9 +1519,13 @@ XmlDoubleLisd::XmlDoubleLisd(
 }
 
 XmlDoubleLisd::XmlDoubleLisd(
-  XmlDoubleLisd * doubleLisdIn)
+  const XmlDoubleLisd * doubleLisdIn)
 {
-  *this = *doubleLisdIn;
+  std::list<XmlDouble *>::const_iterator iter;
+  for (iter = doubleLisdIn->begin(); iter != doubleLisdIn->end(); iter++)
+    {
+      push_back(new XmlDouble(*iter));
+    }
 }
 
 XmlDoubleLisd::XmlDoubleLisd(
@@ -1603,7 +1681,7 @@ XmlFloat::XmlFloat(
 }
 
 XmlFloat::XmlFloat(
-  float valIn)
+  const float valIn)
 {
   const char formats[] = {'f', 'e', 'E', 'f', 'e', 'E'};
   PROT(val) = valIn;
@@ -1612,6 +1690,15 @@ XmlFloat::XmlFloat(
 		  -XmlSchemaInstanceBase::places :
 		  XmlSchemaInstanceBase::places);
   PROT(format) = formats[XmlSchemaInstanceBase::format];
+}
+
+XmlFloat::XmlFloat(
+  const XmlFloat * floatIn)
+{
+  PROT(val) = floatIn->PROT(val);
+  PROT(bad) = floatIn->PROT(bad);
+  PROT(places) = floatIn->PROT(places);
+  PROT(format) =  floatIn->PROT(format);
 }
 
 XmlFloat::~XmlFloat() {}
@@ -1683,9 +1770,13 @@ XmlFloatLisd::XmlFloatLisd(
 }
 
 XmlFloatLisd::XmlFloatLisd(
-  XmlFloatLisd * floatLisdIn)
+  const XmlFloatLisd * floatLisdIn)
 {
-  *this = *floatLisdIn;
+  std::list<XmlFloat *>::const_iterator iter;
+  for (iter = floatLisdIn->begin(); iter != floatLisdIn->end(); iter++)
+    {
+      push_back(new XmlFloat(*iter));
+    }
 }
 
 XmlFloatLisd::XmlFloatLisd(
@@ -1901,6 +1992,13 @@ XmlID::XmlID(
     }
 }
 
+XmlID::XmlID(
+  const XmlID * IDIn)
+{
+  PROT(val) = IDIn->PROT(val);
+  PROT(bad) = IDIn->PROT(bad);
+}
+
 XmlID::~XmlID()
 {
   allIDs.erase(PROT(val));
@@ -1987,9 +2085,13 @@ XmlIDLisd::XmlIDLisd(
 }
 
 XmlIDLisd::XmlIDLisd(
-  XmlIDLisd * idLisdIn)
+  const XmlIDLisd * idLisdIn)
 {
-  *this = *idLisdIn;
+  std::list<XmlID *>::const_iterator iter;
+  for (iter = idLisdIn->begin(); iter != idLisdIn->end(); iter++)
+    {
+      push_back(new XmlID(*iter));
+    }
 }
 
 XmlIDLisd::XmlIDLisd(
@@ -2167,6 +2269,13 @@ XmlIDREF::XmlIDREF(
   allIDREFs.insert(PROT(val));
 }
 
+XmlIDREF::XmlIDREF(
+  const XmlIDREF * IDREFIn)
+{
+  PROT(val) = IDREFIn->PROT(val);
+  PROT(bad) = IDREFIn->PROT(bad);
+}
+
 XmlIDREF::~XmlIDREF()
 {
   allIDREFs.erase(PROT(val));
@@ -2268,9 +2377,13 @@ XmlIDREFLisd::XmlIDREFLisd(
 }
 
 XmlIDREFLisd::XmlIDREFLisd(
-  XmlIDREFLisd * idrefLisdIn)
+  const XmlIDREFLisd * idrefLisdIn)
 {
-  *this = *idrefLisdIn;
+  std::list<XmlIDREF *>::const_iterator iter;
+  for (iter = idrefLisdIn->begin(); iter != idrefLisdIn->end(); iter++)
+    {
+      push_back(new XmlIDREF(*iter));
+    }
 }
 
 XmlIDREFLisd::XmlIDREFLisd(
@@ -2435,6 +2548,13 @@ XmlInt::XmlInt(
     }
 }
 
+XmlInt::XmlInt(
+  const XmlInt * intIn)
+{
+  PROT(val) = intIn->PROT(val);
+  PROT(bad) = intIn->PROT(bad);
+}
+
 XmlInt::~XmlInt() {}
 
 bool XmlInt::XmlIntIsBad()
@@ -2488,9 +2608,13 @@ XmlIntLisd::XmlIntLisd(
 }
 
 XmlIntLisd::XmlIntLisd(
-  XmlIntLisd * intLisdIn)
+  const XmlIntLisd * intLisdIn)
 {
-  *this = *intLisdIn;
+  std::list<XmlInt *>::const_iterator iter;
+  for (iter = intLisdIn->begin(); iter != intLisdIn->end(); iter++)
+    {
+      push_back(new XmlInt(*iter));
+    }
 }
 
 XmlIntLisd::XmlIntLisd(
@@ -2633,6 +2757,13 @@ XmlInteger::XmlInteger(
     }
 }
 
+XmlInteger::XmlInteger(
+  const XmlInteger * integerIn)
+{
+  PROT(val) = integerIn->PROT(val);
+  PROT(bad) = integerIn->PROT(bad);
+}
+
 XmlInteger::~XmlInteger() {}
 
 bool XmlInteger::XmlIntegerIsBad()
@@ -2686,7 +2817,7 @@ XmlIntegerLisd::XmlIntegerLisd(
 }
 
 XmlIntegerLisd::XmlIntegerLisd(
-  XmlIntegerLisd * integerLisdIn)
+  const XmlIntegerLisd * integerLisdIn)
 {
   *this = *integerLisdIn;
 }
@@ -2831,6 +2962,13 @@ XmlLong::XmlLong(
     }
 }
 
+XmlLong::XmlLong(
+  const XmlLong * longIn)
+{
+  PROT(val) = longIn->PROT(val);
+  PROT(bad) = longIn->PROT(bad);
+}
+
 XmlLong::~XmlLong() {}
 
 bool XmlLong::XmlLongIsBad()
@@ -2884,9 +3022,13 @@ XmlLongLisd::XmlLongLisd(
 }
 
 XmlLongLisd::XmlLongLisd(
-  XmlLongLisd * longLisdIn)
+  const XmlLongLisd * longLisdIn)
 {
-  *this = *longLisdIn;
+  std::list<XmlLong *>::const_iterator iter;
+  for (iter = longLisdIn->begin(); iter != longLisdIn->end(); iter++)
+    {
+      push_back(new XmlLong(*iter));
+    }
 }
 
 XmlLongLisd::XmlLongLisd(
@@ -3040,6 +3182,13 @@ XmlNCName::XmlNCName(
   PROT(bad) = false;
 }
 
+XmlNCName::XmlNCName(
+    const XmlNCName * nameIn)
+{
+  PROT(val) = nameIn->PROT(val);
+  PROT(bad) = nameIn->PROT(bad);
+}
+
 XmlNCName::~XmlNCName() {}
 
 // This returns true if there are any bad characters or white space.
@@ -3108,15 +3257,19 @@ void XmlNCName::printBad(FILE * badFile)
 XmlNCNameLisd::XmlNCNameLisd() {}
 
 XmlNCNameLisd::XmlNCNameLisd(
-  XmlNCName * ncnameIn)
+  XmlNCName * ncNameIn)
 {
-  push_back(ncnameIn);
+  push_back(ncNameIn);
 }
 
 XmlNCNameLisd::XmlNCNameLisd(
-  XmlNCNameLisd * ncnameLisdIn)
+  const XmlNCNameLisd * ncNameLisdIn)
 {
-  *this = *ncnameLisdIn;
+  std::list<XmlNCName *>::const_iterator iter;
+  for (iter = ncNameLisdIn->begin(); iter != ncNameLisdIn->end(); iter++)
+    {
+      push_back(new XmlNCName(*iter));
+    }
 }
 
 XmlNCNameLisd::XmlNCNameLisd(
@@ -3274,6 +3427,13 @@ XmlNegativeInteger::XmlNegativeInteger(
     }
 }
 
+XmlNegativeInteger::XmlNegativeInteger(
+    const XmlNegativeInteger * negIntIn)
+{
+  PROT(val) = negIntIn->PROT(val);
+  PROT(bad) = negIntIn->PROT(bad);
+}
+
 XmlNegativeInteger::~XmlNegativeInteger() {}
 
 bool XmlNegativeInteger::XmlNegativeIntegerIsBad()
@@ -3332,9 +3492,13 @@ XmlNegativeIntegerLisd::XmlNegativeIntegerLisd(
 }
 
 XmlNegativeIntegerLisd::XmlNegativeIntegerLisd(
-  XmlNegativeIntegerLisd * negativeIntegerLisdIn)
+  const XmlNegativeIntegerLisd * negIntLisdIn)
 {
-  *this = *negativeIntegerLisdIn;
+  std::list<XmlNegativeInteger *>::const_iterator iter;
+  for (iter = negIntLisdIn->begin(); iter != negIntLisdIn->end(); iter++)
+    {
+      push_back(new XmlNegativeInteger(*iter));
+    }
 }
 
 XmlNegativeIntegerLisd::XmlNegativeIntegerLisd(
@@ -3493,6 +3657,13 @@ XmlNMTOKEN::XmlNMTOKEN(
   PROT(bad) = false;
 }
 
+XmlNMTOKEN::XmlNMTOKEN(
+    const XmlNMTOKEN * nmTokenIn)
+{
+  PROT(val) = nmTokenIn->PROT(val);
+  PROT(bad) = nmTokenIn->PROT(bad);
+}
+
 XmlNMTOKEN::~XmlNMTOKEN() {}
 
 bool XmlNMTOKEN::XmlNMTOKENIsBad()
@@ -3565,9 +3736,13 @@ XmlNMTOKENLisd::XmlNMTOKENLisd(
 }
 
 XmlNMTOKENLisd::XmlNMTOKENLisd(
-  XmlNMTOKENLisd * nmtokenLisdIn)
+  const XmlNMTOKENLisd * nmtokenLisdIn)
 {
-  *this = *nmtokenLisdIn;
+  std::list<XmlNMTOKEN *>::const_iterator iter;
+  for (iter = nmtokenLisdIn->begin(); iter != nmtokenLisdIn->end(); iter++)
+    {
+      push_back(new XmlNMTOKEN(*iter));
+    }
 }
 
 XmlNMTOKENLisd::XmlNMTOKENLisd(
@@ -3725,6 +3900,13 @@ XmlNonNegativeInteger::XmlNonNegativeInteger(
     }
 }
 
+XmlNonNegativeInteger::XmlNonNegativeInteger(
+  const XmlNonNegativeInteger * nonNegIn)
+{
+  PROT(val) = nonNegIn->PROT(val);
+  PROT(bad) = nonNegIn->PROT(bad);
+}
+
 XmlNonNegativeInteger::~XmlNonNegativeInteger() {}
 
 bool XmlNonNegativeInteger::XmlNonNegativeIntegerIsBad()
@@ -3783,9 +3965,13 @@ XmlNonNegativeIntegerLisd::XmlNonNegativeIntegerLisd(
 }
 
 XmlNonNegativeIntegerLisd::XmlNonNegativeIntegerLisd(
-  XmlNonNegativeIntegerLisd * nonNegativeIntegerLisdIn)
+  const XmlNonNegativeIntegerLisd * nonNegIntLisdIn)
 {
-  *this = *nonNegativeIntegerLisdIn;
+  std::list<XmlNonNegativeInteger *>::const_iterator iter;
+  for (iter = nonNegIntLisdIn->begin(); iter != nonNegIntLisdIn->end(); iter++)
+    {
+      push_back(new XmlNonNegativeInteger(*iter));
+    }
 }
 
 XmlNonNegativeIntegerLisd::XmlNonNegativeIntegerLisd(
@@ -3945,6 +4131,13 @@ XmlNonPositiveInteger::XmlNonPositiveInteger(
     }
 }
 
+XmlNonPositiveInteger::XmlNonPositiveInteger(
+  const XmlNonPositiveInteger * nonPosIntIn)
+{
+  PROT(val) = nonPosIntIn->PROT(val);
+  PROT(bad) = nonPosIntIn->PROT(bad);
+}
+
 XmlNonPositiveInteger::~XmlNonPositiveInteger() {}
 
 bool XmlNonPositiveInteger::XmlNonPositiveIntegerIsBad()
@@ -4003,9 +4196,13 @@ XmlNonPositiveIntegerLisd::XmlNonPositiveIntegerLisd(
 }
 
 XmlNonPositiveIntegerLisd::XmlNonPositiveIntegerLisd(
-  XmlNonPositiveIntegerLisd * nonPositiveIntegerLisdIn)
+  const XmlNonPositiveIntegerLisd * nonPosIntLisdIn)
 {
-  *this = *nonPositiveIntegerLisdIn;
+  std::list<XmlNonPositiveInteger *>::const_iterator iter;
+  for (iter = nonPosIntLisdIn->begin(); iter != nonPosIntLisdIn->end(); iter++)
+    {
+      push_back(new XmlNonPositiveInteger(*iter));
+    }
 }
 
 XmlNonPositiveIntegerLisd::XmlNonPositiveIntegerLisd(
@@ -4184,6 +4381,13 @@ XmlPositiveInteger::XmlPositiveInteger(
     }
 }
 
+XmlPositiveInteger::XmlPositiveInteger(
+  const XmlPositiveInteger * xmlPosIntIn)
+{
+  PROT(val) = xmlPosIntIn->PROT(val);
+  PROT(bad) = xmlPosIntIn->PROT(bad);
+}
+
 XmlPositiveInteger::~XmlPositiveInteger() {}
 
 bool XmlPositiveInteger::XmlPositiveIntegerIsBad()
@@ -4242,7 +4446,7 @@ XmlPositiveIntegerLisd::XmlPositiveIntegerLisd(
 }
 
 XmlPositiveIntegerLisd::XmlPositiveIntegerLisd(
-  XmlPositiveIntegerLisd * positiveIntegerLisdIn)
+  const XmlPositiveIntegerLisd * positiveIntegerLisdIn)
 {
   *this = *positiveIntegerLisdIn;
 }
@@ -4358,7 +4562,7 @@ void XmlSchemaInstanceBase::doSpaces(int change, FILE * outFile)
 /* class XmlShort
 
 This is a class for handling XML basic type short, which has a value
-range of -32768 to 32767. A C++ int is used to represent the value.
+range of -32768 to 32767. A C++ short is used to represent the value.
 
 The constructor that takes an argument checks that valIn consists of
 1. a sequence of zero or more white space characters followed by
@@ -4411,7 +4615,7 @@ XmlShort::XmlShort(
       fprintf(stderr, "%s is not a valid short\n", valIn);
       return;
     }
-  else if (sscanf(valIn, "%d", &PROT(val)) == 1)
+  else if (sscanf(valIn, "%hd", &PROT(val)) == 1)
     {
       if ((PROT(val) < -32768) || (PROT(val) > 32767))
 	{ // val is out of allowed range
@@ -4429,6 +4633,13 @@ XmlShort::XmlShort(
       PROT(bad) = true;
       fprintf(stderr, "%s is not a valid short\n", valIn);
     }
+}
+
+XmlShort::XmlShort(
+  const XmlShort * shortIn)
+{
+  PROT(val) = shortIn->PROT(val);
+  PROT(bad) = shortIn->PROT(bad);
 }
 
 XmlShort::~XmlShort() {}
@@ -4462,10 +4673,10 @@ void XmlShort::printBad(FILE * badFile)
 }
 
 #if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
-  int XmlShort::GET(val)()
+  short XmlShort::GET(val)()
   {return PROT(val);}
 
-  void XmlShort::SET(val)(int valIn)
+  void XmlShort::SET(val)(short valIn)
   {PROT(val) = valIn;}
 #endif
 
@@ -4478,15 +4689,19 @@ void XmlShort::printBad(FILE * badFile)
 XmlShortLisd::XmlShortLisd() {}
 
 XmlShortLisd::XmlShortLisd(
-  XmlShort * intIn)
+  XmlShort * shortIn)
 {
-  push_back(intIn);
+  push_back(shortIn);
 }
 
 XmlShortLisd::XmlShortLisd(
-  XmlShortLisd * intLisdIn)
+  const XmlShortLisd * shortLisdIn)
 {
-  *this = *intLisdIn;
+  std::list<XmlShort *>::const_iterator iter;
+  for (iter = shortLisdIn->begin(); iter != shortLisdIn->end(); iter++)
+    {
+      push_back(new XmlShort(*iter));
+    }
 }
 
 XmlShortLisd::XmlShortLisd(
@@ -4589,6 +4804,13 @@ XmlString::XmlString(
   PROT(bad) = false;
 }
 
+XmlString::XmlString(
+  const XmlString * stringIn)
+{
+  PROT(val) = stringIn->PROT(val);
+  PROT(bad) = stringIn->PROT(bad);
+}
+
 XmlString::~XmlString() {}
 
 bool XmlString::XmlStringIsBad()
@@ -4645,9 +4867,13 @@ XmlStringLisd::XmlStringLisd(
 }
 
 XmlStringLisd::XmlStringLisd(
-  XmlStringLisd * stringLisdIn)
+  const XmlStringLisd * stringLisdIn)
 {
-  *this = *stringLisdIn;
+  std::list<XmlString *>::const_iterator iter;
+  for (iter = stringLisdIn->begin(); iter != stringLisdIn->end(); iter++)
+    {
+      push_back(new XmlString(*iter));
+    }
 }
 
 XmlStringLisd::~XmlStringLisd()
@@ -4697,6 +4923,13 @@ XmlTime::XmlTime(
 {
   PROT(val) = valIn; // automatic write to std::string
   PROT(bad) = false;
+}
+
+XmlTime::XmlTime(
+  const XmlTime * timeIn)
+{
+  PROT(val) = timeIn->PROT(val);
+  PROT(bad) = timeIn->PROT(bad);
 }
 
 XmlTime::~XmlTime() {}
@@ -4752,9 +4985,13 @@ XmlTimeLisd::XmlTimeLisd(
 }
 
 XmlTimeLisd::XmlTimeLisd(
-  XmlTimeLisd * TimeLisdIn)
+  const XmlTimeLisd * timeLisdIn)
 {
-  *this = *TimeLisdIn;
+  std::list<XmlTime *>::const_iterator iter;
+  for (iter = timeLisdIn->begin(); iter != timeLisdIn->end(); iter++)
+    {
+      push_back(new XmlTime(*iter));
+    }
 }
 
 XmlTimeLisd::XmlTimeLisd(
@@ -4890,6 +5127,13 @@ XmlToken::XmlToken(
   delete [] buffer;
 }
 
+XmlToken::XmlToken(
+  const XmlToken * tokenIn)
+{
+  PROT(val) = tokenIn->PROT(val);
+  PROT(bad) = tokenIn->PROT(bad);
+}
+
 XmlToken::~XmlToken() {}
 
 bool XmlToken::XmlTokenIsBad()
@@ -4943,9 +5187,13 @@ XmlTokenLisd::XmlTokenLisd(
 }
 
 XmlTokenLisd::XmlTokenLisd(
-  XmlTokenLisd * tokenLisdIn)
+  const XmlTokenLisd * tokenLisdIn)
 {
-  *this = *tokenLisdIn;
+  std::list<XmlToken *>::const_iterator iter;
+  for (iter = tokenLisdIn->begin(); iter != tokenLisdIn->end(); iter++)
+    {
+      push_back(new XmlToken(*iter));
+    }
 }
 
 XmlTokenLisd::XmlTokenLisd(
@@ -5034,16 +5282,42 @@ void XmlTokenLisd::OPRINTSELFDECL
 
 */
 
-XmlTypeBase::XmlTypeBase() {}
+XmlTypeBase::XmlTypeBase()
+{
+  PROT(printElement) = 0;
+#ifdef USEXSITYPE
+  PROT(printTypp) = 0;
+#endif
+}
 
-XmlTypeBase::~XmlTypeBase() {}
+XmlTypeBase::~XmlTypeBase()
+{
+  if (PROT(printElement))
+    {
+      free(PROT(printElement));
+    }
+#ifdef USEXSITYPE
+  if (PROT(printTypp))
+    {
+      free(PROT(printTypp));
+    }
+#endif
+}
 
 #if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
-const char * XmlTypeBase::GET(printElement)()
+char * XmlTypeBase::GET(printElement)()
 {return PROT(printElement);}
 
 void XmlTypeBase::SET(printElement)(const char * printElementIn)
-{PROT(printElement) = printElementIn;}
+{PROT(printElement) = strdup(printElementIn);}
+#endif
+
+#ifdef USEXSITYPE 
+char * GET(printTypp)()
+{return PROT(printType);}
+
+void SET(printTypp)(const char * printTyppIn);
+{PROT(printType) = strdup(printTypeIn);}
 #endif
 
 /*********************************************************************/
@@ -5139,6 +5413,13 @@ XmlUnsignedByte::XmlUnsignedByte(
     }
 }
 
+XmlUnsignedByte::XmlUnsignedByte(
+  const XmlUnsignedByte * unsignedByteIn)
+{
+  PROT(val) = unsignedByteIn->PROT(val);
+  PROT(bad) = unsignedByteIn->PROT(bad);
+}
+
 XmlUnsignedByte::~XmlUnsignedByte() {}
 
 bool XmlUnsignedByte::XmlUnsignedByteIsBad()
@@ -5192,9 +5473,14 @@ XmlUnsignedByteLisd::XmlUnsignedByteLisd(
 }
 
 XmlUnsignedByteLisd::XmlUnsignedByteLisd(
-  XmlUnsignedByteLisd * unsignedByteLisdIn)
+  const XmlUnsignedByteLisd * unsignedByteLisdIn)
 {
-  *this = *unsignedByteLisdIn;
+  std::list<XmlUnsignedByte *>::const_iterator iter;
+  for (iter = unsignedByteLisdIn->begin();
+       iter != unsignedByteLisdIn->end(); iter++)
+    {
+      push_back(new XmlUnsignedByte(*iter));
+    }
 }
 
 XmlUnsignedByteLisd::XmlUnsignedByteLisd(
@@ -5355,6 +5641,13 @@ XmlUnsignedInt::XmlUnsignedInt(
     }
 }
 
+XmlUnsignedInt::XmlUnsignedInt(
+  const XmlUnsignedInt * unsignedIntIn)
+{
+  PROT(val) = unsignedIntIn->PROT(val);
+  PROT(bad) = unsignedIntIn->PROT(bad);
+}
+
 XmlUnsignedInt::~XmlUnsignedInt() {}
 
 bool XmlUnsignedInt::XmlUnsignedIntIsBad()
@@ -5408,9 +5701,14 @@ XmlUnsignedIntLisd::XmlUnsignedIntLisd(
 }
 
 XmlUnsignedIntLisd::XmlUnsignedIntLisd(
-  XmlUnsignedIntLisd * unsignedIntLisdIn)
+  const XmlUnsignedIntLisd * unsignedIntLisdIn)
 {
-  *this = *unsignedIntLisdIn;
+  std::list<XmlUnsignedInt *>::const_iterator iter;
+  for (iter = unsignedIntLisdIn->begin();
+       iter != unsignedIntLisdIn->end(); iter++)
+    {
+      push_back(new XmlUnsignedInt(*iter));
+    }
 }
 
 XmlUnsignedIntLisd::XmlUnsignedIntLisd(
@@ -5557,6 +5855,13 @@ XmlUnsignedLong::XmlUnsignedLong(
     }
 }
 
+XmlUnsignedLong::XmlUnsignedLong(
+  const XmlUnsignedLong * unsignedLongIn)
+{
+  PROT(val) = unsignedLongIn->PROT(val);
+  PROT(bad) = unsignedLongIn->PROT(bad);
+}
+
 XmlUnsignedLong::~XmlUnsignedLong() {}
 
 bool XmlUnsignedLong::XmlUnsignedLongIsBad()
@@ -5610,9 +5915,14 @@ XmlUnsignedLongLisd::XmlUnsignedLongLisd(
 }
 
 XmlUnsignedLongLisd::XmlUnsignedLongLisd(
-  XmlUnsignedLongLisd * unsignedLongLisdIn)
+  const XmlUnsignedLongLisd * unsignedLongLisdIn)
 {
-  *this = *unsignedLongLisdIn;
+  std::list<XmlUnsignedLong *>::const_iterator iter;
+  for (iter = unsignedLongLisdIn->begin();
+       iter != unsignedLongLisdIn->end(); iter++)
+    {
+      push_back(new XmlUnsignedLong(*iter));
+    }
 }
 
 XmlUnsignedLongLisd::XmlUnsignedLongLisd(
@@ -5775,6 +6085,13 @@ XmlUnsignedShort::XmlUnsignedShort(
     }
 }
 
+XmlUnsignedShort::XmlUnsignedShort(
+  const XmlUnsignedShort * unsignedShortIn)
+{
+  PROT(val) = unsignedShortIn->PROT(val);
+  PROT(bad) = unsignedShortIn->PROT(bad);
+}
+
 XmlUnsignedShort::~XmlUnsignedShort() {}
 
 bool XmlUnsignedShort::XmlUnsignedShortIsBad()
@@ -5828,9 +6145,14 @@ XmlUnsignedShortLisd::XmlUnsignedShortLisd(
 }
 
 XmlUnsignedShortLisd::XmlUnsignedShortLisd(
-  XmlUnsignedShortLisd * unsignedShortLisdIn)
+  const XmlUnsignedShortLisd * unsignedShortLisdIn)
 {
-  *this = *unsignedShortLisdIn;
+  std::list<XmlUnsignedShort *>::const_iterator iter;
+  for (iter = unsignedShortLisdIn->begin();
+       iter != unsignedShortLisdIn->end(); iter++)
+    {
+      push_back(new XmlUnsignedShort(*iter));
+    }
 }
 
 XmlUnsignedShortLisd::XmlUnsignedShortLisd(
@@ -5919,24 +6241,27 @@ void XmlUnsignedShortLisd::OPRINTSELFDECL
 
 /* class XmlVersion
 
+This allows copying 6 characters from any string into encoding and
+standalone, but (1) only prints encoding if it is "UTF-8" or "utf-8"
+and (2) only prints standalone if it is "yes" or "no". The value
+of standaloneIn in the constructor taking two arguments should not be
+the empty string, since that makes valgrind think standalone was never
+set.
+
 */
 
 XmlVersion::XmlVersion()
 {
-  PROT(encoding)[0] = 0;
-  PROT(standalone)[0] = 0;
+  strncpy(PROT(encoding), "unset", 6);
+  strncpy(PROT(standalone), "unset", 6);
 }
 
 XmlVersion::XmlVersion(
  const char * encodingIn,
  const char * standaloneIn)
 {
-  if ((strncmp(encodingIn, "UTF-8", 6) == 0) ||
-      (strncmp(encodingIn, "utf-8", 6) == 0))
-    strncpy(PROT(encoding), encodingIn, 6);
-  if ((strncmp(standaloneIn, "no", 5) == 0) ||
-      (strncmp(standaloneIn, "yes", 5) == 0))
-    strncpy(PROT(standalone), standaloneIn, 5);
+  strncpy(PROT(encoding), encodingIn, 6);
+  strncpy(PROT(standalone), standaloneIn, 6);
 }
 
 XmlVersion::~XmlVersion() {}
@@ -5946,11 +6271,15 @@ void XmlVersion::PRINTSELFDECL
   XFPRINTF "<?xml version=\"1.0\"");
   if ((strncmp(PROT(encoding), "UTF-8", 6) == 0) ||
       (strncmp(PROT(encoding), "utf-8", 6) == 0))
-    XFPRINTF " encoding=\"%s\"", PROT(encoding));
+    {
+      XFPRINTF " encoding=\"%s\"", PROT(encoding));
+    }
   if ((strncmp(PROT(standalone), "no", 5) == 0) ||
       (strncmp(PROT(standalone), "yes", 5) == 0))
-    XFPRINTF " standalone=\"%s\"", PROT(standalone));
-  XFPRINTF "?>\n");
+    {
+      XFPRINTF " standalone=\"%s\"", PROT(standalone));
+    }
+   XFPRINTF "?>\n");
 }
 
 #if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
