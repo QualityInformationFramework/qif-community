@@ -398,7 +398,7 @@ AngularCharacteristicStatsEvalTypeChoicePair::AngularCharacteristicStatsEvalType
 
 AngularCharacteristicStatsEvalTypeChoicePair::AngularCharacteristicStatsEvalTypeChoicePair(
  whichOne AngularCharacteristicStatsEvalTypeTypeIn,
- AngularCharacteristicStatsEvalTypeVal AngularCharacteristicStatsEvalTypeValueIn)
+ AngularCharacteristicStatsEvalTypeVal * AngularCharacteristicStatsEvalTypeValueIn)
 {
   AngularCharacteristicStatsEvalTypeType = AngularCharacteristicStatsEvalTypeTypeIn;
   AngularCharacteristicStatsEvalTypeValue = AngularCharacteristicStatsEvalTypeValueIn;
@@ -408,17 +408,18 @@ AngularCharacteristicStatsEvalTypeChoicePair::~AngularCharacteristicStatsEvalTyp
 {
   #ifndef NODESTRUCT
   if (AngularCharacteristicStatsEvalTypeType == AngularCharacte_1100E)
-    delete AngularCharacteristicStatsEvalTypeValue.AngularCharacte_1100;
+    delete AngularCharacteristicStatsEvalTypeValue->AngularCharacte_1100;
   else if (AngularCharacteristicStatsEvalTypeType == AngularCharacte_1101E)
-    delete AngularCharacteristicStatsEvalTypeValue.AngularCharacte_1101;
+    delete AngularCharacteristicStatsEvalTypeValue->AngularCharacte_1101;
   else if (AngularCharacteristicStatsEvalTypeType == MinValueStatsE)
-    delete AngularCharacteristicStatsEvalTypeValue.MinValueStats;
+    delete AngularCharacteristicStatsEvalTypeValue->MinValueStats;
   else if (AngularCharacteristicStatsEvalTypeType == AngularCharacte_1102E)
-    delete AngularCharacteristicStatsEvalTypeValue.AngularCharacte_1102;
+    delete AngularCharacteristicStatsEvalTypeValue->AngularCharacte_1102;
   else if (AngularCharacteristicStatsEvalTypeType == AngularCharacte_1103E)
-    delete AngularCharacteristicStatsEvalTypeValue.AngularCharacte_1103;
+    delete AngularCharacteristicStatsEvalTypeValue->AngularCharacte_1103;
   else if (AngularCharacteristicStatsEvalTypeType == MinDeviationStatsE)
-    delete AngularCharacteristicStatsEvalTypeValue.MinDeviationStats;
+    delete AngularCharacteristicStatsEvalTypeValue->MinDeviationStats;
+  delete AngularCharacteristicStatsEvalTypeValue;
   #endif
 }
 
@@ -426,33 +427,33 @@ void AngularCharacteristicStatsEvalTypeChoicePair::printSelf(FILE * outFile)
 {
   if (AngularCharacteristicStatsEvalTypeType == AngularCharacte_1100E)
     {
-      AngularCharacteristicStatsEvalTypeValue.AngularCharacte_1100->printSelf(outFile);
+      AngularCharacteristicStatsEvalTypeValue->AngularCharacte_1100->printSelf(outFile);
     }
   else if (AngularCharacteristicStatsEvalTypeType == AngularCharacte_1101E)
     {
-      AngularCharacteristicStatsEvalTypeValue.AngularCharacte_1101->printSelf(outFile);
+      AngularCharacteristicStatsEvalTypeValue->AngularCharacte_1101->printSelf(outFile);
     }
   else if (AngularCharacteristicStatsEvalTypeType == MinValueStatsE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinValueStats");
-      AngularCharacteristicStatsEvalTypeValue.MinValueStats->printSelf(outFile);
+      AngularCharacteristicStatsEvalTypeValue->MinValueStats->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</MinValueStats>\n");
     }
   else if (AngularCharacteristicStatsEvalTypeType == AngularCharacte_1102E)
     {
-      AngularCharacteristicStatsEvalTypeValue.AngularCharacte_1102->printSelf(outFile);
+      AngularCharacteristicStatsEvalTypeValue->AngularCharacte_1102->printSelf(outFile);
     }
   else if (AngularCharacteristicStatsEvalTypeType == AngularCharacte_1103E)
     {
-      AngularCharacteristicStatsEvalTypeValue.AngularCharacte_1103->printSelf(outFile);
+      AngularCharacteristicStatsEvalTypeValue->AngularCharacte_1103->printSelf(outFile);
     }
   else if (AngularCharacteristicStatsEvalTypeType == MinDeviationStatsE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinDeviationStats");
-      AngularCharacteristicStatsEvalTypeValue.MinDeviationStats->printSelf(outFile);
+      AngularCharacteristicStatsEvalTypeValue->MinDeviationStats->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</MinDeviationStats>\n");
     }
@@ -5162,7 +5163,7 @@ ControlIssueTypeChoicePair::ControlIssueTypeChoicePair() {}
 
 ControlIssueTypeChoicePair::ControlIssueTypeChoicePair(
  whichOne ControlIssueTypeTypeIn,
- ControlIssueTypeVal ControlIssueTypeValueIn)
+ ControlIssueTypeVal * ControlIssueTypeValueIn)
 {
   ControlIssueTypeType = ControlIssueTypeTypeIn;
   ControlIssueTypeValue = ControlIssueTypeValueIn;
@@ -5172,9 +5173,10 @@ ControlIssueTypeChoicePair::~ControlIssueTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (ControlIssueTypeType == ControlIssueEnumE)
-    delete ControlIssueTypeValue.ControlIssueEnum;
+    delete ControlIssueTypeValue->ControlIssueEnum;
   else if (ControlIssueTypeType == OtherControlIssueE)
-    delete ControlIssueTypeValue.OtherControlIssue;
+    delete ControlIssueTypeValue->OtherControlIssue;
+  delete ControlIssueTypeValue;
   #endif
 }
 
@@ -5184,14 +5186,14 @@ void ControlIssueTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ControlIssueEnum");
-      ControlIssueTypeValue.ControlIssueEnum->printSelf(outFile);
+      ControlIssueTypeValue->ControlIssueEnum->printSelf(outFile);
       fprintf(outFile, "</ControlIssueEnum>\n");
     }
   else if (ControlIssueTypeType == OtherControlIssueE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<OtherControlIssue");
-      ControlIssueTypeValue.OtherControlIssue->printSelf(outFile);
+      ControlIssueTypeValue->OtherControlIssue->printSelf(outFile);
       fprintf(outFile, "</OtherControlIssue>\n");
     }
 }
@@ -7721,7 +7723,7 @@ DistributionTransformationTypeChoicePair::DistributionTransformationTypeChoicePa
 
 DistributionTransformationTypeChoicePair::DistributionTransformationTypeChoicePair(
  whichOne DistributionTransformationTypeTypeIn,
- DistributionTransformationTypeVal DistributionTransformationTypeValueIn)
+ DistributionTransformationTypeVal * DistributionTransformationTypeValueIn)
 {
   DistributionTransformationTypeType = DistributionTransformationTypeTypeIn;
   DistributionTransformationTypeValue = DistributionTransformationTypeValueIn;
@@ -7731,11 +7733,12 @@ DistributionTransformationTypeChoicePair::~DistributionTransformationTypeChoiceP
 {
   #ifndef NODESTRUCT
   if (DistributionTransformationTypeType == DistributionTransformationEnumE)
-    delete DistributionTransformationTypeValue.DistributionTransformationEnum;
+    delete DistributionTransformationTypeValue->DistributionTransformationEnum;
   else if (DistributionTransformationTypeType == BoxCoxTransformationE)
-    delete DistributionTransformationTypeValue.BoxCoxTransformation;
+    delete DistributionTransformationTypeValue->BoxCoxTransformation;
   else if (DistributionTransformationTypeType == OtherDistributionTransformationE)
-    delete DistributionTransformationTypeValue.OtherDistributionTransformation;
+    delete DistributionTransformationTypeValue->OtherDistributionTransformation;
+  delete DistributionTransformationTypeValue;
   #endif
 }
 
@@ -7745,21 +7748,21 @@ void DistributionTransformationTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<DistributionTransformationEnum");
-      DistributionTransformationTypeValue.DistributionTransformationEnum->printSelf(outFile);
+      DistributionTransformationTypeValue->DistributionTransformationEnum->printSelf(outFile);
       fprintf(outFile, "</DistributionTransformationEnum>\n");
     }
   else if (DistributionTransformationTypeType == BoxCoxTransformationE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<BoxCoxTransformation");
-      DistributionTransformationTypeValue.BoxCoxTransformation->printSelf(outFile);
+      DistributionTransformationTypeValue->BoxCoxTransformation->printSelf(outFile);
       fprintf(outFile, "</BoxCoxTransformation>\n");
     }
   else if (DistributionTransformationTypeType == OtherDistributionTransformationE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<OtherDistributionTransformation");
-      DistributionTransformationTypeValue.OtherDistributionTransformation->printSelf(outFile);
+      DistributionTransformationTypeValue->OtherDistributionTransformation->printSelf(outFile);
       fprintf(outFile, "</OtherDistributionTransformation>\n");
     }
 }
@@ -8159,7 +8162,7 @@ ExclusionReasonTypeChoicePair::ExclusionReasonTypeChoicePair() {}
 
 ExclusionReasonTypeChoicePair::ExclusionReasonTypeChoicePair(
  whichOne ExclusionReasonTypeTypeIn,
- ExclusionReasonTypeVal ExclusionReasonTypeValueIn)
+ ExclusionReasonTypeVal * ExclusionReasonTypeValueIn)
 {
   ExclusionReasonTypeType = ExclusionReasonTypeTypeIn;
   ExclusionReasonTypeValue = ExclusionReasonTypeValueIn;
@@ -8169,9 +8172,10 @@ ExclusionReasonTypeChoicePair::~ExclusionReasonTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (ExclusionReasonTypeType == ExclusionReasonEnumE)
-    delete ExclusionReasonTypeValue.ExclusionReasonEnum;
+    delete ExclusionReasonTypeValue->ExclusionReasonEnum;
   else if (ExclusionReasonTypeType == OtherExclusionReasonE)
-    delete ExclusionReasonTypeValue.OtherExclusionReason;
+    delete ExclusionReasonTypeValue->OtherExclusionReason;
+  delete ExclusionReasonTypeValue;
   #endif
 }
 
@@ -8181,14 +8185,14 @@ void ExclusionReasonTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ExclusionReasonEnum");
-      ExclusionReasonTypeValue.ExclusionReasonEnum->printSelf(outFile);
+      ExclusionReasonTypeValue->ExclusionReasonEnum->printSelf(outFile);
       fprintf(outFile, "</ExclusionReasonEnum>\n");
     }
   else if (ExclusionReasonTypeType == OtherExclusionReasonE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<OtherExclusionReason");
-      ExclusionReasonTypeValue.OtherExclusionReason->printSelf(outFile);
+      ExclusionReasonTypeValue->OtherExclusionReason->printSelf(outFile);
       fprintf(outFile, "</OtherExclusionReason>\n");
     }
 }
@@ -9196,7 +9200,7 @@ LimitingNumberTypeChoicePair::LimitingNumberTypeChoicePair() {}
 
 LimitingNumberTypeChoicePair::LimitingNumberTypeChoicePair(
  whichOne LimitingNumberTypeTypeIn,
- LimitingNumberTypeVal LimitingNumberTypeValueIn)
+ LimitingNumberTypeVal * LimitingNumberTypeValueIn)
 {
   LimitingNumberTypeType = LimitingNumberTypeTypeIn;
   LimitingNumberTypeValue = LimitingNumberTypeValueIn;
@@ -9206,9 +9210,10 @@ LimitingNumberTypeChoicePair::~LimitingNumberTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (LimitingNumberTypeType == CountE)
-    delete LimitingNumberTypeValue.Count;
+    delete LimitingNumberTypeValue->Count;
   else if (LimitingNumberTypeType == FractionE)
-    delete LimitingNumberTypeValue.Fraction;
+    delete LimitingNumberTypeValue->Fraction;
+  delete LimitingNumberTypeValue;
   #endif
 }
 
@@ -9218,14 +9223,14 @@ void LimitingNumberTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Count");
-      LimitingNumberTypeValue.Count->printSelf(outFile);
+      LimitingNumberTypeValue->Count->printSelf(outFile);
       fprintf(outFile, "</Count>\n");
     }
   else if (LimitingNumberTypeType == FractionE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Fraction");
-      LimitingNumberTypeValue.Fraction->printSelf(outFile);
+      LimitingNumberTypeValue->Fraction->printSelf(outFile);
       fprintf(outFile, "</Fraction>\n");
     }
 }
@@ -9484,7 +9489,7 @@ LinearCharacteristicStatsEvalTypeChoicePair::LinearCharacteristicStatsEvalTypeCh
 
 LinearCharacteristicStatsEvalTypeChoicePair::LinearCharacteristicStatsEvalTypeChoicePair(
  whichOne LinearCharacteristicStatsEvalTypeTypeIn,
- LinearCharacteristicStatsEvalTypeVal LinearCharacteristicStatsEvalTypeValueIn)
+ LinearCharacteristicStatsEvalTypeVal * LinearCharacteristicStatsEvalTypeValueIn)
 {
   LinearCharacteristicStatsEvalTypeType = LinearCharacteristicStatsEvalTypeTypeIn;
   LinearCharacteristicStatsEvalTypeValue = LinearCharacteristicStatsEvalTypeValueIn;
@@ -9494,17 +9499,18 @@ LinearCharacteristicStatsEvalTypeChoicePair::~LinearCharacteristicStatsEvalTypeC
 {
   #ifndef NODESTRUCT
   if (LinearCharacteristicStatsEvalTypeType == LinearCharacter_1110E)
-    delete LinearCharacteristicStatsEvalTypeValue.LinearCharacter_1110;
+    delete LinearCharacteristicStatsEvalTypeValue->LinearCharacter_1110;
   else if (LinearCharacteristicStatsEvalTypeType == LinearCharacter_1111E)
-    delete LinearCharacteristicStatsEvalTypeValue.LinearCharacter_1111;
+    delete LinearCharacteristicStatsEvalTypeValue->LinearCharacter_1111;
   else if (LinearCharacteristicStatsEvalTypeType == MinValueStatsE)
-    delete LinearCharacteristicStatsEvalTypeValue.MinValueStats;
+    delete LinearCharacteristicStatsEvalTypeValue->MinValueStats;
   else if (LinearCharacteristicStatsEvalTypeType == LinearCharacter_1112E)
-    delete LinearCharacteristicStatsEvalTypeValue.LinearCharacter_1112;
+    delete LinearCharacteristicStatsEvalTypeValue->LinearCharacter_1112;
   else if (LinearCharacteristicStatsEvalTypeType == LinearCharacter_1113E)
-    delete LinearCharacteristicStatsEvalTypeValue.LinearCharacter_1113;
+    delete LinearCharacteristicStatsEvalTypeValue->LinearCharacter_1113;
   else if (LinearCharacteristicStatsEvalTypeType == MinDeviationStatsE)
-    delete LinearCharacteristicStatsEvalTypeValue.MinDeviationStats;
+    delete LinearCharacteristicStatsEvalTypeValue->MinDeviationStats;
+  delete LinearCharacteristicStatsEvalTypeValue;
   #endif
 }
 
@@ -9512,33 +9518,33 @@ void LinearCharacteristicStatsEvalTypeChoicePair::printSelf(FILE * outFile)
 {
   if (LinearCharacteristicStatsEvalTypeType == LinearCharacter_1110E)
     {
-      LinearCharacteristicStatsEvalTypeValue.LinearCharacter_1110->printSelf(outFile);
+      LinearCharacteristicStatsEvalTypeValue->LinearCharacter_1110->printSelf(outFile);
     }
   else if (LinearCharacteristicStatsEvalTypeType == LinearCharacter_1111E)
     {
-      LinearCharacteristicStatsEvalTypeValue.LinearCharacter_1111->printSelf(outFile);
+      LinearCharacteristicStatsEvalTypeValue->LinearCharacter_1111->printSelf(outFile);
     }
   else if (LinearCharacteristicStatsEvalTypeType == MinValueStatsE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinValueStats");
-      LinearCharacteristicStatsEvalTypeValue.MinValueStats->printSelf(outFile);
+      LinearCharacteristicStatsEvalTypeValue->MinValueStats->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</MinValueStats>\n");
     }
   else if (LinearCharacteristicStatsEvalTypeType == LinearCharacter_1112E)
     {
-      LinearCharacteristicStatsEvalTypeValue.LinearCharacter_1112->printSelf(outFile);
+      LinearCharacteristicStatsEvalTypeValue->LinearCharacter_1112->printSelf(outFile);
     }
   else if (LinearCharacteristicStatsEvalTypeType == LinearCharacter_1113E)
     {
-      LinearCharacteristicStatsEvalTypeValue.LinearCharacter_1113->printSelf(outFile);
+      LinearCharacteristicStatsEvalTypeValue->LinearCharacter_1113->printSelf(outFile);
     }
   else if (LinearCharacteristicStatsEvalTypeType == MinDeviationStatsE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinDeviationStats");
-      LinearCharacteristicStatsEvalTypeValue.MinDeviationStats->printSelf(outFile);
+      LinearCharacteristicStatsEvalTypeValue->MinDeviationStats->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</MinDeviationStats>\n");
     }
@@ -11562,7 +11568,7 @@ SamplingIntervalTypeChoicePair::SamplingIntervalTypeChoicePair() {}
 
 SamplingIntervalTypeChoicePair::SamplingIntervalTypeChoicePair(
  whichOne SamplingIntervalTypeTypeIn,
- SamplingIntervalTypeVal SamplingIntervalTypeValueIn)
+ SamplingIntervalTypeVal * SamplingIntervalTypeValueIn)
 {
   SamplingIntervalTypeType = SamplingIntervalTypeTypeIn;
   SamplingIntervalTypeValue = SamplingIntervalTypeValueIn;
@@ -11572,9 +11578,10 @@ SamplingIntervalTypeChoicePair::~SamplingIntervalTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (SamplingIntervalTypeType == SamplingIntervalEnumE)
-    delete SamplingIntervalTypeValue.SamplingIntervalEnum;
+    delete SamplingIntervalTypeValue->SamplingIntervalEnum;
   else if (SamplingIntervalTypeType == OtherSamplingIntervalE)
-    delete SamplingIntervalTypeValue.OtherSamplingInterval;
+    delete SamplingIntervalTypeValue->OtherSamplingInterval;
+  delete SamplingIntervalTypeValue;
   #endif
 }
 
@@ -11584,14 +11591,14 @@ void SamplingIntervalTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<SamplingIntervalEnum");
-      SamplingIntervalTypeValue.SamplingIntervalEnum->printSelf(outFile);
+      SamplingIntervalTypeValue->SamplingIntervalEnum->printSelf(outFile);
       fprintf(outFile, "</SamplingIntervalEnum>\n");
     }
   else if (SamplingIntervalTypeType == OtherSamplingIntervalE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<OtherSamplingInterval");
-      SamplingIntervalTypeValue.OtherSamplingInterval->printSelf(outFile);
+      SamplingIntervalTypeValue->OtherSamplingInterval->printSelf(outFile);
       fprintf(outFile, "</OtherSamplingInterval>\n");
     }
 }
@@ -14098,7 +14105,7 @@ StatsEvalStatusTypeChoicePair::StatsEvalStatusTypeChoicePair() {}
 
 StatsEvalStatusTypeChoicePair::StatsEvalStatusTypeChoicePair(
  whichOne StatsEvalStatusTypeTypeIn,
- StatsEvalStatusTypeVal StatsEvalStatusTypeValueIn)
+ StatsEvalStatusTypeVal * StatsEvalStatusTypeValueIn)
 {
   StatsEvalStatusTypeType = StatsEvalStatusTypeTypeIn;
   StatsEvalStatusTypeValue = StatsEvalStatusTypeValueIn;
@@ -14108,9 +14115,10 @@ StatsEvalStatusTypeChoicePair::~StatsEvalStatusTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (StatsEvalStatusTypeType == StatsEvalStatusEnumE)
-    delete StatsEvalStatusTypeValue.StatsEvalStatusEnum;
+    delete StatsEvalStatusTypeValue->StatsEvalStatusEnum;
   else if (StatsEvalStatusTypeType == OtherStatsEvalStatusE)
-    delete StatsEvalStatusTypeValue.OtherStatsEvalStatus;
+    delete StatsEvalStatusTypeValue->OtherStatsEvalStatus;
+  delete StatsEvalStatusTypeValue;
   #endif
 }
 
@@ -14120,14 +14128,14 @@ void StatsEvalStatusTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<StatsEvalStatusEnum");
-      StatsEvalStatusTypeValue.StatsEvalStatusEnum->printSelf(outFile);
+      StatsEvalStatusTypeValue->StatsEvalStatusEnum->printSelf(outFile);
       fprintf(outFile, "</StatsEvalStatusEnum>\n");
     }
   else if (StatsEvalStatusTypeType == OtherStatsEvalStatusE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<OtherStatsEvalStatus");
-      StatsEvalStatusTypeValue.OtherStatsEvalStatus->printSelf(outFile);
+      StatsEvalStatusTypeValue->OtherStatsEvalStatus->printSelf(outFile);
       fprintf(outFile, "</OtherStatsEvalStatus>\n");
     }
 }
@@ -43721,7 +43729,7 @@ UserDefinedAngularCharacteristicStatsEvalTypeChoicePair::UserDefinedAngularChara
 
 UserDefinedAngularCharacteristicStatsEvalTypeChoicePair::UserDefinedAngularCharacteristicStatsEvalTypeChoicePair(
  whichOne UserDefinedAngularCharacteristicStatsEvalTypeTypeIn,
- UserDefinedAngularCharacteristicStatsEvalTypeVal UserDefinedAngularCharacteristicStatsEvalTypeValueIn)
+ UserDefinedAngularCharacteristicStatsEvalTypeVal * UserDefinedAngularCharacteristicStatsEvalTypeValueIn)
 {
   UserDefinedAngularCharacteristicStatsEvalTypeType = UserDefinedAngularCharacteristicStatsEvalTypeTypeIn;
   UserDefinedAngularCharacteristicStatsEvalTypeValue = UserDefinedAngularCharacteristicStatsEvalTypeValueIn;
@@ -43731,17 +43739,18 @@ UserDefinedAngularCharacteristicStatsEvalTypeChoicePair::~UserDefinedAngularChar
 {
   #ifndef NODESTRUCT
   if (UserDefinedAngularCharacteristicStatsEvalTypeType == UserDefinedAngu_1116E)
-    delete UserDefinedAngularCharacteristicStatsEvalTypeValue.UserDefinedAngu_1116;
+    delete UserDefinedAngularCharacteristicStatsEvalTypeValue->UserDefinedAngu_1116;
   else if (UserDefinedAngularCharacteristicStatsEvalTypeType == UserDefinedAngu_1117E)
-    delete UserDefinedAngularCharacteristicStatsEvalTypeValue.UserDefinedAngu_1117;
+    delete UserDefinedAngularCharacteristicStatsEvalTypeValue->UserDefinedAngu_1117;
   else if (UserDefinedAngularCharacteristicStatsEvalTypeType == MinValueStatsE)
-    delete UserDefinedAngularCharacteristicStatsEvalTypeValue.MinValueStats;
+    delete UserDefinedAngularCharacteristicStatsEvalTypeValue->MinValueStats;
   else if (UserDefinedAngularCharacteristicStatsEvalTypeType == UserDefinedAngu_1118E)
-    delete UserDefinedAngularCharacteristicStatsEvalTypeValue.UserDefinedAngu_1118;
+    delete UserDefinedAngularCharacteristicStatsEvalTypeValue->UserDefinedAngu_1118;
   else if (UserDefinedAngularCharacteristicStatsEvalTypeType == UserDefinedAngu_1119E)
-    delete UserDefinedAngularCharacteristicStatsEvalTypeValue.UserDefinedAngu_1119;
+    delete UserDefinedAngularCharacteristicStatsEvalTypeValue->UserDefinedAngu_1119;
   else if (UserDefinedAngularCharacteristicStatsEvalTypeType == MinDeviationStatsE)
-    delete UserDefinedAngularCharacteristicStatsEvalTypeValue.MinDeviationStats;
+    delete UserDefinedAngularCharacteristicStatsEvalTypeValue->MinDeviationStats;
+  delete UserDefinedAngularCharacteristicStatsEvalTypeValue;
   #endif
 }
 
@@ -43749,33 +43758,33 @@ void UserDefinedAngularCharacteristicStatsEvalTypeChoicePair::printSelf(FILE * o
 {
   if (UserDefinedAngularCharacteristicStatsEvalTypeType == UserDefinedAngu_1116E)
     {
-      UserDefinedAngularCharacteristicStatsEvalTypeValue.UserDefinedAngu_1116->printSelf(outFile);
+      UserDefinedAngularCharacteristicStatsEvalTypeValue->UserDefinedAngu_1116->printSelf(outFile);
     }
   else if (UserDefinedAngularCharacteristicStatsEvalTypeType == UserDefinedAngu_1117E)
     {
-      UserDefinedAngularCharacteristicStatsEvalTypeValue.UserDefinedAngu_1117->printSelf(outFile);
+      UserDefinedAngularCharacteristicStatsEvalTypeValue->UserDefinedAngu_1117->printSelf(outFile);
     }
   else if (UserDefinedAngularCharacteristicStatsEvalTypeType == MinValueStatsE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinValueStats");
-      UserDefinedAngularCharacteristicStatsEvalTypeValue.MinValueStats->printSelf(outFile);
+      UserDefinedAngularCharacteristicStatsEvalTypeValue->MinValueStats->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</MinValueStats>\n");
     }
   else if (UserDefinedAngularCharacteristicStatsEvalTypeType == UserDefinedAngu_1118E)
     {
-      UserDefinedAngularCharacteristicStatsEvalTypeValue.UserDefinedAngu_1118->printSelf(outFile);
+      UserDefinedAngularCharacteristicStatsEvalTypeValue->UserDefinedAngu_1118->printSelf(outFile);
     }
   else if (UserDefinedAngularCharacteristicStatsEvalTypeType == UserDefinedAngu_1119E)
     {
-      UserDefinedAngularCharacteristicStatsEvalTypeValue.UserDefinedAngu_1119->printSelf(outFile);
+      UserDefinedAngularCharacteristicStatsEvalTypeValue->UserDefinedAngu_1119->printSelf(outFile);
     }
   else if (UserDefinedAngularCharacteristicStatsEvalTypeType == MinDeviationStatsE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinDeviationStats");
-      UserDefinedAngularCharacteristicStatsEvalTypeValue.MinDeviationStats->printSelf(outFile);
+      UserDefinedAngularCharacteristicStatsEvalTypeValue->MinDeviationStats->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</MinDeviationStats>\n");
     }
@@ -43875,7 +43884,7 @@ UserDefinedAreaCharacteristicStatsEvalTypeChoicePair::UserDefinedAreaCharacteris
 
 UserDefinedAreaCharacteristicStatsEvalTypeChoicePair::UserDefinedAreaCharacteristicStatsEvalTypeChoicePair(
  whichOne UserDefinedAreaCharacteristicStatsEvalTypeTypeIn,
- UserDefinedAreaCharacteristicStatsEvalTypeVal UserDefinedAreaCharacteristicStatsEvalTypeValueIn)
+ UserDefinedAreaCharacteristicStatsEvalTypeVal * UserDefinedAreaCharacteristicStatsEvalTypeValueIn)
 {
   UserDefinedAreaCharacteristicStatsEvalTypeType = UserDefinedAreaCharacteristicStatsEvalTypeTypeIn;
   UserDefinedAreaCharacteristicStatsEvalTypeValue = UserDefinedAreaCharacteristicStatsEvalTypeValueIn;
@@ -43885,17 +43894,18 @@ UserDefinedAreaCharacteristicStatsEvalTypeChoicePair::~UserDefinedAreaCharacteri
 {
   #ifndef NODESTRUCT
   if (UserDefinedAreaCharacteristicStatsEvalTypeType == UserDefinedArea_1120E)
-    delete UserDefinedAreaCharacteristicStatsEvalTypeValue.UserDefinedArea_1120;
+    delete UserDefinedAreaCharacteristicStatsEvalTypeValue->UserDefinedArea_1120;
   else if (UserDefinedAreaCharacteristicStatsEvalTypeType == UserDefinedArea_1121E)
-    delete UserDefinedAreaCharacteristicStatsEvalTypeValue.UserDefinedArea_1121;
+    delete UserDefinedAreaCharacteristicStatsEvalTypeValue->UserDefinedArea_1121;
   else if (UserDefinedAreaCharacteristicStatsEvalTypeType == MinValueStatsE)
-    delete UserDefinedAreaCharacteristicStatsEvalTypeValue.MinValueStats;
+    delete UserDefinedAreaCharacteristicStatsEvalTypeValue->MinValueStats;
   else if (UserDefinedAreaCharacteristicStatsEvalTypeType == UserDefinedArea_1122E)
-    delete UserDefinedAreaCharacteristicStatsEvalTypeValue.UserDefinedArea_1122;
+    delete UserDefinedAreaCharacteristicStatsEvalTypeValue->UserDefinedArea_1122;
   else if (UserDefinedAreaCharacteristicStatsEvalTypeType == UserDefinedArea_1123E)
-    delete UserDefinedAreaCharacteristicStatsEvalTypeValue.UserDefinedArea_1123;
+    delete UserDefinedAreaCharacteristicStatsEvalTypeValue->UserDefinedArea_1123;
   else if (UserDefinedAreaCharacteristicStatsEvalTypeType == MinDeviationStatsE)
-    delete UserDefinedAreaCharacteristicStatsEvalTypeValue.MinDeviationStats;
+    delete UserDefinedAreaCharacteristicStatsEvalTypeValue->MinDeviationStats;
+  delete UserDefinedAreaCharacteristicStatsEvalTypeValue;
   #endif
 }
 
@@ -43903,33 +43913,33 @@ void UserDefinedAreaCharacteristicStatsEvalTypeChoicePair::printSelf(FILE * outF
 {
   if (UserDefinedAreaCharacteristicStatsEvalTypeType == UserDefinedArea_1120E)
     {
-      UserDefinedAreaCharacteristicStatsEvalTypeValue.UserDefinedArea_1120->printSelf(outFile);
+      UserDefinedAreaCharacteristicStatsEvalTypeValue->UserDefinedArea_1120->printSelf(outFile);
     }
   else if (UserDefinedAreaCharacteristicStatsEvalTypeType == UserDefinedArea_1121E)
     {
-      UserDefinedAreaCharacteristicStatsEvalTypeValue.UserDefinedArea_1121->printSelf(outFile);
+      UserDefinedAreaCharacteristicStatsEvalTypeValue->UserDefinedArea_1121->printSelf(outFile);
     }
   else if (UserDefinedAreaCharacteristicStatsEvalTypeType == MinValueStatsE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinValueStats");
-      UserDefinedAreaCharacteristicStatsEvalTypeValue.MinValueStats->printSelf(outFile);
+      UserDefinedAreaCharacteristicStatsEvalTypeValue->MinValueStats->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</MinValueStats>\n");
     }
   else if (UserDefinedAreaCharacteristicStatsEvalTypeType == UserDefinedArea_1122E)
     {
-      UserDefinedAreaCharacteristicStatsEvalTypeValue.UserDefinedArea_1122->printSelf(outFile);
+      UserDefinedAreaCharacteristicStatsEvalTypeValue->UserDefinedArea_1122->printSelf(outFile);
     }
   else if (UserDefinedAreaCharacteristicStatsEvalTypeType == UserDefinedArea_1123E)
     {
-      UserDefinedAreaCharacteristicStatsEvalTypeValue.UserDefinedArea_1123->printSelf(outFile);
+      UserDefinedAreaCharacteristicStatsEvalTypeValue->UserDefinedArea_1123->printSelf(outFile);
     }
   else if (UserDefinedAreaCharacteristicStatsEvalTypeType == MinDeviationStatsE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinDeviationStats");
-      UserDefinedAreaCharacteristicStatsEvalTypeValue.MinDeviationStats->printSelf(outFile);
+      UserDefinedAreaCharacteristicStatsEvalTypeValue->MinDeviationStats->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</MinDeviationStats>\n");
     }
@@ -44125,7 +44135,7 @@ UserDefinedForceCharacteristicStatsEvalTypeChoicePair::UserDefinedForceCharacter
 
 UserDefinedForceCharacteristicStatsEvalTypeChoicePair::UserDefinedForceCharacteristicStatsEvalTypeChoicePair(
  whichOne UserDefinedForceCharacteristicStatsEvalTypeTypeIn,
- UserDefinedForceCharacteristicStatsEvalTypeVal UserDefinedForceCharacteristicStatsEvalTypeValueIn)
+ UserDefinedForceCharacteristicStatsEvalTypeVal * UserDefinedForceCharacteristicStatsEvalTypeValueIn)
 {
   UserDefinedForceCharacteristicStatsEvalTypeType = UserDefinedForceCharacteristicStatsEvalTypeTypeIn;
   UserDefinedForceCharacteristicStatsEvalTypeValue = UserDefinedForceCharacteristicStatsEvalTypeValueIn;
@@ -44135,17 +44145,18 @@ UserDefinedForceCharacteristicStatsEvalTypeChoicePair::~UserDefinedForceCharacte
 {
   #ifndef NODESTRUCT
   if (UserDefinedForceCharacteristicStatsEvalTypeType == UserDefinedForc_1124E)
-    delete UserDefinedForceCharacteristicStatsEvalTypeValue.UserDefinedForc_1124;
+    delete UserDefinedForceCharacteristicStatsEvalTypeValue->UserDefinedForc_1124;
   else if (UserDefinedForceCharacteristicStatsEvalTypeType == UserDefinedForc_1125E)
-    delete UserDefinedForceCharacteristicStatsEvalTypeValue.UserDefinedForc_1125;
+    delete UserDefinedForceCharacteristicStatsEvalTypeValue->UserDefinedForc_1125;
   else if (UserDefinedForceCharacteristicStatsEvalTypeType == MinValueStatsE)
-    delete UserDefinedForceCharacteristicStatsEvalTypeValue.MinValueStats;
+    delete UserDefinedForceCharacteristicStatsEvalTypeValue->MinValueStats;
   else if (UserDefinedForceCharacteristicStatsEvalTypeType == UserDefinedForc_1126E)
-    delete UserDefinedForceCharacteristicStatsEvalTypeValue.UserDefinedForc_1126;
+    delete UserDefinedForceCharacteristicStatsEvalTypeValue->UserDefinedForc_1126;
   else if (UserDefinedForceCharacteristicStatsEvalTypeType == UserDefinedForc_1127E)
-    delete UserDefinedForceCharacteristicStatsEvalTypeValue.UserDefinedForc_1127;
+    delete UserDefinedForceCharacteristicStatsEvalTypeValue->UserDefinedForc_1127;
   else if (UserDefinedForceCharacteristicStatsEvalTypeType == MinDeviationStatsE)
-    delete UserDefinedForceCharacteristicStatsEvalTypeValue.MinDeviationStats;
+    delete UserDefinedForceCharacteristicStatsEvalTypeValue->MinDeviationStats;
+  delete UserDefinedForceCharacteristicStatsEvalTypeValue;
   #endif
 }
 
@@ -44153,33 +44164,33 @@ void UserDefinedForceCharacteristicStatsEvalTypeChoicePair::printSelf(FILE * out
 {
   if (UserDefinedForceCharacteristicStatsEvalTypeType == UserDefinedForc_1124E)
     {
-      UserDefinedForceCharacteristicStatsEvalTypeValue.UserDefinedForc_1124->printSelf(outFile);
+      UserDefinedForceCharacteristicStatsEvalTypeValue->UserDefinedForc_1124->printSelf(outFile);
     }
   else if (UserDefinedForceCharacteristicStatsEvalTypeType == UserDefinedForc_1125E)
     {
-      UserDefinedForceCharacteristicStatsEvalTypeValue.UserDefinedForc_1125->printSelf(outFile);
+      UserDefinedForceCharacteristicStatsEvalTypeValue->UserDefinedForc_1125->printSelf(outFile);
     }
   else if (UserDefinedForceCharacteristicStatsEvalTypeType == MinValueStatsE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinValueStats");
-      UserDefinedForceCharacteristicStatsEvalTypeValue.MinValueStats->printSelf(outFile);
+      UserDefinedForceCharacteristicStatsEvalTypeValue->MinValueStats->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</MinValueStats>\n");
     }
   else if (UserDefinedForceCharacteristicStatsEvalTypeType == UserDefinedForc_1126E)
     {
-      UserDefinedForceCharacteristicStatsEvalTypeValue.UserDefinedForc_1126->printSelf(outFile);
+      UserDefinedForceCharacteristicStatsEvalTypeValue->UserDefinedForc_1126->printSelf(outFile);
     }
   else if (UserDefinedForceCharacteristicStatsEvalTypeType == UserDefinedForc_1127E)
     {
-      UserDefinedForceCharacteristicStatsEvalTypeValue.UserDefinedForc_1127->printSelf(outFile);
+      UserDefinedForceCharacteristicStatsEvalTypeValue->UserDefinedForc_1127->printSelf(outFile);
     }
   else if (UserDefinedForceCharacteristicStatsEvalTypeType == MinDeviationStatsE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinDeviationStats");
-      UserDefinedForceCharacteristicStatsEvalTypeValue.MinDeviationStats->printSelf(outFile);
+      UserDefinedForceCharacteristicStatsEvalTypeValue->MinDeviationStats->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</MinDeviationStats>\n");
     }
@@ -44279,7 +44290,7 @@ UserDefinedLinearCharacteristicStatsEvalTypeChoicePair::UserDefinedLinearCharact
 
 UserDefinedLinearCharacteristicStatsEvalTypeChoicePair::UserDefinedLinearCharacteristicStatsEvalTypeChoicePair(
  whichOne UserDefinedLinearCharacteristicStatsEvalTypeTypeIn,
- UserDefinedLinearCharacteristicStatsEvalTypeVal UserDefinedLinearCharacteristicStatsEvalTypeValueIn)
+ UserDefinedLinearCharacteristicStatsEvalTypeVal * UserDefinedLinearCharacteristicStatsEvalTypeValueIn)
 {
   UserDefinedLinearCharacteristicStatsEvalTypeType = UserDefinedLinearCharacteristicStatsEvalTypeTypeIn;
   UserDefinedLinearCharacteristicStatsEvalTypeValue = UserDefinedLinearCharacteristicStatsEvalTypeValueIn;
@@ -44289,17 +44300,18 @@ UserDefinedLinearCharacteristicStatsEvalTypeChoicePair::~UserDefinedLinearCharac
 {
   #ifndef NODESTRUCT
   if (UserDefinedLinearCharacteristicStatsEvalTypeType == UserDefinedLine_1128E)
-    delete UserDefinedLinearCharacteristicStatsEvalTypeValue.UserDefinedLine_1128;
+    delete UserDefinedLinearCharacteristicStatsEvalTypeValue->UserDefinedLine_1128;
   else if (UserDefinedLinearCharacteristicStatsEvalTypeType == UserDefinedLine_1129E)
-    delete UserDefinedLinearCharacteristicStatsEvalTypeValue.UserDefinedLine_1129;
+    delete UserDefinedLinearCharacteristicStatsEvalTypeValue->UserDefinedLine_1129;
   else if (UserDefinedLinearCharacteristicStatsEvalTypeType == MinValueStatsE)
-    delete UserDefinedLinearCharacteristicStatsEvalTypeValue.MinValueStats;
+    delete UserDefinedLinearCharacteristicStatsEvalTypeValue->MinValueStats;
   else if (UserDefinedLinearCharacteristicStatsEvalTypeType == UserDefinedLine_1130E)
-    delete UserDefinedLinearCharacteristicStatsEvalTypeValue.UserDefinedLine_1130;
+    delete UserDefinedLinearCharacteristicStatsEvalTypeValue->UserDefinedLine_1130;
   else if (UserDefinedLinearCharacteristicStatsEvalTypeType == UserDefinedLine_1131E)
-    delete UserDefinedLinearCharacteristicStatsEvalTypeValue.UserDefinedLine_1131;
+    delete UserDefinedLinearCharacteristicStatsEvalTypeValue->UserDefinedLine_1131;
   else if (UserDefinedLinearCharacteristicStatsEvalTypeType == MinDeviationStatsE)
-    delete UserDefinedLinearCharacteristicStatsEvalTypeValue.MinDeviationStats;
+    delete UserDefinedLinearCharacteristicStatsEvalTypeValue->MinDeviationStats;
+  delete UserDefinedLinearCharacteristicStatsEvalTypeValue;
   #endif
 }
 
@@ -44307,33 +44319,33 @@ void UserDefinedLinearCharacteristicStatsEvalTypeChoicePair::printSelf(FILE * ou
 {
   if (UserDefinedLinearCharacteristicStatsEvalTypeType == UserDefinedLine_1128E)
     {
-      UserDefinedLinearCharacteristicStatsEvalTypeValue.UserDefinedLine_1128->printSelf(outFile);
+      UserDefinedLinearCharacteristicStatsEvalTypeValue->UserDefinedLine_1128->printSelf(outFile);
     }
   else if (UserDefinedLinearCharacteristicStatsEvalTypeType == UserDefinedLine_1129E)
     {
-      UserDefinedLinearCharacteristicStatsEvalTypeValue.UserDefinedLine_1129->printSelf(outFile);
+      UserDefinedLinearCharacteristicStatsEvalTypeValue->UserDefinedLine_1129->printSelf(outFile);
     }
   else if (UserDefinedLinearCharacteristicStatsEvalTypeType == MinValueStatsE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinValueStats");
-      UserDefinedLinearCharacteristicStatsEvalTypeValue.MinValueStats->printSelf(outFile);
+      UserDefinedLinearCharacteristicStatsEvalTypeValue->MinValueStats->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</MinValueStats>\n");
     }
   else if (UserDefinedLinearCharacteristicStatsEvalTypeType == UserDefinedLine_1130E)
     {
-      UserDefinedLinearCharacteristicStatsEvalTypeValue.UserDefinedLine_1130->printSelf(outFile);
+      UserDefinedLinearCharacteristicStatsEvalTypeValue->UserDefinedLine_1130->printSelf(outFile);
     }
   else if (UserDefinedLinearCharacteristicStatsEvalTypeType == UserDefinedLine_1131E)
     {
-      UserDefinedLinearCharacteristicStatsEvalTypeValue.UserDefinedLine_1131->printSelf(outFile);
+      UserDefinedLinearCharacteristicStatsEvalTypeValue->UserDefinedLine_1131->printSelf(outFile);
     }
   else if (UserDefinedLinearCharacteristicStatsEvalTypeType == MinDeviationStatsE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinDeviationStats");
-      UserDefinedLinearCharacteristicStatsEvalTypeValue.MinDeviationStats->printSelf(outFile);
+      UserDefinedLinearCharacteristicStatsEvalTypeValue->MinDeviationStats->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</MinDeviationStats>\n");
     }
@@ -44433,7 +44445,7 @@ UserDefinedMassCharacteristicStatsEvalTypeChoicePair::UserDefinedMassCharacteris
 
 UserDefinedMassCharacteristicStatsEvalTypeChoicePair::UserDefinedMassCharacteristicStatsEvalTypeChoicePair(
  whichOne UserDefinedMassCharacteristicStatsEvalTypeTypeIn,
- UserDefinedMassCharacteristicStatsEvalTypeVal UserDefinedMassCharacteristicStatsEvalTypeValueIn)
+ UserDefinedMassCharacteristicStatsEvalTypeVal * UserDefinedMassCharacteristicStatsEvalTypeValueIn)
 {
   UserDefinedMassCharacteristicStatsEvalTypeType = UserDefinedMassCharacteristicStatsEvalTypeTypeIn;
   UserDefinedMassCharacteristicStatsEvalTypeValue = UserDefinedMassCharacteristicStatsEvalTypeValueIn;
@@ -44443,17 +44455,18 @@ UserDefinedMassCharacteristicStatsEvalTypeChoicePair::~UserDefinedMassCharacteri
 {
   #ifndef NODESTRUCT
   if (UserDefinedMassCharacteristicStatsEvalTypeType == UserDefinedMass_1132E)
-    delete UserDefinedMassCharacteristicStatsEvalTypeValue.UserDefinedMass_1132;
+    delete UserDefinedMassCharacteristicStatsEvalTypeValue->UserDefinedMass_1132;
   else if (UserDefinedMassCharacteristicStatsEvalTypeType == UserDefinedMass_1133E)
-    delete UserDefinedMassCharacteristicStatsEvalTypeValue.UserDefinedMass_1133;
+    delete UserDefinedMassCharacteristicStatsEvalTypeValue->UserDefinedMass_1133;
   else if (UserDefinedMassCharacteristicStatsEvalTypeType == MinValueStatsE)
-    delete UserDefinedMassCharacteristicStatsEvalTypeValue.MinValueStats;
+    delete UserDefinedMassCharacteristicStatsEvalTypeValue->MinValueStats;
   else if (UserDefinedMassCharacteristicStatsEvalTypeType == UserDefinedMass_1134E)
-    delete UserDefinedMassCharacteristicStatsEvalTypeValue.UserDefinedMass_1134;
+    delete UserDefinedMassCharacteristicStatsEvalTypeValue->UserDefinedMass_1134;
   else if (UserDefinedMassCharacteristicStatsEvalTypeType == UserDefinedMass_1135E)
-    delete UserDefinedMassCharacteristicStatsEvalTypeValue.UserDefinedMass_1135;
+    delete UserDefinedMassCharacteristicStatsEvalTypeValue->UserDefinedMass_1135;
   else if (UserDefinedMassCharacteristicStatsEvalTypeType == MinDeviationStatsE)
-    delete UserDefinedMassCharacteristicStatsEvalTypeValue.MinDeviationStats;
+    delete UserDefinedMassCharacteristicStatsEvalTypeValue->MinDeviationStats;
+  delete UserDefinedMassCharacteristicStatsEvalTypeValue;
   #endif
 }
 
@@ -44461,33 +44474,33 @@ void UserDefinedMassCharacteristicStatsEvalTypeChoicePair::printSelf(FILE * outF
 {
   if (UserDefinedMassCharacteristicStatsEvalTypeType == UserDefinedMass_1132E)
     {
-      UserDefinedMassCharacteristicStatsEvalTypeValue.UserDefinedMass_1132->printSelf(outFile);
+      UserDefinedMassCharacteristicStatsEvalTypeValue->UserDefinedMass_1132->printSelf(outFile);
     }
   else if (UserDefinedMassCharacteristicStatsEvalTypeType == UserDefinedMass_1133E)
     {
-      UserDefinedMassCharacteristicStatsEvalTypeValue.UserDefinedMass_1133->printSelf(outFile);
+      UserDefinedMassCharacteristicStatsEvalTypeValue->UserDefinedMass_1133->printSelf(outFile);
     }
   else if (UserDefinedMassCharacteristicStatsEvalTypeType == MinValueStatsE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinValueStats");
-      UserDefinedMassCharacteristicStatsEvalTypeValue.MinValueStats->printSelf(outFile);
+      UserDefinedMassCharacteristicStatsEvalTypeValue->MinValueStats->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</MinValueStats>\n");
     }
   else if (UserDefinedMassCharacteristicStatsEvalTypeType == UserDefinedMass_1134E)
     {
-      UserDefinedMassCharacteristicStatsEvalTypeValue.UserDefinedMass_1134->printSelf(outFile);
+      UserDefinedMassCharacteristicStatsEvalTypeValue->UserDefinedMass_1134->printSelf(outFile);
     }
   else if (UserDefinedMassCharacteristicStatsEvalTypeType == UserDefinedMass_1135E)
     {
-      UserDefinedMassCharacteristicStatsEvalTypeValue.UserDefinedMass_1135->printSelf(outFile);
+      UserDefinedMassCharacteristicStatsEvalTypeValue->UserDefinedMass_1135->printSelf(outFile);
     }
   else if (UserDefinedMassCharacteristicStatsEvalTypeType == MinDeviationStatsE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinDeviationStats");
-      UserDefinedMassCharacteristicStatsEvalTypeValue.MinDeviationStats->printSelf(outFile);
+      UserDefinedMassCharacteristicStatsEvalTypeValue->MinDeviationStats->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</MinDeviationStats>\n");
     }
@@ -44587,7 +44600,7 @@ UserDefinedPressureCharacteristicStatsEvalTypeChoicePair::UserDefinedPressureCha
 
 UserDefinedPressureCharacteristicStatsEvalTypeChoicePair::UserDefinedPressureCharacteristicStatsEvalTypeChoicePair(
  whichOne UserDefinedPressureCharacteristicStatsEvalTypeTypeIn,
- UserDefinedPressureCharacteristicStatsEvalTypeVal UserDefinedPressureCharacteristicStatsEvalTypeValueIn)
+ UserDefinedPressureCharacteristicStatsEvalTypeVal * UserDefinedPressureCharacteristicStatsEvalTypeValueIn)
 {
   UserDefinedPressureCharacteristicStatsEvalTypeType = UserDefinedPressureCharacteristicStatsEvalTypeTypeIn;
   UserDefinedPressureCharacteristicStatsEvalTypeValue = UserDefinedPressureCharacteristicStatsEvalTypeValueIn;
@@ -44597,17 +44610,18 @@ UserDefinedPressureCharacteristicStatsEvalTypeChoicePair::~UserDefinedPressureCh
 {
   #ifndef NODESTRUCT
   if (UserDefinedPressureCharacteristicStatsEvalTypeType == UserDefinedPres_1136E)
-    delete UserDefinedPressureCharacteristicStatsEvalTypeValue.UserDefinedPres_1136;
+    delete UserDefinedPressureCharacteristicStatsEvalTypeValue->UserDefinedPres_1136;
   else if (UserDefinedPressureCharacteristicStatsEvalTypeType == UserDefinedPres_1137E)
-    delete UserDefinedPressureCharacteristicStatsEvalTypeValue.UserDefinedPres_1137;
+    delete UserDefinedPressureCharacteristicStatsEvalTypeValue->UserDefinedPres_1137;
   else if (UserDefinedPressureCharacteristicStatsEvalTypeType == MinValueStatsE)
-    delete UserDefinedPressureCharacteristicStatsEvalTypeValue.MinValueStats;
+    delete UserDefinedPressureCharacteristicStatsEvalTypeValue->MinValueStats;
   else if (UserDefinedPressureCharacteristicStatsEvalTypeType == UserDefinedPres_1138E)
-    delete UserDefinedPressureCharacteristicStatsEvalTypeValue.UserDefinedPres_1138;
+    delete UserDefinedPressureCharacteristicStatsEvalTypeValue->UserDefinedPres_1138;
   else if (UserDefinedPressureCharacteristicStatsEvalTypeType == UserDefinedPres_1139E)
-    delete UserDefinedPressureCharacteristicStatsEvalTypeValue.UserDefinedPres_1139;
+    delete UserDefinedPressureCharacteristicStatsEvalTypeValue->UserDefinedPres_1139;
   else if (UserDefinedPressureCharacteristicStatsEvalTypeType == MinDeviationStatsE)
-    delete UserDefinedPressureCharacteristicStatsEvalTypeValue.MinDeviationStats;
+    delete UserDefinedPressureCharacteristicStatsEvalTypeValue->MinDeviationStats;
+  delete UserDefinedPressureCharacteristicStatsEvalTypeValue;
   #endif
 }
 
@@ -44615,33 +44629,33 @@ void UserDefinedPressureCharacteristicStatsEvalTypeChoicePair::printSelf(FILE * 
 {
   if (UserDefinedPressureCharacteristicStatsEvalTypeType == UserDefinedPres_1136E)
     {
-      UserDefinedPressureCharacteristicStatsEvalTypeValue.UserDefinedPres_1136->printSelf(outFile);
+      UserDefinedPressureCharacteristicStatsEvalTypeValue->UserDefinedPres_1136->printSelf(outFile);
     }
   else if (UserDefinedPressureCharacteristicStatsEvalTypeType == UserDefinedPres_1137E)
     {
-      UserDefinedPressureCharacteristicStatsEvalTypeValue.UserDefinedPres_1137->printSelf(outFile);
+      UserDefinedPressureCharacteristicStatsEvalTypeValue->UserDefinedPres_1137->printSelf(outFile);
     }
   else if (UserDefinedPressureCharacteristicStatsEvalTypeType == MinValueStatsE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinValueStats");
-      UserDefinedPressureCharacteristicStatsEvalTypeValue.MinValueStats->printSelf(outFile);
+      UserDefinedPressureCharacteristicStatsEvalTypeValue->MinValueStats->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</MinValueStats>\n");
     }
   else if (UserDefinedPressureCharacteristicStatsEvalTypeType == UserDefinedPres_1138E)
     {
-      UserDefinedPressureCharacteristicStatsEvalTypeValue.UserDefinedPres_1138->printSelf(outFile);
+      UserDefinedPressureCharacteristicStatsEvalTypeValue->UserDefinedPres_1138->printSelf(outFile);
     }
   else if (UserDefinedPressureCharacteristicStatsEvalTypeType == UserDefinedPres_1139E)
     {
-      UserDefinedPressureCharacteristicStatsEvalTypeValue.UserDefinedPres_1139->printSelf(outFile);
+      UserDefinedPressureCharacteristicStatsEvalTypeValue->UserDefinedPres_1139->printSelf(outFile);
     }
   else if (UserDefinedPressureCharacteristicStatsEvalTypeType == MinDeviationStatsE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinDeviationStats");
-      UserDefinedPressureCharacteristicStatsEvalTypeValue.MinDeviationStats->printSelf(outFile);
+      UserDefinedPressureCharacteristicStatsEvalTypeValue->MinDeviationStats->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</MinDeviationStats>\n");
     }
@@ -44741,7 +44755,7 @@ UserDefinedSpeedCharacteristicStatsEvalTypeChoicePair::UserDefinedSpeedCharacter
 
 UserDefinedSpeedCharacteristicStatsEvalTypeChoicePair::UserDefinedSpeedCharacteristicStatsEvalTypeChoicePair(
  whichOne UserDefinedSpeedCharacteristicStatsEvalTypeTypeIn,
- UserDefinedSpeedCharacteristicStatsEvalTypeVal UserDefinedSpeedCharacteristicStatsEvalTypeValueIn)
+ UserDefinedSpeedCharacteristicStatsEvalTypeVal * UserDefinedSpeedCharacteristicStatsEvalTypeValueIn)
 {
   UserDefinedSpeedCharacteristicStatsEvalTypeType = UserDefinedSpeedCharacteristicStatsEvalTypeTypeIn;
   UserDefinedSpeedCharacteristicStatsEvalTypeValue = UserDefinedSpeedCharacteristicStatsEvalTypeValueIn;
@@ -44751,17 +44765,18 @@ UserDefinedSpeedCharacteristicStatsEvalTypeChoicePair::~UserDefinedSpeedCharacte
 {
   #ifndef NODESTRUCT
   if (UserDefinedSpeedCharacteristicStatsEvalTypeType == UserDefinedSpee_1140E)
-    delete UserDefinedSpeedCharacteristicStatsEvalTypeValue.UserDefinedSpee_1140;
+    delete UserDefinedSpeedCharacteristicStatsEvalTypeValue->UserDefinedSpee_1140;
   else if (UserDefinedSpeedCharacteristicStatsEvalTypeType == UserDefinedSpee_1141E)
-    delete UserDefinedSpeedCharacteristicStatsEvalTypeValue.UserDefinedSpee_1141;
+    delete UserDefinedSpeedCharacteristicStatsEvalTypeValue->UserDefinedSpee_1141;
   else if (UserDefinedSpeedCharacteristicStatsEvalTypeType == MinValueStatsE)
-    delete UserDefinedSpeedCharacteristicStatsEvalTypeValue.MinValueStats;
+    delete UserDefinedSpeedCharacteristicStatsEvalTypeValue->MinValueStats;
   else if (UserDefinedSpeedCharacteristicStatsEvalTypeType == UserDefinedSpee_1142E)
-    delete UserDefinedSpeedCharacteristicStatsEvalTypeValue.UserDefinedSpee_1142;
+    delete UserDefinedSpeedCharacteristicStatsEvalTypeValue->UserDefinedSpee_1142;
   else if (UserDefinedSpeedCharacteristicStatsEvalTypeType == UserDefinedSpee_1143E)
-    delete UserDefinedSpeedCharacteristicStatsEvalTypeValue.UserDefinedSpee_1143;
+    delete UserDefinedSpeedCharacteristicStatsEvalTypeValue->UserDefinedSpee_1143;
   else if (UserDefinedSpeedCharacteristicStatsEvalTypeType == MinDeviationStatsE)
-    delete UserDefinedSpeedCharacteristicStatsEvalTypeValue.MinDeviationStats;
+    delete UserDefinedSpeedCharacteristicStatsEvalTypeValue->MinDeviationStats;
+  delete UserDefinedSpeedCharacteristicStatsEvalTypeValue;
   #endif
 }
 
@@ -44769,33 +44784,33 @@ void UserDefinedSpeedCharacteristicStatsEvalTypeChoicePair::printSelf(FILE * out
 {
   if (UserDefinedSpeedCharacteristicStatsEvalTypeType == UserDefinedSpee_1140E)
     {
-      UserDefinedSpeedCharacteristicStatsEvalTypeValue.UserDefinedSpee_1140->printSelf(outFile);
+      UserDefinedSpeedCharacteristicStatsEvalTypeValue->UserDefinedSpee_1140->printSelf(outFile);
     }
   else if (UserDefinedSpeedCharacteristicStatsEvalTypeType == UserDefinedSpee_1141E)
     {
-      UserDefinedSpeedCharacteristicStatsEvalTypeValue.UserDefinedSpee_1141->printSelf(outFile);
+      UserDefinedSpeedCharacteristicStatsEvalTypeValue->UserDefinedSpee_1141->printSelf(outFile);
     }
   else if (UserDefinedSpeedCharacteristicStatsEvalTypeType == MinValueStatsE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinValueStats");
-      UserDefinedSpeedCharacteristicStatsEvalTypeValue.MinValueStats->printSelf(outFile);
+      UserDefinedSpeedCharacteristicStatsEvalTypeValue->MinValueStats->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</MinValueStats>\n");
     }
   else if (UserDefinedSpeedCharacteristicStatsEvalTypeType == UserDefinedSpee_1142E)
     {
-      UserDefinedSpeedCharacteristicStatsEvalTypeValue.UserDefinedSpee_1142->printSelf(outFile);
+      UserDefinedSpeedCharacteristicStatsEvalTypeValue->UserDefinedSpee_1142->printSelf(outFile);
     }
   else if (UserDefinedSpeedCharacteristicStatsEvalTypeType == UserDefinedSpee_1143E)
     {
-      UserDefinedSpeedCharacteristicStatsEvalTypeValue.UserDefinedSpee_1143->printSelf(outFile);
+      UserDefinedSpeedCharacteristicStatsEvalTypeValue->UserDefinedSpee_1143->printSelf(outFile);
     }
   else if (UserDefinedSpeedCharacteristicStatsEvalTypeType == MinDeviationStatsE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinDeviationStats");
-      UserDefinedSpeedCharacteristicStatsEvalTypeValue.MinDeviationStats->printSelf(outFile);
+      UserDefinedSpeedCharacteristicStatsEvalTypeValue->MinDeviationStats->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</MinDeviationStats>\n");
     }
@@ -44895,7 +44910,7 @@ UserDefinedTemperatureCharacteristicStatsEvalTypeChoicePair::UserDefinedTemperat
 
 UserDefinedTemperatureCharacteristicStatsEvalTypeChoicePair::UserDefinedTemperatureCharacteristicStatsEvalTypeChoicePair(
  whichOne UserDefinedTemperatureCharacteristicStatsEvalTypeTypeIn,
- UserDefinedTemperatureCharacteristicStatsEvalTypeVal UserDefinedTemperatureCharacteristicStatsEvalTypeValueIn)
+ UserDefinedTemperatureCharacteristicStatsEvalTypeVal * UserDefinedTemperatureCharacteristicStatsEvalTypeValueIn)
 {
   UserDefinedTemperatureCharacteristicStatsEvalTypeType = UserDefinedTemperatureCharacteristicStatsEvalTypeTypeIn;
   UserDefinedTemperatureCharacteristicStatsEvalTypeValue = UserDefinedTemperatureCharacteristicStatsEvalTypeValueIn;
@@ -44905,17 +44920,18 @@ UserDefinedTemperatureCharacteristicStatsEvalTypeChoicePair::~UserDefinedTempera
 {
   #ifndef NODESTRUCT
   if (UserDefinedTemperatureCharacteristicStatsEvalTypeType == UserDefinedTemp_1144E)
-    delete UserDefinedTemperatureCharacteristicStatsEvalTypeValue.UserDefinedTemp_1144;
+    delete UserDefinedTemperatureCharacteristicStatsEvalTypeValue->UserDefinedTemp_1144;
   else if (UserDefinedTemperatureCharacteristicStatsEvalTypeType == UserDefinedTemp_1145E)
-    delete UserDefinedTemperatureCharacteristicStatsEvalTypeValue.UserDefinedTemp_1145;
+    delete UserDefinedTemperatureCharacteristicStatsEvalTypeValue->UserDefinedTemp_1145;
   else if (UserDefinedTemperatureCharacteristicStatsEvalTypeType == MinValueStatsE)
-    delete UserDefinedTemperatureCharacteristicStatsEvalTypeValue.MinValueStats;
+    delete UserDefinedTemperatureCharacteristicStatsEvalTypeValue->MinValueStats;
   else if (UserDefinedTemperatureCharacteristicStatsEvalTypeType == UserDefinedTemp_1146E)
-    delete UserDefinedTemperatureCharacteristicStatsEvalTypeValue.UserDefinedTemp_1146;
+    delete UserDefinedTemperatureCharacteristicStatsEvalTypeValue->UserDefinedTemp_1146;
   else if (UserDefinedTemperatureCharacteristicStatsEvalTypeType == UserDefinedTemp_1147E)
-    delete UserDefinedTemperatureCharacteristicStatsEvalTypeValue.UserDefinedTemp_1147;
+    delete UserDefinedTemperatureCharacteristicStatsEvalTypeValue->UserDefinedTemp_1147;
   else if (UserDefinedTemperatureCharacteristicStatsEvalTypeType == MinDeviationStatsE)
-    delete UserDefinedTemperatureCharacteristicStatsEvalTypeValue.MinDeviationStats;
+    delete UserDefinedTemperatureCharacteristicStatsEvalTypeValue->MinDeviationStats;
+  delete UserDefinedTemperatureCharacteristicStatsEvalTypeValue;
   #endif
 }
 
@@ -44923,33 +44939,33 @@ void UserDefinedTemperatureCharacteristicStatsEvalTypeChoicePair::printSelf(FILE
 {
   if (UserDefinedTemperatureCharacteristicStatsEvalTypeType == UserDefinedTemp_1144E)
     {
-      UserDefinedTemperatureCharacteristicStatsEvalTypeValue.UserDefinedTemp_1144->printSelf(outFile);
+      UserDefinedTemperatureCharacteristicStatsEvalTypeValue->UserDefinedTemp_1144->printSelf(outFile);
     }
   else if (UserDefinedTemperatureCharacteristicStatsEvalTypeType == UserDefinedTemp_1145E)
     {
-      UserDefinedTemperatureCharacteristicStatsEvalTypeValue.UserDefinedTemp_1145->printSelf(outFile);
+      UserDefinedTemperatureCharacteristicStatsEvalTypeValue->UserDefinedTemp_1145->printSelf(outFile);
     }
   else if (UserDefinedTemperatureCharacteristicStatsEvalTypeType == MinValueStatsE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinValueStats");
-      UserDefinedTemperatureCharacteristicStatsEvalTypeValue.MinValueStats->printSelf(outFile);
+      UserDefinedTemperatureCharacteristicStatsEvalTypeValue->MinValueStats->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</MinValueStats>\n");
     }
   else if (UserDefinedTemperatureCharacteristicStatsEvalTypeType == UserDefinedTemp_1146E)
     {
-      UserDefinedTemperatureCharacteristicStatsEvalTypeValue.UserDefinedTemp_1146->printSelf(outFile);
+      UserDefinedTemperatureCharacteristicStatsEvalTypeValue->UserDefinedTemp_1146->printSelf(outFile);
     }
   else if (UserDefinedTemperatureCharacteristicStatsEvalTypeType == UserDefinedTemp_1147E)
     {
-      UserDefinedTemperatureCharacteristicStatsEvalTypeValue.UserDefinedTemp_1147->printSelf(outFile);
+      UserDefinedTemperatureCharacteristicStatsEvalTypeValue->UserDefinedTemp_1147->printSelf(outFile);
     }
   else if (UserDefinedTemperatureCharacteristicStatsEvalTypeType == MinDeviationStatsE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinDeviationStats");
-      UserDefinedTemperatureCharacteristicStatsEvalTypeValue.MinDeviationStats->printSelf(outFile);
+      UserDefinedTemperatureCharacteristicStatsEvalTypeValue->MinDeviationStats->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</MinDeviationStats>\n");
     }
@@ -45049,7 +45065,7 @@ UserDefinedTimeCharacteristicStatsEvalTypeChoicePair::UserDefinedTimeCharacteris
 
 UserDefinedTimeCharacteristicStatsEvalTypeChoicePair::UserDefinedTimeCharacteristicStatsEvalTypeChoicePair(
  whichOne UserDefinedTimeCharacteristicStatsEvalTypeTypeIn,
- UserDefinedTimeCharacteristicStatsEvalTypeVal UserDefinedTimeCharacteristicStatsEvalTypeValueIn)
+ UserDefinedTimeCharacteristicStatsEvalTypeVal * UserDefinedTimeCharacteristicStatsEvalTypeValueIn)
 {
   UserDefinedTimeCharacteristicStatsEvalTypeType = UserDefinedTimeCharacteristicStatsEvalTypeTypeIn;
   UserDefinedTimeCharacteristicStatsEvalTypeValue = UserDefinedTimeCharacteristicStatsEvalTypeValueIn;
@@ -45059,17 +45075,18 @@ UserDefinedTimeCharacteristicStatsEvalTypeChoicePair::~UserDefinedTimeCharacteri
 {
   #ifndef NODESTRUCT
   if (UserDefinedTimeCharacteristicStatsEvalTypeType == UserDefinedTime_1148E)
-    delete UserDefinedTimeCharacteristicStatsEvalTypeValue.UserDefinedTime_1148;
+    delete UserDefinedTimeCharacteristicStatsEvalTypeValue->UserDefinedTime_1148;
   else if (UserDefinedTimeCharacteristicStatsEvalTypeType == UserDefinedTime_1149E)
-    delete UserDefinedTimeCharacteristicStatsEvalTypeValue.UserDefinedTime_1149;
+    delete UserDefinedTimeCharacteristicStatsEvalTypeValue->UserDefinedTime_1149;
   else if (UserDefinedTimeCharacteristicStatsEvalTypeType == MinValueStatsE)
-    delete UserDefinedTimeCharacteristicStatsEvalTypeValue.MinValueStats;
+    delete UserDefinedTimeCharacteristicStatsEvalTypeValue->MinValueStats;
   else if (UserDefinedTimeCharacteristicStatsEvalTypeType == UserDefinedTime_1150E)
-    delete UserDefinedTimeCharacteristicStatsEvalTypeValue.UserDefinedTime_1150;
+    delete UserDefinedTimeCharacteristicStatsEvalTypeValue->UserDefinedTime_1150;
   else if (UserDefinedTimeCharacteristicStatsEvalTypeType == UserDefinedTime_1151E)
-    delete UserDefinedTimeCharacteristicStatsEvalTypeValue.UserDefinedTime_1151;
+    delete UserDefinedTimeCharacteristicStatsEvalTypeValue->UserDefinedTime_1151;
   else if (UserDefinedTimeCharacteristicStatsEvalTypeType == MinDeviationStatsE)
-    delete UserDefinedTimeCharacteristicStatsEvalTypeValue.MinDeviationStats;
+    delete UserDefinedTimeCharacteristicStatsEvalTypeValue->MinDeviationStats;
+  delete UserDefinedTimeCharacteristicStatsEvalTypeValue;
   #endif
 }
 
@@ -45077,33 +45094,33 @@ void UserDefinedTimeCharacteristicStatsEvalTypeChoicePair::printSelf(FILE * outF
 {
   if (UserDefinedTimeCharacteristicStatsEvalTypeType == UserDefinedTime_1148E)
     {
-      UserDefinedTimeCharacteristicStatsEvalTypeValue.UserDefinedTime_1148->printSelf(outFile);
+      UserDefinedTimeCharacteristicStatsEvalTypeValue->UserDefinedTime_1148->printSelf(outFile);
     }
   else if (UserDefinedTimeCharacteristicStatsEvalTypeType == UserDefinedTime_1149E)
     {
-      UserDefinedTimeCharacteristicStatsEvalTypeValue.UserDefinedTime_1149->printSelf(outFile);
+      UserDefinedTimeCharacteristicStatsEvalTypeValue->UserDefinedTime_1149->printSelf(outFile);
     }
   else if (UserDefinedTimeCharacteristicStatsEvalTypeType == MinValueStatsE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinValueStats");
-      UserDefinedTimeCharacteristicStatsEvalTypeValue.MinValueStats->printSelf(outFile);
+      UserDefinedTimeCharacteristicStatsEvalTypeValue->MinValueStats->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</MinValueStats>\n");
     }
   else if (UserDefinedTimeCharacteristicStatsEvalTypeType == UserDefinedTime_1150E)
     {
-      UserDefinedTimeCharacteristicStatsEvalTypeValue.UserDefinedTime_1150->printSelf(outFile);
+      UserDefinedTimeCharacteristicStatsEvalTypeValue->UserDefinedTime_1150->printSelf(outFile);
     }
   else if (UserDefinedTimeCharacteristicStatsEvalTypeType == UserDefinedTime_1151E)
     {
-      UserDefinedTimeCharacteristicStatsEvalTypeValue.UserDefinedTime_1151->printSelf(outFile);
+      UserDefinedTimeCharacteristicStatsEvalTypeValue->UserDefinedTime_1151->printSelf(outFile);
     }
   else if (UserDefinedTimeCharacteristicStatsEvalTypeType == MinDeviationStatsE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinDeviationStats");
-      UserDefinedTimeCharacteristicStatsEvalTypeValue.MinDeviationStats->printSelf(outFile);
+      UserDefinedTimeCharacteristicStatsEvalTypeValue->MinDeviationStats->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</MinDeviationStats>\n");
     }
@@ -45203,7 +45220,7 @@ UserDefinedUnitCharacteristicStatsEvalTypeChoicePair::UserDefinedUnitCharacteris
 
 UserDefinedUnitCharacteristicStatsEvalTypeChoicePair::UserDefinedUnitCharacteristicStatsEvalTypeChoicePair(
  whichOne UserDefinedUnitCharacteristicStatsEvalTypeTypeIn,
- UserDefinedUnitCharacteristicStatsEvalTypeVal UserDefinedUnitCharacteristicStatsEvalTypeValueIn)
+ UserDefinedUnitCharacteristicStatsEvalTypeVal * UserDefinedUnitCharacteristicStatsEvalTypeValueIn)
 {
   UserDefinedUnitCharacteristicStatsEvalTypeType = UserDefinedUnitCharacteristicStatsEvalTypeTypeIn;
   UserDefinedUnitCharacteristicStatsEvalTypeValue = UserDefinedUnitCharacteristicStatsEvalTypeValueIn;
@@ -45213,17 +45230,18 @@ UserDefinedUnitCharacteristicStatsEvalTypeChoicePair::~UserDefinedUnitCharacteri
 {
   #ifndef NODESTRUCT
   if (UserDefinedUnitCharacteristicStatsEvalTypeType == UserDefinedUnit_1152E)
-    delete UserDefinedUnitCharacteristicStatsEvalTypeValue.UserDefinedUnit_1152;
+    delete UserDefinedUnitCharacteristicStatsEvalTypeValue->UserDefinedUnit_1152;
   else if (UserDefinedUnitCharacteristicStatsEvalTypeType == UserDefinedUnit_1153E)
-    delete UserDefinedUnitCharacteristicStatsEvalTypeValue.UserDefinedUnit_1153;
+    delete UserDefinedUnitCharacteristicStatsEvalTypeValue->UserDefinedUnit_1153;
   else if (UserDefinedUnitCharacteristicStatsEvalTypeType == MinValueStatsE)
-    delete UserDefinedUnitCharacteristicStatsEvalTypeValue.MinValueStats;
+    delete UserDefinedUnitCharacteristicStatsEvalTypeValue->MinValueStats;
   else if (UserDefinedUnitCharacteristicStatsEvalTypeType == UserDefinedUnit_1154E)
-    delete UserDefinedUnitCharacteristicStatsEvalTypeValue.UserDefinedUnit_1154;
+    delete UserDefinedUnitCharacteristicStatsEvalTypeValue->UserDefinedUnit_1154;
   else if (UserDefinedUnitCharacteristicStatsEvalTypeType == UserDefinedUnit_1155E)
-    delete UserDefinedUnitCharacteristicStatsEvalTypeValue.UserDefinedUnit_1155;
+    delete UserDefinedUnitCharacteristicStatsEvalTypeValue->UserDefinedUnit_1155;
   else if (UserDefinedUnitCharacteristicStatsEvalTypeType == MinDeviationStatsE)
-    delete UserDefinedUnitCharacteristicStatsEvalTypeValue.MinDeviationStats;
+    delete UserDefinedUnitCharacteristicStatsEvalTypeValue->MinDeviationStats;
+  delete UserDefinedUnitCharacteristicStatsEvalTypeValue;
   #endif
 }
 
@@ -45231,33 +45249,33 @@ void UserDefinedUnitCharacteristicStatsEvalTypeChoicePair::printSelf(FILE * outF
 {
   if (UserDefinedUnitCharacteristicStatsEvalTypeType == UserDefinedUnit_1152E)
     {
-      UserDefinedUnitCharacteristicStatsEvalTypeValue.UserDefinedUnit_1152->printSelf(outFile);
+      UserDefinedUnitCharacteristicStatsEvalTypeValue->UserDefinedUnit_1152->printSelf(outFile);
     }
   else if (UserDefinedUnitCharacteristicStatsEvalTypeType == UserDefinedUnit_1153E)
     {
-      UserDefinedUnitCharacteristicStatsEvalTypeValue.UserDefinedUnit_1153->printSelf(outFile);
+      UserDefinedUnitCharacteristicStatsEvalTypeValue->UserDefinedUnit_1153->printSelf(outFile);
     }
   else if (UserDefinedUnitCharacteristicStatsEvalTypeType == MinValueStatsE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinValueStats");
-      UserDefinedUnitCharacteristicStatsEvalTypeValue.MinValueStats->printSelf(outFile);
+      UserDefinedUnitCharacteristicStatsEvalTypeValue->MinValueStats->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</MinValueStats>\n");
     }
   else if (UserDefinedUnitCharacteristicStatsEvalTypeType == UserDefinedUnit_1154E)
     {
-      UserDefinedUnitCharacteristicStatsEvalTypeValue.UserDefinedUnit_1154->printSelf(outFile);
+      UserDefinedUnitCharacteristicStatsEvalTypeValue->UserDefinedUnit_1154->printSelf(outFile);
     }
   else if (UserDefinedUnitCharacteristicStatsEvalTypeType == UserDefinedUnit_1155E)
     {
-      UserDefinedUnitCharacteristicStatsEvalTypeValue.UserDefinedUnit_1155->printSelf(outFile);
+      UserDefinedUnitCharacteristicStatsEvalTypeValue->UserDefinedUnit_1155->printSelf(outFile);
     }
   else if (UserDefinedUnitCharacteristicStatsEvalTypeType == MinDeviationStatsE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinDeviationStats");
-      UserDefinedUnitCharacteristicStatsEvalTypeValue.MinDeviationStats->printSelf(outFile);
+      UserDefinedUnitCharacteristicStatsEvalTypeValue->MinDeviationStats->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</MinDeviationStats>\n");
     }
@@ -47112,7 +47130,7 @@ AssignableCause_1104_TypeChoicePair::AssignableCause_1104_TypeChoicePair() {}
 
 AssignableCause_1104_TypeChoicePair::AssignableCause_1104_TypeChoicePair(
  whichOne AssignableCause_1104_TypeTypeIn,
- AssignableCause_1104_TypeVal AssignableCause_1104_TypeValueIn)
+ AssignableCause_1104_TypeVal * AssignableCause_1104_TypeValueIn)
 {
   AssignableCause_1104_TypeType = AssignableCause_1104_TypeTypeIn;
   AssignableCause_1104_TypeValue = AssignableCause_1104_TypeValueIn;
@@ -47122,9 +47140,10 @@ AssignableCause_1104_TypeChoicePair::~AssignableCause_1104_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (AssignableCause_1104_TypeType == DescriptionE)
-    delete AssignableCause_1104_TypeValue.Description;
+    delete AssignableCause_1104_TypeValue->Description;
   else if (AssignableCause_1104_TypeType == AssignableCauseEnumE)
-    delete AssignableCause_1104_TypeValue.AssignableCauseEnum;
+    delete AssignableCause_1104_TypeValue->AssignableCauseEnum;
+  delete AssignableCause_1104_TypeValue;
   #endif
 }
 
@@ -47134,14 +47153,14 @@ void AssignableCause_1104_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Description");
-      AssignableCause_1104_TypeValue.Description->printSelf(outFile);
+      AssignableCause_1104_TypeValue->Description->printSelf(outFile);
       fprintf(outFile, "</Description>\n");
     }
   else if (AssignableCause_1104_TypeType == AssignableCauseEnumE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<AssignableCauseEnum");
-      AssignableCause_1104_TypeValue.AssignableCauseEnum->printSelf(outFile);
+      AssignableCause_1104_TypeValue->AssignableCauseEnum->printSelf(outFile);
       fprintf(outFile, "</AssignableCauseEnum>\n");
     }
 }
@@ -47187,7 +47206,7 @@ CharacteristicS_1105_TypeChoicePair::CharacteristicS_1105_TypeChoicePair() {}
 
 CharacteristicS_1105_TypeChoicePair::CharacteristicS_1105_TypeChoicePair(
  whichOne CharacteristicS_1105_TypeTypeIn,
- CharacteristicS_1105_TypeVal CharacteristicS_1105_TypeValueIn)
+ CharacteristicS_1105_TypeVal * CharacteristicS_1105_TypeValueIn)
 {
   CharacteristicS_1105_TypeType = CharacteristicS_1105_TypeTypeIn;
   CharacteristicS_1105_TypeValue = CharacteristicS_1105_TypeValueIn;
@@ -47197,11 +47216,12 @@ CharacteristicS_1105_TypeChoicePair::~CharacteristicS_1105_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (CharacteristicS_1105_TypeType == SoftwareIdE)
-    delete CharacteristicS_1105_TypeValue.SoftwareId;
+    delete CharacteristicS_1105_TypeValue->SoftwareId;
   else if (CharacteristicS_1105_TypeType == StandardIdE)
-    delete CharacteristicS_1105_TypeValue.StandardId;
+    delete CharacteristicS_1105_TypeValue->StandardId;
   else if (CharacteristicS_1105_TypeType == AlgorithmIdE)
-    delete CharacteristicS_1105_TypeValue.AlgorithmId;
+    delete CharacteristicS_1105_TypeValue->AlgorithmId;
+  delete CharacteristicS_1105_TypeValue;
   #endif
 }
 
@@ -47211,21 +47231,21 @@ void CharacteristicS_1105_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<SoftwareId");
-      CharacteristicS_1105_TypeValue.SoftwareId->printSelf(outFile);
+      CharacteristicS_1105_TypeValue->SoftwareId->printSelf(outFile);
       fprintf(outFile, "</SoftwareId>\n");
     }
   else if (CharacteristicS_1105_TypeType == StandardIdE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<StandardId");
-      CharacteristicS_1105_TypeValue.StandardId->printSelf(outFile);
+      CharacteristicS_1105_TypeValue->StandardId->printSelf(outFile);
       fprintf(outFile, "</StandardId>\n");
     }
   else if (CharacteristicS_1105_TypeType == AlgorithmIdE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<AlgorithmId");
-      CharacteristicS_1105_TypeValue.AlgorithmId->printSelf(outFile);
+      CharacteristicS_1105_TypeValue->AlgorithmId->printSelf(outFile);
       fprintf(outFile, "</AlgorithmId>\n");
     }
 }
@@ -47271,7 +47291,7 @@ CharacteristicS_1106_TypeChoicePair::CharacteristicS_1106_TypeChoicePair() {}
 
 CharacteristicS_1106_TypeChoicePair::CharacteristicS_1106_TypeChoicePair(
  whichOne CharacteristicS_1106_TypeTypeIn,
- CharacteristicS_1106_TypeVal CharacteristicS_1106_TypeValueIn)
+ CharacteristicS_1106_TypeVal * CharacteristicS_1106_TypeValueIn)
 {
   CharacteristicS_1106_TypeType = CharacteristicS_1106_TypeTypeIn;
   CharacteristicS_1106_TypeValue = CharacteristicS_1106_TypeValueIn;
@@ -47281,9 +47301,10 @@ CharacteristicS_1106_TypeChoicePair::~CharacteristicS_1106_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (CharacteristicS_1106_TypeType == CharacteristicS_1156E)
-    delete CharacteristicS_1106_TypeValue.CharacteristicS_1156;
+    delete CharacteristicS_1106_TypeValue->CharacteristicS_1156;
   else if (CharacteristicS_1106_TypeType == CharacteristicS_1157E)
-    delete CharacteristicS_1106_TypeValue.CharacteristicS_1157;
+    delete CharacteristicS_1106_TypeValue->CharacteristicS_1157;
+  delete CharacteristicS_1106_TypeValue;
   #endif
 }
 
@@ -47291,11 +47312,11 @@ void CharacteristicS_1106_TypeChoicePair::printSelf(FILE * outFile)
 {
   if (CharacteristicS_1106_TypeType == CharacteristicS_1156E)
     {
-      CharacteristicS_1106_TypeValue.CharacteristicS_1156->printSelf(outFile);
+      CharacteristicS_1106_TypeValue->CharacteristicS_1156->printSelf(outFile);
     }
   else if (CharacteristicS_1106_TypeType == CharacteristicS_1157E)
     {
-      CharacteristicS_1106_TypeValue.CharacteristicS_1157->printSelf(outFile);
+      CharacteristicS_1106_TypeValue->CharacteristicS_1157->printSelf(outFile);
     }
 }
 
@@ -47337,7 +47358,7 @@ CorrectiveActio_1107_TypeChoicePair::CorrectiveActio_1107_TypeChoicePair() {}
 
 CorrectiveActio_1107_TypeChoicePair::CorrectiveActio_1107_TypeChoicePair(
  whichOne CorrectiveActio_1107_TypeTypeIn,
- CorrectiveActio_1107_TypeVal CorrectiveActio_1107_TypeValueIn)
+ CorrectiveActio_1107_TypeVal * CorrectiveActio_1107_TypeValueIn)
 {
   CorrectiveActio_1107_TypeType = CorrectiveActio_1107_TypeTypeIn;
   CorrectiveActio_1107_TypeValue = CorrectiveActio_1107_TypeValueIn;
@@ -47347,9 +47368,10 @@ CorrectiveActio_1107_TypeChoicePair::~CorrectiveActio_1107_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (CorrectiveActio_1107_TypeType == ActionToTakeE)
-    delete CorrectiveActio_1107_TypeValue.ActionToTake;
+    delete CorrectiveActio_1107_TypeValue->ActionToTake;
   else if (CorrectiveActio_1107_TypeType == ActionToTakeEnumE)
-    delete CorrectiveActio_1107_TypeValue.ActionToTakeEnum;
+    delete CorrectiveActio_1107_TypeValue->ActionToTakeEnum;
+  delete CorrectiveActio_1107_TypeValue;
   #endif
 }
 
@@ -47359,14 +47381,14 @@ void CorrectiveActio_1107_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ActionToTake");
-      CorrectiveActio_1107_TypeValue.ActionToTake->printSelf(outFile);
+      CorrectiveActio_1107_TypeValue->ActionToTake->printSelf(outFile);
       fprintf(outFile, "</ActionToTake>\n");
     }
   else if (CorrectiveActio_1107_TypeType == ActionToTakeEnumE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ActionToTakeEnum");
-      CorrectiveActio_1107_TypeValue.ActionToTakeEnum->printSelf(outFile);
+      CorrectiveActio_1107_TypeValue->ActionToTakeEnum->printSelf(outFile);
       fprintf(outFile, "</ActionToTakeEnum>\n");
     }
 }
@@ -47785,7 +47807,7 @@ SamplingMethodT_1114_TypeChoicePair::SamplingMethodT_1114_TypeChoicePair() {}
 
 SamplingMethodT_1114_TypeChoicePair::SamplingMethodT_1114_TypeChoicePair(
  whichOne SamplingMethodT_1114_TypeTypeIn,
- SamplingMethodT_1114_TypeVal SamplingMethodT_1114_TypeValueIn)
+ SamplingMethodT_1114_TypeVal * SamplingMethodT_1114_TypeValueIn)
 {
   SamplingMethodT_1114_TypeType = SamplingMethodT_1114_TypeTypeIn;
   SamplingMethodT_1114_TypeValue = SamplingMethodT_1114_TypeValueIn;
@@ -47795,9 +47817,10 @@ SamplingMethodT_1114_TypeChoicePair::~SamplingMethodT_1114_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (SamplingMethodT_1114_TypeType == SamplingPeriodE)
-    delete SamplingMethodT_1114_TypeValue.SamplingPeriod;
+    delete SamplingMethodT_1114_TypeValue->SamplingPeriod;
   else if (SamplingMethodT_1114_TypeType == SamplingMethodT_1158E)
-    delete SamplingMethodT_1114_TypeValue.SamplingMethodT_1158;
+    delete SamplingMethodT_1114_TypeValue->SamplingMethodT_1158;
+  delete SamplingMethodT_1114_TypeValue;
   #endif
 }
 
@@ -47807,12 +47830,12 @@ void SamplingMethodT_1114_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<SamplingPeriod");
-      SamplingMethodT_1114_TypeValue.SamplingPeriod->printSelf(outFile);
+      SamplingMethodT_1114_TypeValue->SamplingPeriod->printSelf(outFile);
       fprintf(outFile, "</SamplingPeriod>\n");
     }
   else if (SamplingMethodT_1114_TypeType == SamplingMethodT_1158E)
     {
-      SamplingMethodT_1114_TypeValue.SamplingMethodT_1158->printSelf(outFile);
+      SamplingMethodT_1114_TypeValue->SamplingMethodT_1158->printSelf(outFile);
     }
 }
 
@@ -47857,7 +47880,7 @@ StudyIssueType_1115_TypeChoicePair::StudyIssueType_1115_TypeChoicePair() {}
 
 StudyIssueType_1115_TypeChoicePair::StudyIssueType_1115_TypeChoicePair(
  whichOne StudyIssueType_1115_TypeTypeIn,
- StudyIssueType_1115_TypeVal StudyIssueType_1115_TypeValueIn)
+ StudyIssueType_1115_TypeVal * StudyIssueType_1115_TypeValueIn)
 {
   StudyIssueType_1115_TypeType = StudyIssueType_1115_TypeTypeIn;
   StudyIssueType_1115_TypeValue = StudyIssueType_1115_TypeValueIn;
@@ -47867,9 +47890,10 @@ StudyIssueType_1115_TypeChoicePair::~StudyIssueType_1115_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (StudyIssueType_1115_TypeType == CharacteristicMeasurementIdsE)
-    delete StudyIssueType_1115_TypeValue.CharacteristicMeasurementIds;
+    delete StudyIssueType_1115_TypeValue->CharacteristicMeasurementIds;
   else if (StudyIssueType_1115_TypeType == SubgroupIdsE)
-    delete StudyIssueType_1115_TypeValue.SubgroupIds;
+    delete StudyIssueType_1115_TypeValue->SubgroupIds;
+  delete StudyIssueType_1115_TypeValue;
   #endif
 }
 
@@ -47879,7 +47903,7 @@ void StudyIssueType_1115_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<CharacteristicMeasurementIds");
-      StudyIssueType_1115_TypeValue.CharacteristicMeasurementIds->printSelf(outFile);
+      StudyIssueType_1115_TypeValue->CharacteristicMeasurementIds->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</CharacteristicMeasurementIds>\n");
     }
@@ -47887,7 +47911,7 @@ void StudyIssueType_1115_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<SubgroupIds");
-      StudyIssueType_1115_TypeValue.SubgroupIds->printSelf(outFile);
+      StudyIssueType_1115_TypeValue->SubgroupIds->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</SubgroupIds>\n");
     }
@@ -50571,7 +50595,7 @@ CharacteristicS_1156_TypeChoicePair::CharacteristicS_1156_TypeChoicePair() {}
 
 CharacteristicS_1156_TypeChoicePair::CharacteristicS_1156_TypeChoicePair(
  whichOne CharacteristicS_1156_TypeTypeIn,
- CharacteristicS_1156_TypeVal CharacteristicS_1156_TypeValueIn)
+ CharacteristicS_1156_TypeVal * CharacteristicS_1156_TypeValueIn)
 {
   CharacteristicS_1156_TypeType = CharacteristicS_1156_TypeTypeIn;
   CharacteristicS_1156_TypeValue = CharacteristicS_1156_TypeValueIn;
@@ -50581,9 +50605,10 @@ CharacteristicS_1156_TypeChoicePair::~CharacteristicS_1156_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (CharacteristicS_1156_TypeType == MeasuredIdsE)
-    delete CharacteristicS_1156_TypeValue.MeasuredIds;
+    delete CharacteristicS_1156_TypeValue->MeasuredIds;
   else if (CharacteristicS_1156_TypeType == SubgroupsE)
-    delete CharacteristicS_1156_TypeValue.Subgroups;
+    delete CharacteristicS_1156_TypeValue->Subgroups;
+  delete CharacteristicS_1156_TypeValue;
   #endif
 }
 
@@ -50593,7 +50618,7 @@ void CharacteristicS_1156_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MeasuredIds");
-      CharacteristicS_1156_TypeValue.MeasuredIds->printSelf(outFile);
+      CharacteristicS_1156_TypeValue->MeasuredIds->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</MeasuredIds>\n");
     }
@@ -50601,7 +50626,7 @@ void CharacteristicS_1156_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Subgroups");
-      CharacteristicS_1156_TypeValue.Subgroups->printSelf(outFile);
+      CharacteristicS_1156_TypeValue->Subgroups->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Subgroups>\n");
     }
@@ -50645,7 +50670,7 @@ CharacteristicS_1157_TypeChoicePair::CharacteristicS_1157_TypeChoicePair() {}
 
 CharacteristicS_1157_TypeChoicePair::CharacteristicS_1157_TypeChoicePair(
  whichOne CharacteristicS_1157_TypeTypeIn,
- CharacteristicS_1157_TypeVal CharacteristicS_1157_TypeValueIn)
+ CharacteristicS_1157_TypeVal * CharacteristicS_1157_TypeValueIn)
 {
   CharacteristicS_1157_TypeType = CharacteristicS_1157_TypeTypeIn;
   CharacteristicS_1157_TypeValue = CharacteristicS_1157_TypeValueIn;
@@ -50655,9 +50680,10 @@ CharacteristicS_1157_TypeChoicePair::~CharacteristicS_1157_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (CharacteristicS_1157_TypeType == MeasuredValuesE)
-    delete CharacteristicS_1157_TypeValue.MeasuredValues;
+    delete CharacteristicS_1157_TypeValue->MeasuredValues;
   else if (CharacteristicS_1157_TypeType == SubgroupValuesE)
-    delete CharacteristicS_1157_TypeValue.SubgroupValues;
+    delete CharacteristicS_1157_TypeValue->SubgroupValues;
+  delete CharacteristicS_1157_TypeValue;
   #endif
 }
 
@@ -50667,7 +50693,7 @@ void CharacteristicS_1157_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MeasuredValues");
-      CharacteristicS_1157_TypeValue.MeasuredValues->printSelf(outFile);
+      CharacteristicS_1157_TypeValue->MeasuredValues->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</MeasuredValues>\n");
     }
@@ -50675,7 +50701,7 @@ void CharacteristicS_1157_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<SubgroupValues");
-      CharacteristicS_1157_TypeValue.SubgroupValues->printSelf(outFile);
+      CharacteristicS_1157_TypeValue->SubgroupValues->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</SubgroupValues>\n");
     }

@@ -1244,7 +1244,7 @@ AccuracySourceTypeChoicePair::AccuracySourceTypeChoicePair() {}
 
 AccuracySourceTypeChoicePair::AccuracySourceTypeChoicePair(
  whichOne AccuracySourceTypeTypeIn,
- AccuracySourceTypeVal AccuracySourceTypeValueIn)
+ AccuracySourceTypeVal * AccuracySourceTypeValueIn)
 {
   AccuracySourceTypeType = AccuracySourceTypeTypeIn;
   AccuracySourceTypeValue = AccuracySourceTypeValueIn;
@@ -1254,9 +1254,10 @@ AccuracySourceTypeChoicePair::~AccuracySourceTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (AccuracySourceTypeType == AccuracySourceEnumE)
-    delete AccuracySourceTypeValue.AccuracySourceEnum;
+    delete AccuracySourceTypeValue->AccuracySourceEnum;
   else if (AccuracySourceTypeType == OtherAccuracySourceE)
-    delete AccuracySourceTypeValue.OtherAccuracySource;
+    delete AccuracySourceTypeValue->OtherAccuracySource;
+  delete AccuracySourceTypeValue;
   #endif
 }
 
@@ -1266,14 +1267,14 @@ void AccuracySourceTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<AccuracySourceEnum");
-      AccuracySourceTypeValue.AccuracySourceEnum->printSelf(outFile);
+      AccuracySourceTypeValue->AccuracySourceEnum->printSelf(outFile);
       fprintf(outFile, "</AccuracySourceEnum>\n");
     }
   else if (AccuracySourceTypeType == OtherAccuracySourceE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<OtherAccuracySource");
-      AccuracySourceTypeValue.OtherAccuracySource->printSelf(outFile);
+      AccuracySourceTypeValue->OtherAccuracySource->printSelf(outFile);
       fprintf(outFile, "</OtherAccuracySource>\n");
     }
 }
@@ -5709,7 +5710,7 @@ CartesianCMMGeometryTypeChoicePair::CartesianCMMGeometryTypeChoicePair() {}
 
 CartesianCMMGeometryTypeChoicePair::CartesianCMMGeometryTypeChoicePair(
  whichOne CartesianCMMGeometryTypeTypeIn,
- CartesianCMMGeometryTypeVal CartesianCMMGeometryTypeValueIn)
+ CartesianCMMGeometryTypeVal * CartesianCMMGeometryTypeValueIn)
 {
   CartesianCMMGeometryTypeType = CartesianCMMGeometryTypeTypeIn;
   CartesianCMMGeometryTypeValue = CartesianCMMGeometryTypeValueIn;
@@ -5719,9 +5720,10 @@ CartesianCMMGeometryTypeChoicePair::~CartesianCMMGeometryTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (CartesianCMMGeometryTypeType == CartesianCMMGeometryEnumE)
-    delete CartesianCMMGeometryTypeValue.CartesianCMMGeometryEnum;
+    delete CartesianCMMGeometryTypeValue->CartesianCMMGeometryEnum;
   else if (CartesianCMMGeometryTypeType == OtherCartesianCMMGeometryE)
-    delete CartesianCMMGeometryTypeValue.OtherCartesianCMMGeometry;
+    delete CartesianCMMGeometryTypeValue->OtherCartesianCMMGeometry;
+  delete CartesianCMMGeometryTypeValue;
   #endif
 }
 
@@ -5731,14 +5733,14 @@ void CartesianCMMGeometryTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<CartesianCMMGeometryEnum");
-      CartesianCMMGeometryTypeValue.CartesianCMMGeometryEnum->printSelf(outFile);
+      CartesianCMMGeometryTypeValue->CartesianCMMGeometryEnum->printSelf(outFile);
       fprintf(outFile, "</CartesianCMMGeometryEnum>\n");
     }
   else if (CartesianCMMGeometryTypeType == OtherCartesianCMMGeometryE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<OtherCartesianCMMGeometry");
-      CartesianCMMGeometryTypeValue.OtherCartesianCMMGeometry->printSelf(outFile);
+      CartesianCMMGeometryTypeValue->OtherCartesianCMMGeometry->printSelf(outFile);
       fprintf(outFile, "</OtherCartesianCMMGeometry>\n");
     }
 }
@@ -6861,7 +6863,7 @@ CartesianResolutionTypeChoicePair::CartesianResolutionTypeChoicePair() {}
 
 CartesianResolutionTypeChoicePair::CartesianResolutionTypeChoicePair(
  whichOne CartesianResolutionTypeTypeIn,
- CartesianResolutionTypeVal CartesianResolutionTypeValueIn)
+ CartesianResolutionTypeVal * CartesianResolutionTypeValueIn)
 {
   CartesianResolutionTypeType = CartesianResolutionTypeTypeIn;
   CartesianResolutionTypeValue = CartesianResolutionTypeValueIn;
@@ -6871,9 +6873,10 @@ CartesianResolutionTypeChoicePair::~CartesianResolutionTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (CartesianResolutionTypeType == CartesianResolu_1195E)
-    delete CartesianResolutionTypeValue.CartesianResolu_1195;
+    delete CartesianResolutionTypeValue->CartesianResolu_1195;
   else if (CartesianResolutionTypeType == XYZResolutionE)
-    delete CartesianResolutionTypeValue.XYZResolution;
+    delete CartesianResolutionTypeValue->XYZResolution;
+  delete CartesianResolutionTypeValue;
   #endif
 }
 
@@ -6881,13 +6884,13 @@ void CartesianResolutionTypeChoicePair::printSelf(FILE * outFile)
 {
   if (CartesianResolutionTypeType == CartesianResolu_1195E)
     {
-      CartesianResolutionTypeValue.CartesianResolu_1195->printSelf(outFile);
+      CartesianResolutionTypeValue->CartesianResolu_1195->printSelf(outFile);
     }
   else if (CartesianResolutionTypeType == XYZResolutionE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<XYZResolution");
-      CartesianResolutionTypeValue.XYZResolution->printSelf(outFile);
+      CartesianResolutionTypeValue->XYZResolution->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</XYZResolution>\n");
     }
@@ -13407,7 +13410,7 @@ ISO10360TestTypeChoicePair::ISO10360TestTypeChoicePair() {}
 
 ISO10360TestTypeChoicePair::ISO10360TestTypeChoicePair(
  whichOne ISO10360TestTypeTypeIn,
- ISO10360TestTypeVal ISO10360TestTypeValueIn)
+ ISO10360TestTypeVal * ISO10360TestTypeValueIn)
 {
   ISO10360TestTypeType = ISO10360TestTypeTypeIn;
   ISO10360TestTypeValue = ISO10360TestTypeValueIn;
@@ -13417,11 +13420,12 @@ ISO10360TestTypeChoicePair::~ISO10360TestTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (ISO10360TestTypeType == MaxErrorConstantE)
-    delete ISO10360TestTypeValue.MaxErrorConstant;
+    delete ISO10360TestTypeValue->MaxErrorConstant;
   else if (ISO10360TestTypeType == LinearErrorE)
-    delete ISO10360TestTypeValue.LinearError;
+    delete ISO10360TestTypeValue->LinearError;
   else if (ISO10360TestTypeType == LesserErrorE)
-    delete ISO10360TestTypeValue.LesserError;
+    delete ISO10360TestTypeValue->LesserError;
+  delete ISO10360TestTypeValue;
   #endif
 }
 
@@ -13431,14 +13435,14 @@ void ISO10360TestTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MaxErrorConstant");
-      ISO10360TestTypeValue.MaxErrorConstant->printSelf(outFile);
+      ISO10360TestTypeValue->MaxErrorConstant->printSelf(outFile);
       fprintf(outFile, "</MaxErrorConstant>\n");
     }
   else if (ISO10360TestTypeType == LinearErrorE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<LinearError");
-      ISO10360TestTypeValue.LinearError->printSelf(outFile);
+      ISO10360TestTypeValue->LinearError->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</LinearError>\n");
     }
@@ -13446,7 +13450,7 @@ void ISO10360TestTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<LesserError");
-      ISO10360TestTypeValue.LesserError->printSelf(outFile);
+      ISO10360TestTypeValue->LesserError->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</LesserError>\n");
     }
@@ -27049,7 +27053,7 @@ SphericalResolutionTypeChoicePair::SphericalResolutionTypeChoicePair() {}
 
 SphericalResolutionTypeChoicePair::SphericalResolutionTypeChoicePair(
  whichOne SphericalResolutionTypeTypeIn,
- SphericalResolutionTypeVal SphericalResolutionTypeValueIn)
+ SphericalResolutionTypeVal * SphericalResolutionTypeValueIn)
 {
   SphericalResolutionTypeType = SphericalResolutionTypeTypeIn;
   SphericalResolutionTypeValue = SphericalResolutionTypeValueIn;
@@ -27059,9 +27063,10 @@ SphericalResolutionTypeChoicePair::~SphericalResolutionTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (SphericalResolutionTypeType == SphericalResolu_1197E)
-    delete SphericalResolutionTypeValue.SphericalResolu_1197;
+    delete SphericalResolutionTypeValue->SphericalResolu_1197;
   else if (SphericalResolutionTypeType == RAPResolutionE)
-    delete SphericalResolutionTypeValue.RAPResolution;
+    delete SphericalResolutionTypeValue->RAPResolution;
+  delete SphericalResolutionTypeValue;
   #endif
 }
 
@@ -27069,13 +27074,13 @@ void SphericalResolutionTypeChoicePair::printSelf(FILE * outFile)
 {
   if (SphericalResolutionTypeType == SphericalResolu_1197E)
     {
-      SphericalResolutionTypeValue.SphericalResolu_1197->printSelf(outFile);
+      SphericalResolutionTypeValue->SphericalResolu_1197->printSelf(outFile);
     }
   else if (SphericalResolutionTypeType == RAPResolutionE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<RAPResolution");
-      SphericalResolutionTypeValue.RAPResolution->printSelf(outFile);
+      SphericalResolutionTypeValue->RAPResolution->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</RAPResolution>\n");
     }
@@ -28320,7 +28325,7 @@ TemperatureCompensationTypeChoicePair::TemperatureCompensationTypeChoicePair() {
 
 TemperatureCompensationTypeChoicePair::TemperatureCompensationTypeChoicePair(
  whichOne TemperatureCompensationTypeTypeIn,
- TemperatureCompensationTypeVal TemperatureCompensationTypeValueIn)
+ TemperatureCompensationTypeVal * TemperatureCompensationTypeValueIn)
 {
   TemperatureCompensationTypeType = TemperatureCompensationTypeTypeIn;
   TemperatureCompensationTypeValue = TemperatureCompensationTypeValueIn;
@@ -28330,9 +28335,10 @@ TemperatureCompensationTypeChoicePair::~TemperatureCompensationTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (TemperatureCompensationTypeType == TemperatureCompensationEnumE)
-    delete TemperatureCompensationTypeValue.TemperatureCompensationEnum;
+    delete TemperatureCompensationTypeValue->TemperatureCompensationEnum;
   else if (TemperatureCompensationTypeType == OtherTemperatureCompensationE)
-    delete TemperatureCompensationTypeValue.OtherTemperatureCompensation;
+    delete TemperatureCompensationTypeValue->OtherTemperatureCompensation;
+  delete TemperatureCompensationTypeValue;
   #endif
 }
 
@@ -28342,14 +28348,14 @@ void TemperatureCompensationTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<TemperatureCompensationEnum");
-      TemperatureCompensationTypeValue.TemperatureCompensationEnum->printSelf(outFile);
+      TemperatureCompensationTypeValue->TemperatureCompensationEnum->printSelf(outFile);
       fprintf(outFile, "</TemperatureCompensationEnum>\n");
     }
   else if (TemperatureCompensationTypeType == OtherTemperatureCompensationE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<OtherTemperatureCompensation");
-      TemperatureCompensationTypeValue.OtherTemperatureCompensation->printSelf(outFile);
+      TemperatureCompensationTypeValue->OtherTemperatureCompensation->printSelf(outFile);
       fprintf(outFile, "</OtherTemperatureCompensation>\n");
     }
 }
@@ -29583,7 +29589,7 @@ TipEndGeometryTypeChoicePair::TipEndGeometryTypeChoicePair() {}
 
 TipEndGeometryTypeChoicePair::TipEndGeometryTypeChoicePair(
  whichOne TipEndGeometryTypeTypeIn,
- TipEndGeometryTypeVal TipEndGeometryTypeValueIn)
+ TipEndGeometryTypeVal * TipEndGeometryTypeValueIn)
 {
   TipEndGeometryTypeType = TipEndGeometryTypeTypeIn;
   TipEndGeometryTypeValue = TipEndGeometryTypeValueIn;
@@ -29593,9 +29599,10 @@ TipEndGeometryTypeChoicePair::~TipEndGeometryTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (TipEndGeometryTypeType == TipEndGeometryEnumE)
-    delete TipEndGeometryTypeValue.TipEndGeometryEnum;
+    delete TipEndGeometryTypeValue->TipEndGeometryEnum;
   else if (TipEndGeometryTypeType == OtherTipEndGeometryE)
-    delete TipEndGeometryTypeValue.OtherTipEndGeometry;
+    delete TipEndGeometryTypeValue->OtherTipEndGeometry;
+  delete TipEndGeometryTypeValue;
   #endif
 }
 
@@ -29605,14 +29612,14 @@ void TipEndGeometryTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<TipEndGeometryEnum");
-      TipEndGeometryTypeValue.TipEndGeometryEnum->printSelf(outFile);
+      TipEndGeometryTypeValue->TipEndGeometryEnum->printSelf(outFile);
       fprintf(outFile, "</TipEndGeometryEnum>\n");
     }
   else if (TipEndGeometryTypeType == OtherTipEndGeometryE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<OtherTipEndGeometry");
-      TipEndGeometryTypeValue.OtherTipEndGeometry->printSelf(outFile);
+      TipEndGeometryTypeValue->OtherTipEndGeometry->printSelf(outFile);
       fprintf(outFile, "</OtherTipEndGeometry>\n");
     }
 }
@@ -34053,7 +34060,7 @@ TypeOfScaleTypeChoicePair::TypeOfScaleTypeChoicePair() {}
 
 TypeOfScaleTypeChoicePair::TypeOfScaleTypeChoicePair(
  whichOne TypeOfScaleTypeTypeIn,
- TypeOfScaleTypeVal TypeOfScaleTypeValueIn)
+ TypeOfScaleTypeVal * TypeOfScaleTypeValueIn)
 {
   TypeOfScaleTypeType = TypeOfScaleTypeTypeIn;
   TypeOfScaleTypeValue = TypeOfScaleTypeValueIn;
@@ -34063,9 +34070,10 @@ TypeOfScaleTypeChoicePair::~TypeOfScaleTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (TypeOfScaleTypeType == TypeOfScaleEnumE)
-    delete TypeOfScaleTypeValue.TypeOfScaleEnum;
+    delete TypeOfScaleTypeValue->TypeOfScaleEnum;
   else if (TypeOfScaleTypeType == OtherTypeOfScaleE)
-    delete TypeOfScaleTypeValue.OtherTypeOfScale;
+    delete TypeOfScaleTypeValue->OtherTypeOfScale;
+  delete TypeOfScaleTypeValue;
   #endif
 }
 
@@ -34075,14 +34083,14 @@ void TypeOfScaleTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<TypeOfScaleEnum");
-      TypeOfScaleTypeValue.TypeOfScaleEnum->printSelf(outFile);
+      TypeOfScaleTypeValue->TypeOfScaleEnum->printSelf(outFile);
       fprintf(outFile, "</TypeOfScaleEnum>\n");
     }
   else if (TypeOfScaleTypeType == OtherTypeOfScaleE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<OtherTypeOfScale");
-      TypeOfScaleTypeValue.OtherTypeOfScale->printSelf(outFile);
+      TypeOfScaleTypeValue->OtherTypeOfScale->printSelf(outFile);
       fprintf(outFile, "</OtherTypeOfScale>\n");
     }
 }
@@ -35959,7 +35967,7 @@ UserDefinedResolutionTypeChoicePair::UserDefinedResolutionTypeChoicePair() {}
 
 UserDefinedResolutionTypeChoicePair::UserDefinedResolutionTypeChoicePair(
  whichOne UserDefinedResolutionTypeTypeIn,
- UserDefinedResolutionTypeVal UserDefinedResolutionTypeValueIn)
+ UserDefinedResolutionTypeVal * UserDefinedResolutionTypeValueIn)
 {
   UserDefinedResolutionTypeType = UserDefinedResolutionTypeTypeIn;
   UserDefinedResolutionTypeValue = UserDefinedResolutionTypeValueIn;
@@ -35969,9 +35977,10 @@ UserDefinedResolutionTypeChoicePair::~UserDefinedResolutionTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (UserDefinedResolutionTypeType == UserDefinedReso_1198E)
-    delete UserDefinedResolutionTypeValue.UserDefinedReso_1198;
+    delete UserDefinedResolutionTypeValue->UserDefinedReso_1198;
   else if (UserDefinedResolutionTypeType == ABCResolutionE)
-    delete UserDefinedResolutionTypeValue.ABCResolution;
+    delete UserDefinedResolutionTypeValue->ABCResolution;
+  delete UserDefinedResolutionTypeValue;
   #endif
 }
 
@@ -35979,13 +35988,13 @@ void UserDefinedResolutionTypeChoicePair::printSelf(FILE * outFile)
 {
   if (UserDefinedResolutionTypeType == UserDefinedReso_1198E)
     {
-      UserDefinedResolutionTypeValue.UserDefinedReso_1198->printSelf(outFile);
+      UserDefinedResolutionTypeValue->UserDefinedReso_1198->printSelf(outFile);
     }
   else if (UserDefinedResolutionTypeType == ABCResolutionE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ABCResolution");
-      UserDefinedResolutionTypeValue.ABCResolution->printSelf(outFile);
+      UserDefinedResolutionTypeValue->ABCResolution->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</ABCResolution>\n");
     }
@@ -36381,7 +36390,7 @@ MeasurementReso_1196_TypeChoicePair::MeasurementReso_1196_TypeChoicePair() {}
 
 MeasurementReso_1196_TypeChoicePair::MeasurementReso_1196_TypeChoicePair(
  whichOne MeasurementReso_1196_TypeTypeIn,
- MeasurementReso_1196_TypeVal MeasurementReso_1196_TypeValueIn)
+ MeasurementReso_1196_TypeVal * MeasurementReso_1196_TypeValueIn)
 {
   MeasurementReso_1196_TypeType = MeasurementReso_1196_TypeTypeIn;
   MeasurementReso_1196_TypeValue = MeasurementReso_1196_TypeValueIn;
@@ -36391,9 +36400,10 @@ MeasurementReso_1196_TypeChoicePair::~MeasurementReso_1196_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (MeasurementReso_1196_TypeType == LocationIdE)
-    delete MeasurementReso_1196_TypeValue.LocationId;
+    delete MeasurementReso_1196_TypeValue->LocationId;
   else if (MeasurementReso_1196_TypeType == LocationE)
-    delete MeasurementReso_1196_TypeValue.Location;
+    delete MeasurementReso_1196_TypeValue->Location;
+  delete MeasurementReso_1196_TypeValue;
   #endif
 }
 
@@ -36403,14 +36413,14 @@ void MeasurementReso_1196_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<LocationId");
-      MeasurementReso_1196_TypeValue.LocationId->printSelf(outFile);
+      MeasurementReso_1196_TypeValue->LocationId->printSelf(outFile);
       fprintf(outFile, "</LocationId>\n");
     }
   else if (MeasurementReso_1196_TypeType == LocationE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Location");
-      MeasurementReso_1196_TypeValue.Location->printSelf(outFile);
+      MeasurementReso_1196_TypeValue->Location->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Location>\n");
     }

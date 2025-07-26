@@ -614,7 +614,7 @@ CircleCheckedTypeChoicePair::CircleCheckedTypeChoicePair() {}
 
 CircleCheckedTypeChoicePair::CircleCheckedTypeChoicePair(
  whichOne CircleCheckedTypeTypeIn,
- CircleCheckedTypeVal CircleCheckedTypeValueIn)
+ CircleCheckedTypeVal * CircleCheckedTypeValueIn)
 {
   CircleCheckedTypeType = CircleCheckedTypeTypeIn;
   CircleCheckedTypeValue = CircleCheckedTypeValueIn;
@@ -624,9 +624,10 @@ CircleCheckedTypeChoicePair::~CircleCheckedTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (CircleCheckedTypeType == MeasuredE)
-    delete CircleCheckedTypeValue.Measured;
+    delete CircleCheckedTypeValue->Measured;
   else if (CircleCheckedTypeType == ConstructedE)
-    delete CircleCheckedTypeValue.Constructed;
+    delete CircleCheckedTypeValue->Constructed;
+  delete CircleCheckedTypeValue;
   #endif
 }
 
@@ -636,7 +637,7 @@ void CircleCheckedTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Measured");
-      CircleCheckedTypeValue.Measured->printSelf(outFile);
+      CircleCheckedTypeValue->Measured->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Measured>\n");
     }
@@ -644,7 +645,7 @@ void CircleCheckedTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Constructed");
-      CircleCheckedTypeValue.Constructed->printSelf(outFile);
+      CircleCheckedTypeValue->Constructed->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Constructed>\n");
     }
@@ -694,7 +695,7 @@ CircleConstructionMethodTypeChoicePair::CircleConstructionMethodTypeChoicePair()
 
 CircleConstructionMethodTypeChoicePair::CircleConstructionMethodTypeChoicePair(
  whichOne CircleConstructionMethodTypeTypeIn,
- CircleConstructionMethodTypeVal CircleConstructionMethodTypeValueIn)
+ CircleConstructionMethodTypeVal * CircleConstructionMethodTypeValueIn)
 {
   CircleConstructionMethodTypeType = CircleConstructionMethodTypeTypeIn;
   CircleConstructionMethodTypeValue = CircleConstructionMethodTypeValueIn;
@@ -704,27 +705,28 @@ CircleConstructionMethodTypeChoicePair::~CircleConstructionMethodTypeChoicePair(
 {
   #ifndef NODESTRUCT
   if (CircleConstructionMethodTypeType == BestFitE)
-    delete CircleConstructionMethodTypeValue.BestFit;
+    delete CircleConstructionMethodTypeValue->BestFit;
   else if (CircleConstructionMethodTypeType == RecompensatedE)
-    delete CircleConstructionMethodTypeValue.Recompensated;
+    delete CircleConstructionMethodTypeValue->Recompensated;
   else if (CircleConstructionMethodTypeType == IntersectionE)
-    delete CircleConstructionMethodTypeValue.Intersection;
+    delete CircleConstructionMethodTypeValue->Intersection;
   else if (CircleConstructionMethodTypeType == ProjectionE)
-    delete CircleConstructionMethodTypeValue.Projection;
+    delete CircleConstructionMethodTypeValue->Projection;
   else if (CircleConstructionMethodTypeType == CopyE)
-    delete CircleConstructionMethodTypeValue.Copy;
+    delete CircleConstructionMethodTypeValue->Copy;
   else if (CircleConstructionMethodTypeType == CastE)
-    delete CircleConstructionMethodTypeValue.Cast;
+    delete CircleConstructionMethodTypeValue->Cast;
   else if (CircleConstructionMethodTypeType == TangentE)
-    delete CircleConstructionMethodTypeValue.Tangent;
+    delete CircleConstructionMethodTypeValue->Tangent;
   else if (CircleConstructionMethodTypeType == TangentThroughE)
-    delete CircleConstructionMethodTypeValue.TangentThrough;
+    delete CircleConstructionMethodTypeValue->TangentThrough;
   else if (CircleConstructionMethodTypeType == TransformE)
-    delete CircleConstructionMethodTypeValue.Transform;
+    delete CircleConstructionMethodTypeValue->Transform;
   else if (CircleConstructionMethodTypeType == FromConeE)
-    delete CircleConstructionMethodTypeValue.FromCone;
+    delete CircleConstructionMethodTypeValue->FromCone;
   else if (CircleConstructionMethodTypeType == FromScanE)
-    delete CircleConstructionMethodTypeValue.FromScan;
+    delete CircleConstructionMethodTypeValue->FromScan;
+  delete CircleConstructionMethodTypeValue;
   #endif
 }
 
@@ -734,7 +736,7 @@ void CircleConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<BestFit");
-      CircleConstructionMethodTypeValue.BestFit->printSelf(outFile);
+      CircleConstructionMethodTypeValue->BestFit->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</BestFit>\n");
     }
@@ -742,7 +744,7 @@ void CircleConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Recompensated");
-      CircleConstructionMethodTypeValue.Recompensated->printSelf(outFile);
+      CircleConstructionMethodTypeValue->Recompensated->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Recompensated>\n");
     }
@@ -750,7 +752,7 @@ void CircleConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Intersection");
-      CircleConstructionMethodTypeValue.Intersection->printSelf(outFile);
+      CircleConstructionMethodTypeValue->Intersection->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Intersection>\n");
     }
@@ -758,7 +760,7 @@ void CircleConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Projection");
-      CircleConstructionMethodTypeValue.Projection->printSelf(outFile);
+      CircleConstructionMethodTypeValue->Projection->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Projection>\n");
     }
@@ -766,7 +768,7 @@ void CircleConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Copy");
-      CircleConstructionMethodTypeValue.Copy->printSelf(outFile);
+      CircleConstructionMethodTypeValue->Copy->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Copy>\n");
     }
@@ -774,7 +776,7 @@ void CircleConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Cast");
-      CircleConstructionMethodTypeValue.Cast->printSelf(outFile);
+      CircleConstructionMethodTypeValue->Cast->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Cast>\n");
     }
@@ -782,7 +784,7 @@ void CircleConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Tangent");
-      CircleConstructionMethodTypeValue.Tangent->printSelf(outFile);
+      CircleConstructionMethodTypeValue->Tangent->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Tangent>\n");
     }
@@ -790,7 +792,7 @@ void CircleConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<TangentThrough");
-      CircleConstructionMethodTypeValue.TangentThrough->printSelf(outFile);
+      CircleConstructionMethodTypeValue->TangentThrough->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</TangentThrough>\n");
     }
@@ -798,7 +800,7 @@ void CircleConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Transform");
-      CircleConstructionMethodTypeValue.Transform->printSelf(outFile);
+      CircleConstructionMethodTypeValue->Transform->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Transform>\n");
     }
@@ -806,7 +808,7 @@ void CircleConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<FromCone");
-      CircleConstructionMethodTypeValue.FromCone->printSelf(outFile);
+      CircleConstructionMethodTypeValue->FromCone->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</FromCone>\n");
     }
@@ -814,7 +816,7 @@ void CircleConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<FromScan");
-      CircleConstructionMethodTypeValue.FromScan->printSelf(outFile);
+      CircleConstructionMethodTypeValue->FromScan->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</FromScan>\n");
     }
@@ -2058,7 +2060,7 @@ CircleFromConeTypeChoicePair::CircleFromConeTypeChoicePair() {}
 
 CircleFromConeTypeChoicePair::CircleFromConeTypeChoicePair(
  whichOne CircleFromConeTypeTypeIn,
- CircleFromConeTypeVal CircleFromConeTypeValueIn)
+ CircleFromConeTypeVal * CircleFromConeTypeValueIn)
 {
   CircleFromConeTypeType = CircleFromConeTypeTypeIn;
   CircleFromConeTypeValue = CircleFromConeTypeValueIn;
@@ -2068,9 +2070,10 @@ CircleFromConeTypeChoicePair::~CircleFromConeTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (CircleFromConeTypeType == DiameterE)
-    delete CircleFromConeTypeValue.Diameter;
+    delete CircleFromConeTypeValue->Diameter;
   else if (CircleFromConeTypeType == DistanceE)
-    delete CircleFromConeTypeValue.Distance;
+    delete CircleFromConeTypeValue->Distance;
+  delete CircleFromConeTypeValue;
   #endif
 }
 
@@ -2080,14 +2083,14 @@ void CircleFromConeTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Diameter");
-      CircleFromConeTypeValue.Diameter->printSelf(outFile);
+      CircleFromConeTypeValue->Diameter->printSelf(outFile);
       fprintf(outFile, "</Diameter>\n");
     }
   else if (CircleFromConeTypeType == DistanceE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Distance");
-      CircleFromConeTypeValue.Distance->printSelf(outFile);
+      CircleFromConeTypeValue->Distance->printSelf(outFile);
       fprintf(outFile, "</Distance>\n");
     }
 }
@@ -2298,7 +2301,7 @@ CircleMeasurementDeterminationTypeChoicePair::CircleMeasurementDeterminationType
 
 CircleMeasurementDeterminationTypeChoicePair::CircleMeasurementDeterminationTypeChoicePair(
  whichOne CircleMeasurementDeterminationTypeTypeIn,
- CircleMeasurementDeterminationTypeVal CircleMeasurementDeterminationTypeValueIn)
+ CircleMeasurementDeterminationTypeVal * CircleMeasurementDeterminationTypeValueIn)
 {
   CircleMeasurementDeterminationTypeType = CircleMeasurementDeterminationTypeTypeIn;
   CircleMeasurementDeterminationTypeValue = CircleMeasurementDeterminationTypeValueIn;
@@ -2308,9 +2311,10 @@ CircleMeasurementDeterminationTypeChoicePair::~CircleMeasurementDeterminationTyp
 {
   #ifndef NODESTRUCT
   if (CircleMeasurementDeterminationTypeType == CheckedE)
-    delete CircleMeasurementDeterminationTypeValue.Checked;
+    delete CircleMeasurementDeterminationTypeValue->Checked;
   else if (CircleMeasurementDeterminationTypeType == SetE)
-    delete CircleMeasurementDeterminationTypeValue.Set;
+    delete CircleMeasurementDeterminationTypeValue->Set;
+  delete CircleMeasurementDeterminationTypeValue;
   #endif
 }
 
@@ -2320,7 +2324,7 @@ void CircleMeasurementDeterminationTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Checked");
-      CircleMeasurementDeterminationTypeValue.Checked->printSelf(outFile);
+      CircleMeasurementDeterminationTypeValue->Checked->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Checked>\n");
     }
@@ -2328,7 +2332,7 @@ void CircleMeasurementDeterminationTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Set");
-      CircleMeasurementDeterminationTypeValue.Set->printSelf(outFile);
+      CircleMeasurementDeterminationTypeValue->Set->printSelf(outFile);
     }
 }
 
@@ -2991,7 +2995,7 @@ CircularArcCheckedTypeChoicePair::CircularArcCheckedTypeChoicePair() {}
 
 CircularArcCheckedTypeChoicePair::CircularArcCheckedTypeChoicePair(
  whichOne CircularArcCheckedTypeTypeIn,
- CircularArcCheckedTypeVal CircularArcCheckedTypeValueIn)
+ CircularArcCheckedTypeVal * CircularArcCheckedTypeValueIn)
 {
   CircularArcCheckedTypeType = CircularArcCheckedTypeTypeIn;
   CircularArcCheckedTypeValue = CircularArcCheckedTypeValueIn;
@@ -3001,9 +3005,10 @@ CircularArcCheckedTypeChoicePair::~CircularArcCheckedTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (CircularArcCheckedTypeType == MeasuredE)
-    delete CircularArcCheckedTypeValue.Measured;
+    delete CircularArcCheckedTypeValue->Measured;
   else if (CircularArcCheckedTypeType == ConstructedE)
-    delete CircularArcCheckedTypeValue.Constructed;
+    delete CircularArcCheckedTypeValue->Constructed;
+  delete CircularArcCheckedTypeValue;
   #endif
 }
 
@@ -3013,7 +3018,7 @@ void CircularArcCheckedTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Measured");
-      CircularArcCheckedTypeValue.Measured->printSelf(outFile);
+      CircularArcCheckedTypeValue->Measured->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Measured>\n");
     }
@@ -3021,7 +3026,7 @@ void CircularArcCheckedTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Constructed");
-      CircularArcCheckedTypeValue.Constructed->printSelf(outFile);
+      CircularArcCheckedTypeValue->Constructed->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Constructed>\n");
     }
@@ -3071,7 +3076,7 @@ CircularArcConstructionMethodTypeChoicePair::CircularArcConstructionMethodTypeCh
 
 CircularArcConstructionMethodTypeChoicePair::CircularArcConstructionMethodTypeChoicePair(
  whichOne CircularArcConstructionMethodTypeTypeIn,
- CircularArcConstructionMethodTypeVal CircularArcConstructionMethodTypeValueIn)
+ CircularArcConstructionMethodTypeVal * CircularArcConstructionMethodTypeValueIn)
 {
   CircularArcConstructionMethodTypeType = CircularArcConstructionMethodTypeTypeIn;
   CircularArcConstructionMethodTypeValue = CircularArcConstructionMethodTypeValueIn;
@@ -3081,23 +3086,24 @@ CircularArcConstructionMethodTypeChoicePair::~CircularArcConstructionMethodTypeC
 {
   #ifndef NODESTRUCT
   if (CircularArcConstructionMethodTypeType == BestFitE)
-    delete CircularArcConstructionMethodTypeValue.BestFit;
+    delete CircularArcConstructionMethodTypeValue->BestFit;
   else if (CircularArcConstructionMethodTypeType == IntersectionE)
-    delete CircularArcConstructionMethodTypeValue.Intersection;
+    delete CircularArcConstructionMethodTypeValue->Intersection;
   else if (CircularArcConstructionMethodTypeType == RecompensatedE)
-    delete CircularArcConstructionMethodTypeValue.Recompensated;
+    delete CircularArcConstructionMethodTypeValue->Recompensated;
   else if (CircularArcConstructionMethodTypeType == ProjectionE)
-    delete CircularArcConstructionMethodTypeValue.Projection;
+    delete CircularArcConstructionMethodTypeValue->Projection;
   else if (CircularArcConstructionMethodTypeType == CopyE)
-    delete CircularArcConstructionMethodTypeValue.Copy;
+    delete CircularArcConstructionMethodTypeValue->Copy;
   else if (CircularArcConstructionMethodTypeType == CastE)
-    delete CircularArcConstructionMethodTypeValue.Cast;
+    delete CircularArcConstructionMethodTypeValue->Cast;
   else if (CircularArcConstructionMethodTypeType == TransformE)
-    delete CircularArcConstructionMethodTypeValue.Transform;
+    delete CircularArcConstructionMethodTypeValue->Transform;
   else if (CircularArcConstructionMethodTypeType == FromScanE)
-    delete CircularArcConstructionMethodTypeValue.FromScan;
+    delete CircularArcConstructionMethodTypeValue->FromScan;
   else if (CircularArcConstructionMethodTypeType == ExtractE)
-    delete CircularArcConstructionMethodTypeValue.Extract;
+    delete CircularArcConstructionMethodTypeValue->Extract;
+  delete CircularArcConstructionMethodTypeValue;
   #endif
 }
 
@@ -3107,7 +3113,7 @@ void CircularArcConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<BestFit");
-      CircularArcConstructionMethodTypeValue.BestFit->printSelf(outFile);
+      CircularArcConstructionMethodTypeValue->BestFit->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</BestFit>\n");
     }
@@ -3115,7 +3121,7 @@ void CircularArcConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Intersection");
-      CircularArcConstructionMethodTypeValue.Intersection->printSelf(outFile);
+      CircularArcConstructionMethodTypeValue->Intersection->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Intersection>\n");
     }
@@ -3123,7 +3129,7 @@ void CircularArcConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Recompensated");
-      CircularArcConstructionMethodTypeValue.Recompensated->printSelf(outFile);
+      CircularArcConstructionMethodTypeValue->Recompensated->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Recompensated>\n");
     }
@@ -3131,7 +3137,7 @@ void CircularArcConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Projection");
-      CircularArcConstructionMethodTypeValue.Projection->printSelf(outFile);
+      CircularArcConstructionMethodTypeValue->Projection->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Projection>\n");
     }
@@ -3139,7 +3145,7 @@ void CircularArcConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Copy");
-      CircularArcConstructionMethodTypeValue.Copy->printSelf(outFile);
+      CircularArcConstructionMethodTypeValue->Copy->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Copy>\n");
     }
@@ -3147,7 +3153,7 @@ void CircularArcConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Cast");
-      CircularArcConstructionMethodTypeValue.Cast->printSelf(outFile);
+      CircularArcConstructionMethodTypeValue->Cast->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Cast>\n");
     }
@@ -3155,7 +3161,7 @@ void CircularArcConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Transform");
-      CircularArcConstructionMethodTypeValue.Transform->printSelf(outFile);
+      CircularArcConstructionMethodTypeValue->Transform->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Transform>\n");
     }
@@ -3163,7 +3169,7 @@ void CircularArcConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<FromScan");
-      CircularArcConstructionMethodTypeValue.FromScan->printSelf(outFile);
+      CircularArcConstructionMethodTypeValue->FromScan->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</FromScan>\n");
     }
@@ -3171,7 +3177,7 @@ void CircularArcConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Extract");
-      CircularArcConstructionMethodTypeValue.Extract->printSelf(outFile);
+      CircularArcConstructionMethodTypeValue->Extract->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Extract>\n");
     }
@@ -4617,7 +4623,7 @@ CircularArcMeasurementDeterminationTypeChoicePair::CircularArcMeasurementDetermi
 
 CircularArcMeasurementDeterminationTypeChoicePair::CircularArcMeasurementDeterminationTypeChoicePair(
  whichOne CircularArcMeasurementDeterminationTypeTypeIn,
- CircularArcMeasurementDeterminationTypeVal CircularArcMeasurementDeterminationTypeValueIn)
+ CircularArcMeasurementDeterminationTypeVal * CircularArcMeasurementDeterminationTypeValueIn)
 {
   CircularArcMeasurementDeterminationTypeType = CircularArcMeasurementDeterminationTypeTypeIn;
   CircularArcMeasurementDeterminationTypeValue = CircularArcMeasurementDeterminationTypeValueIn;
@@ -4627,9 +4633,10 @@ CircularArcMeasurementDeterminationTypeChoicePair::~CircularArcMeasurementDeterm
 {
   #ifndef NODESTRUCT
   if (CircularArcMeasurementDeterminationTypeType == CheckedE)
-    delete CircularArcMeasurementDeterminationTypeValue.Checked;
+    delete CircularArcMeasurementDeterminationTypeValue->Checked;
   else if (CircularArcMeasurementDeterminationTypeType == SetE)
-    delete CircularArcMeasurementDeterminationTypeValue.Set;
+    delete CircularArcMeasurementDeterminationTypeValue->Set;
+  delete CircularArcMeasurementDeterminationTypeValue;
   #endif
 }
 
@@ -4639,7 +4646,7 @@ void CircularArcMeasurementDeterminationTypeChoicePair::printSelf(FILE * outFile
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Checked");
-      CircularArcMeasurementDeterminationTypeValue.Checked->printSelf(outFile);
+      CircularArcMeasurementDeterminationTypeValue->Checked->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Checked>\n");
     }
@@ -4647,7 +4654,7 @@ void CircularArcMeasurementDeterminationTypeChoicePair::printSelf(FILE * outFile
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Set");
-      CircularArcMeasurementDeterminationTypeValue.Set->printSelf(outFile);
+      CircularArcMeasurementDeterminationTypeValue->Set->printSelf(outFile);
     }
 }
 
@@ -5158,7 +5165,7 @@ ConeCheckedTypeChoicePair::ConeCheckedTypeChoicePair() {}
 
 ConeCheckedTypeChoicePair::ConeCheckedTypeChoicePair(
  whichOne ConeCheckedTypeTypeIn,
- ConeCheckedTypeVal ConeCheckedTypeValueIn)
+ ConeCheckedTypeVal * ConeCheckedTypeValueIn)
 {
   ConeCheckedTypeType = ConeCheckedTypeTypeIn;
   ConeCheckedTypeValue = ConeCheckedTypeValueIn;
@@ -5168,9 +5175,10 @@ ConeCheckedTypeChoicePair::~ConeCheckedTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (ConeCheckedTypeType == MeasuredE)
-    delete ConeCheckedTypeValue.Measured;
+    delete ConeCheckedTypeValue->Measured;
   else if (ConeCheckedTypeType == ConstructedE)
-    delete ConeCheckedTypeValue.Constructed;
+    delete ConeCheckedTypeValue->Constructed;
+  delete ConeCheckedTypeValue;
   #endif
 }
 
@@ -5180,7 +5188,7 @@ void ConeCheckedTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Measured");
-      ConeCheckedTypeValue.Measured->printSelf(outFile);
+      ConeCheckedTypeValue->Measured->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Measured>\n");
     }
@@ -5188,7 +5196,7 @@ void ConeCheckedTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Constructed");
-      ConeCheckedTypeValue.Constructed->printSelf(outFile);
+      ConeCheckedTypeValue->Constructed->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Constructed>\n");
     }
@@ -5238,7 +5246,7 @@ ConeConstructionMethodTypeChoicePair::ConeConstructionMethodTypeChoicePair() {}
 
 ConeConstructionMethodTypeChoicePair::ConeConstructionMethodTypeChoicePair(
  whichOne ConeConstructionMethodTypeTypeIn,
- ConeConstructionMethodTypeVal ConeConstructionMethodTypeValueIn)
+ ConeConstructionMethodTypeVal * ConeConstructionMethodTypeValueIn)
 {
   ConeConstructionMethodTypeType = ConeConstructionMethodTypeTypeIn;
   ConeConstructionMethodTypeValue = ConeConstructionMethodTypeValueIn;
@@ -5248,17 +5256,18 @@ ConeConstructionMethodTypeChoicePair::~ConeConstructionMethodTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (ConeConstructionMethodTypeType == BestFitE)
-    delete ConeConstructionMethodTypeValue.BestFit;
+    delete ConeConstructionMethodTypeValue->BestFit;
   else if (ConeConstructionMethodTypeType == RecompensatedE)
-    delete ConeConstructionMethodTypeValue.Recompensated;
+    delete ConeConstructionMethodTypeValue->Recompensated;
   else if (ConeConstructionMethodTypeType == CopyE)
-    delete ConeConstructionMethodTypeValue.Copy;
+    delete ConeConstructionMethodTypeValue->Copy;
   else if (ConeConstructionMethodTypeType == CastE)
-    delete ConeConstructionMethodTypeValue.Cast;
+    delete ConeConstructionMethodTypeValue->Cast;
   else if (ConeConstructionMethodTypeType == TransformE)
-    delete ConeConstructionMethodTypeValue.Transform;
+    delete ConeConstructionMethodTypeValue->Transform;
   else if (ConeConstructionMethodTypeType == FromScanE)
-    delete ConeConstructionMethodTypeValue.FromScan;
+    delete ConeConstructionMethodTypeValue->FromScan;
+  delete ConeConstructionMethodTypeValue;
   #endif
 }
 
@@ -5268,7 +5277,7 @@ void ConeConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<BestFit");
-      ConeConstructionMethodTypeValue.BestFit->printSelf(outFile);
+      ConeConstructionMethodTypeValue->BestFit->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</BestFit>\n");
     }
@@ -5276,7 +5285,7 @@ void ConeConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Recompensated");
-      ConeConstructionMethodTypeValue.Recompensated->printSelf(outFile);
+      ConeConstructionMethodTypeValue->Recompensated->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Recompensated>\n");
     }
@@ -5284,7 +5293,7 @@ void ConeConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Copy");
-      ConeConstructionMethodTypeValue.Copy->printSelf(outFile);
+      ConeConstructionMethodTypeValue->Copy->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Copy>\n");
     }
@@ -5292,7 +5301,7 @@ void ConeConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Cast");
-      ConeConstructionMethodTypeValue.Cast->printSelf(outFile);
+      ConeConstructionMethodTypeValue->Cast->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Cast>\n");
     }
@@ -5300,7 +5309,7 @@ void ConeConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Transform");
-      ConeConstructionMethodTypeValue.Transform->printSelf(outFile);
+      ConeConstructionMethodTypeValue->Transform->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Transform>\n");
     }
@@ -5308,7 +5317,7 @@ void ConeConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<FromScan");
-      ConeConstructionMethodTypeValue.FromScan->printSelf(outFile);
+      ConeConstructionMethodTypeValue->FromScan->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</FromScan>\n");
     }
@@ -6645,7 +6654,7 @@ ConeMeasurementDeterminationTypeChoicePair::ConeMeasurementDeterminationTypeChoi
 
 ConeMeasurementDeterminationTypeChoicePair::ConeMeasurementDeterminationTypeChoicePair(
  whichOne ConeMeasurementDeterminationTypeTypeIn,
- ConeMeasurementDeterminationTypeVal ConeMeasurementDeterminationTypeValueIn)
+ ConeMeasurementDeterminationTypeVal * ConeMeasurementDeterminationTypeValueIn)
 {
   ConeMeasurementDeterminationTypeType = ConeMeasurementDeterminationTypeTypeIn;
   ConeMeasurementDeterminationTypeValue = ConeMeasurementDeterminationTypeValueIn;
@@ -6655,9 +6664,10 @@ ConeMeasurementDeterminationTypeChoicePair::~ConeMeasurementDeterminationTypeCho
 {
   #ifndef NODESTRUCT
   if (ConeMeasurementDeterminationTypeType == CheckedE)
-    delete ConeMeasurementDeterminationTypeValue.Checked;
+    delete ConeMeasurementDeterminationTypeValue->Checked;
   else if (ConeMeasurementDeterminationTypeType == SetE)
-    delete ConeMeasurementDeterminationTypeValue.Set;
+    delete ConeMeasurementDeterminationTypeValue->Set;
+  delete ConeMeasurementDeterminationTypeValue;
   #endif
 }
 
@@ -6667,7 +6677,7 @@ void ConeMeasurementDeterminationTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Checked");
-      ConeMeasurementDeterminationTypeValue.Checked->printSelf(outFile);
+      ConeMeasurementDeterminationTypeValue->Checked->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Checked>\n");
     }
@@ -6675,7 +6685,7 @@ void ConeMeasurementDeterminationTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Set");
-      ConeMeasurementDeterminationTypeValue.Set->printSelf(outFile);
+      ConeMeasurementDeterminationTypeValue->Set->printSelf(outFile);
     }
 }
 
@@ -7118,7 +7128,7 @@ ConicalSegmentCheckedTypeChoicePair::ConicalSegmentCheckedTypeChoicePair() {}
 
 ConicalSegmentCheckedTypeChoicePair::ConicalSegmentCheckedTypeChoicePair(
  whichOne ConicalSegmentCheckedTypeTypeIn,
- ConicalSegmentCheckedTypeVal ConicalSegmentCheckedTypeValueIn)
+ ConicalSegmentCheckedTypeVal * ConicalSegmentCheckedTypeValueIn)
 {
   ConicalSegmentCheckedTypeType = ConicalSegmentCheckedTypeTypeIn;
   ConicalSegmentCheckedTypeValue = ConicalSegmentCheckedTypeValueIn;
@@ -7128,9 +7138,10 @@ ConicalSegmentCheckedTypeChoicePair::~ConicalSegmentCheckedTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (ConicalSegmentCheckedTypeType == MeasuredE)
-    delete ConicalSegmentCheckedTypeValue.Measured;
+    delete ConicalSegmentCheckedTypeValue->Measured;
   else if (ConicalSegmentCheckedTypeType == ConstructedE)
-    delete ConicalSegmentCheckedTypeValue.Constructed;
+    delete ConicalSegmentCheckedTypeValue->Constructed;
+  delete ConicalSegmentCheckedTypeValue;
   #endif
 }
 
@@ -7140,7 +7151,7 @@ void ConicalSegmentCheckedTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Measured");
-      ConicalSegmentCheckedTypeValue.Measured->printSelf(outFile);
+      ConicalSegmentCheckedTypeValue->Measured->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Measured>\n");
     }
@@ -7148,7 +7159,7 @@ void ConicalSegmentCheckedTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Constructed");
-      ConicalSegmentCheckedTypeValue.Constructed->printSelf(outFile);
+      ConicalSegmentCheckedTypeValue->Constructed->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Constructed>\n");
     }
@@ -7198,7 +7209,7 @@ ConicalSegmentConstructionMethodTypeChoicePair::ConicalSegmentConstructionMethod
 
 ConicalSegmentConstructionMethodTypeChoicePair::ConicalSegmentConstructionMethodTypeChoicePair(
  whichOne ConicalSegmentConstructionMethodTypeTypeIn,
- ConicalSegmentConstructionMethodTypeVal ConicalSegmentConstructionMethodTypeValueIn)
+ ConicalSegmentConstructionMethodTypeVal * ConicalSegmentConstructionMethodTypeValueIn)
 {
   ConicalSegmentConstructionMethodTypeType = ConicalSegmentConstructionMethodTypeTypeIn;
   ConicalSegmentConstructionMethodTypeValue = ConicalSegmentConstructionMethodTypeValueIn;
@@ -7208,15 +7219,16 @@ ConicalSegmentConstructionMethodTypeChoicePair::~ConicalSegmentConstructionMetho
 {
   #ifndef NODESTRUCT
   if (ConicalSegmentConstructionMethodTypeType == BestFitE)
-    delete ConicalSegmentConstructionMethodTypeValue.BestFit;
+    delete ConicalSegmentConstructionMethodTypeValue->BestFit;
   else if (ConicalSegmentConstructionMethodTypeType == RecompensatedE)
-    delete ConicalSegmentConstructionMethodTypeValue.Recompensated;
+    delete ConicalSegmentConstructionMethodTypeValue->Recompensated;
   else if (ConicalSegmentConstructionMethodTypeType == CopyE)
-    delete ConicalSegmentConstructionMethodTypeValue.Copy;
+    delete ConicalSegmentConstructionMethodTypeValue->Copy;
   else if (ConicalSegmentConstructionMethodTypeType == CastE)
-    delete ConicalSegmentConstructionMethodTypeValue.Cast;
+    delete ConicalSegmentConstructionMethodTypeValue->Cast;
   else if (ConicalSegmentConstructionMethodTypeType == TransformE)
-    delete ConicalSegmentConstructionMethodTypeValue.Transform;
+    delete ConicalSegmentConstructionMethodTypeValue->Transform;
+  delete ConicalSegmentConstructionMethodTypeValue;
   #endif
 }
 
@@ -7226,7 +7238,7 @@ void ConicalSegmentConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<BestFit");
-      ConicalSegmentConstructionMethodTypeValue.BestFit->printSelf(outFile);
+      ConicalSegmentConstructionMethodTypeValue->BestFit->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</BestFit>\n");
     }
@@ -7234,7 +7246,7 @@ void ConicalSegmentConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Recompensated");
-      ConicalSegmentConstructionMethodTypeValue.Recompensated->printSelf(outFile);
+      ConicalSegmentConstructionMethodTypeValue->Recompensated->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Recompensated>\n");
     }
@@ -7242,7 +7254,7 @@ void ConicalSegmentConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Copy");
-      ConicalSegmentConstructionMethodTypeValue.Copy->printSelf(outFile);
+      ConicalSegmentConstructionMethodTypeValue->Copy->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Copy>\n");
     }
@@ -7250,7 +7262,7 @@ void ConicalSegmentConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Cast");
-      ConicalSegmentConstructionMethodTypeValue.Cast->printSelf(outFile);
+      ConicalSegmentConstructionMethodTypeValue->Cast->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Cast>\n");
     }
@@ -7258,7 +7270,7 @@ void ConicalSegmentConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Transform");
-      ConicalSegmentConstructionMethodTypeValue.Transform->printSelf(outFile);
+      ConicalSegmentConstructionMethodTypeValue->Transform->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Transform>\n");
     }
@@ -8525,7 +8537,7 @@ ConicalSegmentMeasurementDeterminationTypeChoicePair::ConicalSegmentMeasurementD
 
 ConicalSegmentMeasurementDeterminationTypeChoicePair::ConicalSegmentMeasurementDeterminationTypeChoicePair(
  whichOne ConicalSegmentMeasurementDeterminationTypeTypeIn,
- ConicalSegmentMeasurementDeterminationTypeVal ConicalSegmentMeasurementDeterminationTypeValueIn)
+ ConicalSegmentMeasurementDeterminationTypeVal * ConicalSegmentMeasurementDeterminationTypeValueIn)
 {
   ConicalSegmentMeasurementDeterminationTypeType = ConicalSegmentMeasurementDeterminationTypeTypeIn;
   ConicalSegmentMeasurementDeterminationTypeValue = ConicalSegmentMeasurementDeterminationTypeValueIn;
@@ -8535,9 +8547,10 @@ ConicalSegmentMeasurementDeterminationTypeChoicePair::~ConicalSegmentMeasurement
 {
   #ifndef NODESTRUCT
   if (ConicalSegmentMeasurementDeterminationTypeType == CheckedE)
-    delete ConicalSegmentMeasurementDeterminationTypeValue.Checked;
+    delete ConicalSegmentMeasurementDeterminationTypeValue->Checked;
   else if (ConicalSegmentMeasurementDeterminationTypeType == SetE)
-    delete ConicalSegmentMeasurementDeterminationTypeValue.Set;
+    delete ConicalSegmentMeasurementDeterminationTypeValue->Set;
+  delete ConicalSegmentMeasurementDeterminationTypeValue;
   #endif
 }
 
@@ -8547,7 +8560,7 @@ void ConicalSegmentMeasurementDeterminationTypeChoicePair::printSelf(FILE * outF
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Checked");
-      ConicalSegmentMeasurementDeterminationTypeValue.Checked->printSelf(outFile);
+      ConicalSegmentMeasurementDeterminationTypeValue->Checked->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Checked>\n");
     }
@@ -8555,7 +8568,7 @@ void ConicalSegmentMeasurementDeterminationTypeChoicePair::printSelf(FILE * outF
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Set");
-      ConicalSegmentMeasurementDeterminationTypeValue.Set->printSelf(outFile);
+      ConicalSegmentMeasurementDeterminationTypeValue->Set->printSelf(outFile);
     }
 }
 
@@ -9906,7 +9919,7 @@ CylinderCheckedTypeChoicePair::CylinderCheckedTypeChoicePair() {}
 
 CylinderCheckedTypeChoicePair::CylinderCheckedTypeChoicePair(
  whichOne CylinderCheckedTypeTypeIn,
- CylinderCheckedTypeVal CylinderCheckedTypeValueIn)
+ CylinderCheckedTypeVal * CylinderCheckedTypeValueIn)
 {
   CylinderCheckedTypeType = CylinderCheckedTypeTypeIn;
   CylinderCheckedTypeValue = CylinderCheckedTypeValueIn;
@@ -9916,9 +9929,10 @@ CylinderCheckedTypeChoicePair::~CylinderCheckedTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (CylinderCheckedTypeType == MeasuredE)
-    delete CylinderCheckedTypeValue.Measured;
+    delete CylinderCheckedTypeValue->Measured;
   else if (CylinderCheckedTypeType == ConstructedE)
-    delete CylinderCheckedTypeValue.Constructed;
+    delete CylinderCheckedTypeValue->Constructed;
+  delete CylinderCheckedTypeValue;
   #endif
 }
 
@@ -9928,7 +9942,7 @@ void CylinderCheckedTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Measured");
-      CylinderCheckedTypeValue.Measured->printSelf(outFile);
+      CylinderCheckedTypeValue->Measured->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Measured>\n");
     }
@@ -9936,7 +9950,7 @@ void CylinderCheckedTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Constructed");
-      CylinderCheckedTypeValue.Constructed->printSelf(outFile);
+      CylinderCheckedTypeValue->Constructed->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Constructed>\n");
     }
@@ -9986,7 +10000,7 @@ CylinderConstructionMethodTypeChoicePair::CylinderConstructionMethodTypeChoicePa
 
 CylinderConstructionMethodTypeChoicePair::CylinderConstructionMethodTypeChoicePair(
  whichOne CylinderConstructionMethodTypeTypeIn,
- CylinderConstructionMethodTypeVal CylinderConstructionMethodTypeValueIn)
+ CylinderConstructionMethodTypeVal * CylinderConstructionMethodTypeValueIn)
 {
   CylinderConstructionMethodTypeType = CylinderConstructionMethodTypeTypeIn;
   CylinderConstructionMethodTypeValue = CylinderConstructionMethodTypeValueIn;
@@ -9996,17 +10010,18 @@ CylinderConstructionMethodTypeChoicePair::~CylinderConstructionMethodTypeChoiceP
 {
   #ifndef NODESTRUCT
   if (CylinderConstructionMethodTypeType == BestFitE)
-    delete CylinderConstructionMethodTypeValue.BestFit;
+    delete CylinderConstructionMethodTypeValue->BestFit;
   else if (CylinderConstructionMethodTypeType == RecompensatedE)
-    delete CylinderConstructionMethodTypeValue.Recompensated;
+    delete CylinderConstructionMethodTypeValue->Recompensated;
   else if (CylinderConstructionMethodTypeType == CopyE)
-    delete CylinderConstructionMethodTypeValue.Copy;
+    delete CylinderConstructionMethodTypeValue->Copy;
   else if (CylinderConstructionMethodTypeType == CastE)
-    delete CylinderConstructionMethodTypeValue.Cast;
+    delete CylinderConstructionMethodTypeValue->Cast;
   else if (CylinderConstructionMethodTypeType == TransformE)
-    delete CylinderConstructionMethodTypeValue.Transform;
+    delete CylinderConstructionMethodTypeValue->Transform;
   else if (CylinderConstructionMethodTypeType == FromScanE)
-    delete CylinderConstructionMethodTypeValue.FromScan;
+    delete CylinderConstructionMethodTypeValue->FromScan;
+  delete CylinderConstructionMethodTypeValue;
   #endif
 }
 
@@ -10016,7 +10031,7 @@ void CylinderConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<BestFit");
-      CylinderConstructionMethodTypeValue.BestFit->printSelf(outFile);
+      CylinderConstructionMethodTypeValue->BestFit->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</BestFit>\n");
     }
@@ -10024,7 +10039,7 @@ void CylinderConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Recompensated");
-      CylinderConstructionMethodTypeValue.Recompensated->printSelf(outFile);
+      CylinderConstructionMethodTypeValue->Recompensated->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Recompensated>\n");
     }
@@ -10032,7 +10047,7 @@ void CylinderConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Copy");
-      CylinderConstructionMethodTypeValue.Copy->printSelf(outFile);
+      CylinderConstructionMethodTypeValue->Copy->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Copy>\n");
     }
@@ -10040,7 +10055,7 @@ void CylinderConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Cast");
-      CylinderConstructionMethodTypeValue.Cast->printSelf(outFile);
+      CylinderConstructionMethodTypeValue->Cast->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Cast>\n");
     }
@@ -10048,7 +10063,7 @@ void CylinderConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Transform");
-      CylinderConstructionMethodTypeValue.Transform->printSelf(outFile);
+      CylinderConstructionMethodTypeValue->Transform->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Transform>\n");
     }
@@ -10056,7 +10071,7 @@ void CylinderConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<FromScan");
-      CylinderConstructionMethodTypeValue.FromScan->printSelf(outFile);
+      CylinderConstructionMethodTypeValue->FromScan->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</FromScan>\n");
     }
@@ -11368,7 +11383,7 @@ CylinderMeasurementDeterminationTypeChoicePair::CylinderMeasurementDetermination
 
 CylinderMeasurementDeterminationTypeChoicePair::CylinderMeasurementDeterminationTypeChoicePair(
  whichOne CylinderMeasurementDeterminationTypeTypeIn,
- CylinderMeasurementDeterminationTypeVal CylinderMeasurementDeterminationTypeValueIn)
+ CylinderMeasurementDeterminationTypeVal * CylinderMeasurementDeterminationTypeValueIn)
 {
   CylinderMeasurementDeterminationTypeType = CylinderMeasurementDeterminationTypeTypeIn;
   CylinderMeasurementDeterminationTypeValue = CylinderMeasurementDeterminationTypeValueIn;
@@ -11378,9 +11393,10 @@ CylinderMeasurementDeterminationTypeChoicePair::~CylinderMeasurementDeterminatio
 {
   #ifndef NODESTRUCT
   if (CylinderMeasurementDeterminationTypeType == CheckedE)
-    delete CylinderMeasurementDeterminationTypeValue.Checked;
+    delete CylinderMeasurementDeterminationTypeValue->Checked;
   else if (CylinderMeasurementDeterminationTypeType == SetE)
-    delete CylinderMeasurementDeterminationTypeValue.Set;
+    delete CylinderMeasurementDeterminationTypeValue->Set;
+  delete CylinderMeasurementDeterminationTypeValue;
   #endif
 }
 
@@ -11390,7 +11406,7 @@ void CylinderMeasurementDeterminationTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Checked");
-      CylinderMeasurementDeterminationTypeValue.Checked->printSelf(outFile);
+      CylinderMeasurementDeterminationTypeValue->Checked->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Checked>\n");
     }
@@ -11398,7 +11414,7 @@ void CylinderMeasurementDeterminationTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Set");
-      CylinderMeasurementDeterminationTypeValue.Set->printSelf(outFile);
+      CylinderMeasurementDeterminationTypeValue->Set->printSelf(outFile);
     }
 }
 
@@ -11841,7 +11857,7 @@ CylindricalSegmentCheckedTypeChoicePair::CylindricalSegmentCheckedTypeChoicePair
 
 CylindricalSegmentCheckedTypeChoicePair::CylindricalSegmentCheckedTypeChoicePair(
  whichOne CylindricalSegmentCheckedTypeTypeIn,
- CylindricalSegmentCheckedTypeVal CylindricalSegmentCheckedTypeValueIn)
+ CylindricalSegmentCheckedTypeVal * CylindricalSegmentCheckedTypeValueIn)
 {
   CylindricalSegmentCheckedTypeType = CylindricalSegmentCheckedTypeTypeIn;
   CylindricalSegmentCheckedTypeValue = CylindricalSegmentCheckedTypeValueIn;
@@ -11851,9 +11867,10 @@ CylindricalSegmentCheckedTypeChoicePair::~CylindricalSegmentCheckedTypeChoicePai
 {
   #ifndef NODESTRUCT
   if (CylindricalSegmentCheckedTypeType == MeasuredE)
-    delete CylindricalSegmentCheckedTypeValue.Measured;
+    delete CylindricalSegmentCheckedTypeValue->Measured;
   else if (CylindricalSegmentCheckedTypeType == ConstructedE)
-    delete CylindricalSegmentCheckedTypeValue.Constructed;
+    delete CylindricalSegmentCheckedTypeValue->Constructed;
+  delete CylindricalSegmentCheckedTypeValue;
   #endif
 }
 
@@ -11863,7 +11880,7 @@ void CylindricalSegmentCheckedTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Measured");
-      CylindricalSegmentCheckedTypeValue.Measured->printSelf(outFile);
+      CylindricalSegmentCheckedTypeValue->Measured->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Measured>\n");
     }
@@ -11871,7 +11888,7 @@ void CylindricalSegmentCheckedTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Constructed");
-      CylindricalSegmentCheckedTypeValue.Constructed->printSelf(outFile);
+      CylindricalSegmentCheckedTypeValue->Constructed->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Constructed>\n");
     }
@@ -11921,7 +11938,7 @@ CylindricalSegmentConstructionMethodTypeChoicePair::CylindricalSegmentConstructi
 
 CylindricalSegmentConstructionMethodTypeChoicePair::CylindricalSegmentConstructionMethodTypeChoicePair(
  whichOne CylindricalSegmentConstructionMethodTypeTypeIn,
- CylindricalSegmentConstructionMethodTypeVal CylindricalSegmentConstructionMethodTypeValueIn)
+ CylindricalSegmentConstructionMethodTypeVal * CylindricalSegmentConstructionMethodTypeValueIn)
 {
   CylindricalSegmentConstructionMethodTypeType = CylindricalSegmentConstructionMethodTypeTypeIn;
   CylindricalSegmentConstructionMethodTypeValue = CylindricalSegmentConstructionMethodTypeValueIn;
@@ -11931,15 +11948,16 @@ CylindricalSegmentConstructionMethodTypeChoicePair::~CylindricalSegmentConstruct
 {
   #ifndef NODESTRUCT
   if (CylindricalSegmentConstructionMethodTypeType == BestFitE)
-    delete CylindricalSegmentConstructionMethodTypeValue.BestFit;
+    delete CylindricalSegmentConstructionMethodTypeValue->BestFit;
   else if (CylindricalSegmentConstructionMethodTypeType == RecompensatedE)
-    delete CylindricalSegmentConstructionMethodTypeValue.Recompensated;
+    delete CylindricalSegmentConstructionMethodTypeValue->Recompensated;
   else if (CylindricalSegmentConstructionMethodTypeType == CopyE)
-    delete CylindricalSegmentConstructionMethodTypeValue.Copy;
+    delete CylindricalSegmentConstructionMethodTypeValue->Copy;
   else if (CylindricalSegmentConstructionMethodTypeType == CastE)
-    delete CylindricalSegmentConstructionMethodTypeValue.Cast;
+    delete CylindricalSegmentConstructionMethodTypeValue->Cast;
   else if (CylindricalSegmentConstructionMethodTypeType == TransformE)
-    delete CylindricalSegmentConstructionMethodTypeValue.Transform;
+    delete CylindricalSegmentConstructionMethodTypeValue->Transform;
+  delete CylindricalSegmentConstructionMethodTypeValue;
   #endif
 }
 
@@ -11949,7 +11967,7 @@ void CylindricalSegmentConstructionMethodTypeChoicePair::printSelf(FILE * outFil
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<BestFit");
-      CylindricalSegmentConstructionMethodTypeValue.BestFit->printSelf(outFile);
+      CylindricalSegmentConstructionMethodTypeValue->BestFit->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</BestFit>\n");
     }
@@ -11957,7 +11975,7 @@ void CylindricalSegmentConstructionMethodTypeChoicePair::printSelf(FILE * outFil
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Recompensated");
-      CylindricalSegmentConstructionMethodTypeValue.Recompensated->printSelf(outFile);
+      CylindricalSegmentConstructionMethodTypeValue->Recompensated->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Recompensated>\n");
     }
@@ -11965,7 +11983,7 @@ void CylindricalSegmentConstructionMethodTypeChoicePair::printSelf(FILE * outFil
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Copy");
-      CylindricalSegmentConstructionMethodTypeValue.Copy->printSelf(outFile);
+      CylindricalSegmentConstructionMethodTypeValue->Copy->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Copy>\n");
     }
@@ -11973,7 +11991,7 @@ void CylindricalSegmentConstructionMethodTypeChoicePair::printSelf(FILE * outFil
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Cast");
-      CylindricalSegmentConstructionMethodTypeValue.Cast->printSelf(outFile);
+      CylindricalSegmentConstructionMethodTypeValue->Cast->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Cast>\n");
     }
@@ -11981,7 +11999,7 @@ void CylindricalSegmentConstructionMethodTypeChoicePair::printSelf(FILE * outFil
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Transform");
-      CylindricalSegmentConstructionMethodTypeValue.Transform->printSelf(outFile);
+      CylindricalSegmentConstructionMethodTypeValue->Transform->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Transform>\n");
     }
@@ -13223,7 +13241,7 @@ CylindricalSegmentMeasurementDeterminationTypeChoicePair::CylindricalSegmentMeas
 
 CylindricalSegmentMeasurementDeterminationTypeChoicePair::CylindricalSegmentMeasurementDeterminationTypeChoicePair(
  whichOne CylindricalSegmentMeasurementDeterminationTypeTypeIn,
- CylindricalSegmentMeasurementDeterminationTypeVal CylindricalSegmentMeasurementDeterminationTypeValueIn)
+ CylindricalSegmentMeasurementDeterminationTypeVal * CylindricalSegmentMeasurementDeterminationTypeValueIn)
 {
   CylindricalSegmentMeasurementDeterminationTypeType = CylindricalSegmentMeasurementDeterminationTypeTypeIn;
   CylindricalSegmentMeasurementDeterminationTypeValue = CylindricalSegmentMeasurementDeterminationTypeValueIn;
@@ -13233,9 +13251,10 @@ CylindricalSegmentMeasurementDeterminationTypeChoicePair::~CylindricalSegmentMea
 {
   #ifndef NODESTRUCT
   if (CylindricalSegmentMeasurementDeterminationTypeType == CheckedE)
-    delete CylindricalSegmentMeasurementDeterminationTypeValue.Checked;
+    delete CylindricalSegmentMeasurementDeterminationTypeValue->Checked;
   else if (CylindricalSegmentMeasurementDeterminationTypeType == SetE)
-    delete CylindricalSegmentMeasurementDeterminationTypeValue.Set;
+    delete CylindricalSegmentMeasurementDeterminationTypeValue->Set;
+  delete CylindricalSegmentMeasurementDeterminationTypeValue;
   #endif
 }
 
@@ -13245,7 +13264,7 @@ void CylindricalSegmentMeasurementDeterminationTypeChoicePair::printSelf(FILE * 
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Checked");
-      CylindricalSegmentMeasurementDeterminationTypeValue.Checked->printSelf(outFile);
+      CylindricalSegmentMeasurementDeterminationTypeValue->Checked->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Checked>\n");
     }
@@ -13253,7 +13272,7 @@ void CylindricalSegmentMeasurementDeterminationTypeChoicePair::printSelf(FILE * 
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Set");
-      CylindricalSegmentMeasurementDeterminationTypeValue.Set->printSelf(outFile);
+      CylindricalSegmentMeasurementDeterminationTypeValue->Set->printSelf(outFile);
     }
 }
 
@@ -15581,7 +15600,7 @@ EdgePointCheckedTypeChoicePair::EdgePointCheckedTypeChoicePair() {}
 
 EdgePointCheckedTypeChoicePair::EdgePointCheckedTypeChoicePair(
  whichOne EdgePointCheckedTypeTypeIn,
- EdgePointCheckedTypeVal EdgePointCheckedTypeValueIn)
+ EdgePointCheckedTypeVal * EdgePointCheckedTypeValueIn)
 {
   EdgePointCheckedTypeType = EdgePointCheckedTypeTypeIn;
   EdgePointCheckedTypeValue = EdgePointCheckedTypeValueIn;
@@ -15591,9 +15610,10 @@ EdgePointCheckedTypeChoicePair::~EdgePointCheckedTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (EdgePointCheckedTypeType == MeasuredE)
-    delete EdgePointCheckedTypeValue.Measured;
+    delete EdgePointCheckedTypeValue->Measured;
   else if (EdgePointCheckedTypeType == ConstructedE)
-    delete EdgePointCheckedTypeValue.Constructed;
+    delete EdgePointCheckedTypeValue->Constructed;
+  delete EdgePointCheckedTypeValue;
   #endif
 }
 
@@ -15603,7 +15623,7 @@ void EdgePointCheckedTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Measured");
-      EdgePointCheckedTypeValue.Measured->printSelf(outFile);
+      EdgePointCheckedTypeValue->Measured->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Measured>\n");
     }
@@ -15611,7 +15631,7 @@ void EdgePointCheckedTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Constructed");
-      EdgePointCheckedTypeValue.Constructed->printSelf(outFile);
+      EdgePointCheckedTypeValue->Constructed->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Constructed>\n");
     }
@@ -15661,7 +15681,7 @@ EdgePointConstructionMethodTypeChoicePair::EdgePointConstructionMethodTypeChoice
 
 EdgePointConstructionMethodTypeChoicePair::EdgePointConstructionMethodTypeChoicePair(
  whichOne EdgePointConstructionMethodTypeTypeIn,
- EdgePointConstructionMethodTypeVal EdgePointConstructionMethodTypeValueIn)
+ EdgePointConstructionMethodTypeVal * EdgePointConstructionMethodTypeValueIn)
 {
   EdgePointConstructionMethodTypeType = EdgePointConstructionMethodTypeTypeIn;
   EdgePointConstructionMethodTypeValue = EdgePointConstructionMethodTypeValueIn;
@@ -15671,13 +15691,14 @@ EdgePointConstructionMethodTypeChoicePair::~EdgePointConstructionMethodTypeChoic
 {
   #ifndef NODESTRUCT
   if (EdgePointConstructionMethodTypeType == CopyE)
-    delete EdgePointConstructionMethodTypeValue.Copy;
+    delete EdgePointConstructionMethodTypeValue->Copy;
   else if (EdgePointConstructionMethodTypeType == CastE)
-    delete EdgePointConstructionMethodTypeValue.Cast;
+    delete EdgePointConstructionMethodTypeValue->Cast;
   else if (EdgePointConstructionMethodTypeType == TransformE)
-    delete EdgePointConstructionMethodTypeValue.Transform;
+    delete EdgePointConstructionMethodTypeValue->Transform;
   else if (EdgePointConstructionMethodTypeType == FromScanE)
-    delete EdgePointConstructionMethodTypeValue.FromScan;
+    delete EdgePointConstructionMethodTypeValue->FromScan;
+  delete EdgePointConstructionMethodTypeValue;
   #endif
 }
 
@@ -15687,7 +15708,7 @@ void EdgePointConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Copy");
-      EdgePointConstructionMethodTypeValue.Copy->printSelf(outFile);
+      EdgePointConstructionMethodTypeValue->Copy->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Copy>\n");
     }
@@ -15695,7 +15716,7 @@ void EdgePointConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Cast");
-      EdgePointConstructionMethodTypeValue.Cast->printSelf(outFile);
+      EdgePointConstructionMethodTypeValue->Cast->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Cast>\n");
     }
@@ -15703,7 +15724,7 @@ void EdgePointConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Transform");
-      EdgePointConstructionMethodTypeValue.Transform->printSelf(outFile);
+      EdgePointConstructionMethodTypeValue->Transform->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Transform>\n");
     }
@@ -15711,7 +15732,7 @@ void EdgePointConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<FromScan");
-      EdgePointConstructionMethodTypeValue.FromScan->printSelf(outFile);
+      EdgePointConstructionMethodTypeValue->FromScan->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</FromScan>\n");
     }
@@ -16948,7 +16969,7 @@ EdgePointMeasurementDeterminationTypeChoicePair::EdgePointMeasurementDeterminati
 
 EdgePointMeasurementDeterminationTypeChoicePair::EdgePointMeasurementDeterminationTypeChoicePair(
  whichOne EdgePointMeasurementDeterminationTypeTypeIn,
- EdgePointMeasurementDeterminationTypeVal EdgePointMeasurementDeterminationTypeValueIn)
+ EdgePointMeasurementDeterminationTypeVal * EdgePointMeasurementDeterminationTypeValueIn)
 {
   EdgePointMeasurementDeterminationTypeType = EdgePointMeasurementDeterminationTypeTypeIn;
   EdgePointMeasurementDeterminationTypeValue = EdgePointMeasurementDeterminationTypeValueIn;
@@ -16958,9 +16979,10 @@ EdgePointMeasurementDeterminationTypeChoicePair::~EdgePointMeasurementDeterminat
 {
   #ifndef NODESTRUCT
   if (EdgePointMeasurementDeterminationTypeType == CheckedE)
-    delete EdgePointMeasurementDeterminationTypeValue.Checked;
+    delete EdgePointMeasurementDeterminationTypeValue->Checked;
   else if (EdgePointMeasurementDeterminationTypeType == SetE)
-    delete EdgePointMeasurementDeterminationTypeValue.Set;
+    delete EdgePointMeasurementDeterminationTypeValue->Set;
+  delete EdgePointMeasurementDeterminationTypeValue;
   #endif
 }
 
@@ -16970,7 +16992,7 @@ void EdgePointMeasurementDeterminationTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Checked");
-      EdgePointMeasurementDeterminationTypeValue.Checked->printSelf(outFile);
+      EdgePointMeasurementDeterminationTypeValue->Checked->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Checked>\n");
     }
@@ -16978,7 +17000,7 @@ void EdgePointMeasurementDeterminationTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Set");
-      EdgePointMeasurementDeterminationTypeValue.Set->printSelf(outFile);
+      EdgePointMeasurementDeterminationTypeValue->Set->printSelf(outFile);
     }
 }
 
@@ -17368,7 +17390,7 @@ EllipseCheckedTypeChoicePair::EllipseCheckedTypeChoicePair() {}
 
 EllipseCheckedTypeChoicePair::EllipseCheckedTypeChoicePair(
  whichOne EllipseCheckedTypeTypeIn,
- EllipseCheckedTypeVal EllipseCheckedTypeValueIn)
+ EllipseCheckedTypeVal * EllipseCheckedTypeValueIn)
 {
   EllipseCheckedTypeType = EllipseCheckedTypeTypeIn;
   EllipseCheckedTypeValue = EllipseCheckedTypeValueIn;
@@ -17378,9 +17400,10 @@ EllipseCheckedTypeChoicePair::~EllipseCheckedTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (EllipseCheckedTypeType == MeasuredE)
-    delete EllipseCheckedTypeValue.Measured;
+    delete EllipseCheckedTypeValue->Measured;
   else if (EllipseCheckedTypeType == ConstructedE)
-    delete EllipseCheckedTypeValue.Constructed;
+    delete EllipseCheckedTypeValue->Constructed;
+  delete EllipseCheckedTypeValue;
   #endif
 }
 
@@ -17390,7 +17413,7 @@ void EllipseCheckedTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Measured");
-      EllipseCheckedTypeValue.Measured->printSelf(outFile);
+      EllipseCheckedTypeValue->Measured->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Measured>\n");
     }
@@ -17398,7 +17421,7 @@ void EllipseCheckedTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Constructed");
-      EllipseCheckedTypeValue.Constructed->printSelf(outFile);
+      EllipseCheckedTypeValue->Constructed->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Constructed>\n");
     }
@@ -17448,7 +17471,7 @@ EllipseConstructionMethodTypeChoicePair::EllipseConstructionMethodTypeChoicePair
 
 EllipseConstructionMethodTypeChoicePair::EllipseConstructionMethodTypeChoicePair(
  whichOne EllipseConstructionMethodTypeTypeIn,
- EllipseConstructionMethodTypeVal EllipseConstructionMethodTypeValueIn)
+ EllipseConstructionMethodTypeVal * EllipseConstructionMethodTypeValueIn)
 {
   EllipseConstructionMethodTypeType = EllipseConstructionMethodTypeTypeIn;
   EllipseConstructionMethodTypeValue = EllipseConstructionMethodTypeValueIn;
@@ -17458,21 +17481,22 @@ EllipseConstructionMethodTypeChoicePair::~EllipseConstructionMethodTypeChoicePai
 {
   #ifndef NODESTRUCT
   if (EllipseConstructionMethodTypeType == BestFitE)
-    delete EllipseConstructionMethodTypeValue.BestFit;
+    delete EllipseConstructionMethodTypeValue->BestFit;
   else if (EllipseConstructionMethodTypeType == RecompensatedE)
-    delete EllipseConstructionMethodTypeValue.Recompensated;
+    delete EllipseConstructionMethodTypeValue->Recompensated;
   else if (EllipseConstructionMethodTypeType == IntersectionE)
-    delete EllipseConstructionMethodTypeValue.Intersection;
+    delete EllipseConstructionMethodTypeValue->Intersection;
   else if (EllipseConstructionMethodTypeType == ProjectionE)
-    delete EllipseConstructionMethodTypeValue.Projection;
+    delete EllipseConstructionMethodTypeValue->Projection;
   else if (EllipseConstructionMethodTypeType == CopyE)
-    delete EllipseConstructionMethodTypeValue.Copy;
+    delete EllipseConstructionMethodTypeValue->Copy;
   else if (EllipseConstructionMethodTypeType == CastE)
-    delete EllipseConstructionMethodTypeValue.Cast;
+    delete EllipseConstructionMethodTypeValue->Cast;
   else if (EllipseConstructionMethodTypeType == TransformE)
-    delete EllipseConstructionMethodTypeValue.Transform;
+    delete EllipseConstructionMethodTypeValue->Transform;
   else if (EllipseConstructionMethodTypeType == FromScanE)
-    delete EllipseConstructionMethodTypeValue.FromScan;
+    delete EllipseConstructionMethodTypeValue->FromScan;
+  delete EllipseConstructionMethodTypeValue;
   #endif
 }
 
@@ -17482,7 +17506,7 @@ void EllipseConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<BestFit");
-      EllipseConstructionMethodTypeValue.BestFit->printSelf(outFile);
+      EllipseConstructionMethodTypeValue->BestFit->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</BestFit>\n");
     }
@@ -17490,7 +17514,7 @@ void EllipseConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Recompensated");
-      EllipseConstructionMethodTypeValue.Recompensated->printSelf(outFile);
+      EllipseConstructionMethodTypeValue->Recompensated->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Recompensated>\n");
     }
@@ -17498,7 +17522,7 @@ void EllipseConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Intersection");
-      EllipseConstructionMethodTypeValue.Intersection->printSelf(outFile);
+      EllipseConstructionMethodTypeValue->Intersection->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Intersection>\n");
     }
@@ -17506,7 +17530,7 @@ void EllipseConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Projection");
-      EllipseConstructionMethodTypeValue.Projection->printSelf(outFile);
+      EllipseConstructionMethodTypeValue->Projection->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Projection>\n");
     }
@@ -17514,7 +17538,7 @@ void EllipseConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Copy");
-      EllipseConstructionMethodTypeValue.Copy->printSelf(outFile);
+      EllipseConstructionMethodTypeValue->Copy->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Copy>\n");
     }
@@ -17522,7 +17546,7 @@ void EllipseConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Cast");
-      EllipseConstructionMethodTypeValue.Cast->printSelf(outFile);
+      EllipseConstructionMethodTypeValue->Cast->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Cast>\n");
     }
@@ -17530,7 +17554,7 @@ void EllipseConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Transform");
-      EllipseConstructionMethodTypeValue.Transform->printSelf(outFile);
+      EllipseConstructionMethodTypeValue->Transform->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Transform>\n");
     }
@@ -17538,7 +17562,7 @@ void EllipseConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<FromScan");
-      EllipseConstructionMethodTypeValue.FromScan->printSelf(outFile);
+      EllipseConstructionMethodTypeValue->FromScan->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</FromScan>\n");
     }
@@ -18917,7 +18941,7 @@ EllipseMeasurementDeterminationTypeChoicePair::EllipseMeasurementDeterminationTy
 
 EllipseMeasurementDeterminationTypeChoicePair::EllipseMeasurementDeterminationTypeChoicePair(
  whichOne EllipseMeasurementDeterminationTypeTypeIn,
- EllipseMeasurementDeterminationTypeVal EllipseMeasurementDeterminationTypeValueIn)
+ EllipseMeasurementDeterminationTypeVal * EllipseMeasurementDeterminationTypeValueIn)
 {
   EllipseMeasurementDeterminationTypeType = EllipseMeasurementDeterminationTypeTypeIn;
   EllipseMeasurementDeterminationTypeValue = EllipseMeasurementDeterminationTypeValueIn;
@@ -18927,9 +18951,10 @@ EllipseMeasurementDeterminationTypeChoicePair::~EllipseMeasurementDeterminationT
 {
   #ifndef NODESTRUCT
   if (EllipseMeasurementDeterminationTypeType == CheckedE)
-    delete EllipseMeasurementDeterminationTypeValue.Checked;
+    delete EllipseMeasurementDeterminationTypeValue->Checked;
   else if (EllipseMeasurementDeterminationTypeType == SetE)
-    delete EllipseMeasurementDeterminationTypeValue.Set;
+    delete EllipseMeasurementDeterminationTypeValue->Set;
+  delete EllipseMeasurementDeterminationTypeValue;
   #endif
 }
 
@@ -18939,7 +18964,7 @@ void EllipseMeasurementDeterminationTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Checked");
-      EllipseMeasurementDeterminationTypeValue.Checked->printSelf(outFile);
+      EllipseMeasurementDeterminationTypeValue->Checked->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Checked>\n");
     }
@@ -18947,7 +18972,7 @@ void EllipseMeasurementDeterminationTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Set");
-      EllipseMeasurementDeterminationTypeValue.Set->printSelf(outFile);
+      EllipseMeasurementDeterminationTypeValue->Set->printSelf(outFile);
     }
 }
 
@@ -19458,7 +19483,7 @@ EllipticalArcCheckedTypeChoicePair::EllipticalArcCheckedTypeChoicePair() {}
 
 EllipticalArcCheckedTypeChoicePair::EllipticalArcCheckedTypeChoicePair(
  whichOne EllipticalArcCheckedTypeTypeIn,
- EllipticalArcCheckedTypeVal EllipticalArcCheckedTypeValueIn)
+ EllipticalArcCheckedTypeVal * EllipticalArcCheckedTypeValueIn)
 {
   EllipticalArcCheckedTypeType = EllipticalArcCheckedTypeTypeIn;
   EllipticalArcCheckedTypeValue = EllipticalArcCheckedTypeValueIn;
@@ -19468,9 +19493,10 @@ EllipticalArcCheckedTypeChoicePair::~EllipticalArcCheckedTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (EllipticalArcCheckedTypeType == MeasuredE)
-    delete EllipticalArcCheckedTypeValue.Measured;
+    delete EllipticalArcCheckedTypeValue->Measured;
   else if (EllipticalArcCheckedTypeType == ConstructedE)
-    delete EllipticalArcCheckedTypeValue.Constructed;
+    delete EllipticalArcCheckedTypeValue->Constructed;
+  delete EllipticalArcCheckedTypeValue;
   #endif
 }
 
@@ -19480,7 +19506,7 @@ void EllipticalArcCheckedTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Measured");
-      EllipticalArcCheckedTypeValue.Measured->printSelf(outFile);
+      EllipticalArcCheckedTypeValue->Measured->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Measured>\n");
     }
@@ -19488,7 +19514,7 @@ void EllipticalArcCheckedTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Constructed");
-      EllipticalArcCheckedTypeValue.Constructed->printSelf(outFile);
+      EllipticalArcCheckedTypeValue->Constructed->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Constructed>\n");
     }
@@ -19538,7 +19564,7 @@ EllipticalArcConstructionMethodTypeChoicePair::EllipticalArcConstructionMethodTy
 
 EllipticalArcConstructionMethodTypeChoicePair::EllipticalArcConstructionMethodTypeChoicePair(
  whichOne EllipticalArcConstructionMethodTypeTypeIn,
- EllipticalArcConstructionMethodTypeVal EllipticalArcConstructionMethodTypeValueIn)
+ EllipticalArcConstructionMethodTypeVal * EllipticalArcConstructionMethodTypeValueIn)
 {
   EllipticalArcConstructionMethodTypeType = EllipticalArcConstructionMethodTypeTypeIn;
   EllipticalArcConstructionMethodTypeValue = EllipticalArcConstructionMethodTypeValueIn;
@@ -19548,21 +19574,22 @@ EllipticalArcConstructionMethodTypeChoicePair::~EllipticalArcConstructionMethodT
 {
   #ifndef NODESTRUCT
   if (EllipticalArcConstructionMethodTypeType == BestFitE)
-    delete EllipticalArcConstructionMethodTypeValue.BestFit;
+    delete EllipticalArcConstructionMethodTypeValue->BestFit;
   else if (EllipticalArcConstructionMethodTypeType == RecompensatedE)
-    delete EllipticalArcConstructionMethodTypeValue.Recompensated;
+    delete EllipticalArcConstructionMethodTypeValue->Recompensated;
   else if (EllipticalArcConstructionMethodTypeType == IntersectionE)
-    delete EllipticalArcConstructionMethodTypeValue.Intersection;
+    delete EllipticalArcConstructionMethodTypeValue->Intersection;
   else if (EllipticalArcConstructionMethodTypeType == ProjectionE)
-    delete EllipticalArcConstructionMethodTypeValue.Projection;
+    delete EllipticalArcConstructionMethodTypeValue->Projection;
   else if (EllipticalArcConstructionMethodTypeType == CopyE)
-    delete EllipticalArcConstructionMethodTypeValue.Copy;
+    delete EllipticalArcConstructionMethodTypeValue->Copy;
   else if (EllipticalArcConstructionMethodTypeType == CastE)
-    delete EllipticalArcConstructionMethodTypeValue.Cast;
+    delete EllipticalArcConstructionMethodTypeValue->Cast;
   else if (EllipticalArcConstructionMethodTypeType == TransformE)
-    delete EllipticalArcConstructionMethodTypeValue.Transform;
+    delete EllipticalArcConstructionMethodTypeValue->Transform;
   else if (EllipticalArcConstructionMethodTypeType == FromScanE)
-    delete EllipticalArcConstructionMethodTypeValue.FromScan;
+    delete EllipticalArcConstructionMethodTypeValue->FromScan;
+  delete EllipticalArcConstructionMethodTypeValue;
   #endif
 }
 
@@ -19572,7 +19599,7 @@ void EllipticalArcConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<BestFit");
-      EllipticalArcConstructionMethodTypeValue.BestFit->printSelf(outFile);
+      EllipticalArcConstructionMethodTypeValue->BestFit->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</BestFit>\n");
     }
@@ -19580,7 +19607,7 @@ void EllipticalArcConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Recompensated");
-      EllipticalArcConstructionMethodTypeValue.Recompensated->printSelf(outFile);
+      EllipticalArcConstructionMethodTypeValue->Recompensated->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Recompensated>\n");
     }
@@ -19588,7 +19615,7 @@ void EllipticalArcConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Intersection");
-      EllipticalArcConstructionMethodTypeValue.Intersection->printSelf(outFile);
+      EllipticalArcConstructionMethodTypeValue->Intersection->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Intersection>\n");
     }
@@ -19596,7 +19623,7 @@ void EllipticalArcConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Projection");
-      EllipticalArcConstructionMethodTypeValue.Projection->printSelf(outFile);
+      EllipticalArcConstructionMethodTypeValue->Projection->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Projection>\n");
     }
@@ -19604,7 +19631,7 @@ void EllipticalArcConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Copy");
-      EllipticalArcConstructionMethodTypeValue.Copy->printSelf(outFile);
+      EllipticalArcConstructionMethodTypeValue->Copy->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Copy>\n");
     }
@@ -19612,7 +19639,7 @@ void EllipticalArcConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Cast");
-      EllipticalArcConstructionMethodTypeValue.Cast->printSelf(outFile);
+      EllipticalArcConstructionMethodTypeValue->Cast->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Cast>\n");
     }
@@ -19620,7 +19647,7 @@ void EllipticalArcConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Transform");
-      EllipticalArcConstructionMethodTypeValue.Transform->printSelf(outFile);
+      EllipticalArcConstructionMethodTypeValue->Transform->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Transform>\n");
     }
@@ -19628,7 +19655,7 @@ void EllipticalArcConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<FromScan");
-      EllipticalArcConstructionMethodTypeValue.FromScan->printSelf(outFile);
+      EllipticalArcConstructionMethodTypeValue->FromScan->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</FromScan>\n");
     }
@@ -21004,7 +21031,7 @@ EllipticalArcMeasurementDeterminationTypeChoicePair::EllipticalArcMeasurementDet
 
 EllipticalArcMeasurementDeterminationTypeChoicePair::EllipticalArcMeasurementDeterminationTypeChoicePair(
  whichOne EllipticalArcMeasurementDeterminationTypeTypeIn,
- EllipticalArcMeasurementDeterminationTypeVal EllipticalArcMeasurementDeterminationTypeValueIn)
+ EllipticalArcMeasurementDeterminationTypeVal * EllipticalArcMeasurementDeterminationTypeValueIn)
 {
   EllipticalArcMeasurementDeterminationTypeType = EllipticalArcMeasurementDeterminationTypeTypeIn;
   EllipticalArcMeasurementDeterminationTypeValue = EllipticalArcMeasurementDeterminationTypeValueIn;
@@ -21014,9 +21041,10 @@ EllipticalArcMeasurementDeterminationTypeChoicePair::~EllipticalArcMeasurementDe
 {
   #ifndef NODESTRUCT
   if (EllipticalArcMeasurementDeterminationTypeType == CheckedE)
-    delete EllipticalArcMeasurementDeterminationTypeValue.Checked;
+    delete EllipticalArcMeasurementDeterminationTypeValue->Checked;
   else if (EllipticalArcMeasurementDeterminationTypeType == SetE)
-    delete EllipticalArcMeasurementDeterminationTypeValue.Set;
+    delete EllipticalArcMeasurementDeterminationTypeValue->Set;
+  delete EllipticalArcMeasurementDeterminationTypeValue;
   #endif
 }
 
@@ -21026,7 +21054,7 @@ void EllipticalArcMeasurementDeterminationTypeChoicePair::printSelf(FILE * outFi
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Checked");
-      EllipticalArcMeasurementDeterminationTypeValue.Checked->printSelf(outFile);
+      EllipticalArcMeasurementDeterminationTypeValue->Checked->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Checked>\n");
     }
@@ -21034,7 +21062,7 @@ void EllipticalArcMeasurementDeterminationTypeChoicePair::printSelf(FILE * outFi
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Set");
-      EllipticalArcMeasurementDeterminationTypeValue.Set->printSelf(outFile);
+      EllipticalArcMeasurementDeterminationTypeValue->Set->printSelf(outFile);
     }
 }
 
@@ -21545,7 +21573,7 @@ ElongatedCircleCheckedTypeChoicePair::ElongatedCircleCheckedTypeChoicePair() {}
 
 ElongatedCircleCheckedTypeChoicePair::ElongatedCircleCheckedTypeChoicePair(
  whichOne ElongatedCircleCheckedTypeTypeIn,
- ElongatedCircleCheckedTypeVal ElongatedCircleCheckedTypeValueIn)
+ ElongatedCircleCheckedTypeVal * ElongatedCircleCheckedTypeValueIn)
 {
   ElongatedCircleCheckedTypeType = ElongatedCircleCheckedTypeTypeIn;
   ElongatedCircleCheckedTypeValue = ElongatedCircleCheckedTypeValueIn;
@@ -21555,9 +21583,10 @@ ElongatedCircleCheckedTypeChoicePair::~ElongatedCircleCheckedTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (ElongatedCircleCheckedTypeType == MeasuredE)
-    delete ElongatedCircleCheckedTypeValue.Measured;
+    delete ElongatedCircleCheckedTypeValue->Measured;
   else if (ElongatedCircleCheckedTypeType == ConstructedE)
-    delete ElongatedCircleCheckedTypeValue.Constructed;
+    delete ElongatedCircleCheckedTypeValue->Constructed;
+  delete ElongatedCircleCheckedTypeValue;
   #endif
 }
 
@@ -21567,7 +21596,7 @@ void ElongatedCircleCheckedTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Measured");
-      ElongatedCircleCheckedTypeValue.Measured->printSelf(outFile);
+      ElongatedCircleCheckedTypeValue->Measured->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Measured>\n");
     }
@@ -21575,7 +21604,7 @@ void ElongatedCircleCheckedTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Constructed");
-      ElongatedCircleCheckedTypeValue.Constructed->printSelf(outFile);
+      ElongatedCircleCheckedTypeValue->Constructed->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Constructed>\n");
     }
@@ -21625,7 +21654,7 @@ ElongatedCircleConstructionMethodTypeChoicePair::ElongatedCircleConstructionMeth
 
 ElongatedCircleConstructionMethodTypeChoicePair::ElongatedCircleConstructionMethodTypeChoicePair(
  whichOne ElongatedCircleConstructionMethodTypeTypeIn,
- ElongatedCircleConstructionMethodTypeVal ElongatedCircleConstructionMethodTypeValueIn)
+ ElongatedCircleConstructionMethodTypeVal * ElongatedCircleConstructionMethodTypeValueIn)
 {
   ElongatedCircleConstructionMethodTypeType = ElongatedCircleConstructionMethodTypeTypeIn;
   ElongatedCircleConstructionMethodTypeValue = ElongatedCircleConstructionMethodTypeValueIn;
@@ -21635,15 +21664,16 @@ ElongatedCircleConstructionMethodTypeChoicePair::~ElongatedCircleConstructionMet
 {
   #ifndef NODESTRUCT
   if (ElongatedCircleConstructionMethodTypeType == BestFitE)
-    delete ElongatedCircleConstructionMethodTypeValue.BestFit;
+    delete ElongatedCircleConstructionMethodTypeValue->BestFit;
   else if (ElongatedCircleConstructionMethodTypeType == RecompensatedE)
-    delete ElongatedCircleConstructionMethodTypeValue.Recompensated;
+    delete ElongatedCircleConstructionMethodTypeValue->Recompensated;
   else if (ElongatedCircleConstructionMethodTypeType == CopyE)
-    delete ElongatedCircleConstructionMethodTypeValue.Copy;
+    delete ElongatedCircleConstructionMethodTypeValue->Copy;
   else if (ElongatedCircleConstructionMethodTypeType == CastE)
-    delete ElongatedCircleConstructionMethodTypeValue.Cast;
+    delete ElongatedCircleConstructionMethodTypeValue->Cast;
   else if (ElongatedCircleConstructionMethodTypeType == TransformE)
-    delete ElongatedCircleConstructionMethodTypeValue.Transform;
+    delete ElongatedCircleConstructionMethodTypeValue->Transform;
+  delete ElongatedCircleConstructionMethodTypeValue;
   #endif
 }
 
@@ -21653,7 +21683,7 @@ void ElongatedCircleConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<BestFit");
-      ElongatedCircleConstructionMethodTypeValue.BestFit->printSelf(outFile);
+      ElongatedCircleConstructionMethodTypeValue->BestFit->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</BestFit>\n");
     }
@@ -21661,7 +21691,7 @@ void ElongatedCircleConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Recompensated");
-      ElongatedCircleConstructionMethodTypeValue.Recompensated->printSelf(outFile);
+      ElongatedCircleConstructionMethodTypeValue->Recompensated->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Recompensated>\n");
     }
@@ -21669,7 +21699,7 @@ void ElongatedCircleConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Copy");
-      ElongatedCircleConstructionMethodTypeValue.Copy->printSelf(outFile);
+      ElongatedCircleConstructionMethodTypeValue->Copy->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Copy>\n");
     }
@@ -21677,7 +21707,7 @@ void ElongatedCircleConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Cast");
-      ElongatedCircleConstructionMethodTypeValue.Cast->printSelf(outFile);
+      ElongatedCircleConstructionMethodTypeValue->Cast->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Cast>\n");
     }
@@ -21685,7 +21715,7 @@ void ElongatedCircleConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Transform");
-      ElongatedCircleConstructionMethodTypeValue.Transform->printSelf(outFile);
+      ElongatedCircleConstructionMethodTypeValue->Transform->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Transform>\n");
     }
@@ -22931,7 +22961,7 @@ ElongatedCircleMeasurementDeterminationTypeChoicePair::ElongatedCircleMeasuremen
 
 ElongatedCircleMeasurementDeterminationTypeChoicePair::ElongatedCircleMeasurementDeterminationTypeChoicePair(
  whichOne ElongatedCircleMeasurementDeterminationTypeTypeIn,
- ElongatedCircleMeasurementDeterminationTypeVal ElongatedCircleMeasurementDeterminationTypeValueIn)
+ ElongatedCircleMeasurementDeterminationTypeVal * ElongatedCircleMeasurementDeterminationTypeValueIn)
 {
   ElongatedCircleMeasurementDeterminationTypeType = ElongatedCircleMeasurementDeterminationTypeTypeIn;
   ElongatedCircleMeasurementDeterminationTypeValue = ElongatedCircleMeasurementDeterminationTypeValueIn;
@@ -22941,9 +22971,10 @@ ElongatedCircleMeasurementDeterminationTypeChoicePair::~ElongatedCircleMeasureme
 {
   #ifndef NODESTRUCT
   if (ElongatedCircleMeasurementDeterminationTypeType == CheckedE)
-    delete ElongatedCircleMeasurementDeterminationTypeValue.Checked;
+    delete ElongatedCircleMeasurementDeterminationTypeValue->Checked;
   else if (ElongatedCircleMeasurementDeterminationTypeType == SetE)
-    delete ElongatedCircleMeasurementDeterminationTypeValue.Set;
+    delete ElongatedCircleMeasurementDeterminationTypeValue->Set;
+  delete ElongatedCircleMeasurementDeterminationTypeValue;
   #endif
 }
 
@@ -22953,7 +22984,7 @@ void ElongatedCircleMeasurementDeterminationTypeChoicePair::printSelf(FILE * out
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Checked");
-      ElongatedCircleMeasurementDeterminationTypeValue.Checked->printSelf(outFile);
+      ElongatedCircleMeasurementDeterminationTypeValue->Checked->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Checked>\n");
     }
@@ -22961,7 +22992,7 @@ void ElongatedCircleMeasurementDeterminationTypeChoicePair::printSelf(FILE * out
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Set");
-      ElongatedCircleMeasurementDeterminationTypeValue.Set->printSelf(outFile);
+      ElongatedCircleMeasurementDeterminationTypeValue->Set->printSelf(outFile);
     }
 }
 
@@ -23404,7 +23435,7 @@ ElongatedCylinderCheckedTypeChoicePair::ElongatedCylinderCheckedTypeChoicePair()
 
 ElongatedCylinderCheckedTypeChoicePair::ElongatedCylinderCheckedTypeChoicePair(
  whichOne ElongatedCylinderCheckedTypeTypeIn,
- ElongatedCylinderCheckedTypeVal ElongatedCylinderCheckedTypeValueIn)
+ ElongatedCylinderCheckedTypeVal * ElongatedCylinderCheckedTypeValueIn)
 {
   ElongatedCylinderCheckedTypeType = ElongatedCylinderCheckedTypeTypeIn;
   ElongatedCylinderCheckedTypeValue = ElongatedCylinderCheckedTypeValueIn;
@@ -23414,9 +23445,10 @@ ElongatedCylinderCheckedTypeChoicePair::~ElongatedCylinderCheckedTypeChoicePair(
 {
   #ifndef NODESTRUCT
   if (ElongatedCylinderCheckedTypeType == MeasuredE)
-    delete ElongatedCylinderCheckedTypeValue.Measured;
+    delete ElongatedCylinderCheckedTypeValue->Measured;
   else if (ElongatedCylinderCheckedTypeType == ConstructedE)
-    delete ElongatedCylinderCheckedTypeValue.Constructed;
+    delete ElongatedCylinderCheckedTypeValue->Constructed;
+  delete ElongatedCylinderCheckedTypeValue;
   #endif
 }
 
@@ -23426,7 +23458,7 @@ void ElongatedCylinderCheckedTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Measured");
-      ElongatedCylinderCheckedTypeValue.Measured->printSelf(outFile);
+      ElongatedCylinderCheckedTypeValue->Measured->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Measured>\n");
     }
@@ -23434,7 +23466,7 @@ void ElongatedCylinderCheckedTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Constructed");
-      ElongatedCylinderCheckedTypeValue.Constructed->printSelf(outFile);
+      ElongatedCylinderCheckedTypeValue->Constructed->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Constructed>\n");
     }
@@ -23484,7 +23516,7 @@ ElongatedCylinderConstructionMethodTypeChoicePair::ElongatedCylinderConstruction
 
 ElongatedCylinderConstructionMethodTypeChoicePair::ElongatedCylinderConstructionMethodTypeChoicePair(
  whichOne ElongatedCylinderConstructionMethodTypeTypeIn,
- ElongatedCylinderConstructionMethodTypeVal ElongatedCylinderConstructionMethodTypeValueIn)
+ ElongatedCylinderConstructionMethodTypeVal * ElongatedCylinderConstructionMethodTypeValueIn)
 {
   ElongatedCylinderConstructionMethodTypeType = ElongatedCylinderConstructionMethodTypeTypeIn;
   ElongatedCylinderConstructionMethodTypeValue = ElongatedCylinderConstructionMethodTypeValueIn;
@@ -23494,15 +23526,16 @@ ElongatedCylinderConstructionMethodTypeChoicePair::~ElongatedCylinderConstructio
 {
   #ifndef NODESTRUCT
   if (ElongatedCylinderConstructionMethodTypeType == BestFitE)
-    delete ElongatedCylinderConstructionMethodTypeValue.BestFit;
+    delete ElongatedCylinderConstructionMethodTypeValue->BestFit;
   else if (ElongatedCylinderConstructionMethodTypeType == RecompensatedE)
-    delete ElongatedCylinderConstructionMethodTypeValue.Recompensated;
+    delete ElongatedCylinderConstructionMethodTypeValue->Recompensated;
   else if (ElongatedCylinderConstructionMethodTypeType == CopyE)
-    delete ElongatedCylinderConstructionMethodTypeValue.Copy;
+    delete ElongatedCylinderConstructionMethodTypeValue->Copy;
   else if (ElongatedCylinderConstructionMethodTypeType == CastE)
-    delete ElongatedCylinderConstructionMethodTypeValue.Cast;
+    delete ElongatedCylinderConstructionMethodTypeValue->Cast;
   else if (ElongatedCylinderConstructionMethodTypeType == TransformE)
-    delete ElongatedCylinderConstructionMethodTypeValue.Transform;
+    delete ElongatedCylinderConstructionMethodTypeValue->Transform;
+  delete ElongatedCylinderConstructionMethodTypeValue;
   #endif
 }
 
@@ -23512,7 +23545,7 @@ void ElongatedCylinderConstructionMethodTypeChoicePair::printSelf(FILE * outFile
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<BestFit");
-      ElongatedCylinderConstructionMethodTypeValue.BestFit->printSelf(outFile);
+      ElongatedCylinderConstructionMethodTypeValue->BestFit->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</BestFit>\n");
     }
@@ -23520,7 +23553,7 @@ void ElongatedCylinderConstructionMethodTypeChoicePair::printSelf(FILE * outFile
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Recompensated");
-      ElongatedCylinderConstructionMethodTypeValue.Recompensated->printSelf(outFile);
+      ElongatedCylinderConstructionMethodTypeValue->Recompensated->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Recompensated>\n");
     }
@@ -23528,7 +23561,7 @@ void ElongatedCylinderConstructionMethodTypeChoicePair::printSelf(FILE * outFile
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Copy");
-      ElongatedCylinderConstructionMethodTypeValue.Copy->printSelf(outFile);
+      ElongatedCylinderConstructionMethodTypeValue->Copy->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Copy>\n");
     }
@@ -23536,7 +23569,7 @@ void ElongatedCylinderConstructionMethodTypeChoicePair::printSelf(FILE * outFile
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Cast");
-      ElongatedCylinderConstructionMethodTypeValue.Cast->printSelf(outFile);
+      ElongatedCylinderConstructionMethodTypeValue->Cast->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Cast>\n");
     }
@@ -23544,7 +23577,7 @@ void ElongatedCylinderConstructionMethodTypeChoicePair::printSelf(FILE * outFile
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Transform");
-      ElongatedCylinderConstructionMethodTypeValue.Transform->printSelf(outFile);
+      ElongatedCylinderConstructionMethodTypeValue->Transform->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Transform>\n");
     }
@@ -24855,7 +24888,7 @@ ElongatedCylinderMeasurementDeterminationTypeChoicePair::ElongatedCylinderMeasur
 
 ElongatedCylinderMeasurementDeterminationTypeChoicePair::ElongatedCylinderMeasurementDeterminationTypeChoicePair(
  whichOne ElongatedCylinderMeasurementDeterminationTypeTypeIn,
- ElongatedCylinderMeasurementDeterminationTypeVal ElongatedCylinderMeasurementDeterminationTypeValueIn)
+ ElongatedCylinderMeasurementDeterminationTypeVal * ElongatedCylinderMeasurementDeterminationTypeValueIn)
 {
   ElongatedCylinderMeasurementDeterminationTypeType = ElongatedCylinderMeasurementDeterminationTypeTypeIn;
   ElongatedCylinderMeasurementDeterminationTypeValue = ElongatedCylinderMeasurementDeterminationTypeValueIn;
@@ -24865,9 +24898,10 @@ ElongatedCylinderMeasurementDeterminationTypeChoicePair::~ElongatedCylinderMeasu
 {
   #ifndef NODESTRUCT
   if (ElongatedCylinderMeasurementDeterminationTypeType == CheckedE)
-    delete ElongatedCylinderMeasurementDeterminationTypeValue.Checked;
+    delete ElongatedCylinderMeasurementDeterminationTypeValue->Checked;
   else if (ElongatedCylinderMeasurementDeterminationTypeType == SetE)
-    delete ElongatedCylinderMeasurementDeterminationTypeValue.Set;
+    delete ElongatedCylinderMeasurementDeterminationTypeValue->Set;
+  delete ElongatedCylinderMeasurementDeterminationTypeValue;
   #endif
 }
 
@@ -24877,7 +24911,7 @@ void ElongatedCylinderMeasurementDeterminationTypeChoicePair::printSelf(FILE * o
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Checked");
-      ElongatedCylinderMeasurementDeterminationTypeValue.Checked->printSelf(outFile);
+      ElongatedCylinderMeasurementDeterminationTypeValue->Checked->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Checked>\n");
     }
@@ -24885,7 +24919,7 @@ void ElongatedCylinderMeasurementDeterminationTypeChoicePair::printSelf(FILE * o
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Set");
-      ElongatedCylinderMeasurementDeterminationTypeValue.Set->printSelf(outFile);
+      ElongatedCylinderMeasurementDeterminationTypeValue->Set->printSelf(outFile);
     }
 }
 
@@ -25328,7 +25362,7 @@ ExtrudedCrossSectionCheckedTypeChoicePair::ExtrudedCrossSectionCheckedTypeChoice
 
 ExtrudedCrossSectionCheckedTypeChoicePair::ExtrudedCrossSectionCheckedTypeChoicePair(
  whichOne ExtrudedCrossSectionCheckedTypeTypeIn,
- ExtrudedCrossSectionCheckedTypeVal ExtrudedCrossSectionCheckedTypeValueIn)
+ ExtrudedCrossSectionCheckedTypeVal * ExtrudedCrossSectionCheckedTypeValueIn)
 {
   ExtrudedCrossSectionCheckedTypeType = ExtrudedCrossSectionCheckedTypeTypeIn;
   ExtrudedCrossSectionCheckedTypeValue = ExtrudedCrossSectionCheckedTypeValueIn;
@@ -25338,9 +25372,10 @@ ExtrudedCrossSectionCheckedTypeChoicePair::~ExtrudedCrossSectionCheckedTypeChoic
 {
   #ifndef NODESTRUCT
   if (ExtrudedCrossSectionCheckedTypeType == MeasuredE)
-    delete ExtrudedCrossSectionCheckedTypeValue.Measured;
+    delete ExtrudedCrossSectionCheckedTypeValue->Measured;
   else if (ExtrudedCrossSectionCheckedTypeType == ConstructedE)
-    delete ExtrudedCrossSectionCheckedTypeValue.Constructed;
+    delete ExtrudedCrossSectionCheckedTypeValue->Constructed;
+  delete ExtrudedCrossSectionCheckedTypeValue;
   #endif
 }
 
@@ -25350,7 +25385,7 @@ void ExtrudedCrossSectionCheckedTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Measured");
-      ExtrudedCrossSectionCheckedTypeValue.Measured->printSelf(outFile);
+      ExtrudedCrossSectionCheckedTypeValue->Measured->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Measured>\n");
     }
@@ -25358,7 +25393,7 @@ void ExtrudedCrossSectionCheckedTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Constructed");
-      ExtrudedCrossSectionCheckedTypeValue.Constructed->printSelf(outFile);
+      ExtrudedCrossSectionCheckedTypeValue->Constructed->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Constructed>\n");
     }
@@ -25408,7 +25443,7 @@ ExtrudedCrossSectionConstructionMethodTypeChoicePair::ExtrudedCrossSectionConstr
 
 ExtrudedCrossSectionConstructionMethodTypeChoicePair::ExtrudedCrossSectionConstructionMethodTypeChoicePair(
  whichOne ExtrudedCrossSectionConstructionMethodTypeTypeIn,
- ExtrudedCrossSectionConstructionMethodTypeVal ExtrudedCrossSectionConstructionMethodTypeValueIn)
+ ExtrudedCrossSectionConstructionMethodTypeVal * ExtrudedCrossSectionConstructionMethodTypeValueIn)
 {
   ExtrudedCrossSectionConstructionMethodTypeType = ExtrudedCrossSectionConstructionMethodTypeTypeIn;
   ExtrudedCrossSectionConstructionMethodTypeValue = ExtrudedCrossSectionConstructionMethodTypeValueIn;
@@ -25418,15 +25453,16 @@ ExtrudedCrossSectionConstructionMethodTypeChoicePair::~ExtrudedCrossSectionConst
 {
   #ifndef NODESTRUCT
   if (ExtrudedCrossSectionConstructionMethodTypeType == BestFitE)
-    delete ExtrudedCrossSectionConstructionMethodTypeValue.BestFit;
+    delete ExtrudedCrossSectionConstructionMethodTypeValue->BestFit;
   else if (ExtrudedCrossSectionConstructionMethodTypeType == RecompensatedE)
-    delete ExtrudedCrossSectionConstructionMethodTypeValue.Recompensated;
+    delete ExtrudedCrossSectionConstructionMethodTypeValue->Recompensated;
   else if (ExtrudedCrossSectionConstructionMethodTypeType == CopyE)
-    delete ExtrudedCrossSectionConstructionMethodTypeValue.Copy;
+    delete ExtrudedCrossSectionConstructionMethodTypeValue->Copy;
   else if (ExtrudedCrossSectionConstructionMethodTypeType == CastE)
-    delete ExtrudedCrossSectionConstructionMethodTypeValue.Cast;
+    delete ExtrudedCrossSectionConstructionMethodTypeValue->Cast;
   else if (ExtrudedCrossSectionConstructionMethodTypeType == TransformE)
-    delete ExtrudedCrossSectionConstructionMethodTypeValue.Transform;
+    delete ExtrudedCrossSectionConstructionMethodTypeValue->Transform;
+  delete ExtrudedCrossSectionConstructionMethodTypeValue;
   #endif
 }
 
@@ -25436,7 +25472,7 @@ void ExtrudedCrossSectionConstructionMethodTypeChoicePair::printSelf(FILE * outF
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<BestFit");
-      ExtrudedCrossSectionConstructionMethodTypeValue.BestFit->printSelf(outFile);
+      ExtrudedCrossSectionConstructionMethodTypeValue->BestFit->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</BestFit>\n");
     }
@@ -25444,7 +25480,7 @@ void ExtrudedCrossSectionConstructionMethodTypeChoicePair::printSelf(FILE * outF
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Recompensated");
-      ExtrudedCrossSectionConstructionMethodTypeValue.Recompensated->printSelf(outFile);
+      ExtrudedCrossSectionConstructionMethodTypeValue->Recompensated->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Recompensated>\n");
     }
@@ -25452,7 +25488,7 @@ void ExtrudedCrossSectionConstructionMethodTypeChoicePair::printSelf(FILE * outF
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Copy");
-      ExtrudedCrossSectionConstructionMethodTypeValue.Copy->printSelf(outFile);
+      ExtrudedCrossSectionConstructionMethodTypeValue->Copy->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Copy>\n");
     }
@@ -25460,7 +25496,7 @@ void ExtrudedCrossSectionConstructionMethodTypeChoicePair::printSelf(FILE * outF
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Cast");
-      ExtrudedCrossSectionConstructionMethodTypeValue.Cast->printSelf(outFile);
+      ExtrudedCrossSectionConstructionMethodTypeValue->Cast->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Cast>\n");
     }
@@ -25468,7 +25504,7 @@ void ExtrudedCrossSectionConstructionMethodTypeChoicePair::printSelf(FILE * outF
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Transform");
-      ExtrudedCrossSectionConstructionMethodTypeValue.Transform->printSelf(outFile);
+      ExtrudedCrossSectionConstructionMethodTypeValue->Transform->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Transform>\n");
     }
@@ -26572,7 +26608,7 @@ ExtrudedCrossSectionMeasurementDeterminationTypeChoicePair::ExtrudedCrossSection
 
 ExtrudedCrossSectionMeasurementDeterminationTypeChoicePair::ExtrudedCrossSectionMeasurementDeterminationTypeChoicePair(
  whichOne ExtrudedCrossSectionMeasurementDeterminationTypeTypeIn,
- ExtrudedCrossSectionMeasurementDeterminationTypeVal ExtrudedCrossSectionMeasurementDeterminationTypeValueIn)
+ ExtrudedCrossSectionMeasurementDeterminationTypeVal * ExtrudedCrossSectionMeasurementDeterminationTypeValueIn)
 {
   ExtrudedCrossSectionMeasurementDeterminationTypeType = ExtrudedCrossSectionMeasurementDeterminationTypeTypeIn;
   ExtrudedCrossSectionMeasurementDeterminationTypeValue = ExtrudedCrossSectionMeasurementDeterminationTypeValueIn;
@@ -26582,9 +26618,10 @@ ExtrudedCrossSectionMeasurementDeterminationTypeChoicePair::~ExtrudedCrossSectio
 {
   #ifndef NODESTRUCT
   if (ExtrudedCrossSectionMeasurementDeterminationTypeType == CheckedE)
-    delete ExtrudedCrossSectionMeasurementDeterminationTypeValue.Checked;
+    delete ExtrudedCrossSectionMeasurementDeterminationTypeValue->Checked;
   else if (ExtrudedCrossSectionMeasurementDeterminationTypeType == SetE)
-    delete ExtrudedCrossSectionMeasurementDeterminationTypeValue.Set;
+    delete ExtrudedCrossSectionMeasurementDeterminationTypeValue->Set;
+  delete ExtrudedCrossSectionMeasurementDeterminationTypeValue;
   #endif
 }
 
@@ -26594,7 +26631,7 @@ void ExtrudedCrossSectionMeasurementDeterminationTypeChoicePair::printSelf(FILE 
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Checked");
-      ExtrudedCrossSectionMeasurementDeterminationTypeValue.Checked->printSelf(outFile);
+      ExtrudedCrossSectionMeasurementDeterminationTypeValue->Checked->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Checked>\n");
     }
@@ -26602,7 +26639,7 @@ void ExtrudedCrossSectionMeasurementDeterminationTypeChoicePair::printSelf(FILE 
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Set");
-      ExtrudedCrossSectionMeasurementDeterminationTypeValue.Set->printSelf(outFile);
+      ExtrudedCrossSectionMeasurementDeterminationTypeValue->Set->printSelf(outFile);
     }
 }
 
@@ -31142,7 +31179,7 @@ FeatureZoneAreaBaseTypeChoicePair::FeatureZoneAreaBaseTypeChoicePair() {}
 
 FeatureZoneAreaBaseTypeChoicePair::FeatureZoneAreaBaseTypeChoicePair(
  whichOne FeatureZoneAreaBaseTypeTypeIn,
- FeatureZoneAreaBaseTypeVal FeatureZoneAreaBaseTypeValueIn)
+ FeatureZoneAreaBaseTypeVal * FeatureZoneAreaBaseTypeValueIn)
 {
   FeatureZoneAreaBaseTypeType = FeatureZoneAreaBaseTypeTypeIn;
   FeatureZoneAreaBaseTypeValue = FeatureZoneAreaBaseTypeValueIn;
@@ -31152,9 +31189,10 @@ FeatureZoneAreaBaseTypeChoicePair::~FeatureZoneAreaBaseTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (FeatureZoneAreaBaseTypeType == FaceIdsE)
-    delete FeatureZoneAreaBaseTypeValue.FaceIds;
+    delete FeatureZoneAreaBaseTypeValue->FaceIds;
   else if (FeatureZoneAreaBaseTypeType == EdgeIdsE)
-    delete FeatureZoneAreaBaseTypeValue.EdgeIds;
+    delete FeatureZoneAreaBaseTypeValue->EdgeIds;
+  delete FeatureZoneAreaBaseTypeValue;
   #endif
 }
 
@@ -31164,7 +31202,7 @@ void FeatureZoneAreaBaseTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<FaceIds");
-      FeatureZoneAreaBaseTypeValue.FaceIds->printSelf(outFile);
+      FeatureZoneAreaBaseTypeValue->FaceIds->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</FaceIds>\n");
     }
@@ -31172,7 +31210,7 @@ void FeatureZoneAreaBaseTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<EdgeIds");
-      FeatureZoneAreaBaseTypeValue.EdgeIds->printSelf(outFile);
+      FeatureZoneAreaBaseTypeValue->EdgeIds->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</EdgeIds>\n");
     }
@@ -32692,7 +32730,7 @@ FeatureZoneCurveBaseTypeChoicePair::FeatureZoneCurveBaseTypeChoicePair() {}
 
 FeatureZoneCurveBaseTypeChoicePair::FeatureZoneCurveBaseTypeChoicePair(
  whichOne FeatureZoneCurveBaseTypeTypeIn,
- FeatureZoneCurveBaseTypeVal FeatureZoneCurveBaseTypeValueIn)
+ FeatureZoneCurveBaseTypeVal * FeatureZoneCurveBaseTypeValueIn)
 {
   FeatureZoneCurveBaseTypeType = FeatureZoneCurveBaseTypeTypeIn;
   FeatureZoneCurveBaseTypeValue = FeatureZoneCurveBaseTypeValueIn;
@@ -32702,9 +32740,10 @@ FeatureZoneCurveBaseTypeChoicePair::~FeatureZoneCurveBaseTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (FeatureZoneCurveBaseTypeType == EdgeIdsE)
-    delete FeatureZoneCurveBaseTypeValue.EdgeIds;
+    delete FeatureZoneCurveBaseTypeValue->EdgeIds;
   else if (FeatureZoneCurveBaseTypeType == CurveIdsE)
-    delete FeatureZoneCurveBaseTypeValue.CurveIds;
+    delete FeatureZoneCurveBaseTypeValue->CurveIds;
+  delete FeatureZoneCurveBaseTypeValue;
   #endif
 }
 
@@ -32714,7 +32753,7 @@ void FeatureZoneCurveBaseTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<EdgeIds");
-      FeatureZoneCurveBaseTypeValue.EdgeIds->printSelf(outFile);
+      FeatureZoneCurveBaseTypeValue->EdgeIds->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</EdgeIds>\n");
     }
@@ -32722,7 +32761,7 @@ void FeatureZoneCurveBaseTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<CurveIds");
-      FeatureZoneCurveBaseTypeValue.CurveIds->printSelf(outFile);
+      FeatureZoneCurveBaseTypeValue->CurveIds->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</CurveIds>\n");
     }
@@ -35087,7 +35126,7 @@ LineCheckedTypeChoicePair::LineCheckedTypeChoicePair() {}
 
 LineCheckedTypeChoicePair::LineCheckedTypeChoicePair(
  whichOne LineCheckedTypeTypeIn,
- LineCheckedTypeVal LineCheckedTypeValueIn)
+ LineCheckedTypeVal * LineCheckedTypeValueIn)
 {
   LineCheckedTypeType = LineCheckedTypeTypeIn;
   LineCheckedTypeValue = LineCheckedTypeValueIn;
@@ -35097,9 +35136,10 @@ LineCheckedTypeChoicePair::~LineCheckedTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (LineCheckedTypeType == MeasuredE)
-    delete LineCheckedTypeValue.Measured;
+    delete LineCheckedTypeValue->Measured;
   else if (LineCheckedTypeType == ConstructedE)
-    delete LineCheckedTypeValue.Constructed;
+    delete LineCheckedTypeValue->Constructed;
+  delete LineCheckedTypeValue;
   #endif
 }
 
@@ -35109,7 +35149,7 @@ void LineCheckedTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Measured");
-      LineCheckedTypeValue.Measured->printSelf(outFile);
+      LineCheckedTypeValue->Measured->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Measured>\n");
     }
@@ -35117,7 +35157,7 @@ void LineCheckedTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Constructed");
-      LineCheckedTypeValue.Constructed->printSelf(outFile);
+      LineCheckedTypeValue->Constructed->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Constructed>\n");
     }
@@ -35167,7 +35207,7 @@ LineConstructionMethodTypeChoicePair::LineConstructionMethodTypeChoicePair() {}
 
 LineConstructionMethodTypeChoicePair::LineConstructionMethodTypeChoicePair(
  whichOne LineConstructionMethodTypeTypeIn,
- LineConstructionMethodTypeVal LineConstructionMethodTypeValueIn)
+ LineConstructionMethodTypeVal * LineConstructionMethodTypeValueIn)
 {
   LineConstructionMethodTypeType = LineConstructionMethodTypeTypeIn;
   LineConstructionMethodTypeValue = LineConstructionMethodTypeValueIn;
@@ -35177,31 +35217,32 @@ LineConstructionMethodTypeChoicePair::~LineConstructionMethodTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (LineConstructionMethodTypeType == BestFitE)
-    delete LineConstructionMethodTypeValue.BestFit;
+    delete LineConstructionMethodTypeValue->BestFit;
   else if (LineConstructionMethodTypeType == RecompensatedE)
-    delete LineConstructionMethodTypeValue.Recompensated;
+    delete LineConstructionMethodTypeValue->Recompensated;
   else if (LineConstructionMethodTypeType == MidlineE)
-    delete LineConstructionMethodTypeValue.Midline;
+    delete LineConstructionMethodTypeValue->Midline;
   else if (LineConstructionMethodTypeType == IntersectionE)
-    delete LineConstructionMethodTypeValue.Intersection;
+    delete LineConstructionMethodTypeValue->Intersection;
   else if (LineConstructionMethodTypeType == ProjectionE)
-    delete LineConstructionMethodTypeValue.Projection;
+    delete LineConstructionMethodTypeValue->Projection;
   else if (LineConstructionMethodTypeType == PerpendicularE)
-    delete LineConstructionMethodTypeValue.Perpendicular;
+    delete LineConstructionMethodTypeValue->Perpendicular;
   else if (LineConstructionMethodTypeType == ParallelE)
-    delete LineConstructionMethodTypeValue.Parallel;
+    delete LineConstructionMethodTypeValue->Parallel;
   else if (LineConstructionMethodTypeType == CopyE)
-    delete LineConstructionMethodTypeValue.Copy;
+    delete LineConstructionMethodTypeValue->Copy;
   else if (LineConstructionMethodTypeType == CastE)
-    delete LineConstructionMethodTypeValue.Cast;
+    delete LineConstructionMethodTypeValue->Cast;
   else if (LineConstructionMethodTypeType == TangentThroughE)
-    delete LineConstructionMethodTypeValue.TangentThrough;
+    delete LineConstructionMethodTypeValue->TangentThrough;
   else if (LineConstructionMethodTypeType == TransformE)
-    delete LineConstructionMethodTypeValue.Transform;
+    delete LineConstructionMethodTypeValue->Transform;
   else if (LineConstructionMethodTypeType == ExtractE)
-    delete LineConstructionMethodTypeValue.Extract;
+    delete LineConstructionMethodTypeValue->Extract;
   else if (LineConstructionMethodTypeType == FromScanE)
-    delete LineConstructionMethodTypeValue.FromScan;
+    delete LineConstructionMethodTypeValue->FromScan;
+  delete LineConstructionMethodTypeValue;
   #endif
 }
 
@@ -35211,7 +35252,7 @@ void LineConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<BestFit");
-      LineConstructionMethodTypeValue.BestFit->printSelf(outFile);
+      LineConstructionMethodTypeValue->BestFit->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</BestFit>\n");
     }
@@ -35219,7 +35260,7 @@ void LineConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Recompensated");
-      LineConstructionMethodTypeValue.Recompensated->printSelf(outFile);
+      LineConstructionMethodTypeValue->Recompensated->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Recompensated>\n");
     }
@@ -35227,7 +35268,7 @@ void LineConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Midline");
-      LineConstructionMethodTypeValue.Midline->printSelf(outFile);
+      LineConstructionMethodTypeValue->Midline->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Midline>\n");
     }
@@ -35235,7 +35276,7 @@ void LineConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Intersection");
-      LineConstructionMethodTypeValue.Intersection->printSelf(outFile);
+      LineConstructionMethodTypeValue->Intersection->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Intersection>\n");
     }
@@ -35243,7 +35284,7 @@ void LineConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Projection");
-      LineConstructionMethodTypeValue.Projection->printSelf(outFile);
+      LineConstructionMethodTypeValue->Projection->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Projection>\n");
     }
@@ -35251,7 +35292,7 @@ void LineConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Perpendicular");
-      LineConstructionMethodTypeValue.Perpendicular->printSelf(outFile);
+      LineConstructionMethodTypeValue->Perpendicular->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Perpendicular>\n");
     }
@@ -35259,7 +35300,7 @@ void LineConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Parallel");
-      LineConstructionMethodTypeValue.Parallel->printSelf(outFile);
+      LineConstructionMethodTypeValue->Parallel->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Parallel>\n");
     }
@@ -35267,7 +35308,7 @@ void LineConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Copy");
-      LineConstructionMethodTypeValue.Copy->printSelf(outFile);
+      LineConstructionMethodTypeValue->Copy->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Copy>\n");
     }
@@ -35275,7 +35316,7 @@ void LineConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Cast");
-      LineConstructionMethodTypeValue.Cast->printSelf(outFile);
+      LineConstructionMethodTypeValue->Cast->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Cast>\n");
     }
@@ -35283,7 +35324,7 @@ void LineConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<TangentThrough");
-      LineConstructionMethodTypeValue.TangentThrough->printSelf(outFile);
+      LineConstructionMethodTypeValue->TangentThrough->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</TangentThrough>\n");
     }
@@ -35291,7 +35332,7 @@ void LineConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Transform");
-      LineConstructionMethodTypeValue.Transform->printSelf(outFile);
+      LineConstructionMethodTypeValue->Transform->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Transform>\n");
     }
@@ -35299,7 +35340,7 @@ void LineConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Extract");
-      LineConstructionMethodTypeValue.Extract->printSelf(outFile);
+      LineConstructionMethodTypeValue->Extract->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Extract>\n");
     }
@@ -35307,7 +35348,7 @@ void LineConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<FromScan");
-      LineConstructionMethodTypeValue.FromScan->printSelf(outFile);
+      LineConstructionMethodTypeValue->FromScan->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</FromScan>\n");
     }
@@ -36669,7 +36710,7 @@ LineMeasurementDeterminationTypeChoicePair::LineMeasurementDeterminationTypeChoi
 
 LineMeasurementDeterminationTypeChoicePair::LineMeasurementDeterminationTypeChoicePair(
  whichOne LineMeasurementDeterminationTypeTypeIn,
- LineMeasurementDeterminationTypeVal LineMeasurementDeterminationTypeValueIn)
+ LineMeasurementDeterminationTypeVal * LineMeasurementDeterminationTypeValueIn)
 {
   LineMeasurementDeterminationTypeType = LineMeasurementDeterminationTypeTypeIn;
   LineMeasurementDeterminationTypeValue = LineMeasurementDeterminationTypeValueIn;
@@ -36679,9 +36720,10 @@ LineMeasurementDeterminationTypeChoicePair::~LineMeasurementDeterminationTypeCho
 {
   #ifndef NODESTRUCT
   if (LineMeasurementDeterminationTypeType == CheckedE)
-    delete LineMeasurementDeterminationTypeValue.Checked;
+    delete LineMeasurementDeterminationTypeValue->Checked;
   else if (LineMeasurementDeterminationTypeType == SetE)
-    delete LineMeasurementDeterminationTypeValue.Set;
+    delete LineMeasurementDeterminationTypeValue->Set;
+  delete LineMeasurementDeterminationTypeValue;
   #endif
 }
 
@@ -36691,7 +36733,7 @@ void LineMeasurementDeterminationTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Checked");
-      LineMeasurementDeterminationTypeValue.Checked->printSelf(outFile);
+      LineMeasurementDeterminationTypeValue->Checked->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Checked>\n");
     }
@@ -36699,7 +36741,7 @@ void LineMeasurementDeterminationTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Set");
-      LineMeasurementDeterminationTypeValue.Set->printSelf(outFile);
+      LineMeasurementDeterminationTypeValue->Set->printSelf(outFile);
     }
 }
 
@@ -38118,7 +38160,7 @@ MarkingMethodTypeChoicePair::MarkingMethodTypeChoicePair() {}
 
 MarkingMethodTypeChoicePair::MarkingMethodTypeChoicePair(
  whichOne MarkingMethodTypeTypeIn,
- MarkingMethodTypeVal MarkingMethodTypeValueIn)
+ MarkingMethodTypeVal * MarkingMethodTypeValueIn)
 {
   MarkingMethodTypeType = MarkingMethodTypeTypeIn;
   MarkingMethodTypeValue = MarkingMethodTypeValueIn;
@@ -38128,9 +38170,10 @@ MarkingMethodTypeChoicePair::~MarkingMethodTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (MarkingMethodTypeType == MarkingMethodEnumE)
-    delete MarkingMethodTypeValue.MarkingMethodEnum;
+    delete MarkingMethodTypeValue->MarkingMethodEnum;
   else if (MarkingMethodTypeType == OtherMarkingMethodE)
-    delete MarkingMethodTypeValue.OtherMarkingMethod;
+    delete MarkingMethodTypeValue->OtherMarkingMethod;
+  delete MarkingMethodTypeValue;
   #endif
 }
 
@@ -38140,14 +38183,14 @@ void MarkingMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MarkingMethodEnum");
-      MarkingMethodTypeValue.MarkingMethodEnum->printSelf(outFile);
+      MarkingMethodTypeValue->MarkingMethodEnum->printSelf(outFile);
       fprintf(outFile, "</MarkingMethodEnum>\n");
     }
   else if (MarkingMethodTypeType == OtherMarkingMethodE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<OtherMarkingMethod");
-      MarkingMethodTypeValue.OtherMarkingMethod->printSelf(outFile);
+      MarkingMethodTypeValue->OtherMarkingMethod->printSelf(outFile);
       fprintf(outFile, "</OtherMarkingMethod>\n");
     }
 }
@@ -41153,7 +41196,7 @@ OppositeAngledLinesCheckedTypeChoicePair::OppositeAngledLinesCheckedTypeChoicePa
 
 OppositeAngledLinesCheckedTypeChoicePair::OppositeAngledLinesCheckedTypeChoicePair(
  whichOne OppositeAngledLinesCheckedTypeTypeIn,
- OppositeAngledLinesCheckedTypeVal OppositeAngledLinesCheckedTypeValueIn)
+ OppositeAngledLinesCheckedTypeVal * OppositeAngledLinesCheckedTypeValueIn)
 {
   OppositeAngledLinesCheckedTypeType = OppositeAngledLinesCheckedTypeTypeIn;
   OppositeAngledLinesCheckedTypeValue = OppositeAngledLinesCheckedTypeValueIn;
@@ -41163,9 +41206,10 @@ OppositeAngledLinesCheckedTypeChoicePair::~OppositeAngledLinesCheckedTypeChoiceP
 {
   #ifndef NODESTRUCT
   if (OppositeAngledLinesCheckedTypeType == MeasuredE)
-    delete OppositeAngledLinesCheckedTypeValue.Measured;
+    delete OppositeAngledLinesCheckedTypeValue->Measured;
   else if (OppositeAngledLinesCheckedTypeType == ConstructedE)
-    delete OppositeAngledLinesCheckedTypeValue.Constructed;
+    delete OppositeAngledLinesCheckedTypeValue->Constructed;
+  delete OppositeAngledLinesCheckedTypeValue;
   #endif
 }
 
@@ -41175,7 +41219,7 @@ void OppositeAngledLinesCheckedTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Measured");
-      OppositeAngledLinesCheckedTypeValue.Measured->printSelf(outFile);
+      OppositeAngledLinesCheckedTypeValue->Measured->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Measured>\n");
     }
@@ -41183,7 +41227,7 @@ void OppositeAngledLinesCheckedTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Constructed");
-      OppositeAngledLinesCheckedTypeValue.Constructed->printSelf(outFile);
+      OppositeAngledLinesCheckedTypeValue->Constructed->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Constructed>\n");
     }
@@ -41233,7 +41277,7 @@ OppositeAngledLinesConstructionMethodTypeChoicePair::OppositeAngledLinesConstruc
 
 OppositeAngledLinesConstructionMethodTypeChoicePair::OppositeAngledLinesConstructionMethodTypeChoicePair(
  whichOne OppositeAngledLinesConstructionMethodTypeTypeIn,
- OppositeAngledLinesConstructionMethodTypeVal OppositeAngledLinesConstructionMethodTypeValueIn)
+ OppositeAngledLinesConstructionMethodTypeVal * OppositeAngledLinesConstructionMethodTypeValueIn)
 {
   OppositeAngledLinesConstructionMethodTypeType = OppositeAngledLinesConstructionMethodTypeTypeIn;
   OppositeAngledLinesConstructionMethodTypeValue = OppositeAngledLinesConstructionMethodTypeValueIn;
@@ -41243,21 +41287,22 @@ OppositeAngledLinesConstructionMethodTypeChoicePair::~OppositeAngledLinesConstru
 {
   #ifndef NODESTRUCT
   if (OppositeAngledLinesConstructionMethodTypeType == BestFitE)
-    delete OppositeAngledLinesConstructionMethodTypeValue.BestFit;
+    delete OppositeAngledLinesConstructionMethodTypeValue->BestFit;
   else if (OppositeAngledLinesConstructionMethodTypeType == RecompensatedE)
-    delete OppositeAngledLinesConstructionMethodTypeValue.Recompensated;
+    delete OppositeAngledLinesConstructionMethodTypeValue->Recompensated;
   else if (OppositeAngledLinesConstructionMethodTypeType == IntersectionE)
-    delete OppositeAngledLinesConstructionMethodTypeValue.Intersection;
+    delete OppositeAngledLinesConstructionMethodTypeValue->Intersection;
   else if (OppositeAngledLinesConstructionMethodTypeType == ProjectionE)
-    delete OppositeAngledLinesConstructionMethodTypeValue.Projection;
+    delete OppositeAngledLinesConstructionMethodTypeValue->Projection;
   else if (OppositeAngledLinesConstructionMethodTypeType == CopyE)
-    delete OppositeAngledLinesConstructionMethodTypeValue.Copy;
+    delete OppositeAngledLinesConstructionMethodTypeValue->Copy;
   else if (OppositeAngledLinesConstructionMethodTypeType == CastE)
-    delete OppositeAngledLinesConstructionMethodTypeValue.Cast;
+    delete OppositeAngledLinesConstructionMethodTypeValue->Cast;
   else if (OppositeAngledLinesConstructionMethodTypeType == TransformE)
-    delete OppositeAngledLinesConstructionMethodTypeValue.Transform;
+    delete OppositeAngledLinesConstructionMethodTypeValue->Transform;
   else if (OppositeAngledLinesConstructionMethodTypeType == FromScanE)
-    delete OppositeAngledLinesConstructionMethodTypeValue.FromScan;
+    delete OppositeAngledLinesConstructionMethodTypeValue->FromScan;
+  delete OppositeAngledLinesConstructionMethodTypeValue;
   #endif
 }
 
@@ -41267,7 +41312,7 @@ void OppositeAngledLinesConstructionMethodTypeChoicePair::printSelf(FILE * outFi
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<BestFit");
-      OppositeAngledLinesConstructionMethodTypeValue.BestFit->printSelf(outFile);
+      OppositeAngledLinesConstructionMethodTypeValue->BestFit->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</BestFit>\n");
     }
@@ -41275,7 +41320,7 @@ void OppositeAngledLinesConstructionMethodTypeChoicePair::printSelf(FILE * outFi
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Recompensated");
-      OppositeAngledLinesConstructionMethodTypeValue.Recompensated->printSelf(outFile);
+      OppositeAngledLinesConstructionMethodTypeValue->Recompensated->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Recompensated>\n");
     }
@@ -41283,7 +41328,7 @@ void OppositeAngledLinesConstructionMethodTypeChoicePair::printSelf(FILE * outFi
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Intersection");
-      OppositeAngledLinesConstructionMethodTypeValue.Intersection->printSelf(outFile);
+      OppositeAngledLinesConstructionMethodTypeValue->Intersection->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Intersection>\n");
     }
@@ -41291,7 +41336,7 @@ void OppositeAngledLinesConstructionMethodTypeChoicePair::printSelf(FILE * outFi
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Projection");
-      OppositeAngledLinesConstructionMethodTypeValue.Projection->printSelf(outFile);
+      OppositeAngledLinesConstructionMethodTypeValue->Projection->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Projection>\n");
     }
@@ -41299,7 +41344,7 @@ void OppositeAngledLinesConstructionMethodTypeChoicePair::printSelf(FILE * outFi
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Copy");
-      OppositeAngledLinesConstructionMethodTypeValue.Copy->printSelf(outFile);
+      OppositeAngledLinesConstructionMethodTypeValue->Copy->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Copy>\n");
     }
@@ -41307,7 +41352,7 @@ void OppositeAngledLinesConstructionMethodTypeChoicePair::printSelf(FILE * outFi
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Cast");
-      OppositeAngledLinesConstructionMethodTypeValue.Cast->printSelf(outFile);
+      OppositeAngledLinesConstructionMethodTypeValue->Cast->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Cast>\n");
     }
@@ -41315,7 +41360,7 @@ void OppositeAngledLinesConstructionMethodTypeChoicePair::printSelf(FILE * outFi
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Transform");
-      OppositeAngledLinesConstructionMethodTypeValue.Transform->printSelf(outFile);
+      OppositeAngledLinesConstructionMethodTypeValue->Transform->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Transform>\n");
     }
@@ -41323,7 +41368,7 @@ void OppositeAngledLinesConstructionMethodTypeChoicePair::printSelf(FILE * outFi
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<FromScan");
-      OppositeAngledLinesConstructionMethodTypeValue.FromScan->printSelf(outFile);
+      OppositeAngledLinesConstructionMethodTypeValue->FromScan->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</FromScan>\n");
     }
@@ -42872,7 +42917,7 @@ OppositeAngledLinesMeasurementDeterminationTypeChoicePair::OppositeAngledLinesMe
 
 OppositeAngledLinesMeasurementDeterminationTypeChoicePair::OppositeAngledLinesMeasurementDeterminationTypeChoicePair(
  whichOne OppositeAngledLinesMeasurementDeterminationTypeTypeIn,
- OppositeAngledLinesMeasurementDeterminationTypeVal OppositeAngledLinesMeasurementDeterminationTypeValueIn)
+ OppositeAngledLinesMeasurementDeterminationTypeVal * OppositeAngledLinesMeasurementDeterminationTypeValueIn)
 {
   OppositeAngledLinesMeasurementDeterminationTypeType = OppositeAngledLinesMeasurementDeterminationTypeTypeIn;
   OppositeAngledLinesMeasurementDeterminationTypeValue = OppositeAngledLinesMeasurementDeterminationTypeValueIn;
@@ -42882,9 +42927,10 @@ OppositeAngledLinesMeasurementDeterminationTypeChoicePair::~OppositeAngledLinesM
 {
   #ifndef NODESTRUCT
   if (OppositeAngledLinesMeasurementDeterminationTypeType == CheckedE)
-    delete OppositeAngledLinesMeasurementDeterminationTypeValue.Checked;
+    delete OppositeAngledLinesMeasurementDeterminationTypeValue->Checked;
   else if (OppositeAngledLinesMeasurementDeterminationTypeType == SetE)
-    delete OppositeAngledLinesMeasurementDeterminationTypeValue.Set;
+    delete OppositeAngledLinesMeasurementDeterminationTypeValue->Set;
+  delete OppositeAngledLinesMeasurementDeterminationTypeValue;
   #endif
 }
 
@@ -42894,7 +42940,7 @@ void OppositeAngledLinesMeasurementDeterminationTypeChoicePair::printSelf(FILE *
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Checked");
-      OppositeAngledLinesMeasurementDeterminationTypeValue.Checked->printSelf(outFile);
+      OppositeAngledLinesMeasurementDeterminationTypeValue->Checked->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Checked>\n");
     }
@@ -42902,7 +42948,7 @@ void OppositeAngledLinesMeasurementDeterminationTypeChoicePair::printSelf(FILE *
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Set");
-      OppositeAngledLinesMeasurementDeterminationTypeValue.Set->printSelf(outFile);
+      OppositeAngledLinesMeasurementDeterminationTypeValue->Set->printSelf(outFile);
     }
 }
 
@@ -43413,7 +43459,7 @@ OppositeAngledPlanesCheckedTypeChoicePair::OppositeAngledPlanesCheckedTypeChoice
 
 OppositeAngledPlanesCheckedTypeChoicePair::OppositeAngledPlanesCheckedTypeChoicePair(
  whichOne OppositeAngledPlanesCheckedTypeTypeIn,
- OppositeAngledPlanesCheckedTypeVal OppositeAngledPlanesCheckedTypeValueIn)
+ OppositeAngledPlanesCheckedTypeVal * OppositeAngledPlanesCheckedTypeValueIn)
 {
   OppositeAngledPlanesCheckedTypeType = OppositeAngledPlanesCheckedTypeTypeIn;
   OppositeAngledPlanesCheckedTypeValue = OppositeAngledPlanesCheckedTypeValueIn;
@@ -43423,9 +43469,10 @@ OppositeAngledPlanesCheckedTypeChoicePair::~OppositeAngledPlanesCheckedTypeChoic
 {
   #ifndef NODESTRUCT
   if (OppositeAngledPlanesCheckedTypeType == MeasuredE)
-    delete OppositeAngledPlanesCheckedTypeValue.Measured;
+    delete OppositeAngledPlanesCheckedTypeValue->Measured;
   else if (OppositeAngledPlanesCheckedTypeType == ConstructedE)
-    delete OppositeAngledPlanesCheckedTypeValue.Constructed;
+    delete OppositeAngledPlanesCheckedTypeValue->Constructed;
+  delete OppositeAngledPlanesCheckedTypeValue;
   #endif
 }
 
@@ -43435,7 +43482,7 @@ void OppositeAngledPlanesCheckedTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Measured");
-      OppositeAngledPlanesCheckedTypeValue.Measured->printSelf(outFile);
+      OppositeAngledPlanesCheckedTypeValue->Measured->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Measured>\n");
     }
@@ -43443,7 +43490,7 @@ void OppositeAngledPlanesCheckedTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Constructed");
-      OppositeAngledPlanesCheckedTypeValue.Constructed->printSelf(outFile);
+      OppositeAngledPlanesCheckedTypeValue->Constructed->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Constructed>\n");
     }
@@ -43493,7 +43540,7 @@ OppositeAngledPlanesConstructionMethodTypeChoicePair::OppositeAngledPlanesConstr
 
 OppositeAngledPlanesConstructionMethodTypeChoicePair::OppositeAngledPlanesConstructionMethodTypeChoicePair(
  whichOne OppositeAngledPlanesConstructionMethodTypeTypeIn,
- OppositeAngledPlanesConstructionMethodTypeVal OppositeAngledPlanesConstructionMethodTypeValueIn)
+ OppositeAngledPlanesConstructionMethodTypeVal * OppositeAngledPlanesConstructionMethodTypeValueIn)
 {
   OppositeAngledPlanesConstructionMethodTypeType = OppositeAngledPlanesConstructionMethodTypeTypeIn;
   OppositeAngledPlanesConstructionMethodTypeValue = OppositeAngledPlanesConstructionMethodTypeValueIn;
@@ -43503,17 +43550,18 @@ OppositeAngledPlanesConstructionMethodTypeChoicePair::~OppositeAngledPlanesConst
 {
   #ifndef NODESTRUCT
   if (OppositeAngledPlanesConstructionMethodTypeType == BestFitE)
-    delete OppositeAngledPlanesConstructionMethodTypeValue.BestFit;
+    delete OppositeAngledPlanesConstructionMethodTypeValue->BestFit;
   else if (OppositeAngledPlanesConstructionMethodTypeType == RecompensatedE)
-    delete OppositeAngledPlanesConstructionMethodTypeValue.Recompensated;
+    delete OppositeAngledPlanesConstructionMethodTypeValue->Recompensated;
   else if (OppositeAngledPlanesConstructionMethodTypeType == CopyE)
-    delete OppositeAngledPlanesConstructionMethodTypeValue.Copy;
+    delete OppositeAngledPlanesConstructionMethodTypeValue->Copy;
   else if (OppositeAngledPlanesConstructionMethodTypeType == CastE)
-    delete OppositeAngledPlanesConstructionMethodTypeValue.Cast;
+    delete OppositeAngledPlanesConstructionMethodTypeValue->Cast;
   else if (OppositeAngledPlanesConstructionMethodTypeType == TransformE)
-    delete OppositeAngledPlanesConstructionMethodTypeValue.Transform;
+    delete OppositeAngledPlanesConstructionMethodTypeValue->Transform;
   else if (OppositeAngledPlanesConstructionMethodTypeType == FromScanE)
-    delete OppositeAngledPlanesConstructionMethodTypeValue.FromScan;
+    delete OppositeAngledPlanesConstructionMethodTypeValue->FromScan;
+  delete OppositeAngledPlanesConstructionMethodTypeValue;
   #endif
 }
 
@@ -43523,7 +43571,7 @@ void OppositeAngledPlanesConstructionMethodTypeChoicePair::printSelf(FILE * outF
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<BestFit");
-      OppositeAngledPlanesConstructionMethodTypeValue.BestFit->printSelf(outFile);
+      OppositeAngledPlanesConstructionMethodTypeValue->BestFit->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</BestFit>\n");
     }
@@ -43531,7 +43579,7 @@ void OppositeAngledPlanesConstructionMethodTypeChoicePair::printSelf(FILE * outF
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Recompensated");
-      OppositeAngledPlanesConstructionMethodTypeValue.Recompensated->printSelf(outFile);
+      OppositeAngledPlanesConstructionMethodTypeValue->Recompensated->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Recompensated>\n");
     }
@@ -43539,7 +43587,7 @@ void OppositeAngledPlanesConstructionMethodTypeChoicePair::printSelf(FILE * outF
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Copy");
-      OppositeAngledPlanesConstructionMethodTypeValue.Copy->printSelf(outFile);
+      OppositeAngledPlanesConstructionMethodTypeValue->Copy->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Copy>\n");
     }
@@ -43547,7 +43595,7 @@ void OppositeAngledPlanesConstructionMethodTypeChoicePair::printSelf(FILE * outF
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Cast");
-      OppositeAngledPlanesConstructionMethodTypeValue.Cast->printSelf(outFile);
+      OppositeAngledPlanesConstructionMethodTypeValue->Cast->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Cast>\n");
     }
@@ -43555,7 +43603,7 @@ void OppositeAngledPlanesConstructionMethodTypeChoicePair::printSelf(FILE * outF
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Transform");
-      OppositeAngledPlanesConstructionMethodTypeValue.Transform->printSelf(outFile);
+      OppositeAngledPlanesConstructionMethodTypeValue->Transform->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Transform>\n");
     }
@@ -43563,7 +43611,7 @@ void OppositeAngledPlanesConstructionMethodTypeChoicePair::printSelf(FILE * outF
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<FromScan");
-      OppositeAngledPlanesConstructionMethodTypeValue.FromScan->printSelf(outFile);
+      OppositeAngledPlanesConstructionMethodTypeValue->FromScan->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</FromScan>\n");
     }
@@ -45131,7 +45179,7 @@ OppositeAngledPlanesMeasurementDeterminationTypeChoicePair::OppositeAngledPlanes
 
 OppositeAngledPlanesMeasurementDeterminationTypeChoicePair::OppositeAngledPlanesMeasurementDeterminationTypeChoicePair(
  whichOne OppositeAngledPlanesMeasurementDeterminationTypeTypeIn,
- OppositeAngledPlanesMeasurementDeterminationTypeVal OppositeAngledPlanesMeasurementDeterminationTypeValueIn)
+ OppositeAngledPlanesMeasurementDeterminationTypeVal * OppositeAngledPlanesMeasurementDeterminationTypeValueIn)
 {
   OppositeAngledPlanesMeasurementDeterminationTypeType = OppositeAngledPlanesMeasurementDeterminationTypeTypeIn;
   OppositeAngledPlanesMeasurementDeterminationTypeValue = OppositeAngledPlanesMeasurementDeterminationTypeValueIn;
@@ -45141,9 +45189,10 @@ OppositeAngledPlanesMeasurementDeterminationTypeChoicePair::~OppositeAngledPlane
 {
   #ifndef NODESTRUCT
   if (OppositeAngledPlanesMeasurementDeterminationTypeType == CheckedE)
-    delete OppositeAngledPlanesMeasurementDeterminationTypeValue.Checked;
+    delete OppositeAngledPlanesMeasurementDeterminationTypeValue->Checked;
   else if (OppositeAngledPlanesMeasurementDeterminationTypeType == SetE)
-    delete OppositeAngledPlanesMeasurementDeterminationTypeValue.Set;
+    delete OppositeAngledPlanesMeasurementDeterminationTypeValue->Set;
+  delete OppositeAngledPlanesMeasurementDeterminationTypeValue;
   #endif
 }
 
@@ -45153,7 +45202,7 @@ void OppositeAngledPlanesMeasurementDeterminationTypeChoicePair::printSelf(FILE 
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Checked");
-      OppositeAngledPlanesMeasurementDeterminationTypeValue.Checked->printSelf(outFile);
+      OppositeAngledPlanesMeasurementDeterminationTypeValue->Checked->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Checked>\n");
     }
@@ -45161,7 +45210,7 @@ void OppositeAngledPlanesMeasurementDeterminationTypeChoicePair::printSelf(FILE 
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Set");
-      OppositeAngledPlanesMeasurementDeterminationTypeValue.Set->printSelf(outFile);
+      OppositeAngledPlanesMeasurementDeterminationTypeValue->Set->printSelf(outFile);
     }
 }
 
@@ -45604,7 +45653,7 @@ OppositeParallelLinesCheckedTypeChoicePair::OppositeParallelLinesCheckedTypeChoi
 
 OppositeParallelLinesCheckedTypeChoicePair::OppositeParallelLinesCheckedTypeChoicePair(
  whichOne OppositeParallelLinesCheckedTypeTypeIn,
- OppositeParallelLinesCheckedTypeVal OppositeParallelLinesCheckedTypeValueIn)
+ OppositeParallelLinesCheckedTypeVal * OppositeParallelLinesCheckedTypeValueIn)
 {
   OppositeParallelLinesCheckedTypeType = OppositeParallelLinesCheckedTypeTypeIn;
   OppositeParallelLinesCheckedTypeValue = OppositeParallelLinesCheckedTypeValueIn;
@@ -45614,9 +45663,10 @@ OppositeParallelLinesCheckedTypeChoicePair::~OppositeParallelLinesCheckedTypeCho
 {
   #ifndef NODESTRUCT
   if (OppositeParallelLinesCheckedTypeType == MeasuredE)
-    delete OppositeParallelLinesCheckedTypeValue.Measured;
+    delete OppositeParallelLinesCheckedTypeValue->Measured;
   else if (OppositeParallelLinesCheckedTypeType == ConstructedE)
-    delete OppositeParallelLinesCheckedTypeValue.Constructed;
+    delete OppositeParallelLinesCheckedTypeValue->Constructed;
+  delete OppositeParallelLinesCheckedTypeValue;
   #endif
 }
 
@@ -45626,7 +45676,7 @@ void OppositeParallelLinesCheckedTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Measured");
-      OppositeParallelLinesCheckedTypeValue.Measured->printSelf(outFile);
+      OppositeParallelLinesCheckedTypeValue->Measured->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Measured>\n");
     }
@@ -45634,7 +45684,7 @@ void OppositeParallelLinesCheckedTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Constructed");
-      OppositeParallelLinesCheckedTypeValue.Constructed->printSelf(outFile);
+      OppositeParallelLinesCheckedTypeValue->Constructed->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Constructed>\n");
     }
@@ -45684,7 +45734,7 @@ OppositeParallelLinesConstructionMethodTypeChoicePair::OppositeParallelLinesCons
 
 OppositeParallelLinesConstructionMethodTypeChoicePair::OppositeParallelLinesConstructionMethodTypeChoicePair(
  whichOne OppositeParallelLinesConstructionMethodTypeTypeIn,
- OppositeParallelLinesConstructionMethodTypeVal OppositeParallelLinesConstructionMethodTypeValueIn)
+ OppositeParallelLinesConstructionMethodTypeVal * OppositeParallelLinesConstructionMethodTypeValueIn)
 {
   OppositeParallelLinesConstructionMethodTypeType = OppositeParallelLinesConstructionMethodTypeTypeIn;
   OppositeParallelLinesConstructionMethodTypeValue = OppositeParallelLinesConstructionMethodTypeValueIn;
@@ -45694,21 +45744,22 @@ OppositeParallelLinesConstructionMethodTypeChoicePair::~OppositeParallelLinesCon
 {
   #ifndef NODESTRUCT
   if (OppositeParallelLinesConstructionMethodTypeType == BestFitE)
-    delete OppositeParallelLinesConstructionMethodTypeValue.BestFit;
+    delete OppositeParallelLinesConstructionMethodTypeValue->BestFit;
   else if (OppositeParallelLinesConstructionMethodTypeType == RecompensatedE)
-    delete OppositeParallelLinesConstructionMethodTypeValue.Recompensated;
+    delete OppositeParallelLinesConstructionMethodTypeValue->Recompensated;
   else if (OppositeParallelLinesConstructionMethodTypeType == IntersectionE)
-    delete OppositeParallelLinesConstructionMethodTypeValue.Intersection;
+    delete OppositeParallelLinesConstructionMethodTypeValue->Intersection;
   else if (OppositeParallelLinesConstructionMethodTypeType == ProjectionE)
-    delete OppositeParallelLinesConstructionMethodTypeValue.Projection;
+    delete OppositeParallelLinesConstructionMethodTypeValue->Projection;
   else if (OppositeParallelLinesConstructionMethodTypeType == CopyE)
-    delete OppositeParallelLinesConstructionMethodTypeValue.Copy;
+    delete OppositeParallelLinesConstructionMethodTypeValue->Copy;
   else if (OppositeParallelLinesConstructionMethodTypeType == CastE)
-    delete OppositeParallelLinesConstructionMethodTypeValue.Cast;
+    delete OppositeParallelLinesConstructionMethodTypeValue->Cast;
   else if (OppositeParallelLinesConstructionMethodTypeType == TransformE)
-    delete OppositeParallelLinesConstructionMethodTypeValue.Transform;
+    delete OppositeParallelLinesConstructionMethodTypeValue->Transform;
   else if (OppositeParallelLinesConstructionMethodTypeType == FromScanE)
-    delete OppositeParallelLinesConstructionMethodTypeValue.FromScan;
+    delete OppositeParallelLinesConstructionMethodTypeValue->FromScan;
+  delete OppositeParallelLinesConstructionMethodTypeValue;
   #endif
 }
 
@@ -45718,7 +45769,7 @@ void OppositeParallelLinesConstructionMethodTypeChoicePair::printSelf(FILE * out
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<BestFit");
-      OppositeParallelLinesConstructionMethodTypeValue.BestFit->printSelf(outFile);
+      OppositeParallelLinesConstructionMethodTypeValue->BestFit->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</BestFit>\n");
     }
@@ -45726,7 +45777,7 @@ void OppositeParallelLinesConstructionMethodTypeChoicePair::printSelf(FILE * out
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Recompensated");
-      OppositeParallelLinesConstructionMethodTypeValue.Recompensated->printSelf(outFile);
+      OppositeParallelLinesConstructionMethodTypeValue->Recompensated->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Recompensated>\n");
     }
@@ -45734,7 +45785,7 @@ void OppositeParallelLinesConstructionMethodTypeChoicePair::printSelf(FILE * out
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Intersection");
-      OppositeParallelLinesConstructionMethodTypeValue.Intersection->printSelf(outFile);
+      OppositeParallelLinesConstructionMethodTypeValue->Intersection->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Intersection>\n");
     }
@@ -45742,7 +45793,7 @@ void OppositeParallelLinesConstructionMethodTypeChoicePair::printSelf(FILE * out
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Projection");
-      OppositeParallelLinesConstructionMethodTypeValue.Projection->printSelf(outFile);
+      OppositeParallelLinesConstructionMethodTypeValue->Projection->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Projection>\n");
     }
@@ -45750,7 +45801,7 @@ void OppositeParallelLinesConstructionMethodTypeChoicePair::printSelf(FILE * out
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Copy");
-      OppositeParallelLinesConstructionMethodTypeValue.Copy->printSelf(outFile);
+      OppositeParallelLinesConstructionMethodTypeValue->Copy->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Copy>\n");
     }
@@ -45758,7 +45809,7 @@ void OppositeParallelLinesConstructionMethodTypeChoicePair::printSelf(FILE * out
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Cast");
-      OppositeParallelLinesConstructionMethodTypeValue.Cast->printSelf(outFile);
+      OppositeParallelLinesConstructionMethodTypeValue->Cast->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Cast>\n");
     }
@@ -45766,7 +45817,7 @@ void OppositeParallelLinesConstructionMethodTypeChoicePair::printSelf(FILE * out
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Transform");
-      OppositeParallelLinesConstructionMethodTypeValue.Transform->printSelf(outFile);
+      OppositeParallelLinesConstructionMethodTypeValue->Transform->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Transform>\n");
     }
@@ -45774,7 +45825,7 @@ void OppositeParallelLinesConstructionMethodTypeChoicePair::printSelf(FILE * out
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<FromScan");
-      OppositeParallelLinesConstructionMethodTypeValue.FromScan->printSelf(outFile);
+      OppositeParallelLinesConstructionMethodTypeValue->FromScan->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</FromScan>\n");
     }
@@ -47288,7 +47339,7 @@ OppositeParallelLinesMeasurementDeterminationTypeChoicePair::OppositeParallelLin
 
 OppositeParallelLinesMeasurementDeterminationTypeChoicePair::OppositeParallelLinesMeasurementDeterminationTypeChoicePair(
  whichOne OppositeParallelLinesMeasurementDeterminationTypeTypeIn,
- OppositeParallelLinesMeasurementDeterminationTypeVal OppositeParallelLinesMeasurementDeterminationTypeValueIn)
+ OppositeParallelLinesMeasurementDeterminationTypeVal * OppositeParallelLinesMeasurementDeterminationTypeValueIn)
 {
   OppositeParallelLinesMeasurementDeterminationTypeType = OppositeParallelLinesMeasurementDeterminationTypeTypeIn;
   OppositeParallelLinesMeasurementDeterminationTypeValue = OppositeParallelLinesMeasurementDeterminationTypeValueIn;
@@ -47298,9 +47349,10 @@ OppositeParallelLinesMeasurementDeterminationTypeChoicePair::~OppositeParallelLi
 {
   #ifndef NODESTRUCT
   if (OppositeParallelLinesMeasurementDeterminationTypeType == CheckedE)
-    delete OppositeParallelLinesMeasurementDeterminationTypeValue.Checked;
+    delete OppositeParallelLinesMeasurementDeterminationTypeValue->Checked;
   else if (OppositeParallelLinesMeasurementDeterminationTypeType == SetE)
-    delete OppositeParallelLinesMeasurementDeterminationTypeValue.Set;
+    delete OppositeParallelLinesMeasurementDeterminationTypeValue->Set;
+  delete OppositeParallelLinesMeasurementDeterminationTypeValue;
   #endif
 }
 
@@ -47310,7 +47362,7 @@ void OppositeParallelLinesMeasurementDeterminationTypeChoicePair::printSelf(FILE
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Checked");
-      OppositeParallelLinesMeasurementDeterminationTypeValue.Checked->printSelf(outFile);
+      OppositeParallelLinesMeasurementDeterminationTypeValue->Checked->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Checked>\n");
     }
@@ -47318,7 +47370,7 @@ void OppositeParallelLinesMeasurementDeterminationTypeChoicePair::printSelf(FILE
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Set");
-      OppositeParallelLinesMeasurementDeterminationTypeValue.Set->printSelf(outFile);
+      OppositeParallelLinesMeasurementDeterminationTypeValue->Set->printSelf(outFile);
     }
 }
 
@@ -47829,7 +47881,7 @@ OppositeParallelPlanesCheckedTypeChoicePair::OppositeParallelPlanesCheckedTypeCh
 
 OppositeParallelPlanesCheckedTypeChoicePair::OppositeParallelPlanesCheckedTypeChoicePair(
  whichOne OppositeParallelPlanesCheckedTypeTypeIn,
- OppositeParallelPlanesCheckedTypeVal OppositeParallelPlanesCheckedTypeValueIn)
+ OppositeParallelPlanesCheckedTypeVal * OppositeParallelPlanesCheckedTypeValueIn)
 {
   OppositeParallelPlanesCheckedTypeType = OppositeParallelPlanesCheckedTypeTypeIn;
   OppositeParallelPlanesCheckedTypeValue = OppositeParallelPlanesCheckedTypeValueIn;
@@ -47839,9 +47891,10 @@ OppositeParallelPlanesCheckedTypeChoicePair::~OppositeParallelPlanesCheckedTypeC
 {
   #ifndef NODESTRUCT
   if (OppositeParallelPlanesCheckedTypeType == MeasuredE)
-    delete OppositeParallelPlanesCheckedTypeValue.Measured;
+    delete OppositeParallelPlanesCheckedTypeValue->Measured;
   else if (OppositeParallelPlanesCheckedTypeType == ConstructedE)
-    delete OppositeParallelPlanesCheckedTypeValue.Constructed;
+    delete OppositeParallelPlanesCheckedTypeValue->Constructed;
+  delete OppositeParallelPlanesCheckedTypeValue;
   #endif
 }
 
@@ -47851,7 +47904,7 @@ void OppositeParallelPlanesCheckedTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Measured");
-      OppositeParallelPlanesCheckedTypeValue.Measured->printSelf(outFile);
+      OppositeParallelPlanesCheckedTypeValue->Measured->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Measured>\n");
     }
@@ -47859,7 +47912,7 @@ void OppositeParallelPlanesCheckedTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Constructed");
-      OppositeParallelPlanesCheckedTypeValue.Constructed->printSelf(outFile);
+      OppositeParallelPlanesCheckedTypeValue->Constructed->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Constructed>\n");
     }
@@ -47909,7 +47962,7 @@ OppositeParallelPlanesConstructionMethodTypeChoicePair::OppositeParallelPlanesCo
 
 OppositeParallelPlanesConstructionMethodTypeChoicePair::OppositeParallelPlanesConstructionMethodTypeChoicePair(
  whichOne OppositeParallelPlanesConstructionMethodTypeTypeIn,
- OppositeParallelPlanesConstructionMethodTypeVal OppositeParallelPlanesConstructionMethodTypeValueIn)
+ OppositeParallelPlanesConstructionMethodTypeVal * OppositeParallelPlanesConstructionMethodTypeValueIn)
 {
   OppositeParallelPlanesConstructionMethodTypeType = OppositeParallelPlanesConstructionMethodTypeTypeIn;
   OppositeParallelPlanesConstructionMethodTypeValue = OppositeParallelPlanesConstructionMethodTypeValueIn;
@@ -47919,17 +47972,18 @@ OppositeParallelPlanesConstructionMethodTypeChoicePair::~OppositeParallelPlanesC
 {
   #ifndef NODESTRUCT
   if (OppositeParallelPlanesConstructionMethodTypeType == BestFitE)
-    delete OppositeParallelPlanesConstructionMethodTypeValue.BestFit;
+    delete OppositeParallelPlanesConstructionMethodTypeValue->BestFit;
   else if (OppositeParallelPlanesConstructionMethodTypeType == RecompensatedE)
-    delete OppositeParallelPlanesConstructionMethodTypeValue.Recompensated;
+    delete OppositeParallelPlanesConstructionMethodTypeValue->Recompensated;
   else if (OppositeParallelPlanesConstructionMethodTypeType == CopyE)
-    delete OppositeParallelPlanesConstructionMethodTypeValue.Copy;
+    delete OppositeParallelPlanesConstructionMethodTypeValue->Copy;
   else if (OppositeParallelPlanesConstructionMethodTypeType == CastE)
-    delete OppositeParallelPlanesConstructionMethodTypeValue.Cast;
+    delete OppositeParallelPlanesConstructionMethodTypeValue->Cast;
   else if (OppositeParallelPlanesConstructionMethodTypeType == TransformE)
-    delete OppositeParallelPlanesConstructionMethodTypeValue.Transform;
+    delete OppositeParallelPlanesConstructionMethodTypeValue->Transform;
   else if (OppositeParallelPlanesConstructionMethodTypeType == FromScanE)
-    delete OppositeParallelPlanesConstructionMethodTypeValue.FromScan;
+    delete OppositeParallelPlanesConstructionMethodTypeValue->FromScan;
+  delete OppositeParallelPlanesConstructionMethodTypeValue;
   #endif
 }
 
@@ -47939,7 +47993,7 @@ void OppositeParallelPlanesConstructionMethodTypeChoicePair::printSelf(FILE * ou
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<BestFit");
-      OppositeParallelPlanesConstructionMethodTypeValue.BestFit->printSelf(outFile);
+      OppositeParallelPlanesConstructionMethodTypeValue->BestFit->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</BestFit>\n");
     }
@@ -47947,7 +48001,7 @@ void OppositeParallelPlanesConstructionMethodTypeChoicePair::printSelf(FILE * ou
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Recompensated");
-      OppositeParallelPlanesConstructionMethodTypeValue.Recompensated->printSelf(outFile);
+      OppositeParallelPlanesConstructionMethodTypeValue->Recompensated->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Recompensated>\n");
     }
@@ -47955,7 +48009,7 @@ void OppositeParallelPlanesConstructionMethodTypeChoicePair::printSelf(FILE * ou
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Copy");
-      OppositeParallelPlanesConstructionMethodTypeValue.Copy->printSelf(outFile);
+      OppositeParallelPlanesConstructionMethodTypeValue->Copy->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Copy>\n");
     }
@@ -47963,7 +48017,7 @@ void OppositeParallelPlanesConstructionMethodTypeChoicePair::printSelf(FILE * ou
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Cast");
-      OppositeParallelPlanesConstructionMethodTypeValue.Cast->printSelf(outFile);
+      OppositeParallelPlanesConstructionMethodTypeValue->Cast->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Cast>\n");
     }
@@ -47971,7 +48025,7 @@ void OppositeParallelPlanesConstructionMethodTypeChoicePair::printSelf(FILE * ou
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Transform");
-      OppositeParallelPlanesConstructionMethodTypeValue.Transform->printSelf(outFile);
+      OppositeParallelPlanesConstructionMethodTypeValue->Transform->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Transform>\n");
     }
@@ -47979,7 +48033,7 @@ void OppositeParallelPlanesConstructionMethodTypeChoicePair::printSelf(FILE * ou
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<FromScan");
-      OppositeParallelPlanesConstructionMethodTypeValue.FromScan->printSelf(outFile);
+      OppositeParallelPlanesConstructionMethodTypeValue->FromScan->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</FromScan>\n");
     }
@@ -49499,7 +49553,7 @@ OppositeParallelPlanesMeasurementDeterminationTypeChoicePair::OppositeParallelPl
 
 OppositeParallelPlanesMeasurementDeterminationTypeChoicePair::OppositeParallelPlanesMeasurementDeterminationTypeChoicePair(
  whichOne OppositeParallelPlanesMeasurementDeterminationTypeTypeIn,
- OppositeParallelPlanesMeasurementDeterminationTypeVal OppositeParallelPlanesMeasurementDeterminationTypeValueIn)
+ OppositeParallelPlanesMeasurementDeterminationTypeVal * OppositeParallelPlanesMeasurementDeterminationTypeValueIn)
 {
   OppositeParallelPlanesMeasurementDeterminationTypeType = OppositeParallelPlanesMeasurementDeterminationTypeTypeIn;
   OppositeParallelPlanesMeasurementDeterminationTypeValue = OppositeParallelPlanesMeasurementDeterminationTypeValueIn;
@@ -49509,9 +49563,10 @@ OppositeParallelPlanesMeasurementDeterminationTypeChoicePair::~OppositeParallelP
 {
   #ifndef NODESTRUCT
   if (OppositeParallelPlanesMeasurementDeterminationTypeType == CheckedE)
-    delete OppositeParallelPlanesMeasurementDeterminationTypeValue.Checked;
+    delete OppositeParallelPlanesMeasurementDeterminationTypeValue->Checked;
   else if (OppositeParallelPlanesMeasurementDeterminationTypeType == SetE)
-    delete OppositeParallelPlanesMeasurementDeterminationTypeValue.Set;
+    delete OppositeParallelPlanesMeasurementDeterminationTypeValue->Set;
+  delete OppositeParallelPlanesMeasurementDeterminationTypeValue;
   #endif
 }
 
@@ -49521,7 +49576,7 @@ void OppositeParallelPlanesMeasurementDeterminationTypeChoicePair::printSelf(FIL
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Checked");
-      OppositeParallelPlanesMeasurementDeterminationTypeValue.Checked->printSelf(outFile);
+      OppositeParallelPlanesMeasurementDeterminationTypeValue->Checked->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Checked>\n");
     }
@@ -49529,7 +49584,7 @@ void OppositeParallelPlanesMeasurementDeterminationTypeChoicePair::printSelf(FIL
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Set");
-      OppositeParallelPlanesMeasurementDeterminationTypeValue.Set->printSelf(outFile);
+      OppositeParallelPlanesMeasurementDeterminationTypeValue->Set->printSelf(outFile);
     }
 }
 
@@ -49740,7 +49795,7 @@ OtherCurveCheckedTypeChoicePair::OtherCurveCheckedTypeChoicePair() {}
 
 OtherCurveCheckedTypeChoicePair::OtherCurveCheckedTypeChoicePair(
  whichOne OtherCurveCheckedTypeTypeIn,
- OtherCurveCheckedTypeVal OtherCurveCheckedTypeValueIn)
+ OtherCurveCheckedTypeVal * OtherCurveCheckedTypeValueIn)
 {
   OtherCurveCheckedTypeType = OtherCurveCheckedTypeTypeIn;
   OtherCurveCheckedTypeValue = OtherCurveCheckedTypeValueIn;
@@ -49750,9 +49805,10 @@ OtherCurveCheckedTypeChoicePair::~OtherCurveCheckedTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (OtherCurveCheckedTypeType == MeasuredE)
-    delete OtherCurveCheckedTypeValue.Measured;
+    delete OtherCurveCheckedTypeValue->Measured;
   else if (OtherCurveCheckedTypeType == ConstructedE)
-    delete OtherCurveCheckedTypeValue.Constructed;
+    delete OtherCurveCheckedTypeValue->Constructed;
+  delete OtherCurveCheckedTypeValue;
   #endif
 }
 
@@ -49762,7 +49818,7 @@ void OtherCurveCheckedTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Measured");
-      OtherCurveCheckedTypeValue.Measured->printSelf(outFile);
+      OtherCurveCheckedTypeValue->Measured->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Measured>\n");
     }
@@ -49770,7 +49826,7 @@ void OtherCurveCheckedTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Constructed");
-      OtherCurveCheckedTypeValue.Constructed->printSelf(outFile);
+      OtherCurveCheckedTypeValue->Constructed->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Constructed>\n");
     }
@@ -49820,7 +49876,7 @@ OtherCurveConstructionMethodTypeChoicePair::OtherCurveConstructionMethodTypeChoi
 
 OtherCurveConstructionMethodTypeChoicePair::OtherCurveConstructionMethodTypeChoicePair(
  whichOne OtherCurveConstructionMethodTypeTypeIn,
- OtherCurveConstructionMethodTypeVal OtherCurveConstructionMethodTypeValueIn)
+ OtherCurveConstructionMethodTypeVal * OtherCurveConstructionMethodTypeValueIn)
 {
   OtherCurveConstructionMethodTypeType = OtherCurveConstructionMethodTypeTypeIn;
   OtherCurveConstructionMethodTypeValue = OtherCurveConstructionMethodTypeValueIn;
@@ -49830,7 +49886,8 @@ OtherCurveConstructionMethodTypeChoicePair::~OtherCurveConstructionMethodTypeCho
 {
   #ifndef NODESTRUCT
   if (OtherCurveConstructionMethodTypeType == CopyE)
-    delete OtherCurveConstructionMethodTypeValue.Copy;
+    delete OtherCurveConstructionMethodTypeValue->Copy;
+  delete OtherCurveConstructionMethodTypeValue;
   #endif
 }
 
@@ -49840,7 +49897,7 @@ void OtherCurveConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Copy");
-      OtherCurveConstructionMethodTypeValue.Copy->printSelf(outFile);
+      OtherCurveConstructionMethodTypeValue->Copy->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Copy>\n");
     }
@@ -50833,7 +50890,7 @@ OtherCurveMeasurementDeterminationTypeChoicePair::OtherCurveMeasurementDetermina
 
 OtherCurveMeasurementDeterminationTypeChoicePair::OtherCurveMeasurementDeterminationTypeChoicePair(
  whichOne OtherCurveMeasurementDeterminationTypeTypeIn,
- OtherCurveMeasurementDeterminationTypeVal OtherCurveMeasurementDeterminationTypeValueIn)
+ OtherCurveMeasurementDeterminationTypeVal * OtherCurveMeasurementDeterminationTypeValueIn)
 {
   OtherCurveMeasurementDeterminationTypeType = OtherCurveMeasurementDeterminationTypeTypeIn;
   OtherCurveMeasurementDeterminationTypeValue = OtherCurveMeasurementDeterminationTypeValueIn;
@@ -50843,9 +50900,10 @@ OtherCurveMeasurementDeterminationTypeChoicePair::~OtherCurveMeasurementDetermin
 {
   #ifndef NODESTRUCT
   if (OtherCurveMeasurementDeterminationTypeType == CheckedE)
-    delete OtherCurveMeasurementDeterminationTypeValue.Checked;
+    delete OtherCurveMeasurementDeterminationTypeValue->Checked;
   else if (OtherCurveMeasurementDeterminationTypeType == SetE)
-    delete OtherCurveMeasurementDeterminationTypeValue.Set;
+    delete OtherCurveMeasurementDeterminationTypeValue->Set;
+  delete OtherCurveMeasurementDeterminationTypeValue;
   #endif
 }
 
@@ -50855,7 +50913,7 @@ void OtherCurveMeasurementDeterminationTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Checked");
-      OtherCurveMeasurementDeterminationTypeValue.Checked->printSelf(outFile);
+      OtherCurveMeasurementDeterminationTypeValue->Checked->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Checked>\n");
     }
@@ -50863,7 +50921,7 @@ void OtherCurveMeasurementDeterminationTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Set");
-      OtherCurveMeasurementDeterminationTypeValue.Set->printSelf(outFile);
+      OtherCurveMeasurementDeterminationTypeValue->Set->printSelf(outFile);
     }
 }
 
@@ -51741,7 +51799,7 @@ OtherShapeCheckedTypeChoicePair::OtherShapeCheckedTypeChoicePair() {}
 
 OtherShapeCheckedTypeChoicePair::OtherShapeCheckedTypeChoicePair(
  whichOne OtherShapeCheckedTypeTypeIn,
- OtherShapeCheckedTypeVal OtherShapeCheckedTypeValueIn)
+ OtherShapeCheckedTypeVal * OtherShapeCheckedTypeValueIn)
 {
   OtherShapeCheckedTypeType = OtherShapeCheckedTypeTypeIn;
   OtherShapeCheckedTypeValue = OtherShapeCheckedTypeValueIn;
@@ -51751,9 +51809,10 @@ OtherShapeCheckedTypeChoicePair::~OtherShapeCheckedTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (OtherShapeCheckedTypeType == MeasuredE)
-    delete OtherShapeCheckedTypeValue.Measured;
+    delete OtherShapeCheckedTypeValue->Measured;
   else if (OtherShapeCheckedTypeType == ConstructedE)
-    delete OtherShapeCheckedTypeValue.Constructed;
+    delete OtherShapeCheckedTypeValue->Constructed;
+  delete OtherShapeCheckedTypeValue;
   #endif
 }
 
@@ -51763,7 +51822,7 @@ void OtherShapeCheckedTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Measured");
-      OtherShapeCheckedTypeValue.Measured->printSelf(outFile);
+      OtherShapeCheckedTypeValue->Measured->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Measured>\n");
     }
@@ -51771,7 +51830,7 @@ void OtherShapeCheckedTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Constructed");
-      OtherShapeCheckedTypeValue.Constructed->printSelf(outFile);
+      OtherShapeCheckedTypeValue->Constructed->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Constructed>\n");
     }
@@ -51821,7 +51880,7 @@ OtherShapeConstructionMethodTypeChoicePair::OtherShapeConstructionMethodTypeChoi
 
 OtherShapeConstructionMethodTypeChoicePair::OtherShapeConstructionMethodTypeChoicePair(
  whichOne OtherShapeConstructionMethodTypeTypeIn,
- OtherShapeConstructionMethodTypeVal OtherShapeConstructionMethodTypeValueIn)
+ OtherShapeConstructionMethodTypeVal * OtherShapeConstructionMethodTypeValueIn)
 {
   OtherShapeConstructionMethodTypeType = OtherShapeConstructionMethodTypeTypeIn;
   OtherShapeConstructionMethodTypeValue = OtherShapeConstructionMethodTypeValueIn;
@@ -51831,7 +51890,8 @@ OtherShapeConstructionMethodTypeChoicePair::~OtherShapeConstructionMethodTypeCho
 {
   #ifndef NODESTRUCT
   if (OtherShapeConstructionMethodTypeType == CopyE)
-    delete OtherShapeConstructionMethodTypeValue.Copy;
+    delete OtherShapeConstructionMethodTypeValue->Copy;
+  delete OtherShapeConstructionMethodTypeValue;
   #endif
 }
 
@@ -51841,7 +51901,7 @@ void OtherShapeConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Copy");
-      OtherShapeConstructionMethodTypeValue.Copy->printSelf(outFile);
+      OtherShapeConstructionMethodTypeValue->Copy->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Copy>\n");
     }
@@ -52839,7 +52899,7 @@ OtherShapeMeasurementDeterminationTypeChoicePair::OtherShapeMeasurementDetermina
 
 OtherShapeMeasurementDeterminationTypeChoicePair::OtherShapeMeasurementDeterminationTypeChoicePair(
  whichOne OtherShapeMeasurementDeterminationTypeTypeIn,
- OtherShapeMeasurementDeterminationTypeVal OtherShapeMeasurementDeterminationTypeValueIn)
+ OtherShapeMeasurementDeterminationTypeVal * OtherShapeMeasurementDeterminationTypeValueIn)
 {
   OtherShapeMeasurementDeterminationTypeType = OtherShapeMeasurementDeterminationTypeTypeIn;
   OtherShapeMeasurementDeterminationTypeValue = OtherShapeMeasurementDeterminationTypeValueIn;
@@ -52849,9 +52909,10 @@ OtherShapeMeasurementDeterminationTypeChoicePair::~OtherShapeMeasurementDetermin
 {
   #ifndef NODESTRUCT
   if (OtherShapeMeasurementDeterminationTypeType == CheckedE)
-    delete OtherShapeMeasurementDeterminationTypeValue.Checked;
+    delete OtherShapeMeasurementDeterminationTypeValue->Checked;
   else if (OtherShapeMeasurementDeterminationTypeType == SetE)
-    delete OtherShapeMeasurementDeterminationTypeValue.Set;
+    delete OtherShapeMeasurementDeterminationTypeValue->Set;
+  delete OtherShapeMeasurementDeterminationTypeValue;
   #endif
 }
 
@@ -52861,7 +52922,7 @@ void OtherShapeMeasurementDeterminationTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Checked");
-      OtherShapeMeasurementDeterminationTypeValue.Checked->printSelf(outFile);
+      OtherShapeMeasurementDeterminationTypeValue->Checked->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Checked>\n");
     }
@@ -52869,7 +52930,7 @@ void OtherShapeMeasurementDeterminationTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Set");
-      OtherShapeMeasurementDeterminationTypeValue.Set->printSelf(outFile);
+      OtherShapeMeasurementDeterminationTypeValue->Set->printSelf(outFile);
     }
 }
 
@@ -52959,7 +53020,7 @@ OtherSurfaceCheckedTypeChoicePair::OtherSurfaceCheckedTypeChoicePair() {}
 
 OtherSurfaceCheckedTypeChoicePair::OtherSurfaceCheckedTypeChoicePair(
  whichOne OtherSurfaceCheckedTypeTypeIn,
- OtherSurfaceCheckedTypeVal OtherSurfaceCheckedTypeValueIn)
+ OtherSurfaceCheckedTypeVal * OtherSurfaceCheckedTypeValueIn)
 {
   OtherSurfaceCheckedTypeType = OtherSurfaceCheckedTypeTypeIn;
   OtherSurfaceCheckedTypeValue = OtherSurfaceCheckedTypeValueIn;
@@ -52969,9 +53030,10 @@ OtherSurfaceCheckedTypeChoicePair::~OtherSurfaceCheckedTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (OtherSurfaceCheckedTypeType == MeasuredE)
-    delete OtherSurfaceCheckedTypeValue.Measured;
+    delete OtherSurfaceCheckedTypeValue->Measured;
   else if (OtherSurfaceCheckedTypeType == ConstructedE)
-    delete OtherSurfaceCheckedTypeValue.Constructed;
+    delete OtherSurfaceCheckedTypeValue->Constructed;
+  delete OtherSurfaceCheckedTypeValue;
   #endif
 }
 
@@ -52981,7 +53043,7 @@ void OtherSurfaceCheckedTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Measured");
-      OtherSurfaceCheckedTypeValue.Measured->printSelf(outFile);
+      OtherSurfaceCheckedTypeValue->Measured->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Measured>\n");
     }
@@ -52989,7 +53051,7 @@ void OtherSurfaceCheckedTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Constructed");
-      OtherSurfaceCheckedTypeValue.Constructed->printSelf(outFile);
+      OtherSurfaceCheckedTypeValue->Constructed->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Constructed>\n");
     }
@@ -53039,7 +53101,7 @@ OtherSurfaceConstructionMethodTypeChoicePair::OtherSurfaceConstructionMethodType
 
 OtherSurfaceConstructionMethodTypeChoicePair::OtherSurfaceConstructionMethodTypeChoicePair(
  whichOne OtherSurfaceConstructionMethodTypeTypeIn,
- OtherSurfaceConstructionMethodTypeVal OtherSurfaceConstructionMethodTypeValueIn)
+ OtherSurfaceConstructionMethodTypeVal * OtherSurfaceConstructionMethodTypeValueIn)
 {
   OtherSurfaceConstructionMethodTypeType = OtherSurfaceConstructionMethodTypeTypeIn;
   OtherSurfaceConstructionMethodTypeValue = OtherSurfaceConstructionMethodTypeValueIn;
@@ -53049,7 +53111,8 @@ OtherSurfaceConstructionMethodTypeChoicePair::~OtherSurfaceConstructionMethodTyp
 {
   #ifndef NODESTRUCT
   if (OtherSurfaceConstructionMethodTypeType == CopyE)
-    delete OtherSurfaceConstructionMethodTypeValue.Copy;
+    delete OtherSurfaceConstructionMethodTypeValue->Copy;
+  delete OtherSurfaceConstructionMethodTypeValue;
   #endif
 }
 
@@ -53059,7 +53122,7 @@ void OtherSurfaceConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Copy");
-      OtherSurfaceConstructionMethodTypeValue.Copy->printSelf(outFile);
+      OtherSurfaceConstructionMethodTypeValue->Copy->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Copy>\n");
     }
@@ -53959,7 +54022,7 @@ OtherSurfaceFeatureNominalTypeChoicePair::OtherSurfaceFeatureNominalTypeChoicePa
 
 OtherSurfaceFeatureNominalTypeChoicePair::OtherSurfaceFeatureNominalTypeChoicePair(
  whichOne OtherSurfaceFeatureNominalTypeTypeIn,
- OtherSurfaceFeatureNominalTypeVal OtherSurfaceFeatureNominalTypeValueIn)
+ OtherSurfaceFeatureNominalTypeVal * OtherSurfaceFeatureNominalTypeValueIn)
 {
   OtherSurfaceFeatureNominalTypeType = OtherSurfaceFeatureNominalTypeTypeIn;
   OtherSurfaceFeatureNominalTypeValue = OtherSurfaceFeatureNominalTypeValueIn;
@@ -53969,11 +54032,12 @@ OtherSurfaceFeatureNominalTypeChoicePair::~OtherSurfaceFeatureNominalTypeChoiceP
 {
   #ifndef NODESTRUCT
   if (OtherSurfaceFeatureNominalTypeType == PolyLineE)
-    delete OtherSurfaceFeatureNominalTypeValue.PolyLine;
+    delete OtherSurfaceFeatureNominalTypeValue->PolyLine;
   else if (OtherSurfaceFeatureNominalTypeType == ClosedSurfaceE)
-    delete OtherSurfaceFeatureNominalTypeValue.ClosedSurface;
+    delete OtherSurfaceFeatureNominalTypeValue->ClosedSurface;
   else if (OtherSurfaceFeatureNominalTypeType == ConstructedE)
-    delete OtherSurfaceFeatureNominalTypeValue.Constructed;
+    delete OtherSurfaceFeatureNominalTypeValue->Constructed;
+  delete OtherSurfaceFeatureNominalTypeValue;
   #endif
 }
 
@@ -53983,21 +54047,21 @@ void OtherSurfaceFeatureNominalTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<PolyLine");
-      OtherSurfaceFeatureNominalTypeValue.PolyLine->printSelf(outFile);
+      OtherSurfaceFeatureNominalTypeValue->PolyLine->printSelf(outFile);
       fprintf(outFile, "</PolyLine>\n");
     }
   else if (OtherSurfaceFeatureNominalTypeType == ClosedSurfaceE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ClosedSurface");
-      OtherSurfaceFeatureNominalTypeValue.ClosedSurface->printSelf(outFile);
+      OtherSurfaceFeatureNominalTypeValue->ClosedSurface->printSelf(outFile);
       fprintf(outFile, "</ClosedSurface>\n");
     }
   else if (OtherSurfaceFeatureNominalTypeType == ConstructedE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Constructed");
-      OtherSurfaceFeatureNominalTypeValue.Constructed->printSelf(outFile);
+      OtherSurfaceFeatureNominalTypeValue->Constructed->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Constructed>\n");
     }
@@ -54105,7 +54169,7 @@ OtherSurfaceMeasurementDeterminationTypeChoicePair::OtherSurfaceMeasurementDeter
 
 OtherSurfaceMeasurementDeterminationTypeChoicePair::OtherSurfaceMeasurementDeterminationTypeChoicePair(
  whichOne OtherSurfaceMeasurementDeterminationTypeTypeIn,
- OtherSurfaceMeasurementDeterminationTypeVal OtherSurfaceMeasurementDeterminationTypeValueIn)
+ OtherSurfaceMeasurementDeterminationTypeVal * OtherSurfaceMeasurementDeterminationTypeValueIn)
 {
   OtherSurfaceMeasurementDeterminationTypeType = OtherSurfaceMeasurementDeterminationTypeTypeIn;
   OtherSurfaceMeasurementDeterminationTypeValue = OtherSurfaceMeasurementDeterminationTypeValueIn;
@@ -54115,9 +54179,10 @@ OtherSurfaceMeasurementDeterminationTypeChoicePair::~OtherSurfaceMeasurementDete
 {
   #ifndef NODESTRUCT
   if (OtherSurfaceMeasurementDeterminationTypeType == CheckedE)
-    delete OtherSurfaceMeasurementDeterminationTypeValue.Checked;
+    delete OtherSurfaceMeasurementDeterminationTypeValue->Checked;
   else if (OtherSurfaceMeasurementDeterminationTypeType == SetE)
-    delete OtherSurfaceMeasurementDeterminationTypeValue.Set;
+    delete OtherSurfaceMeasurementDeterminationTypeValue->Set;
+  delete OtherSurfaceMeasurementDeterminationTypeValue;
   #endif
 }
 
@@ -54127,7 +54192,7 @@ void OtherSurfaceMeasurementDeterminationTypeChoicePair::printSelf(FILE * outFil
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Checked");
-      OtherSurfaceMeasurementDeterminationTypeValue.Checked->printSelf(outFile);
+      OtherSurfaceMeasurementDeterminationTypeValue->Checked->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Checked>\n");
     }
@@ -54135,7 +54200,7 @@ void OtherSurfaceMeasurementDeterminationTypeChoicePair::printSelf(FILE * outFil
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Set");
-      OtherSurfaceMeasurementDeterminationTypeValue.Set->printSelf(outFile);
+      OtherSurfaceMeasurementDeterminationTypeValue->Set->printSelf(outFile);
     }
 }
 
@@ -58010,7 +58075,7 @@ PlaneCheckedTypeChoicePair::PlaneCheckedTypeChoicePair() {}
 
 PlaneCheckedTypeChoicePair::PlaneCheckedTypeChoicePair(
  whichOne PlaneCheckedTypeTypeIn,
- PlaneCheckedTypeVal PlaneCheckedTypeValueIn)
+ PlaneCheckedTypeVal * PlaneCheckedTypeValueIn)
 {
   PlaneCheckedTypeType = PlaneCheckedTypeTypeIn;
   PlaneCheckedTypeValue = PlaneCheckedTypeValueIn;
@@ -58020,9 +58085,10 @@ PlaneCheckedTypeChoicePair::~PlaneCheckedTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (PlaneCheckedTypeType == MeasuredE)
-    delete PlaneCheckedTypeValue.Measured;
+    delete PlaneCheckedTypeValue->Measured;
   else if (PlaneCheckedTypeType == ConstructedE)
-    delete PlaneCheckedTypeValue.Constructed;
+    delete PlaneCheckedTypeValue->Constructed;
+  delete PlaneCheckedTypeValue;
   #endif
 }
 
@@ -58032,7 +58098,7 @@ void PlaneCheckedTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Measured");
-      PlaneCheckedTypeValue.Measured->printSelf(outFile);
+      PlaneCheckedTypeValue->Measured->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Measured>\n");
     }
@@ -58040,7 +58106,7 @@ void PlaneCheckedTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Constructed");
-      PlaneCheckedTypeValue.Constructed->printSelf(outFile);
+      PlaneCheckedTypeValue->Constructed->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Constructed>\n");
     }
@@ -58090,7 +58156,7 @@ PlaneConstructionMethodTypeChoicePair::PlaneConstructionMethodTypeChoicePair() {
 
 PlaneConstructionMethodTypeChoicePair::PlaneConstructionMethodTypeChoicePair(
  whichOne PlaneConstructionMethodTypeTypeIn,
- PlaneConstructionMethodTypeVal PlaneConstructionMethodTypeValueIn)
+ PlaneConstructionMethodTypeVal * PlaneConstructionMethodTypeValueIn)
 {
   PlaneConstructionMethodTypeType = PlaneConstructionMethodTypeTypeIn;
   PlaneConstructionMethodTypeValue = PlaneConstructionMethodTypeValueIn;
@@ -58100,29 +58166,30 @@ PlaneConstructionMethodTypeChoicePair::~PlaneConstructionMethodTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (PlaneConstructionMethodTypeType == BestFitE)
-    delete PlaneConstructionMethodTypeValue.BestFit;
+    delete PlaneConstructionMethodTypeValue->BestFit;
   else if (PlaneConstructionMethodTypeType == RecompensatedE)
-    delete PlaneConstructionMethodTypeValue.Recompensated;
+    delete PlaneConstructionMethodTypeValue->Recompensated;
   else if (PlaneConstructionMethodTypeType == MidplaneE)
-    delete PlaneConstructionMethodTypeValue.Midplane;
+    delete PlaneConstructionMethodTypeValue->Midplane;
   else if (PlaneConstructionMethodTypeType == OffsetE)
-    delete PlaneConstructionMethodTypeValue.Offset;
+    delete PlaneConstructionMethodTypeValue->Offset;
   else if (PlaneConstructionMethodTypeType == PerpendicularE)
-    delete PlaneConstructionMethodTypeValue.Perpendicular;
+    delete PlaneConstructionMethodTypeValue->Perpendicular;
   else if (PlaneConstructionMethodTypeType == ParallelE)
-    delete PlaneConstructionMethodTypeValue.Parallel;
+    delete PlaneConstructionMethodTypeValue->Parallel;
   else if (PlaneConstructionMethodTypeType == CopyE)
-    delete PlaneConstructionMethodTypeValue.Copy;
+    delete PlaneConstructionMethodTypeValue->Copy;
   else if (PlaneConstructionMethodTypeType == CastE)
-    delete PlaneConstructionMethodTypeValue.Cast;
+    delete PlaneConstructionMethodTypeValue->Cast;
   else if (PlaneConstructionMethodTypeType == TangentThroughE)
-    delete PlaneConstructionMethodTypeValue.TangentThrough;
+    delete PlaneConstructionMethodTypeValue->TangentThrough;
   else if (PlaneConstructionMethodTypeType == ThroughE)
-    delete PlaneConstructionMethodTypeValue.Through;
+    delete PlaneConstructionMethodTypeValue->Through;
   else if (PlaneConstructionMethodTypeType == TransformE)
-    delete PlaneConstructionMethodTypeValue.Transform;
+    delete PlaneConstructionMethodTypeValue->Transform;
   else if (PlaneConstructionMethodTypeType == ExtractE)
-    delete PlaneConstructionMethodTypeValue.Extract;
+    delete PlaneConstructionMethodTypeValue->Extract;
+  delete PlaneConstructionMethodTypeValue;
   #endif
 }
 
@@ -58132,7 +58199,7 @@ void PlaneConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<BestFit");
-      PlaneConstructionMethodTypeValue.BestFit->printSelf(outFile);
+      PlaneConstructionMethodTypeValue->BestFit->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</BestFit>\n");
     }
@@ -58140,7 +58207,7 @@ void PlaneConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Recompensated");
-      PlaneConstructionMethodTypeValue.Recompensated->printSelf(outFile);
+      PlaneConstructionMethodTypeValue->Recompensated->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Recompensated>\n");
     }
@@ -58148,7 +58215,7 @@ void PlaneConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Midplane");
-      PlaneConstructionMethodTypeValue.Midplane->printSelf(outFile);
+      PlaneConstructionMethodTypeValue->Midplane->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Midplane>\n");
     }
@@ -58156,7 +58223,7 @@ void PlaneConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Offset");
-      PlaneConstructionMethodTypeValue.Offset->printSelf(outFile);
+      PlaneConstructionMethodTypeValue->Offset->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Offset>\n");
     }
@@ -58164,7 +58231,7 @@ void PlaneConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Perpendicular");
-      PlaneConstructionMethodTypeValue.Perpendicular->printSelf(outFile);
+      PlaneConstructionMethodTypeValue->Perpendicular->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Perpendicular>\n");
     }
@@ -58172,7 +58239,7 @@ void PlaneConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Parallel");
-      PlaneConstructionMethodTypeValue.Parallel->printSelf(outFile);
+      PlaneConstructionMethodTypeValue->Parallel->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Parallel>\n");
     }
@@ -58180,7 +58247,7 @@ void PlaneConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Copy");
-      PlaneConstructionMethodTypeValue.Copy->printSelf(outFile);
+      PlaneConstructionMethodTypeValue->Copy->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Copy>\n");
     }
@@ -58188,7 +58255,7 @@ void PlaneConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Cast");
-      PlaneConstructionMethodTypeValue.Cast->printSelf(outFile);
+      PlaneConstructionMethodTypeValue->Cast->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Cast>\n");
     }
@@ -58196,7 +58263,7 @@ void PlaneConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<TangentThrough");
-      PlaneConstructionMethodTypeValue.TangentThrough->printSelf(outFile);
+      PlaneConstructionMethodTypeValue->TangentThrough->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</TangentThrough>\n");
     }
@@ -58204,7 +58271,7 @@ void PlaneConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Through");
-      PlaneConstructionMethodTypeValue.Through->printSelf(outFile);
+      PlaneConstructionMethodTypeValue->Through->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Through>\n");
     }
@@ -58212,7 +58279,7 @@ void PlaneConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Transform");
-      PlaneConstructionMethodTypeValue.Transform->printSelf(outFile);
+      PlaneConstructionMethodTypeValue->Transform->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Transform>\n");
     }
@@ -58220,7 +58287,7 @@ void PlaneConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Extract");
-      PlaneConstructionMethodTypeValue.Extract->printSelf(outFile);
+      PlaneConstructionMethodTypeValue->Extract->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Extract>\n");
     }
@@ -59379,7 +59446,7 @@ PlaneMeasurementDeterminationTypeChoicePair::PlaneMeasurementDeterminationTypeCh
 
 PlaneMeasurementDeterminationTypeChoicePair::PlaneMeasurementDeterminationTypeChoicePair(
  whichOne PlaneMeasurementDeterminationTypeTypeIn,
- PlaneMeasurementDeterminationTypeVal PlaneMeasurementDeterminationTypeValueIn)
+ PlaneMeasurementDeterminationTypeVal * PlaneMeasurementDeterminationTypeValueIn)
 {
   PlaneMeasurementDeterminationTypeType = PlaneMeasurementDeterminationTypeTypeIn;
   PlaneMeasurementDeterminationTypeValue = PlaneMeasurementDeterminationTypeValueIn;
@@ -59389,9 +59456,10 @@ PlaneMeasurementDeterminationTypeChoicePair::~PlaneMeasurementDeterminationTypeC
 {
   #ifndef NODESTRUCT
   if (PlaneMeasurementDeterminationTypeType == CheckedE)
-    delete PlaneMeasurementDeterminationTypeValue.Checked;
+    delete PlaneMeasurementDeterminationTypeValue->Checked;
   else if (PlaneMeasurementDeterminationTypeType == SetE)
-    delete PlaneMeasurementDeterminationTypeValue.Set;
+    delete PlaneMeasurementDeterminationTypeValue->Set;
+  delete PlaneMeasurementDeterminationTypeValue;
   #endif
 }
 
@@ -59401,7 +59469,7 @@ void PlaneMeasurementDeterminationTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Checked");
-      PlaneMeasurementDeterminationTypeValue.Checked->printSelf(outFile);
+      PlaneMeasurementDeterminationTypeValue->Checked->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Checked>\n");
     }
@@ -59409,7 +59477,7 @@ void PlaneMeasurementDeterminationTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Set");
-      PlaneMeasurementDeterminationTypeValue.Set->printSelf(outFile);
+      PlaneMeasurementDeterminationTypeValue->Set->printSelf(outFile);
     }
 }
 
@@ -60059,7 +60127,7 @@ PointCheckedTypeChoicePair::PointCheckedTypeChoicePair() {}
 
 PointCheckedTypeChoicePair::PointCheckedTypeChoicePair(
  whichOne PointCheckedTypeTypeIn,
- PointCheckedTypeVal PointCheckedTypeValueIn)
+ PointCheckedTypeVal * PointCheckedTypeValueIn)
 {
   PointCheckedTypeType = PointCheckedTypeTypeIn;
   PointCheckedTypeValue = PointCheckedTypeValueIn;
@@ -60069,9 +60137,10 @@ PointCheckedTypeChoicePair::~PointCheckedTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (PointCheckedTypeType == MeasuredE)
-    delete PointCheckedTypeValue.Measured;
+    delete PointCheckedTypeValue->Measured;
   else if (PointCheckedTypeType == ConstructedE)
-    delete PointCheckedTypeValue.Constructed;
+    delete PointCheckedTypeValue->Constructed;
+  delete PointCheckedTypeValue;
   #endif
 }
 
@@ -60081,7 +60150,7 @@ void PointCheckedTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Measured");
-      PointCheckedTypeValue.Measured->printSelf(outFile);
+      PointCheckedTypeValue->Measured->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Measured>\n");
     }
@@ -60089,7 +60158,7 @@ void PointCheckedTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Constructed");
-      PointCheckedTypeValue.Constructed->printSelf(outFile);
+      PointCheckedTypeValue->Constructed->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Constructed>\n");
     }
@@ -60139,7 +60208,7 @@ PointConstructionMethodTypeChoicePair::PointConstructionMethodTypeChoicePair() {
 
 PointConstructionMethodTypeChoicePair::PointConstructionMethodTypeChoicePair(
  whichOne PointConstructionMethodTypeTypeIn,
- PointConstructionMethodTypeVal PointConstructionMethodTypeValueIn)
+ PointConstructionMethodTypeVal * PointConstructionMethodTypeValueIn)
 {
   PointConstructionMethodTypeType = PointConstructionMethodTypeTypeIn;
   PointConstructionMethodTypeValue = PointConstructionMethodTypeValueIn;
@@ -60149,33 +60218,34 @@ PointConstructionMethodTypeChoicePair::~PointConstructionMethodTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (PointConstructionMethodTypeType == IntersectionE)
-    delete PointConstructionMethodTypeValue.Intersection;
+    delete PointConstructionMethodTypeValue->Intersection;
   else if (PointConstructionMethodTypeType == ProjectionE)
-    delete PointConstructionMethodTypeValue.Projection;
+    delete PointConstructionMethodTypeValue->Projection;
   else if (PointConstructionMethodTypeType == CopyE)
-    delete PointConstructionMethodTypeValue.Copy;
+    delete PointConstructionMethodTypeValue->Copy;
   else if (PointConstructionMethodTypeType == CastE)
-    delete PointConstructionMethodTypeValue.Cast;
+    delete PointConstructionMethodTypeValue->Cast;
   else if (PointConstructionMethodTypeType == TransformE)
-    delete PointConstructionMethodTypeValue.Transform;
+    delete PointConstructionMethodTypeValue->Transform;
   else if (PointConstructionMethodTypeType == FromConeE)
-    delete PointConstructionMethodTypeValue.FromCone;
+    delete PointConstructionMethodTypeValue->FromCone;
   else if (PointConstructionMethodTypeType == FromScanE)
-    delete PointConstructionMethodTypeValue.FromScan;
+    delete PointConstructionMethodTypeValue->FromScan;
   else if (PointConstructionMethodTypeType == CenterOfGravityE)
-    delete PointConstructionMethodTypeValue.CenterOfGravity;
+    delete PointConstructionMethodTypeValue->CenterOfGravity;
   else if (PointConstructionMethodTypeType == PierceE)
-    delete PointConstructionMethodTypeValue.Pierce;
+    delete PointConstructionMethodTypeValue->Pierce;
   else if (PointConstructionMethodTypeType == MidPointE)
-    delete PointConstructionMethodTypeValue.MidPoint;
+    delete PointConstructionMethodTypeValue->MidPoint;
   else if (PointConstructionMethodTypeType == MovePointE)
-    delete PointConstructionMethodTypeValue.MovePoint;
+    delete PointConstructionMethodTypeValue->MovePoint;
   else if (PointConstructionMethodTypeType == MovePointVectorE)
-    delete PointConstructionMethodTypeValue.MovePointVector;
+    delete PointConstructionMethodTypeValue->MovePointVector;
   else if (PointConstructionMethodTypeType == MovePointAxisE)
-    delete PointConstructionMethodTypeValue.MovePointAxis;
+    delete PointConstructionMethodTypeValue->MovePointAxis;
   else if (PointConstructionMethodTypeType == ExtremeE)
-    delete PointConstructionMethodTypeValue.Extreme;
+    delete PointConstructionMethodTypeValue->Extreme;
+  delete PointConstructionMethodTypeValue;
   #endif
 }
 
@@ -60185,7 +60255,7 @@ void PointConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Intersection");
-      PointConstructionMethodTypeValue.Intersection->printSelf(outFile);
+      PointConstructionMethodTypeValue->Intersection->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Intersection>\n");
     }
@@ -60193,7 +60263,7 @@ void PointConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Projection");
-      PointConstructionMethodTypeValue.Projection->printSelf(outFile);
+      PointConstructionMethodTypeValue->Projection->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Projection>\n");
     }
@@ -60201,7 +60271,7 @@ void PointConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Copy");
-      PointConstructionMethodTypeValue.Copy->printSelf(outFile);
+      PointConstructionMethodTypeValue->Copy->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Copy>\n");
     }
@@ -60209,7 +60279,7 @@ void PointConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Cast");
-      PointConstructionMethodTypeValue.Cast->printSelf(outFile);
+      PointConstructionMethodTypeValue->Cast->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Cast>\n");
     }
@@ -60217,7 +60287,7 @@ void PointConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Transform");
-      PointConstructionMethodTypeValue.Transform->printSelf(outFile);
+      PointConstructionMethodTypeValue->Transform->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Transform>\n");
     }
@@ -60225,7 +60295,7 @@ void PointConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<FromCone");
-      PointConstructionMethodTypeValue.FromCone->printSelf(outFile);
+      PointConstructionMethodTypeValue->FromCone->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</FromCone>\n");
     }
@@ -60233,7 +60303,7 @@ void PointConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<FromScan");
-      PointConstructionMethodTypeValue.FromScan->printSelf(outFile);
+      PointConstructionMethodTypeValue->FromScan->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</FromScan>\n");
     }
@@ -60241,7 +60311,7 @@ void PointConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<CenterOfGravity");
-      PointConstructionMethodTypeValue.CenterOfGravity->printSelf(outFile);
+      PointConstructionMethodTypeValue->CenterOfGravity->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</CenterOfGravity>\n");
     }
@@ -60249,7 +60319,7 @@ void PointConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Pierce");
-      PointConstructionMethodTypeValue.Pierce->printSelf(outFile);
+      PointConstructionMethodTypeValue->Pierce->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Pierce>\n");
     }
@@ -60257,7 +60327,7 @@ void PointConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MidPoint");
-      PointConstructionMethodTypeValue.MidPoint->printSelf(outFile);
+      PointConstructionMethodTypeValue->MidPoint->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</MidPoint>\n");
     }
@@ -60265,7 +60335,7 @@ void PointConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MovePoint");
-      PointConstructionMethodTypeValue.MovePoint->printSelf(outFile);
+      PointConstructionMethodTypeValue->MovePoint->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</MovePoint>\n");
     }
@@ -60273,7 +60343,7 @@ void PointConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MovePointVector");
-      PointConstructionMethodTypeValue.MovePointVector->printSelf(outFile);
+      PointConstructionMethodTypeValue->MovePointVector->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</MovePointVector>\n");
     }
@@ -60281,7 +60351,7 @@ void PointConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MovePointAxis");
-      PointConstructionMethodTypeValue.MovePointAxis->printSelf(outFile);
+      PointConstructionMethodTypeValue->MovePointAxis->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</MovePointAxis>\n");
     }
@@ -60289,7 +60359,7 @@ void PointConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Extreme");
-      PointConstructionMethodTypeValue.Extreme->printSelf(outFile);
+      PointConstructionMethodTypeValue->Extreme->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Extreme>\n");
     }
@@ -60560,7 +60630,7 @@ PointDefinedCurveCheckedTypeChoicePair::PointDefinedCurveCheckedTypeChoicePair()
 
 PointDefinedCurveCheckedTypeChoicePair::PointDefinedCurveCheckedTypeChoicePair(
  whichOne PointDefinedCurveCheckedTypeTypeIn,
- PointDefinedCurveCheckedTypeVal PointDefinedCurveCheckedTypeValueIn)
+ PointDefinedCurveCheckedTypeVal * PointDefinedCurveCheckedTypeValueIn)
 {
   PointDefinedCurveCheckedTypeType = PointDefinedCurveCheckedTypeTypeIn;
   PointDefinedCurveCheckedTypeValue = PointDefinedCurveCheckedTypeValueIn;
@@ -60570,9 +60640,10 @@ PointDefinedCurveCheckedTypeChoicePair::~PointDefinedCurveCheckedTypeChoicePair(
 {
   #ifndef NODESTRUCT
   if (PointDefinedCurveCheckedTypeType == MeasuredE)
-    delete PointDefinedCurveCheckedTypeValue.Measured;
+    delete PointDefinedCurveCheckedTypeValue->Measured;
   else if (PointDefinedCurveCheckedTypeType == ConstructedE)
-    delete PointDefinedCurveCheckedTypeValue.Constructed;
+    delete PointDefinedCurveCheckedTypeValue->Constructed;
+  delete PointDefinedCurveCheckedTypeValue;
   #endif
 }
 
@@ -60582,7 +60653,7 @@ void PointDefinedCurveCheckedTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Measured");
-      PointDefinedCurveCheckedTypeValue.Measured->printSelf(outFile);
+      PointDefinedCurveCheckedTypeValue->Measured->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Measured>\n");
     }
@@ -60590,7 +60661,7 @@ void PointDefinedCurveCheckedTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Constructed");
-      PointDefinedCurveCheckedTypeValue.Constructed->printSelf(outFile);
+      PointDefinedCurveCheckedTypeValue->Constructed->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Constructed>\n");
     }
@@ -60640,7 +60711,7 @@ PointDefinedCurveConstructionMethodTypeChoicePair::PointDefinedCurveConstruction
 
 PointDefinedCurveConstructionMethodTypeChoicePair::PointDefinedCurveConstructionMethodTypeChoicePair(
  whichOne PointDefinedCurveConstructionMethodTypeTypeIn,
- PointDefinedCurveConstructionMethodTypeVal PointDefinedCurveConstructionMethodTypeValueIn)
+ PointDefinedCurveConstructionMethodTypeVal * PointDefinedCurveConstructionMethodTypeValueIn)
 {
   PointDefinedCurveConstructionMethodTypeType = PointDefinedCurveConstructionMethodTypeTypeIn;
   PointDefinedCurveConstructionMethodTypeValue = PointDefinedCurveConstructionMethodTypeValueIn;
@@ -60650,17 +60721,18 @@ PointDefinedCurveConstructionMethodTypeChoicePair::~PointDefinedCurveConstructio
 {
   #ifndef NODESTRUCT
   if (PointDefinedCurveConstructionMethodTypeType == BestFitE)
-    delete PointDefinedCurveConstructionMethodTypeValue.BestFit;
+    delete PointDefinedCurveConstructionMethodTypeValue->BestFit;
   else if (PointDefinedCurveConstructionMethodTypeType == RecompensatedE)
-    delete PointDefinedCurveConstructionMethodTypeValue.Recompensated;
+    delete PointDefinedCurveConstructionMethodTypeValue->Recompensated;
   else if (PointDefinedCurveConstructionMethodTypeType == CopyE)
-    delete PointDefinedCurveConstructionMethodTypeValue.Copy;
+    delete PointDefinedCurveConstructionMethodTypeValue->Copy;
   else if (PointDefinedCurveConstructionMethodTypeType == TransformE)
-    delete PointDefinedCurveConstructionMethodTypeValue.Transform;
+    delete PointDefinedCurveConstructionMethodTypeValue->Transform;
   else if (PointDefinedCurveConstructionMethodTypeType == FromScanE)
-    delete PointDefinedCurveConstructionMethodTypeValue.FromScan;
+    delete PointDefinedCurveConstructionMethodTypeValue->FromScan;
   else if (PointDefinedCurveConstructionMethodTypeType == ExtractE)
-    delete PointDefinedCurveConstructionMethodTypeValue.Extract;
+    delete PointDefinedCurveConstructionMethodTypeValue->Extract;
+  delete PointDefinedCurveConstructionMethodTypeValue;
   #endif
 }
 
@@ -60670,7 +60742,7 @@ void PointDefinedCurveConstructionMethodTypeChoicePair::printSelf(FILE * outFile
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<BestFit");
-      PointDefinedCurveConstructionMethodTypeValue.BestFit->printSelf(outFile);
+      PointDefinedCurveConstructionMethodTypeValue->BestFit->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</BestFit>\n");
     }
@@ -60678,7 +60750,7 @@ void PointDefinedCurveConstructionMethodTypeChoicePair::printSelf(FILE * outFile
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Recompensated");
-      PointDefinedCurveConstructionMethodTypeValue.Recompensated->printSelf(outFile);
+      PointDefinedCurveConstructionMethodTypeValue->Recompensated->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Recompensated>\n");
     }
@@ -60686,7 +60758,7 @@ void PointDefinedCurveConstructionMethodTypeChoicePair::printSelf(FILE * outFile
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Copy");
-      PointDefinedCurveConstructionMethodTypeValue.Copy->printSelf(outFile);
+      PointDefinedCurveConstructionMethodTypeValue->Copy->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Copy>\n");
     }
@@ -60694,7 +60766,7 @@ void PointDefinedCurveConstructionMethodTypeChoicePair::printSelf(FILE * outFile
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Transform");
-      PointDefinedCurveConstructionMethodTypeValue.Transform->printSelf(outFile);
+      PointDefinedCurveConstructionMethodTypeValue->Transform->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Transform>\n");
     }
@@ -60702,7 +60774,7 @@ void PointDefinedCurveConstructionMethodTypeChoicePair::printSelf(FILE * outFile
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<FromScan");
-      PointDefinedCurveConstructionMethodTypeValue.FromScan->printSelf(outFile);
+      PointDefinedCurveConstructionMethodTypeValue->FromScan->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</FromScan>\n");
     }
@@ -60710,7 +60782,7 @@ void PointDefinedCurveConstructionMethodTypeChoicePair::printSelf(FILE * outFile
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Extract");
-      PointDefinedCurveConstructionMethodTypeValue.Extract->printSelf(outFile);
+      PointDefinedCurveConstructionMethodTypeValue->Extract->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Extract>\n");
     }
@@ -61919,7 +61991,7 @@ PointDefinedCurveMeasurementDeterminationTypeChoicePair::PointDefinedCurveMeasur
 
 PointDefinedCurveMeasurementDeterminationTypeChoicePair::PointDefinedCurveMeasurementDeterminationTypeChoicePair(
  whichOne PointDefinedCurveMeasurementDeterminationTypeTypeIn,
- PointDefinedCurveMeasurementDeterminationTypeVal PointDefinedCurveMeasurementDeterminationTypeValueIn)
+ PointDefinedCurveMeasurementDeterminationTypeVal * PointDefinedCurveMeasurementDeterminationTypeValueIn)
 {
   PointDefinedCurveMeasurementDeterminationTypeType = PointDefinedCurveMeasurementDeterminationTypeTypeIn;
   PointDefinedCurveMeasurementDeterminationTypeValue = PointDefinedCurveMeasurementDeterminationTypeValueIn;
@@ -61929,9 +62001,10 @@ PointDefinedCurveMeasurementDeterminationTypeChoicePair::~PointDefinedCurveMeasu
 {
   #ifndef NODESTRUCT
   if (PointDefinedCurveMeasurementDeterminationTypeType == CheckedE)
-    delete PointDefinedCurveMeasurementDeterminationTypeValue.Checked;
+    delete PointDefinedCurveMeasurementDeterminationTypeValue->Checked;
   else if (PointDefinedCurveMeasurementDeterminationTypeType == SetE)
-    delete PointDefinedCurveMeasurementDeterminationTypeValue.Set;
+    delete PointDefinedCurveMeasurementDeterminationTypeValue->Set;
+  delete PointDefinedCurveMeasurementDeterminationTypeValue;
   #endif
 }
 
@@ -61941,7 +62014,7 @@ void PointDefinedCurveMeasurementDeterminationTypeChoicePair::printSelf(FILE * o
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Checked");
-      PointDefinedCurveMeasurementDeterminationTypeValue.Checked->printSelf(outFile);
+      PointDefinedCurveMeasurementDeterminationTypeValue->Checked->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Checked>\n");
     }
@@ -61949,7 +62022,7 @@ void PointDefinedCurveMeasurementDeterminationTypeChoicePair::printSelf(FILE * o
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Set");
-      PointDefinedCurveMeasurementDeterminationTypeValue.Set->printSelf(outFile);
+      PointDefinedCurveMeasurementDeterminationTypeValue->Set->printSelf(outFile);
     }
 }
 
@@ -62339,7 +62412,7 @@ PointDefinedSurfaceCheckedTypeChoicePair::PointDefinedSurfaceCheckedTypeChoicePa
 
 PointDefinedSurfaceCheckedTypeChoicePair::PointDefinedSurfaceCheckedTypeChoicePair(
  whichOne PointDefinedSurfaceCheckedTypeTypeIn,
- PointDefinedSurfaceCheckedTypeVal PointDefinedSurfaceCheckedTypeValueIn)
+ PointDefinedSurfaceCheckedTypeVal * PointDefinedSurfaceCheckedTypeValueIn)
 {
   PointDefinedSurfaceCheckedTypeType = PointDefinedSurfaceCheckedTypeTypeIn;
   PointDefinedSurfaceCheckedTypeValue = PointDefinedSurfaceCheckedTypeValueIn;
@@ -62349,9 +62422,10 @@ PointDefinedSurfaceCheckedTypeChoicePair::~PointDefinedSurfaceCheckedTypeChoiceP
 {
   #ifndef NODESTRUCT
   if (PointDefinedSurfaceCheckedTypeType == MeasuredE)
-    delete PointDefinedSurfaceCheckedTypeValue.Measured;
+    delete PointDefinedSurfaceCheckedTypeValue->Measured;
   else if (PointDefinedSurfaceCheckedTypeType == ConstructedE)
-    delete PointDefinedSurfaceCheckedTypeValue.Constructed;
+    delete PointDefinedSurfaceCheckedTypeValue->Constructed;
+  delete PointDefinedSurfaceCheckedTypeValue;
   #endif
 }
 
@@ -62361,7 +62435,7 @@ void PointDefinedSurfaceCheckedTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Measured");
-      PointDefinedSurfaceCheckedTypeValue.Measured->printSelf(outFile);
+      PointDefinedSurfaceCheckedTypeValue->Measured->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Measured>\n");
     }
@@ -62369,7 +62443,7 @@ void PointDefinedSurfaceCheckedTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Constructed");
-      PointDefinedSurfaceCheckedTypeValue.Constructed->printSelf(outFile);
+      PointDefinedSurfaceCheckedTypeValue->Constructed->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Constructed>\n");
     }
@@ -62419,7 +62493,7 @@ PointDefinedSurfaceConstructionMethodTypeChoicePair::PointDefinedSurfaceConstruc
 
 PointDefinedSurfaceConstructionMethodTypeChoicePair::PointDefinedSurfaceConstructionMethodTypeChoicePair(
  whichOne PointDefinedSurfaceConstructionMethodTypeTypeIn,
- PointDefinedSurfaceConstructionMethodTypeVal PointDefinedSurfaceConstructionMethodTypeValueIn)
+ PointDefinedSurfaceConstructionMethodTypeVal * PointDefinedSurfaceConstructionMethodTypeValueIn)
 {
   PointDefinedSurfaceConstructionMethodTypeType = PointDefinedSurfaceConstructionMethodTypeTypeIn;
   PointDefinedSurfaceConstructionMethodTypeValue = PointDefinedSurfaceConstructionMethodTypeValueIn;
@@ -62429,15 +62503,16 @@ PointDefinedSurfaceConstructionMethodTypeChoicePair::~PointDefinedSurfaceConstru
 {
   #ifndef NODESTRUCT
   if (PointDefinedSurfaceConstructionMethodTypeType == BestFitE)
-    delete PointDefinedSurfaceConstructionMethodTypeValue.BestFit;
+    delete PointDefinedSurfaceConstructionMethodTypeValue->BestFit;
   else if (PointDefinedSurfaceConstructionMethodTypeType == RecompensatedE)
-    delete PointDefinedSurfaceConstructionMethodTypeValue.Recompensated;
+    delete PointDefinedSurfaceConstructionMethodTypeValue->Recompensated;
   else if (PointDefinedSurfaceConstructionMethodTypeType == CopyE)
-    delete PointDefinedSurfaceConstructionMethodTypeValue.Copy;
+    delete PointDefinedSurfaceConstructionMethodTypeValue->Copy;
   else if (PointDefinedSurfaceConstructionMethodTypeType == TransformE)
-    delete PointDefinedSurfaceConstructionMethodTypeValue.Transform;
+    delete PointDefinedSurfaceConstructionMethodTypeValue->Transform;
   else if (PointDefinedSurfaceConstructionMethodTypeType == ExtractE)
-    delete PointDefinedSurfaceConstructionMethodTypeValue.Extract;
+    delete PointDefinedSurfaceConstructionMethodTypeValue->Extract;
+  delete PointDefinedSurfaceConstructionMethodTypeValue;
   #endif
 }
 
@@ -62447,7 +62522,7 @@ void PointDefinedSurfaceConstructionMethodTypeChoicePair::printSelf(FILE * outFi
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<BestFit");
-      PointDefinedSurfaceConstructionMethodTypeValue.BestFit->printSelf(outFile);
+      PointDefinedSurfaceConstructionMethodTypeValue->BestFit->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</BestFit>\n");
     }
@@ -62455,7 +62530,7 @@ void PointDefinedSurfaceConstructionMethodTypeChoicePair::printSelf(FILE * outFi
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Recompensated");
-      PointDefinedSurfaceConstructionMethodTypeValue.Recompensated->printSelf(outFile);
+      PointDefinedSurfaceConstructionMethodTypeValue->Recompensated->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Recompensated>\n");
     }
@@ -62463,7 +62538,7 @@ void PointDefinedSurfaceConstructionMethodTypeChoicePair::printSelf(FILE * outFi
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Copy");
-      PointDefinedSurfaceConstructionMethodTypeValue.Copy->printSelf(outFile);
+      PointDefinedSurfaceConstructionMethodTypeValue->Copy->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Copy>\n");
     }
@@ -62471,7 +62546,7 @@ void PointDefinedSurfaceConstructionMethodTypeChoicePair::printSelf(FILE * outFi
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Transform");
-      PointDefinedSurfaceConstructionMethodTypeValue.Transform->printSelf(outFile);
+      PointDefinedSurfaceConstructionMethodTypeValue->Transform->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Transform>\n");
     }
@@ -62479,7 +62554,7 @@ void PointDefinedSurfaceConstructionMethodTypeChoicePair::printSelf(FILE * outFi
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Extract");
-      PointDefinedSurfaceConstructionMethodTypeValue.Extract->printSelf(outFile);
+      PointDefinedSurfaceConstructionMethodTypeValue->Extract->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Extract>\n");
     }
@@ -63570,7 +63645,7 @@ PointDefinedSurfaceMeasurementDeterminationTypeChoicePair::PointDefinedSurfaceMe
 
 PointDefinedSurfaceMeasurementDeterminationTypeChoicePair::PointDefinedSurfaceMeasurementDeterminationTypeChoicePair(
  whichOne PointDefinedSurfaceMeasurementDeterminationTypeTypeIn,
- PointDefinedSurfaceMeasurementDeterminationTypeVal PointDefinedSurfaceMeasurementDeterminationTypeValueIn)
+ PointDefinedSurfaceMeasurementDeterminationTypeVal * PointDefinedSurfaceMeasurementDeterminationTypeValueIn)
 {
   PointDefinedSurfaceMeasurementDeterminationTypeType = PointDefinedSurfaceMeasurementDeterminationTypeTypeIn;
   PointDefinedSurfaceMeasurementDeterminationTypeValue = PointDefinedSurfaceMeasurementDeterminationTypeValueIn;
@@ -63580,9 +63655,10 @@ PointDefinedSurfaceMeasurementDeterminationTypeChoicePair::~PointDefinedSurfaceM
 {
   #ifndef NODESTRUCT
   if (PointDefinedSurfaceMeasurementDeterminationTypeType == CheckedE)
-    delete PointDefinedSurfaceMeasurementDeterminationTypeValue.Checked;
+    delete PointDefinedSurfaceMeasurementDeterminationTypeValue->Checked;
   else if (PointDefinedSurfaceMeasurementDeterminationTypeType == SetE)
-    delete PointDefinedSurfaceMeasurementDeterminationTypeValue.Set;
+    delete PointDefinedSurfaceMeasurementDeterminationTypeValue->Set;
+  delete PointDefinedSurfaceMeasurementDeterminationTypeValue;
   #endif
 }
 
@@ -63592,7 +63668,7 @@ void PointDefinedSurfaceMeasurementDeterminationTypeChoicePair::printSelf(FILE *
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Checked");
-      PointDefinedSurfaceMeasurementDeterminationTypeValue.Checked->printSelf(outFile);
+      PointDefinedSurfaceMeasurementDeterminationTypeValue->Checked->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Checked>\n");
     }
@@ -63600,7 +63676,7 @@ void PointDefinedSurfaceMeasurementDeterminationTypeChoicePair::printSelf(FILE *
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Set");
-      PointDefinedSurfaceMeasurementDeterminationTypeValue.Set->printSelf(outFile);
+      PointDefinedSurfaceMeasurementDeterminationTypeValue->Set->printSelf(outFile);
     }
 }
 
@@ -66099,7 +66175,7 @@ PointFeatureNominalBaseTypeChoicePair::PointFeatureNominalBaseTypeChoicePair() {
 
 PointFeatureNominalBaseTypeChoicePair::PointFeatureNominalBaseTypeChoicePair(
  whichOne PointFeatureNominalBaseTypeTypeIn,
- PointFeatureNominalBaseTypeVal PointFeatureNominalBaseTypeValueIn)
+ PointFeatureNominalBaseTypeVal * PointFeatureNominalBaseTypeValueIn)
 {
   PointFeatureNominalBaseTypeType = PointFeatureNominalBaseTypeTypeIn;
   PointFeatureNominalBaseTypeValue = PointFeatureNominalBaseTypeValueIn;
@@ -66109,9 +66185,10 @@ PointFeatureNominalBaseTypeChoicePair::~PointFeatureNominalBaseTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (PointFeatureNominalBaseTypeType == SurfaceFeatureNominalIdE)
-    delete PointFeatureNominalBaseTypeValue.SurfaceFeatureNominalId;
+    delete PointFeatureNominalBaseTypeValue->SurfaceFeatureNominalId;
   else if (PointFeatureNominalBaseTypeType == CurveFeatureNominalIdE)
-    delete PointFeatureNominalBaseTypeValue.CurveFeatureNominalId;
+    delete PointFeatureNominalBaseTypeValue->CurveFeatureNominalId;
+  delete PointFeatureNominalBaseTypeValue;
   #endif
 }
 
@@ -66121,14 +66198,14 @@ void PointFeatureNominalBaseTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<SurfaceFeatureNominalId");
-      PointFeatureNominalBaseTypeValue.SurfaceFeatureNominalId->printSelf(outFile);
+      PointFeatureNominalBaseTypeValue->SurfaceFeatureNominalId->printSelf(outFile);
       fprintf(outFile, "</SurfaceFeatureNominalId>\n");
     }
   else if (PointFeatureNominalBaseTypeType == CurveFeatureNominalIdE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<CurveFeatureNominalId");
-      PointFeatureNominalBaseTypeValue.CurveFeatureNominalId->printSelf(outFile);
+      PointFeatureNominalBaseTypeValue->CurveFeatureNominalId->printSelf(outFile);
       fprintf(outFile, "</CurveFeatureNominalId>\n");
     }
 }
@@ -66725,7 +66802,7 @@ PointIndexTypeChoicePair::PointIndexTypeChoicePair() {}
 
 PointIndexTypeChoicePair::PointIndexTypeChoicePair(
  whichOne PointIndexTypeTypeIn,
- PointIndexTypeVal PointIndexTypeValueIn)
+ PointIndexTypeVal * PointIndexTypeValueIn)
 {
   PointIndexTypeType = PointIndexTypeTypeIn;
   PointIndexTypeValue = PointIndexTypeValueIn;
@@ -66735,11 +66812,12 @@ PointIndexTypeChoicePair::~PointIndexTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (PointIndexTypeType == SingleE)
-    delete PointIndexTypeValue.Single;
+    delete PointIndexTypeValue->Single;
   else if (PointIndexTypeType == RangeE)
-    delete PointIndexTypeValue.Range;
+    delete PointIndexTypeValue->Range;
   else if (PointIndexTypeType == AllE)
-    delete PointIndexTypeValue.All;
+    delete PointIndexTypeValue->All;
+  delete PointIndexTypeValue;
   #endif
 }
 
@@ -66749,14 +66827,14 @@ void PointIndexTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Single");
-      PointIndexTypeValue.Single->printSelf(outFile);
+      PointIndexTypeValue->Single->printSelf(outFile);
       fprintf(outFile, "</Single>\n");
     }
   else if (PointIndexTypeType == RangeE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Range");
-      PointIndexTypeValue.Range->printSelf(outFile);
+      PointIndexTypeValue->Range->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Range>\n");
     }
@@ -66764,7 +66842,7 @@ void PointIndexTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<All");
-      PointIndexTypeValue.All->printSelf(outFile);
+      PointIndexTypeValue->All->printSelf(outFile);
       fprintf(outFile, "</All>\n");
     }
 }
@@ -67029,7 +67107,7 @@ PointMeasurementDeterminationTypeChoicePair::PointMeasurementDeterminationTypeCh
 
 PointMeasurementDeterminationTypeChoicePair::PointMeasurementDeterminationTypeChoicePair(
  whichOne PointMeasurementDeterminationTypeTypeIn,
- PointMeasurementDeterminationTypeVal PointMeasurementDeterminationTypeValueIn)
+ PointMeasurementDeterminationTypeVal * PointMeasurementDeterminationTypeValueIn)
 {
   PointMeasurementDeterminationTypeType = PointMeasurementDeterminationTypeTypeIn;
   PointMeasurementDeterminationTypeValue = PointMeasurementDeterminationTypeValueIn;
@@ -67039,9 +67117,10 @@ PointMeasurementDeterminationTypeChoicePair::~PointMeasurementDeterminationTypeC
 {
   #ifndef NODESTRUCT
   if (PointMeasurementDeterminationTypeType == CheckedE)
-    delete PointMeasurementDeterminationTypeValue.Checked;
+    delete PointMeasurementDeterminationTypeValue->Checked;
   else if (PointMeasurementDeterminationTypeType == SetE)
-    delete PointMeasurementDeterminationTypeValue.Set;
+    delete PointMeasurementDeterminationTypeValue->Set;
+  delete PointMeasurementDeterminationTypeValue;
   #endif
 }
 
@@ -67051,7 +67130,7 @@ void PointMeasurementDeterminationTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Checked");
-      PointMeasurementDeterminationTypeValue.Checked->printSelf(outFile);
+      PointMeasurementDeterminationTypeValue->Checked->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Checked>\n");
     }
@@ -67059,7 +67138,7 @@ void PointMeasurementDeterminationTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Set");
-      PointMeasurementDeterminationTypeValue.Set->printSelf(outFile);
+      PointMeasurementDeterminationTypeValue->Set->printSelf(outFile);
     }
 }
 
@@ -70134,7 +70213,7 @@ SphereCheckedTypeChoicePair::SphereCheckedTypeChoicePair() {}
 
 SphereCheckedTypeChoicePair::SphereCheckedTypeChoicePair(
  whichOne SphereCheckedTypeTypeIn,
- SphereCheckedTypeVal SphereCheckedTypeValueIn)
+ SphereCheckedTypeVal * SphereCheckedTypeValueIn)
 {
   SphereCheckedTypeType = SphereCheckedTypeTypeIn;
   SphereCheckedTypeValue = SphereCheckedTypeValueIn;
@@ -70144,9 +70223,10 @@ SphereCheckedTypeChoicePair::~SphereCheckedTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (SphereCheckedTypeType == MeasuredE)
-    delete SphereCheckedTypeValue.Measured;
+    delete SphereCheckedTypeValue->Measured;
   else if (SphereCheckedTypeType == ConstructedE)
-    delete SphereCheckedTypeValue.Constructed;
+    delete SphereCheckedTypeValue->Constructed;
+  delete SphereCheckedTypeValue;
   #endif
 }
 
@@ -70156,7 +70236,7 @@ void SphereCheckedTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Measured");
-      SphereCheckedTypeValue.Measured->printSelf(outFile);
+      SphereCheckedTypeValue->Measured->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Measured>\n");
     }
@@ -70164,7 +70244,7 @@ void SphereCheckedTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Constructed");
-      SphereCheckedTypeValue.Constructed->printSelf(outFile);
+      SphereCheckedTypeValue->Constructed->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Constructed>\n");
     }
@@ -70214,7 +70294,7 @@ SphereConstructionMethodTypeChoicePair::SphereConstructionMethodTypeChoicePair()
 
 SphereConstructionMethodTypeChoicePair::SphereConstructionMethodTypeChoicePair(
  whichOne SphereConstructionMethodTypeTypeIn,
- SphereConstructionMethodTypeVal SphereConstructionMethodTypeValueIn)
+ SphereConstructionMethodTypeVal * SphereConstructionMethodTypeValueIn)
 {
   SphereConstructionMethodTypeType = SphereConstructionMethodTypeTypeIn;
   SphereConstructionMethodTypeValue = SphereConstructionMethodTypeValueIn;
@@ -70224,17 +70304,18 @@ SphereConstructionMethodTypeChoicePair::~SphereConstructionMethodTypeChoicePair(
 {
   #ifndef NODESTRUCT
   if (SphereConstructionMethodTypeType == BestFitE)
-    delete SphereConstructionMethodTypeValue.BestFit;
+    delete SphereConstructionMethodTypeValue->BestFit;
   else if (SphereConstructionMethodTypeType == RecompensatedE)
-    delete SphereConstructionMethodTypeValue.Recompensated;
+    delete SphereConstructionMethodTypeValue->Recompensated;
   else if (SphereConstructionMethodTypeType == CopyE)
-    delete SphereConstructionMethodTypeValue.Copy;
+    delete SphereConstructionMethodTypeValue->Copy;
   else if (SphereConstructionMethodTypeType == CastE)
-    delete SphereConstructionMethodTypeValue.Cast;
+    delete SphereConstructionMethodTypeValue->Cast;
   else if (SphereConstructionMethodTypeType == TransformE)
-    delete SphereConstructionMethodTypeValue.Transform;
+    delete SphereConstructionMethodTypeValue->Transform;
   else if (SphereConstructionMethodTypeType == FromScanE)
-    delete SphereConstructionMethodTypeValue.FromScan;
+    delete SphereConstructionMethodTypeValue->FromScan;
+  delete SphereConstructionMethodTypeValue;
   #endif
 }
 
@@ -70244,7 +70325,7 @@ void SphereConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<BestFit");
-      SphereConstructionMethodTypeValue.BestFit->printSelf(outFile);
+      SphereConstructionMethodTypeValue->BestFit->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</BestFit>\n");
     }
@@ -70252,7 +70333,7 @@ void SphereConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Recompensated");
-      SphereConstructionMethodTypeValue.Recompensated->printSelf(outFile);
+      SphereConstructionMethodTypeValue->Recompensated->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Recompensated>\n");
     }
@@ -70260,7 +70341,7 @@ void SphereConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Copy");
-      SphereConstructionMethodTypeValue.Copy->printSelf(outFile);
+      SphereConstructionMethodTypeValue->Copy->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Copy>\n");
     }
@@ -70268,7 +70349,7 @@ void SphereConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Cast");
-      SphereConstructionMethodTypeValue.Cast->printSelf(outFile);
+      SphereConstructionMethodTypeValue->Cast->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Cast>\n");
     }
@@ -70276,7 +70357,7 @@ void SphereConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Transform");
-      SphereConstructionMethodTypeValue.Transform->printSelf(outFile);
+      SphereConstructionMethodTypeValue->Transform->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Transform>\n");
     }
@@ -70284,7 +70365,7 @@ void SphereConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<FromScan");
-      SphereConstructionMethodTypeValue.FromScan->printSelf(outFile);
+      SphereConstructionMethodTypeValue->FromScan->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</FromScan>\n");
     }
@@ -71553,7 +71634,7 @@ SphereMeasurementDeterminationTypeChoicePair::SphereMeasurementDeterminationType
 
 SphereMeasurementDeterminationTypeChoicePair::SphereMeasurementDeterminationTypeChoicePair(
  whichOne SphereMeasurementDeterminationTypeTypeIn,
- SphereMeasurementDeterminationTypeVal SphereMeasurementDeterminationTypeValueIn)
+ SphereMeasurementDeterminationTypeVal * SphereMeasurementDeterminationTypeValueIn)
 {
   SphereMeasurementDeterminationTypeType = SphereMeasurementDeterminationTypeTypeIn;
   SphereMeasurementDeterminationTypeValue = SphereMeasurementDeterminationTypeValueIn;
@@ -71563,9 +71644,10 @@ SphereMeasurementDeterminationTypeChoicePair::~SphereMeasurementDeterminationTyp
 {
   #ifndef NODESTRUCT
   if (SphereMeasurementDeterminationTypeType == CheckedE)
-    delete SphereMeasurementDeterminationTypeValue.Checked;
+    delete SphereMeasurementDeterminationTypeValue->Checked;
   else if (SphereMeasurementDeterminationTypeType == SetE)
-    delete SphereMeasurementDeterminationTypeValue.Set;
+    delete SphereMeasurementDeterminationTypeValue->Set;
+  delete SphereMeasurementDeterminationTypeValue;
   #endif
 }
 
@@ -71575,7 +71657,7 @@ void SphereMeasurementDeterminationTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Checked");
-      SphereMeasurementDeterminationTypeValue.Checked->printSelf(outFile);
+      SphereMeasurementDeterminationTypeValue->Checked->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Checked>\n");
     }
@@ -71583,7 +71665,7 @@ void SphereMeasurementDeterminationTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Set");
-      SphereMeasurementDeterminationTypeValue.Set->printSelf(outFile);
+      SphereMeasurementDeterminationTypeValue->Set->printSelf(outFile);
     }
 }
 
@@ -72026,7 +72108,7 @@ SphericalSegmentCheckedTypeChoicePair::SphericalSegmentCheckedTypeChoicePair() {
 
 SphericalSegmentCheckedTypeChoicePair::SphericalSegmentCheckedTypeChoicePair(
  whichOne SphericalSegmentCheckedTypeTypeIn,
- SphericalSegmentCheckedTypeVal SphericalSegmentCheckedTypeValueIn)
+ SphericalSegmentCheckedTypeVal * SphericalSegmentCheckedTypeValueIn)
 {
   SphericalSegmentCheckedTypeType = SphericalSegmentCheckedTypeTypeIn;
   SphericalSegmentCheckedTypeValue = SphericalSegmentCheckedTypeValueIn;
@@ -72036,9 +72118,10 @@ SphericalSegmentCheckedTypeChoicePair::~SphericalSegmentCheckedTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (SphericalSegmentCheckedTypeType == MeasuredE)
-    delete SphericalSegmentCheckedTypeValue.Measured;
+    delete SphericalSegmentCheckedTypeValue->Measured;
   else if (SphericalSegmentCheckedTypeType == ConstructedE)
-    delete SphericalSegmentCheckedTypeValue.Constructed;
+    delete SphericalSegmentCheckedTypeValue->Constructed;
+  delete SphericalSegmentCheckedTypeValue;
   #endif
 }
 
@@ -72048,7 +72131,7 @@ void SphericalSegmentCheckedTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Measured");
-      SphericalSegmentCheckedTypeValue.Measured->printSelf(outFile);
+      SphericalSegmentCheckedTypeValue->Measured->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Measured>\n");
     }
@@ -72056,7 +72139,7 @@ void SphericalSegmentCheckedTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Constructed");
-      SphericalSegmentCheckedTypeValue.Constructed->printSelf(outFile);
+      SphericalSegmentCheckedTypeValue->Constructed->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Constructed>\n");
     }
@@ -72106,7 +72189,7 @@ SphericalSegmentConstructionMethodTypeChoicePair::SphericalSegmentConstructionMe
 
 SphericalSegmentConstructionMethodTypeChoicePair::SphericalSegmentConstructionMethodTypeChoicePair(
  whichOne SphericalSegmentConstructionMethodTypeTypeIn,
- SphericalSegmentConstructionMethodTypeVal SphericalSegmentConstructionMethodTypeValueIn)
+ SphericalSegmentConstructionMethodTypeVal * SphericalSegmentConstructionMethodTypeValueIn)
 {
   SphericalSegmentConstructionMethodTypeType = SphericalSegmentConstructionMethodTypeTypeIn;
   SphericalSegmentConstructionMethodTypeValue = SphericalSegmentConstructionMethodTypeValueIn;
@@ -72116,15 +72199,16 @@ SphericalSegmentConstructionMethodTypeChoicePair::~SphericalSegmentConstructionM
 {
   #ifndef NODESTRUCT
   if (SphericalSegmentConstructionMethodTypeType == BestFitE)
-    delete SphericalSegmentConstructionMethodTypeValue.BestFit;
+    delete SphericalSegmentConstructionMethodTypeValue->BestFit;
   else if (SphericalSegmentConstructionMethodTypeType == RecompensatedE)
-    delete SphericalSegmentConstructionMethodTypeValue.Recompensated;
+    delete SphericalSegmentConstructionMethodTypeValue->Recompensated;
   else if (SphericalSegmentConstructionMethodTypeType == CopyE)
-    delete SphericalSegmentConstructionMethodTypeValue.Copy;
+    delete SphericalSegmentConstructionMethodTypeValue->Copy;
   else if (SphericalSegmentConstructionMethodTypeType == CastE)
-    delete SphericalSegmentConstructionMethodTypeValue.Cast;
+    delete SphericalSegmentConstructionMethodTypeValue->Cast;
   else if (SphericalSegmentConstructionMethodTypeType == TransformE)
-    delete SphericalSegmentConstructionMethodTypeValue.Transform;
+    delete SphericalSegmentConstructionMethodTypeValue->Transform;
+  delete SphericalSegmentConstructionMethodTypeValue;
   #endif
 }
 
@@ -72134,7 +72218,7 @@ void SphericalSegmentConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<BestFit");
-      SphericalSegmentConstructionMethodTypeValue.BestFit->printSelf(outFile);
+      SphericalSegmentConstructionMethodTypeValue->BestFit->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</BestFit>\n");
     }
@@ -72142,7 +72226,7 @@ void SphericalSegmentConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Recompensated");
-      SphericalSegmentConstructionMethodTypeValue.Recompensated->printSelf(outFile);
+      SphericalSegmentConstructionMethodTypeValue->Recompensated->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Recompensated>\n");
     }
@@ -72150,7 +72234,7 @@ void SphericalSegmentConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Copy");
-      SphericalSegmentConstructionMethodTypeValue.Copy->printSelf(outFile);
+      SphericalSegmentConstructionMethodTypeValue->Copy->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Copy>\n");
     }
@@ -72158,7 +72242,7 @@ void SphericalSegmentConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Cast");
-      SphericalSegmentConstructionMethodTypeValue.Cast->printSelf(outFile);
+      SphericalSegmentConstructionMethodTypeValue->Cast->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Cast>\n");
     }
@@ -72166,7 +72250,7 @@ void SphericalSegmentConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Transform");
-      SphericalSegmentConstructionMethodTypeValue.Transform->printSelf(outFile);
+      SphericalSegmentConstructionMethodTypeValue->Transform->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Transform>\n");
     }
@@ -73348,7 +73432,7 @@ SphericalSegmentMeasurementDeterminationTypeChoicePair::SphericalSegmentMeasurem
 
 SphericalSegmentMeasurementDeterminationTypeChoicePair::SphericalSegmentMeasurementDeterminationTypeChoicePair(
  whichOne SphericalSegmentMeasurementDeterminationTypeTypeIn,
- SphericalSegmentMeasurementDeterminationTypeVal SphericalSegmentMeasurementDeterminationTypeValueIn)
+ SphericalSegmentMeasurementDeterminationTypeVal * SphericalSegmentMeasurementDeterminationTypeValueIn)
 {
   SphericalSegmentMeasurementDeterminationTypeType = SphericalSegmentMeasurementDeterminationTypeTypeIn;
   SphericalSegmentMeasurementDeterminationTypeValue = SphericalSegmentMeasurementDeterminationTypeValueIn;
@@ -73358,9 +73442,10 @@ SphericalSegmentMeasurementDeterminationTypeChoicePair::~SphericalSegmentMeasure
 {
   #ifndef NODESTRUCT
   if (SphericalSegmentMeasurementDeterminationTypeType == CheckedE)
-    delete SphericalSegmentMeasurementDeterminationTypeValue.Checked;
+    delete SphericalSegmentMeasurementDeterminationTypeValue->Checked;
   else if (SphericalSegmentMeasurementDeterminationTypeType == SetE)
-    delete SphericalSegmentMeasurementDeterminationTypeValue.Set;
+    delete SphericalSegmentMeasurementDeterminationTypeValue->Set;
+  delete SphericalSegmentMeasurementDeterminationTypeValue;
   #endif
 }
 
@@ -73370,7 +73455,7 @@ void SphericalSegmentMeasurementDeterminationTypeChoicePair::printSelf(FILE * ou
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Checked");
-      SphericalSegmentMeasurementDeterminationTypeValue.Checked->printSelf(outFile);
+      SphericalSegmentMeasurementDeterminationTypeValue->Checked->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Checked>\n");
     }
@@ -73378,7 +73463,7 @@ void SphericalSegmentMeasurementDeterminationTypeChoicePair::printSelf(FILE * ou
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Set");
-      SphericalSegmentMeasurementDeterminationTypeValue.Set->printSelf(outFile);
+      SphericalSegmentMeasurementDeterminationTypeValue->Set->printSelf(outFile);
     }
 }
 
@@ -74666,7 +74751,7 @@ SurfaceOfRevolutionCheckedTypeChoicePair::SurfaceOfRevolutionCheckedTypeChoicePa
 
 SurfaceOfRevolutionCheckedTypeChoicePair::SurfaceOfRevolutionCheckedTypeChoicePair(
  whichOne SurfaceOfRevolutionCheckedTypeTypeIn,
- SurfaceOfRevolutionCheckedTypeVal SurfaceOfRevolutionCheckedTypeValueIn)
+ SurfaceOfRevolutionCheckedTypeVal * SurfaceOfRevolutionCheckedTypeValueIn)
 {
   SurfaceOfRevolutionCheckedTypeType = SurfaceOfRevolutionCheckedTypeTypeIn;
   SurfaceOfRevolutionCheckedTypeValue = SurfaceOfRevolutionCheckedTypeValueIn;
@@ -74676,9 +74761,10 @@ SurfaceOfRevolutionCheckedTypeChoicePair::~SurfaceOfRevolutionCheckedTypeChoiceP
 {
   #ifndef NODESTRUCT
   if (SurfaceOfRevolutionCheckedTypeType == MeasuredE)
-    delete SurfaceOfRevolutionCheckedTypeValue.Measured;
+    delete SurfaceOfRevolutionCheckedTypeValue->Measured;
   else if (SurfaceOfRevolutionCheckedTypeType == ConstructedE)
-    delete SurfaceOfRevolutionCheckedTypeValue.Constructed;
+    delete SurfaceOfRevolutionCheckedTypeValue->Constructed;
+  delete SurfaceOfRevolutionCheckedTypeValue;
   #endif
 }
 
@@ -74688,7 +74774,7 @@ void SurfaceOfRevolutionCheckedTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Measured");
-      SurfaceOfRevolutionCheckedTypeValue.Measured->printSelf(outFile);
+      SurfaceOfRevolutionCheckedTypeValue->Measured->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Measured>\n");
     }
@@ -74696,7 +74782,7 @@ void SurfaceOfRevolutionCheckedTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Constructed");
-      SurfaceOfRevolutionCheckedTypeValue.Constructed->printSelf(outFile);
+      SurfaceOfRevolutionCheckedTypeValue->Constructed->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Constructed>\n");
     }
@@ -74746,7 +74832,7 @@ SurfaceOfRevolutionConstructionMethodTypeChoicePair::SurfaceOfRevolutionConstruc
 
 SurfaceOfRevolutionConstructionMethodTypeChoicePair::SurfaceOfRevolutionConstructionMethodTypeChoicePair(
  whichOne SurfaceOfRevolutionConstructionMethodTypeTypeIn,
- SurfaceOfRevolutionConstructionMethodTypeVal SurfaceOfRevolutionConstructionMethodTypeValueIn)
+ SurfaceOfRevolutionConstructionMethodTypeVal * SurfaceOfRevolutionConstructionMethodTypeValueIn)
 {
   SurfaceOfRevolutionConstructionMethodTypeType = SurfaceOfRevolutionConstructionMethodTypeTypeIn;
   SurfaceOfRevolutionConstructionMethodTypeValue = SurfaceOfRevolutionConstructionMethodTypeValueIn;
@@ -74756,15 +74842,16 @@ SurfaceOfRevolutionConstructionMethodTypeChoicePair::~SurfaceOfRevolutionConstru
 {
   #ifndef NODESTRUCT
   if (SurfaceOfRevolutionConstructionMethodTypeType == BestFitE)
-    delete SurfaceOfRevolutionConstructionMethodTypeValue.BestFit;
+    delete SurfaceOfRevolutionConstructionMethodTypeValue->BestFit;
   else if (SurfaceOfRevolutionConstructionMethodTypeType == RecompensatedE)
-    delete SurfaceOfRevolutionConstructionMethodTypeValue.Recompensated;
+    delete SurfaceOfRevolutionConstructionMethodTypeValue->Recompensated;
   else if (SurfaceOfRevolutionConstructionMethodTypeType == CopyE)
-    delete SurfaceOfRevolutionConstructionMethodTypeValue.Copy;
+    delete SurfaceOfRevolutionConstructionMethodTypeValue->Copy;
   else if (SurfaceOfRevolutionConstructionMethodTypeType == CastE)
-    delete SurfaceOfRevolutionConstructionMethodTypeValue.Cast;
+    delete SurfaceOfRevolutionConstructionMethodTypeValue->Cast;
   else if (SurfaceOfRevolutionConstructionMethodTypeType == TransformE)
-    delete SurfaceOfRevolutionConstructionMethodTypeValue.Transform;
+    delete SurfaceOfRevolutionConstructionMethodTypeValue->Transform;
+  delete SurfaceOfRevolutionConstructionMethodTypeValue;
   #endif
 }
 
@@ -74774,7 +74861,7 @@ void SurfaceOfRevolutionConstructionMethodTypeChoicePair::printSelf(FILE * outFi
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<BestFit");
-      SurfaceOfRevolutionConstructionMethodTypeValue.BestFit->printSelf(outFile);
+      SurfaceOfRevolutionConstructionMethodTypeValue->BestFit->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</BestFit>\n");
     }
@@ -74782,7 +74869,7 @@ void SurfaceOfRevolutionConstructionMethodTypeChoicePair::printSelf(FILE * outFi
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Recompensated");
-      SurfaceOfRevolutionConstructionMethodTypeValue.Recompensated->printSelf(outFile);
+      SurfaceOfRevolutionConstructionMethodTypeValue->Recompensated->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Recompensated>\n");
     }
@@ -74790,7 +74877,7 @@ void SurfaceOfRevolutionConstructionMethodTypeChoicePair::printSelf(FILE * outFi
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Copy");
-      SurfaceOfRevolutionConstructionMethodTypeValue.Copy->printSelf(outFile);
+      SurfaceOfRevolutionConstructionMethodTypeValue->Copy->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Copy>\n");
     }
@@ -74798,7 +74885,7 @@ void SurfaceOfRevolutionConstructionMethodTypeChoicePair::printSelf(FILE * outFi
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Cast");
-      SurfaceOfRevolutionConstructionMethodTypeValue.Cast->printSelf(outFile);
+      SurfaceOfRevolutionConstructionMethodTypeValue->Cast->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Cast>\n");
     }
@@ -74806,7 +74893,7 @@ void SurfaceOfRevolutionConstructionMethodTypeChoicePair::printSelf(FILE * outFi
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Transform");
-      SurfaceOfRevolutionConstructionMethodTypeValue.Transform->printSelf(outFile);
+      SurfaceOfRevolutionConstructionMethodTypeValue->Transform->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Transform>\n");
     }
@@ -75977,7 +76064,7 @@ SurfaceOfRevolutionMeasurementDeterminationTypeChoicePair::SurfaceOfRevolutionMe
 
 SurfaceOfRevolutionMeasurementDeterminationTypeChoicePair::SurfaceOfRevolutionMeasurementDeterminationTypeChoicePair(
  whichOne SurfaceOfRevolutionMeasurementDeterminationTypeTypeIn,
- SurfaceOfRevolutionMeasurementDeterminationTypeVal SurfaceOfRevolutionMeasurementDeterminationTypeValueIn)
+ SurfaceOfRevolutionMeasurementDeterminationTypeVal * SurfaceOfRevolutionMeasurementDeterminationTypeValueIn)
 {
   SurfaceOfRevolutionMeasurementDeterminationTypeType = SurfaceOfRevolutionMeasurementDeterminationTypeTypeIn;
   SurfaceOfRevolutionMeasurementDeterminationTypeValue = SurfaceOfRevolutionMeasurementDeterminationTypeValueIn;
@@ -75987,9 +76074,10 @@ SurfaceOfRevolutionMeasurementDeterminationTypeChoicePair::~SurfaceOfRevolutionM
 {
   #ifndef NODESTRUCT
   if (SurfaceOfRevolutionMeasurementDeterminationTypeType == CheckedE)
-    delete SurfaceOfRevolutionMeasurementDeterminationTypeValue.Checked;
+    delete SurfaceOfRevolutionMeasurementDeterminationTypeValue->Checked;
   else if (SurfaceOfRevolutionMeasurementDeterminationTypeType == SetE)
-    delete SurfaceOfRevolutionMeasurementDeterminationTypeValue.Set;
+    delete SurfaceOfRevolutionMeasurementDeterminationTypeValue->Set;
+  delete SurfaceOfRevolutionMeasurementDeterminationTypeValue;
   #endif
 }
 
@@ -75999,7 +76087,7 @@ void SurfaceOfRevolutionMeasurementDeterminationTypeChoicePair::printSelf(FILE *
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Checked");
-      SurfaceOfRevolutionMeasurementDeterminationTypeValue.Checked->printSelf(outFile);
+      SurfaceOfRevolutionMeasurementDeterminationTypeValue->Checked->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Checked>\n");
     }
@@ -76007,7 +76095,7 @@ void SurfaceOfRevolutionMeasurementDeterminationTypeChoicePair::printSelf(FILE *
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Set");
-      SurfaceOfRevolutionMeasurementDeterminationTypeValue.Set->printSelf(outFile);
+      SurfaceOfRevolutionMeasurementDeterminationTypeValue->Set->printSelf(outFile);
     }
 }
 
@@ -76450,7 +76538,7 @@ ThreadedFeatureCheckedTypeChoicePair::ThreadedFeatureCheckedTypeChoicePair() {}
 
 ThreadedFeatureCheckedTypeChoicePair::ThreadedFeatureCheckedTypeChoicePair(
  whichOne ThreadedFeatureCheckedTypeTypeIn,
- ThreadedFeatureCheckedTypeVal ThreadedFeatureCheckedTypeValueIn)
+ ThreadedFeatureCheckedTypeVal * ThreadedFeatureCheckedTypeValueIn)
 {
   ThreadedFeatureCheckedTypeType = ThreadedFeatureCheckedTypeTypeIn;
   ThreadedFeatureCheckedTypeValue = ThreadedFeatureCheckedTypeValueIn;
@@ -76460,9 +76548,10 @@ ThreadedFeatureCheckedTypeChoicePair::~ThreadedFeatureCheckedTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (ThreadedFeatureCheckedTypeType == MeasuredE)
-    delete ThreadedFeatureCheckedTypeValue.Measured;
+    delete ThreadedFeatureCheckedTypeValue->Measured;
   else if (ThreadedFeatureCheckedTypeType == ConstructedE)
-    delete ThreadedFeatureCheckedTypeValue.Constructed;
+    delete ThreadedFeatureCheckedTypeValue->Constructed;
+  delete ThreadedFeatureCheckedTypeValue;
   #endif
 }
 
@@ -76472,7 +76561,7 @@ void ThreadedFeatureCheckedTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Measured");
-      ThreadedFeatureCheckedTypeValue.Measured->printSelf(outFile);
+      ThreadedFeatureCheckedTypeValue->Measured->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Measured>\n");
     }
@@ -76480,7 +76569,7 @@ void ThreadedFeatureCheckedTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Constructed");
-      ThreadedFeatureCheckedTypeValue.Constructed->printSelf(outFile);
+      ThreadedFeatureCheckedTypeValue->Constructed->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Constructed>\n");
     }
@@ -76530,7 +76619,7 @@ ThreadedFeatureConstructionMethodTypeChoicePair::ThreadedFeatureConstructionMeth
 
 ThreadedFeatureConstructionMethodTypeChoicePair::ThreadedFeatureConstructionMethodTypeChoicePair(
  whichOne ThreadedFeatureConstructionMethodTypeTypeIn,
- ThreadedFeatureConstructionMethodTypeVal ThreadedFeatureConstructionMethodTypeValueIn)
+ ThreadedFeatureConstructionMethodTypeVal * ThreadedFeatureConstructionMethodTypeValueIn)
 {
   ThreadedFeatureConstructionMethodTypeType = ThreadedFeatureConstructionMethodTypeTypeIn;
   ThreadedFeatureConstructionMethodTypeValue = ThreadedFeatureConstructionMethodTypeValueIn;
@@ -76540,17 +76629,18 @@ ThreadedFeatureConstructionMethodTypeChoicePair::~ThreadedFeatureConstructionMet
 {
   #ifndef NODESTRUCT
   if (ThreadedFeatureConstructionMethodTypeType == BestFitE)
-    delete ThreadedFeatureConstructionMethodTypeValue.BestFit;
+    delete ThreadedFeatureConstructionMethodTypeValue->BestFit;
   else if (ThreadedFeatureConstructionMethodTypeType == RecompensatedE)
-    delete ThreadedFeatureConstructionMethodTypeValue.Recompensated;
+    delete ThreadedFeatureConstructionMethodTypeValue->Recompensated;
   else if (ThreadedFeatureConstructionMethodTypeType == CopyE)
-    delete ThreadedFeatureConstructionMethodTypeValue.Copy;
+    delete ThreadedFeatureConstructionMethodTypeValue->Copy;
   else if (ThreadedFeatureConstructionMethodTypeType == CastE)
-    delete ThreadedFeatureConstructionMethodTypeValue.Cast;
+    delete ThreadedFeatureConstructionMethodTypeValue->Cast;
   else if (ThreadedFeatureConstructionMethodTypeType == TransformE)
-    delete ThreadedFeatureConstructionMethodTypeValue.Transform;
+    delete ThreadedFeatureConstructionMethodTypeValue->Transform;
   else if (ThreadedFeatureConstructionMethodTypeType == FromCylinderE)
-    delete ThreadedFeatureConstructionMethodTypeValue.FromCylinder;
+    delete ThreadedFeatureConstructionMethodTypeValue->FromCylinder;
+  delete ThreadedFeatureConstructionMethodTypeValue;
   #endif
 }
 
@@ -76560,7 +76650,7 @@ void ThreadedFeatureConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<BestFit");
-      ThreadedFeatureConstructionMethodTypeValue.BestFit->printSelf(outFile);
+      ThreadedFeatureConstructionMethodTypeValue->BestFit->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</BestFit>\n");
     }
@@ -76568,7 +76658,7 @@ void ThreadedFeatureConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Recompensated");
-      ThreadedFeatureConstructionMethodTypeValue.Recompensated->printSelf(outFile);
+      ThreadedFeatureConstructionMethodTypeValue->Recompensated->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Recompensated>\n");
     }
@@ -76576,7 +76666,7 @@ void ThreadedFeatureConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Copy");
-      ThreadedFeatureConstructionMethodTypeValue.Copy->printSelf(outFile);
+      ThreadedFeatureConstructionMethodTypeValue->Copy->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Copy>\n");
     }
@@ -76584,7 +76674,7 @@ void ThreadedFeatureConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Cast");
-      ThreadedFeatureConstructionMethodTypeValue.Cast->printSelf(outFile);
+      ThreadedFeatureConstructionMethodTypeValue->Cast->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Cast>\n");
     }
@@ -76592,7 +76682,7 @@ void ThreadedFeatureConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Transform");
-      ThreadedFeatureConstructionMethodTypeValue.Transform->printSelf(outFile);
+      ThreadedFeatureConstructionMethodTypeValue->Transform->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Transform>\n");
     }
@@ -76600,7 +76690,7 @@ void ThreadedFeatureConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<FromCylinder");
-      ThreadedFeatureConstructionMethodTypeValue.FromCylinder->printSelf(outFile);
+      ThreadedFeatureConstructionMethodTypeValue->FromCylinder->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</FromCylinder>\n");
     }
@@ -77221,7 +77311,7 @@ ThreadedFeatureMeasurementDeterminationTypeChoicePair::ThreadedFeatureMeasuremen
 
 ThreadedFeatureMeasurementDeterminationTypeChoicePair::ThreadedFeatureMeasurementDeterminationTypeChoicePair(
  whichOne ThreadedFeatureMeasurementDeterminationTypeTypeIn,
- ThreadedFeatureMeasurementDeterminationTypeVal ThreadedFeatureMeasurementDeterminationTypeValueIn)
+ ThreadedFeatureMeasurementDeterminationTypeVal * ThreadedFeatureMeasurementDeterminationTypeValueIn)
 {
   ThreadedFeatureMeasurementDeterminationTypeType = ThreadedFeatureMeasurementDeterminationTypeTypeIn;
   ThreadedFeatureMeasurementDeterminationTypeValue = ThreadedFeatureMeasurementDeterminationTypeValueIn;
@@ -77231,9 +77321,10 @@ ThreadedFeatureMeasurementDeterminationTypeChoicePair::~ThreadedFeatureMeasureme
 {
   #ifndef NODESTRUCT
   if (ThreadedFeatureMeasurementDeterminationTypeType == CheckedE)
-    delete ThreadedFeatureMeasurementDeterminationTypeValue.Checked;
+    delete ThreadedFeatureMeasurementDeterminationTypeValue->Checked;
   else if (ThreadedFeatureMeasurementDeterminationTypeType == SetE)
-    delete ThreadedFeatureMeasurementDeterminationTypeValue.Set;
+    delete ThreadedFeatureMeasurementDeterminationTypeValue->Set;
+  delete ThreadedFeatureMeasurementDeterminationTypeValue;
   #endif
 }
 
@@ -77243,7 +77334,7 @@ void ThreadedFeatureMeasurementDeterminationTypeChoicePair::printSelf(FILE * out
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Checked");
-      ThreadedFeatureMeasurementDeterminationTypeValue.Checked->printSelf(outFile);
+      ThreadedFeatureMeasurementDeterminationTypeValue->Checked->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Checked>\n");
     }
@@ -77251,7 +77342,7 @@ void ThreadedFeatureMeasurementDeterminationTypeChoicePair::printSelf(FILE * out
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Set");
-      ThreadedFeatureMeasurementDeterminationTypeValue.Set->printSelf(outFile);
+      ThreadedFeatureMeasurementDeterminationTypeValue->Set->printSelf(outFile);
     }
 }
 
@@ -78290,7 +78381,7 @@ ToroidalSegmentCheckedTypeChoicePair::ToroidalSegmentCheckedTypeChoicePair() {}
 
 ToroidalSegmentCheckedTypeChoicePair::ToroidalSegmentCheckedTypeChoicePair(
  whichOne ToroidalSegmentCheckedTypeTypeIn,
- ToroidalSegmentCheckedTypeVal ToroidalSegmentCheckedTypeValueIn)
+ ToroidalSegmentCheckedTypeVal * ToroidalSegmentCheckedTypeValueIn)
 {
   ToroidalSegmentCheckedTypeType = ToroidalSegmentCheckedTypeTypeIn;
   ToroidalSegmentCheckedTypeValue = ToroidalSegmentCheckedTypeValueIn;
@@ -78300,9 +78391,10 @@ ToroidalSegmentCheckedTypeChoicePair::~ToroidalSegmentCheckedTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (ToroidalSegmentCheckedTypeType == MeasuredE)
-    delete ToroidalSegmentCheckedTypeValue.Measured;
+    delete ToroidalSegmentCheckedTypeValue->Measured;
   else if (ToroidalSegmentCheckedTypeType == ConstructedE)
-    delete ToroidalSegmentCheckedTypeValue.Constructed;
+    delete ToroidalSegmentCheckedTypeValue->Constructed;
+  delete ToroidalSegmentCheckedTypeValue;
   #endif
 }
 
@@ -78312,7 +78404,7 @@ void ToroidalSegmentCheckedTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Measured");
-      ToroidalSegmentCheckedTypeValue.Measured->printSelf(outFile);
+      ToroidalSegmentCheckedTypeValue->Measured->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Measured>\n");
     }
@@ -78320,7 +78412,7 @@ void ToroidalSegmentCheckedTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Constructed");
-      ToroidalSegmentCheckedTypeValue.Constructed->printSelf(outFile);
+      ToroidalSegmentCheckedTypeValue->Constructed->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Constructed>\n");
     }
@@ -78370,7 +78462,7 @@ ToroidalSegmentConstructionMethodTypeChoicePair::ToroidalSegmentConstructionMeth
 
 ToroidalSegmentConstructionMethodTypeChoicePair::ToroidalSegmentConstructionMethodTypeChoicePair(
  whichOne ToroidalSegmentConstructionMethodTypeTypeIn,
- ToroidalSegmentConstructionMethodTypeVal ToroidalSegmentConstructionMethodTypeValueIn)
+ ToroidalSegmentConstructionMethodTypeVal * ToroidalSegmentConstructionMethodTypeValueIn)
 {
   ToroidalSegmentConstructionMethodTypeType = ToroidalSegmentConstructionMethodTypeTypeIn;
   ToroidalSegmentConstructionMethodTypeValue = ToroidalSegmentConstructionMethodTypeValueIn;
@@ -78380,15 +78472,16 @@ ToroidalSegmentConstructionMethodTypeChoicePair::~ToroidalSegmentConstructionMet
 {
   #ifndef NODESTRUCT
   if (ToroidalSegmentConstructionMethodTypeType == BestFitE)
-    delete ToroidalSegmentConstructionMethodTypeValue.BestFit;
+    delete ToroidalSegmentConstructionMethodTypeValue->BestFit;
   else if (ToroidalSegmentConstructionMethodTypeType == RecompensatedE)
-    delete ToroidalSegmentConstructionMethodTypeValue.Recompensated;
+    delete ToroidalSegmentConstructionMethodTypeValue->Recompensated;
   else if (ToroidalSegmentConstructionMethodTypeType == CopyE)
-    delete ToroidalSegmentConstructionMethodTypeValue.Copy;
+    delete ToroidalSegmentConstructionMethodTypeValue->Copy;
   else if (ToroidalSegmentConstructionMethodTypeType == CastE)
-    delete ToroidalSegmentConstructionMethodTypeValue.Cast;
+    delete ToroidalSegmentConstructionMethodTypeValue->Cast;
   else if (ToroidalSegmentConstructionMethodTypeType == TransformE)
-    delete ToroidalSegmentConstructionMethodTypeValue.Transform;
+    delete ToroidalSegmentConstructionMethodTypeValue->Transform;
+  delete ToroidalSegmentConstructionMethodTypeValue;
   #endif
 }
 
@@ -78398,7 +78491,7 @@ void ToroidalSegmentConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<BestFit");
-      ToroidalSegmentConstructionMethodTypeValue.BestFit->printSelf(outFile);
+      ToroidalSegmentConstructionMethodTypeValue->BestFit->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</BestFit>\n");
     }
@@ -78406,7 +78499,7 @@ void ToroidalSegmentConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Recompensated");
-      ToroidalSegmentConstructionMethodTypeValue.Recompensated->printSelf(outFile);
+      ToroidalSegmentConstructionMethodTypeValue->Recompensated->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Recompensated>\n");
     }
@@ -78414,7 +78507,7 @@ void ToroidalSegmentConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Copy");
-      ToroidalSegmentConstructionMethodTypeValue.Copy->printSelf(outFile);
+      ToroidalSegmentConstructionMethodTypeValue->Copy->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Copy>\n");
     }
@@ -78422,7 +78515,7 @@ void ToroidalSegmentConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Cast");
-      ToroidalSegmentConstructionMethodTypeValue.Cast->printSelf(outFile);
+      ToroidalSegmentConstructionMethodTypeValue->Cast->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Cast>\n");
     }
@@ -78430,7 +78523,7 @@ void ToroidalSegmentConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Transform");
-      ToroidalSegmentConstructionMethodTypeValue.Transform->printSelf(outFile);
+      ToroidalSegmentConstructionMethodTypeValue->Transform->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Transform>\n");
     }
@@ -79644,7 +79737,7 @@ ToroidalSegmentMeasurementDeterminationTypeChoicePair::ToroidalSegmentMeasuremen
 
 ToroidalSegmentMeasurementDeterminationTypeChoicePair::ToroidalSegmentMeasurementDeterminationTypeChoicePair(
  whichOne ToroidalSegmentMeasurementDeterminationTypeTypeIn,
- ToroidalSegmentMeasurementDeterminationTypeVal ToroidalSegmentMeasurementDeterminationTypeValueIn)
+ ToroidalSegmentMeasurementDeterminationTypeVal * ToroidalSegmentMeasurementDeterminationTypeValueIn)
 {
   ToroidalSegmentMeasurementDeterminationTypeType = ToroidalSegmentMeasurementDeterminationTypeTypeIn;
   ToroidalSegmentMeasurementDeterminationTypeValue = ToroidalSegmentMeasurementDeterminationTypeValueIn;
@@ -79654,9 +79747,10 @@ ToroidalSegmentMeasurementDeterminationTypeChoicePair::~ToroidalSegmentMeasureme
 {
   #ifndef NODESTRUCT
   if (ToroidalSegmentMeasurementDeterminationTypeType == CheckedE)
-    delete ToroidalSegmentMeasurementDeterminationTypeValue.Checked;
+    delete ToroidalSegmentMeasurementDeterminationTypeValue->Checked;
   else if (ToroidalSegmentMeasurementDeterminationTypeType == SetE)
-    delete ToroidalSegmentMeasurementDeterminationTypeValue.Set;
+    delete ToroidalSegmentMeasurementDeterminationTypeValue->Set;
+  delete ToroidalSegmentMeasurementDeterminationTypeValue;
   #endif
 }
 
@@ -79666,7 +79760,7 @@ void ToroidalSegmentMeasurementDeterminationTypeChoicePair::printSelf(FILE * out
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Checked");
-      ToroidalSegmentMeasurementDeterminationTypeValue.Checked->printSelf(outFile);
+      ToroidalSegmentMeasurementDeterminationTypeValue->Checked->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Checked>\n");
     }
@@ -79674,7 +79768,7 @@ void ToroidalSegmentMeasurementDeterminationTypeChoicePair::printSelf(FILE * out
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Set");
-      ToroidalSegmentMeasurementDeterminationTypeValue.Set->printSelf(outFile);
+      ToroidalSegmentMeasurementDeterminationTypeValue->Set->printSelf(outFile);
     }
 }
 
@@ -80117,7 +80211,7 @@ TorusCheckedTypeChoicePair::TorusCheckedTypeChoicePair() {}
 
 TorusCheckedTypeChoicePair::TorusCheckedTypeChoicePair(
  whichOne TorusCheckedTypeTypeIn,
- TorusCheckedTypeVal TorusCheckedTypeValueIn)
+ TorusCheckedTypeVal * TorusCheckedTypeValueIn)
 {
   TorusCheckedTypeType = TorusCheckedTypeTypeIn;
   TorusCheckedTypeValue = TorusCheckedTypeValueIn;
@@ -80127,9 +80221,10 @@ TorusCheckedTypeChoicePair::~TorusCheckedTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (TorusCheckedTypeType == MeasuredE)
-    delete TorusCheckedTypeValue.Measured;
+    delete TorusCheckedTypeValue->Measured;
   else if (TorusCheckedTypeType == ConstructedE)
-    delete TorusCheckedTypeValue.Constructed;
+    delete TorusCheckedTypeValue->Constructed;
+  delete TorusCheckedTypeValue;
   #endif
 }
 
@@ -80139,7 +80234,7 @@ void TorusCheckedTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Measured");
-      TorusCheckedTypeValue.Measured->printSelf(outFile);
+      TorusCheckedTypeValue->Measured->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Measured>\n");
     }
@@ -80147,7 +80242,7 @@ void TorusCheckedTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Constructed");
-      TorusCheckedTypeValue.Constructed->printSelf(outFile);
+      TorusCheckedTypeValue->Constructed->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Constructed>\n");
     }
@@ -80197,7 +80292,7 @@ TorusConstructionMethodTypeChoicePair::TorusConstructionMethodTypeChoicePair() {
 
 TorusConstructionMethodTypeChoicePair::TorusConstructionMethodTypeChoicePair(
  whichOne TorusConstructionMethodTypeTypeIn,
- TorusConstructionMethodTypeVal TorusConstructionMethodTypeValueIn)
+ TorusConstructionMethodTypeVal * TorusConstructionMethodTypeValueIn)
 {
   TorusConstructionMethodTypeType = TorusConstructionMethodTypeTypeIn;
   TorusConstructionMethodTypeValue = TorusConstructionMethodTypeValueIn;
@@ -80207,17 +80302,18 @@ TorusConstructionMethodTypeChoicePair::~TorusConstructionMethodTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (TorusConstructionMethodTypeType == BestFitE)
-    delete TorusConstructionMethodTypeValue.BestFit;
+    delete TorusConstructionMethodTypeValue->BestFit;
   else if (TorusConstructionMethodTypeType == RecompensatedE)
-    delete TorusConstructionMethodTypeValue.Recompensated;
+    delete TorusConstructionMethodTypeValue->Recompensated;
   else if (TorusConstructionMethodTypeType == CopyE)
-    delete TorusConstructionMethodTypeValue.Copy;
+    delete TorusConstructionMethodTypeValue->Copy;
   else if (TorusConstructionMethodTypeType == CastE)
-    delete TorusConstructionMethodTypeValue.Cast;
+    delete TorusConstructionMethodTypeValue->Cast;
   else if (TorusConstructionMethodTypeType == TransformE)
-    delete TorusConstructionMethodTypeValue.Transform;
+    delete TorusConstructionMethodTypeValue->Transform;
   else if (TorusConstructionMethodTypeType == FromScanE)
-    delete TorusConstructionMethodTypeValue.FromScan;
+    delete TorusConstructionMethodTypeValue->FromScan;
+  delete TorusConstructionMethodTypeValue;
   #endif
 }
 
@@ -80227,7 +80323,7 @@ void TorusConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<BestFit");
-      TorusConstructionMethodTypeValue.BestFit->printSelf(outFile);
+      TorusConstructionMethodTypeValue->BestFit->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</BestFit>\n");
     }
@@ -80235,7 +80331,7 @@ void TorusConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Recompensated");
-      TorusConstructionMethodTypeValue.Recompensated->printSelf(outFile);
+      TorusConstructionMethodTypeValue->Recompensated->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Recompensated>\n");
     }
@@ -80243,7 +80339,7 @@ void TorusConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Copy");
-      TorusConstructionMethodTypeValue.Copy->printSelf(outFile);
+      TorusConstructionMethodTypeValue->Copy->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Copy>\n");
     }
@@ -80251,7 +80347,7 @@ void TorusConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Cast");
-      TorusConstructionMethodTypeValue.Cast->printSelf(outFile);
+      TorusConstructionMethodTypeValue->Cast->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Cast>\n");
     }
@@ -80259,7 +80355,7 @@ void TorusConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Transform");
-      TorusConstructionMethodTypeValue.Transform->printSelf(outFile);
+      TorusConstructionMethodTypeValue->Transform->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Transform>\n");
     }
@@ -80267,7 +80363,7 @@ void TorusConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<FromScan");
-      TorusConstructionMethodTypeValue.FromScan->printSelf(outFile);
+      TorusConstructionMethodTypeValue->FromScan->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</FromScan>\n");
     }
@@ -81551,7 +81647,7 @@ TorusMeasurementDeterminationTypeChoicePair::TorusMeasurementDeterminationTypeCh
 
 TorusMeasurementDeterminationTypeChoicePair::TorusMeasurementDeterminationTypeChoicePair(
  whichOne TorusMeasurementDeterminationTypeTypeIn,
- TorusMeasurementDeterminationTypeVal TorusMeasurementDeterminationTypeValueIn)
+ TorusMeasurementDeterminationTypeVal * TorusMeasurementDeterminationTypeValueIn)
 {
   TorusMeasurementDeterminationTypeType = TorusMeasurementDeterminationTypeTypeIn;
   TorusMeasurementDeterminationTypeValue = TorusMeasurementDeterminationTypeValueIn;
@@ -81561,9 +81657,10 @@ TorusMeasurementDeterminationTypeChoicePair::~TorusMeasurementDeterminationTypeC
 {
   #ifndef NODESTRUCT
   if (TorusMeasurementDeterminationTypeType == CheckedE)
-    delete TorusMeasurementDeterminationTypeValue.Checked;
+    delete TorusMeasurementDeterminationTypeValue->Checked;
   else if (TorusMeasurementDeterminationTypeType == SetE)
-    delete TorusMeasurementDeterminationTypeValue.Set;
+    delete TorusMeasurementDeterminationTypeValue->Set;
+  delete TorusMeasurementDeterminationTypeValue;
   #endif
 }
 
@@ -81573,7 +81670,7 @@ void TorusMeasurementDeterminationTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Checked");
-      TorusMeasurementDeterminationTypeValue.Checked->printSelf(outFile);
+      TorusMeasurementDeterminationTypeValue->Checked->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Checked>\n");
     }
@@ -81581,7 +81678,7 @@ void TorusMeasurementDeterminationTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Set");
-      TorusMeasurementDeterminationTypeValue.Set->printSelf(outFile);
+      TorusMeasurementDeterminationTypeValue->Set->printSelf(outFile);
     }
 }
 
@@ -81813,7 +81910,7 @@ ConeFeatureDefi_1071_TypeChoicePair::ConeFeatureDefi_1071_TypeChoicePair() {}
 
 ConeFeatureDefi_1071_TypeChoicePair::ConeFeatureDefi_1071_TypeChoicePair(
  whichOne ConeFeatureDefi_1071_TypeTypeIn,
- ConeFeatureDefi_1071_TypeVal ConeFeatureDefi_1071_TypeValueIn)
+ ConeFeatureDefi_1071_TypeVal * ConeFeatureDefi_1071_TypeValueIn)
 {
   ConeFeatureDefi_1071_TypeType = ConeFeatureDefi_1071_TypeTypeIn;
   ConeFeatureDefi_1071_TypeValue = ConeFeatureDefi_1071_TypeValueIn;
@@ -81823,9 +81920,10 @@ ConeFeatureDefi_1071_TypeChoicePair::~ConeFeatureDefi_1071_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (ConeFeatureDefi_1071_TypeType == HalfAngleE)
-    delete ConeFeatureDefi_1071_TypeValue.HalfAngle;
+    delete ConeFeatureDefi_1071_TypeValue->HalfAngle;
   else if (ConeFeatureDefi_1071_TypeType == FullAngleE)
-    delete ConeFeatureDefi_1071_TypeValue.FullAngle;
+    delete ConeFeatureDefi_1071_TypeValue->FullAngle;
+  delete ConeFeatureDefi_1071_TypeValue;
   #endif
 }
 
@@ -81835,14 +81933,14 @@ void ConeFeatureDefi_1071_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<HalfAngle");
-      ConeFeatureDefi_1071_TypeValue.HalfAngle->printSelf(outFile);
+      ConeFeatureDefi_1071_TypeValue->HalfAngle->printSelf(outFile);
       fprintf(outFile, "</HalfAngle>\n");
     }
   else if (ConeFeatureDefi_1071_TypeType == FullAngleE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<FullAngle");
-      ConeFeatureDefi_1071_TypeValue.FullAngle->printSelf(outFile);
+      ConeFeatureDefi_1071_TypeValue->FullAngle->printSelf(outFile);
       fprintf(outFile, "</FullAngle>\n");
     }
 }
@@ -81943,7 +82041,7 @@ ConeFeatureMeas_1073_TypeChoicePair::ConeFeatureMeas_1073_TypeChoicePair() {}
 
 ConeFeatureMeas_1073_TypeChoicePair::ConeFeatureMeas_1073_TypeChoicePair(
  whichOne ConeFeatureMeas_1073_TypeTypeIn,
- ConeFeatureMeas_1073_TypeVal ConeFeatureMeas_1073_TypeValueIn)
+ ConeFeatureMeas_1073_TypeVal * ConeFeatureMeas_1073_TypeValueIn)
 {
   ConeFeatureMeas_1073_TypeType = ConeFeatureMeas_1073_TypeTypeIn;
   ConeFeatureMeas_1073_TypeValue = ConeFeatureMeas_1073_TypeValueIn;
@@ -81953,9 +82051,10 @@ ConeFeatureMeas_1073_TypeChoicePair::~ConeFeatureMeas_1073_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (ConeFeatureMeas_1073_TypeType == HalfAngleE)
-    delete ConeFeatureMeas_1073_TypeValue.HalfAngle;
+    delete ConeFeatureMeas_1073_TypeValue->HalfAngle;
   else if (ConeFeatureMeas_1073_TypeType == FullAngleE)
-    delete ConeFeatureMeas_1073_TypeValue.FullAngle;
+    delete ConeFeatureMeas_1073_TypeValue->FullAngle;
+  delete ConeFeatureMeas_1073_TypeValue;
   #endif
 }
 
@@ -81965,14 +82064,14 @@ void ConeFeatureMeas_1073_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<HalfAngle");
-      ConeFeatureMeas_1073_TypeValue.HalfAngle->printSelf(outFile);
+      ConeFeatureMeas_1073_TypeValue->HalfAngle->printSelf(outFile);
       fprintf(outFile, "</HalfAngle>\n");
     }
   else if (ConeFeatureMeas_1073_TypeType == FullAngleE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<FullAngle");
-      ConeFeatureMeas_1073_TypeValue.FullAngle->printSelf(outFile);
+      ConeFeatureMeas_1073_TypeValue->FullAngle->printSelf(outFile);
       fprintf(outFile, "</FullAngle>\n");
     }
 }
@@ -82015,7 +82114,7 @@ ConicalSegmentF_1074_TypeChoicePair::ConicalSegmentF_1074_TypeChoicePair() {}
 
 ConicalSegmentF_1074_TypeChoicePair::ConicalSegmentF_1074_TypeChoicePair(
  whichOne ConicalSegmentF_1074_TypeTypeIn,
- ConicalSegmentF_1074_TypeVal ConicalSegmentF_1074_TypeValueIn)
+ ConicalSegmentF_1074_TypeVal * ConicalSegmentF_1074_TypeValueIn)
 {
   ConicalSegmentF_1074_TypeType = ConicalSegmentF_1074_TypeTypeIn;
   ConicalSegmentF_1074_TypeValue = ConicalSegmentF_1074_TypeValueIn;
@@ -82025,9 +82124,10 @@ ConicalSegmentF_1074_TypeChoicePair::~ConicalSegmentF_1074_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (ConicalSegmentF_1074_TypeType == HalfAngleE)
-    delete ConicalSegmentF_1074_TypeValue.HalfAngle;
+    delete ConicalSegmentF_1074_TypeValue->HalfAngle;
   else if (ConicalSegmentF_1074_TypeType == FullAngleE)
-    delete ConicalSegmentF_1074_TypeValue.FullAngle;
+    delete ConicalSegmentF_1074_TypeValue->FullAngle;
+  delete ConicalSegmentF_1074_TypeValue;
   #endif
 }
 
@@ -82037,14 +82137,14 @@ void ConicalSegmentF_1074_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<HalfAngle");
-      ConicalSegmentF_1074_TypeValue.HalfAngle->printSelf(outFile);
+      ConicalSegmentF_1074_TypeValue->HalfAngle->printSelf(outFile);
       fprintf(outFile, "</HalfAngle>\n");
     }
   else if (ConicalSegmentF_1074_TypeType == FullAngleE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<FullAngle");
-      ConicalSegmentF_1074_TypeValue.FullAngle->printSelf(outFile);
+      ConicalSegmentF_1074_TypeValue->FullAngle->printSelf(outFile);
       fprintf(outFile, "</FullAngle>\n");
     }
 }
@@ -82145,7 +82245,7 @@ ConicalSegmentF_1076_TypeChoicePair::ConicalSegmentF_1076_TypeChoicePair() {}
 
 ConicalSegmentF_1076_TypeChoicePair::ConicalSegmentF_1076_TypeChoicePair(
  whichOne ConicalSegmentF_1076_TypeTypeIn,
- ConicalSegmentF_1076_TypeVal ConicalSegmentF_1076_TypeValueIn)
+ ConicalSegmentF_1076_TypeVal * ConicalSegmentF_1076_TypeValueIn)
 {
   ConicalSegmentF_1076_TypeType = ConicalSegmentF_1076_TypeTypeIn;
   ConicalSegmentF_1076_TypeValue = ConicalSegmentF_1076_TypeValueIn;
@@ -82155,9 +82255,10 @@ ConicalSegmentF_1076_TypeChoicePair::~ConicalSegmentF_1076_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (ConicalSegmentF_1076_TypeType == HalfAngleE)
-    delete ConicalSegmentF_1076_TypeValue.HalfAngle;
+    delete ConicalSegmentF_1076_TypeValue->HalfAngle;
   else if (ConicalSegmentF_1076_TypeType == FullAngleE)
-    delete ConicalSegmentF_1076_TypeValue.FullAngle;
+    delete ConicalSegmentF_1076_TypeValue->FullAngle;
+  delete ConicalSegmentF_1076_TypeValue;
   #endif
 }
 
@@ -82167,14 +82268,14 @@ void ConicalSegmentF_1076_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<HalfAngle");
-      ConicalSegmentF_1076_TypeValue.HalfAngle->printSelf(outFile);
+      ConicalSegmentF_1076_TypeValue->HalfAngle->printSelf(outFile);
       fprintf(outFile, "</HalfAngle>\n");
     }
   else if (ConicalSegmentF_1076_TypeType == FullAngleE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<FullAngle");
-      ConicalSegmentF_1076_TypeValue.FullAngle->printSelf(outFile);
+      ConicalSegmentF_1076_TypeValue->FullAngle->printSelf(outFile);
       fprintf(outFile, "</FullAngle>\n");
     }
 }
@@ -82217,7 +82318,7 @@ FeatureZoneArea_1077_TypeChoicePair::FeatureZoneArea_1077_TypeChoicePair() {}
 
 FeatureZoneArea_1077_TypeChoicePair::FeatureZoneArea_1077_TypeChoicePair(
  whichOne FeatureZoneArea_1077_TypeTypeIn,
- FeatureZoneArea_1077_TypeVal FeatureZoneArea_1077_TypeValueIn)
+ FeatureZoneArea_1077_TypeVal * FeatureZoneArea_1077_TypeValueIn)
 {
   FeatureZoneArea_1077_TypeType = FeatureZoneArea_1077_TypeTypeIn;
   FeatureZoneArea_1077_TypeValue = FeatureZoneArea_1077_TypeValueIn;
@@ -82227,9 +82328,10 @@ FeatureZoneArea_1077_TypeChoicePair::~FeatureZoneArea_1077_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (FeatureZoneArea_1077_TypeType == FromPointZoneIdE)
-    delete FeatureZoneArea_1077_TypeValue.FromPointZoneId;
+    delete FeatureZoneArea_1077_TypeValue->FromPointZoneId;
   else if (FeatureZoneArea_1077_TypeType == FromCurveZoneIdE)
-    delete FeatureZoneArea_1077_TypeValue.FromCurveZoneId;
+    delete FeatureZoneArea_1077_TypeValue->FromCurveZoneId;
+  delete FeatureZoneArea_1077_TypeValue;
   #endif
 }
 
@@ -82239,14 +82341,14 @@ void FeatureZoneArea_1077_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<FromPointZoneId");
-      FeatureZoneArea_1077_TypeValue.FromPointZoneId->printSelf(outFile);
+      FeatureZoneArea_1077_TypeValue->FromPointZoneId->printSelf(outFile);
       fprintf(outFile, "</FromPointZoneId>\n");
     }
   else if (FeatureZoneArea_1077_TypeType == FromCurveZoneIdE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<FromCurveZoneId");
-      FeatureZoneArea_1077_TypeValue.FromCurveZoneId->printSelf(outFile);
+      FeatureZoneArea_1077_TypeValue->FromCurveZoneId->printSelf(outFile);
       fprintf(outFile, "</FromCurveZoneId>\n");
     }
 }
@@ -82289,7 +82391,7 @@ FeatureZoneArea_1078_TypeChoicePair::FeatureZoneArea_1078_TypeChoicePair() {}
 
 FeatureZoneArea_1078_TypeChoicePair::FeatureZoneArea_1078_TypeChoicePair(
  whichOne FeatureZoneArea_1078_TypeTypeIn,
- FeatureZoneArea_1078_TypeVal FeatureZoneArea_1078_TypeValueIn)
+ FeatureZoneArea_1078_TypeVal * FeatureZoneArea_1078_TypeValueIn)
 {
   FeatureZoneArea_1078_TypeType = FeatureZoneArea_1078_TypeTypeIn;
   FeatureZoneArea_1078_TypeValue = FeatureZoneArea_1078_TypeValueIn;
@@ -82299,9 +82401,10 @@ FeatureZoneArea_1078_TypeChoicePair::~FeatureZoneArea_1078_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (FeatureZoneArea_1078_TypeType == ToPointZoneIdE)
-    delete FeatureZoneArea_1078_TypeValue.ToPointZoneId;
+    delete FeatureZoneArea_1078_TypeValue->ToPointZoneId;
   else if (FeatureZoneArea_1078_TypeType == ToCurveZoneIdE)
-    delete FeatureZoneArea_1078_TypeValue.ToCurveZoneId;
+    delete FeatureZoneArea_1078_TypeValue->ToCurveZoneId;
+  delete FeatureZoneArea_1078_TypeValue;
   #endif
 }
 
@@ -82311,14 +82414,14 @@ void FeatureZoneArea_1078_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ToPointZoneId");
-      FeatureZoneArea_1078_TypeValue.ToPointZoneId->printSelf(outFile);
+      FeatureZoneArea_1078_TypeValue->ToPointZoneId->printSelf(outFile);
       fprintf(outFile, "</ToPointZoneId>\n");
     }
   else if (FeatureZoneArea_1078_TypeType == ToCurveZoneIdE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ToCurveZoneId");
-      FeatureZoneArea_1078_TypeValue.ToCurveZoneId->printSelf(outFile);
+      FeatureZoneArea_1078_TypeValue->ToCurveZoneId->printSelf(outFile);
       fprintf(outFile, "</ToCurveZoneId>\n");
     }
 }
@@ -82364,7 +82467,7 @@ FeatureZonePoin_1079_TypeChoicePair::FeatureZonePoin_1079_TypeChoicePair() {}
 
 FeatureZonePoin_1079_TypeChoicePair::FeatureZonePoin_1079_TypeChoicePair(
  whichOne FeatureZonePoin_1079_TypeTypeIn,
- FeatureZonePoin_1079_TypeVal FeatureZonePoin_1079_TypeValueIn)
+ FeatureZonePoin_1079_TypeVal * FeatureZonePoin_1079_TypeValueIn)
 {
   FeatureZonePoin_1079_TypeType = FeatureZonePoin_1079_TypeTypeIn;
   FeatureZonePoin_1079_TypeValue = FeatureZonePoin_1079_TypeValueIn;
@@ -82374,9 +82477,10 @@ FeatureZonePoin_1079_TypeChoicePair::~FeatureZonePoin_1079_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (FeatureZonePoin_1079_TypeType == VertexIdE)
-    delete FeatureZonePoin_1079_TypeValue.VertexId;
+    delete FeatureZonePoin_1079_TypeValue->VertexId;
   else if (FeatureZonePoin_1079_TypeType == PointIdE)
-    delete FeatureZonePoin_1079_TypeValue.PointId;
+    delete FeatureZonePoin_1079_TypeValue->PointId;
+  delete FeatureZonePoin_1079_TypeValue;
   #endif
 }
 
@@ -82386,14 +82490,14 @@ void FeatureZonePoin_1079_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<VertexId");
-      FeatureZonePoin_1079_TypeValue.VertexId->printSelf(outFile);
+      FeatureZonePoin_1079_TypeValue->VertexId->printSelf(outFile);
       fprintf(outFile, "</VertexId>\n");
     }
   else if (FeatureZonePoin_1079_TypeType == PointIdE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<PointId");
-      FeatureZonePoin_1079_TypeValue.PointId->printSelf(outFile);
+      FeatureZonePoin_1079_TypeValue->PointId->printSelf(outFile);
       fprintf(outFile, "</PointId>\n");
     }
 }
@@ -82439,7 +82543,7 @@ GroupFeatureDef_1080_TypeChoicePair::GroupFeatureDef_1080_TypeChoicePair() {}
 
 GroupFeatureDef_1080_TypeChoicePair::GroupFeatureDef_1080_TypeChoicePair(
  whichOne GroupFeatureDef_1080_TypeTypeIn,
- GroupFeatureDef_1080_TypeVal GroupFeatureDef_1080_TypeValueIn)
+ GroupFeatureDef_1080_TypeVal * GroupFeatureDef_1080_TypeValueIn)
 {
   GroupFeatureDef_1080_TypeType = GroupFeatureDef_1080_TypeTypeIn;
   GroupFeatureDef_1080_TypeValue = GroupFeatureDef_1080_TypeValueIn;
@@ -82449,11 +82553,12 @@ GroupFeatureDef_1080_TypeChoicePair::~GroupFeatureDef_1080_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (GroupFeatureDef_1080_TypeType == IsCountersunkHoleE)
-    delete GroupFeatureDef_1080_TypeValue.IsCountersunkHole;
+    delete GroupFeatureDef_1080_TypeValue->IsCountersunkHole;
   else if (GroupFeatureDef_1080_TypeType == IsCounterboredHoleE)
-    delete GroupFeatureDef_1080_TypeValue.IsCounterboredHole;
+    delete GroupFeatureDef_1080_TypeValue->IsCounterboredHole;
   else if (GroupFeatureDef_1080_TypeType == IsSpotfaceE)
-    delete GroupFeatureDef_1080_TypeValue.IsSpotface;
+    delete GroupFeatureDef_1080_TypeValue->IsSpotface;
+  delete GroupFeatureDef_1080_TypeValue;
   #endif
 }
 
@@ -82463,21 +82568,21 @@ void GroupFeatureDef_1080_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<IsCountersunkHole");
-      GroupFeatureDef_1080_TypeValue.IsCountersunkHole->printSelf(outFile);
+      GroupFeatureDef_1080_TypeValue->IsCountersunkHole->printSelf(outFile);
       fprintf(outFile, "</IsCountersunkHole>\n");
     }
   else if (GroupFeatureDef_1080_TypeType == IsCounterboredHoleE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<IsCounterboredHole");
-      GroupFeatureDef_1080_TypeValue.IsCounterboredHole->printSelf(outFile);
+      GroupFeatureDef_1080_TypeValue->IsCounterboredHole->printSelf(outFile);
       fprintf(outFile, "</IsCounterboredHole>\n");
     }
   else if (GroupFeatureDef_1080_TypeType == IsSpotfaceE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<IsSpotface");
-      GroupFeatureDef_1080_TypeValue.IsSpotface->printSelf(outFile);
+      GroupFeatureDef_1080_TypeValue->IsSpotface->printSelf(outFile);
       fprintf(outFile, "</IsSpotface>\n");
     }
 }
@@ -82523,7 +82628,7 @@ MeasuredPointSe_1081_TypeChoicePair::MeasuredPointSe_1081_TypeChoicePair() {}
 
 MeasuredPointSe_1081_TypeChoicePair::MeasuredPointSe_1081_TypeChoicePair(
  whichOne MeasuredPointSe_1081_TypeTypeIn,
- MeasuredPointSe_1081_TypeVal MeasuredPointSe_1081_TypeValueIn)
+ MeasuredPointSe_1081_TypeVal * MeasuredPointSe_1081_TypeValueIn)
 {
   MeasuredPointSe_1081_TypeType = MeasuredPointSe_1081_TypeTypeIn;
   MeasuredPointSe_1081_TypeValue = MeasuredPointSe_1081_TypeValueIn;
@@ -82533,9 +82638,10 @@ MeasuredPointSe_1081_TypeChoicePair::~MeasuredPointSe_1081_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (MeasuredPointSe_1081_TypeType == CoordinateSystemIdE)
-    delete MeasuredPointSe_1081_TypeValue.CoordinateSystemId;
+    delete MeasuredPointSe_1081_TypeValue->CoordinateSystemId;
   else if (MeasuredPointSe_1081_TypeType == TranformIdE)
-    delete MeasuredPointSe_1081_TypeValue.TranformId;
+    delete MeasuredPointSe_1081_TypeValue->TranformId;
+  delete MeasuredPointSe_1081_TypeValue;
   #endif
 }
 
@@ -82545,14 +82651,14 @@ void MeasuredPointSe_1081_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<CoordinateSystemId");
-      MeasuredPointSe_1081_TypeValue.CoordinateSystemId->printSelf(outFile);
+      MeasuredPointSe_1081_TypeValue->CoordinateSystemId->printSelf(outFile);
       fprintf(outFile, "</CoordinateSystemId>\n");
     }
   else if (MeasuredPointSe_1081_TypeType == TranformIdE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<TranformId");
-      MeasuredPointSe_1081_TypeValue.TranformId->printSelf(outFile);
+      MeasuredPointSe_1081_TypeValue->TranformId->printSelf(outFile);
       fprintf(outFile, "</TranformId>\n");
     }
 }
@@ -82595,7 +82701,7 @@ MeasuredPointSe_1082_TypeChoicePair::MeasuredPointSe_1082_TypeChoicePair() {}
 
 MeasuredPointSe_1082_TypeChoicePair::MeasuredPointSe_1082_TypeChoicePair(
  whichOne MeasuredPointSe_1082_TypeTypeIn,
- MeasuredPointSe_1082_TypeVal MeasuredPointSe_1082_TypeValueIn)
+ MeasuredPointSe_1082_TypeVal * MeasuredPointSe_1082_TypeValueIn)
 {
   MeasuredPointSe_1082_TypeType = MeasuredPointSe_1082_TypeTypeIn;
   MeasuredPointSe_1082_TypeValue = MeasuredPointSe_1082_TypeValueIn;
@@ -82605,9 +82711,10 @@ MeasuredPointSe_1082_TypeChoicePair::~MeasuredPointSe_1082_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (MeasuredPointSe_1082_TypeType == PointsE)
-    delete MeasuredPointSe_1082_TypeValue.Points;
+    delete MeasuredPointSe_1082_TypeValue->Points;
   else if (MeasuredPointSe_1082_TypeType == BinaryPointsE)
-    delete MeasuredPointSe_1082_TypeValue.BinaryPoints;
+    delete MeasuredPointSe_1082_TypeValue->BinaryPoints;
+  delete MeasuredPointSe_1082_TypeValue;
   #endif
 }
 
@@ -82617,14 +82724,14 @@ void MeasuredPointSe_1082_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Points");
-      MeasuredPointSe_1082_TypeValue.Points->printSelf(outFile);
+      MeasuredPointSe_1082_TypeValue->Points->printSelf(outFile);
       fprintf(outFile, "</Points>\n");
     }
   else if (MeasuredPointSe_1082_TypeType == BinaryPointsE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<BinaryPoints");
-      MeasuredPointSe_1082_TypeValue.BinaryPoints->printSelf(outFile);
+      MeasuredPointSe_1082_TypeValue->BinaryPoints->printSelf(outFile);
       fprintf(outFile, "</BinaryPoints>\n");
     }
 }
@@ -82670,7 +82777,7 @@ MeasuredPointSe_1083_TypeChoicePair::MeasuredPointSe_1083_TypeChoicePair() {}
 
 MeasuredPointSe_1083_TypeChoicePair::MeasuredPointSe_1083_TypeChoicePair(
  whichOne MeasuredPointSe_1083_TypeTypeIn,
- MeasuredPointSe_1083_TypeVal MeasuredPointSe_1083_TypeValueIn)
+ MeasuredPointSe_1083_TypeVal * MeasuredPointSe_1083_TypeValueIn)
 {
   MeasuredPointSe_1083_TypeType = MeasuredPointSe_1083_TypeTypeIn;
   MeasuredPointSe_1083_TypeValue = MeasuredPointSe_1083_TypeValueIn;
@@ -82680,9 +82787,10 @@ MeasuredPointSe_1083_TypeChoicePair::~MeasuredPointSe_1083_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (MeasuredPointSe_1083_TypeType == NormalsE)
-    delete MeasuredPointSe_1083_TypeValue.Normals;
+    delete MeasuredPointSe_1083_TypeValue->Normals;
   else if (MeasuredPointSe_1083_TypeType == BinaryNormalsE)
-    delete MeasuredPointSe_1083_TypeValue.BinaryNormals;
+    delete MeasuredPointSe_1083_TypeValue->BinaryNormals;
+  delete MeasuredPointSe_1083_TypeValue;
   #endif
 }
 
@@ -82692,14 +82800,14 @@ void MeasuredPointSe_1083_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Normals");
-      MeasuredPointSe_1083_TypeValue.Normals->printSelf(outFile);
+      MeasuredPointSe_1083_TypeValue->Normals->printSelf(outFile);
       fprintf(outFile, "</Normals>\n");
     }
   else if (MeasuredPointSe_1083_TypeType == BinaryNormalsE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<BinaryNormals");
-      MeasuredPointSe_1083_TypeValue.BinaryNormals->printSelf(outFile);
+      MeasuredPointSe_1083_TypeValue->BinaryNormals->printSelf(outFile);
       fprintf(outFile, "</BinaryNormals>\n");
     }
 }
@@ -82742,7 +82850,7 @@ MeasuredPointSe_1084_TypeChoicePair::MeasuredPointSe_1084_TypeChoicePair() {}
 
 MeasuredPointSe_1084_TypeChoicePair::MeasuredPointSe_1084_TypeChoicePair(
  whichOne MeasuredPointSe_1084_TypeTypeIn,
- MeasuredPointSe_1084_TypeVal MeasuredPointSe_1084_TypeValueIn)
+ MeasuredPointSe_1084_TypeVal * MeasuredPointSe_1084_TypeValueIn)
 {
   MeasuredPointSe_1084_TypeType = MeasuredPointSe_1084_TypeTypeIn;
   MeasuredPointSe_1084_TypeValue = MeasuredPointSe_1084_TypeValueIn;
@@ -82752,11 +82860,12 @@ MeasuredPointSe_1084_TypeChoicePair::~MeasuredPointSe_1084_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (MeasuredPointSe_1084_TypeType == CompensatedE)
-    delete MeasuredPointSe_1084_TypeValue.Compensated;
+    delete MeasuredPointSe_1084_TypeValue->Compensated;
   else if (MeasuredPointSe_1084_TypeType == CompensationsE)
-    delete MeasuredPointSe_1084_TypeValue.Compensations;
+    delete MeasuredPointSe_1084_TypeValue->Compensations;
   else if (MeasuredPointSe_1084_TypeType == BinaryCompensatedE)
-    delete MeasuredPointSe_1084_TypeValue.BinaryCompensated;
+    delete MeasuredPointSe_1084_TypeValue->BinaryCompensated;
+  delete MeasuredPointSe_1084_TypeValue;
   #endif
 }
 
@@ -82766,21 +82875,21 @@ void MeasuredPointSe_1084_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Compensated");
-      MeasuredPointSe_1084_TypeValue.Compensated->printSelf(outFile);
+      MeasuredPointSe_1084_TypeValue->Compensated->printSelf(outFile);
       fprintf(outFile, "</Compensated>\n");
     }
   else if (MeasuredPointSe_1084_TypeType == CompensationsE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Compensations");
-      MeasuredPointSe_1084_TypeValue.Compensations->printSelf(outFile);
+      MeasuredPointSe_1084_TypeValue->Compensations->printSelf(outFile);
       fprintf(outFile, "</Compensations>\n");
     }
   else if (MeasuredPointSe_1084_TypeType == BinaryCompensatedE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<BinaryCompensated");
-      MeasuredPointSe_1084_TypeValue.BinaryCompensated->printSelf(outFile);
+      MeasuredPointSe_1084_TypeValue->BinaryCompensated->printSelf(outFile);
       fprintf(outFile, "</BinaryCompensated>\n");
     }
 }
@@ -82826,7 +82935,7 @@ MeasuredPointSe_1085_TypeChoicePair::MeasuredPointSe_1085_TypeChoicePair() {}
 
 MeasuredPointSe_1085_TypeChoicePair::MeasuredPointSe_1085_TypeChoicePair(
  whichOne MeasuredPointSe_1085_TypeTypeIn,
- MeasuredPointSe_1085_TypeVal MeasuredPointSe_1085_TypeValueIn)
+ MeasuredPointSe_1085_TypeVal * MeasuredPointSe_1085_TypeValueIn)
 {
   MeasuredPointSe_1085_TypeType = MeasuredPointSe_1085_TypeTypeIn;
   MeasuredPointSe_1085_TypeValue = MeasuredPointSe_1085_TypeValueIn;
@@ -82836,11 +82945,12 @@ MeasuredPointSe_1085_TypeChoicePair::~MeasuredPointSe_1085_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (MeasuredPointSe_1085_TypeType == ProbeRadiusE)
-    delete MeasuredPointSe_1085_TypeValue.ProbeRadius;
+    delete MeasuredPointSe_1085_TypeValue->ProbeRadius;
   else if (MeasuredPointSe_1085_TypeType == ProbeRadiiE)
-    delete MeasuredPointSe_1085_TypeValue.ProbeRadii;
+    delete MeasuredPointSe_1085_TypeValue->ProbeRadii;
   else if (MeasuredPointSe_1085_TypeType == BinaryProbeRadiiE)
-    delete MeasuredPointSe_1085_TypeValue.BinaryProbeRadii;
+    delete MeasuredPointSe_1085_TypeValue->BinaryProbeRadii;
+  delete MeasuredPointSe_1085_TypeValue;
   #endif
 }
 
@@ -82850,21 +82960,21 @@ void MeasuredPointSe_1085_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ProbeRadius");
-      MeasuredPointSe_1085_TypeValue.ProbeRadius->printSelf(outFile);
+      MeasuredPointSe_1085_TypeValue->ProbeRadius->printSelf(outFile);
       fprintf(outFile, "</ProbeRadius>\n");
     }
   else if (MeasuredPointSe_1085_TypeType == ProbeRadiiE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ProbeRadii");
-      MeasuredPointSe_1085_TypeValue.ProbeRadii->printSelf(outFile);
+      MeasuredPointSe_1085_TypeValue->ProbeRadii->printSelf(outFile);
       fprintf(outFile, "</ProbeRadii>\n");
     }
   else if (MeasuredPointSe_1085_TypeType == BinaryProbeRadiiE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<BinaryProbeRadii");
-      MeasuredPointSe_1085_TypeValue.BinaryProbeRadii->printSelf(outFile);
+      MeasuredPointSe_1085_TypeValue->BinaryProbeRadii->printSelf(outFile);
       fprintf(outFile, "</BinaryProbeRadii>\n");
     }
 }
@@ -82910,7 +83020,7 @@ MeasuredPointSe_1086_TypeChoicePair::MeasuredPointSe_1086_TypeChoicePair() {}
 
 MeasuredPointSe_1086_TypeChoicePair::MeasuredPointSe_1086_TypeChoicePair(
  whichOne MeasuredPointSe_1086_TypeTypeIn,
- MeasuredPointSe_1086_TypeVal MeasuredPointSe_1086_TypeValueIn)
+ MeasuredPointSe_1086_TypeVal * MeasuredPointSe_1086_TypeValueIn)
 {
   MeasuredPointSe_1086_TypeType = MeasuredPointSe_1086_TypeTypeIn;
   MeasuredPointSe_1086_TypeValue = MeasuredPointSe_1086_TypeValueIn;
@@ -82920,11 +83030,12 @@ MeasuredPointSe_1086_TypeChoicePair::~MeasuredPointSe_1086_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (MeasuredPointSe_1086_TypeType == SensorIdE)
-    delete MeasuredPointSe_1086_TypeValue.SensorId;
+    delete MeasuredPointSe_1086_TypeValue->SensorId;
   else if (MeasuredPointSe_1086_TypeType == SensorIdsE)
-    delete MeasuredPointSe_1086_TypeValue.SensorIds;
+    delete MeasuredPointSe_1086_TypeValue->SensorIds;
   else if (MeasuredPointSe_1086_TypeType == BinarySensorIdsE)
-    delete MeasuredPointSe_1086_TypeValue.BinarySensorIds;
+    delete MeasuredPointSe_1086_TypeValue->BinarySensorIds;
+  delete MeasuredPointSe_1086_TypeValue;
   #endif
 }
 
@@ -82934,14 +83045,14 @@ void MeasuredPointSe_1086_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<SensorId");
-      MeasuredPointSe_1086_TypeValue.SensorId->printSelf(outFile);
+      MeasuredPointSe_1086_TypeValue->SensorId->printSelf(outFile);
       fprintf(outFile, "</SensorId>\n");
     }
   else if (MeasuredPointSe_1086_TypeType == SensorIdsE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<SensorIds");
-      MeasuredPointSe_1086_TypeValue.SensorIds->printSelf(outFile);
+      MeasuredPointSe_1086_TypeValue->SensorIds->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</SensorIds>\n");
     }
@@ -82949,7 +83060,7 @@ void MeasuredPointSe_1086_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<BinarySensorIds");
-      MeasuredPointSe_1086_TypeValue.BinarySensorIds->printSelf(outFile);
+      MeasuredPointSe_1086_TypeValue->BinarySensorIds->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</BinarySensorIds>\n");
     }
@@ -82996,7 +83107,7 @@ MeasuredPointSe_1087_TypeChoicePair::MeasuredPointSe_1087_TypeChoicePair() {}
 
 MeasuredPointSe_1087_TypeChoicePair::MeasuredPointSe_1087_TypeChoicePair(
  whichOne MeasuredPointSe_1087_TypeTypeIn,
- MeasuredPointSe_1087_TypeVal MeasuredPointSe_1087_TypeValueIn)
+ MeasuredPointSe_1087_TypeVal * MeasuredPointSe_1087_TypeValueIn)
 {
   MeasuredPointSe_1087_TypeType = MeasuredPointSe_1087_TypeTypeIn;
   MeasuredPointSe_1087_TypeValue = MeasuredPointSe_1087_TypeValueIn;
@@ -83006,11 +83117,12 @@ MeasuredPointSe_1087_TypeChoicePair::~MeasuredPointSe_1087_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (MeasuredPointSe_1087_TypeType == TipIdE)
-    delete MeasuredPointSe_1087_TypeValue.TipId;
+    delete MeasuredPointSe_1087_TypeValue->TipId;
   else if (MeasuredPointSe_1087_TypeType == TipIdsE)
-    delete MeasuredPointSe_1087_TypeValue.TipIds;
+    delete MeasuredPointSe_1087_TypeValue->TipIds;
   else if (MeasuredPointSe_1087_TypeType == BinaryTipIdsE)
-    delete MeasuredPointSe_1087_TypeValue.BinaryTipIds;
+    delete MeasuredPointSe_1087_TypeValue->BinaryTipIds;
+  delete MeasuredPointSe_1087_TypeValue;
   #endif
 }
 
@@ -83020,14 +83132,14 @@ void MeasuredPointSe_1087_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<TipId");
-      MeasuredPointSe_1087_TypeValue.TipId->printSelf(outFile);
+      MeasuredPointSe_1087_TypeValue->TipId->printSelf(outFile);
       fprintf(outFile, "</TipId>\n");
     }
   else if (MeasuredPointSe_1087_TypeType == TipIdsE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<TipIds");
-      MeasuredPointSe_1087_TypeValue.TipIds->printSelf(outFile);
+      MeasuredPointSe_1087_TypeValue->TipIds->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</TipIds>\n");
     }
@@ -83035,7 +83147,7 @@ void MeasuredPointSe_1087_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<BinaryTipIds");
-      MeasuredPointSe_1087_TypeValue.BinaryTipIds->printSelf(outFile);
+      MeasuredPointSe_1087_TypeValue->BinaryTipIds->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</BinaryTipIds>\n");
     }
@@ -83082,7 +83194,7 @@ MeasuredPointSe_1088_TypeChoicePair::MeasuredPointSe_1088_TypeChoicePair() {}
 
 MeasuredPointSe_1088_TypeChoicePair::MeasuredPointSe_1088_TypeChoicePair(
  whichOne MeasuredPointSe_1088_TypeTypeIn,
- MeasuredPointSe_1088_TypeVal MeasuredPointSe_1088_TypeValueIn)
+ MeasuredPointSe_1088_TypeVal * MeasuredPointSe_1088_TypeValueIn)
 {
   MeasuredPointSe_1088_TypeType = MeasuredPointSe_1088_TypeTypeIn;
   MeasuredPointSe_1088_TypeValue = MeasuredPointSe_1088_TypeValueIn;
@@ -83092,9 +83204,10 @@ MeasuredPointSe_1088_TypeChoicePair::~MeasuredPointSe_1088_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (MeasuredPointSe_1088_TypeType == MeasurePointNominalIdsE)
-    delete MeasuredPointSe_1088_TypeValue.MeasurePointNominalIds;
+    delete MeasuredPointSe_1088_TypeValue->MeasurePointNominalIds;
   else if (MeasuredPointSe_1088_TypeType == BinaryMeasurePointNominalIdsE)
-    delete MeasuredPointSe_1088_TypeValue.BinaryMeasurePointNominalIds;
+    delete MeasuredPointSe_1088_TypeValue->BinaryMeasurePointNominalIds;
+  delete MeasuredPointSe_1088_TypeValue;
   #endif
 }
 
@@ -83104,7 +83217,7 @@ void MeasuredPointSe_1088_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MeasurePointNominalIds");
-      MeasuredPointSe_1088_TypeValue.MeasurePointNominalIds->printSelf(outFile);
+      MeasuredPointSe_1088_TypeValue->MeasurePointNominalIds->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</MeasurePointNominalIds>\n");
     }
@@ -83112,7 +83225,7 @@ void MeasuredPointSe_1088_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<BinaryMeasurePointNominalIds");
-      MeasuredPointSe_1088_TypeValue.BinaryMeasurePointNominalIds->printSelf(outFile);
+      MeasuredPointSe_1088_TypeValue->BinaryMeasurePointNominalIds->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</BinaryMeasurePointNominalIds>\n");
     }
@@ -83159,7 +83272,7 @@ MeasuredPointSe_1089_TypeChoicePair::MeasuredPointSe_1089_TypeChoicePair() {}
 
 MeasuredPointSe_1089_TypeChoicePair::MeasuredPointSe_1089_TypeChoicePair(
  whichOne MeasuredPointSe_1089_TypeTypeIn,
- MeasuredPointSe_1089_TypeVal MeasuredPointSe_1089_TypeValueIn)
+ MeasuredPointSe_1089_TypeVal * MeasuredPointSe_1089_TypeValueIn)
 {
   MeasuredPointSe_1089_TypeType = MeasuredPointSe_1089_TypeTypeIn;
   MeasuredPointSe_1089_TypeValue = MeasuredPointSe_1089_TypeValueIn;
@@ -83169,9 +83282,10 @@ MeasuredPointSe_1089_TypeChoicePair::~MeasuredPointSe_1089_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (MeasuredPointSe_1089_TypeType == TimeStampE)
-    delete MeasuredPointSe_1089_TypeValue.TimeStamp;
+    delete MeasuredPointSe_1089_TypeValue->TimeStamp;
   else if (MeasuredPointSe_1089_TypeType == TimeStampsE)
-    delete MeasuredPointSe_1089_TypeValue.TimeStamps;
+    delete MeasuredPointSe_1089_TypeValue->TimeStamps;
+  delete MeasuredPointSe_1089_TypeValue;
   #endif
 }
 
@@ -83181,14 +83295,14 @@ void MeasuredPointSe_1089_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<TimeStamp");
-      MeasuredPointSe_1089_TypeValue.TimeStamp->printSelf(outFile);
+      MeasuredPointSe_1089_TypeValue->TimeStamp->printSelf(outFile);
       fprintf(outFile, "</TimeStamp>\n");
     }
   else if (MeasuredPointSe_1089_TypeType == TimeStampsE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<TimeStamps");
-      MeasuredPointSe_1089_TypeValue.TimeStamps->printSelf(outFile);
+      MeasuredPointSe_1089_TypeValue->TimeStamps->printSelf(outFile);
       fprintf(outFile, "</TimeStamps>\n");
     }
 }
@@ -83234,7 +83348,7 @@ MeasuredPointSe_1090_TypeChoicePair::MeasuredPointSe_1090_TypeChoicePair() {}
 
 MeasuredPointSe_1090_TypeChoicePair::MeasuredPointSe_1090_TypeChoicePair(
  whichOne MeasuredPointSe_1090_TypeTypeIn,
- MeasuredPointSe_1090_TypeVal MeasuredPointSe_1090_TypeValueIn)
+ MeasuredPointSe_1090_TypeVal * MeasuredPointSe_1090_TypeValueIn)
 {
   MeasuredPointSe_1090_TypeType = MeasuredPointSe_1090_TypeTypeIn;
   MeasuredPointSe_1090_TypeValue = MeasuredPointSe_1090_TypeValueIn;
@@ -83244,9 +83358,10 @@ MeasuredPointSe_1090_TypeChoicePair::~MeasuredPointSe_1090_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (MeasuredPointSe_1090_TypeType == QualityE)
-    delete MeasuredPointSe_1090_TypeValue.Quality;
+    delete MeasuredPointSe_1090_TypeValue->Quality;
   else if (MeasuredPointSe_1090_TypeType == BinaryQualityE)
-    delete MeasuredPointSe_1090_TypeValue.BinaryQuality;
+    delete MeasuredPointSe_1090_TypeValue->BinaryQuality;
+  delete MeasuredPointSe_1090_TypeValue;
   #endif
 }
 
@@ -83256,14 +83371,14 @@ void MeasuredPointSe_1090_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Quality");
-      MeasuredPointSe_1090_TypeValue.Quality->printSelf(outFile);
+      MeasuredPointSe_1090_TypeValue->Quality->printSelf(outFile);
       fprintf(outFile, "</Quality>\n");
     }
   else if (MeasuredPointSe_1090_TypeType == BinaryQualityE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<BinaryQuality");
-      MeasuredPointSe_1090_TypeValue.BinaryQuality->printSelf(outFile);
+      MeasuredPointSe_1090_TypeValue->BinaryQuality->printSelf(outFile);
       fprintf(outFile, "</BinaryQuality>\n");
     }
 }
@@ -83309,7 +83424,7 @@ MeasuredPointSe_1091_TypeChoicePair::MeasuredPointSe_1091_TypeChoicePair() {}
 
 MeasuredPointSe_1091_TypeChoicePair::MeasuredPointSe_1091_TypeChoicePair(
  whichOne MeasuredPointSe_1091_TypeTypeIn,
- MeasuredPointSe_1091_TypeVal MeasuredPointSe_1091_TypeValueIn)
+ MeasuredPointSe_1091_TypeVal * MeasuredPointSe_1091_TypeValueIn)
 {
   MeasuredPointSe_1091_TypeType = MeasuredPointSe_1091_TypeTypeIn;
   MeasuredPointSe_1091_TypeValue = MeasuredPointSe_1091_TypeValueIn;
@@ -83319,9 +83434,10 @@ MeasuredPointSe_1091_TypeChoicePair::~MeasuredPointSe_1091_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (MeasuredPointSe_1091_TypeType == DeviationsE)
-    delete MeasuredPointSe_1091_TypeValue.Deviations;
+    delete MeasuredPointSe_1091_TypeValue->Deviations;
   else if (MeasuredPointSe_1091_TypeType == BinaryDeviationsE)
-    delete MeasuredPointSe_1091_TypeValue.BinaryDeviations;
+    delete MeasuredPointSe_1091_TypeValue->BinaryDeviations;
+  delete MeasuredPointSe_1091_TypeValue;
   #endif
 }
 
@@ -83331,14 +83447,14 @@ void MeasuredPointSe_1091_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Deviations");
-      MeasuredPointSe_1091_TypeValue.Deviations->printSelf(outFile);
+      MeasuredPointSe_1091_TypeValue->Deviations->printSelf(outFile);
       fprintf(outFile, "</Deviations>\n");
     }
   else if (MeasuredPointSe_1091_TypeType == BinaryDeviationsE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<BinaryDeviations");
-      MeasuredPointSe_1091_TypeValue.BinaryDeviations->printSelf(outFile);
+      MeasuredPointSe_1091_TypeValue->BinaryDeviations->printSelf(outFile);
       fprintf(outFile, "</BinaryDeviations>\n");
     }
 }
@@ -83384,7 +83500,7 @@ MeasuredPointSe_1092_TypeChoicePair::MeasuredPointSe_1092_TypeChoicePair() {}
 
 MeasuredPointSe_1092_TypeChoicePair::MeasuredPointSe_1092_TypeChoicePair(
  whichOne MeasuredPointSe_1092_TypeTypeIn,
- MeasuredPointSe_1092_TypeVal MeasuredPointSe_1092_TypeValueIn)
+ MeasuredPointSe_1092_TypeVal * MeasuredPointSe_1092_TypeValueIn)
 {
   MeasuredPointSe_1092_TypeType = MeasuredPointSe_1092_TypeTypeIn;
   MeasuredPointSe_1092_TypeValue = MeasuredPointSe_1092_TypeValueIn;
@@ -83394,9 +83510,10 @@ MeasuredPointSe_1092_TypeChoicePair::~MeasuredPointSe_1092_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (MeasuredPointSe_1092_TypeType == ColorsE)
-    delete MeasuredPointSe_1092_TypeValue.Colors;
+    delete MeasuredPointSe_1092_TypeValue->Colors;
   else if (MeasuredPointSe_1092_TypeType == BinaryColorsE)
-    delete MeasuredPointSe_1092_TypeValue.BinaryColors;
+    delete MeasuredPointSe_1092_TypeValue->BinaryColors;
+  delete MeasuredPointSe_1092_TypeValue;
   #endif
 }
 
@@ -83406,14 +83523,14 @@ void MeasuredPointSe_1092_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Colors");
-      MeasuredPointSe_1092_TypeValue.Colors->printSelf(outFile);
+      MeasuredPointSe_1092_TypeValue->Colors->printSelf(outFile);
       fprintf(outFile, "</Colors>\n");
     }
   else if (MeasuredPointSe_1092_TypeType == BinaryColorsE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<BinaryColors");
-      MeasuredPointSe_1092_TypeValue.BinaryColors->printSelf(outFile);
+      MeasuredPointSe_1092_TypeValue->BinaryColors->printSelf(outFile);
       fprintf(outFile, "</BinaryColors>\n");
     }
 }
@@ -83505,7 +83622,7 @@ OppositeAngledP_1094_TypeChoicePair::OppositeAngledP_1094_TypeChoicePair() {}
 
 OppositeAngledP_1094_TypeChoicePair::OppositeAngledP_1094_TypeChoicePair(
  whichOne OppositeAngledP_1094_TypeTypeIn,
- OppositeAngledP_1094_TypeVal OppositeAngledP_1094_TypeValueIn)
+ OppositeAngledP_1094_TypeVal * OppositeAngledP_1094_TypeValueIn)
 {
   OppositeAngledP_1094_TypeType = OppositeAngledP_1094_TypeTypeIn;
   OppositeAngledP_1094_TypeValue = OppositeAngledP_1094_TypeValueIn;
@@ -83515,9 +83632,10 @@ OppositeAngledP_1094_TypeChoicePair::~OppositeAngledP_1094_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (OppositeAngledP_1094_TypeType == TaperAngleE)
-    delete OppositeAngledP_1094_TypeValue.TaperAngle;
+    delete OppositeAngledP_1094_TypeValue->TaperAngle;
   else if (OppositeAngledP_1094_TypeType == DraftAngleE)
-    delete OppositeAngledP_1094_TypeValue.DraftAngle;
+    delete OppositeAngledP_1094_TypeValue->DraftAngle;
+  delete OppositeAngledP_1094_TypeValue;
   #endif
 }
 
@@ -83527,14 +83645,14 @@ void OppositeAngledP_1094_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<TaperAngle");
-      OppositeAngledP_1094_TypeValue.TaperAngle->printSelf(outFile);
+      OppositeAngledP_1094_TypeValue->TaperAngle->printSelf(outFile);
       fprintf(outFile, "</TaperAngle>\n");
     }
   else if (OppositeAngledP_1094_TypeType == DraftAngleE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<DraftAngle");
-      OppositeAngledP_1094_TypeValue.DraftAngle->printSelf(outFile);
+      OppositeAngledP_1094_TypeValue->DraftAngle->printSelf(outFile);
       fprintf(outFile, "</DraftAngle>\n");
     }
 }
@@ -83580,7 +83698,7 @@ OppositeAngledP_1095_TypeChoicePair::OppositeAngledP_1095_TypeChoicePair() {}
 
 OppositeAngledP_1095_TypeChoicePair::OppositeAngledP_1095_TypeChoicePair(
  whichOne OppositeAngledP_1095_TypeTypeIn,
- OppositeAngledP_1095_TypeVal OppositeAngledP_1095_TypeValueIn)
+ OppositeAngledP_1095_TypeVal * OppositeAngledP_1095_TypeValueIn)
 {
   OppositeAngledP_1095_TypeType = OppositeAngledP_1095_TypeTypeIn;
   OppositeAngledP_1095_TypeValue = OppositeAngledP_1095_TypeValueIn;
@@ -83590,9 +83708,10 @@ OppositeAngledP_1095_TypeChoicePair::~OppositeAngledP_1095_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (OppositeAngledP_1095_TypeType == TaperAngleE)
-    delete OppositeAngledP_1095_TypeValue.TaperAngle;
+    delete OppositeAngledP_1095_TypeValue->TaperAngle;
   else if (OppositeAngledP_1095_TypeType == DraftAngleE)
-    delete OppositeAngledP_1095_TypeValue.DraftAngle;
+    delete OppositeAngledP_1095_TypeValue->DraftAngle;
+  delete OppositeAngledP_1095_TypeValue;
   #endif
 }
 
@@ -83602,14 +83721,14 @@ void OppositeAngledP_1095_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<TaperAngle");
-      OppositeAngledP_1095_TypeValue.TaperAngle->printSelf(outFile);
+      OppositeAngledP_1095_TypeValue->TaperAngle->printSelf(outFile);
       fprintf(outFile, "</TaperAngle>\n");
     }
   else if (OppositeAngledP_1095_TypeType == DraftAngleE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<DraftAngle");
-      OppositeAngledP_1095_TypeValue.DraftAngle->printSelf(outFile);
+      OppositeAngledP_1095_TypeValue->DraftAngle->printSelf(outFile);
       fprintf(outFile, "</DraftAngle>\n");
     }
 }
@@ -83655,7 +83774,7 @@ PlaneFeatureNom_1096_TypeChoicePair::PlaneFeatureNom_1096_TypeChoicePair() {}
 
 PlaneFeatureNom_1096_TypeChoicePair::PlaneFeatureNom_1096_TypeChoicePair(
  whichOne PlaneFeatureNom_1096_TypeTypeIn,
- PlaneFeatureNom_1096_TypeVal PlaneFeatureNom_1096_TypeValueIn)
+ PlaneFeatureNom_1096_TypeVal * PlaneFeatureNom_1096_TypeValueIn)
 {
   PlaneFeatureNom_1096_TypeType = PlaneFeatureNom_1096_TypeTypeIn;
   PlaneFeatureNom_1096_TypeValue = PlaneFeatureNom_1096_TypeValueIn;
@@ -83665,11 +83784,12 @@ PlaneFeatureNom_1096_TypeChoicePair::~PlaneFeatureNom_1096_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (PlaneFeatureNom_1096_TypeType == PolyLineE)
-    delete PlaneFeatureNom_1096_TypeValue.PolyLine;
+    delete PlaneFeatureNom_1096_TypeValue->PolyLine;
   else if (PlaneFeatureNom_1096_TypeType == RectangleE)
-    delete PlaneFeatureNom_1096_TypeValue.Rectangle;
+    delete PlaneFeatureNom_1096_TypeValue->Rectangle;
   else if (PlaneFeatureNom_1096_TypeType == CircleE)
-    delete PlaneFeatureNom_1096_TypeValue.Circle;
+    delete PlaneFeatureNom_1096_TypeValue->Circle;
+  delete PlaneFeatureNom_1096_TypeValue;
   #endif
 }
 
@@ -83679,14 +83799,14 @@ void PlaneFeatureNom_1096_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<PolyLine");
-      PlaneFeatureNom_1096_TypeValue.PolyLine->printSelf(outFile);
+      PlaneFeatureNom_1096_TypeValue->PolyLine->printSelf(outFile);
       fprintf(outFile, "</PolyLine>\n");
     }
   else if (PlaneFeatureNom_1096_TypeType == RectangleE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Rectangle");
-      PlaneFeatureNom_1096_TypeValue.Rectangle->printSelf(outFile);
+      PlaneFeatureNom_1096_TypeValue->Rectangle->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Rectangle>\n");
     }
@@ -83694,7 +83814,7 @@ void PlaneFeatureNom_1096_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Circle");
-      PlaneFeatureNom_1096_TypeValue.Circle->printSelf(outFile);
+      PlaneFeatureNom_1096_TypeValue->Circle->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Circle>\n");
     }
@@ -83738,7 +83858,7 @@ PointFeatureExt_1097_TypeChoicePair::PointFeatureExt_1097_TypeChoicePair() {}
 
 PointFeatureExt_1097_TypeChoicePair::PointFeatureExt_1097_TypeChoicePair(
  whichOne PointFeatureExt_1097_TypeTypeIn,
- PointFeatureExt_1097_TypeVal PointFeatureExt_1097_TypeValueIn)
+ PointFeatureExt_1097_TypeVal * PointFeatureExt_1097_TypeValueIn)
 {
   PointFeatureExt_1097_TypeType = PointFeatureExt_1097_TypeTypeIn;
   PointFeatureExt_1097_TypeValue = PointFeatureExt_1097_TypeValueIn;
@@ -83748,17 +83868,18 @@ PointFeatureExt_1097_TypeChoicePair::~PointFeatureExt_1097_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (PointFeatureExt_1097_TypeType == BaseAxisFeatureE)
-    delete PointFeatureExt_1097_TypeValue.BaseAxisFeature;
+    delete PointFeatureExt_1097_TypeValue->BaseAxisFeature;
   else if (PointFeatureExt_1097_TypeType == VectorE)
-    delete PointFeatureExt_1097_TypeValue.Vector;
+    delete PointFeatureExt_1097_TypeValue->Vector;
   else if (PointFeatureExt_1097_TypeType == RadialE)
-    delete PointFeatureExt_1097_TypeValue.Radial;
+    delete PointFeatureExt_1097_TypeValue->Radial;
   else if (PointFeatureExt_1097_TypeType == XaxisE)
-    delete PointFeatureExt_1097_TypeValue.Xaxis;
+    delete PointFeatureExt_1097_TypeValue->Xaxis;
   else if (PointFeatureExt_1097_TypeType == YaxisE)
-    delete PointFeatureExt_1097_TypeValue.Yaxis;
+    delete PointFeatureExt_1097_TypeValue->Yaxis;
   else if (PointFeatureExt_1097_TypeType == ZaxisE)
-    delete PointFeatureExt_1097_TypeValue.Zaxis;
+    delete PointFeatureExt_1097_TypeValue->Zaxis;
+  delete PointFeatureExt_1097_TypeValue;
   #endif
 }
 
@@ -83768,7 +83889,7 @@ void PointFeatureExt_1097_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<BaseAxisFeature");
-      PointFeatureExt_1097_TypeValue.BaseAxisFeature->printSelf(outFile);
+      PointFeatureExt_1097_TypeValue->BaseAxisFeature->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</BaseAxisFeature>\n");
     }
@@ -83776,35 +83897,35 @@ void PointFeatureExt_1097_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Vector");
-      PointFeatureExt_1097_TypeValue.Vector->printSelf(outFile);
+      PointFeatureExt_1097_TypeValue->Vector->printSelf(outFile);
       fprintf(outFile, "</Vector>\n");
     }
   else if (PointFeatureExt_1097_TypeType == RadialE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Radial");
-      PointFeatureExt_1097_TypeValue.Radial->printSelf(outFile);
+      PointFeatureExt_1097_TypeValue->Radial->printSelf(outFile);
       fprintf(outFile, "</Radial>\n");
     }
   else if (PointFeatureExt_1097_TypeType == XaxisE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Xaxis");
-      PointFeatureExt_1097_TypeValue.Xaxis->printSelf(outFile);
+      PointFeatureExt_1097_TypeValue->Xaxis->printSelf(outFile);
       fprintf(outFile, "</Xaxis>\n");
     }
   else if (PointFeatureExt_1097_TypeType == YaxisE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Yaxis");
-      PointFeatureExt_1097_TypeValue.Yaxis->printSelf(outFile);
+      PointFeatureExt_1097_TypeValue->Yaxis->printSelf(outFile);
       fprintf(outFile, "</Yaxis>\n");
     }
   else if (PointFeatureExt_1097_TypeType == ZaxisE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Zaxis");
-      PointFeatureExt_1097_TypeValue.Zaxis->printSelf(outFile);
+      PointFeatureExt_1097_TypeValue->Zaxis->printSelf(outFile);
       fprintf(outFile, "</Zaxis>\n");
     }
 }
@@ -83847,7 +83968,7 @@ PointFeatureMov_1098_TypeChoicePair::PointFeatureMov_1098_TypeChoicePair() {}
 
 PointFeatureMov_1098_TypeChoicePair::PointFeatureMov_1098_TypeChoicePair(
  whichOne PointFeatureMov_1098_TypeTypeIn,
- PointFeatureMov_1098_TypeVal PointFeatureMov_1098_TypeValueIn)
+ PointFeatureMov_1098_TypeVal * PointFeatureMov_1098_TypeValueIn)
 {
   PointFeatureMov_1098_TypeType = PointFeatureMov_1098_TypeTypeIn;
   PointFeatureMov_1098_TypeValue = PointFeatureMov_1098_TypeValueIn;
@@ -83857,9 +83978,10 @@ PointFeatureMov_1098_TypeChoicePair::~PointFeatureMov_1098_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (PointFeatureMov_1098_TypeType == OffsetE)
-    delete PointFeatureMov_1098_TypeValue.Offset;
+    delete PointFeatureMov_1098_TypeValue->Offset;
   else if (PointFeatureMov_1098_TypeType == DirectionalOffsetE)
-    delete PointFeatureMov_1098_TypeValue.DirectionalOffset;
+    delete PointFeatureMov_1098_TypeValue->DirectionalOffset;
+  delete PointFeatureMov_1098_TypeValue;
   #endif
 }
 
@@ -83869,14 +83991,14 @@ void PointFeatureMov_1098_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Offset");
-      PointFeatureMov_1098_TypeValue.Offset->printSelf(outFile);
+      PointFeatureMov_1098_TypeValue->Offset->printSelf(outFile);
       fprintf(outFile, "</Offset>\n");
     }
   else if (PointFeatureMov_1098_TypeType == DirectionalOffsetE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<DirectionalOffset");
-      PointFeatureMov_1098_TypeValue.DirectionalOffset->printSelf(outFile);
+      PointFeatureMov_1098_TypeValue->DirectionalOffset->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</DirectionalOffset>\n");
     }
@@ -83920,7 +84042,7 @@ MeasuredPointSe_1099_TypeChoicePair::MeasuredPointSe_1099_TypeChoicePair() {}
 
 MeasuredPointSe_1099_TypeChoicePair::MeasuredPointSe_1099_TypeChoicePair(
  whichOne MeasuredPointSe_1099_TypeTypeIn,
- MeasuredPointSe_1099_TypeVal MeasuredPointSe_1099_TypeValueIn)
+ MeasuredPointSe_1099_TypeVal * MeasuredPointSe_1099_TypeValueIn)
 {
   MeasuredPointSe_1099_TypeType = MeasuredPointSe_1099_TypeTypeIn;
   MeasuredPointSe_1099_TypeValue = MeasuredPointSe_1099_TypeValueIn;
@@ -83930,9 +84052,10 @@ MeasuredPointSe_1099_TypeChoicePair::~MeasuredPointSe_1099_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (MeasuredPointSe_1099_TypeType == PointIndicesE)
-    delete MeasuredPointSe_1099_TypeValue.PointIndices;
+    delete MeasuredPointSe_1099_TypeValue->PointIndices;
   else if (MeasuredPointSe_1099_TypeType == BinaryPointIndicesE)
-    delete MeasuredPointSe_1099_TypeValue.BinaryPointIndices;
+    delete MeasuredPointSe_1099_TypeValue->BinaryPointIndices;
+  delete MeasuredPointSe_1099_TypeValue;
   #endif
 }
 
@@ -83942,14 +84065,14 @@ void MeasuredPointSe_1099_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<PointIndices");
-      MeasuredPointSe_1099_TypeValue.PointIndices->printSelf(outFile);
+      MeasuredPointSe_1099_TypeValue->PointIndices->printSelf(outFile);
       fprintf(outFile, "</PointIndices>\n");
     }
   else if (MeasuredPointSe_1099_TypeType == BinaryPointIndicesE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<BinaryPointIndices");
-      MeasuredPointSe_1099_TypeValue.BinaryPointIndices->printSelf(outFile);
+      MeasuredPointSe_1099_TypeValue->BinaryPointIndices->printSelf(outFile);
       fprintf(outFile, "</BinaryPointIndices>\n");
     }
 }

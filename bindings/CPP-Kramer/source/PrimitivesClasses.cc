@@ -361,7 +361,7 @@ ArrayBinaryQIFReferenceTypeChoicePair::ArrayBinaryQIFReferenceTypeChoicePair() {
 
 ArrayBinaryQIFReferenceTypeChoicePair::ArrayBinaryQIFReferenceTypeChoicePair(
  whichOne ArrayBinaryQIFReferenceTypeTypeIn,
- ArrayBinaryQIFReferenceTypeVal ArrayBinaryQIFReferenceTypeValueIn)
+ ArrayBinaryQIFReferenceTypeVal * ArrayBinaryQIFReferenceTypeValueIn)
 {
   ArrayBinaryQIFReferenceTypeType = ArrayBinaryQIFReferenceTypeTypeIn;
   ArrayBinaryQIFReferenceTypeValue = ArrayBinaryQIFReferenceTypeValueIn;
@@ -371,9 +371,10 @@ ArrayBinaryQIFReferenceTypeChoicePair::~ArrayBinaryQIFReferenceTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (ArrayBinaryQIFReferenceTypeType == IdsE)
-    delete ArrayBinaryQIFReferenceTypeValue.Ids;
+    delete ArrayBinaryQIFReferenceTypeValue->Ids;
   else if (ArrayBinaryQIFReferenceTypeType == ArrayBinaryQIFR_1001E)
-    delete ArrayBinaryQIFReferenceTypeValue.ArrayBinaryQIFR_1001;
+    delete ArrayBinaryQIFReferenceTypeValue->ArrayBinaryQIFR_1001;
+  delete ArrayBinaryQIFReferenceTypeValue;
   #endif
 }
 
@@ -383,12 +384,12 @@ void ArrayBinaryQIFReferenceTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Ids");
-      ArrayBinaryQIFReferenceTypeValue.Ids->printSelf(outFile);
+      ArrayBinaryQIFReferenceTypeValue->Ids->printSelf(outFile);
       fprintf(outFile, "</Ids>\n");
     }
   else if (ArrayBinaryQIFReferenceTypeType == ArrayBinaryQIFR_1001E)
     {
-      ArrayBinaryQIFReferenceTypeValue.ArrayBinaryQIFR_1001->printSelf(outFile);
+      ArrayBinaryQIFReferenceTypeValue->ArrayBinaryQIFR_1001->printSelf(outFile);
     }
 }
 
@@ -5885,7 +5886,7 @@ AttributeUserTypeChoicePair::AttributeUserTypeChoicePair() {}
 
 AttributeUserTypeChoicePair::AttributeUserTypeChoicePair(
  whichOne AttributeUserTypeTypeIn,
- AttributeUserTypeVal AttributeUserTypeValueIn)
+ AttributeUserTypeVal * AttributeUserTypeValueIn)
 {
   AttributeUserTypeType = AttributeUserTypeTypeIn;
   AttributeUserTypeValue = AttributeUserTypeValueIn;
@@ -5895,9 +5896,10 @@ AttributeUserTypeChoicePair::~AttributeUserTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (AttributeUserTypeType == UserDataXMLE)
-    delete AttributeUserTypeValue.UserDataXML;
+    delete AttributeUserTypeValue->UserDataXML;
   else if (AttributeUserTypeType == UserDataBinaryE)
-    delete AttributeUserTypeValue.UserDataBinary;
+    delete AttributeUserTypeValue->UserDataBinary;
+  delete AttributeUserTypeValue;
   #endif
 }
 
@@ -5907,7 +5909,7 @@ void AttributeUserTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<UserDataXML");
-      AttributeUserTypeValue.UserDataXML->printSelf(outFile);
+      AttributeUserTypeValue->UserDataXML->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</UserDataXML>\n");
     }
@@ -5915,7 +5917,7 @@ void AttributeUserTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<UserDataBinary");
-      AttributeUserTypeValue.UserDataBinary->printSelf(outFile);
+      AttributeUserTypeValue->UserDataBinary->printSelf(outFile);
       fprintf(outFile, "</UserDataBinary>\n");
     }
 }
@@ -8710,7 +8712,7 @@ ListQIFReferenceTypeChoicePair::ListQIFReferenceTypeChoicePair() {}
 
 ListQIFReferenceTypeChoicePair::ListQIFReferenceTypeChoicePair(
  whichOne ListQIFReferenceTypeTypeIn,
- ListQIFReferenceTypeVal ListQIFReferenceTypeValueIn)
+ ListQIFReferenceTypeVal * ListQIFReferenceTypeValueIn)
 {
   ListQIFReferenceTypeType = ListQIFReferenceTypeTypeIn;
   ListQIFReferenceTypeValue = ListQIFReferenceTypeValueIn;
@@ -8720,9 +8722,10 @@ ListQIFReferenceTypeChoicePair::~ListQIFReferenceTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (ListQIFReferenceTypeType == IdsE)
-    delete ListQIFReferenceTypeValue.Ids;
+    delete ListQIFReferenceTypeValue->Ids;
   else if (ListQIFReferenceTypeType == ListQIFReferenc_1002E)
-    delete ListQIFReferenceTypeValue.ListQIFReferenc_1002;
+    delete ListQIFReferenceTypeValue->ListQIFReferenc_1002;
+  delete ListQIFReferenceTypeValue;
   #endif
 }
 
@@ -8732,12 +8735,12 @@ void ListQIFReferenceTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Ids");
-      ListQIFReferenceTypeValue.Ids->printSelf(outFile);
+      ListQIFReferenceTypeValue->Ids->printSelf(outFile);
       fprintf(outFile, "</Ids>\n");
     }
   else if (ListQIFReferenceTypeType == ListQIFReferenc_1002E)
     {
-      ListQIFReferenceTypeValue.ListQIFReferenc_1002->printSelf(outFile);
+      ListQIFReferenceTypeValue->ListQIFReferenc_1002->printSelf(outFile);
     }
 }
 
@@ -14975,7 +14978,7 @@ ValidationPoint_1003_TypeChoicePair::ValidationPoint_1003_TypeChoicePair() {}
 
 ValidationPoint_1003_TypeChoicePair::ValidationPoint_1003_TypeChoicePair(
  whichOne ValidationPoint_1003_TypeTypeIn,
- ValidationPoint_1003_TypeVal ValidationPoint_1003_TypeValueIn)
+ ValidationPoint_1003_TypeVal * ValidationPoint_1003_TypeValueIn)
 {
   ValidationPoint_1003_TypeType = ValidationPoint_1003_TypeTypeIn;
   ValidationPoint_1003_TypeValue = ValidationPoint_1003_TypeValueIn;
@@ -14985,9 +14988,10 @@ ValidationPoint_1003_TypeChoicePair::~ValidationPoint_1003_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (ValidationPoint_1003_TypeType == PointsE)
-    delete ValidationPoint_1003_TypeValue.Points;
+    delete ValidationPoint_1003_TypeValue->Points;
   else if (ValidationPoint_1003_TypeType == PointsBinaryE)
-    delete ValidationPoint_1003_TypeValue.PointsBinary;
+    delete ValidationPoint_1003_TypeValue->PointsBinary;
+  delete ValidationPoint_1003_TypeValue;
   #endif
 }
 
@@ -14997,14 +15001,14 @@ void ValidationPoint_1003_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Points");
-      ValidationPoint_1003_TypeValue.Points->printSelf(outFile);
+      ValidationPoint_1003_TypeValue->Points->printSelf(outFile);
       fprintf(outFile, "</Points>\n");
     }
   else if (ValidationPoint_1003_TypeType == PointsBinaryE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<PointsBinary");
-      ValidationPoint_1003_TypeValue.PointsBinary->printSelf(outFile);
+      ValidationPoint_1003_TypeValue->PointsBinary->printSelf(outFile);
       fprintf(outFile, "</PointsBinary>\n");
     }
 }
@@ -15050,7 +15054,7 @@ ValidationPoint_1004_TypeChoicePair::ValidationPoint_1004_TypeChoicePair() {}
 
 ValidationPoint_1004_TypeChoicePair::ValidationPoint_1004_TypeChoicePair(
  whichOne ValidationPoint_1004_TypeTypeIn,
- ValidationPoint_1004_TypeVal ValidationPoint_1004_TypeValueIn)
+ ValidationPoint_1004_TypeVal * ValidationPoint_1004_TypeValueIn)
 {
   ValidationPoint_1004_TypeType = ValidationPoint_1004_TypeTypeIn;
   ValidationPoint_1004_TypeValue = ValidationPoint_1004_TypeValueIn;
@@ -15060,9 +15064,10 @@ ValidationPoint_1004_TypeChoicePair::~ValidationPoint_1004_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (ValidationPoint_1004_TypeType == DirectionsE)
-    delete ValidationPoint_1004_TypeValue.Directions;
+    delete ValidationPoint_1004_TypeValue->Directions;
   else if (ValidationPoint_1004_TypeType == DirectionsBinaryE)
-    delete ValidationPoint_1004_TypeValue.DirectionsBinary;
+    delete ValidationPoint_1004_TypeValue->DirectionsBinary;
+  delete ValidationPoint_1004_TypeValue;
   #endif
 }
 
@@ -15072,14 +15077,14 @@ void ValidationPoint_1004_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Directions");
-      ValidationPoint_1004_TypeValue.Directions->printSelf(outFile);
+      ValidationPoint_1004_TypeValue->Directions->printSelf(outFile);
       fprintf(outFile, "</Directions>\n");
     }
   else if (ValidationPoint_1004_TypeType == DirectionsBinaryE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<DirectionsBinary");
-      ValidationPoint_1004_TypeValue.DirectionsBinary->printSelf(outFile);
+      ValidationPoint_1004_TypeValue->DirectionsBinary->printSelf(outFile);
       fprintf(outFile, "</DirectionsBinary>\n");
     }
 }

@@ -115,7 +115,7 @@ AddressDescriptionTypeChoicePair::AddressDescriptionTypeChoicePair() {}
 
 AddressDescriptionTypeChoicePair::AddressDescriptionTypeChoicePair(
  whichOne AddressDescriptionTypeTypeIn,
- AddressDescriptionTypeVal AddressDescriptionTypeValueIn)
+ AddressDescriptionTypeVal * AddressDescriptionTypeValueIn)
 {
   AddressDescriptionTypeType = AddressDescriptionTypeTypeIn;
   AddressDescriptionTypeValue = AddressDescriptionTypeValueIn;
@@ -125,9 +125,10 @@ AddressDescriptionTypeChoicePair::~AddressDescriptionTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (AddressDescriptionTypeType == AddressDescriptionEnumE)
-    delete AddressDescriptionTypeValue.AddressDescriptionEnum;
+    delete AddressDescriptionTypeValue->AddressDescriptionEnum;
   else if (AddressDescriptionTypeType == OtherAddressDescriptionE)
-    delete AddressDescriptionTypeValue.OtherAddressDescription;
+    delete AddressDescriptionTypeValue->OtherAddressDescription;
+  delete AddressDescriptionTypeValue;
   #endif
 }
 
@@ -137,14 +138,14 @@ void AddressDescriptionTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<AddressDescriptionEnum");
-      AddressDescriptionTypeValue.AddressDescriptionEnum->printSelf(outFile);
+      AddressDescriptionTypeValue->AddressDescriptionEnum->printSelf(outFile);
       fprintf(outFile, "</AddressDescriptionEnum>\n");
     }
   else if (AddressDescriptionTypeType == OtherAddressDescriptionE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<OtherAddressDescription");
-      AddressDescriptionTypeValue.OtherAddressDescription->printSelf(outFile);
+      AddressDescriptionTypeValue->OtherAddressDescription->printSelf(outFile);
       fprintf(outFile, "</OtherAddressDescription>\n");
     }
 }
@@ -586,7 +587,7 @@ AlignmentFeatureTypeChoicePair::AlignmentFeatureTypeChoicePair() {}
 
 AlignmentFeatureTypeChoicePair::AlignmentFeatureTypeChoicePair(
  whichOne AlignmentFeatureTypeTypeIn,
- AlignmentFeatureTypeVal AlignmentFeatureTypeValueIn)
+ AlignmentFeatureTypeVal * AlignmentFeatureTypeValueIn)
 {
   AlignmentFeatureTypeType = AlignmentFeatureTypeTypeIn;
   AlignmentFeatureTypeValue = AlignmentFeatureTypeValueIn;
@@ -596,9 +597,10 @@ AlignmentFeatureTypeChoicePair::~AlignmentFeatureTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (AlignmentFeatureTypeType == DatumDefinitionIdE)
-    delete AlignmentFeatureTypeValue.DatumDefinitionId;
+    delete AlignmentFeatureTypeValue->DatumDefinitionId;
   else if (AlignmentFeatureTypeType == BaseFeatureE)
-    delete AlignmentFeatureTypeValue.BaseFeature;
+    delete AlignmentFeatureTypeValue->BaseFeature;
+  delete AlignmentFeatureTypeValue;
   #endif
 }
 
@@ -608,14 +610,14 @@ void AlignmentFeatureTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<DatumDefinitionId");
-      AlignmentFeatureTypeValue.DatumDefinitionId->printSelf(outFile);
+      AlignmentFeatureTypeValue->DatumDefinitionId->printSelf(outFile);
       fprintf(outFile, "</DatumDefinitionId>\n");
     }
   else if (AlignmentFeatureTypeType == BaseFeatureE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<BaseFeature");
-      AlignmentFeatureTypeValue.BaseFeature->printSelf(outFile);
+      AlignmentFeatureTypeValue->BaseFeature->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</BaseFeature>\n");
     }
@@ -3474,7 +3476,7 @@ DatumFeatureSimulatorModifierTypeChoicePair::DatumFeatureSimulatorModifierTypeCh
 
 DatumFeatureSimulatorModifierTypeChoicePair::DatumFeatureSimulatorModifierTypeChoicePair(
  whichOne DatumFeatureSimulatorModifierTypeTypeIn,
- DatumFeatureSimulatorModifierTypeVal DatumFeatureSimulatorModifierTypeValueIn)
+ DatumFeatureSimulatorModifierTypeVal * DatumFeatureSimulatorModifierTypeValueIn)
 {
   DatumFeatureSimulatorModifierTypeType = DatumFeatureSimulatorModifierTypeTypeIn;
   DatumFeatureSimulatorModifierTypeValue = DatumFeatureSimulatorModifierTypeValueIn;
@@ -3484,11 +3486,12 @@ DatumFeatureSimulatorModifierTypeChoicePair::~DatumFeatureSimulatorModifierTypeC
 {
   #ifndef NODESTRUCT
   if (DatumFeatureSimulatorModifierTypeType == LinearSizeE)
-    delete DatumFeatureSimulatorModifierTypeValue.LinearSize;
+    delete DatumFeatureSimulatorModifierTypeValue->LinearSize;
   else if (DatumFeatureSimulatorModifierTypeType == DiametricalSizeE)
-    delete DatumFeatureSimulatorModifierTypeValue.DiametricalSize;
+    delete DatumFeatureSimulatorModifierTypeValue->DiametricalSize;
   else if (DatumFeatureSimulatorModifierTypeType == BasicSizeE)
-    delete DatumFeatureSimulatorModifierTypeValue.BasicSize;
+    delete DatumFeatureSimulatorModifierTypeValue->BasicSize;
+  delete DatumFeatureSimulatorModifierTypeValue;
   #endif
 }
 
@@ -3498,21 +3501,21 @@ void DatumFeatureSimulatorModifierTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<LinearSize");
-      DatumFeatureSimulatorModifierTypeValue.LinearSize->printSelf(outFile);
+      DatumFeatureSimulatorModifierTypeValue->LinearSize->printSelf(outFile);
       fprintf(outFile, "</LinearSize>\n");
     }
   else if (DatumFeatureSimulatorModifierTypeType == DiametricalSizeE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<DiametricalSize");
-      DatumFeatureSimulatorModifierTypeValue.DiametricalSize->printSelf(outFile);
+      DatumFeatureSimulatorModifierTypeValue->DiametricalSize->printSelf(outFile);
       fprintf(outFile, "</DiametricalSize>\n");
     }
   else if (DatumFeatureSimulatorModifierTypeType == BasicSizeE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<BasicSize");
-      DatumFeatureSimulatorModifierTypeValue.BasicSize->printSelf(outFile);
+      DatumFeatureSimulatorModifierTypeValue->BasicSize->printSelf(outFile);
       fprintf(outFile, "</BasicSize>\n");
     }
 }
@@ -5656,7 +5659,7 @@ DegreesOfFreedomTypeChoicePair::DegreesOfFreedomTypeChoicePair() {}
 
 DegreesOfFreedomTypeChoicePair::DegreesOfFreedomTypeChoicePair(
  whichOne DegreesOfFreedomTypeTypeIn,
- DegreesOfFreedomTypeVal DegreesOfFreedomTypeValueIn)
+ DegreesOfFreedomTypeVal * DegreesOfFreedomTypeValueIn)
 {
   DegreesOfFreedomTypeType = DegreesOfFreedomTypeTypeIn;
   DegreesOfFreedomTypeValue = DegreesOfFreedomTypeValueIn;
@@ -5666,9 +5669,10 @@ DegreesOfFreedomTypeChoicePair::~DegreesOfFreedomTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (DegreesOfFreedomTypeType == DegreeOfFreedomE)
-    delete DegreesOfFreedomTypeValue.DegreeOfFreedom;
+    delete DegreesOfFreedomTypeValue->DegreeOfFreedom;
   else if (DegreesOfFreedomTypeType == ISODegreeOfFreedomE)
-    delete DegreesOfFreedomTypeValue.ISODegreeOfFreedom;
+    delete DegreesOfFreedomTypeValue->ISODegreeOfFreedom;
+  delete DegreesOfFreedomTypeValue;
   #endif
 }
 
@@ -5677,8 +5681,8 @@ void DegreesOfFreedomTypeChoicePair::printSelf(FILE * outFile)
   if (DegreesOfFreedomTypeType == DegreeOfFreedomE)
     {
       std::list<DegreeOfFreedomEnumType *>::iterator iter;
-      for (iter = DegreesOfFreedomTypeValue.DegreeOfFreedom->begin();
-           iter != DegreesOfFreedomTypeValue.DegreeOfFreedom->end();
+      for (iter = DegreesOfFreedomTypeValue->DegreeOfFreedom->begin();
+           iter != DegreesOfFreedomTypeValue->DegreeOfFreedom->end();
            iter++)
         {
           doSpaces(0, outFile);
@@ -5690,8 +5694,8 @@ void DegreesOfFreedomTypeChoicePair::printSelf(FILE * outFile)
   else if (DegreesOfFreedomTypeType == ISODegreeOfFreedomE)
     {
       std::list<ISODegreeOfFreedomEnumType *>::iterator iter;
-      for (iter = DegreesOfFreedomTypeValue.ISODegreeOfFreedom->begin();
-           iter != DegreesOfFreedomTypeValue.ISODegreeOfFreedom->end();
+      for (iter = DegreesOfFreedomTypeValue->ISODegreeOfFreedom->begin();
+           iter != DegreesOfFreedomTypeValue->ISODegreeOfFreedom->end();
            iter++)
         {
           doSpaces(0, outFile);
@@ -7149,7 +7153,7 @@ FileSpecTypeChoicePair::FileSpecTypeChoicePair() {}
 
 FileSpecTypeChoicePair::FileSpecTypeChoicePair(
  whichOne FileSpecTypeTypeIn,
- FileSpecTypeVal FileSpecTypeValueIn)
+ FileSpecTypeVal * FileSpecTypeValueIn)
 {
   FileSpecTypeType = FileSpecTypeTypeIn;
   FileSpecTypeValue = FileSpecTypeValueIn;
@@ -7159,9 +7163,10 @@ FileSpecTypeChoicePair::~FileSpecTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (FileSpecTypeType == CommonFileSpecEnumE)
-    delete FileSpecTypeValue.CommonFileSpecEnum;
+    delete FileSpecTypeValue->CommonFileSpecEnum;
   else if (FileSpecTypeType == OtherFileSpecE)
-    delete FileSpecTypeValue.OtherFileSpec;
+    delete FileSpecTypeValue->OtherFileSpec;
+  delete FileSpecTypeValue;
   #endif
 }
 
@@ -7171,14 +7176,14 @@ void FileSpecTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<CommonFileSpecEnum");
-      FileSpecTypeValue.CommonFileSpecEnum->printSelf(outFile);
+      FileSpecTypeValue->CommonFileSpecEnum->printSelf(outFile);
       fprintf(outFile, "</CommonFileSpecEnum>\n");
     }
   else if (FileSpecTypeType == OtherFileSpecE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<OtherFileSpec");
-      FileSpecTypeValue.OtherFileSpec->printSelf(outFile);
+      FileSpecTypeValue->OtherFileSpec->printSelf(outFile);
       fprintf(outFile, "</OtherFileSpec>\n");
     }
 }
@@ -7551,7 +7556,7 @@ InspectionStatusTypeChoicePair::InspectionStatusTypeChoicePair() {}
 
 InspectionStatusTypeChoicePair::InspectionStatusTypeChoicePair(
  whichOne InspectionStatusTypeTypeIn,
- InspectionStatusTypeVal InspectionStatusTypeValueIn)
+ InspectionStatusTypeVal * InspectionStatusTypeValueIn)
 {
   InspectionStatusTypeType = InspectionStatusTypeTypeIn;
   InspectionStatusTypeValue = InspectionStatusTypeValueIn;
@@ -7561,9 +7566,10 @@ InspectionStatusTypeChoicePair::~InspectionStatusTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (InspectionStatusTypeType == InspectionStatusEnumE)
-    delete InspectionStatusTypeValue.InspectionStatusEnum;
+    delete InspectionStatusTypeValue->InspectionStatusEnum;
   else if (InspectionStatusTypeType == OtherInspectionStatusE)
-    delete InspectionStatusTypeValue.OtherInspectionStatus;
+    delete InspectionStatusTypeValue->OtherInspectionStatus;
+  delete InspectionStatusTypeValue;
   #endif
 }
 
@@ -7573,14 +7579,14 @@ void InspectionStatusTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<InspectionStatusEnum");
-      InspectionStatusTypeValue.InspectionStatusEnum->printSelf(outFile);
+      InspectionStatusTypeValue->InspectionStatusEnum->printSelf(outFile);
       fprintf(outFile, "</InspectionStatusEnum>\n");
     }
   else if (InspectionStatusTypeType == OtherInspectionStatusE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<OtherInspectionStatus");
-      InspectionStatusTypeValue.OtherInspectionStatus->printSelf(outFile);
+      InspectionStatusTypeValue->OtherInspectionStatus->printSelf(outFile);
       fprintf(outFile, "</OtherInspectionStatus>\n");
     }
 }
@@ -9887,7 +9893,7 @@ MeasurementDirectiveTypeChoicePair::MeasurementDirectiveTypeChoicePair() {}
 
 MeasurementDirectiveTypeChoicePair::MeasurementDirectiveTypeChoicePair(
  whichOne MeasurementDirectiveTypeTypeIn,
- MeasurementDirectiveTypeVal MeasurementDirectiveTypeValueIn)
+ MeasurementDirectiveTypeVal * MeasurementDirectiveTypeValueIn)
 {
   MeasurementDirectiveTypeType = MeasurementDirectiveTypeTypeIn;
   MeasurementDirectiveTypeValue = MeasurementDirectiveTypeValueIn;
@@ -9897,9 +9903,10 @@ MeasurementDirectiveTypeChoicePair::~MeasurementDirectiveTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (MeasurementDirectiveTypeType == MeasurementDirectiveEnumE)
-    delete MeasurementDirectiveTypeValue.MeasurementDirectiveEnum;
+    delete MeasurementDirectiveTypeValue->MeasurementDirectiveEnum;
   else if (MeasurementDirectiveTypeType == OtherMeasurementDirectiveE)
-    delete MeasurementDirectiveTypeValue.OtherMeasurementDirective;
+    delete MeasurementDirectiveTypeValue->OtherMeasurementDirective;
+  delete MeasurementDirectiveTypeValue;
   #endif
 }
 
@@ -9909,14 +9916,14 @@ void MeasurementDirectiveTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MeasurementDirectiveEnum");
-      MeasurementDirectiveTypeValue.MeasurementDirectiveEnum->printSelf(outFile);
+      MeasurementDirectiveTypeValue->MeasurementDirectiveEnum->printSelf(outFile);
       fprintf(outFile, "</MeasurementDirectiveEnum>\n");
     }
   else if (MeasurementDirectiveTypeType == OtherMeasurementDirectiveE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<OtherMeasurementDirective");
-      MeasurementDirectiveTypeValue.OtherMeasurementDirective->printSelf(outFile);
+      MeasurementDirectiveTypeValue->OtherMeasurementDirective->printSelf(outFile);
       fprintf(outFile, "</OtherMeasurementDirective>\n");
     }
 }
@@ -12813,7 +12820,7 @@ PrecedenceTypeChoicePair::PrecedenceTypeChoicePair() {}
 
 PrecedenceTypeChoicePair::PrecedenceTypeChoicePair(
  whichOne PrecedenceTypeTypeIn,
- PrecedenceTypeVal PrecedenceTypeValueIn)
+ PrecedenceTypeVal * PrecedenceTypeValueIn)
 {
   PrecedenceTypeType = PrecedenceTypeTypeIn;
   PrecedenceTypeValue = PrecedenceTypeValueIn;
@@ -12823,9 +12830,10 @@ PrecedenceTypeChoicePair::~PrecedenceTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (PrecedenceTypeType == PrecedenceEnumE)
-    delete PrecedenceTypeValue.PrecedenceEnum;
+    delete PrecedenceTypeValue->PrecedenceEnum;
   else if (PrecedenceTypeType == OtherPrecedenceE)
-    delete PrecedenceTypeValue.OtherPrecedence;
+    delete PrecedenceTypeValue->OtherPrecedence;
+  delete PrecedenceTypeValue;
   #endif
 }
 
@@ -12835,14 +12843,14 @@ void PrecedenceTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<PrecedenceEnum");
-      PrecedenceTypeValue.PrecedenceEnum->printSelf(outFile);
+      PrecedenceTypeValue->PrecedenceEnum->printSelf(outFile);
       fprintf(outFile, "</PrecedenceEnum>\n");
     }
   else if (PrecedenceTypeType == OtherPrecedenceE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<OtherPrecedence");
-      PrecedenceTypeValue.OtherPrecedence->printSelf(outFile);
+      PrecedenceTypeValue->OtherPrecedence->printSelf(outFile);
       fprintf(outFile, "</OtherPrecedence>\n");
     }
 }
@@ -14948,7 +14956,7 @@ StandardsOrganizationTypeChoicePair::StandardsOrganizationTypeChoicePair() {}
 
 StandardsOrganizationTypeChoicePair::StandardsOrganizationTypeChoicePair(
  whichOne StandardsOrganizationTypeTypeIn,
- StandardsOrganizationTypeVal StandardsOrganizationTypeValueIn)
+ StandardsOrganizationTypeVal * StandardsOrganizationTypeValueIn)
 {
   StandardsOrganizationTypeType = StandardsOrganizationTypeTypeIn;
   StandardsOrganizationTypeValue = StandardsOrganizationTypeValueIn;
@@ -14958,9 +14966,10 @@ StandardsOrganizationTypeChoicePair::~StandardsOrganizationTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (StandardsOrganizationTypeType == StandardsOrganizationEnumE)
-    delete StandardsOrganizationTypeValue.StandardsOrganizationEnum;
+    delete StandardsOrganizationTypeValue->StandardsOrganizationEnum;
   else if (StandardsOrganizationTypeType == OtherStandardsOrganizationE)
-    delete StandardsOrganizationTypeValue.OtherStandardsOrganization;
+    delete StandardsOrganizationTypeValue->OtherStandardsOrganization;
+  delete StandardsOrganizationTypeValue;
   #endif
 }
 
@@ -14970,14 +14979,14 @@ void StandardsOrganizationTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<StandardsOrganizationEnum");
-      StandardsOrganizationTypeValue.StandardsOrganizationEnum->printSelf(outFile);
+      StandardsOrganizationTypeValue->StandardsOrganizationEnum->printSelf(outFile);
       fprintf(outFile, "</StandardsOrganizationEnum>\n");
     }
   else if (StandardsOrganizationTypeType == OtherStandardsOrganizationE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<OtherStandardsOrganization");
-      StandardsOrganizationTypeValue.OtherStandardsOrganization->printSelf(outFile);
+      StandardsOrganizationTypeValue->OtherStandardsOrganization->printSelf(outFile);
       fprintf(outFile, "</OtherStandardsOrganization>\n");
     }
 }
@@ -15815,7 +15824,7 @@ ThreadSpecificationTypeChoicePair::ThreadSpecificationTypeChoicePair() {}
 
 ThreadSpecificationTypeChoicePair::ThreadSpecificationTypeChoicePair(
  whichOne ThreadSpecificationTypeTypeIn,
- ThreadSpecificationTypeVal ThreadSpecificationTypeValueIn)
+ ThreadSpecificationTypeVal * ThreadSpecificationTypeValueIn)
 {
   ThreadSpecificationTypeType = ThreadSpecificationTypeTypeIn;
   ThreadSpecificationTypeValue = ThreadSpecificationTypeValueIn;
@@ -15825,11 +15834,12 @@ ThreadSpecificationTypeChoicePair::~ThreadSpecificationTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (ThreadSpecificationTypeType == SingleLeadSpecificationE)
-    delete ThreadSpecificationTypeValue.SingleLeadSpecification;
+    delete ThreadSpecificationTypeValue->SingleLeadSpecification;
   else if (ThreadSpecificationTypeType == MultiLeadSpecificationE)
-    delete ThreadSpecificationTypeValue.MultiLeadSpecification;
+    delete ThreadSpecificationTypeValue->MultiLeadSpecification;
   else if (ThreadSpecificationTypeType == TextThreadSpecificationE)
-    delete ThreadSpecificationTypeValue.TextThreadSpecification;
+    delete ThreadSpecificationTypeValue->TextThreadSpecification;
+  delete ThreadSpecificationTypeValue;
   #endif
 }
 
@@ -15839,7 +15849,7 @@ void ThreadSpecificationTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<SingleLeadSpecification");
-      ThreadSpecificationTypeValue.SingleLeadSpecification->printSelf(outFile);
+      ThreadSpecificationTypeValue->SingleLeadSpecification->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</SingleLeadSpecification>\n");
     }
@@ -15847,7 +15857,7 @@ void ThreadSpecificationTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MultiLeadSpecification");
-      ThreadSpecificationTypeValue.MultiLeadSpecification->printSelf(outFile);
+      ThreadSpecificationTypeValue->MultiLeadSpecification->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</MultiLeadSpecification>\n");
     }
@@ -15855,7 +15865,7 @@ void ThreadSpecificationTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<TextThreadSpecification");
-      ThreadSpecificationTypeValue.TextThreadSpecification->printSelf(outFile);
+      ThreadSpecificationTypeValue->TextThreadSpecification->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</TextThreadSpecification>\n");
     }
@@ -18119,7 +18129,7 @@ AlgorithmType_1006_TypeChoicePair::AlgorithmType_1006_TypeChoicePair() {}
 
 AlgorithmType_1006_TypeChoicePair::AlgorithmType_1006_TypeChoicePair(
  whichOne AlgorithmType_1006_TypeTypeIn,
- AlgorithmType_1006_TypeVal AlgorithmType_1006_TypeValueIn)
+ AlgorithmType_1006_TypeVal * AlgorithmType_1006_TypeValueIn)
 {
   AlgorithmType_1006_TypeType = AlgorithmType_1006_TypeTypeIn;
   AlgorithmType_1006_TypeValue = AlgorithmType_1006_TypeValueIn;
@@ -18129,9 +18139,10 @@ AlgorithmType_1006_TypeChoicePair::~AlgorithmType_1006_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (AlgorithmType_1006_TypeType == AlgorithmType_1_1024E)
-    delete AlgorithmType_1006_TypeValue.AlgorithmType_1_1024;
+    delete AlgorithmType_1006_TypeValue->AlgorithmType_1_1024;
   else if (AlgorithmType_1006_TypeType == AlgorithmType_1_1025E)
-    delete AlgorithmType_1006_TypeValue.AlgorithmType_1_1025;
+    delete AlgorithmType_1006_TypeValue->AlgorithmType_1_1025;
+  delete AlgorithmType_1006_TypeValue;
   #endif
 }
 
@@ -18139,11 +18150,11 @@ void AlgorithmType_1006_TypeChoicePair::printSelf(FILE * outFile)
 {
   if (AlgorithmType_1006_TypeType == AlgorithmType_1_1024E)
     {
-      AlgorithmType_1006_TypeValue.AlgorithmType_1_1024->printSelf(outFile);
+      AlgorithmType_1006_TypeValue->AlgorithmType_1_1024->printSelf(outFile);
     }
   else if (AlgorithmType_1006_TypeType == AlgorithmType_1_1025E)
     {
-      AlgorithmType_1006_TypeValue.AlgorithmType_1_1025->printSelf(outFile);
+      AlgorithmType_1006_TypeValue->AlgorithmType_1_1025->printSelf(outFile);
     }
 }
 
@@ -18185,7 +18196,7 @@ AngularToleranc_1007_TypeChoicePair::AngularToleranc_1007_TypeChoicePair() {}
 
 AngularToleranc_1007_TypeChoicePair::AngularToleranc_1007_TypeChoicePair(
  whichOne AngularToleranc_1007_TypeTypeIn,
- AngularToleranc_1007_TypeVal AngularToleranc_1007_TypeValueIn)
+ AngularToleranc_1007_TypeVal * AngularToleranc_1007_TypeValueIn)
 {
   AngularToleranc_1007_TypeType = AngularToleranc_1007_TypeTypeIn;
   AngularToleranc_1007_TypeValue = AngularToleranc_1007_TypeValueIn;
@@ -18195,9 +18206,10 @@ AngularToleranc_1007_TypeChoicePair::~AngularToleranc_1007_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (AngularToleranc_1007_TypeType == AngularToleranc_1026E)
-    delete AngularToleranc_1007_TypeValue.AngularToleranc_1026;
+    delete AngularToleranc_1007_TypeValue->AngularToleranc_1026;
   else if (AngularToleranc_1007_TypeType == MinValueE)
-    delete AngularToleranc_1007_TypeValue.MinValue;
+    delete AngularToleranc_1007_TypeValue->MinValue;
+  delete AngularToleranc_1007_TypeValue;
   #endif
 }
 
@@ -18205,13 +18217,13 @@ void AngularToleranc_1007_TypeChoicePair::printSelf(FILE * outFile)
 {
   if (AngularToleranc_1007_TypeType == AngularToleranc_1026E)
     {
-      AngularToleranc_1007_TypeValue.AngularToleranc_1026->printSelf(outFile);
+      AngularToleranc_1007_TypeValue->AngularToleranc_1026->printSelf(outFile);
     }
   else if (AngularToleranc_1007_TypeType == MinValueE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinValue");
-      AngularToleranc_1007_TypeValue.MinValue->printSelf(outFile);
+      AngularToleranc_1007_TypeValue->MinValue->printSelf(outFile);
       fprintf(outFile, "</MinValue>\n");
     }
 }
@@ -18254,7 +18266,7 @@ AngularToleranc_1008_TypeChoicePair::AngularToleranc_1008_TypeChoicePair() {}
 
 AngularToleranc_1008_TypeChoicePair::AngularToleranc_1008_TypeChoicePair(
  whichOne AngularToleranc_1008_TypeTypeIn,
- AngularToleranc_1008_TypeVal AngularToleranc_1008_TypeValueIn)
+ AngularToleranc_1008_TypeVal * AngularToleranc_1008_TypeValueIn)
 {
   AngularToleranc_1008_TypeType = AngularToleranc_1008_TypeTypeIn;
   AngularToleranc_1008_TypeValue = AngularToleranc_1008_TypeValueIn;
@@ -18264,11 +18276,12 @@ AngularToleranc_1008_TypeChoicePair::~AngularToleranc_1008_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (AngularToleranc_1008_TypeType == AngularToleranc_1027E)
-    delete AngularToleranc_1008_TypeValue.AngularToleranc_1027;
+    delete AngularToleranc_1008_TypeValue->AngularToleranc_1027;
   else if (AngularToleranc_1008_TypeType == MinValueE)
-    delete AngularToleranc_1008_TypeValue.MinValue;
+    delete AngularToleranc_1008_TypeValue->MinValue;
   else if (AngularToleranc_1008_TypeType == DefinitionIdE)
-    delete AngularToleranc_1008_TypeValue.DefinitionId;
+    delete AngularToleranc_1008_TypeValue->DefinitionId;
+  delete AngularToleranc_1008_TypeValue;
   #endif
 }
 
@@ -18276,20 +18289,20 @@ void AngularToleranc_1008_TypeChoicePair::printSelf(FILE * outFile)
 {
   if (AngularToleranc_1008_TypeType == AngularToleranc_1027E)
     {
-      AngularToleranc_1008_TypeValue.AngularToleranc_1027->printSelf(outFile);
+      AngularToleranc_1008_TypeValue->AngularToleranc_1027->printSelf(outFile);
     }
   else if (AngularToleranc_1008_TypeType == MinValueE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinValue");
-      AngularToleranc_1008_TypeValue.MinValue->printSelf(outFile);
+      AngularToleranc_1008_TypeValue->MinValue->printSelf(outFile);
       fprintf(outFile, "</MinValue>\n");
     }
   else if (AngularToleranc_1008_TypeType == DefinitionIdE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<DefinitionId");
-      AngularToleranc_1008_TypeValue.DefinitionId->printSelf(outFile);
+      AngularToleranc_1008_TypeValue->DefinitionId->printSelf(outFile);
       fprintf(outFile, "</DefinitionId>\n");
     }
 }
@@ -18332,7 +18345,7 @@ AreaToleranceTy_1009_TypeChoicePair::AreaToleranceTy_1009_TypeChoicePair() {}
 
 AreaToleranceTy_1009_TypeChoicePair::AreaToleranceTy_1009_TypeChoicePair(
  whichOne AreaToleranceTy_1009_TypeTypeIn,
- AreaToleranceTy_1009_TypeVal AreaToleranceTy_1009_TypeValueIn)
+ AreaToleranceTy_1009_TypeVal * AreaToleranceTy_1009_TypeValueIn)
 {
   AreaToleranceTy_1009_TypeType = AreaToleranceTy_1009_TypeTypeIn;
   AreaToleranceTy_1009_TypeValue = AreaToleranceTy_1009_TypeValueIn;
@@ -18342,9 +18355,10 @@ AreaToleranceTy_1009_TypeChoicePair::~AreaToleranceTy_1009_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (AreaToleranceTy_1009_TypeType == AreaToleranceTy_1028E)
-    delete AreaToleranceTy_1009_TypeValue.AreaToleranceTy_1028;
+    delete AreaToleranceTy_1009_TypeValue->AreaToleranceTy_1028;
   else if (AreaToleranceTy_1009_TypeType == MinValueE)
-    delete AreaToleranceTy_1009_TypeValue.MinValue;
+    delete AreaToleranceTy_1009_TypeValue->MinValue;
+  delete AreaToleranceTy_1009_TypeValue;
   #endif
 }
 
@@ -18352,13 +18366,13 @@ void AreaToleranceTy_1009_TypeChoicePair::printSelf(FILE * outFile)
 {
   if (AreaToleranceTy_1009_TypeType == AreaToleranceTy_1028E)
     {
-      AreaToleranceTy_1009_TypeValue.AreaToleranceTy_1028->printSelf(outFile);
+      AreaToleranceTy_1009_TypeValue->AreaToleranceTy_1028->printSelf(outFile);
     }
   else if (AreaToleranceTy_1009_TypeType == MinValueE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinValue");
-      AreaToleranceTy_1009_TypeValue.MinValue->printSelf(outFile);
+      AreaToleranceTy_1009_TypeValue->MinValue->printSelf(outFile);
       fprintf(outFile, "</MinValue>\n");
     }
 }
@@ -18401,7 +18415,7 @@ DatumWithPreced_1010_TypeChoicePair::DatumWithPreced_1010_TypeChoicePair() {}
 
 DatumWithPreced_1010_TypeChoicePair::DatumWithPreced_1010_TypeChoicePair(
  whichOne DatumWithPreced_1010_TypeTypeIn,
- DatumWithPreced_1010_TypeVal DatumWithPreced_1010_TypeValueIn)
+ DatumWithPreced_1010_TypeVal * DatumWithPreced_1010_TypeValueIn)
 {
   DatumWithPreced_1010_TypeType = DatumWithPreced_1010_TypeTypeIn;
   DatumWithPreced_1010_TypeValue = DatumWithPreced_1010_TypeValueIn;
@@ -18411,13 +18425,14 @@ DatumWithPreced_1010_TypeChoicePair::~DatumWithPreced_1010_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (DatumWithPreced_1010_TypeType == SimpleDatumE)
-    delete DatumWithPreced_1010_TypeValue.SimpleDatum;
+    delete DatumWithPreced_1010_TypeValue->SimpleDatum;
   else if (DatumWithPreced_1010_TypeType == NominalDatumFeatureE)
-    delete DatumWithPreced_1010_TypeValue.NominalDatumFeature;
+    delete DatumWithPreced_1010_TypeValue->NominalDatumFeature;
   else if (DatumWithPreced_1010_TypeType == MeasuredDatumFeatureE)
-    delete DatumWithPreced_1010_TypeValue.MeasuredDatumFeature;
+    delete DatumWithPreced_1010_TypeValue->MeasuredDatumFeature;
   else if (DatumWithPreced_1010_TypeType == CompoundDatumE)
-    delete DatumWithPreced_1010_TypeValue.CompoundDatum;
+    delete DatumWithPreced_1010_TypeValue->CompoundDatum;
+  delete DatumWithPreced_1010_TypeValue;
   #endif
 }
 
@@ -18427,7 +18442,7 @@ void DatumWithPreced_1010_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<SimpleDatum");
-      DatumWithPreced_1010_TypeValue.SimpleDatum->printSelf(outFile);
+      DatumWithPreced_1010_TypeValue->SimpleDatum->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</SimpleDatum>\n");
     }
@@ -18435,7 +18450,7 @@ void DatumWithPreced_1010_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<NominalDatumFeature");
-      DatumWithPreced_1010_TypeValue.NominalDatumFeature->printSelf(outFile);
+      DatumWithPreced_1010_TypeValue->NominalDatumFeature->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</NominalDatumFeature>\n");
     }
@@ -18443,7 +18458,7 @@ void DatumWithPreced_1010_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MeasuredDatumFeature");
-      DatumWithPreced_1010_TypeValue.MeasuredDatumFeature->printSelf(outFile);
+      DatumWithPreced_1010_TypeValue->MeasuredDatumFeature->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</MeasuredDatumFeature>\n");
     }
@@ -18451,7 +18466,7 @@ void DatumWithPreced_1010_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<CompoundDatum");
-      DatumWithPreced_1010_TypeValue.CompoundDatum->printSelf(outFile);
+      DatumWithPreced_1010_TypeValue->CompoundDatum->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</CompoundDatum>\n");
     }
@@ -18495,7 +18510,7 @@ DirectionalOffs_1011_TypeChoicePair::DirectionalOffs_1011_TypeChoicePair() {}
 
 DirectionalOffs_1011_TypeChoicePair::DirectionalOffs_1011_TypeChoicePair(
  whichOne DirectionalOffs_1011_TypeTypeIn,
- DirectionalOffs_1011_TypeVal DirectionalOffs_1011_TypeValueIn)
+ DirectionalOffs_1011_TypeVal * DirectionalOffs_1011_TypeValueIn)
 {
   DirectionalOffs_1011_TypeType = DirectionalOffs_1011_TypeTypeIn;
   DirectionalOffs_1011_TypeValue = DirectionalOffs_1011_TypeValueIn;
@@ -18505,9 +18520,10 @@ DirectionalOffs_1011_TypeChoicePair::~DirectionalOffs_1011_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (DirectionalOffs_1011_TypeType == NominalDirectionE)
-    delete DirectionalOffs_1011_TypeValue.NominalDirection;
+    delete DirectionalOffs_1011_TypeValue->NominalDirection;
   else if (DirectionalOffs_1011_TypeType == FeatureDirectionE)
-    delete DirectionalOffs_1011_TypeValue.FeatureDirection;
+    delete DirectionalOffs_1011_TypeValue->FeatureDirection;
+  delete DirectionalOffs_1011_TypeValue;
   #endif
 }
 
@@ -18517,14 +18533,14 @@ void DirectionalOffs_1011_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<NominalDirection");
-      DirectionalOffs_1011_TypeValue.NominalDirection->printSelf(outFile);
+      DirectionalOffs_1011_TypeValue->NominalDirection->printSelf(outFile);
       fprintf(outFile, "</NominalDirection>\n");
     }
   else if (DirectionalOffs_1011_TypeType == FeatureDirectionE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<FeatureDirection");
-      DirectionalOffs_1011_TypeValue.FeatureDirection->printSelf(outFile);
+      DirectionalOffs_1011_TypeValue->FeatureDirection->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</FeatureDirection>\n");
     }
@@ -18568,7 +18584,7 @@ ForceToleranceT_1012_TypeChoicePair::ForceToleranceT_1012_TypeChoicePair() {}
 
 ForceToleranceT_1012_TypeChoicePair::ForceToleranceT_1012_TypeChoicePair(
  whichOne ForceToleranceT_1012_TypeTypeIn,
- ForceToleranceT_1012_TypeVal ForceToleranceT_1012_TypeValueIn)
+ ForceToleranceT_1012_TypeVal * ForceToleranceT_1012_TypeValueIn)
 {
   ForceToleranceT_1012_TypeType = ForceToleranceT_1012_TypeTypeIn;
   ForceToleranceT_1012_TypeValue = ForceToleranceT_1012_TypeValueIn;
@@ -18578,9 +18594,10 @@ ForceToleranceT_1012_TypeChoicePair::~ForceToleranceT_1012_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (ForceToleranceT_1012_TypeType == ForceToleranceT_1029E)
-    delete ForceToleranceT_1012_TypeValue.ForceToleranceT_1029;
+    delete ForceToleranceT_1012_TypeValue->ForceToleranceT_1029;
   else if (ForceToleranceT_1012_TypeType == MinValueE)
-    delete ForceToleranceT_1012_TypeValue.MinValue;
+    delete ForceToleranceT_1012_TypeValue->MinValue;
+  delete ForceToleranceT_1012_TypeValue;
   #endif
 }
 
@@ -18588,13 +18605,13 @@ void ForceToleranceT_1012_TypeChoicePair::printSelf(FILE * outFile)
 {
   if (ForceToleranceT_1012_TypeType == ForceToleranceT_1029E)
     {
-      ForceToleranceT_1012_TypeValue.ForceToleranceT_1029->printSelf(outFile);
+      ForceToleranceT_1012_TypeValue->ForceToleranceT_1029->printSelf(outFile);
     }
   else if (ForceToleranceT_1012_TypeType == MinValueE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinValue");
-      ForceToleranceT_1012_TypeValue.MinValue->printSelf(outFile);
+      ForceToleranceT_1012_TypeValue->MinValue->printSelf(outFile);
       fprintf(outFile, "</MinValue>\n");
     }
 }
@@ -18637,7 +18654,7 @@ LinearTolerance_1013_TypeChoicePair::LinearTolerance_1013_TypeChoicePair() {}
 
 LinearTolerance_1013_TypeChoicePair::LinearTolerance_1013_TypeChoicePair(
  whichOne LinearTolerance_1013_TypeTypeIn,
- LinearTolerance_1013_TypeVal LinearTolerance_1013_TypeValueIn)
+ LinearTolerance_1013_TypeVal * LinearTolerance_1013_TypeValueIn)
 {
   LinearTolerance_1013_TypeType = LinearTolerance_1013_TypeTypeIn;
   LinearTolerance_1013_TypeValue = LinearTolerance_1013_TypeValueIn;
@@ -18647,9 +18664,10 @@ LinearTolerance_1013_TypeChoicePair::~LinearTolerance_1013_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (LinearTolerance_1013_TypeType == LinearTolerance_1030E)
-    delete LinearTolerance_1013_TypeValue.LinearTolerance_1030;
+    delete LinearTolerance_1013_TypeValue->LinearTolerance_1030;
   else if (LinearTolerance_1013_TypeType == MinValueE)
-    delete LinearTolerance_1013_TypeValue.MinValue;
+    delete LinearTolerance_1013_TypeValue->MinValue;
+  delete LinearTolerance_1013_TypeValue;
   #endif
 }
 
@@ -18657,13 +18675,13 @@ void LinearTolerance_1013_TypeChoicePair::printSelf(FILE * outFile)
 {
   if (LinearTolerance_1013_TypeType == LinearTolerance_1030E)
     {
-      LinearTolerance_1013_TypeValue.LinearTolerance_1030->printSelf(outFile);
+      LinearTolerance_1013_TypeValue->LinearTolerance_1030->printSelf(outFile);
     }
   else if (LinearTolerance_1013_TypeType == MinValueE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinValue");
-      LinearTolerance_1013_TypeValue.MinValue->printSelf(outFile);
+      LinearTolerance_1013_TypeValue->MinValue->printSelf(outFile);
       fprintf(outFile, "</MinValue>\n");
     }
 }
@@ -18706,7 +18724,7 @@ LinearTolerance_1014_TypeChoicePair::LinearTolerance_1014_TypeChoicePair() {}
 
 LinearTolerance_1014_TypeChoicePair::LinearTolerance_1014_TypeChoicePair(
  whichOne LinearTolerance_1014_TypeTypeIn,
- LinearTolerance_1014_TypeVal LinearTolerance_1014_TypeValueIn)
+ LinearTolerance_1014_TypeVal * LinearTolerance_1014_TypeValueIn)
 {
   LinearTolerance_1014_TypeType = LinearTolerance_1014_TypeTypeIn;
   LinearTolerance_1014_TypeValue = LinearTolerance_1014_TypeValueIn;
@@ -18716,11 +18734,12 @@ LinearTolerance_1014_TypeChoicePair::~LinearTolerance_1014_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (LinearTolerance_1014_TypeType == LinearTolerance_1031E)
-    delete LinearTolerance_1014_TypeValue.LinearTolerance_1031;
+    delete LinearTolerance_1014_TypeValue->LinearTolerance_1031;
   else if (LinearTolerance_1014_TypeType == LinearTolerance_1032E)
-    delete LinearTolerance_1014_TypeValue.LinearTolerance_1032;
+    delete LinearTolerance_1014_TypeValue->LinearTolerance_1032;
   else if (LinearTolerance_1014_TypeType == DefinitionIdE)
-    delete LinearTolerance_1014_TypeValue.DefinitionId;
+    delete LinearTolerance_1014_TypeValue->DefinitionId;
+  delete LinearTolerance_1014_TypeValue;
   #endif
 }
 
@@ -18728,17 +18747,17 @@ void LinearTolerance_1014_TypeChoicePair::printSelf(FILE * outFile)
 {
   if (LinearTolerance_1014_TypeType == LinearTolerance_1031E)
     {
-      LinearTolerance_1014_TypeValue.LinearTolerance_1031->printSelf(outFile);
+      LinearTolerance_1014_TypeValue->LinearTolerance_1031->printSelf(outFile);
     }
   else if (LinearTolerance_1014_TypeType == LinearTolerance_1032E)
     {
-      LinearTolerance_1014_TypeValue.LinearTolerance_1032->printSelf(outFile);
+      LinearTolerance_1014_TypeValue->LinearTolerance_1032->printSelf(outFile);
     }
   else if (LinearTolerance_1014_TypeType == DefinitionIdE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<DefinitionId");
-      LinearTolerance_1014_TypeValue.DefinitionId->printSelf(outFile);
+      LinearTolerance_1014_TypeValue->DefinitionId->printSelf(outFile);
       fprintf(outFile, "</DefinitionId>\n");
     }
 }
@@ -18781,7 +18800,7 @@ MassToleranceTy_1015_TypeChoicePair::MassToleranceTy_1015_TypeChoicePair() {}
 
 MassToleranceTy_1015_TypeChoicePair::MassToleranceTy_1015_TypeChoicePair(
  whichOne MassToleranceTy_1015_TypeTypeIn,
- MassToleranceTy_1015_TypeVal MassToleranceTy_1015_TypeValueIn)
+ MassToleranceTy_1015_TypeVal * MassToleranceTy_1015_TypeValueIn)
 {
   MassToleranceTy_1015_TypeType = MassToleranceTy_1015_TypeTypeIn;
   MassToleranceTy_1015_TypeValue = MassToleranceTy_1015_TypeValueIn;
@@ -18791,9 +18810,10 @@ MassToleranceTy_1015_TypeChoicePair::~MassToleranceTy_1015_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (MassToleranceTy_1015_TypeType == MassToleranceTy_1033E)
-    delete MassToleranceTy_1015_TypeValue.MassToleranceTy_1033;
+    delete MassToleranceTy_1015_TypeValue->MassToleranceTy_1033;
   else if (MassToleranceTy_1015_TypeType == MinValueE)
-    delete MassToleranceTy_1015_TypeValue.MinValue;
+    delete MassToleranceTy_1015_TypeValue->MinValue;
+  delete MassToleranceTy_1015_TypeValue;
   #endif
 }
 
@@ -18801,13 +18821,13 @@ void MassToleranceTy_1015_TypeChoicePair::printSelf(FILE * outFile)
 {
   if (MassToleranceTy_1015_TypeType == MassToleranceTy_1033E)
     {
-      MassToleranceTy_1015_TypeValue.MassToleranceTy_1033->printSelf(outFile);
+      MassToleranceTy_1015_TypeValue->MassToleranceTy_1033->printSelf(outFile);
     }
   else if (MassToleranceTy_1015_TypeType == MinValueE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinValue");
-      MassToleranceTy_1015_TypeValue.MinValue->printSelf(outFile);
+      MassToleranceTy_1015_TypeValue->MinValue->printSelf(outFile);
       fprintf(outFile, "</MinValue>\n");
     }
 }
@@ -18853,7 +18873,7 @@ MaterialType_1016_TypeChoicePair::MaterialType_1016_TypeChoicePair() {}
 
 MaterialType_1016_TypeChoicePair::MaterialType_1016_TypeChoicePair(
  whichOne MaterialType_1016_TypeTypeIn,
- MaterialType_1016_TypeVal MaterialType_1016_TypeValueIn)
+ MaterialType_1016_TypeVal * MaterialType_1016_TypeValueIn)
 {
   MaterialType_1016_TypeType = MaterialType_1016_TypeTypeIn;
   MaterialType_1016_TypeValue = MaterialType_1016_TypeValueIn;
@@ -18863,9 +18883,10 @@ MaterialType_1016_TypeChoicePair::~MaterialType_1016_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (MaterialType_1016_TypeType == MaterialClassEnumE)
-    delete MaterialType_1016_TypeValue.MaterialClassEnum;
+    delete MaterialType_1016_TypeValue->MaterialClassEnum;
   else if (MaterialType_1016_TypeType == OtherMaterialClassE)
-    delete MaterialType_1016_TypeValue.OtherMaterialClass;
+    delete MaterialType_1016_TypeValue->OtherMaterialClass;
+  delete MaterialType_1016_TypeValue;
   #endif
 }
 
@@ -18875,14 +18896,14 @@ void MaterialType_1016_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MaterialClassEnum");
-      MaterialType_1016_TypeValue.MaterialClassEnum->printSelf(outFile);
+      MaterialType_1016_TypeValue->MaterialClassEnum->printSelf(outFile);
       fprintf(outFile, "</MaterialClassEnum>\n");
     }
   else if (MaterialType_1016_TypeType == OtherMaterialClassE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<OtherMaterialClass");
-      MaterialType_1016_TypeValue.OtherMaterialClass->printSelf(outFile);
+      MaterialType_1016_TypeValue->OtherMaterialClass->printSelf(outFile);
       fprintf(outFile, "</OtherMaterialClass>\n");
     }
 }
@@ -18925,7 +18946,7 @@ PressureToleran_1017_TypeChoicePair::PressureToleran_1017_TypeChoicePair() {}
 
 PressureToleran_1017_TypeChoicePair::PressureToleran_1017_TypeChoicePair(
  whichOne PressureToleran_1017_TypeTypeIn,
- PressureToleran_1017_TypeVal PressureToleran_1017_TypeValueIn)
+ PressureToleran_1017_TypeVal * PressureToleran_1017_TypeValueIn)
 {
   PressureToleran_1017_TypeType = PressureToleran_1017_TypeTypeIn;
   PressureToleran_1017_TypeValue = PressureToleran_1017_TypeValueIn;
@@ -18935,9 +18956,10 @@ PressureToleran_1017_TypeChoicePair::~PressureToleran_1017_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (PressureToleran_1017_TypeType == PressureToleran_1034E)
-    delete PressureToleran_1017_TypeValue.PressureToleran_1034;
+    delete PressureToleran_1017_TypeValue->PressureToleran_1034;
   else if (PressureToleran_1017_TypeType == MinValueE)
-    delete PressureToleran_1017_TypeValue.MinValue;
+    delete PressureToleran_1017_TypeValue->MinValue;
+  delete PressureToleran_1017_TypeValue;
   #endif
 }
 
@@ -18945,13 +18967,13 @@ void PressureToleran_1017_TypeChoicePair::printSelf(FILE * outFile)
 {
   if (PressureToleran_1017_TypeType == PressureToleran_1034E)
     {
-      PressureToleran_1017_TypeValue.PressureToleran_1034->printSelf(outFile);
+      PressureToleran_1017_TypeValue->PressureToleran_1034->printSelf(outFile);
     }
   else if (PressureToleran_1017_TypeType == MinValueE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinValue");
-      PressureToleran_1017_TypeValue.MinValue->printSelf(outFile);
+      PressureToleran_1017_TypeValue->MinValue->printSelf(outFile);
       fprintf(outFile, "</MinValue>\n");
     }
 }
@@ -18994,7 +19016,7 @@ SequencedDatumT_1018_TypeChoicePair::SequencedDatumT_1018_TypeChoicePair() {}
 
 SequencedDatumT_1018_TypeChoicePair::SequencedDatumT_1018_TypeChoicePair(
  whichOne SequencedDatumT_1018_TypeTypeIn,
- SequencedDatumT_1018_TypeVal SequencedDatumT_1018_TypeValueIn)
+ SequencedDatumT_1018_TypeVal * SequencedDatumT_1018_TypeValueIn)
 {
   SequencedDatumT_1018_TypeType = SequencedDatumT_1018_TypeTypeIn;
   SequencedDatumT_1018_TypeValue = SequencedDatumT_1018_TypeValueIn;
@@ -19004,9 +19026,10 @@ SequencedDatumT_1018_TypeChoicePair::~SequencedDatumT_1018_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (SequencedDatumT_1018_TypeType == SimpleDatumE)
-    delete SequencedDatumT_1018_TypeValue.SimpleDatum;
+    delete SequencedDatumT_1018_TypeValue->SimpleDatum;
   else if (SequencedDatumT_1018_TypeType == CompoundDatumE)
-    delete SequencedDatumT_1018_TypeValue.CompoundDatum;
+    delete SequencedDatumT_1018_TypeValue->CompoundDatum;
+  delete SequencedDatumT_1018_TypeValue;
   #endif
 }
 
@@ -19016,7 +19039,7 @@ void SequencedDatumT_1018_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<SimpleDatum");
-      SequencedDatumT_1018_TypeValue.SimpleDatum->printSelf(outFile);
+      SequencedDatumT_1018_TypeValue->SimpleDatum->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</SimpleDatum>\n");
     }
@@ -19024,7 +19047,7 @@ void SequencedDatumT_1018_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<CompoundDatum");
-      SequencedDatumT_1018_TypeValue.CompoundDatum->printSelf(outFile);
+      SequencedDatumT_1018_TypeValue->CompoundDatum->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</CompoundDatum>\n");
     }
@@ -19068,7 +19091,7 @@ SpeedToleranceT_1019_TypeChoicePair::SpeedToleranceT_1019_TypeChoicePair() {}
 
 SpeedToleranceT_1019_TypeChoicePair::SpeedToleranceT_1019_TypeChoicePair(
  whichOne SpeedToleranceT_1019_TypeTypeIn,
- SpeedToleranceT_1019_TypeVal SpeedToleranceT_1019_TypeValueIn)
+ SpeedToleranceT_1019_TypeVal * SpeedToleranceT_1019_TypeValueIn)
 {
   SpeedToleranceT_1019_TypeType = SpeedToleranceT_1019_TypeTypeIn;
   SpeedToleranceT_1019_TypeValue = SpeedToleranceT_1019_TypeValueIn;
@@ -19078,9 +19101,10 @@ SpeedToleranceT_1019_TypeChoicePair::~SpeedToleranceT_1019_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (SpeedToleranceT_1019_TypeType == SpeedToleranceT_1035E)
-    delete SpeedToleranceT_1019_TypeValue.SpeedToleranceT_1035;
+    delete SpeedToleranceT_1019_TypeValue->SpeedToleranceT_1035;
   else if (SpeedToleranceT_1019_TypeType == MinValueE)
-    delete SpeedToleranceT_1019_TypeValue.MinValue;
+    delete SpeedToleranceT_1019_TypeValue->MinValue;
+  delete SpeedToleranceT_1019_TypeValue;
   #endif
 }
 
@@ -19088,13 +19112,13 @@ void SpeedToleranceT_1019_TypeChoicePair::printSelf(FILE * outFile)
 {
   if (SpeedToleranceT_1019_TypeType == SpeedToleranceT_1035E)
     {
-      SpeedToleranceT_1019_TypeValue.SpeedToleranceT_1035->printSelf(outFile);
+      SpeedToleranceT_1019_TypeValue->SpeedToleranceT_1035->printSelf(outFile);
     }
   else if (SpeedToleranceT_1019_TypeType == MinValueE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinValue");
-      SpeedToleranceT_1019_TypeValue.MinValue->printSelf(outFile);
+      SpeedToleranceT_1019_TypeValue->MinValue->printSelf(outFile);
       fprintf(outFile, "</MinValue>\n");
     }
 }
@@ -19137,7 +19161,7 @@ SubstituteFeatu_1020_TypeChoicePair::SubstituteFeatu_1020_TypeChoicePair() {}
 
 SubstituteFeatu_1020_TypeChoicePair::SubstituteFeatu_1020_TypeChoicePair(
  whichOne SubstituteFeatu_1020_TypeTypeIn,
- SubstituteFeatu_1020_TypeVal SubstituteFeatu_1020_TypeValueIn)
+ SubstituteFeatu_1020_TypeVal * SubstituteFeatu_1020_TypeValueIn)
 {
   SubstituteFeatu_1020_TypeType = SubstituteFeatu_1020_TypeTypeIn;
   SubstituteFeatu_1020_TypeValue = SubstituteFeatu_1020_TypeValueIn;
@@ -19147,11 +19171,12 @@ SubstituteFeatu_1020_TypeChoicePair::~SubstituteFeatu_1020_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (SubstituteFeatu_1020_TypeType == SubstituteFeatureAlgorithmEnumE)
-    delete SubstituteFeatu_1020_TypeValue.SubstituteFeatureAlgorithmEnum;
+    delete SubstituteFeatu_1020_TypeValue->SubstituteFeatureAlgorithmEnum;
   else if (SubstituteFeatu_1020_TypeType == SubstituteFeatureAlgorithmIdE)
-    delete SubstituteFeatu_1020_TypeValue.SubstituteFeatureAlgorithmId;
+    delete SubstituteFeatu_1020_TypeValue->SubstituteFeatureAlgorithmId;
   else if (SubstituteFeatu_1020_TypeType == OtherSubstituteFeatureAlgorithmE)
-    delete SubstituteFeatu_1020_TypeValue.OtherSubstituteFeatureAlgorithm;
+    delete SubstituteFeatu_1020_TypeValue->OtherSubstituteFeatureAlgorithm;
+  delete SubstituteFeatu_1020_TypeValue;
   #endif
 }
 
@@ -19161,21 +19186,21 @@ void SubstituteFeatu_1020_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<SubstituteFeatureAlgorithmEnum");
-      SubstituteFeatu_1020_TypeValue.SubstituteFeatureAlgorithmEnum->printSelf(outFile);
+      SubstituteFeatu_1020_TypeValue->SubstituteFeatureAlgorithmEnum->printSelf(outFile);
       fprintf(outFile, "</SubstituteFeatureAlgorithmEnum>\n");
     }
   else if (SubstituteFeatu_1020_TypeType == SubstituteFeatureAlgorithmIdE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<SubstituteFeatureAlgorithmId");
-      SubstituteFeatu_1020_TypeValue.SubstituteFeatureAlgorithmId->printSelf(outFile);
+      SubstituteFeatu_1020_TypeValue->SubstituteFeatureAlgorithmId->printSelf(outFile);
       fprintf(outFile, "</SubstituteFeatureAlgorithmId>\n");
     }
   else if (SubstituteFeatu_1020_TypeType == OtherSubstituteFeatureAlgorithmE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<OtherSubstituteFeatureAlgorithm");
-      SubstituteFeatu_1020_TypeValue.OtherSubstituteFeatureAlgorithm->printSelf(outFile);
+      SubstituteFeatu_1020_TypeValue->OtherSubstituteFeatureAlgorithm->printSelf(outFile);
       fprintf(outFile, "</OtherSubstituteFeatureAlgorithm>\n");
     }
 }
@@ -19218,7 +19243,7 @@ TemperatureTole_1021_TypeChoicePair::TemperatureTole_1021_TypeChoicePair() {}
 
 TemperatureTole_1021_TypeChoicePair::TemperatureTole_1021_TypeChoicePair(
  whichOne TemperatureTole_1021_TypeTypeIn,
- TemperatureTole_1021_TypeVal TemperatureTole_1021_TypeValueIn)
+ TemperatureTole_1021_TypeVal * TemperatureTole_1021_TypeValueIn)
 {
   TemperatureTole_1021_TypeType = TemperatureTole_1021_TypeTypeIn;
   TemperatureTole_1021_TypeValue = TemperatureTole_1021_TypeValueIn;
@@ -19228,9 +19253,10 @@ TemperatureTole_1021_TypeChoicePair::~TemperatureTole_1021_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (TemperatureTole_1021_TypeType == TemperatureTole_1036E)
-    delete TemperatureTole_1021_TypeValue.TemperatureTole_1036;
+    delete TemperatureTole_1021_TypeValue->TemperatureTole_1036;
   else if (TemperatureTole_1021_TypeType == MinValueE)
-    delete TemperatureTole_1021_TypeValue.MinValue;
+    delete TemperatureTole_1021_TypeValue->MinValue;
+  delete TemperatureTole_1021_TypeValue;
   #endif
 }
 
@@ -19238,13 +19264,13 @@ void TemperatureTole_1021_TypeChoicePair::printSelf(FILE * outFile)
 {
   if (TemperatureTole_1021_TypeType == TemperatureTole_1036E)
     {
-      TemperatureTole_1021_TypeValue.TemperatureTole_1036->printSelf(outFile);
+      TemperatureTole_1021_TypeValue->TemperatureTole_1036->printSelf(outFile);
     }
   else if (TemperatureTole_1021_TypeType == MinValueE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinValue");
-      TemperatureTole_1021_TypeValue.MinValue->printSelf(outFile);
+      TemperatureTole_1021_TypeValue->MinValue->printSelf(outFile);
       fprintf(outFile, "</MinValue>\n");
     }
 }
@@ -19287,7 +19313,7 @@ TimeToleranceTy_1022_TypeChoicePair::TimeToleranceTy_1022_TypeChoicePair() {}
 
 TimeToleranceTy_1022_TypeChoicePair::TimeToleranceTy_1022_TypeChoicePair(
  whichOne TimeToleranceTy_1022_TypeTypeIn,
- TimeToleranceTy_1022_TypeVal TimeToleranceTy_1022_TypeValueIn)
+ TimeToleranceTy_1022_TypeVal * TimeToleranceTy_1022_TypeValueIn)
 {
   TimeToleranceTy_1022_TypeType = TimeToleranceTy_1022_TypeTypeIn;
   TimeToleranceTy_1022_TypeValue = TimeToleranceTy_1022_TypeValueIn;
@@ -19297,9 +19323,10 @@ TimeToleranceTy_1022_TypeChoicePair::~TimeToleranceTy_1022_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (TimeToleranceTy_1022_TypeType == TimeToleranceTy_1037E)
-    delete TimeToleranceTy_1022_TypeValue.TimeToleranceTy_1037;
+    delete TimeToleranceTy_1022_TypeValue->TimeToleranceTy_1037;
   else if (TimeToleranceTy_1022_TypeType == MinValueE)
-    delete TimeToleranceTy_1022_TypeValue.MinValue;
+    delete TimeToleranceTy_1022_TypeValue->MinValue;
+  delete TimeToleranceTy_1022_TypeValue;
   #endif
 }
 
@@ -19307,13 +19334,13 @@ void TimeToleranceTy_1022_TypeChoicePair::printSelf(FILE * outFile)
 {
   if (TimeToleranceTy_1022_TypeType == TimeToleranceTy_1037E)
     {
-      TimeToleranceTy_1022_TypeValue.TimeToleranceTy_1037->printSelf(outFile);
+      TimeToleranceTy_1022_TypeValue->TimeToleranceTy_1037->printSelf(outFile);
     }
   else if (TimeToleranceTy_1022_TypeType == MinValueE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinValue");
-      TimeToleranceTy_1022_TypeValue.MinValue->printSelf(outFile);
+      TimeToleranceTy_1022_TypeValue->MinValue->printSelf(outFile);
       fprintf(outFile, "</MinValue>\n");
     }
 }
@@ -19356,7 +19383,7 @@ ToleranceZonePe_1023_TypeChoicePair::ToleranceZonePe_1023_TypeChoicePair() {}
 
 ToleranceZonePe_1023_TypeChoicePair::ToleranceZonePe_1023_TypeChoicePair(
  whichOne ToleranceZonePe_1023_TypeTypeIn,
- ToleranceZonePe_1023_TypeVal ToleranceZonePe_1023_TypeValueIn)
+ ToleranceZonePe_1023_TypeVal * ToleranceZonePe_1023_TypeValueIn)
 {
   ToleranceZonePe_1023_TypeType = ToleranceZonePe_1023_TypeTypeIn;
   ToleranceZonePe_1023_TypeValue = ToleranceZonePe_1023_TypeValueIn;
@@ -19366,9 +19393,10 @@ ToleranceZonePe_1023_TypeChoicePair::~ToleranceZonePe_1023_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (ToleranceZonePe_1023_TypeType == RectangularUnitAreaE)
-    delete ToleranceZonePe_1023_TypeValue.RectangularUnitArea;
+    delete ToleranceZonePe_1023_TypeValue->RectangularUnitArea;
   else if (ToleranceZonePe_1023_TypeType == CircularUnitAreaE)
-    delete ToleranceZonePe_1023_TypeValue.CircularUnitArea;
+    delete ToleranceZonePe_1023_TypeValue->CircularUnitArea;
+  delete ToleranceZonePe_1023_TypeValue;
   #endif
 }
 
@@ -19378,7 +19406,7 @@ void ToleranceZonePe_1023_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<RectangularUnitArea");
-      ToleranceZonePe_1023_TypeValue.RectangularUnitArea->printSelf(outFile);
+      ToleranceZonePe_1023_TypeValue->RectangularUnitArea->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</RectangularUnitArea>\n");
     }
@@ -19386,7 +19414,7 @@ void ToleranceZonePe_1023_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<CircularUnitArea");
-      ToleranceZonePe_1023_TypeValue.CircularUnitArea->printSelf(outFile);
+      ToleranceZonePe_1023_TypeValue->CircularUnitArea->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</CircularUnitArea>\n");
     }

@@ -12,7 +12,6 @@
 class AxialDifferentialScaleType;
 class BottomEnumType;
 class BottomType;
-class BottomTypeChoicePair;
 class BoundingBoxType;
 class CircleType;
 class CircularUnitAreaType;
@@ -154,6 +153,35 @@ class BottomType :
   public XmlTypeBase
 {
 public:
+  enum whichOne {
+    BottomEnumE,
+    OtherBottomE,
+    UnknownE }; 
+  BottomType();
+  BottomType(
+    whichOne BottomTypeTypeIn,
+    XmlSchemaInstanceBase * BottomIn);
+  ~BottomType();
+  void printSelf(FILE * outFile);
+
+  XmlSchemaInstanceBase * getBottom();
+  void setBottom(
+    whichOne BottomTypeTypeIn,
+    XmlSchemaInstanceBase * BottomIn);
+  whichOne getBottomTypeType();
+  //void setBottomTypeType(whichOne BottomTypeTypeIn);
+  
+protected:
+  whichOne BottomTypeType;
+  XmlSchemaInstanceBase * Bottom; 
+};
+
+/* ***************************************************************** */
+/*
+class BottomType :
+  public XmlTypeBase
+{
+public:
   BottomType();
   BottomType(
     BottomTypeChoicePair * BottomTypePairIn);
@@ -166,17 +194,18 @@ public:
 protected:
   BottomTypeChoicePair * BottomTypePair;
 };
-
+*/
 /* ***************************************************************** */
-
+ /*
 union BottomTypeVal
 {
   BottomEnumType * BottomEnum;
   XmlString * OtherBottom;
 };
-
+ */
 /* ***************************************************************** */
 
+  /*
 class BottomTypeChoicePair :
   public XmlTypeBase
 {
@@ -187,14 +216,14 @@ public:
   BottomTypeChoicePair();
   BottomTypeChoicePair(
     whichOne BottomTypeTypeIn,
-    BottomTypeVal BottomTypeValueIn);
+    BottomTypeVal * BottomTypeValueIn);
   ~BottomTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne BottomTypeType;
-  BottomTypeVal BottomTypeValue;
+  BottomTypeVal * BottomTypeValue;
 };
-
+  */
 /* ***************************************************************** */
 
 class BoundingBoxType :
@@ -370,12 +399,12 @@ public:
   DigitalModelFormatTypeChoicePair();
   DigitalModelFormatTypeChoicePair(
     whichOne DigitalModelFormatTypeTypeIn,
-    DigitalModelFormatTypeVal DigitalModelFormatTypeValueIn);
+    DigitalModelFormatTypeVal * DigitalModelFormatTypeValueIn);
   ~DigitalModelFormatTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne DigitalModelFormatTypeType;
-  DigitalModelFormatTypeVal DigitalModelFormatTypeValue;
+  DigitalModelFormatTypeVal * DigitalModelFormatTypeValue;
 };
 
 /* ***************************************************************** */
@@ -560,12 +589,12 @@ public:
   ManufacturingMethodTypeChoicePair();
   ManufacturingMethodTypeChoicePair(
     whichOne ManufacturingMethodTypeTypeIn,
-    ManufacturingMethodTypeVal ManufacturingMethodTypeValueIn);
+    ManufacturingMethodTypeVal * ManufacturingMethodTypeValueIn);
   ~ManufacturingMethodTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne ManufacturingMethodTypeType;
-  ManufacturingMethodTypeVal ManufacturingMethodTypeValue;
+  ManufacturingMethodTypeVal * ManufacturingMethodTypeValue;
 };
 
 /* ***************************************************************** */
@@ -1003,12 +1032,12 @@ public:
   SecurityClassificationTypeChoicePair();
   SecurityClassificationTypeChoicePair(
     whichOne SecurityClassificationTypeTypeIn,
-    SecurityClassificationTypeVal SecurityClassificationTypeValueIn);
+    SecurityClassificationTypeVal * SecurityClassificationTypeValueIn);
   ~SecurityClassificationTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne SecurityClassificationTypeType;
-  SecurityClassificationTypeVal SecurityClassificationTypeValue;
+  SecurityClassificationTypeVal * SecurityClassificationTypeValue;
 };
 
 /* ***************************************************************** */
@@ -1066,12 +1095,12 @@ public:
   ShapeClassTypeChoicePair();
   ShapeClassTypeChoicePair(
     whichOne ShapeClassTypeTypeIn,
-    ShapeClassTypeVal ShapeClassTypeValueIn);
+    ShapeClassTypeVal * ShapeClassTypeValueIn);
   ~ShapeClassTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne ShapeClassTypeType;
-  ShapeClassTypeVal ShapeClassTypeValue;
+  ShapeClassTypeVal * ShapeClassTypeValue;
 };
 
 /* ***************************************************************** */
@@ -1129,12 +1158,12 @@ public:
   SlotEndTypeChoicePair();
   SlotEndTypeChoicePair(
     whichOne SlotEndTypeTypeIn,
-    SlotEndTypeVal SlotEndTypeValueIn);
+    SlotEndTypeVal * SlotEndTypeValueIn);
   ~SlotEndTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne SlotEndTypeType;
-  SlotEndTypeVal SlotEndTypeValue;
+  SlotEndTypeVal * SlotEndTypeValue;
 };
 
 /* ***************************************************************** */
@@ -1217,12 +1246,12 @@ public:
   StatsWithReferenceBaseTypeChoicePair();
   StatsWithReferenceBaseTypeChoicePair(
     whichOne StatsWithReferenceBaseTypeTypeIn,
-    StatsWithReferenceBaseTypeVal StatsWithReferenceBaseTypeValueIn);
+    StatsWithReferenceBaseTypeVal * StatsWithReferenceBaseTypeValueIn);
   ~StatsWithReferenceBaseTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne StatsWithReferenceBaseTypeType;
-  StatsWithReferenceBaseTypeVal StatsWithReferenceBaseTypeValue;
+  StatsWithReferenceBaseTypeVal * StatsWithReferenceBaseTypeValue;
 };
 
 /* ***************************************************************** */
@@ -1578,12 +1607,12 @@ public:
   ThreadClassTypeChoicePair();
   ThreadClassTypeChoicePair(
     whichOne ThreadClassTypeTypeIn,
-    ThreadClassTypeVal ThreadClassTypeValueIn);
+    ThreadClassTypeVal * ThreadClassTypeValueIn);
   ~ThreadClassTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne ThreadClassTypeType;
-  ThreadClassTypeVal ThreadClassTypeValue;
+  ThreadClassTypeVal * ThreadClassTypeValue;
 };
 
 /* ***************************************************************** */
@@ -1641,12 +1670,12 @@ public:
   ThreadSeriesTypeChoicePair();
   ThreadSeriesTypeChoicePair(
     whichOne ThreadSeriesTypeTypeIn,
-    ThreadSeriesTypeVal ThreadSeriesTypeValueIn);
+    ThreadSeriesTypeVal * ThreadSeriesTypeValueIn);
   ~ThreadSeriesTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne ThreadSeriesTypeType;
-  ThreadSeriesTypeVal ThreadSeriesTypeValue;
+  ThreadSeriesTypeVal * ThreadSeriesTypeValue;
 };
 
 /* ***************************************************************** */
@@ -1688,12 +1717,12 @@ public:
   TypeOfCoordinatesTypeChoicePair();
   TypeOfCoordinatesTypeChoicePair(
     whichOne TypeOfCoordinatesTypeTypeIn,
-    TypeOfCoordinatesTypeVal TypeOfCoordinatesTypeValueIn);
+    TypeOfCoordinatesTypeVal * TypeOfCoordinatesTypeValueIn);
   ~TypeOfCoordinatesTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne TypeOfCoordinatesTypeType;
-  TypeOfCoordinatesTypeVal TypeOfCoordinatesTypeValue;
+  TypeOfCoordinatesTypeVal * TypeOfCoordinatesTypeValue;
 };
 
 /* ***************************************************************** */
@@ -1772,12 +1801,12 @@ public:
   ScaleType_1005_TypeChoicePair();
   ScaleType_1005_TypeChoicePair(
     whichOne ScaleType_1005_TypeTypeIn,
-    ScaleType_1005_TypeVal ScaleType_1005_TypeValueIn);
+    ScaleType_1005_TypeVal * ScaleType_1005_TypeValueIn);
   ~ScaleType_1005_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne ScaleType_1005_TypeType;
-  ScaleType_1005_TypeVal ScaleType_1005_TypeValue;
+  ScaleType_1005_TypeVal * ScaleType_1005_TypeValue;
 };
 
 /* ***************************************************************** */

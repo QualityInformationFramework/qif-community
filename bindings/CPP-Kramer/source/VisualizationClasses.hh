@@ -272,12 +272,12 @@ public:
   Area2dTypeChoicePair();
   Area2dTypeChoicePair(
     whichOne Area2dTypeTypeIn,
-    Area2dTypeVal Area2dTypeValueIn);
+    Area2dTypeVal * Area2dTypeValueIn);
   ~Area2dTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne Area2dTypeType;
-  Area2dTypeVal Area2dTypeValue;
+  Area2dTypeVal * Area2dTypeValue;
 };
 
 /* ***************************************************************** */
@@ -900,7 +900,7 @@ class FrameBaseType :
 {
 public:
   FrameBaseType();
-  ~FrameBaseType();
+  virtual ~FrameBaseType();
   void printSelf(FILE * outFile);
 };
 
@@ -1578,7 +1578,7 @@ public:
   OriginType();
   OriginType(
     Point2dSimpleType * OriginIn);
-  ~OriginType();
+  virtual ~OriginType();
   void printSelf(FILE * outFile);
 
   Point2dSimpleType * getOrigin();
@@ -1758,12 +1758,12 @@ public:
   Polyline2dTypeChoicePair();
   Polyline2dTypeChoicePair(
     whichOne Polyline2dTypeTypeIn,
-    Polyline2dTypeVal Polyline2dTypeValueIn);
+    Polyline2dTypeVal * Polyline2dTypeValueIn);
   ~Polyline2dTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne Polyline2dTypeType;
-  Polyline2dTypeVal Polyline2dTypeValue;
+  Polyline2dTypeVal * Polyline2dTypeValue;
 };
 
 /* ***************************************************************** */
@@ -2784,12 +2784,12 @@ public:
   WitnessLinesTypeChoicePair();
   WitnessLinesTypeChoicePair(
     whichOne WitnessLinesTypeTypeIn,
-    WitnessLinesTypeVal WitnessLinesTypeValueIn);
+    WitnessLinesTypeVal * WitnessLinesTypeValueIn);
   ~WitnessLinesTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne WitnessLinesTypeType;
-  WitnessLinesTypeVal WitnessLinesTypeValue;
+  WitnessLinesTypeVal * WitnessLinesTypeValue;
 };
 
 /* ***************************************************************** */
@@ -2981,12 +2981,12 @@ public:
   ExplodedViewMov_1187_TypeChoicePair();
   ExplodedViewMov_1187_TypeChoicePair(
     whichOne ExplodedViewMov_1187_TypeTypeIn,
-    ExplodedViewMov_1187_TypeVal ExplodedViewMov_1187_TypeValueIn);
+    ExplodedViewMov_1187_TypeVal * ExplodedViewMov_1187_TypeValueIn);
   ~ExplodedViewMov_1187_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne ExplodedViewMov_1187_TypeType;
-  ExplodedViewMov_1187_TypeVal ExplodedViewMov_1187_TypeValue;
+  ExplodedViewMov_1187_TypeVal * ExplodedViewMov_1187_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -3028,12 +3028,12 @@ public:
   LogicalOperatio_1188_TypeChoicePair();
   LogicalOperatio_1188_TypeChoicePair(
     whichOne LogicalOperatio_1188_TypeTypeIn,
-    LogicalOperatio_1188_TypeVal LogicalOperatio_1188_TypeValueIn);
+    LogicalOperatio_1188_TypeVal * LogicalOperatio_1188_TypeValueIn);
   ~LogicalOperatio_1188_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne LogicalOperatio_1188_TypeType;
-  LogicalOperatio_1188_TypeVal LogicalOperatio_1188_TypeValue;
+  LogicalOperatio_1188_TypeVal * LogicalOperatio_1188_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -3089,12 +3089,12 @@ public:
   Triangulation2d_1189_TypeChoicePair();
   Triangulation2d_1189_TypeChoicePair(
     whichOne Triangulation2d_1189_TypeTypeIn,
-    Triangulation2d_1189_TypeVal Triangulation2d_1189_TypeValueIn);
+    Triangulation2d_1189_TypeVal * Triangulation2d_1189_TypeValueIn);
   ~Triangulation2d_1189_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne Triangulation2d_1189_TypeType;
-  Triangulation2d_1189_TypeVal Triangulation2d_1189_TypeValue;
+  Triangulation2d_1189_TypeVal * Triangulation2d_1189_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -3140,12 +3140,12 @@ public:
   Triangulation2d_1190_TypeChoicePair();
   Triangulation2d_1190_TypeChoicePair(
     whichOne Triangulation2d_1190_TypeTypeIn,
-    Triangulation2d_1190_TypeVal Triangulation2d_1190_TypeValueIn);
+    Triangulation2d_1190_TypeVal * Triangulation2d_1190_TypeValueIn);
   ~Triangulation2d_1190_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne Triangulation2d_1190_TypeType;
-  Triangulation2d_1190_TypeVal Triangulation2d_1190_TypeValue;
+  Triangulation2d_1190_TypeVal * Triangulation2d_1190_TypeValue;
 };
 
 /* ***************************************************************** */

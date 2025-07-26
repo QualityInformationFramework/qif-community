@@ -98,7 +98,7 @@ class ArithmeticExpressionBaseType :
 {
 public:
   ArithmeticExpressionBaseType();
-  ~ArithmeticExpressionBaseType();
+  virtual ~ArithmeticExpressionBaseType();
   void printSelf(FILE * outFile);
 };
 
@@ -125,7 +125,7 @@ public:
   ArithmeticParameterBaseType();
   ArithmeticParameterBaseType(
     XmlToken * ParameterIn);
-  ~ArithmeticParameterBaseType();
+  virtual ~ArithmeticParameterBaseType();
   void printSelf(FILE * outFile);
 
   XmlToken * getParameter();
@@ -180,7 +180,7 @@ public:
   BinaryArithmeticExpressionBaseType();
   BinaryArithmeticExpressionBaseType(
     ArithmeticExpressionBaseTypeLisd * ArithmeticExpressionIn);
-  ~BinaryArithmeticExpressionBaseType();
+  virtual ~BinaryArithmeticExpressionBaseType();
   void printSelf(FILE * outFile);
 
   ArithmeticExpressionBaseTypeLisd * getArithmeticExpression();
@@ -213,7 +213,7 @@ class BooleanExpressionBaseType :
 {
 public:
   BooleanExpressionBaseType();
-  ~BooleanExpressionBaseType();
+  virtual ~BooleanExpressionBaseType();
   void printSelf(FILE * outFile);
 };
 
@@ -553,7 +553,7 @@ public:
   PolyadicArithmeticExpressionBaseType();
   PolyadicArithmeticExpressionBaseType(
     ArithmeticExpressionBaseTypeLisd * ArithmeticExpressionIn);
-  ~PolyadicArithmeticExpressionBaseType();
+  virtual ~PolyadicArithmeticExpressionBaseType();
   void printSelf(FILE * outFile);
 
   ArithmeticExpressionBaseTypeLisd * getArithmeticExpression();
@@ -674,7 +674,7 @@ class TokenExpressionBaseType :
 {
 public:
   TokenExpressionBaseType();
-  ~TokenExpressionBaseType();
+  virtual ~TokenExpressionBaseType();
   void printSelf(FILE * outFile);
 };
 
@@ -790,7 +790,7 @@ public:
   ArithmeticComparisonBaseType();
   ArithmeticComparisonBaseType(
     ArithmeticExpressionBaseTypeLisd * ArithmeticExpressionIn);
-  ~ArithmeticComparisonBaseType();
+  virtual ~ArithmeticComparisonBaseType();
   void printSelf(FILE * outFile);
 
   ArithmeticExpressionBaseTypeLisd * getArithmeticExpression();
@@ -882,7 +882,7 @@ public:
   BinaryBooleanExpressionBaseType();
   BinaryBooleanExpressionBaseType(
     BooleanExpressionBaseTypeLisd * BooleanExpressionIn);
-  ~BinaryBooleanExpressionBaseType();
+  virtual ~BinaryBooleanExpressionBaseType();
   void printSelf(FILE * outFile);
 
   BooleanExpressionBaseTypeLisd * getBooleanExpression();

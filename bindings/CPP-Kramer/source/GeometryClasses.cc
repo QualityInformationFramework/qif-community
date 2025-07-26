@@ -8782,7 +8782,7 @@ PathTriangulationCoreTypeChoicePair::PathTriangulationCoreTypeChoicePair() {}
 
 PathTriangulationCoreTypeChoicePair::PathTriangulationCoreTypeChoicePair(
  whichOne PathTriangulationCoreTypeTypeIn,
- PathTriangulationCoreTypeVal PathTriangulationCoreTypeValueIn)
+ PathTriangulationCoreTypeVal * PathTriangulationCoreTypeValueIn)
 {
   PathTriangulationCoreTypeType = PathTriangulationCoreTypeTypeIn;
   PathTriangulationCoreTypeValue = PathTriangulationCoreTypeValueIn;
@@ -8792,9 +8792,10 @@ PathTriangulationCoreTypeChoicePair::~PathTriangulationCoreTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (PathTriangulationCoreTypeType == EdgesE)
-    delete PathTriangulationCoreTypeValue.Edges;
+    delete PathTriangulationCoreTypeValue->Edges;
   else if (PathTriangulationCoreTypeType == EdgesBinaryE)
-    delete PathTriangulationCoreTypeValue.EdgesBinary;
+    delete PathTriangulationCoreTypeValue->EdgesBinary;
+  delete PathTriangulationCoreTypeValue;
   #endif
 }
 
@@ -8804,14 +8805,14 @@ void PathTriangulationCoreTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Edges");
-      PathTriangulationCoreTypeValue.Edges->printSelf(outFile);
+      PathTriangulationCoreTypeValue->Edges->printSelf(outFile);
       fprintf(outFile, "</Edges>\n");
     }
   else if (PathTriangulationCoreTypeType == EdgesBinaryE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<EdgesBinary");
-      PathTriangulationCoreTypeValue.EdgesBinary->printSelf(outFile);
+      PathTriangulationCoreTypeValue->EdgesBinary->printSelf(outFile);
       fprintf(outFile, "</EdgesBinary>\n");
     }
 }
@@ -10023,7 +10024,7 @@ Polyline12CoreTypeChoicePair::Polyline12CoreTypeChoicePair() {}
 
 Polyline12CoreTypeChoicePair::Polyline12CoreTypeChoicePair(
  whichOne Polyline12CoreTypeTypeIn,
- Polyline12CoreTypeVal Polyline12CoreTypeValueIn)
+ Polyline12CoreTypeVal * Polyline12CoreTypeValueIn)
 {
   Polyline12CoreTypeType = Polyline12CoreTypeTypeIn;
   Polyline12CoreTypeValue = Polyline12CoreTypeValueIn;
@@ -10033,9 +10034,10 @@ Polyline12CoreTypeChoicePair::~Polyline12CoreTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (Polyline12CoreTypeType == PointsE)
-    delete Polyline12CoreTypeValue.Points;
+    delete Polyline12CoreTypeValue->Points;
   else if (Polyline12CoreTypeType == PointsBinaryE)
-    delete Polyline12CoreTypeValue.PointsBinary;
+    delete Polyline12CoreTypeValue->PointsBinary;
+  delete Polyline12CoreTypeValue;
   #endif
 }
 
@@ -10045,14 +10047,14 @@ void Polyline12CoreTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Points");
-      Polyline12CoreTypeValue.Points->printSelf(outFile);
+      Polyline12CoreTypeValue->Points->printSelf(outFile);
       fprintf(outFile, "</Points>\n");
     }
   else if (Polyline12CoreTypeType == PointsBinaryE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<PointsBinary");
-      Polyline12CoreTypeValue.PointsBinary->printSelf(outFile);
+      Polyline12CoreTypeValue->PointsBinary->printSelf(outFile);
       fprintf(outFile, "</PointsBinary>\n");
     }
 }
@@ -10386,7 +10388,7 @@ Polyline13CoreTypeChoicePair::Polyline13CoreTypeChoicePair() {}
 
 Polyline13CoreTypeChoicePair::Polyline13CoreTypeChoicePair(
  whichOne Polyline13CoreTypeTypeIn,
- Polyline13CoreTypeVal Polyline13CoreTypeValueIn)
+ Polyline13CoreTypeVal * Polyline13CoreTypeValueIn)
 {
   Polyline13CoreTypeType = Polyline13CoreTypeTypeIn;
   Polyline13CoreTypeValue = Polyline13CoreTypeValueIn;
@@ -10396,9 +10398,10 @@ Polyline13CoreTypeChoicePair::~Polyline13CoreTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (Polyline13CoreTypeType == PointsE)
-    delete Polyline13CoreTypeValue.Points;
+    delete Polyline13CoreTypeValue->Points;
   else if (Polyline13CoreTypeType == PointsBinaryE)
-    delete Polyline13CoreTypeValue.PointsBinary;
+    delete Polyline13CoreTypeValue->PointsBinary;
+  delete Polyline13CoreTypeValue;
   #endif
 }
 
@@ -10408,14 +10411,14 @@ void Polyline13CoreTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Points");
-      Polyline13CoreTypeValue.Points->printSelf(outFile);
+      Polyline13CoreTypeValue->Points->printSelf(outFile);
       fprintf(outFile, "</Points>\n");
     }
   else if (Polyline13CoreTypeType == PointsBinaryE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<PointsBinary");
-      Polyline13CoreTypeValue.PointsBinary->printSelf(outFile);
+      Polyline13CoreTypeValue->PointsBinary->printSelf(outFile);
       fprintf(outFile, "</PointsBinary>\n");
     }
 }
@@ -16459,7 +16462,7 @@ MeshTriangleCor_1172_TypeChoicePair::MeshTriangleCor_1172_TypeChoicePair() {}
 
 MeshTriangleCor_1172_TypeChoicePair::MeshTriangleCor_1172_TypeChoicePair(
  whichOne MeshTriangleCor_1172_TypeTypeIn,
- MeshTriangleCor_1172_TypeVal MeshTriangleCor_1172_TypeValueIn)
+ MeshTriangleCor_1172_TypeVal * MeshTriangleCor_1172_TypeValueIn)
 {
   MeshTriangleCor_1172_TypeType = MeshTriangleCor_1172_TypeTypeIn;
   MeshTriangleCor_1172_TypeValue = MeshTriangleCor_1172_TypeValueIn;
@@ -16469,9 +16472,10 @@ MeshTriangleCor_1172_TypeChoicePair::~MeshTriangleCor_1172_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (MeshTriangleCor_1172_TypeType == TrianglesE)
-    delete MeshTriangleCor_1172_TypeValue.Triangles;
+    delete MeshTriangleCor_1172_TypeValue->Triangles;
   else if (MeshTriangleCor_1172_TypeType == TrianglesBinaryE)
-    delete MeshTriangleCor_1172_TypeValue.TrianglesBinary;
+    delete MeshTriangleCor_1172_TypeValue->TrianglesBinary;
+  delete MeshTriangleCor_1172_TypeValue;
   #endif
 }
 
@@ -16481,14 +16485,14 @@ void MeshTriangleCor_1172_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Triangles");
-      MeshTriangleCor_1172_TypeValue.Triangles->printSelf(outFile);
+      MeshTriangleCor_1172_TypeValue->Triangles->printSelf(outFile);
       fprintf(outFile, "</Triangles>\n");
     }
   else if (MeshTriangleCor_1172_TypeType == TrianglesBinaryE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<TrianglesBinary");
-      MeshTriangleCor_1172_TypeValue.TrianglesBinary->printSelf(outFile);
+      MeshTriangleCor_1172_TypeValue->TrianglesBinary->printSelf(outFile);
       fprintf(outFile, "</TrianglesBinary>\n");
     }
 }
@@ -16534,7 +16538,7 @@ MeshTriangleCor_1173_TypeChoicePair::MeshTriangleCor_1173_TypeChoicePair() {}
 
 MeshTriangleCor_1173_TypeChoicePair::MeshTriangleCor_1173_TypeChoicePair(
  whichOne MeshTriangleCor_1173_TypeTypeIn,
- MeshTriangleCor_1173_TypeVal MeshTriangleCor_1173_TypeValueIn)
+ MeshTriangleCor_1173_TypeVal * MeshTriangleCor_1173_TypeValueIn)
 {
   MeshTriangleCor_1173_TypeType = MeshTriangleCor_1173_TypeTypeIn;
   MeshTriangleCor_1173_TypeValue = MeshTriangleCor_1173_TypeValueIn;
@@ -16544,9 +16548,10 @@ MeshTriangleCor_1173_TypeChoicePair::~MeshTriangleCor_1173_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (MeshTriangleCor_1173_TypeType == NeighboursE)
-    delete MeshTriangleCor_1173_TypeValue.Neighbours;
+    delete MeshTriangleCor_1173_TypeValue->Neighbours;
   else if (MeshTriangleCor_1173_TypeType == NeighboursBinaryE)
-    delete MeshTriangleCor_1173_TypeValue.NeighboursBinary;
+    delete MeshTriangleCor_1173_TypeValue->NeighboursBinary;
+  delete MeshTriangleCor_1173_TypeValue;
   #endif
 }
 
@@ -16556,14 +16561,14 @@ void MeshTriangleCor_1173_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Neighbours");
-      MeshTriangleCor_1173_TypeValue.Neighbours->printSelf(outFile);
+      MeshTriangleCor_1173_TypeValue->Neighbours->printSelf(outFile);
       fprintf(outFile, "</Neighbours>\n");
     }
   else if (MeshTriangleCor_1173_TypeType == NeighboursBinaryE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<NeighboursBinary");
-      MeshTriangleCor_1173_TypeValue.NeighboursBinary->printSelf(outFile);
+      MeshTriangleCor_1173_TypeValue->NeighboursBinary->printSelf(outFile);
       fprintf(outFile, "</NeighboursBinary>\n");
     }
 }
@@ -16606,7 +16611,7 @@ MeshTriangleCor_1174_TypeChoicePair::MeshTriangleCor_1174_TypeChoicePair() {}
 
 MeshTriangleCor_1174_TypeChoicePair::MeshTriangleCor_1174_TypeChoicePair(
  whichOne MeshTriangleCor_1174_TypeTypeIn,
- MeshTriangleCor_1174_TypeVal MeshTriangleCor_1174_TypeValueIn)
+ MeshTriangleCor_1174_TypeVal * MeshTriangleCor_1174_TypeValueIn)
 {
   MeshTriangleCor_1174_TypeType = MeshTriangleCor_1174_TypeTypeIn;
   MeshTriangleCor_1174_TypeValue = MeshTriangleCor_1174_TypeValueIn;
@@ -16616,9 +16621,10 @@ MeshTriangleCor_1174_TypeChoicePair::~MeshTriangleCor_1174_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (MeshTriangleCor_1174_TypeType == VerticesE)
-    delete MeshTriangleCor_1174_TypeValue.Vertices;
+    delete MeshTriangleCor_1174_TypeValue->Vertices;
   else if (MeshTriangleCor_1174_TypeType == VerticesBinaryE)
-    delete MeshTriangleCor_1174_TypeValue.VerticesBinary;
+    delete MeshTriangleCor_1174_TypeValue->VerticesBinary;
+  delete MeshTriangleCor_1174_TypeValue;
   #endif
 }
 
@@ -16628,14 +16634,14 @@ void MeshTriangleCor_1174_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Vertices");
-      MeshTriangleCor_1174_TypeValue.Vertices->printSelf(outFile);
+      MeshTriangleCor_1174_TypeValue->Vertices->printSelf(outFile);
       fprintf(outFile, "</Vertices>\n");
     }
   else if (MeshTriangleCor_1174_TypeType == VerticesBinaryE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<VerticesBinary");
-      MeshTriangleCor_1174_TypeValue.VerticesBinary->printSelf(outFile);
+      MeshTriangleCor_1174_TypeValue->VerticesBinary->printSelf(outFile);
       fprintf(outFile, "</VerticesBinary>\n");
     }
 }
@@ -16681,7 +16687,7 @@ MeshTriangleCor_1175_TypeChoicePair::MeshTriangleCor_1175_TypeChoicePair() {}
 
 MeshTriangleCor_1175_TypeChoicePair::MeshTriangleCor_1175_TypeChoicePair(
  whichOne MeshTriangleCor_1175_TypeTypeIn,
- MeshTriangleCor_1175_TypeVal MeshTriangleCor_1175_TypeValueIn)
+ MeshTriangleCor_1175_TypeVal * MeshTriangleCor_1175_TypeValueIn)
 {
   MeshTriangleCor_1175_TypeType = MeshTriangleCor_1175_TypeTypeIn;
   MeshTriangleCor_1175_TypeValue = MeshTriangleCor_1175_TypeValueIn;
@@ -16691,9 +16697,10 @@ MeshTriangleCor_1175_TypeChoicePair::~MeshTriangleCor_1175_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (MeshTriangleCor_1175_TypeType == NormalsE)
-    delete MeshTriangleCor_1175_TypeValue.Normals;
+    delete MeshTriangleCor_1175_TypeValue->Normals;
   else if (MeshTriangleCor_1175_TypeType == NormalsBinaryE)
-    delete MeshTriangleCor_1175_TypeValue.NormalsBinary;
+    delete MeshTriangleCor_1175_TypeValue->NormalsBinary;
+  delete MeshTriangleCor_1175_TypeValue;
   #endif
 }
 
@@ -16703,14 +16710,14 @@ void MeshTriangleCor_1175_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Normals");
-      MeshTriangleCor_1175_TypeValue.Normals->printSelf(outFile);
+      MeshTriangleCor_1175_TypeValue->Normals->printSelf(outFile);
       fprintf(outFile, "</Normals>\n");
     }
   else if (MeshTriangleCor_1175_TypeType == NormalsBinaryE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<NormalsBinary");
-      MeshTriangleCor_1175_TypeValue.NormalsBinary->printSelf(outFile);
+      MeshTriangleCor_1175_TypeValue->NormalsBinary->printSelf(outFile);
       fprintf(outFile, "</NormalsBinary>\n");
     }
 }
@@ -16756,7 +16763,7 @@ MeshTriangleTyp_1176_TypeChoicePair::MeshTriangleTyp_1176_TypeChoicePair() {}
 
 MeshTriangleTyp_1176_TypeChoicePair::MeshTriangleTyp_1176_TypeChoicePair(
  whichOne MeshTriangleTyp_1176_TypeTypeIn,
- MeshTriangleTyp_1176_TypeVal MeshTriangleTyp_1176_TypeValueIn)
+ MeshTriangleTyp_1176_TypeVal * MeshTriangleTyp_1176_TypeValueIn)
 {
   MeshTriangleTyp_1176_TypeType = MeshTriangleTyp_1176_TypeTypeIn;
   MeshTriangleTyp_1176_TypeValue = MeshTriangleTyp_1176_TypeValueIn;
@@ -16766,9 +16773,10 @@ MeshTriangleTyp_1176_TypeChoicePair::~MeshTriangleTyp_1176_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (MeshTriangleTyp_1176_TypeType == NormalsSpecialE)
-    delete MeshTriangleTyp_1176_TypeValue.NormalsSpecial;
+    delete MeshTriangleTyp_1176_TypeValue->NormalsSpecial;
   else if (MeshTriangleTyp_1176_TypeType == NormalsSpecialBinaryE)
-    delete MeshTriangleTyp_1176_TypeValue.NormalsSpecialBinary;
+    delete MeshTriangleTyp_1176_TypeValue->NormalsSpecialBinary;
+  delete MeshTriangleTyp_1176_TypeValue;
   #endif
 }
 
@@ -16778,7 +16786,7 @@ void MeshTriangleTyp_1176_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<NormalsSpecial");
-      MeshTriangleTyp_1176_TypeValue.NormalsSpecial->printSelf(outFile);
+      MeshTriangleTyp_1176_TypeValue->NormalsSpecial->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</NormalsSpecial>\n");
     }
@@ -16786,7 +16794,7 @@ void MeshTriangleTyp_1176_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<NormalsSpecialBinary");
-      MeshTriangleTyp_1176_TypeValue.NormalsSpecialBinary->printSelf(outFile);
+      MeshTriangleTyp_1176_TypeValue->NormalsSpecialBinary->printSelf(outFile);
       fprintf(outFile, "</NormalsSpecialBinary>\n");
     }
 }
@@ -16796,7 +16804,81 @@ void MeshTriangleTyp_1176_TypeChoicePair::printSelf(FILE * outFile)
 /* class Nurbs12CoreType_1177_Type
 
 */
+Nurbs12CoreType_1177_Type::Nurbs12CoreType_1177_Type()
+{
+  CPsType = CPsE;
+  CPs = 0;
+}
 
+Nurbs12CoreType_1177_Type::Nurbs12CoreType_1177_Type(
+  whichOne CPsTypeIn,
+  XmlSchemaInstanceBase * CPsIn)
+{
+  CPsType = CPsTypeIn;
+  CPs = CPsIn;
+}
+
+Nurbs12CoreType_1177_Type::~Nurbs12CoreType_1177_Type()
+{
+  #ifndef NODESTRUCT
+  if (CPsType == CPsE)
+    delete dynamic_cast<ArrayPoint2dType *>(CPs);
+  else if (CPsType == CPsBinaryE)
+    delete dynamic_cast<ArrayBinaryType *>(CPs);
+  #endif
+}
+
+void Nurbs12CoreType_1177_Type::printSelf(FILE * outFile)
+{
+  if (CPsType == CPsE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<CPs");
+      dynamic_cast<ArrayPoint2dType *>(CPs)->printSelf(outFile);
+      fprintf(outFile, "</CPs>\n");
+    }
+  else if (CPsType == CPsBinaryE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<CPsBinary");
+      dynamic_cast<ArrayBinaryType *>(CPs)->printSelf(outFile);
+      fprintf(outFile, "</CPsBinary>\n");
+    }
+}
+
+XmlSchemaInstanceBase * Nurbs12CoreType_1177_Type::getCPs()
+{return CPs;}
+
+void Nurbs12CoreType_1177_Type::setCPs(
+  whichOne CPsTypeIn,
+  XmlSchemaInstanceBase * CPsIn)
+{
+  if ((CPsTypeIn == Nurbs12CoreType_1177_Type::CPsE) &&
+      (dynamic_cast<ArrayPointType *>(CPsIn)))
+    {
+      CPsType = Nurbs12CoreType_1177_Type::CPsE;
+      CPs = dynamic_cast<ArrayPointType *>(CPsIn);
+    }
+  else if ((CPsTypeIn == Nurbs12CoreType_1177_Type::CPsBinaryE) &&
+      (dynamic_cast<ArrayBinaryType *>(CPsIn)))
+    {
+      CPsType = Nurbs12CoreType_1177_Type::CPsBinaryE;
+      CPs = dynamic_cast<ArrayBinaryType *>(CPsIn);
+    }
+  else
+    {
+      CPsType = UnknownE;
+      CPs = 0;
+    }
+}
+
+Nurbs12CoreType_1177_Type::whichOne Nurbs12CoreType_1177_Type::getCPsType()
+{return CPsType;}
+
+//void Nurbs12CoreType_1177_Type::setCPsType(whichOne CPsTypeIn)
+//{CPsType = CPsTypeIn;}
+
+/*
 Nurbs12CoreType_1177_Type::Nurbs12CoreType_1177_Type()
 {
   Nurbs12CoreType_1177_TypePair = 0;
@@ -16829,7 +16911,7 @@ Nurbs12CoreType_1177_TypeChoicePair::Nurbs12CoreType_1177_TypeChoicePair() {}
 
 Nurbs12CoreType_1177_TypeChoicePair::Nurbs12CoreType_1177_TypeChoicePair(
  whichOne Nurbs12CoreType_1177_TypeTypeIn,
- Nurbs12CoreType_1177_TypeVal Nurbs12CoreType_1177_TypeValueIn)
+ Nurbs12CoreType_1177_TypeVal * Nurbs12CoreType_1177_TypeValueIn)
 {
   Nurbs12CoreType_1177_TypeType = Nurbs12CoreType_1177_TypeTypeIn;
   Nurbs12CoreType_1177_TypeValue = Nurbs12CoreType_1177_TypeValueIn;
@@ -16839,9 +16921,10 @@ Nurbs12CoreType_1177_TypeChoicePair::~Nurbs12CoreType_1177_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (Nurbs12CoreType_1177_TypeType == CPsE)
-    delete Nurbs12CoreType_1177_TypeValue.CPs;
+    delete Nurbs12CoreType_1177_TypeValue->CPs;
   else if (Nurbs12CoreType_1177_TypeType == CPsBinaryE)
-    delete Nurbs12CoreType_1177_TypeValue.CPsBinary;
+    delete Nurbs12CoreType_1177_TypeValue->CPsBinary;
+  delete Nurbs12CoreType_1177_TypeValue;
   #endif
 }
 
@@ -16851,24 +16934,97 @@ void Nurbs12CoreType_1177_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<CPs");
-      Nurbs12CoreType_1177_TypeValue.CPs->printSelf(outFile);
+      Nurbs12CoreType_1177_TypeValue->CPs->printSelf(outFile);
       fprintf(outFile, "</CPs>\n");
     }
   else if (Nurbs12CoreType_1177_TypeType == CPsBinaryE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<CPsBinary");
-      Nurbs12CoreType_1177_TypeValue.CPsBinary->printSelf(outFile);
+      Nurbs12CoreType_1177_TypeValue->CPsBinary->printSelf(outFile);
+      fprintf(outFile, "</CPsBinary>\n");
+    }
+}
+*/
+/* ***************************************************************** */
+/* class Nurbs12CoreType_1178_Type
+
+*/
+Nurbs13CoreType_1178_Type::Nurbs13CoreType_1178_Type()
+{
+  CPsType = UnknownE;
+  CPs = 0;
+}
+
+Nurbs13CoreType_1178_Type::Nurbs13CoreType_1178_Type(
+  whichOne CPsTypeIn,
+  XmlSchemaInstanceBase * CPsIn)
+{
+  CPsType = CPsTypeIn;
+  CPs = CPsIn;
+}
+
+Nurbs13CoreType_1178_Type::~Nurbs13CoreType_1178_Type()
+{
+  #ifndef NODESTRUCT
+  if (CPsType == CPsE)
+    delete dynamic_cast<ArrayPointType *>(CPs);
+  else if (CPsType == CPsBinaryE)
+    delete dynamic_cast<ArrayBinaryType *>(CPs);
+  #endif
+}
+
+void Nurbs13CoreType_1178_Type::printSelf(FILE * outFile)
+{
+  if (CPsType == CPsE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<CPs");
+      dynamic_cast<ArrayPointType *>(CPs)->printSelf(outFile);
+      fprintf(outFile, "</CPs>\n");
+    }
+  else if (CPsType == CPsBinaryE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<CPsBinary");
+      dynamic_cast<ArrayBinaryType *>(CPs)->printSelf(outFile);
       fprintf(outFile, "</CPsBinary>\n");
     }
 }
 
-/* ***************************************************************** */
+XmlSchemaInstanceBase * Nurbs13CoreType_1178_Type::getCPs()
+{return CPs;}
 
-/* class Nurbs13CoreType_1178_Type
+void Nurbs13CoreType_1178_Type::setCPs(
+  whichOne CPsTypeIn,
+  XmlSchemaInstanceBase * CPsIn)
+{
+  if ((CPsTypeIn == Nurbs13CoreType_1178_Type::CPsE) &&
+      (dynamic_cast<ArrayPointType *>(CPsIn)))
+    {
+      CPsType = Nurbs13CoreType_1178_Type::CPsE;
+      CPs = dynamic_cast<ArrayPointType *>(CPsIn);
+    }
+  else if ((CPsTypeIn == Nurbs13CoreType_1178_Type::CPsBinaryE) &&
+      (dynamic_cast<ArrayBinaryType *>(CPsIn)))
+    {
+      CPsType = Nurbs13CoreType_1178_Type::CPsBinaryE;
+      CPs = dynamic_cast<ArrayBinaryType *>(CPsIn);
+    }
+  else
+    {
+      CPsType = UnknownE;
+      CPs = 0;
+    }
+}
 
-*/
+Nurbs13CoreType_1178_Type::whichOne Nurbs13CoreType_1178_Type::getCPsType()
+{return CPsType;}
 
+//void Nurbs13CoreType_1178_Type::setCPsType(whichOne CPsTypeIn)
+//{CPsType = CPsTypeIn;}
+
+/*
 Nurbs13CoreType_1178_Type::Nurbs13CoreType_1178_Type()
 {
   Nurbs13CoreType_1178_TypePair = 0;
@@ -16901,7 +17057,7 @@ Nurbs13CoreType_1178_TypeChoicePair::Nurbs13CoreType_1178_TypeChoicePair() {}
 
 Nurbs13CoreType_1178_TypeChoicePair::Nurbs13CoreType_1178_TypeChoicePair(
  whichOne Nurbs13CoreType_1178_TypeTypeIn,
- Nurbs13CoreType_1178_TypeVal Nurbs13CoreType_1178_TypeValueIn)
+ Nurbs13CoreType_1178_TypeVal * Nurbs13CoreType_1178_TypeValueIn)
 {
   Nurbs13CoreType_1178_TypeType = Nurbs13CoreType_1178_TypeTypeIn;
   Nurbs13CoreType_1178_TypeValue = Nurbs13CoreType_1178_TypeValueIn;
@@ -16911,9 +17067,10 @@ Nurbs13CoreType_1178_TypeChoicePair::~Nurbs13CoreType_1178_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (Nurbs13CoreType_1178_TypeType == CPsE)
-    delete Nurbs13CoreType_1178_TypeValue.CPs;
+    delete Nurbs13CoreType_1178_TypeValue->CPs;
   else if (Nurbs13CoreType_1178_TypeType == CPsBinaryE)
-    delete Nurbs13CoreType_1178_TypeValue.CPsBinary;
+    delete Nurbs13CoreType_1178_TypeValue->CPsBinary;
+  delete Nurbs13CoreType_1178_TypeValue;
   #endif
 }
 
@@ -16923,18 +17080,18 @@ void Nurbs13CoreType_1178_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<CPs");
-      Nurbs13CoreType_1178_TypeValue.CPs->printSelf(outFile);
+      Nurbs13CoreType_1178_TypeValue->CPs->printSelf(outFile);
       fprintf(outFile, "</CPs>\n");
     }
   else if (Nurbs13CoreType_1178_TypeType == CPsBinaryE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<CPsBinary");
-      Nurbs13CoreType_1178_TypeValue.CPsBinary->printSelf(outFile);
+      Nurbs13CoreType_1178_TypeValue->CPsBinary->printSelf(outFile);
       fprintf(outFile, "</CPsBinary>\n");
     }
 }
-
+*/
 /* ***************************************************************** */
 
 /* class Nurbs23CoreType_1179_Type
@@ -16973,7 +17130,7 @@ Nurbs23CoreType_1179_TypeChoicePair::Nurbs23CoreType_1179_TypeChoicePair() {}
 
 Nurbs23CoreType_1179_TypeChoicePair::Nurbs23CoreType_1179_TypeChoicePair(
  whichOne Nurbs23CoreType_1179_TypeTypeIn,
- Nurbs23CoreType_1179_TypeVal Nurbs23CoreType_1179_TypeValueIn)
+ Nurbs23CoreType_1179_TypeVal * Nurbs23CoreType_1179_TypeValueIn)
 {
   Nurbs23CoreType_1179_TypeType = Nurbs23CoreType_1179_TypeTypeIn;
   Nurbs23CoreType_1179_TypeValue = Nurbs23CoreType_1179_TypeValueIn;
@@ -16983,9 +17140,10 @@ Nurbs23CoreType_1179_TypeChoicePair::~Nurbs23CoreType_1179_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (Nurbs23CoreType_1179_TypeType == CPsE)
-    delete Nurbs23CoreType_1179_TypeValue.CPs;
+    delete Nurbs23CoreType_1179_TypeValue->CPs;
   else if (Nurbs23CoreType_1179_TypeType == CPsBinaryE)
-    delete Nurbs23CoreType_1179_TypeValue.CPsBinary;
+    delete Nurbs23CoreType_1179_TypeValue->CPsBinary;
+  delete Nurbs23CoreType_1179_TypeValue;
   #endif
 }
 
@@ -16995,14 +17153,14 @@ void Nurbs23CoreType_1179_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<CPs");
-      Nurbs23CoreType_1179_TypeValue.CPs->printSelf(outFile);
+      Nurbs23CoreType_1179_TypeValue->CPs->printSelf(outFile);
       fprintf(outFile, "</CPs>\n");
     }
   else if (Nurbs23CoreType_1179_TypeType == CPsBinaryE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<CPsBinary");
-      Nurbs23CoreType_1179_TypeValue.CPsBinary->printSelf(outFile);
+      Nurbs23CoreType_1179_TypeValue->CPsBinary->printSelf(outFile);
       fprintf(outFile, "</CPsBinary>\n");
     }
 }

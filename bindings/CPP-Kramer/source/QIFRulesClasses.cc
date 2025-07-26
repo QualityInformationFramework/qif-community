@@ -69,7 +69,7 @@ CirclePointSamplingStrategyTypeChoicePair::CirclePointSamplingStrategyTypeChoice
 
 CirclePointSamplingStrategyTypeChoicePair::CirclePointSamplingStrategyTypeChoicePair(
  whichOne CirclePointSamplingStrategyTypeTypeIn,
- CirclePointSamplingStrategyTypeVal CirclePointSamplingStrategyTypeValueIn)
+ CirclePointSamplingStrategyTypeVal * CirclePointSamplingStrategyTypeValueIn)
 {
   CirclePointSamplingStrategyTypeType = CirclePointSamplingStrategyTypeTypeIn;
   CirclePointSamplingStrategyTypeValue = CirclePointSamplingStrategyTypeValueIn;
@@ -79,9 +79,10 @@ CirclePointSamplingStrategyTypeChoicePair::~CirclePointSamplingStrategyTypeChoic
 {
   #ifndef NODESTRUCT
   if (CirclePointSamplingStrategyTypeType == PointSamplingStrategyEnumE)
-    delete CirclePointSamplingStrategyTypeValue.PointSamplingStrategyEnum;
+    delete CirclePointSamplingStrategyTypeValue->PointSamplingStrategyEnum;
   else if (CirclePointSamplingStrategyTypeType == UserDefinedStrategyE)
-    delete CirclePointSamplingStrategyTypeValue.UserDefinedStrategy;
+    delete CirclePointSamplingStrategyTypeValue->UserDefinedStrategy;
+  delete CirclePointSamplingStrategyTypeValue;
   #endif
 }
 
@@ -91,14 +92,14 @@ void CirclePointSamplingStrategyTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<PointSamplingStrategyEnum");
-      CirclePointSamplingStrategyTypeValue.PointSamplingStrategyEnum->printSelf(outFile);
+      CirclePointSamplingStrategyTypeValue->PointSamplingStrategyEnum->printSelf(outFile);
       fprintf(outFile, "</PointSamplingStrategyEnum>\n");
     }
   else if (CirclePointSamplingStrategyTypeType == UserDefinedStrategyE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<UserDefinedStrategy");
-      CirclePointSamplingStrategyTypeValue.UserDefinedStrategy->printSelf(outFile);
+      CirclePointSamplingStrategyTypeValue->UserDefinedStrategy->printSelf(outFile);
       fprintf(outFile, "</UserDefinedStrategy>\n");
     }
 }
@@ -144,7 +145,7 @@ CircularArcPointSamplingStrategyTypeChoicePair::CircularArcPointSamplingStrategy
 
 CircularArcPointSamplingStrategyTypeChoicePair::CircularArcPointSamplingStrategyTypeChoicePair(
  whichOne CircularArcPointSamplingStrategyTypeTypeIn,
- CircularArcPointSamplingStrategyTypeVal CircularArcPointSamplingStrategyTypeValueIn)
+ CircularArcPointSamplingStrategyTypeVal * CircularArcPointSamplingStrategyTypeValueIn)
 {
   CircularArcPointSamplingStrategyTypeType = CircularArcPointSamplingStrategyTypeTypeIn;
   CircularArcPointSamplingStrategyTypeValue = CircularArcPointSamplingStrategyTypeValueIn;
@@ -154,9 +155,10 @@ CircularArcPointSamplingStrategyTypeChoicePair::~CircularArcPointSamplingStrateg
 {
   #ifndef NODESTRUCT
   if (CircularArcPointSamplingStrategyTypeType == PointSamplingStrategyEnumE)
-    delete CircularArcPointSamplingStrategyTypeValue.PointSamplingStrategyEnum;
+    delete CircularArcPointSamplingStrategyTypeValue->PointSamplingStrategyEnum;
   else if (CircularArcPointSamplingStrategyTypeType == UserDefinedStrategyE)
-    delete CircularArcPointSamplingStrategyTypeValue.UserDefinedStrategy;
+    delete CircularArcPointSamplingStrategyTypeValue->UserDefinedStrategy;
+  delete CircularArcPointSamplingStrategyTypeValue;
   #endif
 }
 
@@ -166,14 +168,14 @@ void CircularArcPointSamplingStrategyTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<PointSamplingStrategyEnum");
-      CircularArcPointSamplingStrategyTypeValue.PointSamplingStrategyEnum->printSelf(outFile);
+      CircularArcPointSamplingStrategyTypeValue->PointSamplingStrategyEnum->printSelf(outFile);
       fprintf(outFile, "</PointSamplingStrategyEnum>\n");
     }
   else if (CircularArcPointSamplingStrategyTypeType == UserDefinedStrategyE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<UserDefinedStrategy");
-      CircularArcPointSamplingStrategyTypeValue.UserDefinedStrategy->printSelf(outFile);
+      CircularArcPointSamplingStrategyTypeValue->UserDefinedStrategy->printSelf(outFile);
       fprintf(outFile, "</UserDefinedStrategy>\n");
     }
 }
@@ -219,7 +221,7 @@ ConePointSamplingStrategyTypeChoicePair::ConePointSamplingStrategyTypeChoicePair
 
 ConePointSamplingStrategyTypeChoicePair::ConePointSamplingStrategyTypeChoicePair(
  whichOne ConePointSamplingStrategyTypeTypeIn,
- ConePointSamplingStrategyTypeVal ConePointSamplingStrategyTypeValueIn)
+ ConePointSamplingStrategyTypeVal * ConePointSamplingStrategyTypeValueIn)
 {
   ConePointSamplingStrategyTypeType = ConePointSamplingStrategyTypeTypeIn;
   ConePointSamplingStrategyTypeValue = ConePointSamplingStrategyTypeValueIn;
@@ -229,9 +231,10 @@ ConePointSamplingStrategyTypeChoicePair::~ConePointSamplingStrategyTypeChoicePai
 {
   #ifndef NODESTRUCT
   if (ConePointSamplingStrategyTypeType == PointSamplingStrategyEnumE)
-    delete ConePointSamplingStrategyTypeValue.PointSamplingStrategyEnum;
+    delete ConePointSamplingStrategyTypeValue->PointSamplingStrategyEnum;
   else if (ConePointSamplingStrategyTypeType == UserDefinedStrategyE)
-    delete ConePointSamplingStrategyTypeValue.UserDefinedStrategy;
+    delete ConePointSamplingStrategyTypeValue->UserDefinedStrategy;
+  delete ConePointSamplingStrategyTypeValue;
   #endif
 }
 
@@ -241,14 +244,14 @@ void ConePointSamplingStrategyTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<PointSamplingStrategyEnum");
-      ConePointSamplingStrategyTypeValue.PointSamplingStrategyEnum->printSelf(outFile);
+      ConePointSamplingStrategyTypeValue->PointSamplingStrategyEnum->printSelf(outFile);
       fprintf(outFile, "</PointSamplingStrategyEnum>\n");
     }
   else if (ConePointSamplingStrategyTypeType == UserDefinedStrategyE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<UserDefinedStrategy");
-      ConePointSamplingStrategyTypeValue.UserDefinedStrategy->printSelf(outFile);
+      ConePointSamplingStrategyTypeValue->UserDefinedStrategy->printSelf(outFile);
       fprintf(outFile, "</UserDefinedStrategy>\n");
     }
 }
@@ -294,7 +297,7 @@ ConicalSegmentPointSamplingStrategyTypeChoicePair::ConicalSegmentPointSamplingSt
 
 ConicalSegmentPointSamplingStrategyTypeChoicePair::ConicalSegmentPointSamplingStrategyTypeChoicePair(
  whichOne ConicalSegmentPointSamplingStrategyTypeTypeIn,
- ConicalSegmentPointSamplingStrategyTypeVal ConicalSegmentPointSamplingStrategyTypeValueIn)
+ ConicalSegmentPointSamplingStrategyTypeVal * ConicalSegmentPointSamplingStrategyTypeValueIn)
 {
   ConicalSegmentPointSamplingStrategyTypeType = ConicalSegmentPointSamplingStrategyTypeTypeIn;
   ConicalSegmentPointSamplingStrategyTypeValue = ConicalSegmentPointSamplingStrategyTypeValueIn;
@@ -304,9 +307,10 @@ ConicalSegmentPointSamplingStrategyTypeChoicePair::~ConicalSegmentPointSamplingS
 {
   #ifndef NODESTRUCT
   if (ConicalSegmentPointSamplingStrategyTypeType == PointSamplingStrategyEnumE)
-    delete ConicalSegmentPointSamplingStrategyTypeValue.PointSamplingStrategyEnum;
+    delete ConicalSegmentPointSamplingStrategyTypeValue->PointSamplingStrategyEnum;
   else if (ConicalSegmentPointSamplingStrategyTypeType == UserDefinedStrategyE)
-    delete ConicalSegmentPointSamplingStrategyTypeValue.UserDefinedStrategy;
+    delete ConicalSegmentPointSamplingStrategyTypeValue->UserDefinedStrategy;
+  delete ConicalSegmentPointSamplingStrategyTypeValue;
   #endif
 }
 
@@ -316,14 +320,14 @@ void ConicalSegmentPointSamplingStrategyTypeChoicePair::printSelf(FILE * outFile
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<PointSamplingStrategyEnum");
-      ConicalSegmentPointSamplingStrategyTypeValue.PointSamplingStrategyEnum->printSelf(outFile);
+      ConicalSegmentPointSamplingStrategyTypeValue->PointSamplingStrategyEnum->printSelf(outFile);
       fprintf(outFile, "</PointSamplingStrategyEnum>\n");
     }
   else if (ConicalSegmentPointSamplingStrategyTypeType == UserDefinedStrategyE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<UserDefinedStrategy");
-      ConicalSegmentPointSamplingStrategyTypeValue.UserDefinedStrategy->printSelf(outFile);
+      ConicalSegmentPointSamplingStrategyTypeValue->UserDefinedStrategy->printSelf(outFile);
       fprintf(outFile, "</UserDefinedStrategy>\n");
     }
 }
@@ -369,7 +373,7 @@ CylinderPointSamplingStrategyTypeChoicePair::CylinderPointSamplingStrategyTypeCh
 
 CylinderPointSamplingStrategyTypeChoicePair::CylinderPointSamplingStrategyTypeChoicePair(
  whichOne CylinderPointSamplingStrategyTypeTypeIn,
- CylinderPointSamplingStrategyTypeVal CylinderPointSamplingStrategyTypeValueIn)
+ CylinderPointSamplingStrategyTypeVal * CylinderPointSamplingStrategyTypeValueIn)
 {
   CylinderPointSamplingStrategyTypeType = CylinderPointSamplingStrategyTypeTypeIn;
   CylinderPointSamplingStrategyTypeValue = CylinderPointSamplingStrategyTypeValueIn;
@@ -379,9 +383,10 @@ CylinderPointSamplingStrategyTypeChoicePair::~CylinderPointSamplingStrategyTypeC
 {
   #ifndef NODESTRUCT
   if (CylinderPointSamplingStrategyTypeType == PointSamplingStrategyEnumE)
-    delete CylinderPointSamplingStrategyTypeValue.PointSamplingStrategyEnum;
+    delete CylinderPointSamplingStrategyTypeValue->PointSamplingStrategyEnum;
   else if (CylinderPointSamplingStrategyTypeType == UserDefinedStrategyE)
-    delete CylinderPointSamplingStrategyTypeValue.UserDefinedStrategy;
+    delete CylinderPointSamplingStrategyTypeValue->UserDefinedStrategy;
+  delete CylinderPointSamplingStrategyTypeValue;
   #endif
 }
 
@@ -391,14 +396,14 @@ void CylinderPointSamplingStrategyTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<PointSamplingStrategyEnum");
-      CylinderPointSamplingStrategyTypeValue.PointSamplingStrategyEnum->printSelf(outFile);
+      CylinderPointSamplingStrategyTypeValue->PointSamplingStrategyEnum->printSelf(outFile);
       fprintf(outFile, "</PointSamplingStrategyEnum>\n");
     }
   else if (CylinderPointSamplingStrategyTypeType == UserDefinedStrategyE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<UserDefinedStrategy");
-      CylinderPointSamplingStrategyTypeValue.UserDefinedStrategy->printSelf(outFile);
+      CylinderPointSamplingStrategyTypeValue->UserDefinedStrategy->printSelf(outFile);
       fprintf(outFile, "</UserDefinedStrategy>\n");
     }
 }
@@ -444,7 +449,7 @@ CylindricalSegmentPointSamplingStrategyTypeChoicePair::CylindricalSegmentPointSa
 
 CylindricalSegmentPointSamplingStrategyTypeChoicePair::CylindricalSegmentPointSamplingStrategyTypeChoicePair(
  whichOne CylindricalSegmentPointSamplingStrategyTypeTypeIn,
- CylindricalSegmentPointSamplingStrategyTypeVal CylindricalSegmentPointSamplingStrategyTypeValueIn)
+ CylindricalSegmentPointSamplingStrategyTypeVal * CylindricalSegmentPointSamplingStrategyTypeValueIn)
 {
   CylindricalSegmentPointSamplingStrategyTypeType = CylindricalSegmentPointSamplingStrategyTypeTypeIn;
   CylindricalSegmentPointSamplingStrategyTypeValue = CylindricalSegmentPointSamplingStrategyTypeValueIn;
@@ -454,9 +459,10 @@ CylindricalSegmentPointSamplingStrategyTypeChoicePair::~CylindricalSegmentPointS
 {
   #ifndef NODESTRUCT
   if (CylindricalSegmentPointSamplingStrategyTypeType == PointSamplingStrategyEnumE)
-    delete CylindricalSegmentPointSamplingStrategyTypeValue.PointSamplingStrategyEnum;
+    delete CylindricalSegmentPointSamplingStrategyTypeValue->PointSamplingStrategyEnum;
   else if (CylindricalSegmentPointSamplingStrategyTypeType == UserDefinedStrategyE)
-    delete CylindricalSegmentPointSamplingStrategyTypeValue.UserDefinedStrategy;
+    delete CylindricalSegmentPointSamplingStrategyTypeValue->UserDefinedStrategy;
+  delete CylindricalSegmentPointSamplingStrategyTypeValue;
   #endif
 }
 
@@ -466,14 +472,14 @@ void CylindricalSegmentPointSamplingStrategyTypeChoicePair::printSelf(FILE * out
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<PointSamplingStrategyEnum");
-      CylindricalSegmentPointSamplingStrategyTypeValue.PointSamplingStrategyEnum->printSelf(outFile);
+      CylindricalSegmentPointSamplingStrategyTypeValue->PointSamplingStrategyEnum->printSelf(outFile);
       fprintf(outFile, "</PointSamplingStrategyEnum>\n");
     }
   else if (CylindricalSegmentPointSamplingStrategyTypeType == UserDefinedStrategyE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<UserDefinedStrategy");
-      CylindricalSegmentPointSamplingStrategyTypeValue.UserDefinedStrategy->printSelf(outFile);
+      CylindricalSegmentPointSamplingStrategyTypeValue->UserDefinedStrategy->printSelf(outFile);
       fprintf(outFile, "</UserDefinedStrategy>\n");
     }
 }
@@ -1994,7 +2000,7 @@ EllipsePointSamplingStrategyTypeChoicePair::EllipsePointSamplingStrategyTypeChoi
 
 EllipsePointSamplingStrategyTypeChoicePair::EllipsePointSamplingStrategyTypeChoicePair(
  whichOne EllipsePointSamplingStrategyTypeTypeIn,
- EllipsePointSamplingStrategyTypeVal EllipsePointSamplingStrategyTypeValueIn)
+ EllipsePointSamplingStrategyTypeVal * EllipsePointSamplingStrategyTypeValueIn)
 {
   EllipsePointSamplingStrategyTypeType = EllipsePointSamplingStrategyTypeTypeIn;
   EllipsePointSamplingStrategyTypeValue = EllipsePointSamplingStrategyTypeValueIn;
@@ -2004,9 +2010,10 @@ EllipsePointSamplingStrategyTypeChoicePair::~EllipsePointSamplingStrategyTypeCho
 {
   #ifndef NODESTRUCT
   if (EllipsePointSamplingStrategyTypeType == PointSamplingStrategyEnumE)
-    delete EllipsePointSamplingStrategyTypeValue.PointSamplingStrategyEnum;
+    delete EllipsePointSamplingStrategyTypeValue->PointSamplingStrategyEnum;
   else if (EllipsePointSamplingStrategyTypeType == UserDefinedStrategyE)
-    delete EllipsePointSamplingStrategyTypeValue.UserDefinedStrategy;
+    delete EllipsePointSamplingStrategyTypeValue->UserDefinedStrategy;
+  delete EllipsePointSamplingStrategyTypeValue;
   #endif
 }
 
@@ -2016,14 +2023,14 @@ void EllipsePointSamplingStrategyTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<PointSamplingStrategyEnum");
-      EllipsePointSamplingStrategyTypeValue.PointSamplingStrategyEnum->printSelf(outFile);
+      EllipsePointSamplingStrategyTypeValue->PointSamplingStrategyEnum->printSelf(outFile);
       fprintf(outFile, "</PointSamplingStrategyEnum>\n");
     }
   else if (EllipsePointSamplingStrategyTypeType == UserDefinedStrategyE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<UserDefinedStrategy");
-      EllipsePointSamplingStrategyTypeValue.UserDefinedStrategy->printSelf(outFile);
+      EllipsePointSamplingStrategyTypeValue->UserDefinedStrategy->printSelf(outFile);
       fprintf(outFile, "</UserDefinedStrategy>\n");
     }
 }
@@ -2069,7 +2076,7 @@ EllipticalArcPointSamplingStrategyTypeChoicePair::EllipticalArcPointSamplingStra
 
 EllipticalArcPointSamplingStrategyTypeChoicePair::EllipticalArcPointSamplingStrategyTypeChoicePair(
  whichOne EllipticalArcPointSamplingStrategyTypeTypeIn,
- EllipticalArcPointSamplingStrategyTypeVal EllipticalArcPointSamplingStrategyTypeValueIn)
+ EllipticalArcPointSamplingStrategyTypeVal * EllipticalArcPointSamplingStrategyTypeValueIn)
 {
   EllipticalArcPointSamplingStrategyTypeType = EllipticalArcPointSamplingStrategyTypeTypeIn;
   EllipticalArcPointSamplingStrategyTypeValue = EllipticalArcPointSamplingStrategyTypeValueIn;
@@ -2079,9 +2086,10 @@ EllipticalArcPointSamplingStrategyTypeChoicePair::~EllipticalArcPointSamplingStr
 {
   #ifndef NODESTRUCT
   if (EllipticalArcPointSamplingStrategyTypeType == PointSamplingStrategyEnumE)
-    delete EllipticalArcPointSamplingStrategyTypeValue.PointSamplingStrategyEnum;
+    delete EllipticalArcPointSamplingStrategyTypeValue->PointSamplingStrategyEnum;
   else if (EllipticalArcPointSamplingStrategyTypeType == UserDefinedStrategyE)
-    delete EllipticalArcPointSamplingStrategyTypeValue.UserDefinedStrategy;
+    delete EllipticalArcPointSamplingStrategyTypeValue->UserDefinedStrategy;
+  delete EllipticalArcPointSamplingStrategyTypeValue;
   #endif
 }
 
@@ -2091,14 +2099,14 @@ void EllipticalArcPointSamplingStrategyTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<PointSamplingStrategyEnum");
-      EllipticalArcPointSamplingStrategyTypeValue.PointSamplingStrategyEnum->printSelf(outFile);
+      EllipticalArcPointSamplingStrategyTypeValue->PointSamplingStrategyEnum->printSelf(outFile);
       fprintf(outFile, "</PointSamplingStrategyEnum>\n");
     }
   else if (EllipticalArcPointSamplingStrategyTypeType == UserDefinedStrategyE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<UserDefinedStrategy");
-      EllipticalArcPointSamplingStrategyTypeValue.UserDefinedStrategy->printSelf(outFile);
+      EllipticalArcPointSamplingStrategyTypeValue->UserDefinedStrategy->printSelf(outFile);
       fprintf(outFile, "</UserDefinedStrategy>\n");
     }
 }
@@ -2144,7 +2152,7 @@ ElongatedCirclePointSamplingStrategyTypeChoicePair::ElongatedCirclePointSampling
 
 ElongatedCirclePointSamplingStrategyTypeChoicePair::ElongatedCirclePointSamplingStrategyTypeChoicePair(
  whichOne ElongatedCirclePointSamplingStrategyTypeTypeIn,
- ElongatedCirclePointSamplingStrategyTypeVal ElongatedCirclePointSamplingStrategyTypeValueIn)
+ ElongatedCirclePointSamplingStrategyTypeVal * ElongatedCirclePointSamplingStrategyTypeValueIn)
 {
   ElongatedCirclePointSamplingStrategyTypeType = ElongatedCirclePointSamplingStrategyTypeTypeIn;
   ElongatedCirclePointSamplingStrategyTypeValue = ElongatedCirclePointSamplingStrategyTypeValueIn;
@@ -2154,9 +2162,10 @@ ElongatedCirclePointSamplingStrategyTypeChoicePair::~ElongatedCirclePointSamplin
 {
   #ifndef NODESTRUCT
   if (ElongatedCirclePointSamplingStrategyTypeType == PointSamplingStrategyEnumE)
-    delete ElongatedCirclePointSamplingStrategyTypeValue.PointSamplingStrategyEnum;
+    delete ElongatedCirclePointSamplingStrategyTypeValue->PointSamplingStrategyEnum;
   else if (ElongatedCirclePointSamplingStrategyTypeType == UserDefinedStrategyE)
-    delete ElongatedCirclePointSamplingStrategyTypeValue.UserDefinedStrategy;
+    delete ElongatedCirclePointSamplingStrategyTypeValue->UserDefinedStrategy;
+  delete ElongatedCirclePointSamplingStrategyTypeValue;
   #endif
 }
 
@@ -2166,14 +2175,14 @@ void ElongatedCirclePointSamplingStrategyTypeChoicePair::printSelf(FILE * outFil
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<PointSamplingStrategyEnum");
-      ElongatedCirclePointSamplingStrategyTypeValue.PointSamplingStrategyEnum->printSelf(outFile);
+      ElongatedCirclePointSamplingStrategyTypeValue->PointSamplingStrategyEnum->printSelf(outFile);
       fprintf(outFile, "</PointSamplingStrategyEnum>\n");
     }
   else if (ElongatedCirclePointSamplingStrategyTypeType == UserDefinedStrategyE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<UserDefinedStrategy");
-      ElongatedCirclePointSamplingStrategyTypeValue.UserDefinedStrategy->printSelf(outFile);
+      ElongatedCirclePointSamplingStrategyTypeValue->UserDefinedStrategy->printSelf(outFile);
       fprintf(outFile, "</UserDefinedStrategy>\n");
     }
 }
@@ -2219,7 +2228,7 @@ ElongatedCylinderPointSamplingStrategyTypeChoicePair::ElongatedCylinderPointSamp
 
 ElongatedCylinderPointSamplingStrategyTypeChoicePair::ElongatedCylinderPointSamplingStrategyTypeChoicePair(
  whichOne ElongatedCylinderPointSamplingStrategyTypeTypeIn,
- ElongatedCylinderPointSamplingStrategyTypeVal ElongatedCylinderPointSamplingStrategyTypeValueIn)
+ ElongatedCylinderPointSamplingStrategyTypeVal * ElongatedCylinderPointSamplingStrategyTypeValueIn)
 {
   ElongatedCylinderPointSamplingStrategyTypeType = ElongatedCylinderPointSamplingStrategyTypeTypeIn;
   ElongatedCylinderPointSamplingStrategyTypeValue = ElongatedCylinderPointSamplingStrategyTypeValueIn;
@@ -2229,9 +2238,10 @@ ElongatedCylinderPointSamplingStrategyTypeChoicePair::~ElongatedCylinderPointSam
 {
   #ifndef NODESTRUCT
   if (ElongatedCylinderPointSamplingStrategyTypeType == PointSamplingStrategyEnumE)
-    delete ElongatedCylinderPointSamplingStrategyTypeValue.PointSamplingStrategyEnum;
+    delete ElongatedCylinderPointSamplingStrategyTypeValue->PointSamplingStrategyEnum;
   else if (ElongatedCylinderPointSamplingStrategyTypeType == UserDefinedStrategyE)
-    delete ElongatedCylinderPointSamplingStrategyTypeValue.UserDefinedStrategy;
+    delete ElongatedCylinderPointSamplingStrategyTypeValue->UserDefinedStrategy;
+  delete ElongatedCylinderPointSamplingStrategyTypeValue;
   #endif
 }
 
@@ -2241,14 +2251,14 @@ void ElongatedCylinderPointSamplingStrategyTypeChoicePair::printSelf(FILE * outF
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<PointSamplingStrategyEnum");
-      ElongatedCylinderPointSamplingStrategyTypeValue.PointSamplingStrategyEnum->printSelf(outFile);
+      ElongatedCylinderPointSamplingStrategyTypeValue->PointSamplingStrategyEnum->printSelf(outFile);
       fprintf(outFile, "</PointSamplingStrategyEnum>\n");
     }
   else if (ElongatedCylinderPointSamplingStrategyTypeType == UserDefinedStrategyE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<UserDefinedStrategy");
-      ElongatedCylinderPointSamplingStrategyTypeValue.UserDefinedStrategy->printSelf(outFile);
+      ElongatedCylinderPointSamplingStrategyTypeValue->UserDefinedStrategy->printSelf(outFile);
       fprintf(outFile, "</UserDefinedStrategy>\n");
     }
 }
@@ -2430,7 +2440,7 @@ ExtrudedCrossSectionPointSamplingStrategyTypeChoicePair::ExtrudedCrossSectionPoi
 
 ExtrudedCrossSectionPointSamplingStrategyTypeChoicePair::ExtrudedCrossSectionPointSamplingStrategyTypeChoicePair(
  whichOne ExtrudedCrossSectionPointSamplingStrategyTypeTypeIn,
- ExtrudedCrossSectionPointSamplingStrategyTypeVal ExtrudedCrossSectionPointSamplingStrategyTypeValueIn)
+ ExtrudedCrossSectionPointSamplingStrategyTypeVal * ExtrudedCrossSectionPointSamplingStrategyTypeValueIn)
 {
   ExtrudedCrossSectionPointSamplingStrategyTypeType = ExtrudedCrossSectionPointSamplingStrategyTypeTypeIn;
   ExtrudedCrossSectionPointSamplingStrategyTypeValue = ExtrudedCrossSectionPointSamplingStrategyTypeValueIn;
@@ -2440,9 +2450,10 @@ ExtrudedCrossSectionPointSamplingStrategyTypeChoicePair::~ExtrudedCrossSectionPo
 {
   #ifndef NODESTRUCT
   if (ExtrudedCrossSectionPointSamplingStrategyTypeType == PointSamplingStrategyEnumE)
-    delete ExtrudedCrossSectionPointSamplingStrategyTypeValue.PointSamplingStrategyEnum;
+    delete ExtrudedCrossSectionPointSamplingStrategyTypeValue->PointSamplingStrategyEnum;
   else if (ExtrudedCrossSectionPointSamplingStrategyTypeType == UserDefinedStrategyE)
-    delete ExtrudedCrossSectionPointSamplingStrategyTypeValue.UserDefinedStrategy;
+    delete ExtrudedCrossSectionPointSamplingStrategyTypeValue->UserDefinedStrategy;
+  delete ExtrudedCrossSectionPointSamplingStrategyTypeValue;
   #endif
 }
 
@@ -2452,14 +2463,14 @@ void ExtrudedCrossSectionPointSamplingStrategyTypeChoicePair::printSelf(FILE * o
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<PointSamplingStrategyEnum");
-      ExtrudedCrossSectionPointSamplingStrategyTypeValue.PointSamplingStrategyEnum->printSelf(outFile);
+      ExtrudedCrossSectionPointSamplingStrategyTypeValue->PointSamplingStrategyEnum->printSelf(outFile);
       fprintf(outFile, "</PointSamplingStrategyEnum>\n");
     }
   else if (ExtrudedCrossSectionPointSamplingStrategyTypeType == UserDefinedStrategyE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<UserDefinedStrategy");
-      ExtrudedCrossSectionPointSamplingStrategyTypeValue.UserDefinedStrategy->printSelf(outFile);
+      ExtrudedCrossSectionPointSamplingStrategyTypeValue->UserDefinedStrategy->printSelf(outFile);
       fprintf(outFile, "</UserDefinedStrategy>\n");
     }
 }
@@ -16179,7 +16190,7 @@ LinePointSamplingStrategyTypeChoicePair::LinePointSamplingStrategyTypeChoicePair
 
 LinePointSamplingStrategyTypeChoicePair::LinePointSamplingStrategyTypeChoicePair(
  whichOne LinePointSamplingStrategyTypeTypeIn,
- LinePointSamplingStrategyTypeVal LinePointSamplingStrategyTypeValueIn)
+ LinePointSamplingStrategyTypeVal * LinePointSamplingStrategyTypeValueIn)
 {
   LinePointSamplingStrategyTypeType = LinePointSamplingStrategyTypeTypeIn;
   LinePointSamplingStrategyTypeValue = LinePointSamplingStrategyTypeValueIn;
@@ -16189,9 +16200,10 @@ LinePointSamplingStrategyTypeChoicePair::~LinePointSamplingStrategyTypeChoicePai
 {
   #ifndef NODESTRUCT
   if (LinePointSamplingStrategyTypeType == PointSamplingStrategyEnumE)
-    delete LinePointSamplingStrategyTypeValue.PointSamplingStrategyEnum;
+    delete LinePointSamplingStrategyTypeValue->PointSamplingStrategyEnum;
   else if (LinePointSamplingStrategyTypeType == UserDefinedStrategyE)
-    delete LinePointSamplingStrategyTypeValue.UserDefinedStrategy;
+    delete LinePointSamplingStrategyTypeValue->UserDefinedStrategy;
+  delete LinePointSamplingStrategyTypeValue;
   #endif
 }
 
@@ -16201,14 +16213,14 @@ void LinePointSamplingStrategyTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<PointSamplingStrategyEnum");
-      LinePointSamplingStrategyTypeValue.PointSamplingStrategyEnum->printSelf(outFile);
+      LinePointSamplingStrategyTypeValue->PointSamplingStrategyEnum->printSelf(outFile);
       fprintf(outFile, "</PointSamplingStrategyEnum>\n");
     }
   else if (LinePointSamplingStrategyTypeType == UserDefinedStrategyE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<UserDefinedStrategy");
-      LinePointSamplingStrategyTypeValue.UserDefinedStrategy->printSelf(outFile);
+      LinePointSamplingStrategyTypeValue->UserDefinedStrategy->printSelf(outFile);
       fprintf(outFile, "</UserDefinedStrategy>\n");
     }
 }
@@ -16896,7 +16908,7 @@ OppositeAngledLinesPointSamplingStrategyTypeChoicePair::OppositeAngledLinesPoint
 
 OppositeAngledLinesPointSamplingStrategyTypeChoicePair::OppositeAngledLinesPointSamplingStrategyTypeChoicePair(
  whichOne OppositeAngledLinesPointSamplingStrategyTypeTypeIn,
- OppositeAngledLinesPointSamplingStrategyTypeVal OppositeAngledLinesPointSamplingStrategyTypeValueIn)
+ OppositeAngledLinesPointSamplingStrategyTypeVal * OppositeAngledLinesPointSamplingStrategyTypeValueIn)
 {
   OppositeAngledLinesPointSamplingStrategyTypeType = OppositeAngledLinesPointSamplingStrategyTypeTypeIn;
   OppositeAngledLinesPointSamplingStrategyTypeValue = OppositeAngledLinesPointSamplingStrategyTypeValueIn;
@@ -16906,9 +16918,10 @@ OppositeAngledLinesPointSamplingStrategyTypeChoicePair::~OppositeAngledLinesPoin
 {
   #ifndef NODESTRUCT
   if (OppositeAngledLinesPointSamplingStrategyTypeType == PointSamplingStrategyEnumE)
-    delete OppositeAngledLinesPointSamplingStrategyTypeValue.PointSamplingStrategyEnum;
+    delete OppositeAngledLinesPointSamplingStrategyTypeValue->PointSamplingStrategyEnum;
   else if (OppositeAngledLinesPointSamplingStrategyTypeType == UserDefinedStrategyE)
-    delete OppositeAngledLinesPointSamplingStrategyTypeValue.UserDefinedStrategy;
+    delete OppositeAngledLinesPointSamplingStrategyTypeValue->UserDefinedStrategy;
+  delete OppositeAngledLinesPointSamplingStrategyTypeValue;
   #endif
 }
 
@@ -16918,14 +16931,14 @@ void OppositeAngledLinesPointSamplingStrategyTypeChoicePair::printSelf(FILE * ou
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<PointSamplingStrategyEnum");
-      OppositeAngledLinesPointSamplingStrategyTypeValue.PointSamplingStrategyEnum->printSelf(outFile);
+      OppositeAngledLinesPointSamplingStrategyTypeValue->PointSamplingStrategyEnum->printSelf(outFile);
       fprintf(outFile, "</PointSamplingStrategyEnum>\n");
     }
   else if (OppositeAngledLinesPointSamplingStrategyTypeType == UserDefinedStrategyE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<UserDefinedStrategy");
-      OppositeAngledLinesPointSamplingStrategyTypeValue.UserDefinedStrategy->printSelf(outFile);
+      OppositeAngledLinesPointSamplingStrategyTypeValue->UserDefinedStrategy->printSelf(outFile);
       fprintf(outFile, "</UserDefinedStrategy>\n");
     }
 }
@@ -16971,7 +16984,7 @@ OppositeAngledPlanesPointSamplingStrategyTypeChoicePair::OppositeAngledPlanesPoi
 
 OppositeAngledPlanesPointSamplingStrategyTypeChoicePair::OppositeAngledPlanesPointSamplingStrategyTypeChoicePair(
  whichOne OppositeAngledPlanesPointSamplingStrategyTypeTypeIn,
- OppositeAngledPlanesPointSamplingStrategyTypeVal OppositeAngledPlanesPointSamplingStrategyTypeValueIn)
+ OppositeAngledPlanesPointSamplingStrategyTypeVal * OppositeAngledPlanesPointSamplingStrategyTypeValueIn)
 {
   OppositeAngledPlanesPointSamplingStrategyTypeType = OppositeAngledPlanesPointSamplingStrategyTypeTypeIn;
   OppositeAngledPlanesPointSamplingStrategyTypeValue = OppositeAngledPlanesPointSamplingStrategyTypeValueIn;
@@ -16981,9 +16994,10 @@ OppositeAngledPlanesPointSamplingStrategyTypeChoicePair::~OppositeAngledPlanesPo
 {
   #ifndef NODESTRUCT
   if (OppositeAngledPlanesPointSamplingStrategyTypeType == PointSamplingStrategyEnumE)
-    delete OppositeAngledPlanesPointSamplingStrategyTypeValue.PointSamplingStrategyEnum;
+    delete OppositeAngledPlanesPointSamplingStrategyTypeValue->PointSamplingStrategyEnum;
   else if (OppositeAngledPlanesPointSamplingStrategyTypeType == UserDefinedStrategyE)
-    delete OppositeAngledPlanesPointSamplingStrategyTypeValue.UserDefinedStrategy;
+    delete OppositeAngledPlanesPointSamplingStrategyTypeValue->UserDefinedStrategy;
+  delete OppositeAngledPlanesPointSamplingStrategyTypeValue;
   #endif
 }
 
@@ -16993,14 +17007,14 @@ void OppositeAngledPlanesPointSamplingStrategyTypeChoicePair::printSelf(FILE * o
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<PointSamplingStrategyEnum");
-      OppositeAngledPlanesPointSamplingStrategyTypeValue.PointSamplingStrategyEnum->printSelf(outFile);
+      OppositeAngledPlanesPointSamplingStrategyTypeValue->PointSamplingStrategyEnum->printSelf(outFile);
       fprintf(outFile, "</PointSamplingStrategyEnum>\n");
     }
   else if (OppositeAngledPlanesPointSamplingStrategyTypeType == UserDefinedStrategyE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<UserDefinedStrategy");
-      OppositeAngledPlanesPointSamplingStrategyTypeValue.UserDefinedStrategy->printSelf(outFile);
+      OppositeAngledPlanesPointSamplingStrategyTypeValue->UserDefinedStrategy->printSelf(outFile);
       fprintf(outFile, "</UserDefinedStrategy>\n");
     }
 }
@@ -17046,7 +17060,7 @@ OppositeParallelLinesPointSamplingStrategyTypeChoicePair::OppositeParallelLinesP
 
 OppositeParallelLinesPointSamplingStrategyTypeChoicePair::OppositeParallelLinesPointSamplingStrategyTypeChoicePair(
  whichOne OppositeParallelLinesPointSamplingStrategyTypeTypeIn,
- OppositeParallelLinesPointSamplingStrategyTypeVal OppositeParallelLinesPointSamplingStrategyTypeValueIn)
+ OppositeParallelLinesPointSamplingStrategyTypeVal * OppositeParallelLinesPointSamplingStrategyTypeValueIn)
 {
   OppositeParallelLinesPointSamplingStrategyTypeType = OppositeParallelLinesPointSamplingStrategyTypeTypeIn;
   OppositeParallelLinesPointSamplingStrategyTypeValue = OppositeParallelLinesPointSamplingStrategyTypeValueIn;
@@ -17056,9 +17070,10 @@ OppositeParallelLinesPointSamplingStrategyTypeChoicePair::~OppositeParallelLines
 {
   #ifndef NODESTRUCT
   if (OppositeParallelLinesPointSamplingStrategyTypeType == PointSamplingStrategyEnumE)
-    delete OppositeParallelLinesPointSamplingStrategyTypeValue.PointSamplingStrategyEnum;
+    delete OppositeParallelLinesPointSamplingStrategyTypeValue->PointSamplingStrategyEnum;
   else if (OppositeParallelLinesPointSamplingStrategyTypeType == UserDefinedStrategyE)
-    delete OppositeParallelLinesPointSamplingStrategyTypeValue.UserDefinedStrategy;
+    delete OppositeParallelLinesPointSamplingStrategyTypeValue->UserDefinedStrategy;
+  delete OppositeParallelLinesPointSamplingStrategyTypeValue;
   #endif
 }
 
@@ -17068,14 +17083,14 @@ void OppositeParallelLinesPointSamplingStrategyTypeChoicePair::printSelf(FILE * 
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<PointSamplingStrategyEnum");
-      OppositeParallelLinesPointSamplingStrategyTypeValue.PointSamplingStrategyEnum->printSelf(outFile);
+      OppositeParallelLinesPointSamplingStrategyTypeValue->PointSamplingStrategyEnum->printSelf(outFile);
       fprintf(outFile, "</PointSamplingStrategyEnum>\n");
     }
   else if (OppositeParallelLinesPointSamplingStrategyTypeType == UserDefinedStrategyE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<UserDefinedStrategy");
-      OppositeParallelLinesPointSamplingStrategyTypeValue.UserDefinedStrategy->printSelf(outFile);
+      OppositeParallelLinesPointSamplingStrategyTypeValue->UserDefinedStrategy->printSelf(outFile);
       fprintf(outFile, "</UserDefinedStrategy>\n");
     }
 }
@@ -17121,7 +17136,7 @@ OppositeParallelPlanesPointSamplingStrategyTypeChoicePair::OppositeParallelPlane
 
 OppositeParallelPlanesPointSamplingStrategyTypeChoicePair::OppositeParallelPlanesPointSamplingStrategyTypeChoicePair(
  whichOne OppositeParallelPlanesPointSamplingStrategyTypeTypeIn,
- OppositeParallelPlanesPointSamplingStrategyTypeVal OppositeParallelPlanesPointSamplingStrategyTypeValueIn)
+ OppositeParallelPlanesPointSamplingStrategyTypeVal * OppositeParallelPlanesPointSamplingStrategyTypeValueIn)
 {
   OppositeParallelPlanesPointSamplingStrategyTypeType = OppositeParallelPlanesPointSamplingStrategyTypeTypeIn;
   OppositeParallelPlanesPointSamplingStrategyTypeValue = OppositeParallelPlanesPointSamplingStrategyTypeValueIn;
@@ -17131,9 +17146,10 @@ OppositeParallelPlanesPointSamplingStrategyTypeChoicePair::~OppositeParallelPlan
 {
   #ifndef NODESTRUCT
   if (OppositeParallelPlanesPointSamplingStrategyTypeType == PointSamplingStrategyEnumE)
-    delete OppositeParallelPlanesPointSamplingStrategyTypeValue.PointSamplingStrategyEnum;
+    delete OppositeParallelPlanesPointSamplingStrategyTypeValue->PointSamplingStrategyEnum;
   else if (OppositeParallelPlanesPointSamplingStrategyTypeType == UserDefinedStrategyE)
-    delete OppositeParallelPlanesPointSamplingStrategyTypeValue.UserDefinedStrategy;
+    delete OppositeParallelPlanesPointSamplingStrategyTypeValue->UserDefinedStrategy;
+  delete OppositeParallelPlanesPointSamplingStrategyTypeValue;
   #endif
 }
 
@@ -17143,14 +17159,14 @@ void OppositeParallelPlanesPointSamplingStrategyTypeChoicePair::printSelf(FILE *
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<PointSamplingStrategyEnum");
-      OppositeParallelPlanesPointSamplingStrategyTypeValue.PointSamplingStrategyEnum->printSelf(outFile);
+      OppositeParallelPlanesPointSamplingStrategyTypeValue->PointSamplingStrategyEnum->printSelf(outFile);
       fprintf(outFile, "</PointSamplingStrategyEnum>\n");
     }
   else if (OppositeParallelPlanesPointSamplingStrategyTypeType == UserDefinedStrategyE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<UserDefinedStrategy");
-      OppositeParallelPlanesPointSamplingStrategyTypeValue.UserDefinedStrategy->printSelf(outFile);
+      OppositeParallelPlanesPointSamplingStrategyTypeValue->UserDefinedStrategy->printSelf(outFile);
       fprintf(outFile, "</UserDefinedStrategy>\n");
     }
 }
@@ -17196,7 +17212,7 @@ PlanePointSamplingStrategyTypeChoicePair::PlanePointSamplingStrategyTypeChoicePa
 
 PlanePointSamplingStrategyTypeChoicePair::PlanePointSamplingStrategyTypeChoicePair(
  whichOne PlanePointSamplingStrategyTypeTypeIn,
- PlanePointSamplingStrategyTypeVal PlanePointSamplingStrategyTypeValueIn)
+ PlanePointSamplingStrategyTypeVal * PlanePointSamplingStrategyTypeValueIn)
 {
   PlanePointSamplingStrategyTypeType = PlanePointSamplingStrategyTypeTypeIn;
   PlanePointSamplingStrategyTypeValue = PlanePointSamplingStrategyTypeValueIn;
@@ -17206,9 +17222,10 @@ PlanePointSamplingStrategyTypeChoicePair::~PlanePointSamplingStrategyTypeChoiceP
 {
   #ifndef NODESTRUCT
   if (PlanePointSamplingStrategyTypeType == PointSamplingStrategyEnumE)
-    delete PlanePointSamplingStrategyTypeValue.PointSamplingStrategyEnum;
+    delete PlanePointSamplingStrategyTypeValue->PointSamplingStrategyEnum;
   else if (PlanePointSamplingStrategyTypeType == UserDefinedStrategyE)
-    delete PlanePointSamplingStrategyTypeValue.UserDefinedStrategy;
+    delete PlanePointSamplingStrategyTypeValue->UserDefinedStrategy;
+  delete PlanePointSamplingStrategyTypeValue;
   #endif
 }
 
@@ -17218,14 +17235,14 @@ void PlanePointSamplingStrategyTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<PointSamplingStrategyEnum");
-      PlanePointSamplingStrategyTypeValue.PointSamplingStrategyEnum->printSelf(outFile);
+      PlanePointSamplingStrategyTypeValue->PointSamplingStrategyEnum->printSelf(outFile);
       fprintf(outFile, "</PointSamplingStrategyEnum>\n");
     }
   else if (PlanePointSamplingStrategyTypeType == UserDefinedStrategyE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<UserDefinedStrategy");
-      PlanePointSamplingStrategyTypeValue.UserDefinedStrategy->printSelf(outFile);
+      PlanePointSamplingStrategyTypeValue->UserDefinedStrategy->printSelf(outFile);
       fprintf(outFile, "</UserDefinedStrategy>\n");
     }
 }
@@ -17271,7 +17288,7 @@ PointDefinedCurvePointSamplingStrategyTypeChoicePair::PointDefinedCurvePointSamp
 
 PointDefinedCurvePointSamplingStrategyTypeChoicePair::PointDefinedCurvePointSamplingStrategyTypeChoicePair(
  whichOne PointDefinedCurvePointSamplingStrategyTypeTypeIn,
- PointDefinedCurvePointSamplingStrategyTypeVal PointDefinedCurvePointSamplingStrategyTypeValueIn)
+ PointDefinedCurvePointSamplingStrategyTypeVal * PointDefinedCurvePointSamplingStrategyTypeValueIn)
 {
   PointDefinedCurvePointSamplingStrategyTypeType = PointDefinedCurvePointSamplingStrategyTypeTypeIn;
   PointDefinedCurvePointSamplingStrategyTypeValue = PointDefinedCurvePointSamplingStrategyTypeValueIn;
@@ -17281,9 +17298,10 @@ PointDefinedCurvePointSamplingStrategyTypeChoicePair::~PointDefinedCurvePointSam
 {
   #ifndef NODESTRUCT
   if (PointDefinedCurvePointSamplingStrategyTypeType == PointSamplingStrategyEnumE)
-    delete PointDefinedCurvePointSamplingStrategyTypeValue.PointSamplingStrategyEnum;
+    delete PointDefinedCurvePointSamplingStrategyTypeValue->PointSamplingStrategyEnum;
   else if (PointDefinedCurvePointSamplingStrategyTypeType == UserDefinedStrategyE)
-    delete PointDefinedCurvePointSamplingStrategyTypeValue.UserDefinedStrategy;
+    delete PointDefinedCurvePointSamplingStrategyTypeValue->UserDefinedStrategy;
+  delete PointDefinedCurvePointSamplingStrategyTypeValue;
   #endif
 }
 
@@ -17293,14 +17311,14 @@ void PointDefinedCurvePointSamplingStrategyTypeChoicePair::printSelf(FILE * outF
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<PointSamplingStrategyEnum");
-      PointDefinedCurvePointSamplingStrategyTypeValue.PointSamplingStrategyEnum->printSelf(outFile);
+      PointDefinedCurvePointSamplingStrategyTypeValue->PointSamplingStrategyEnum->printSelf(outFile);
       fprintf(outFile, "</PointSamplingStrategyEnum>\n");
     }
   else if (PointDefinedCurvePointSamplingStrategyTypeType == UserDefinedStrategyE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<UserDefinedStrategy");
-      PointDefinedCurvePointSamplingStrategyTypeValue.UserDefinedStrategy->printSelf(outFile);
+      PointDefinedCurvePointSamplingStrategyTypeValue->UserDefinedStrategy->printSelf(outFile);
       fprintf(outFile, "</UserDefinedStrategy>\n");
     }
 }
@@ -17346,7 +17364,7 @@ PointDefinedSurfacePointSamplingStrategyTypeChoicePair::PointDefinedSurfacePoint
 
 PointDefinedSurfacePointSamplingStrategyTypeChoicePair::PointDefinedSurfacePointSamplingStrategyTypeChoicePair(
  whichOne PointDefinedSurfacePointSamplingStrategyTypeTypeIn,
- PointDefinedSurfacePointSamplingStrategyTypeVal PointDefinedSurfacePointSamplingStrategyTypeValueIn)
+ PointDefinedSurfacePointSamplingStrategyTypeVal * PointDefinedSurfacePointSamplingStrategyTypeValueIn)
 {
   PointDefinedSurfacePointSamplingStrategyTypeType = PointDefinedSurfacePointSamplingStrategyTypeTypeIn;
   PointDefinedSurfacePointSamplingStrategyTypeValue = PointDefinedSurfacePointSamplingStrategyTypeValueIn;
@@ -17356,9 +17374,10 @@ PointDefinedSurfacePointSamplingStrategyTypeChoicePair::~PointDefinedSurfacePoin
 {
   #ifndef NODESTRUCT
   if (PointDefinedSurfacePointSamplingStrategyTypeType == PointSamplingStrategyEnumE)
-    delete PointDefinedSurfacePointSamplingStrategyTypeValue.PointSamplingStrategyEnum;
+    delete PointDefinedSurfacePointSamplingStrategyTypeValue->PointSamplingStrategyEnum;
   else if (PointDefinedSurfacePointSamplingStrategyTypeType == UserDefinedStrategyE)
-    delete PointDefinedSurfacePointSamplingStrategyTypeValue.UserDefinedStrategy;
+    delete PointDefinedSurfacePointSamplingStrategyTypeValue->UserDefinedStrategy;
+  delete PointDefinedSurfacePointSamplingStrategyTypeValue;
   #endif
 }
 
@@ -17368,14 +17387,14 @@ void PointDefinedSurfacePointSamplingStrategyTypeChoicePair::printSelf(FILE * ou
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<PointSamplingStrategyEnum");
-      PointDefinedSurfacePointSamplingStrategyTypeValue.PointSamplingStrategyEnum->printSelf(outFile);
+      PointDefinedSurfacePointSamplingStrategyTypeValue->PointSamplingStrategyEnum->printSelf(outFile);
       fprintf(outFile, "</PointSamplingStrategyEnum>\n");
     }
   else if (PointDefinedSurfacePointSamplingStrategyTypeType == UserDefinedStrategyE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<UserDefinedStrategy");
-      PointDefinedSurfacePointSamplingStrategyTypeValue.UserDefinedStrategy->printSelf(outFile);
+      PointDefinedSurfacePointSamplingStrategyTypeValue->UserDefinedStrategy->printSelf(outFile);
       fprintf(outFile, "</UserDefinedStrategy>\n");
     }
 }
@@ -17421,7 +17440,7 @@ PointPointSamplingStrategyTypeChoicePair::PointPointSamplingStrategyTypeChoicePa
 
 PointPointSamplingStrategyTypeChoicePair::PointPointSamplingStrategyTypeChoicePair(
  whichOne PointPointSamplingStrategyTypeTypeIn,
- PointPointSamplingStrategyTypeVal PointPointSamplingStrategyTypeValueIn)
+ PointPointSamplingStrategyTypeVal * PointPointSamplingStrategyTypeValueIn)
 {
   PointPointSamplingStrategyTypeType = PointPointSamplingStrategyTypeTypeIn;
   PointPointSamplingStrategyTypeValue = PointPointSamplingStrategyTypeValueIn;
@@ -17431,9 +17450,10 @@ PointPointSamplingStrategyTypeChoicePair::~PointPointSamplingStrategyTypeChoiceP
 {
   #ifndef NODESTRUCT
   if (PointPointSamplingStrategyTypeType == PointSamplingStrategyEnumE)
-    delete PointPointSamplingStrategyTypeValue.PointSamplingStrategyEnum;
+    delete PointPointSamplingStrategyTypeValue->PointSamplingStrategyEnum;
   else if (PointPointSamplingStrategyTypeType == UserDefinedStrategyE)
-    delete PointPointSamplingStrategyTypeValue.UserDefinedStrategy;
+    delete PointPointSamplingStrategyTypeValue->UserDefinedStrategy;
+  delete PointPointSamplingStrategyTypeValue;
   #endif
 }
 
@@ -17443,14 +17463,14 @@ void PointPointSamplingStrategyTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<PointSamplingStrategyEnum");
-      PointPointSamplingStrategyTypeValue.PointSamplingStrategyEnum->printSelf(outFile);
+      PointPointSamplingStrategyTypeValue->PointSamplingStrategyEnum->printSelf(outFile);
       fprintf(outFile, "</PointSamplingStrategyEnum>\n");
     }
   else if (PointPointSamplingStrategyTypeType == UserDefinedStrategyE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<UserDefinedStrategy");
-      PointPointSamplingStrategyTypeValue.UserDefinedStrategy->printSelf(outFile);
+      PointPointSamplingStrategyTypeValue->UserDefinedStrategy->printSelf(outFile);
       fprintf(outFile, "</UserDefinedStrategy>\n");
     }
 }
@@ -18292,7 +18312,7 @@ SpherePointSamplingStrategyTypeChoicePair::SpherePointSamplingStrategyTypeChoice
 
 SpherePointSamplingStrategyTypeChoicePair::SpherePointSamplingStrategyTypeChoicePair(
  whichOne SpherePointSamplingStrategyTypeTypeIn,
- SpherePointSamplingStrategyTypeVal SpherePointSamplingStrategyTypeValueIn)
+ SpherePointSamplingStrategyTypeVal * SpherePointSamplingStrategyTypeValueIn)
 {
   SpherePointSamplingStrategyTypeType = SpherePointSamplingStrategyTypeTypeIn;
   SpherePointSamplingStrategyTypeValue = SpherePointSamplingStrategyTypeValueIn;
@@ -18302,9 +18322,10 @@ SpherePointSamplingStrategyTypeChoicePair::~SpherePointSamplingStrategyTypeChoic
 {
   #ifndef NODESTRUCT
   if (SpherePointSamplingStrategyTypeType == PointSamplingStrategyEnumE)
-    delete SpherePointSamplingStrategyTypeValue.PointSamplingStrategyEnum;
+    delete SpherePointSamplingStrategyTypeValue->PointSamplingStrategyEnum;
   else if (SpherePointSamplingStrategyTypeType == UserDefinedStrategyE)
-    delete SpherePointSamplingStrategyTypeValue.UserDefinedStrategy;
+    delete SpherePointSamplingStrategyTypeValue->UserDefinedStrategy;
+  delete SpherePointSamplingStrategyTypeValue;
   #endif
 }
 
@@ -18314,14 +18335,14 @@ void SpherePointSamplingStrategyTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<PointSamplingStrategyEnum");
-      SpherePointSamplingStrategyTypeValue.PointSamplingStrategyEnum->printSelf(outFile);
+      SpherePointSamplingStrategyTypeValue->PointSamplingStrategyEnum->printSelf(outFile);
       fprintf(outFile, "</PointSamplingStrategyEnum>\n");
     }
   else if (SpherePointSamplingStrategyTypeType == UserDefinedStrategyE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<UserDefinedStrategy");
-      SpherePointSamplingStrategyTypeValue.UserDefinedStrategy->printSelf(outFile);
+      SpherePointSamplingStrategyTypeValue->UserDefinedStrategy->printSelf(outFile);
       fprintf(outFile, "</UserDefinedStrategy>\n");
     }
 }
@@ -18367,7 +18388,7 @@ SphericalSegmentPointSamplingStrategyTypeChoicePair::SphericalSegmentPointSampli
 
 SphericalSegmentPointSamplingStrategyTypeChoicePair::SphericalSegmentPointSamplingStrategyTypeChoicePair(
  whichOne SphericalSegmentPointSamplingStrategyTypeTypeIn,
- SphericalSegmentPointSamplingStrategyTypeVal SphericalSegmentPointSamplingStrategyTypeValueIn)
+ SphericalSegmentPointSamplingStrategyTypeVal * SphericalSegmentPointSamplingStrategyTypeValueIn)
 {
   SphericalSegmentPointSamplingStrategyTypeType = SphericalSegmentPointSamplingStrategyTypeTypeIn;
   SphericalSegmentPointSamplingStrategyTypeValue = SphericalSegmentPointSamplingStrategyTypeValueIn;
@@ -18377,9 +18398,10 @@ SphericalSegmentPointSamplingStrategyTypeChoicePair::~SphericalSegmentPointSampl
 {
   #ifndef NODESTRUCT
   if (SphericalSegmentPointSamplingStrategyTypeType == PointSamplingStrategyEnumE)
-    delete SphericalSegmentPointSamplingStrategyTypeValue.PointSamplingStrategyEnum;
+    delete SphericalSegmentPointSamplingStrategyTypeValue->PointSamplingStrategyEnum;
   else if (SphericalSegmentPointSamplingStrategyTypeType == UserDefinedStrategyE)
-    delete SphericalSegmentPointSamplingStrategyTypeValue.UserDefinedStrategy;
+    delete SphericalSegmentPointSamplingStrategyTypeValue->UserDefinedStrategy;
+  delete SphericalSegmentPointSamplingStrategyTypeValue;
   #endif
 }
 
@@ -18389,14 +18411,14 @@ void SphericalSegmentPointSamplingStrategyTypeChoicePair::printSelf(FILE * outFi
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<PointSamplingStrategyEnum");
-      SphericalSegmentPointSamplingStrategyTypeValue.PointSamplingStrategyEnum->printSelf(outFile);
+      SphericalSegmentPointSamplingStrategyTypeValue->PointSamplingStrategyEnum->printSelf(outFile);
       fprintf(outFile, "</PointSamplingStrategyEnum>\n");
     }
   else if (SphericalSegmentPointSamplingStrategyTypeType == UserDefinedStrategyE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<UserDefinedStrategy");
-      SphericalSegmentPointSamplingStrategyTypeValue.UserDefinedStrategy->printSelf(outFile);
+      SphericalSegmentPointSamplingStrategyTypeValue->UserDefinedStrategy->printSelf(outFile);
       fprintf(outFile, "</UserDefinedStrategy>\n");
     }
 }
@@ -18442,7 +18464,7 @@ SurfaceOfRevolutionPointSamplingStrategyTypeChoicePair::SurfaceOfRevolutionPoint
 
 SurfaceOfRevolutionPointSamplingStrategyTypeChoicePair::SurfaceOfRevolutionPointSamplingStrategyTypeChoicePair(
  whichOne SurfaceOfRevolutionPointSamplingStrategyTypeTypeIn,
- SurfaceOfRevolutionPointSamplingStrategyTypeVal SurfaceOfRevolutionPointSamplingStrategyTypeValueIn)
+ SurfaceOfRevolutionPointSamplingStrategyTypeVal * SurfaceOfRevolutionPointSamplingStrategyTypeValueIn)
 {
   SurfaceOfRevolutionPointSamplingStrategyTypeType = SurfaceOfRevolutionPointSamplingStrategyTypeTypeIn;
   SurfaceOfRevolutionPointSamplingStrategyTypeValue = SurfaceOfRevolutionPointSamplingStrategyTypeValueIn;
@@ -18452,9 +18474,10 @@ SurfaceOfRevolutionPointSamplingStrategyTypeChoicePair::~SurfaceOfRevolutionPoin
 {
   #ifndef NODESTRUCT
   if (SurfaceOfRevolutionPointSamplingStrategyTypeType == PointSamplingStrategyEnumE)
-    delete SurfaceOfRevolutionPointSamplingStrategyTypeValue.PointSamplingStrategyEnum;
+    delete SurfaceOfRevolutionPointSamplingStrategyTypeValue->PointSamplingStrategyEnum;
   else if (SurfaceOfRevolutionPointSamplingStrategyTypeType == UserDefinedStrategyE)
-    delete SurfaceOfRevolutionPointSamplingStrategyTypeValue.UserDefinedStrategy;
+    delete SurfaceOfRevolutionPointSamplingStrategyTypeValue->UserDefinedStrategy;
+  delete SurfaceOfRevolutionPointSamplingStrategyTypeValue;
   #endif
 }
 
@@ -18464,14 +18487,14 @@ void SurfaceOfRevolutionPointSamplingStrategyTypeChoicePair::printSelf(FILE * ou
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<PointSamplingStrategyEnum");
-      SurfaceOfRevolutionPointSamplingStrategyTypeValue.PointSamplingStrategyEnum->printSelf(outFile);
+      SurfaceOfRevolutionPointSamplingStrategyTypeValue->PointSamplingStrategyEnum->printSelf(outFile);
       fprintf(outFile, "</PointSamplingStrategyEnum>\n");
     }
   else if (SurfaceOfRevolutionPointSamplingStrategyTypeType == UserDefinedStrategyE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<UserDefinedStrategy");
-      SurfaceOfRevolutionPointSamplingStrategyTypeValue.UserDefinedStrategy->printSelf(outFile);
+      SurfaceOfRevolutionPointSamplingStrategyTypeValue->UserDefinedStrategy->printSelf(outFile);
       fprintf(outFile, "</UserDefinedStrategy>\n");
     }
 }
@@ -18520,7 +18543,7 @@ ThenPointsTypeChoicePair::ThenPointsTypeChoicePair() {}
 
 ThenPointsTypeChoicePair::ThenPointsTypeChoicePair(
  whichOne ThenPointsTypeTypeIn,
- ThenPointsTypeVal ThenPointsTypeValueIn)
+ ThenPointsTypeVal * ThenPointsTypeValueIn)
 {
   ThenPointsTypeType = ThenPointsTypeTypeIn;
   ThenPointsTypeValue = ThenPointsTypeValueIn;
@@ -18530,13 +18553,14 @@ ThenPointsTypeChoicePair::~ThenPointsTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (ThenPointsTypeType == NumberOfPointsE)
-    delete ThenPointsTypeValue.NumberOfPoints;
+    delete ThenPointsTypeValue->NumberOfPoints;
   else if (ThenPointsTypeType == MinPointsE)
-    delete ThenPointsTypeValue.MinPoints;
+    delete ThenPointsTypeValue->MinPoints;
   else if (ThenPointsTypeType == PointDensityE)
-    delete ThenPointsTypeValue.PointDensity;
+    delete ThenPointsTypeValue->PointDensity;
   else if (ThenPointsTypeType == MinPointDensityE)
-    delete ThenPointsTypeValue.MinPointDensity;
+    delete ThenPointsTypeValue->MinPointDensity;
+  delete ThenPointsTypeValue;
   #endif
 }
 
@@ -18546,28 +18570,28 @@ void ThenPointsTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<NumberOfPoints");
-      ThenPointsTypeValue.NumberOfPoints->printSelf(outFile);
+      ThenPointsTypeValue->NumberOfPoints->printSelf(outFile);
       fprintf(outFile, "</NumberOfPoints>\n");
     }
   else if (ThenPointsTypeType == MinPointsE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinPoints");
-      ThenPointsTypeValue.MinPoints->printSelf(outFile);
+      ThenPointsTypeValue->MinPoints->printSelf(outFile);
       fprintf(outFile, "</MinPoints>\n");
     }
   else if (ThenPointsTypeType == PointDensityE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<PointDensity");
-      ThenPointsTypeValue.PointDensity->printSelf(outFile);
+      ThenPointsTypeValue->PointDensity->printSelf(outFile);
       fprintf(outFile, "</PointDensity>\n");
     }
   else if (ThenPointsTypeType == MinPointDensityE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinPointDensity");
-      ThenPointsTypeValue.MinPointDensity->printSelf(outFile);
+      ThenPointsTypeValue->MinPointDensity->printSelf(outFile);
       fprintf(outFile, "</MinPointDensity>\n");
     }
 }
@@ -18613,7 +18637,7 @@ ToroidalSegmentPointSamplingStrategyTypeChoicePair::ToroidalSegmentPointSampling
 
 ToroidalSegmentPointSamplingStrategyTypeChoicePair::ToroidalSegmentPointSamplingStrategyTypeChoicePair(
  whichOne ToroidalSegmentPointSamplingStrategyTypeTypeIn,
- ToroidalSegmentPointSamplingStrategyTypeVal ToroidalSegmentPointSamplingStrategyTypeValueIn)
+ ToroidalSegmentPointSamplingStrategyTypeVal * ToroidalSegmentPointSamplingStrategyTypeValueIn)
 {
   ToroidalSegmentPointSamplingStrategyTypeType = ToroidalSegmentPointSamplingStrategyTypeTypeIn;
   ToroidalSegmentPointSamplingStrategyTypeValue = ToroidalSegmentPointSamplingStrategyTypeValueIn;
@@ -18623,9 +18647,10 @@ ToroidalSegmentPointSamplingStrategyTypeChoicePair::~ToroidalSegmentPointSamplin
 {
   #ifndef NODESTRUCT
   if (ToroidalSegmentPointSamplingStrategyTypeType == PointSamplingStrategyEnumE)
-    delete ToroidalSegmentPointSamplingStrategyTypeValue.PointSamplingStrategyEnum;
+    delete ToroidalSegmentPointSamplingStrategyTypeValue->PointSamplingStrategyEnum;
   else if (ToroidalSegmentPointSamplingStrategyTypeType == UserDefinedStrategyE)
-    delete ToroidalSegmentPointSamplingStrategyTypeValue.UserDefinedStrategy;
+    delete ToroidalSegmentPointSamplingStrategyTypeValue->UserDefinedStrategy;
+  delete ToroidalSegmentPointSamplingStrategyTypeValue;
   #endif
 }
 
@@ -18635,14 +18660,14 @@ void ToroidalSegmentPointSamplingStrategyTypeChoicePair::printSelf(FILE * outFil
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<PointSamplingStrategyEnum");
-      ToroidalSegmentPointSamplingStrategyTypeValue.PointSamplingStrategyEnum->printSelf(outFile);
+      ToroidalSegmentPointSamplingStrategyTypeValue->PointSamplingStrategyEnum->printSelf(outFile);
       fprintf(outFile, "</PointSamplingStrategyEnum>\n");
     }
   else if (ToroidalSegmentPointSamplingStrategyTypeType == UserDefinedStrategyE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<UserDefinedStrategy");
-      ToroidalSegmentPointSamplingStrategyTypeValue.UserDefinedStrategy->printSelf(outFile);
+      ToroidalSegmentPointSamplingStrategyTypeValue->UserDefinedStrategy->printSelf(outFile);
       fprintf(outFile, "</UserDefinedStrategy>\n");
     }
 }
@@ -18688,7 +18713,7 @@ TorusPointSamplingStrategyTypeChoicePair::TorusPointSamplingStrategyTypeChoicePa
 
 TorusPointSamplingStrategyTypeChoicePair::TorusPointSamplingStrategyTypeChoicePair(
  whichOne TorusPointSamplingStrategyTypeTypeIn,
- TorusPointSamplingStrategyTypeVal TorusPointSamplingStrategyTypeValueIn)
+ TorusPointSamplingStrategyTypeVal * TorusPointSamplingStrategyTypeValueIn)
 {
   TorusPointSamplingStrategyTypeType = TorusPointSamplingStrategyTypeTypeIn;
   TorusPointSamplingStrategyTypeValue = TorusPointSamplingStrategyTypeValueIn;
@@ -18698,9 +18723,10 @@ TorusPointSamplingStrategyTypeChoicePair::~TorusPointSamplingStrategyTypeChoiceP
 {
   #ifndef NODESTRUCT
   if (TorusPointSamplingStrategyTypeType == PointSamplingStrategyEnumE)
-    delete TorusPointSamplingStrategyTypeValue.PointSamplingStrategyEnum;
+    delete TorusPointSamplingStrategyTypeValue->PointSamplingStrategyEnum;
   else if (TorusPointSamplingStrategyTypeType == UserDefinedStrategyE)
-    delete TorusPointSamplingStrategyTypeValue.UserDefinedStrategy;
+    delete TorusPointSamplingStrategyTypeValue->UserDefinedStrategy;
+  delete TorusPointSamplingStrategyTypeValue;
   #endif
 }
 
@@ -18710,14 +18736,14 @@ void TorusPointSamplingStrategyTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<PointSamplingStrategyEnum");
-      TorusPointSamplingStrategyTypeValue.PointSamplingStrategyEnum->printSelf(outFile);
+      TorusPointSamplingStrategyTypeValue->PointSamplingStrategyEnum->printSelf(outFile);
       fprintf(outFile, "</PointSamplingStrategyEnum>\n");
     }
   else if (TorusPointSamplingStrategyTypeType == UserDefinedStrategyE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<UserDefinedStrategy");
-      TorusPointSamplingStrategyTypeValue.UserDefinedStrategy->printSelf(outFile);
+      TorusPointSamplingStrategyTypeValue->UserDefinedStrategy->printSelf(outFile);
       fprintf(outFile, "</UserDefinedStrategy>\n");
     }
 }

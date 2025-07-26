@@ -1582,7 +1582,7 @@ CapabilityStudyPlanTypeChoicePair::CapabilityStudyPlanTypeChoicePair() {}
 
 CapabilityStudyPlanTypeChoicePair::CapabilityStudyPlanTypeChoicePair(
  whichOne CapabilityStudyPlanTypeTypeIn,
- CapabilityStudyPlanTypeVal CapabilityStudyPlanTypeValueIn)
+ CapabilityStudyPlanTypeVal * CapabilityStudyPlanTypeValueIn)
 {
   CapabilityStudyPlanTypeType = CapabilityStudyPlanTypeTypeIn;
   CapabilityStudyPlanTypeValue = CapabilityStudyPlanTypeValueIn;
@@ -1592,9 +1592,10 @@ CapabilityStudyPlanTypeChoicePair::~CapabilityStudyPlanTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (CapabilityStudyPlanTypeType == CpkThresholdE)
-    delete CapabilityStudyPlanTypeValue.CpkThreshold;
+    delete CapabilityStudyPlanTypeValue->CpkThreshold;
   else if (CapabilityStudyPlanTypeType == PpkThresholdE)
-    delete CapabilityStudyPlanTypeValue.PpkThreshold;
+    delete CapabilityStudyPlanTypeValue->PpkThreshold;
+  delete CapabilityStudyPlanTypeValue;
   #endif
 }
 
@@ -1604,7 +1605,7 @@ void CapabilityStudyPlanTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<CpkThreshold");
-      CapabilityStudyPlanTypeValue.CpkThreshold->printSelf(outFile);
+      CapabilityStudyPlanTypeValue->CpkThreshold->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</CpkThreshold>\n");
     }
@@ -1612,7 +1613,7 @@ void CapabilityStudyPlanTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<PpkThreshold");
-      CapabilityStudyPlanTypeValue.PpkThreshold->printSelf(outFile);
+      CapabilityStudyPlanTypeValue->PpkThreshold->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</PpkThreshold>\n");
     }
@@ -10935,7 +10936,7 @@ ControlMethodTy_1159_TypeChoicePair::ControlMethodTy_1159_TypeChoicePair() {}
 
 ControlMethodTy_1159_TypeChoicePair::ControlMethodTy_1159_TypeChoicePair(
  whichOne ControlMethodTy_1159_TypeTypeIn,
- ControlMethodTy_1159_TypeVal ControlMethodTy_1159_TypeValueIn)
+ ControlMethodTy_1159_TypeVal * ControlMethodTy_1159_TypeValueIn)
 {
   ControlMethodTy_1159_TypeType = ControlMethodTy_1159_TypeTypeIn;
   ControlMethodTy_1159_TypeValue = ControlMethodTy_1159_TypeValueIn;
@@ -10945,31 +10946,32 @@ ControlMethodTy_1159_TypeChoicePair::~ControlMethodTy_1159_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (ControlMethodTy_1159_TypeType == NumOutOfToleranceE)
-    delete ControlMethodTy_1159_TypeValue.NumOutOfTolerance;
+    delete ControlMethodTy_1159_TypeValue->NumOutOfTolerance;
   else if (ControlMethodTy_1159_TypeType == CpThresholdE)
-    delete ControlMethodTy_1159_TypeValue.CpThreshold;
+    delete ControlMethodTy_1159_TypeValue->CpThreshold;
   else if (ControlMethodTy_1159_TypeType == CpkThresholdE)
-    delete ControlMethodTy_1159_TypeValue.CpkThreshold;
+    delete ControlMethodTy_1159_TypeValue->CpkThreshold;
   else if (ControlMethodTy_1159_TypeType == PpThresholdE)
-    delete ControlMethodTy_1159_TypeValue.PpThreshold;
+    delete ControlMethodTy_1159_TypeValue->PpThreshold;
   else if (ControlMethodTy_1159_TypeType == PpkThresholdE)
-    delete ControlMethodTy_1159_TypeValue.PpkThreshold;
+    delete ControlMethodTy_1159_TypeValue->PpkThreshold;
   else if (ControlMethodTy_1159_TypeType == NumOutOfControlE)
-    delete ControlMethodTy_1159_TypeValue.NumOutOfControl;
+    delete ControlMethodTy_1159_TypeValue->NumOutOfControl;
   else if (ControlMethodTy_1159_TypeType == TrendGroupingE)
-    delete ControlMethodTy_1159_TypeValue.TrendGrouping;
+    delete ControlMethodTy_1159_TypeValue->TrendGrouping;
   else if (ControlMethodTy_1159_TypeType == SkewGroupingE)
-    delete ControlMethodTy_1159_TypeValue.SkewGrouping;
+    delete ControlMethodTy_1159_TypeValue->SkewGrouping;
   else if (ControlMethodTy_1159_TypeType == OneThirdGroupingE)
-    delete ControlMethodTy_1159_TypeValue.OneThirdGrouping;
+    delete ControlMethodTy_1159_TypeValue->OneThirdGrouping;
   else if (ControlMethodTy_1159_TypeType == TwoThirdsGroupingE)
-    delete ControlMethodTy_1159_TypeValue.TwoThirdsGrouping;
+    delete ControlMethodTy_1159_TypeValue->TwoThirdsGrouping;
   else if (ControlMethodTy_1159_TypeType == OscillationE)
-    delete ControlMethodTy_1159_TypeValue.Oscillation;
+    delete ControlMethodTy_1159_TypeValue->Oscillation;
   else if (ControlMethodTy_1159_TypeType == StratificationE)
-    delete ControlMethodTy_1159_TypeValue.Stratification;
+    delete ControlMethodTy_1159_TypeValue->Stratification;
   else if (ControlMethodTy_1159_TypeType == NumOutOfControlRngE)
-    delete ControlMethodTy_1159_TypeValue.NumOutOfControlRng;
+    delete ControlMethodTy_1159_TypeValue->NumOutOfControlRng;
+  delete ControlMethodTy_1159_TypeValue;
   #endif
 }
 
@@ -10979,7 +10981,7 @@ void ControlMethodTy_1159_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<NumOutOfTolerance");
-      ControlMethodTy_1159_TypeValue.NumOutOfTolerance->printSelf(outFile);
+      ControlMethodTy_1159_TypeValue->NumOutOfTolerance->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</NumOutOfTolerance>\n");
     }
@@ -10987,7 +10989,7 @@ void ControlMethodTy_1159_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<CpThreshold");
-      ControlMethodTy_1159_TypeValue.CpThreshold->printSelf(outFile);
+      ControlMethodTy_1159_TypeValue->CpThreshold->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</CpThreshold>\n");
     }
@@ -10995,7 +10997,7 @@ void ControlMethodTy_1159_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<CpkThreshold");
-      ControlMethodTy_1159_TypeValue.CpkThreshold->printSelf(outFile);
+      ControlMethodTy_1159_TypeValue->CpkThreshold->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</CpkThreshold>\n");
     }
@@ -11003,7 +11005,7 @@ void ControlMethodTy_1159_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<PpThreshold");
-      ControlMethodTy_1159_TypeValue.PpThreshold->printSelf(outFile);
+      ControlMethodTy_1159_TypeValue->PpThreshold->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</PpThreshold>\n");
     }
@@ -11011,7 +11013,7 @@ void ControlMethodTy_1159_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<PpkThreshold");
-      ControlMethodTy_1159_TypeValue.PpkThreshold->printSelf(outFile);
+      ControlMethodTy_1159_TypeValue->PpkThreshold->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</PpkThreshold>\n");
     }
@@ -11019,7 +11021,7 @@ void ControlMethodTy_1159_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<NumOutOfControl");
-      ControlMethodTy_1159_TypeValue.NumOutOfControl->printSelf(outFile);
+      ControlMethodTy_1159_TypeValue->NumOutOfControl->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</NumOutOfControl>\n");
     }
@@ -11027,7 +11029,7 @@ void ControlMethodTy_1159_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<TrendGrouping");
-      ControlMethodTy_1159_TypeValue.TrendGrouping->printSelf(outFile);
+      ControlMethodTy_1159_TypeValue->TrendGrouping->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</TrendGrouping>\n");
     }
@@ -11035,7 +11037,7 @@ void ControlMethodTy_1159_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<SkewGrouping");
-      ControlMethodTy_1159_TypeValue.SkewGrouping->printSelf(outFile);
+      ControlMethodTy_1159_TypeValue->SkewGrouping->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</SkewGrouping>\n");
     }
@@ -11043,7 +11045,7 @@ void ControlMethodTy_1159_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<OneThirdGrouping");
-      ControlMethodTy_1159_TypeValue.OneThirdGrouping->printSelf(outFile);
+      ControlMethodTy_1159_TypeValue->OneThirdGrouping->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</OneThirdGrouping>\n");
     }
@@ -11051,7 +11053,7 @@ void ControlMethodTy_1159_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<TwoThirdsGrouping");
-      ControlMethodTy_1159_TypeValue.TwoThirdsGrouping->printSelf(outFile);
+      ControlMethodTy_1159_TypeValue->TwoThirdsGrouping->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</TwoThirdsGrouping>\n");
     }
@@ -11059,7 +11061,7 @@ void ControlMethodTy_1159_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Oscillation");
-      ControlMethodTy_1159_TypeValue.Oscillation->printSelf(outFile);
+      ControlMethodTy_1159_TypeValue->Oscillation->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Oscillation>\n");
     }
@@ -11067,7 +11069,7 @@ void ControlMethodTy_1159_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Stratification");
-      ControlMethodTy_1159_TypeValue.Stratification->printSelf(outFile);
+      ControlMethodTy_1159_TypeValue->Stratification->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Stratification>\n");
     }
@@ -11075,7 +11077,7 @@ void ControlMethodTy_1159_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<NumOutOfControlRng");
-      ControlMethodTy_1159_TypeValue.NumOutOfControlRng->printSelf(outFile);
+      ControlMethodTy_1159_TypeValue->NumOutOfControlRng->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</NumOutOfControlRng>\n");
     }
@@ -11119,7 +11121,7 @@ FirstArticleStu_1160_TypeChoicePair::FirstArticleStu_1160_TypeChoicePair() {}
 
 FirstArticleStu_1160_TypeChoicePair::FirstArticleStu_1160_TypeChoicePair(
  whichOne FirstArticleStu_1160_TypeTypeIn,
- FirstArticleStu_1160_TypeVal FirstArticleStu_1160_TypeValueIn)
+ FirstArticleStu_1160_TypeVal * FirstArticleStu_1160_TypeValueIn)
 {
   FirstArticleStu_1160_TypeType = FirstArticleStu_1160_TypeTypeIn;
   FirstArticleStu_1160_TypeValue = FirstArticleStu_1160_TypeValueIn;
@@ -11129,9 +11131,10 @@ FirstArticleStu_1160_TypeChoicePair::~FirstArticleStu_1160_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (FirstArticleStu_1160_TypeType == AbsoluteMaximumsE)
-    delete FirstArticleStu_1160_TypeValue.AbsoluteMaximums;
+    delete FirstArticleStu_1160_TypeValue->AbsoluteMaximums;
   else if (FirstArticleStu_1160_TypeType == RelativeMaximumE)
-    delete FirstArticleStu_1160_TypeValue.RelativeMaximum;
+    delete FirstArticleStu_1160_TypeValue->RelativeMaximum;
+  delete FirstArticleStu_1160_TypeValue;
   #endif
 }
 
@@ -11141,7 +11144,7 @@ void FirstArticleStu_1160_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<AbsoluteMaximums");
-      FirstArticleStu_1160_TypeValue.AbsoluteMaximums->printSelf(outFile);
+      FirstArticleStu_1160_TypeValue->AbsoluteMaximums->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</AbsoluteMaximums>\n");
     }
@@ -11149,7 +11152,7 @@ void FirstArticleStu_1160_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<RelativeMaximum");
-      FirstArticleStu_1160_TypeValue.RelativeMaximum->printSelf(outFile);
+      FirstArticleStu_1160_TypeValue->RelativeMaximum->printSelf(outFile);
       fprintf(outFile, "</RelativeMaximum>\n");
     }
 }
@@ -11195,7 +11198,7 @@ GageRandRStudyP_1161_TypeChoicePair::GageRandRStudyP_1161_TypeChoicePair() {}
 
 GageRandRStudyP_1161_TypeChoicePair::GageRandRStudyP_1161_TypeChoicePair(
  whichOne GageRandRStudyP_1161_TypeTypeIn,
- GageRandRStudyP_1161_TypeVal GageRandRStudyP_1161_TypeValueIn)
+ GageRandRStudyP_1161_TypeVal * GageRandRStudyP_1161_TypeValueIn)
 {
   GageRandRStudyP_1161_TypeType = GageRandRStudyP_1161_TypeTypeIn;
   GageRandRStudyP_1161_TypeValue = GageRandRStudyP_1161_TypeValueIn;
@@ -11205,9 +11208,10 @@ GageRandRStudyP_1161_TypeChoicePair::~GageRandRStudyP_1161_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (GageRandRStudyP_1161_TypeType == MaximumRelativeAppraiserVariationE)
-    delete GageRandRStudyP_1161_TypeValue.MaximumRelativeAppraiserVariation;
+    delete GageRandRStudyP_1161_TypeValue->MaximumRelativeAppraiserVariation;
   else if (GageRandRStudyP_1161_TypeType == MaximumAbsoluteAppraiserVariationE)
-    delete GageRandRStudyP_1161_TypeValue.MaximumAbsoluteAppraiserVariation;
+    delete GageRandRStudyP_1161_TypeValue->MaximumAbsoluteAppraiserVariation;
+  delete GageRandRStudyP_1161_TypeValue;
   #endif
 }
 
@@ -11217,7 +11221,7 @@ void GageRandRStudyP_1161_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MaximumRelativeAppraiserVariation");
-      GageRandRStudyP_1161_TypeValue.MaximumRelativeAppraiserVariation->printSelf(outFile);
+      GageRandRStudyP_1161_TypeValue->MaximumRelativeAppraiserVariation->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</MaximumRelativeAppraiserVariation>\n");
     }
@@ -11225,7 +11229,7 @@ void GageRandRStudyP_1161_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MaximumAbsoluteAppraiserVariation");
-      GageRandRStudyP_1161_TypeValue.MaximumAbsoluteAppraiserVariation->printSelf(outFile);
+      GageRandRStudyP_1161_TypeValue->MaximumAbsoluteAppraiserVariation->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</MaximumAbsoluteAppraiserVariation>\n");
     }
@@ -11272,7 +11276,7 @@ GageRandRStudyP_1162_TypeChoicePair::GageRandRStudyP_1162_TypeChoicePair() {}
 
 GageRandRStudyP_1162_TypeChoicePair::GageRandRStudyP_1162_TypeChoicePair(
  whichOne GageRandRStudyP_1162_TypeTypeIn,
- GageRandRStudyP_1162_TypeVal GageRandRStudyP_1162_TypeValueIn)
+ GageRandRStudyP_1162_TypeVal * GageRandRStudyP_1162_TypeValueIn)
 {
   GageRandRStudyP_1162_TypeType = GageRandRStudyP_1162_TypeTypeIn;
   GageRandRStudyP_1162_TypeValue = GageRandRStudyP_1162_TypeValueIn;
@@ -11282,9 +11286,10 @@ GageRandRStudyP_1162_TypeChoicePair::~GageRandRStudyP_1162_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (GageRandRStudyP_1162_TypeType == MaximumRelativeEquipmentVariationE)
-    delete GageRandRStudyP_1162_TypeValue.MaximumRelativeEquipmentVariation;
+    delete GageRandRStudyP_1162_TypeValue->MaximumRelativeEquipmentVariation;
   else if (GageRandRStudyP_1162_TypeType == MaximumAbsoluteEquipmentVariationE)
-    delete GageRandRStudyP_1162_TypeValue.MaximumAbsoluteEquipmentVariation;
+    delete GageRandRStudyP_1162_TypeValue->MaximumAbsoluteEquipmentVariation;
+  delete GageRandRStudyP_1162_TypeValue;
   #endif
 }
 
@@ -11294,7 +11299,7 @@ void GageRandRStudyP_1162_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MaximumRelativeEquipmentVariation");
-      GageRandRStudyP_1162_TypeValue.MaximumRelativeEquipmentVariation->printSelf(outFile);
+      GageRandRStudyP_1162_TypeValue->MaximumRelativeEquipmentVariation->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</MaximumRelativeEquipmentVariation>\n");
     }
@@ -11302,7 +11307,7 @@ void GageRandRStudyP_1162_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MaximumAbsoluteEquipmentVariation");
-      GageRandRStudyP_1162_TypeValue.MaximumAbsoluteEquipmentVariation->printSelf(outFile);
+      GageRandRStudyP_1162_TypeValue->MaximumAbsoluteEquipmentVariation->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</MaximumAbsoluteEquipmentVariation>\n");
     }
@@ -11349,7 +11354,7 @@ GageRandRStudyP_1163_TypeChoicePair::GageRandRStudyP_1163_TypeChoicePair() {}
 
 GageRandRStudyP_1163_TypeChoicePair::GageRandRStudyP_1163_TypeChoicePair(
  whichOne GageRandRStudyP_1163_TypeTypeIn,
- GageRandRStudyP_1163_TypeVal GageRandRStudyP_1163_TypeValueIn)
+ GageRandRStudyP_1163_TypeVal * GageRandRStudyP_1163_TypeValueIn)
 {
   GageRandRStudyP_1163_TypeType = GageRandRStudyP_1163_TypeTypeIn;
   GageRandRStudyP_1163_TypeValue = GageRandRStudyP_1163_TypeValueIn;
@@ -11359,9 +11364,10 @@ GageRandRStudyP_1163_TypeChoicePair::~GageRandRStudyP_1163_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (GageRandRStudyP_1163_TypeType == MaximumRelativeTotalRandRE)
-    delete GageRandRStudyP_1163_TypeValue.MaximumRelativeTotalRandR;
+    delete GageRandRStudyP_1163_TypeValue->MaximumRelativeTotalRandR;
   else if (GageRandRStudyP_1163_TypeType == MaximumAbsoluteTotalRandRE)
-    delete GageRandRStudyP_1163_TypeValue.MaximumAbsoluteTotalRandR;
+    delete GageRandRStudyP_1163_TypeValue->MaximumAbsoluteTotalRandR;
+  delete GageRandRStudyP_1163_TypeValue;
   #endif
 }
 
@@ -11371,7 +11377,7 @@ void GageRandRStudyP_1163_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MaximumRelativeTotalRandR");
-      GageRandRStudyP_1163_TypeValue.MaximumRelativeTotalRandR->printSelf(outFile);
+      GageRandRStudyP_1163_TypeValue->MaximumRelativeTotalRandR->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</MaximumRelativeTotalRandR>\n");
     }
@@ -11379,7 +11385,7 @@ void GageRandRStudyP_1163_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MaximumAbsoluteTotalRandR");
-      GageRandRStudyP_1163_TypeValue.MaximumAbsoluteTotalRandR->printSelf(outFile);
+      GageRandRStudyP_1163_TypeValue->MaximumAbsoluteTotalRandR->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</MaximumAbsoluteTotalRandR>\n");
     }
@@ -11423,7 +11429,7 @@ LinearityStudyP_1164_TypeChoicePair::LinearityStudyP_1164_TypeChoicePair() {}
 
 LinearityStudyP_1164_TypeChoicePair::LinearityStudyP_1164_TypeChoicePair(
  whichOne LinearityStudyP_1164_TypeTypeIn,
- LinearityStudyP_1164_TypeVal LinearityStudyP_1164_TypeValueIn)
+ LinearityStudyP_1164_TypeVal * LinearityStudyP_1164_TypeValueIn)
 {
   LinearityStudyP_1164_TypeType = LinearityStudyP_1164_TypeTypeIn;
   LinearityStudyP_1164_TypeValue = LinearityStudyP_1164_TypeValueIn;
@@ -11433,9 +11439,10 @@ LinearityStudyP_1164_TypeChoicePair::~LinearityStudyP_1164_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (LinearityStudyP_1164_TypeType == AbsoluteMinimumsE)
-    delete LinearityStudyP_1164_TypeValue.AbsoluteMinimums;
+    delete LinearityStudyP_1164_TypeValue->AbsoluteMinimums;
   else if (LinearityStudyP_1164_TypeType == RelativeLinearityMinimumE)
-    delete LinearityStudyP_1164_TypeValue.RelativeLinearityMinimum;
+    delete LinearityStudyP_1164_TypeValue->RelativeLinearityMinimum;
+  delete LinearityStudyP_1164_TypeValue;
   #endif
 }
 
@@ -11445,7 +11452,7 @@ void LinearityStudyP_1164_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<AbsoluteMinimums");
-      LinearityStudyP_1164_TypeValue.AbsoluteMinimums->printSelf(outFile);
+      LinearityStudyP_1164_TypeValue->AbsoluteMinimums->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</AbsoluteMinimums>\n");
     }
@@ -11453,7 +11460,7 @@ void LinearityStudyP_1164_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<RelativeLinearityMinimum");
-      LinearityStudyP_1164_TypeValue.RelativeLinearityMinimum->printSelf(outFile);
+      LinearityStudyP_1164_TypeValue->RelativeLinearityMinimum->printSelf(outFile);
       fprintf(outFile, "</RelativeLinearityMinimum>\n");
     }
 }
@@ -11499,7 +11506,7 @@ LinearityStudyR_1165_TypeChoicePair::LinearityStudyR_1165_TypeChoicePair() {}
 
 LinearityStudyR_1165_TypeChoicePair::LinearityStudyR_1165_TypeChoicePair(
  whichOne LinearityStudyR_1165_TypeTypeIn,
- LinearityStudyR_1165_TypeVal LinearityStudyR_1165_TypeValueIn)
+ LinearityStudyR_1165_TypeVal * LinearityStudyR_1165_TypeValueIn)
 {
   LinearityStudyR_1165_TypeType = LinearityStudyR_1165_TypeTypeIn;
   LinearityStudyR_1165_TypeValue = LinearityStudyR_1165_TypeValueIn;
@@ -11509,25 +11516,26 @@ LinearityStudyR_1165_TypeChoicePair::~LinearityStudyR_1165_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (LinearityStudyR_1165_TypeType == LinearAbsoluteLinearityE)
-    delete LinearityStudyR_1165_TypeValue.LinearAbsoluteLinearity;
+    delete LinearityStudyR_1165_TypeValue->LinearAbsoluteLinearity;
   else if (LinearityStudyR_1165_TypeType == AngularAbsoluteLinearityE)
-    delete LinearityStudyR_1165_TypeValue.AngularAbsoluteLinearity;
+    delete LinearityStudyR_1165_TypeValue->AngularAbsoluteLinearity;
   else if (LinearityStudyR_1165_TypeType == AreaAbsoluteLinearityE)
-    delete LinearityStudyR_1165_TypeValue.AreaAbsoluteLinearity;
+    delete LinearityStudyR_1165_TypeValue->AreaAbsoluteLinearity;
   else if (LinearityStudyR_1165_TypeType == ForceAbsoluteLinearityE)
-    delete LinearityStudyR_1165_TypeValue.ForceAbsoluteLinearity;
+    delete LinearityStudyR_1165_TypeValue->ForceAbsoluteLinearity;
   else if (LinearityStudyR_1165_TypeType == MassAbsoluteLinearityE)
-    delete LinearityStudyR_1165_TypeValue.MassAbsoluteLinearity;
+    delete LinearityStudyR_1165_TypeValue->MassAbsoluteLinearity;
   else if (LinearityStudyR_1165_TypeType == PressureAbsoluteLinearityE)
-    delete LinearityStudyR_1165_TypeValue.PressureAbsoluteLinearity;
+    delete LinearityStudyR_1165_TypeValue->PressureAbsoluteLinearity;
   else if (LinearityStudyR_1165_TypeType == SpeedAbsoluteLinearityE)
-    delete LinearityStudyR_1165_TypeValue.SpeedAbsoluteLinearity;
+    delete LinearityStudyR_1165_TypeValue->SpeedAbsoluteLinearity;
   else if (LinearityStudyR_1165_TypeType == TemperatureAbsoluteLinearityE)
-    delete LinearityStudyR_1165_TypeValue.TemperatureAbsoluteLinearity;
+    delete LinearityStudyR_1165_TypeValue->TemperatureAbsoluteLinearity;
   else if (LinearityStudyR_1165_TypeType == TimeAbsoluteLinearityE)
-    delete LinearityStudyR_1165_TypeValue.TimeAbsoluteLinearity;
+    delete LinearityStudyR_1165_TypeValue->TimeAbsoluteLinearity;
   else if (LinearityStudyR_1165_TypeType == UserDefinedUnitAbsoluteLinearityE)
-    delete LinearityStudyR_1165_TypeValue.UserDefinedUnitAbsoluteLinearity;
+    delete LinearityStudyR_1165_TypeValue->UserDefinedUnitAbsoluteLinearity;
+  delete LinearityStudyR_1165_TypeValue;
   #endif
 }
 
@@ -11537,70 +11545,70 @@ void LinearityStudyR_1165_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<LinearAbsoluteLinearity");
-      LinearityStudyR_1165_TypeValue.LinearAbsoluteLinearity->printSelf(outFile);
+      LinearityStudyR_1165_TypeValue->LinearAbsoluteLinearity->printSelf(outFile);
       fprintf(outFile, "</LinearAbsoluteLinearity>\n");
     }
   else if (LinearityStudyR_1165_TypeType == AngularAbsoluteLinearityE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<AngularAbsoluteLinearity");
-      LinearityStudyR_1165_TypeValue.AngularAbsoluteLinearity->printSelf(outFile);
+      LinearityStudyR_1165_TypeValue->AngularAbsoluteLinearity->printSelf(outFile);
       fprintf(outFile, "</AngularAbsoluteLinearity>\n");
     }
   else if (LinearityStudyR_1165_TypeType == AreaAbsoluteLinearityE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<AreaAbsoluteLinearity");
-      LinearityStudyR_1165_TypeValue.AreaAbsoluteLinearity->printSelf(outFile);
+      LinearityStudyR_1165_TypeValue->AreaAbsoluteLinearity->printSelf(outFile);
       fprintf(outFile, "</AreaAbsoluteLinearity>\n");
     }
   else if (LinearityStudyR_1165_TypeType == ForceAbsoluteLinearityE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ForceAbsoluteLinearity");
-      LinearityStudyR_1165_TypeValue.ForceAbsoluteLinearity->printSelf(outFile);
+      LinearityStudyR_1165_TypeValue->ForceAbsoluteLinearity->printSelf(outFile);
       fprintf(outFile, "</ForceAbsoluteLinearity>\n");
     }
   else if (LinearityStudyR_1165_TypeType == MassAbsoluteLinearityE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MassAbsoluteLinearity");
-      LinearityStudyR_1165_TypeValue.MassAbsoluteLinearity->printSelf(outFile);
+      LinearityStudyR_1165_TypeValue->MassAbsoluteLinearity->printSelf(outFile);
       fprintf(outFile, "</MassAbsoluteLinearity>\n");
     }
   else if (LinearityStudyR_1165_TypeType == PressureAbsoluteLinearityE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<PressureAbsoluteLinearity");
-      LinearityStudyR_1165_TypeValue.PressureAbsoluteLinearity->printSelf(outFile);
+      LinearityStudyR_1165_TypeValue->PressureAbsoluteLinearity->printSelf(outFile);
       fprintf(outFile, "</PressureAbsoluteLinearity>\n");
     }
   else if (LinearityStudyR_1165_TypeType == SpeedAbsoluteLinearityE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<SpeedAbsoluteLinearity");
-      LinearityStudyR_1165_TypeValue.SpeedAbsoluteLinearity->printSelf(outFile);
+      LinearityStudyR_1165_TypeValue->SpeedAbsoluteLinearity->printSelf(outFile);
       fprintf(outFile, "</SpeedAbsoluteLinearity>\n");
     }
   else if (LinearityStudyR_1165_TypeType == TemperatureAbsoluteLinearityE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<TemperatureAbsoluteLinearity");
-      LinearityStudyR_1165_TypeValue.TemperatureAbsoluteLinearity->printSelf(outFile);
+      LinearityStudyR_1165_TypeValue->TemperatureAbsoluteLinearity->printSelf(outFile);
       fprintf(outFile, "</TemperatureAbsoluteLinearity>\n");
     }
   else if (LinearityStudyR_1165_TypeType == TimeAbsoluteLinearityE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<TimeAbsoluteLinearity");
-      LinearityStudyR_1165_TypeValue.TimeAbsoluteLinearity->printSelf(outFile);
+      LinearityStudyR_1165_TypeValue->TimeAbsoluteLinearity->printSelf(outFile);
       fprintf(outFile, "</TimeAbsoluteLinearity>\n");
     }
   else if (LinearityStudyR_1165_TypeType == UserDefinedUnitAbsoluteLinearityE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<UserDefinedUnitAbsoluteLinearity");
-      LinearityStudyR_1165_TypeValue.UserDefinedUnitAbsoluteLinearity->printSelf(outFile);
+      LinearityStudyR_1165_TypeValue->UserDefinedUnitAbsoluteLinearity->printSelf(outFile);
       fprintf(outFile, "</UserDefinedUnitAbsoluteLinearity>\n");
     }
 }
@@ -11643,7 +11651,7 @@ ProcessDifferen_1166_TypeChoicePair::ProcessDifferen_1166_TypeChoicePair() {}
 
 ProcessDifferen_1166_TypeChoicePair::ProcessDifferen_1166_TypeChoicePair(
  whichOne ProcessDifferen_1166_TypeTypeIn,
- ProcessDifferen_1166_TypeVal ProcessDifferen_1166_TypeValueIn)
+ ProcessDifferen_1166_TypeVal * ProcessDifferen_1166_TypeValueIn)
 {
   ProcessDifferen_1166_TypeType = ProcessDifferen_1166_TypeTypeIn;
   ProcessDifferen_1166_TypeValue = ProcessDifferen_1166_TypeValueIn;
@@ -11653,9 +11661,10 @@ ProcessDifferen_1166_TypeChoicePair::~ProcessDifferen_1166_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (ProcessDifferen_1166_TypeType == AbsoluteDifferencesE)
-    delete ProcessDifferen_1166_TypeValue.AbsoluteDifferences;
+    delete ProcessDifferen_1166_TypeValue->AbsoluteDifferences;
   else if (ProcessDifferen_1166_TypeType == RelativeDifferenceE)
-    delete ProcessDifferen_1166_TypeValue.RelativeDifference;
+    delete ProcessDifferen_1166_TypeValue->RelativeDifference;
+  delete ProcessDifferen_1166_TypeValue;
   #endif
 }
 
@@ -11665,7 +11674,7 @@ void ProcessDifferen_1166_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<AbsoluteDifferences");
-      ProcessDifferen_1166_TypeValue.AbsoluteDifferences->printSelf(outFile);
+      ProcessDifferen_1166_TypeValue->AbsoluteDifferences->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</AbsoluteDifferences>\n");
     }
@@ -11673,7 +11682,7 @@ void ProcessDifferen_1166_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<RelativeDifference");
-      ProcessDifferen_1166_TypeValue.RelativeDifference->printSelf(outFile);
+      ProcessDifferen_1166_TypeValue->RelativeDifference->printSelf(outFile);
       fprintf(outFile, "</RelativeDifference>\n");
     }
 }
@@ -11866,7 +11875,7 @@ StatisticalStud_1169_TypeChoicePair::StatisticalStud_1169_TypeChoicePair() {}
 
 StatisticalStud_1169_TypeChoicePair::StatisticalStud_1169_TypeChoicePair(
  whichOne StatisticalStud_1169_TypeTypeIn,
- StatisticalStud_1169_TypeVal StatisticalStud_1169_TypeValueIn)
+ StatisticalStud_1169_TypeVal * StatisticalStud_1169_TypeValueIn)
 {
   StatisticalStud_1169_TypeType = StatisticalStud_1169_TypeTypeIn;
   StatisticalStud_1169_TypeValue = StatisticalStud_1169_TypeValueIn;
@@ -11876,9 +11885,10 @@ StatisticalStud_1169_TypeChoicePair::~StatisticalStud_1169_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (StatisticalStud_1169_TypeType == SoftwareIdE)
-    delete StatisticalStud_1169_TypeValue.SoftwareId;
+    delete StatisticalStud_1169_TypeValue->SoftwareId;
   else if (StatisticalStud_1169_TypeType == StandardIdE)
-    delete StatisticalStud_1169_TypeValue.StandardId;
+    delete StatisticalStud_1169_TypeValue->StandardId;
+  delete StatisticalStud_1169_TypeValue;
   #endif
 }
 
@@ -11888,14 +11898,14 @@ void StatisticalStud_1169_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<SoftwareId");
-      StatisticalStud_1169_TypeValue.SoftwareId->printSelf(outFile);
+      StatisticalStud_1169_TypeValue->SoftwareId->printSelf(outFile);
       fprintf(outFile, "</SoftwareId>\n");
     }
   else if (StatisticalStud_1169_TypeType == StandardIdE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<StandardId");
-      StatisticalStud_1169_TypeValue.StandardId->printSelf(outFile);
+      StatisticalStud_1169_TypeValue->StandardId->printSelf(outFile);
       fprintf(outFile, "</StandardId>\n");
     }
 }
@@ -11941,7 +11951,7 @@ StatisticalStud_1170_TypeChoicePair::StatisticalStud_1170_TypeChoicePair() {}
 
 StatisticalStud_1170_TypeChoicePair::StatisticalStud_1170_TypeChoicePair(
  whichOne StatisticalStud_1170_TypeTypeIn,
- StatisticalStud_1170_TypeVal StatisticalStud_1170_TypeValueIn)
+ StatisticalStud_1170_TypeVal * StatisticalStud_1170_TypeValueIn)
 {
   StatisticalStud_1170_TypeType = StatisticalStud_1170_TypeTypeIn;
   StatisticalStud_1170_TypeValue = StatisticalStud_1170_TypeValueIn;
@@ -11951,9 +11961,10 @@ StatisticalStud_1170_TypeChoicePair::~StatisticalStud_1170_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (StatisticalStud_1170_TypeType == SoftwareIdE)
-    delete StatisticalStud_1170_TypeValue.SoftwareId;
+    delete StatisticalStud_1170_TypeValue->SoftwareId;
   else if (StatisticalStud_1170_TypeType == StandardIdE)
-    delete StatisticalStud_1170_TypeValue.StandardId;
+    delete StatisticalStud_1170_TypeValue->StandardId;
+  delete StatisticalStud_1170_TypeValue;
   #endif
 }
 
@@ -11963,14 +11974,14 @@ void StatisticalStud_1170_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<SoftwareId");
-      StatisticalStud_1170_TypeValue.SoftwareId->printSelf(outFile);
+      StatisticalStud_1170_TypeValue->SoftwareId->printSelf(outFile);
       fprintf(outFile, "</SoftwareId>\n");
     }
   else if (StatisticalStud_1170_TypeType == StandardIdE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<StandardId");
-      StatisticalStud_1170_TypeValue.StandardId->printSelf(outFile);
+      StatisticalStud_1170_TypeValue->StandardId->printSelf(outFile);
       fprintf(outFile, "</StandardId>\n");
     }
 }
@@ -12016,7 +12027,7 @@ StatisticalStud_1171_TypeChoicePair::StatisticalStud_1171_TypeChoicePair() {}
 
 StatisticalStud_1171_TypeChoicePair::StatisticalStud_1171_TypeChoicePair(
  whichOne StatisticalStud_1171_TypeTypeIn,
- StatisticalStud_1171_TypeVal StatisticalStud_1171_TypeValueIn)
+ StatisticalStud_1171_TypeVal * StatisticalStud_1171_TypeValueIn)
 {
   StatisticalStud_1171_TypeType = StatisticalStud_1171_TypeTypeIn;
   StatisticalStud_1171_TypeValue = StatisticalStud_1171_TypeValueIn;
@@ -12026,11 +12037,12 @@ StatisticalStud_1171_TypeChoicePair::~StatisticalStud_1171_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (StatisticalStud_1171_TypeType == ResultsIdsE)
-    delete StatisticalStud_1171_TypeValue.ResultsIds;
+    delete StatisticalStud_1171_TypeValue->ResultsIds;
   else if (StatisticalStud_1171_TypeType == ResultsQPIdsE)
-    delete StatisticalStud_1171_TypeValue.ResultsQPIds;
+    delete StatisticalStud_1171_TypeValue->ResultsQPIds;
   else if (StatisticalStud_1171_TypeType == ResultsFilesE)
-    delete StatisticalStud_1171_TypeValue.ResultsFiles;
+    delete StatisticalStud_1171_TypeValue->ResultsFiles;
+  delete StatisticalStud_1171_TypeValue;
   #endif
 }
 
@@ -12040,15 +12052,15 @@ void StatisticalStud_1171_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ResultsIds");
-      StatisticalStud_1171_TypeValue.ResultsIds->printSelf(outFile);
+      StatisticalStud_1171_TypeValue->ResultsIds->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</ResultsIds>\n");
     }
   else if (StatisticalStud_1171_TypeType == ResultsQPIdsE)
     {
       std::list<ArrayQPIdFullReferenceType *>::iterator iter;
-      for (iter = StatisticalStud_1171_TypeValue.ResultsQPIds->begin();
-           iter != StatisticalStud_1171_TypeValue.ResultsQPIds->end();
+      for (iter = StatisticalStud_1171_TypeValue->ResultsQPIds->begin();
+           iter != StatisticalStud_1171_TypeValue->ResultsQPIds->end();
            iter++)
         {
           doSpaces(0, outFile);
@@ -12062,7 +12074,7 @@ void StatisticalStud_1171_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ResultsFiles");
-      StatisticalStud_1171_TypeValue.ResultsFiles->printSelf(outFile);
+      StatisticalStud_1171_TypeValue->ResultsFiles->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</ResultsFiles>\n");
     }

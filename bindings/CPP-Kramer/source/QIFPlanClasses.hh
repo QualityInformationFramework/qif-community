@@ -94,7 +94,7 @@ public:
     ArrayReferenceType * ChosenResourceIdsIn,
     ArrayReferenceType * WorkInstructionIdsIn,
     AttributesType * AttributesIn);
-  ~ActionMethodBaseType();
+  virtual ~ActionMethodBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
@@ -214,7 +214,7 @@ public:
   MeasurandBaseType(
     QIFIdType * idIn,
     AttributesType * AttributesIn);
-  ~MeasurandBaseType();
+  virtual ~MeasurandBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
@@ -325,12 +325,12 @@ public:
   MeasureActionGroupFunctionTypeChoicePair();
   MeasureActionGroupFunctionTypeChoicePair(
     whichOne MeasureActionGroupFunctionTypeTypeIn,
-    MeasureActionGroupFunctionTypeVal MeasureActionGroupFunctionTypeValueIn);
+    MeasureActionGroupFunctionTypeVal * MeasureActionGroupFunctionTypeValueIn);
   ~MeasureActionGroupFunctionTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne MeasureActionGroupFunctionTypeType;
-  MeasureActionGroupFunctionTypeVal MeasureActionGroupFunctionTypeValue;
+  MeasureActionGroupFunctionTypeVal * MeasureActionGroupFunctionTypeValue;
 };
 
 /* ***************************************************************** */
@@ -349,7 +349,7 @@ public:
     ArrayReferenceType * ChosenResourceIdsIn,
     ArrayReferenceType * WorkInstructionIdsIn,
     AttributesType * AttributesIn);
-  ~MeasureFeatureMethodBaseType();
+  virtual ~MeasureFeatureMethodBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 };
@@ -470,7 +470,7 @@ public:
   PlanElementBaseType(
     ArrayReferenceType * WorkInstructionIdsIn,
     AttributesType * AttributesIn);
-  ~PlanElementBaseType();
+  virtual ~PlanElementBaseType();
   void printSelf(FILE * outFile);
 
   ArrayReferenceType * getWorkInstructionIds();
@@ -836,7 +836,7 @@ public:
   WorkInstructionBaseType(
     QIFIdType * idIn,
     AttributesType * AttributesIn);
-  ~WorkInstructionBaseType();
+  virtual ~WorkInstructionBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
@@ -905,7 +905,7 @@ public:
     QIFReferenceType * PreferredActionMethodIdIn,
     ArrayReferenceType * AlternativeActionMethodIdsIn,
     ArrayReferenceType * PreferredResourceIdsIn);
-  ~ActionBaseType();
+  virtual ~ActionBaseType();
   void printSelf(FILE * outFile);
 
   QIFReferenceType * getPreferredActionMethodId();
@@ -932,7 +932,7 @@ public:
     ArrayReferenceType * WorkInstructionIdsIn,
     AttributesType * AttributesIn,
     MeasureActionGroupFunctionType * MeasureActionGroupFunctionIn);
-  ~ActionGroupBaseType();
+  virtual ~ActionGroupBaseType();
   void printSelf(FILE * outFile);
 
   MeasureActionGroupFunctionType * getMeasureActionGroupFunction();

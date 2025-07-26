@@ -304,12 +304,12 @@ public:
   AccuracySourceTypeChoicePair();
   AccuracySourceTypeChoicePair(
     whichOne AccuracySourceTypeTypeIn,
-    AccuracySourceTypeVal AccuracySourceTypeValueIn);
+    AccuracySourceTypeVal * AccuracySourceTypeValueIn);
   ~AccuracySourceTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne AccuracySourceTypeType;
-  AccuracySourceTypeVal AccuracySourceTypeValue;
+  AccuracySourceTypeVal * AccuracySourceTypeValue;
 };
 
 /* ***************************************************************** */
@@ -342,7 +342,7 @@ class CMMAccuracyTestBaseType :
 {
 public:
   CMMAccuracyTestBaseType();
-  ~CMMAccuracyTestBaseType();
+  virtual ~CMMAccuracyTestBaseType();
   void printSelf(FILE * outFile);
 };
 
@@ -353,7 +353,7 @@ class CMMAxisDirectionsBaseType :
 {
 public:
   CMMAxisDirectionsBaseType();
-  ~CMMAxisDirectionsBaseType();
+  virtual ~CMMAxisDirectionsBaseType();
   void printSelf(FILE * outFile);
 };
 
@@ -380,7 +380,7 @@ class CMMSpeedsBaseType :
 {
 public:
   CMMSpeedsBaseType();
-  ~CMMSpeedsBaseType();
+  virtual ~CMMSpeedsBaseType();
   void printSelf(FILE * outFile);
 };
 
@@ -654,12 +654,12 @@ public:
   CartesianCMMGeometryTypeChoicePair();
   CartesianCMMGeometryTypeChoicePair(
     whichOne CartesianCMMGeometryTypeTypeIn,
-    CartesianCMMGeometryTypeVal CartesianCMMGeometryTypeValueIn);
+    CartesianCMMGeometryTypeVal * CartesianCMMGeometryTypeValueIn);
   ~CartesianCMMGeometryTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne CartesianCMMGeometryTypeType;
-  CartesianCMMGeometryTypeVal CartesianCMMGeometryTypeValue;
+  CartesianCMMGeometryTypeVal * CartesianCMMGeometryTypeValue;
 };
 
 /* ***************************************************************** */
@@ -871,7 +871,7 @@ class EffectiveWorkingVolumeBaseType :
 {
 public:
   EffectiveWorkingVolumeBaseType();
-  ~EffectiveWorkingVolumeBaseType();
+  virtual ~EffectiveWorkingVolumeBaseType();
   void printSelf(FILE * outFile);
 };
 
@@ -1128,12 +1128,12 @@ public:
   ISO10360TestTypeChoicePair();
   ISO10360TestTypeChoicePair(
     whichOne ISO10360TestTypeTypeIn,
-    ISO10360TestTypeVal ISO10360TestTypeValueIn);
+    ISO10360TestTypeVal * ISO10360TestTypeValueIn);
   ~ISO10360TestTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne ISO10360TestTypeType;
-  ISO10360TestTypeVal ISO10360TestTypeValue;
+  ISO10360TestTypeVal * ISO10360TestTypeValue;
 };
 
 /* ***************************************************************** */
@@ -1322,7 +1322,7 @@ public:
   MeasurementDeviceAccuracyBaseType();
   MeasurementDeviceAccuracyBaseType(
     EnvironmentalRangeType * EnvironmentalRangeIn);
-  ~MeasurementDeviceAccuracyBaseType();
+  virtual ~MeasurementDeviceAccuracyBaseType();
   void printSelf(FILE * outFile);
 
   EnvironmentalRangeType * getEnvironmentalRange();
@@ -1378,7 +1378,7 @@ class MeasurementDeviceScalesBaseType :
 {
 public:
   MeasurementDeviceScalesBaseType();
-  ~MeasurementDeviceScalesBaseType();
+  virtual ~MeasurementDeviceScalesBaseType();
   void printSelf(FILE * outFile);
 };
 
@@ -1437,7 +1437,7 @@ public:
     CartesianWorkingVolumeType * SizeIn,
     MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn);
-  ~MeasurementResourceBaseType();
+  virtual ~MeasurementResourceBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
@@ -1881,7 +1881,7 @@ class ResolutionBaseType :
 {
 public:
   ResolutionBaseType();
-  ~ResolutionBaseType();
+  virtual ~ResolutionBaseType();
   void printSelf(FILE * outFile);
 };
 
@@ -2079,12 +2079,12 @@ public:
   SphericalResolutionTypeChoicePair();
   SphericalResolutionTypeChoicePair(
     whichOne SphericalResolutionTypeTypeIn,
-    SphericalResolutionTypeVal SphericalResolutionTypeValueIn);
+    SphericalResolutionTypeVal * SphericalResolutionTypeValueIn);
   ~SphericalResolutionTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne SphericalResolutionTypeType;
-  SphericalResolutionTypeVal SphericalResolutionTypeValue;
+  SphericalResolutionTypeVal * SphericalResolutionTypeValue;
 };
 
 /* ***************************************************************** */
@@ -2305,12 +2305,12 @@ public:
   TemperatureCompensationTypeChoicePair();
   TemperatureCompensationTypeChoicePair(
     whichOne TemperatureCompensationTypeTypeIn,
-    TemperatureCompensationTypeVal TemperatureCompensationTypeValueIn);
+    TemperatureCompensationTypeVal * TemperatureCompensationTypeValueIn);
   ~TemperatureCompensationTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne TemperatureCompensationTypeType;
-  TemperatureCompensationTypeVal TemperatureCompensationTypeValue;
+  TemperatureCompensationTypeVal * TemperatureCompensationTypeValue;
 };
 
 /* ***************************************************************** */
@@ -2436,12 +2436,12 @@ public:
   TipEndGeometryTypeChoicePair();
   TipEndGeometryTypeChoicePair(
     whichOne TipEndGeometryTypeTypeIn,
-    TipEndGeometryTypeVal TipEndGeometryTypeValueIn);
+    TipEndGeometryTypeVal * TipEndGeometryTypeValueIn);
   ~TipEndGeometryTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne TipEndGeometryTypeType;
-  TipEndGeometryTypeVal TipEndGeometryTypeValue;
+  TipEndGeometryTypeVal * TipEndGeometryTypeValue;
 };
 
 /* ***************************************************************** */
@@ -2472,7 +2472,7 @@ public:
     CartesianWorkingVolumeType * SizeIn,
     MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn);
-  ~ToolBaseType();
+  virtual ~ToolBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 };
@@ -2560,7 +2560,7 @@ public:
     CartesianWorkingVolumeType * SizeIn,
     MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn);
-  ~ToolWithIntegratedSensorBaseType();
+  virtual ~ToolWithIntegratedSensorBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 };
@@ -2920,12 +2920,12 @@ public:
   TypeOfScaleTypeChoicePair();
   TypeOfScaleTypeChoicePair(
     whichOne TypeOfScaleTypeTypeIn,
-    TypeOfScaleTypeVal TypeOfScaleTypeValueIn);
+    TypeOfScaleTypeVal * TypeOfScaleTypeValueIn);
   ~TypeOfScaleTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne TypeOfScaleTypeType;
-  TypeOfScaleTypeVal TypeOfScaleTypeValue;
+  TypeOfScaleTypeVal * TypeOfScaleTypeValue;
 };
 
 /* ***************************************************************** */
@@ -3028,7 +3028,7 @@ class UserAxisBaseType :
 {
 public:
   UserAxisBaseType();
-  ~UserAxisBaseType();
+  virtual ~UserAxisBaseType();
   void printSelf(FILE * outFile);
 };
 
@@ -3094,12 +3094,12 @@ public:
   UserDefinedResolutionTypeChoicePair();
   UserDefinedResolutionTypeChoicePair(
     whichOne UserDefinedResolutionTypeTypeIn,
-    UserDefinedResolutionTypeVal UserDefinedResolutionTypeValueIn);
+    UserDefinedResolutionTypeVal * UserDefinedResolutionTypeValueIn);
   ~UserDefinedResolutionTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne UserDefinedResolutionTypeType;
-  UserDefinedResolutionTypeVal UserDefinedResolutionTypeValue;
+  UserDefinedResolutionTypeVal * UserDefinedResolutionTypeValue;
 };
 
 /* ***************************************************************** */
@@ -3132,7 +3132,7 @@ class WorkingVolumeBaseType :
 {
 public:
   WorkingVolumeBaseType();
-  ~WorkingVolumeBaseType();
+  virtual ~WorkingVolumeBaseType();
   void printSelf(FILE * outFile);
 };
 
@@ -3252,12 +3252,12 @@ public:
   MeasurementReso_1196_TypeChoicePair();
   MeasurementReso_1196_TypeChoicePair(
     whichOne MeasurementReso_1196_TypeTypeIn,
-    MeasurementReso_1196_TypeVal MeasurementReso_1196_TypeValueIn);
+    MeasurementReso_1196_TypeVal * MeasurementReso_1196_TypeValueIn);
   ~MeasurementReso_1196_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne MeasurementReso_1196_TypeType;
-  MeasurementReso_1196_TypeVal MeasurementReso_1196_TypeValue;
+  MeasurementReso_1196_TypeVal * MeasurementReso_1196_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -3561,12 +3561,12 @@ public:
   CartesianResolutionTypeChoicePair();
   CartesianResolutionTypeChoicePair(
     whichOne CartesianResolutionTypeTypeIn,
-    CartesianResolutionTypeVal CartesianResolutionTypeValueIn);
+    CartesianResolutionTypeVal * CartesianResolutionTypeValueIn);
   ~CartesianResolutionTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne CartesianResolutionTypeType;
-  CartesianResolutionTypeVal CartesianResolutionTypeValue;
+  CartesianResolutionTypeVal * CartesianResolutionTypeValue;
 };
 
 /* ***************************************************************** */
@@ -3892,7 +3892,7 @@ public:
     XmlDecimal * SensitivityIn,
     LinearValueType * ResolutionIn,
     EnvironmentalRangeType * EnvironmentalRangeIn);
-  ~DetachableSensorBaseType();
+  virtual ~DetachableSensorBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 };
@@ -4955,7 +4955,7 @@ public:
     XmlDecimal * SensitivityIn,
     LinearValueType * ResolutionIn,
     EnvironmentalRangeType * EnvironmentalRangeIn);
-  ~TactileProbeSensorBaseType();
+  virtual ~TactileProbeSensorBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 };

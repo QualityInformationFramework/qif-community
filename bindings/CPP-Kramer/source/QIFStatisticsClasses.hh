@@ -525,7 +525,7 @@ public:
     QIFReferenceType * PlanIdIn,
     StatisticalStud_1169_Type * StatisticalStud_1169In,
     QIFReferenceType * CorrectiveActionPlanIdIn);
-  ~StatisticalStudyPlanBaseType();
+  virtual ~StatisticalStudyPlanBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
@@ -667,7 +667,7 @@ public:
     SummariesStatisticsTimeType * TimeStatsSummariesIn,
     SummariesStatisticsUserDefinedUnitType * UserDefinedUnitStatsSummariesIn,
     SummariesStatisticsType * StatsSummariesIn);
-  ~StatisticalStudyResultsBaseType();
+  virtual ~StatisticalStudyResultsBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
@@ -850,12 +850,12 @@ public:
   ControlMethodTy_1159_TypeChoicePair();
   ControlMethodTy_1159_TypeChoicePair(
     whichOne ControlMethodTy_1159_TypeTypeIn,
-    ControlMethodTy_1159_TypeVal ControlMethodTy_1159_TypeValueIn);
+    ControlMethodTy_1159_TypeVal * ControlMethodTy_1159_TypeValueIn);
   ~ControlMethodTy_1159_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne ControlMethodTy_1159_TypeType;
-  ControlMethodTy_1159_TypeVal ControlMethodTy_1159_TypeValue;
+  ControlMethodTy_1159_TypeVal * ControlMethodTy_1159_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -897,12 +897,12 @@ public:
   FirstArticleStu_1160_TypeChoicePair();
   FirstArticleStu_1160_TypeChoicePair(
     whichOne FirstArticleStu_1160_TypeTypeIn,
-    FirstArticleStu_1160_TypeVal FirstArticleStu_1160_TypeValueIn);
+    FirstArticleStu_1160_TypeVal * FirstArticleStu_1160_TypeValueIn);
   ~FirstArticleStu_1160_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne FirstArticleStu_1160_TypeType;
-  FirstArticleStu_1160_TypeVal FirstArticleStu_1160_TypeValue;
+  FirstArticleStu_1160_TypeVal * FirstArticleStu_1160_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -944,12 +944,12 @@ public:
   GageRandRStudyP_1161_TypeChoicePair();
   GageRandRStudyP_1161_TypeChoicePair(
     whichOne GageRandRStudyP_1161_TypeTypeIn,
-    GageRandRStudyP_1161_TypeVal GageRandRStudyP_1161_TypeValueIn);
+    GageRandRStudyP_1161_TypeVal * GageRandRStudyP_1161_TypeValueIn);
   ~GageRandRStudyP_1161_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne GageRandRStudyP_1161_TypeType;
-  GageRandRStudyP_1161_TypeVal GageRandRStudyP_1161_TypeValue;
+  GageRandRStudyP_1161_TypeVal * GageRandRStudyP_1161_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -991,12 +991,12 @@ public:
   GageRandRStudyP_1162_TypeChoicePair();
   GageRandRStudyP_1162_TypeChoicePair(
     whichOne GageRandRStudyP_1162_TypeTypeIn,
-    GageRandRStudyP_1162_TypeVal GageRandRStudyP_1162_TypeValueIn);
+    GageRandRStudyP_1162_TypeVal * GageRandRStudyP_1162_TypeValueIn);
   ~GageRandRStudyP_1162_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne GageRandRStudyP_1162_TypeType;
-  GageRandRStudyP_1162_TypeVal GageRandRStudyP_1162_TypeValue;
+  GageRandRStudyP_1162_TypeVal * GageRandRStudyP_1162_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -1038,12 +1038,12 @@ public:
   GageRandRStudyP_1163_TypeChoicePair();
   GageRandRStudyP_1163_TypeChoicePair(
     whichOne GageRandRStudyP_1163_TypeTypeIn,
-    GageRandRStudyP_1163_TypeVal GageRandRStudyP_1163_TypeValueIn);
+    GageRandRStudyP_1163_TypeVal * GageRandRStudyP_1163_TypeValueIn);
   ~GageRandRStudyP_1163_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne GageRandRStudyP_1163_TypeType;
-  GageRandRStudyP_1163_TypeVal GageRandRStudyP_1163_TypeValue;
+  GageRandRStudyP_1163_TypeVal * GageRandRStudyP_1163_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -1085,12 +1085,12 @@ public:
   LinearityStudyP_1164_TypeChoicePair();
   LinearityStudyP_1164_TypeChoicePair(
     whichOne LinearityStudyP_1164_TypeTypeIn,
-    LinearityStudyP_1164_TypeVal LinearityStudyP_1164_TypeValueIn);
+    LinearityStudyP_1164_TypeVal * LinearityStudyP_1164_TypeValueIn);
   ~LinearityStudyP_1164_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne LinearityStudyP_1164_TypeType;
-  LinearityStudyP_1164_TypeVal LinearityStudyP_1164_TypeValue;
+  LinearityStudyP_1164_TypeVal * LinearityStudyP_1164_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -1148,12 +1148,12 @@ public:
   LinearityStudyR_1165_TypeChoicePair();
   LinearityStudyR_1165_TypeChoicePair(
     whichOne LinearityStudyR_1165_TypeTypeIn,
-    LinearityStudyR_1165_TypeVal LinearityStudyR_1165_TypeValueIn);
+    LinearityStudyR_1165_TypeVal * LinearityStudyR_1165_TypeValueIn);
   ~LinearityStudyR_1165_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne LinearityStudyR_1165_TypeType;
-  LinearityStudyR_1165_TypeVal LinearityStudyR_1165_TypeValue;
+  LinearityStudyR_1165_TypeVal * LinearityStudyR_1165_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -1195,12 +1195,12 @@ public:
   ProcessDifferen_1166_TypeChoicePair();
   ProcessDifferen_1166_TypeChoicePair(
     whichOne ProcessDifferen_1166_TypeTypeIn,
-    ProcessDifferen_1166_TypeVal ProcessDifferen_1166_TypeValueIn);
+    ProcessDifferen_1166_TypeVal * ProcessDifferen_1166_TypeValueIn);
   ~ProcessDifferen_1166_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne ProcessDifferen_1166_TypeType;
-  ProcessDifferen_1166_TypeVal ProcessDifferen_1166_TypeValue;
+  ProcessDifferen_1166_TypeVal * ProcessDifferen_1166_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -1292,12 +1292,12 @@ public:
   StatisticalStud_1169_TypeChoicePair();
   StatisticalStud_1169_TypeChoicePair(
     whichOne StatisticalStud_1169_TypeTypeIn,
-    StatisticalStud_1169_TypeVal StatisticalStud_1169_TypeValueIn);
+    StatisticalStud_1169_TypeVal * StatisticalStud_1169_TypeValueIn);
   ~StatisticalStud_1169_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne StatisticalStud_1169_TypeType;
-  StatisticalStud_1169_TypeVal StatisticalStud_1169_TypeValue;
+  StatisticalStud_1169_TypeVal * StatisticalStud_1169_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -1339,12 +1339,12 @@ public:
   StatisticalStud_1170_TypeChoicePair();
   StatisticalStud_1170_TypeChoicePair(
     whichOne StatisticalStud_1170_TypeTypeIn,
-    StatisticalStud_1170_TypeVal StatisticalStud_1170_TypeValueIn);
+    StatisticalStud_1170_TypeVal * StatisticalStud_1170_TypeValueIn);
   ~StatisticalStud_1170_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne StatisticalStud_1170_TypeType;
-  StatisticalStud_1170_TypeVal StatisticalStud_1170_TypeValue;
+  StatisticalStud_1170_TypeVal * StatisticalStud_1170_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -1388,12 +1388,12 @@ public:
   StatisticalStud_1171_TypeChoicePair();
   StatisticalStud_1171_TypeChoicePair(
     whichOne StatisticalStud_1171_TypeTypeIn,
-    StatisticalStud_1171_TypeVal StatisticalStud_1171_TypeValueIn);
+    StatisticalStud_1171_TypeVal * StatisticalStud_1171_TypeValueIn);
   ~StatisticalStud_1171_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne StatisticalStud_1171_TypeType;
-  StatisticalStud_1171_TypeVal StatisticalStud_1171_TypeValue;
+  StatisticalStud_1171_TypeVal * StatisticalStud_1171_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -1943,7 +1943,7 @@ public:
     QIFReferenceType * CorrectiveActionPlanIdIn,
     XmlPositiveInteger * NumberOfSamplesIn,
     XmlPositiveInteger * SubgroupSizeIn);
-  ~MultipleProductInstanceStudyPlanBaseType();
+  virtual ~MultipleProductInstanceStudyPlanBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
@@ -2017,7 +2017,7 @@ public:
     SummariesStatisticsType * StatsSummariesIn,
     XmlPositiveInteger * NumberOfSamplesIn,
     XmlPositiveInteger * SubgroupSizeIn);
-  ~MultipleProductInstanceStudyResultsBaseType();
+  virtual ~MultipleProductInstanceStudyResultsBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
@@ -2664,12 +2664,12 @@ public:
   CapabilityStudyPlanTypeChoicePair();
   CapabilityStudyPlanTypeChoicePair(
     whichOne CapabilityStudyPlanTypeTypeIn,
-    CapabilityStudyPlanTypeVal CapabilityStudyPlanTypeValueIn);
+    CapabilityStudyPlanTypeVal * CapabilityStudyPlanTypeValueIn);
   ~CapabilityStudyPlanTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne CapabilityStudyPlanTypeType;
-  CapabilityStudyPlanTypeVal CapabilityStudyPlanTypeValue;
+  CapabilityStudyPlanTypeVal * CapabilityStudyPlanTypeValue;
 };
 
 /* ***************************************************************** */

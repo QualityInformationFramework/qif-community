@@ -2006,7 +2006,7 @@ DefinitionExternalTypeChoicePair::DefinitionExternalTypeChoicePair() {}
 
 DefinitionExternalTypeChoicePair::DefinitionExternalTypeChoicePair(
  whichOne DefinitionExternalTypeTypeIn,
- DefinitionExternalTypeVal DefinitionExternalTypeValueIn)
+ DefinitionExternalTypeVal * DefinitionExternalTypeValueIn)
 {
   DefinitionExternalTypeType = DefinitionExternalTypeTypeIn;
   DefinitionExternalTypeValue = DefinitionExternalTypeValueIn;
@@ -2016,13 +2016,14 @@ DefinitionExternalTypeChoicePair::~DefinitionExternalTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (DefinitionExternalTypeType == PrintedDrawingE)
-    delete DefinitionExternalTypeValue.PrintedDrawing;
+    delete DefinitionExternalTypeValue->PrintedDrawing;
   else if (DefinitionExternalTypeType == DigitalDrawingE)
-    delete DefinitionExternalTypeValue.DigitalDrawing;
+    delete DefinitionExternalTypeValue->DigitalDrawing;
   else if (DefinitionExternalTypeType == DigitalModelE)
-    delete DefinitionExternalTypeValue.DigitalModel;
+    delete DefinitionExternalTypeValue->DigitalModel;
   else if (DefinitionExternalTypeType == PhysicalModelE)
-    delete DefinitionExternalTypeValue.PhysicalModel;
+    delete DefinitionExternalTypeValue->PhysicalModel;
+  delete DefinitionExternalTypeValue;
   #endif
 }
 
@@ -2032,7 +2033,7 @@ void DefinitionExternalTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<PrintedDrawing");
-      DefinitionExternalTypeValue.PrintedDrawing->printSelf(outFile);
+      DefinitionExternalTypeValue->PrintedDrawing->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</PrintedDrawing>\n");
     }
@@ -2040,7 +2041,7 @@ void DefinitionExternalTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<DigitalDrawing");
-      DefinitionExternalTypeValue.DigitalDrawing->printSelf(outFile);
+      DefinitionExternalTypeValue->DigitalDrawing->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</DigitalDrawing>\n");
     }
@@ -2048,7 +2049,7 @@ void DefinitionExternalTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<DigitalModel");
-      DefinitionExternalTypeValue.DigitalModel->printSelf(outFile);
+      DefinitionExternalTypeValue->DigitalModel->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</DigitalModel>\n");
     }
@@ -2056,7 +2057,7 @@ void DefinitionExternalTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<PhysicalModel");
-      DefinitionExternalTypeValue.PhysicalModel->printSelf(outFile);
+      DefinitionExternalTypeValue->PhysicalModel->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</PhysicalModel>\n");
     }
@@ -11073,7 +11074,7 @@ ComponentType_1193_TypeChoicePair::ComponentType_1193_TypeChoicePair() {}
 
 ComponentType_1193_TypeChoicePair::ComponentType_1193_TypeChoicePair(
  whichOne ComponentType_1193_TypeTypeIn,
- ComponentType_1193_TypeVal ComponentType_1193_TypeValueIn)
+ ComponentType_1193_TypeVal * ComponentType_1193_TypeValueIn)
 {
   ComponentType_1193_TypeType = ComponentType_1193_TypeTypeIn;
   ComponentType_1193_TypeValue = ComponentType_1193_TypeValueIn;
@@ -11083,9 +11084,10 @@ ComponentType_1193_TypeChoicePair::~ComponentType_1193_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (ComponentType_1193_TypeType == PartE)
-    delete ComponentType_1193_TypeValue.Part;
+    delete ComponentType_1193_TypeValue->Part;
   else if (ComponentType_1193_TypeType == AssemblyE)
-    delete ComponentType_1193_TypeValue.Assembly;
+    delete ComponentType_1193_TypeValue->Assembly;
+  delete ComponentType_1193_TypeValue;
   #endif
 }
 
@@ -11095,7 +11097,7 @@ void ComponentType_1193_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Part");
-      ComponentType_1193_TypeValue.Part->printSelf(outFile);
+      ComponentType_1193_TypeValue->Part->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Part>\n");
     }
@@ -11103,7 +11105,7 @@ void ComponentType_1193_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Assembly");
-      ComponentType_1193_TypeValue.Assembly->printSelf(outFile);
+      ComponentType_1193_TypeValue->Assembly->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Assembly>\n");
     }
@@ -11150,7 +11152,7 @@ ProductType_1194_TypeChoicePair::ProductType_1194_TypeChoicePair() {}
 
 ProductType_1194_TypeChoicePair::ProductType_1194_TypeChoicePair(
  whichOne ProductType_1194_TypeTypeIn,
- ProductType_1194_TypeVal ProductType_1194_TypeValueIn)
+ ProductType_1194_TypeVal * ProductType_1194_TypeValueIn)
 {
   ProductType_1194_TypeType = ProductType_1194_TypeTypeIn;
   ProductType_1194_TypeValue = ProductType_1194_TypeValueIn;
@@ -11160,11 +11162,12 @@ ProductType_1194_TypeChoicePair::~ProductType_1194_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (ProductType_1194_TypeType == RootPartE)
-    delete ProductType_1194_TypeValue.RootPart;
+    delete ProductType_1194_TypeValue->RootPart;
   else if (ProductType_1194_TypeType == RootAssemblyE)
-    delete ProductType_1194_TypeValue.RootAssembly;
+    delete ProductType_1194_TypeValue->RootAssembly;
   else if (ProductType_1194_TypeType == RootComponentE)
-    delete ProductType_1194_TypeValue.RootComponent;
+    delete ProductType_1194_TypeValue->RootComponent;
+  delete ProductType_1194_TypeValue;
   #endif
 }
 
@@ -11174,7 +11177,7 @@ void ProductType_1194_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<RootPart");
-      ProductType_1194_TypeValue.RootPart->printSelf(outFile);
+      ProductType_1194_TypeValue->RootPart->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</RootPart>\n");
     }
@@ -11182,7 +11185,7 @@ void ProductType_1194_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<RootAssembly");
-      ProductType_1194_TypeValue.RootAssembly->printSelf(outFile);
+      ProductType_1194_TypeValue->RootAssembly->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</RootAssembly>\n");
     }
@@ -11190,7 +11193,7 @@ void ProductType_1194_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<RootComponent");
-      ProductType_1194_TypeValue.RootComponent->printSelf(outFile);
+      ProductType_1194_TypeValue->RootComponent->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</RootComponent>\n");
     }

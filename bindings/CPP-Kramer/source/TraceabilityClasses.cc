@@ -3034,7 +3034,7 @@ ProductDataQualityAreaTypeChoicePair::ProductDataQualityAreaTypeChoicePair() {}
 
 ProductDataQualityAreaTypeChoicePair::ProductDataQualityAreaTypeChoicePair(
  whichOne ProductDataQualityAreaTypeTypeIn,
- ProductDataQualityAreaTypeVal ProductDataQualityAreaTypeValueIn)
+ ProductDataQualityAreaTypeVal * ProductDataQualityAreaTypeValueIn)
 {
   ProductDataQualityAreaTypeType = ProductDataQualityAreaTypeTypeIn;
   ProductDataQualityAreaTypeValue = ProductDataQualityAreaTypeValueIn;
@@ -3044,9 +3044,10 @@ ProductDataQualityAreaTypeChoicePair::~ProductDataQualityAreaTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (ProductDataQualityAreaTypeType == AreaEnumE)
-    delete ProductDataQualityAreaTypeValue.AreaEnum;
+    delete ProductDataQualityAreaTypeValue->AreaEnum;
   else if (ProductDataQualityAreaTypeType == OtherAreaE)
-    delete ProductDataQualityAreaTypeValue.OtherArea;
+    delete ProductDataQualityAreaTypeValue->OtherArea;
+  delete ProductDataQualityAreaTypeValue;
   #endif
 }
 
@@ -3056,14 +3057,14 @@ void ProductDataQualityAreaTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<AreaEnum");
-      ProductDataQualityAreaTypeValue.AreaEnum->printSelf(outFile);
+      ProductDataQualityAreaTypeValue->AreaEnum->printSelf(outFile);
       fprintf(outFile, "</AreaEnum>\n");
     }
   else if (ProductDataQualityAreaTypeType == OtherAreaE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<OtherArea");
-      ProductDataQualityAreaTypeValue.OtherArea->printSelf(outFile);
+      ProductDataQualityAreaTypeValue->OtherArea->printSelf(outFile);
       fprintf(outFile, "</OtherArea>\n");
     }
 }
@@ -3774,7 +3775,7 @@ TimeDescriptionTypeChoicePair::TimeDescriptionTypeChoicePair() {}
 
 TimeDescriptionTypeChoicePair::TimeDescriptionTypeChoicePair(
  whichOne TimeDescriptionTypeTypeIn,
- TimeDescriptionTypeVal TimeDescriptionTypeValueIn)
+ TimeDescriptionTypeVal * TimeDescriptionTypeValueIn)
 {
   TimeDescriptionTypeType = TimeDescriptionTypeTypeIn;
   TimeDescriptionTypeValue = TimeDescriptionTypeValueIn;
@@ -3784,9 +3785,10 @@ TimeDescriptionTypeChoicePair::~TimeDescriptionTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (TimeDescriptionTypeType == TimeDescriptionEnumE)
-    delete TimeDescriptionTypeValue.TimeDescriptionEnum;
+    delete TimeDescriptionTypeValue->TimeDescriptionEnum;
   else if (TimeDescriptionTypeType == OtherTimeDescriptionE)
-    delete TimeDescriptionTypeValue.OtherTimeDescription;
+    delete TimeDescriptionTypeValue->OtherTimeDescription;
+  delete TimeDescriptionTypeValue;
   #endif
 }
 
@@ -3796,14 +3798,14 @@ void TimeDescriptionTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<TimeDescriptionEnum");
-      TimeDescriptionTypeValue.TimeDescriptionEnum->printSelf(outFile);
+      TimeDescriptionTypeValue->TimeDescriptionEnum->printSelf(outFile);
       fprintf(outFile, "</TimeDescriptionEnum>\n");
     }
   else if (TimeDescriptionTypeType == OtherTimeDescriptionE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<OtherTimeDescription");
-      TimeDescriptionTypeValue.OtherTimeDescription->printSelf(outFile);
+      TimeDescriptionTypeValue->OtherTimeDescription->printSelf(outFile);
       fprintf(outFile, "</OtherTimeDescription>\n");
     }
 }
@@ -4573,7 +4575,7 @@ InspectionTrace_1039_TypeChoicePair::InspectionTrace_1039_TypeChoicePair() {}
 
 InspectionTrace_1039_TypeChoicePair::InspectionTrace_1039_TypeChoicePair(
  whichOne InspectionTrace_1039_TypeTypeIn,
- InspectionTrace_1039_TypeVal InspectionTrace_1039_TypeValueIn)
+ InspectionTrace_1039_TypeVal * InspectionTrace_1039_TypeValueIn)
 {
   InspectionTrace_1039_TypeType = InspectionTrace_1039_TypeTypeIn;
   InspectionTrace_1039_TypeValue = InspectionTrace_1039_TypeValueIn;
@@ -4583,9 +4585,10 @@ InspectionTrace_1039_TypeChoicePair::~InspectionTrace_1039_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (InspectionTrace_1039_TypeType == ReferencedQIFPlanInstanceE)
-    delete InspectionTrace_1039_TypeValue.ReferencedQIFPlanInstance;
+    delete InspectionTrace_1039_TypeValue->ReferencedQIFPlanInstance;
   else if (InspectionTrace_1039_TypeType == ReferencedQIFPlanE)
-    delete InspectionTrace_1039_TypeValue.ReferencedQIFPlan;
+    delete InspectionTrace_1039_TypeValue->ReferencedQIFPlan;
+  delete InspectionTrace_1039_TypeValue;
   #endif
 }
 
@@ -4595,7 +4598,7 @@ void InspectionTrace_1039_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ReferencedQIFPlanInstance");
-      InspectionTrace_1039_TypeValue.ReferencedQIFPlanInstance->printSelf(outFile);
+      InspectionTrace_1039_TypeValue->ReferencedQIFPlanInstance->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</ReferencedQIFPlanInstance>\n");
     }
@@ -4603,7 +4606,7 @@ void InspectionTrace_1039_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ReferencedQIFPlan");
-      InspectionTrace_1039_TypeValue.ReferencedQIFPlan->printSelf(outFile);
+      InspectionTrace_1039_TypeValue->ReferencedQIFPlan->printSelf(outFile);
       fprintf(outFile, "</ReferencedQIFPlan>\n");
     }
 }
@@ -4649,7 +4652,7 @@ PreInspectionTr_1040_TypeChoicePair::PreInspectionTr_1040_TypeChoicePair() {}
 
 PreInspectionTr_1040_TypeChoicePair::PreInspectionTr_1040_TypeChoicePair(
  whichOne PreInspectionTr_1040_TypeTypeIn,
- PreInspectionTr_1040_TypeVal PreInspectionTr_1040_TypeValueIn)
+ PreInspectionTr_1040_TypeVal * PreInspectionTr_1040_TypeValueIn)
 {
   PreInspectionTr_1040_TypeType = PreInspectionTr_1040_TypeTypeIn;
   PreInspectionTr_1040_TypeValue = PreInspectionTr_1040_TypeValueIn;
@@ -4659,9 +4662,10 @@ PreInspectionTr_1040_TypeChoicePair::~PreInspectionTr_1040_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (PreInspectionTr_1040_TypeType == ReferencedQIFPlanInstanceE)
-    delete PreInspectionTr_1040_TypeValue.ReferencedQIFPlanInstance;
+    delete PreInspectionTr_1040_TypeValue->ReferencedQIFPlanInstance;
   else if (PreInspectionTr_1040_TypeType == ReferencedQIFPlanE)
-    delete PreInspectionTr_1040_TypeValue.ReferencedQIFPlan;
+    delete PreInspectionTr_1040_TypeValue->ReferencedQIFPlan;
+  delete PreInspectionTr_1040_TypeValue;
   #endif
 }
 
@@ -4671,7 +4675,7 @@ void PreInspectionTr_1040_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ReferencedQIFPlanInstance");
-      PreInspectionTr_1040_TypeValue.ReferencedQIFPlanInstance->printSelf(outFile);
+      PreInspectionTr_1040_TypeValue->ReferencedQIFPlanInstance->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</ReferencedQIFPlanInstance>\n");
     }
@@ -4679,7 +4683,7 @@ void PreInspectionTr_1040_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ReferencedQIFPlan");
-      PreInspectionTr_1040_TypeValue.ReferencedQIFPlan->printSelf(outFile);
+      PreInspectionTr_1040_TypeValue->ReferencedQIFPlan->printSelf(outFile);
       fprintf(outFile, "</ReferencedQIFPlan>\n");
     }
 }

@@ -828,12 +828,12 @@ public:
   ProductDataQualityAreaTypeChoicePair();
   ProductDataQualityAreaTypeChoicePair(
     whichOne ProductDataQualityAreaTypeTypeIn,
-    ProductDataQualityAreaTypeVal ProductDataQualityAreaTypeValueIn);
+    ProductDataQualityAreaTypeVal * ProductDataQualityAreaTypeValueIn);
   ~ProductDataQualityAreaTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne ProductDataQualityAreaTypeType;
-  ProductDataQualityAreaTypeVal ProductDataQualityAreaTypeValue;
+  ProductDataQualityAreaTypeVal * ProductDataQualityAreaTypeValue;
 };
 
 /* ***************************************************************** */
@@ -1057,12 +1057,12 @@ public:
   TimeDescriptionTypeChoicePair();
   TimeDescriptionTypeChoicePair(
     whichOne TimeDescriptionTypeTypeIn,
-    TimeDescriptionTypeVal TimeDescriptionTypeValueIn);
+    TimeDescriptionTypeVal * TimeDescriptionTypeValueIn);
   ~TimeDescriptionTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne TimeDescriptionTypeType;
-  TimeDescriptionTypeVal TimeDescriptionTypeValue;
+  TimeDescriptionTypeVal * TimeDescriptionTypeValue;
 };
 
 /* ***************************************************************** */
@@ -1283,12 +1283,12 @@ public:
   InspectionTrace_1039_TypeChoicePair();
   InspectionTrace_1039_TypeChoicePair(
     whichOne InspectionTrace_1039_TypeTypeIn,
-    InspectionTrace_1039_TypeVal InspectionTrace_1039_TypeValueIn);
+    InspectionTrace_1039_TypeVal * InspectionTrace_1039_TypeValueIn);
   ~InspectionTrace_1039_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne InspectionTrace_1039_TypeType;
-  InspectionTrace_1039_TypeVal InspectionTrace_1039_TypeValue;
+  InspectionTrace_1039_TypeVal * InspectionTrace_1039_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -1330,12 +1330,12 @@ public:
   PreInspectionTr_1040_TypeChoicePair();
   PreInspectionTr_1040_TypeChoicePair(
     whichOne PreInspectionTr_1040_TypeTypeIn,
-    PreInspectionTr_1040_TypeVal PreInspectionTr_1040_TypeValueIn);
+    PreInspectionTr_1040_TypeVal * PreInspectionTr_1040_TypeValueIn);
   ~PreInspectionTr_1040_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne PreInspectionTr_1040_TypeType;
-  PreInspectionTr_1040_TypeVal PreInspectionTr_1040_TypeValue;
+  PreInspectionTr_1040_TypeVal * PreInspectionTr_1040_TypeValue;
 };
 
 /* ***************************************************************** */

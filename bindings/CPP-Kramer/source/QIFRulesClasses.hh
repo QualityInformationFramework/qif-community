@@ -125,7 +125,7 @@ class ApplicabilityBaseType :
 {
 public:
   ApplicabilityBaseType();
-  ~ApplicabilityBaseType();
+  virtual ~ApplicabilityBaseType();
   void printSelf(FILE * outFile);
 };
 
@@ -168,12 +168,12 @@ public:
   CirclePointSamplingStrategyTypeChoicePair();
   CirclePointSamplingStrategyTypeChoicePair(
     whichOne CirclePointSamplingStrategyTypeTypeIn,
-    CirclePointSamplingStrategyTypeVal CirclePointSamplingStrategyTypeValueIn);
+    CirclePointSamplingStrategyTypeVal * CirclePointSamplingStrategyTypeValueIn);
   ~CirclePointSamplingStrategyTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne CirclePointSamplingStrategyTypeType;
-  CirclePointSamplingStrategyTypeVal CirclePointSamplingStrategyTypeValue;
+  CirclePointSamplingStrategyTypeVal * CirclePointSamplingStrategyTypeValue;
 };
 
 /* ***************************************************************** */
@@ -215,12 +215,12 @@ public:
   CircularArcPointSamplingStrategyTypeChoicePair();
   CircularArcPointSamplingStrategyTypeChoicePair(
     whichOne CircularArcPointSamplingStrategyTypeTypeIn,
-    CircularArcPointSamplingStrategyTypeVal CircularArcPointSamplingStrategyTypeValueIn);
+    CircularArcPointSamplingStrategyTypeVal * CircularArcPointSamplingStrategyTypeValueIn);
   ~CircularArcPointSamplingStrategyTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne CircularArcPointSamplingStrategyTypeType;
-  CircularArcPointSamplingStrategyTypeVal CircularArcPointSamplingStrategyTypeValue;
+  CircularArcPointSamplingStrategyTypeVal * CircularArcPointSamplingStrategyTypeValue;
 };
 
 /* ***************************************************************** */
@@ -262,12 +262,12 @@ public:
   ConePointSamplingStrategyTypeChoicePair();
   ConePointSamplingStrategyTypeChoicePair(
     whichOne ConePointSamplingStrategyTypeTypeIn,
-    ConePointSamplingStrategyTypeVal ConePointSamplingStrategyTypeValueIn);
+    ConePointSamplingStrategyTypeVal * ConePointSamplingStrategyTypeValueIn);
   ~ConePointSamplingStrategyTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne ConePointSamplingStrategyTypeType;
-  ConePointSamplingStrategyTypeVal ConePointSamplingStrategyTypeValue;
+  ConePointSamplingStrategyTypeVal * ConePointSamplingStrategyTypeValue;
 };
 
 /* ***************************************************************** */
@@ -309,12 +309,12 @@ public:
   ConicalSegmentPointSamplingStrategyTypeChoicePair();
   ConicalSegmentPointSamplingStrategyTypeChoicePair(
     whichOne ConicalSegmentPointSamplingStrategyTypeTypeIn,
-    ConicalSegmentPointSamplingStrategyTypeVal ConicalSegmentPointSamplingStrategyTypeValueIn);
+    ConicalSegmentPointSamplingStrategyTypeVal * ConicalSegmentPointSamplingStrategyTypeValueIn);
   ~ConicalSegmentPointSamplingStrategyTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne ConicalSegmentPointSamplingStrategyTypeType;
-  ConicalSegmentPointSamplingStrategyTypeVal ConicalSegmentPointSamplingStrategyTypeValue;
+  ConicalSegmentPointSamplingStrategyTypeVal * ConicalSegmentPointSamplingStrategyTypeValue;
 };
 
 /* ***************************************************************** */
@@ -356,12 +356,12 @@ public:
   CylinderPointSamplingStrategyTypeChoicePair();
   CylinderPointSamplingStrategyTypeChoicePair(
     whichOne CylinderPointSamplingStrategyTypeTypeIn,
-    CylinderPointSamplingStrategyTypeVal CylinderPointSamplingStrategyTypeValueIn);
+    CylinderPointSamplingStrategyTypeVal * CylinderPointSamplingStrategyTypeValueIn);
   ~CylinderPointSamplingStrategyTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne CylinderPointSamplingStrategyTypeType;
-  CylinderPointSamplingStrategyTypeVal CylinderPointSamplingStrategyTypeValue;
+  CylinderPointSamplingStrategyTypeVal * CylinderPointSamplingStrategyTypeValue;
 };
 
 /* ***************************************************************** */
@@ -403,12 +403,12 @@ public:
   CylindricalSegmentPointSamplingStrategyTypeChoicePair();
   CylindricalSegmentPointSamplingStrategyTypeChoicePair(
     whichOne CylindricalSegmentPointSamplingStrategyTypeTypeIn,
-    CylindricalSegmentPointSamplingStrategyTypeVal CylindricalSegmentPointSamplingStrategyTypeValueIn);
+    CylindricalSegmentPointSamplingStrategyTypeVal * CylindricalSegmentPointSamplingStrategyTypeValueIn);
   ~CylindricalSegmentPointSamplingStrategyTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne CylindricalSegmentPointSamplingStrategyTypeType;
-  CylindricalSegmentPointSamplingStrategyTypeVal CylindricalSegmentPointSamplingStrategyTypeValue;
+  CylindricalSegmentPointSamplingStrategyTypeVal * CylindricalSegmentPointSamplingStrategyTypeValue;
 };
 
 /* ***************************************************************** */
@@ -420,7 +420,7 @@ public:
   DMEDecisionBaseType();
   DMEDecisionBaseType(
     ApplicabilityBaseType * ApplicabilityIn);
-  ~DMEDecisionBaseType();
+  virtual ~DMEDecisionBaseType();
   void printSelf(FILE * outFile);
 
   ApplicabilityBaseType * getApplicability();
@@ -681,12 +681,12 @@ public:
   EllipsePointSamplingStrategyTypeChoicePair();
   EllipsePointSamplingStrategyTypeChoicePair(
     whichOne EllipsePointSamplingStrategyTypeTypeIn,
-    EllipsePointSamplingStrategyTypeVal EllipsePointSamplingStrategyTypeValueIn);
+    EllipsePointSamplingStrategyTypeVal * EllipsePointSamplingStrategyTypeValueIn);
   ~EllipsePointSamplingStrategyTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne EllipsePointSamplingStrategyTypeType;
-  EllipsePointSamplingStrategyTypeVal EllipsePointSamplingStrategyTypeValue;
+  EllipsePointSamplingStrategyTypeVal * EllipsePointSamplingStrategyTypeValue;
 };
 
 /* ***************************************************************** */
@@ -728,12 +728,12 @@ public:
   EllipticalArcPointSamplingStrategyTypeChoicePair();
   EllipticalArcPointSamplingStrategyTypeChoicePair(
     whichOne EllipticalArcPointSamplingStrategyTypeTypeIn,
-    EllipticalArcPointSamplingStrategyTypeVal EllipticalArcPointSamplingStrategyTypeValueIn);
+    EllipticalArcPointSamplingStrategyTypeVal * EllipticalArcPointSamplingStrategyTypeValueIn);
   ~EllipticalArcPointSamplingStrategyTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne EllipticalArcPointSamplingStrategyTypeType;
-  EllipticalArcPointSamplingStrategyTypeVal EllipticalArcPointSamplingStrategyTypeValue;
+  EllipticalArcPointSamplingStrategyTypeVal * EllipticalArcPointSamplingStrategyTypeValue;
 };
 
 /* ***************************************************************** */
@@ -775,12 +775,12 @@ public:
   ElongatedCirclePointSamplingStrategyTypeChoicePair();
   ElongatedCirclePointSamplingStrategyTypeChoicePair(
     whichOne ElongatedCirclePointSamplingStrategyTypeTypeIn,
-    ElongatedCirclePointSamplingStrategyTypeVal ElongatedCirclePointSamplingStrategyTypeValueIn);
+    ElongatedCirclePointSamplingStrategyTypeVal * ElongatedCirclePointSamplingStrategyTypeValueIn);
   ~ElongatedCirclePointSamplingStrategyTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne ElongatedCirclePointSamplingStrategyTypeType;
-  ElongatedCirclePointSamplingStrategyTypeVal ElongatedCirclePointSamplingStrategyTypeValue;
+  ElongatedCirclePointSamplingStrategyTypeVal * ElongatedCirclePointSamplingStrategyTypeValue;
 };
 
 /* ***************************************************************** */
@@ -822,12 +822,12 @@ public:
   ElongatedCylinderPointSamplingStrategyTypeChoicePair();
   ElongatedCylinderPointSamplingStrategyTypeChoicePair(
     whichOne ElongatedCylinderPointSamplingStrategyTypeTypeIn,
-    ElongatedCylinderPointSamplingStrategyTypeVal ElongatedCylinderPointSamplingStrategyTypeValueIn);
+    ElongatedCylinderPointSamplingStrategyTypeVal * ElongatedCylinderPointSamplingStrategyTypeValueIn);
   ~ElongatedCylinderPointSamplingStrategyTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne ElongatedCylinderPointSamplingStrategyTypeType;
-  ElongatedCylinderPointSamplingStrategyTypeVal ElongatedCylinderPointSamplingStrategyTypeValue;
+  ElongatedCylinderPointSamplingStrategyTypeVal * ElongatedCylinderPointSamplingStrategyTypeValue;
 };
 
 /* ***************************************************************** */
@@ -869,12 +869,12 @@ public:
   ExtrudedCrossSectionPointSamplingStrategyTypeChoicePair();
   ExtrudedCrossSectionPointSamplingStrategyTypeChoicePair(
     whichOne ExtrudedCrossSectionPointSamplingStrategyTypeTypeIn,
-    ExtrudedCrossSectionPointSamplingStrategyTypeVal ExtrudedCrossSectionPointSamplingStrategyTypeValueIn);
+    ExtrudedCrossSectionPointSamplingStrategyTypeVal * ExtrudedCrossSectionPointSamplingStrategyTypeValueIn);
   ~ExtrudedCrossSectionPointSamplingStrategyTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne ExtrudedCrossSectionPointSamplingStrategyTypeType;
-  ExtrudedCrossSectionPointSamplingStrategyTypeVal ExtrudedCrossSectionPointSamplingStrategyTypeValue;
+  ExtrudedCrossSectionPointSamplingStrategyTypeVal * ExtrudedCrossSectionPointSamplingStrategyTypeValue;
 };
 
 /* ***************************************************************** */
@@ -971,12 +971,12 @@ public:
   LinePointSamplingStrategyTypeChoicePair();
   LinePointSamplingStrategyTypeChoicePair(
     whichOne LinePointSamplingStrategyTypeTypeIn,
-    LinePointSamplingStrategyTypeVal LinePointSamplingStrategyTypeValueIn);
+    LinePointSamplingStrategyTypeVal * LinePointSamplingStrategyTypeValueIn);
   ~LinePointSamplingStrategyTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne LinePointSamplingStrategyTypeType;
-  LinePointSamplingStrategyTypeVal LinePointSamplingStrategyTypeValue;
+  LinePointSamplingStrategyTypeVal * LinePointSamplingStrategyTypeValue;
 };
 
 /* ***************************************************************** */
@@ -1050,12 +1050,12 @@ public:
   OppositeAngledLinesPointSamplingStrategyTypeChoicePair();
   OppositeAngledLinesPointSamplingStrategyTypeChoicePair(
     whichOne OppositeAngledLinesPointSamplingStrategyTypeTypeIn,
-    OppositeAngledLinesPointSamplingStrategyTypeVal OppositeAngledLinesPointSamplingStrategyTypeValueIn);
+    OppositeAngledLinesPointSamplingStrategyTypeVal * OppositeAngledLinesPointSamplingStrategyTypeValueIn);
   ~OppositeAngledLinesPointSamplingStrategyTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne OppositeAngledLinesPointSamplingStrategyTypeType;
-  OppositeAngledLinesPointSamplingStrategyTypeVal OppositeAngledLinesPointSamplingStrategyTypeValue;
+  OppositeAngledLinesPointSamplingStrategyTypeVal * OppositeAngledLinesPointSamplingStrategyTypeValue;
 };
 
 /* ***************************************************************** */
@@ -1097,12 +1097,12 @@ public:
   OppositeAngledPlanesPointSamplingStrategyTypeChoicePair();
   OppositeAngledPlanesPointSamplingStrategyTypeChoicePair(
     whichOne OppositeAngledPlanesPointSamplingStrategyTypeTypeIn,
-    OppositeAngledPlanesPointSamplingStrategyTypeVal OppositeAngledPlanesPointSamplingStrategyTypeValueIn);
+    OppositeAngledPlanesPointSamplingStrategyTypeVal * OppositeAngledPlanesPointSamplingStrategyTypeValueIn);
   ~OppositeAngledPlanesPointSamplingStrategyTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne OppositeAngledPlanesPointSamplingStrategyTypeType;
-  OppositeAngledPlanesPointSamplingStrategyTypeVal OppositeAngledPlanesPointSamplingStrategyTypeValue;
+  OppositeAngledPlanesPointSamplingStrategyTypeVal * OppositeAngledPlanesPointSamplingStrategyTypeValue;
 };
 
 /* ***************************************************************** */
@@ -1144,12 +1144,12 @@ public:
   OppositeParallelLinesPointSamplingStrategyTypeChoicePair();
   OppositeParallelLinesPointSamplingStrategyTypeChoicePair(
     whichOne OppositeParallelLinesPointSamplingStrategyTypeTypeIn,
-    OppositeParallelLinesPointSamplingStrategyTypeVal OppositeParallelLinesPointSamplingStrategyTypeValueIn);
+    OppositeParallelLinesPointSamplingStrategyTypeVal * OppositeParallelLinesPointSamplingStrategyTypeValueIn);
   ~OppositeParallelLinesPointSamplingStrategyTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne OppositeParallelLinesPointSamplingStrategyTypeType;
-  OppositeParallelLinesPointSamplingStrategyTypeVal OppositeParallelLinesPointSamplingStrategyTypeValue;
+  OppositeParallelLinesPointSamplingStrategyTypeVal * OppositeParallelLinesPointSamplingStrategyTypeValue;
 };
 
 /* ***************************************************************** */
@@ -1191,12 +1191,12 @@ public:
   OppositeParallelPlanesPointSamplingStrategyTypeChoicePair();
   OppositeParallelPlanesPointSamplingStrategyTypeChoicePair(
     whichOne OppositeParallelPlanesPointSamplingStrategyTypeTypeIn,
-    OppositeParallelPlanesPointSamplingStrategyTypeVal OppositeParallelPlanesPointSamplingStrategyTypeValueIn);
+    OppositeParallelPlanesPointSamplingStrategyTypeVal * OppositeParallelPlanesPointSamplingStrategyTypeValueIn);
   ~OppositeParallelPlanesPointSamplingStrategyTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne OppositeParallelPlanesPointSamplingStrategyTypeType;
-  OppositeParallelPlanesPointSamplingStrategyTypeVal OppositeParallelPlanesPointSamplingStrategyTypeValue;
+  OppositeParallelPlanesPointSamplingStrategyTypeVal * OppositeParallelPlanesPointSamplingStrategyTypeValue;
 };
 
 /* ***************************************************************** */
@@ -1238,12 +1238,12 @@ public:
   PlanePointSamplingStrategyTypeChoicePair();
   PlanePointSamplingStrategyTypeChoicePair(
     whichOne PlanePointSamplingStrategyTypeTypeIn,
-    PlanePointSamplingStrategyTypeVal PlanePointSamplingStrategyTypeValueIn);
+    PlanePointSamplingStrategyTypeVal * PlanePointSamplingStrategyTypeValueIn);
   ~PlanePointSamplingStrategyTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne PlanePointSamplingStrategyTypeType;
-  PlanePointSamplingStrategyTypeVal PlanePointSamplingStrategyTypeValue;
+  PlanePointSamplingStrategyTypeVal * PlanePointSamplingStrategyTypeValue;
 };
 
 /* ***************************************************************** */
@@ -1285,12 +1285,12 @@ public:
   PointDefinedCurvePointSamplingStrategyTypeChoicePair();
   PointDefinedCurvePointSamplingStrategyTypeChoicePair(
     whichOne PointDefinedCurvePointSamplingStrategyTypeTypeIn,
-    PointDefinedCurvePointSamplingStrategyTypeVal PointDefinedCurvePointSamplingStrategyTypeValueIn);
+    PointDefinedCurvePointSamplingStrategyTypeVal * PointDefinedCurvePointSamplingStrategyTypeValueIn);
   ~PointDefinedCurvePointSamplingStrategyTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne PointDefinedCurvePointSamplingStrategyTypeType;
-  PointDefinedCurvePointSamplingStrategyTypeVal PointDefinedCurvePointSamplingStrategyTypeValue;
+  PointDefinedCurvePointSamplingStrategyTypeVal * PointDefinedCurvePointSamplingStrategyTypeValue;
 };
 
 /* ***************************************************************** */
@@ -1332,12 +1332,12 @@ public:
   PointDefinedSurfacePointSamplingStrategyTypeChoicePair();
   PointDefinedSurfacePointSamplingStrategyTypeChoicePair(
     whichOne PointDefinedSurfacePointSamplingStrategyTypeTypeIn,
-    PointDefinedSurfacePointSamplingStrategyTypeVal PointDefinedSurfacePointSamplingStrategyTypeValueIn);
+    PointDefinedSurfacePointSamplingStrategyTypeVal * PointDefinedSurfacePointSamplingStrategyTypeValueIn);
   ~PointDefinedSurfacePointSamplingStrategyTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne PointDefinedSurfacePointSamplingStrategyTypeType;
-  PointDefinedSurfacePointSamplingStrategyTypeVal PointDefinedSurfacePointSamplingStrategyTypeValue;
+  PointDefinedSurfacePointSamplingStrategyTypeVal * PointDefinedSurfacePointSamplingStrategyTypeValue;
 };
 
 /* ***************************************************************** */
@@ -1379,12 +1379,12 @@ public:
   PointPointSamplingStrategyTypeChoicePair();
   PointPointSamplingStrategyTypeChoicePair(
     whichOne PointPointSamplingStrategyTypeTypeIn,
-    PointPointSamplingStrategyTypeVal PointPointSamplingStrategyTypeValueIn);
+    PointPointSamplingStrategyTypeVal * PointPointSamplingStrategyTypeValueIn);
   ~PointPointSamplingStrategyTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne PointPointSamplingStrategyTypeType;
-  PointPointSamplingStrategyTypeVal PointPointSamplingStrategyTypeValue;
+  PointPointSamplingStrategyTypeVal * PointPointSamplingStrategyTypeValue;
 };
 
 /* ***************************************************************** */
@@ -1441,7 +1441,7 @@ public:
   QIFRuleBaseType(
     XmlToken * nameIn,
     QPIdType * UUIDIn);
-  ~QIFRuleBaseType();
+  virtual ~QIFRuleBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
@@ -1593,12 +1593,12 @@ public:
   SpherePointSamplingStrategyTypeChoicePair();
   SpherePointSamplingStrategyTypeChoicePair(
     whichOne SpherePointSamplingStrategyTypeTypeIn,
-    SpherePointSamplingStrategyTypeVal SpherePointSamplingStrategyTypeValueIn);
+    SpherePointSamplingStrategyTypeVal * SpherePointSamplingStrategyTypeValueIn);
   ~SpherePointSamplingStrategyTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne SpherePointSamplingStrategyTypeType;
-  SpherePointSamplingStrategyTypeVal SpherePointSamplingStrategyTypeValue;
+  SpherePointSamplingStrategyTypeVal * SpherePointSamplingStrategyTypeValue;
 };
 
 /* ***************************************************************** */
@@ -1640,12 +1640,12 @@ public:
   SphericalSegmentPointSamplingStrategyTypeChoicePair();
   SphericalSegmentPointSamplingStrategyTypeChoicePair(
     whichOne SphericalSegmentPointSamplingStrategyTypeTypeIn,
-    SphericalSegmentPointSamplingStrategyTypeVal SphericalSegmentPointSamplingStrategyTypeValueIn);
+    SphericalSegmentPointSamplingStrategyTypeVal * SphericalSegmentPointSamplingStrategyTypeValueIn);
   ~SphericalSegmentPointSamplingStrategyTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne SphericalSegmentPointSamplingStrategyTypeType;
-  SphericalSegmentPointSamplingStrategyTypeVal SphericalSegmentPointSamplingStrategyTypeValue;
+  SphericalSegmentPointSamplingStrategyTypeVal * SphericalSegmentPointSamplingStrategyTypeValue;
 };
 
 /* ***************************************************************** */
@@ -1687,12 +1687,12 @@ public:
   SurfaceOfRevolutionPointSamplingStrategyTypeChoicePair();
   SurfaceOfRevolutionPointSamplingStrategyTypeChoicePair(
     whichOne SurfaceOfRevolutionPointSamplingStrategyTypeTypeIn,
-    SurfaceOfRevolutionPointSamplingStrategyTypeVal SurfaceOfRevolutionPointSamplingStrategyTypeValueIn);
+    SurfaceOfRevolutionPointSamplingStrategyTypeVal * SurfaceOfRevolutionPointSamplingStrategyTypeValueIn);
   ~SurfaceOfRevolutionPointSamplingStrategyTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne SurfaceOfRevolutionPointSamplingStrategyTypeType;
-  SurfaceOfRevolutionPointSamplingStrategyTypeVal SurfaceOfRevolutionPointSamplingStrategyTypeValue;
+  SurfaceOfRevolutionPointSamplingStrategyTypeVal * SurfaceOfRevolutionPointSamplingStrategyTypeValue;
 };
 
 /* ***************************************************************** */
@@ -1738,12 +1738,12 @@ public:
   ThenPointsTypeChoicePair();
   ThenPointsTypeChoicePair(
     whichOne ThenPointsTypeTypeIn,
-    ThenPointsTypeVal ThenPointsTypeValueIn);
+    ThenPointsTypeVal * ThenPointsTypeValueIn);
   ~ThenPointsTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne ThenPointsTypeType;
-  ThenPointsTypeVal ThenPointsTypeValue;
+  ThenPointsTypeVal * ThenPointsTypeValue;
 };
 
 /* ***************************************************************** */
@@ -1785,12 +1785,12 @@ public:
   ToroidalSegmentPointSamplingStrategyTypeChoicePair();
   ToroidalSegmentPointSamplingStrategyTypeChoicePair(
     whichOne ToroidalSegmentPointSamplingStrategyTypeTypeIn,
-    ToroidalSegmentPointSamplingStrategyTypeVal ToroidalSegmentPointSamplingStrategyTypeValueIn);
+    ToroidalSegmentPointSamplingStrategyTypeVal * ToroidalSegmentPointSamplingStrategyTypeValueIn);
   ~ToroidalSegmentPointSamplingStrategyTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne ToroidalSegmentPointSamplingStrategyTypeType;
-  ToroidalSegmentPointSamplingStrategyTypeVal ToroidalSegmentPointSamplingStrategyTypeValue;
+  ToroidalSegmentPointSamplingStrategyTypeVal * ToroidalSegmentPointSamplingStrategyTypeValue;
 };
 
 /* ***************************************************************** */
@@ -1832,12 +1832,12 @@ public:
   TorusPointSamplingStrategyTypeChoicePair();
   TorusPointSamplingStrategyTypeChoicePair(
     whichOne TorusPointSamplingStrategyTypeTypeIn,
-    TorusPointSamplingStrategyTypeVal TorusPointSamplingStrategyTypeValueIn);
+    TorusPointSamplingStrategyTypeVal * TorusPointSamplingStrategyTypeValueIn);
   ~TorusPointSamplingStrategyTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne TorusPointSamplingStrategyTypeType;
-  TorusPointSamplingStrategyTypeVal TorusPointSamplingStrategyTypeValue;
+  TorusPointSamplingStrategyTypeVal * TorusPointSamplingStrategyTypeValue;
 };
 
 /* ***************************************************************** */
@@ -1912,7 +1912,7 @@ public:
   PointRuleBaseType(
     XmlToken * nameIn,
     QPIdType * UUIDIn);
-  ~PointRuleBaseType();
+  virtual ~PointRuleBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 };

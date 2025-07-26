@@ -156,12 +156,12 @@ public:
   ArrayBinaryQIFReferenceTypeChoicePair();
   ArrayBinaryQIFReferenceTypeChoicePair(
     whichOne ArrayBinaryQIFReferenceTypeTypeIn,
-    ArrayBinaryQIFReferenceTypeVal ArrayBinaryQIFReferenceTypeValueIn);
+    ArrayBinaryQIFReferenceTypeVal * ArrayBinaryQIFReferenceTypeValueIn);
   ~ArrayBinaryQIFReferenceTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne ArrayBinaryQIFReferenceTypeType;
-  ArrayBinaryQIFReferenceTypeVal ArrayBinaryQIFReferenceTypeValue;
+  ArrayBinaryQIFReferenceTypeVal * ArrayBinaryQIFReferenceTypeValue;
 };
 
 /* ***************************************************************** */
@@ -350,7 +350,7 @@ public:
   AttributeBaseType();
   AttributeBaseType(
     XmlString * nameIn);
-  ~AttributeBaseType();
+  virtual ~AttributeBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
@@ -634,12 +634,12 @@ public:
   AttributeUserTypeChoicePair();
   AttributeUserTypeChoicePair(
     whichOne AttributeUserTypeTypeIn,
-    AttributeUserTypeVal AttributeUserTypeValueIn);
+    AttributeUserTypeVal * AttributeUserTypeValueIn);
   ~AttributeUserTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne AttributeUserTypeType;
-  AttributeUserTypeVal AttributeUserTypeValue;
+  AttributeUserTypeVal * AttributeUserTypeValue;
 };
 
 /* ***************************************************************** */
@@ -1132,12 +1132,12 @@ public:
   ListQIFReferenceTypeChoicePair();
   ListQIFReferenceTypeChoicePair(
     whichOne ListQIFReferenceTypeTypeIn,
-    ListQIFReferenceTypeVal ListQIFReferenceTypeValueIn);
+    ListQIFReferenceTypeVal * ListQIFReferenceTypeValueIn);
   ~ListQIFReferenceTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne ListQIFReferenceTypeType;
-  ListQIFReferenceTypeVal ListQIFReferenceTypeValue;
+  ListQIFReferenceTypeVal * ListQIFReferenceTypeValue;
 };
 
 /* ***************************************************************** */
@@ -2116,12 +2116,12 @@ public:
   ValidationPoint_1003_TypeChoicePair();
   ValidationPoint_1003_TypeChoicePair(
     whichOne ValidationPoint_1003_TypeTypeIn,
-    ValidationPoint_1003_TypeVal ValidationPoint_1003_TypeValueIn);
+    ValidationPoint_1003_TypeVal * ValidationPoint_1003_TypeValueIn);
   ~ValidationPoint_1003_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne ValidationPoint_1003_TypeType;
-  ValidationPoint_1003_TypeVal ValidationPoint_1003_TypeValue;
+  ValidationPoint_1003_TypeVal * ValidationPoint_1003_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -2163,12 +2163,12 @@ public:
   ValidationPoint_1004_TypeChoicePair();
   ValidationPoint_1004_TypeChoicePair(
     whichOne ValidationPoint_1004_TypeTypeIn,
-    ValidationPoint_1004_TypeVal ValidationPoint_1004_TypeValueIn);
+    ValidationPoint_1004_TypeVal * ValidationPoint_1004_TypeValueIn);
   ~ValidationPoint_1004_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne ValidationPoint_1004_TypeType;
-  ValidationPoint_1004_TypeVal ValidationPoint_1004_TypeValue;
+  ValidationPoint_1004_TypeVal * ValidationPoint_1004_TypeValue;
 };
 
 /* ***************************************************************** */

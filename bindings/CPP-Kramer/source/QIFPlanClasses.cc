@@ -4105,7 +4105,7 @@ MeasureActionGroupFunctionTypeChoicePair::MeasureActionGroupFunctionTypeChoicePa
 
 MeasureActionGroupFunctionTypeChoicePair::MeasureActionGroupFunctionTypeChoicePair(
  whichOne MeasureActionGroupFunctionTypeTypeIn,
- MeasureActionGroupFunctionTypeVal MeasureActionGroupFunctionTypeValueIn)
+ MeasureActionGroupFunctionTypeVal * MeasureActionGroupFunctionTypeValueIn)
 {
   MeasureActionGroupFunctionTypeType = MeasureActionGroupFunctionTypeTypeIn;
   MeasureActionGroupFunctionTypeValue = MeasureActionGroupFunctionTypeValueIn;
@@ -4115,9 +4115,10 @@ MeasureActionGroupFunctionTypeChoicePair::~MeasureActionGroupFunctionTypeChoiceP
 {
   #ifndef NODESTRUCT
   if (MeasureActionGroupFunctionTypeType == MeasureActionGroupFunctionEnumE)
-    delete MeasureActionGroupFunctionTypeValue.MeasureActionGroupFunctionEnum;
+    delete MeasureActionGroupFunctionTypeValue->MeasureActionGroupFunctionEnum;
   else if (MeasureActionGroupFunctionTypeType == OtherMeasureActionGroupFunctionE)
-    delete MeasureActionGroupFunctionTypeValue.OtherMeasureActionGroupFunction;
+    delete MeasureActionGroupFunctionTypeValue->OtherMeasureActionGroupFunction;
+  delete MeasureActionGroupFunctionTypeValue;
   #endif
 }
 
@@ -4127,14 +4128,14 @@ void MeasureActionGroupFunctionTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MeasureActionGroupFunctionEnum");
-      MeasureActionGroupFunctionTypeValue.MeasureActionGroupFunctionEnum->printSelf(outFile);
+      MeasureActionGroupFunctionTypeValue->MeasureActionGroupFunctionEnum->printSelf(outFile);
       fprintf(outFile, "</MeasureActionGroupFunctionEnum>\n");
     }
   else if (MeasureActionGroupFunctionTypeType == OtherMeasureActionGroupFunctionE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<OtherMeasureActionGroupFunction");
-      MeasureActionGroupFunctionTypeValue.OtherMeasureActionGroupFunction->printSelf(outFile);
+      MeasureActionGroupFunctionTypeValue->OtherMeasureActionGroupFunction->printSelf(outFile);
       fprintf(outFile, "</OtherMeasureActionGroupFunction>\n");
     }
 }

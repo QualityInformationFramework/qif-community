@@ -38,7 +38,7 @@ public:
     XmlBoolean * hiddenIn,
     DoublePositiveType * sizeIn,
     TransparencyType * transparencyIn);
-  ~AuxiliaryBaseType();
+  virtual ~AuxiliaryBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 };
@@ -76,7 +76,7 @@ public:
     DoublePositiveType * sizeIn,
     TransparencyType * transparencyIn,
     PlaneType * PlaneIn);
-  ~AuxiliaryPlaneBaseType();
+  virtual ~AuxiliaryPlaneBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 

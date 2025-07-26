@@ -300,12 +300,12 @@ public:
   AddressDescriptionTypeChoicePair();
   AddressDescriptionTypeChoicePair(
     whichOne AddressDescriptionTypeTypeIn,
-    AddressDescriptionTypeVal AddressDescriptionTypeValueIn);
+    AddressDescriptionTypeVal * AddressDescriptionTypeValueIn);
   ~AddressDescriptionTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne AddressDescriptionTypeType;
-  AddressDescriptionTypeVal AddressDescriptionTypeValue;
+  AddressDescriptionTypeVal * AddressDescriptionTypeValue;
 };
 
 /* ***************************************************************** */
@@ -430,12 +430,12 @@ public:
   AlignmentFeatureTypeChoicePair();
   AlignmentFeatureTypeChoicePair(
     whichOne AlignmentFeatureTypeTypeIn,
-    AlignmentFeatureTypeVal AlignmentFeatureTypeValueIn);
+    AlignmentFeatureTypeVal * AlignmentFeatureTypeValueIn);
   ~AlignmentFeatureTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne AlignmentFeatureTypeType;
-  AlignmentFeatureTypeVal AlignmentFeatureTypeValue;
+  AlignmentFeatureTypeVal * AlignmentFeatureTypeValue;
 };
 
 /* ***************************************************************** */
@@ -448,7 +448,7 @@ public:
   AlignmentOperationBaseType(
     NaturalType * SequenceNumberIn,
     AttributesType * AttributesIn);
-  ~AlignmentOperationBaseType();
+  virtual ~AlignmentOperationBaseType();
   void printSelf(FILE * outFile);
 
   NaturalType * getSequenceNumber();
@@ -1050,7 +1050,7 @@ public:
   DatumFeatureBaseType();
   DatumFeatureBaseType(
     QIFReferenceFullType * FeatureNominalIdIn);
-  ~DatumFeatureBaseType();
+  virtual ~DatumFeatureBaseType();
   void printSelf(FILE * outFile);
 
   QIFReferenceFullType * getFeatureNominalId();
@@ -1101,12 +1101,12 @@ public:
   DatumFeatureSimulatorModifierTypeChoicePair();
   DatumFeatureSimulatorModifierTypeChoicePair(
     whichOne DatumFeatureSimulatorModifierTypeTypeIn,
-    DatumFeatureSimulatorModifierTypeVal DatumFeatureSimulatorModifierTypeValueIn);
+    DatumFeatureSimulatorModifierTypeVal * DatumFeatureSimulatorModifierTypeValueIn);
   ~DatumFeatureSimulatorModifierTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne DatumFeatureSimulatorModifierTypeType;
-  DatumFeatureSimulatorModifierTypeVal DatumFeatureSimulatorModifierTypeValue;
+  DatumFeatureSimulatorModifierTypeVal * DatumFeatureSimulatorModifierTypeValue;
 };
 
 /* ***************************************************************** */
@@ -1563,12 +1563,12 @@ public:
   DegreesOfFreedomTypeChoicePair();
   DegreesOfFreedomTypeChoicePair(
     whichOne DegreesOfFreedomTypeTypeIn,
-    DegreesOfFreedomTypeVal DegreesOfFreedomTypeValueIn);
+    DegreesOfFreedomTypeVal * DegreesOfFreedomTypeValueIn);
   ~DegreesOfFreedomTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne DegreesOfFreedomTypeType;
-  DegreesOfFreedomTypeVal DegreesOfFreedomTypeValue;
+  DegreesOfFreedomTypeVal * DegreesOfFreedomTypeValue;
 };
 
 /* ***************************************************************** */
@@ -1839,7 +1839,7 @@ public:
   EventBaseType(
     QIFIdType * idIn,
     XmlString * DescriptionIn);
-  ~EventBaseType();
+  virtual ~EventBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
@@ -1961,12 +1961,12 @@ public:
   FileSpecTypeChoicePair();
   FileSpecTypeChoicePair(
     whichOne FileSpecTypeTypeIn,
-    FileSpecTypeVal FileSpecTypeValueIn);
+    FileSpecTypeVal * FileSpecTypeValueIn);
   ~FileSpecTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne FileSpecTypeType;
-  FileSpecTypeVal FileSpecTypeValue;
+  FileSpecTypeVal * FileSpecTypeValue;
 };
 
 /* ***************************************************************** */
@@ -2110,12 +2110,12 @@ public:
   InspectionStatusTypeChoicePair();
   InspectionStatusTypeChoicePair(
     whichOne InspectionStatusTypeTypeIn,
-    InspectionStatusTypeVal InspectionStatusTypeValueIn);
+    InspectionStatusTypeVal * InspectionStatusTypeValueIn);
   ~InspectionStatusTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne InspectionStatusTypeType;
-  InspectionStatusTypeVal InspectionStatusTypeValue;
+  InspectionStatusTypeVal * InspectionStatusTypeValue;
 };
 
 /* ***************************************************************** */
@@ -2587,7 +2587,7 @@ public:
     QIFIdType * idIn,
     MeasuredPointType * PointIn,
     MeasuredUnitVectorType * NormalIn);
-  ~MeasuredPointWithNormalBaseType();
+  virtual ~MeasuredPointWithNormalBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
@@ -2660,12 +2660,12 @@ public:
   MeasurementDirectiveTypeChoicePair();
   MeasurementDirectiveTypeChoicePair(
     whichOne MeasurementDirectiveTypeTypeIn,
-    MeasurementDirectiveTypeVal MeasurementDirectiveTypeValueIn);
+    MeasurementDirectiveTypeVal * MeasurementDirectiveTypeValueIn);
   ~MeasurementDirectiveTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne MeasurementDirectiveTypeType;
-  MeasurementDirectiveTypeVal MeasurementDirectiveTypeValue;
+  MeasurementDirectiveTypeVal * MeasurementDirectiveTypeValue;
 };
 
 /* ***************************************************************** */
@@ -3122,8 +3122,6 @@ public:
   virtual void printName(FILE * outFile);
   bool PointSetReferenceBaseTypeIsBad();
   bool badAttributes(AttributePairLisd * attributes);
-
-protected:
 };
 
 /* ***************************************************************** */
@@ -3209,8 +3207,6 @@ public:
   virtual void printName(FILE * outFile);
   bool PointSetReferenceWholeTypeIsBad();
   bool badAttributes(AttributePairLisd * attributes);
-
-protected:
 };
 
 /* ***************************************************************** */
@@ -3227,7 +3223,7 @@ public:
     QIFIdType * idIn,
     PointType * PointIn,
     UnitVectorType * NormalIn);
-  ~PointWithNormalBaseType();
+  virtual ~PointWithNormalBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
@@ -3300,12 +3296,12 @@ public:
   PrecedenceTypeChoicePair();
   PrecedenceTypeChoicePair(
     whichOne PrecedenceTypeTypeIn,
-    PrecedenceTypeVal PrecedenceTypeValueIn);
+    PrecedenceTypeVal * PrecedenceTypeValueIn);
   ~PrecedenceTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne PrecedenceTypeType;
-  PrecedenceTypeVal PrecedenceTypeValue;
+  PrecedenceTypeVal * PrecedenceTypeValue;
 };
 
 /* ***************************************************************** */
@@ -3829,12 +3825,12 @@ public:
   StandardsOrganizationTypeChoicePair();
   StandardsOrganizationTypeChoicePair(
     whichOne StandardsOrganizationTypeTypeIn,
-    StandardsOrganizationTypeVal StandardsOrganizationTypeValueIn);
+    StandardsOrganizationTypeVal * StandardsOrganizationTypeValueIn);
   ~StandardsOrganizationTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne StandardsOrganizationTypeType;
-  StandardsOrganizationTypeVal StandardsOrganizationTypeValue;
+  StandardsOrganizationTypeVal * StandardsOrganizationTypeValue;
 };
 
 /* ***************************************************************** */
@@ -3983,7 +3979,7 @@ public:
     XmlBoolean * ModifiedThreadIn,
     LinearValueType * ThreadLengthEngagementIn,
     AttributesType * AttributesIn);
-  ~ThreadSpecificationDetailedBaseType();
+  virtual ~ThreadSpecificationDetailedBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
@@ -4060,12 +4056,12 @@ public:
   ThreadSpecificationTypeChoicePair();
   ThreadSpecificationTypeChoicePair(
     whichOne ThreadSpecificationTypeTypeIn,
-    ThreadSpecificationTypeVal ThreadSpecificationTypeValueIn);
+    ThreadSpecificationTypeVal * ThreadSpecificationTypeValueIn);
   ~ThreadSpecificationTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne ThreadSpecificationTypeType;
-  ThreadSpecificationTypeVal ThreadSpecificationTypeValue;
+  ThreadSpecificationTypeVal * ThreadSpecificationTypeValue;
 };
 
 /* ***************************************************************** */
@@ -4555,12 +4551,12 @@ public:
   AlgorithmType_1006_TypeChoicePair();
   AlgorithmType_1006_TypeChoicePair(
     whichOne AlgorithmType_1006_TypeTypeIn,
-    AlgorithmType_1006_TypeVal AlgorithmType_1006_TypeValueIn);
+    AlgorithmType_1006_TypeVal * AlgorithmType_1006_TypeValueIn);
   ~AlgorithmType_1006_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne AlgorithmType_1006_TypeType;
-  AlgorithmType_1006_TypeVal AlgorithmType_1006_TypeValue;
+  AlgorithmType_1006_TypeVal * AlgorithmType_1006_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -4602,12 +4598,12 @@ public:
   AngularToleranc_1007_TypeChoicePair();
   AngularToleranc_1007_TypeChoicePair(
     whichOne AngularToleranc_1007_TypeTypeIn,
-    AngularToleranc_1007_TypeVal AngularToleranc_1007_TypeValueIn);
+    AngularToleranc_1007_TypeVal * AngularToleranc_1007_TypeValueIn);
   ~AngularToleranc_1007_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne AngularToleranc_1007_TypeType;
-  AngularToleranc_1007_TypeVal AngularToleranc_1007_TypeValue;
+  AngularToleranc_1007_TypeVal * AngularToleranc_1007_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -4651,12 +4647,12 @@ public:
   AngularToleranc_1008_TypeChoicePair();
   AngularToleranc_1008_TypeChoicePair(
     whichOne AngularToleranc_1008_TypeTypeIn,
-    AngularToleranc_1008_TypeVal AngularToleranc_1008_TypeValueIn);
+    AngularToleranc_1008_TypeVal * AngularToleranc_1008_TypeValueIn);
   ~AngularToleranc_1008_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne AngularToleranc_1008_TypeType;
-  AngularToleranc_1008_TypeVal AngularToleranc_1008_TypeValue;
+  AngularToleranc_1008_TypeVal * AngularToleranc_1008_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -4698,12 +4694,12 @@ public:
   AreaToleranceTy_1009_TypeChoicePair();
   AreaToleranceTy_1009_TypeChoicePair(
     whichOne AreaToleranceTy_1009_TypeTypeIn,
-    AreaToleranceTy_1009_TypeVal AreaToleranceTy_1009_TypeValueIn);
+    AreaToleranceTy_1009_TypeVal * AreaToleranceTy_1009_TypeValueIn);
   ~AreaToleranceTy_1009_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne AreaToleranceTy_1009_TypeType;
-  AreaToleranceTy_1009_TypeVal AreaToleranceTy_1009_TypeValue;
+  AreaToleranceTy_1009_TypeVal * AreaToleranceTy_1009_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -4749,12 +4745,12 @@ public:
   DatumWithPreced_1010_TypeChoicePair();
   DatumWithPreced_1010_TypeChoicePair(
     whichOne DatumWithPreced_1010_TypeTypeIn,
-    DatumWithPreced_1010_TypeVal DatumWithPreced_1010_TypeValueIn);
+    DatumWithPreced_1010_TypeVal * DatumWithPreced_1010_TypeValueIn);
   ~DatumWithPreced_1010_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne DatumWithPreced_1010_TypeType;
-  DatumWithPreced_1010_TypeVal DatumWithPreced_1010_TypeValue;
+  DatumWithPreced_1010_TypeVal * DatumWithPreced_1010_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -4796,12 +4792,12 @@ public:
   DirectionalOffs_1011_TypeChoicePair();
   DirectionalOffs_1011_TypeChoicePair(
     whichOne DirectionalOffs_1011_TypeTypeIn,
-    DirectionalOffs_1011_TypeVal DirectionalOffs_1011_TypeValueIn);
+    DirectionalOffs_1011_TypeVal * DirectionalOffs_1011_TypeValueIn);
   ~DirectionalOffs_1011_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne DirectionalOffs_1011_TypeType;
-  DirectionalOffs_1011_TypeVal DirectionalOffs_1011_TypeValue;
+  DirectionalOffs_1011_TypeVal * DirectionalOffs_1011_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -4843,12 +4839,12 @@ public:
   ForceToleranceT_1012_TypeChoicePair();
   ForceToleranceT_1012_TypeChoicePair(
     whichOne ForceToleranceT_1012_TypeTypeIn,
-    ForceToleranceT_1012_TypeVal ForceToleranceT_1012_TypeValueIn);
+    ForceToleranceT_1012_TypeVal * ForceToleranceT_1012_TypeValueIn);
   ~ForceToleranceT_1012_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne ForceToleranceT_1012_TypeType;
-  ForceToleranceT_1012_TypeVal ForceToleranceT_1012_TypeValue;
+  ForceToleranceT_1012_TypeVal * ForceToleranceT_1012_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -4890,12 +4886,12 @@ public:
   LinearTolerance_1013_TypeChoicePair();
   LinearTolerance_1013_TypeChoicePair(
     whichOne LinearTolerance_1013_TypeTypeIn,
-    LinearTolerance_1013_TypeVal LinearTolerance_1013_TypeValueIn);
+    LinearTolerance_1013_TypeVal * LinearTolerance_1013_TypeValueIn);
   ~LinearTolerance_1013_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne LinearTolerance_1013_TypeType;
-  LinearTolerance_1013_TypeVal LinearTolerance_1013_TypeValue;
+  LinearTolerance_1013_TypeVal * LinearTolerance_1013_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -4939,12 +4935,12 @@ public:
   LinearTolerance_1014_TypeChoicePair();
   LinearTolerance_1014_TypeChoicePair(
     whichOne LinearTolerance_1014_TypeTypeIn,
-    LinearTolerance_1014_TypeVal LinearTolerance_1014_TypeValueIn);
+    LinearTolerance_1014_TypeVal * LinearTolerance_1014_TypeValueIn);
   ~LinearTolerance_1014_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne LinearTolerance_1014_TypeType;
-  LinearTolerance_1014_TypeVal LinearTolerance_1014_TypeValue;
+  LinearTolerance_1014_TypeVal * LinearTolerance_1014_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -4986,12 +4982,12 @@ public:
   MassToleranceTy_1015_TypeChoicePair();
   MassToleranceTy_1015_TypeChoicePair(
     whichOne MassToleranceTy_1015_TypeTypeIn,
-    MassToleranceTy_1015_TypeVal MassToleranceTy_1015_TypeValueIn);
+    MassToleranceTy_1015_TypeVal * MassToleranceTy_1015_TypeValueIn);
   ~MassToleranceTy_1015_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne MassToleranceTy_1015_TypeType;
-  MassToleranceTy_1015_TypeVal MassToleranceTy_1015_TypeValue;
+  MassToleranceTy_1015_TypeVal * MassToleranceTy_1015_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -5033,12 +5029,12 @@ public:
   MaterialType_1016_TypeChoicePair();
   MaterialType_1016_TypeChoicePair(
     whichOne MaterialType_1016_TypeTypeIn,
-    MaterialType_1016_TypeVal MaterialType_1016_TypeValueIn);
+    MaterialType_1016_TypeVal * MaterialType_1016_TypeValueIn);
   ~MaterialType_1016_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne MaterialType_1016_TypeType;
-  MaterialType_1016_TypeVal MaterialType_1016_TypeValue;
+  MaterialType_1016_TypeVal * MaterialType_1016_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -5080,12 +5076,12 @@ public:
   PressureToleran_1017_TypeChoicePair();
   PressureToleran_1017_TypeChoicePair(
     whichOne PressureToleran_1017_TypeTypeIn,
-    PressureToleran_1017_TypeVal PressureToleran_1017_TypeValueIn);
+    PressureToleran_1017_TypeVal * PressureToleran_1017_TypeValueIn);
   ~PressureToleran_1017_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne PressureToleran_1017_TypeType;
-  PressureToleran_1017_TypeVal PressureToleran_1017_TypeValue;
+  PressureToleran_1017_TypeVal * PressureToleran_1017_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -5127,12 +5123,12 @@ public:
   SequencedDatumT_1018_TypeChoicePair();
   SequencedDatumT_1018_TypeChoicePair(
     whichOne SequencedDatumT_1018_TypeTypeIn,
-    SequencedDatumT_1018_TypeVal SequencedDatumT_1018_TypeValueIn);
+    SequencedDatumT_1018_TypeVal * SequencedDatumT_1018_TypeValueIn);
   ~SequencedDatumT_1018_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne SequencedDatumT_1018_TypeType;
-  SequencedDatumT_1018_TypeVal SequencedDatumT_1018_TypeValue;
+  SequencedDatumT_1018_TypeVal * SequencedDatumT_1018_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -5174,12 +5170,12 @@ public:
   SpeedToleranceT_1019_TypeChoicePair();
   SpeedToleranceT_1019_TypeChoicePair(
     whichOne SpeedToleranceT_1019_TypeTypeIn,
-    SpeedToleranceT_1019_TypeVal SpeedToleranceT_1019_TypeValueIn);
+    SpeedToleranceT_1019_TypeVal * SpeedToleranceT_1019_TypeValueIn);
   ~SpeedToleranceT_1019_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne SpeedToleranceT_1019_TypeType;
-  SpeedToleranceT_1019_TypeVal SpeedToleranceT_1019_TypeValue;
+  SpeedToleranceT_1019_TypeVal * SpeedToleranceT_1019_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -5223,12 +5219,12 @@ public:
   SubstituteFeatu_1020_TypeChoicePair();
   SubstituteFeatu_1020_TypeChoicePair(
     whichOne SubstituteFeatu_1020_TypeTypeIn,
-    SubstituteFeatu_1020_TypeVal SubstituteFeatu_1020_TypeValueIn);
+    SubstituteFeatu_1020_TypeVal * SubstituteFeatu_1020_TypeValueIn);
   ~SubstituteFeatu_1020_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne SubstituteFeatu_1020_TypeType;
-  SubstituteFeatu_1020_TypeVal SubstituteFeatu_1020_TypeValue;
+  SubstituteFeatu_1020_TypeVal * SubstituteFeatu_1020_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -5270,12 +5266,12 @@ public:
   TemperatureTole_1021_TypeChoicePair();
   TemperatureTole_1021_TypeChoicePair(
     whichOne TemperatureTole_1021_TypeTypeIn,
-    TemperatureTole_1021_TypeVal TemperatureTole_1021_TypeValueIn);
+    TemperatureTole_1021_TypeVal * TemperatureTole_1021_TypeValueIn);
   ~TemperatureTole_1021_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne TemperatureTole_1021_TypeType;
-  TemperatureTole_1021_TypeVal TemperatureTole_1021_TypeValue;
+  TemperatureTole_1021_TypeVal * TemperatureTole_1021_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -5317,12 +5313,12 @@ public:
   TimeToleranceTy_1022_TypeChoicePair();
   TimeToleranceTy_1022_TypeChoicePair(
     whichOne TimeToleranceTy_1022_TypeTypeIn,
-    TimeToleranceTy_1022_TypeVal TimeToleranceTy_1022_TypeValueIn);
+    TimeToleranceTy_1022_TypeVal * TimeToleranceTy_1022_TypeValueIn);
   ~TimeToleranceTy_1022_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne TimeToleranceTy_1022_TypeType;
-  TimeToleranceTy_1022_TypeVal TimeToleranceTy_1022_TypeValue;
+  TimeToleranceTy_1022_TypeVal * TimeToleranceTy_1022_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -5364,12 +5360,12 @@ public:
   ToleranceZonePe_1023_TypeChoicePair();
   ToleranceZonePe_1023_TypeChoicePair(
     whichOne ToleranceZonePe_1023_TypeTypeIn,
-    ToleranceZonePe_1023_TypeVal ToleranceZonePe_1023_TypeValueIn);
+    ToleranceZonePe_1023_TypeVal * ToleranceZonePe_1023_TypeValueIn);
   ~ToleranceZonePe_1023_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne ToleranceZonePe_1023_TypeType;
-  ToleranceZonePe_1023_TypeVal ToleranceZonePe_1023_TypeValue;
+  ToleranceZonePe_1023_TypeVal * ToleranceZonePe_1023_TypeValue;
 };
 
 /* ***************************************************************** */

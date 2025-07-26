@@ -7955,7 +7955,7 @@ FaceMeshType_1180_TypeChoicePair::FaceMeshType_1180_TypeChoicePair() {}
 
 FaceMeshType_1180_TypeChoicePair::FaceMeshType_1180_TypeChoicePair(
  whichOne FaceMeshType_1180_TypeTypeIn,
- FaceMeshType_1180_TypeVal FaceMeshType_1180_TypeValueIn)
+ FaceMeshType_1180_TypeVal * FaceMeshType_1180_TypeValueIn)
 {
   FaceMeshType_1180_TypeType = FaceMeshType_1180_TypeTypeIn;
   FaceMeshType_1180_TypeValue = FaceMeshType_1180_TypeValueIn;
@@ -7965,9 +7965,10 @@ FaceMeshType_1180_TypeChoicePair::~FaceMeshType_1180_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (FaceMeshType_1180_TypeType == TrianglesE)
-    delete FaceMeshType_1180_TypeValue.Triangles;
+    delete FaceMeshType_1180_TypeValue->Triangles;
   else if (FaceMeshType_1180_TypeType == TrianglesBinaryE)
-    delete FaceMeshType_1180_TypeValue.TrianglesBinary;
+    delete FaceMeshType_1180_TypeValue->TrianglesBinary;
+  delete FaceMeshType_1180_TypeValue;
   #endif
 }
 
@@ -7977,14 +7978,14 @@ void FaceMeshType_1180_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Triangles");
-      FaceMeshType_1180_TypeValue.Triangles->printSelf(outFile);
+      FaceMeshType_1180_TypeValue->Triangles->printSelf(outFile);
       fprintf(outFile, "</Triangles>\n");
     }
   else if (FaceMeshType_1180_TypeType == TrianglesBinaryE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<TrianglesBinary");
-      FaceMeshType_1180_TypeValue.TrianglesBinary->printSelf(outFile);
+      FaceMeshType_1180_TypeValue->TrianglesBinary->printSelf(outFile);
       fprintf(outFile, "</TrianglesBinary>\n");
     }
 }
@@ -8030,7 +8031,7 @@ FaceMeshType_1181_TypeChoicePair::FaceMeshType_1181_TypeChoicePair() {}
 
 FaceMeshType_1181_TypeChoicePair::FaceMeshType_1181_TypeChoicePair(
  whichOne FaceMeshType_1181_TypeTypeIn,
- FaceMeshType_1181_TypeVal FaceMeshType_1181_TypeValueIn)
+ FaceMeshType_1181_TypeVal * FaceMeshType_1181_TypeValueIn)
 {
   FaceMeshType_1181_TypeType = FaceMeshType_1181_TypeTypeIn;
   FaceMeshType_1181_TypeValue = FaceMeshType_1181_TypeValueIn;
@@ -8040,13 +8041,14 @@ FaceMeshType_1181_TypeChoicePair::~FaceMeshType_1181_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (FaceMeshType_1181_TypeType == TrianglesVisibleE)
-    delete FaceMeshType_1181_TypeValue.TrianglesVisible;
+    delete FaceMeshType_1181_TypeValue->TrianglesVisible;
   else if (FaceMeshType_1181_TypeType == TrianglesVisibleBinaryE)
-    delete FaceMeshType_1181_TypeValue.TrianglesVisibleBinary;
+    delete FaceMeshType_1181_TypeValue->TrianglesVisibleBinary;
   else if (FaceMeshType_1181_TypeType == TrianglesHiddenE)
-    delete FaceMeshType_1181_TypeValue.TrianglesHidden;
+    delete FaceMeshType_1181_TypeValue->TrianglesHidden;
   else if (FaceMeshType_1181_TypeType == TrianglesHiddenBinaryE)
-    delete FaceMeshType_1181_TypeValue.TrianglesHiddenBinary;
+    delete FaceMeshType_1181_TypeValue->TrianglesHiddenBinary;
+  delete FaceMeshType_1181_TypeValue;
   #endif
 }
 
@@ -8056,28 +8058,28 @@ void FaceMeshType_1181_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<TrianglesVisible");
-      FaceMeshType_1181_TypeValue.TrianglesVisible->printSelf(outFile);
+      FaceMeshType_1181_TypeValue->TrianglesVisible->printSelf(outFile);
       fprintf(outFile, "</TrianglesVisible>\n");
     }
   else if (FaceMeshType_1181_TypeType == TrianglesVisibleBinaryE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<TrianglesVisibleBinary");
-      FaceMeshType_1181_TypeValue.TrianglesVisibleBinary->printSelf(outFile);
+      FaceMeshType_1181_TypeValue->TrianglesVisibleBinary->printSelf(outFile);
       fprintf(outFile, "</TrianglesVisibleBinary>\n");
     }
   else if (FaceMeshType_1181_TypeType == TrianglesHiddenE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<TrianglesHidden");
-      FaceMeshType_1181_TypeValue.TrianglesHidden->printSelf(outFile);
+      FaceMeshType_1181_TypeValue->TrianglesHidden->printSelf(outFile);
       fprintf(outFile, "</TrianglesHidden>\n");
     }
   else if (FaceMeshType_1181_TypeType == TrianglesHiddenBinaryE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<TrianglesHiddenBinary");
-      FaceMeshType_1181_TypeValue.TrianglesHiddenBinary->printSelf(outFile);
+      FaceMeshType_1181_TypeValue->TrianglesHiddenBinary->printSelf(outFile);
       fprintf(outFile, "</TrianglesHiddenBinary>\n");
     }
 }
@@ -8123,7 +8125,7 @@ FaceMeshType_1182_TypeChoicePair::FaceMeshType_1182_TypeChoicePair() {}
 
 FaceMeshType_1182_TypeChoicePair::FaceMeshType_1182_TypeChoicePair(
  whichOne FaceMeshType_1182_TypeTypeIn,
- FaceMeshType_1182_TypeVal FaceMeshType_1182_TypeValueIn)
+ FaceMeshType_1182_TypeVal * FaceMeshType_1182_TypeValueIn)
 {
   FaceMeshType_1182_TypeType = FaceMeshType_1182_TypeTypeIn;
   FaceMeshType_1182_TypeValue = FaceMeshType_1182_TypeValueIn;
@@ -8133,9 +8135,10 @@ FaceMeshType_1182_TypeChoicePair::~FaceMeshType_1182_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (FaceMeshType_1182_TypeType == TrianglesColorE)
-    delete FaceMeshType_1182_TypeValue.TrianglesColor;
+    delete FaceMeshType_1182_TypeValue->TrianglesColor;
   else if (FaceMeshType_1182_TypeType == TrianglesColorBinaryE)
-    delete FaceMeshType_1182_TypeValue.TrianglesColorBinary;
+    delete FaceMeshType_1182_TypeValue->TrianglesColorBinary;
+  delete FaceMeshType_1182_TypeValue;
   #endif
 }
 
@@ -8145,14 +8148,14 @@ void FaceMeshType_1182_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<TrianglesColor");
-      FaceMeshType_1182_TypeValue.TrianglesColor->printSelf(outFile);
+      FaceMeshType_1182_TypeValue->TrianglesColor->printSelf(outFile);
       fprintf(outFile, "</TrianglesColor>\n");
     }
   else if (FaceMeshType_1182_TypeType == TrianglesColorBinaryE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<TrianglesColorBinary");
-      FaceMeshType_1182_TypeValue.TrianglesColorBinary->printSelf(outFile);
+      FaceMeshType_1182_TypeValue->TrianglesColorBinary->printSelf(outFile);
       fprintf(outFile, "</TrianglesColorBinary>\n");
     }
 }
@@ -8195,7 +8198,7 @@ PointCloudType_1183_TypeChoicePair::PointCloudType_1183_TypeChoicePair() {}
 
 PointCloudType_1183_TypeChoicePair::PointCloudType_1183_TypeChoicePair(
  whichOne PointCloudType_1183_TypeTypeIn,
- PointCloudType_1183_TypeVal PointCloudType_1183_TypeValueIn)
+ PointCloudType_1183_TypeVal * PointCloudType_1183_TypeValueIn)
 {
   PointCloudType_1183_TypeType = PointCloudType_1183_TypeTypeIn;
   PointCloudType_1183_TypeValue = PointCloudType_1183_TypeValueIn;
@@ -8205,9 +8208,10 @@ PointCloudType_1183_TypeChoicePair::~PointCloudType_1183_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (PointCloudType_1183_TypeType == PointsE)
-    delete PointCloudType_1183_TypeValue.Points;
+    delete PointCloudType_1183_TypeValue->Points;
   else if (PointCloudType_1183_TypeType == PointsBinaryE)
-    delete PointCloudType_1183_TypeValue.PointsBinary;
+    delete PointCloudType_1183_TypeValue->PointsBinary;
+  delete PointCloudType_1183_TypeValue;
   #endif
 }
 
@@ -8217,14 +8221,14 @@ void PointCloudType_1183_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Points");
-      PointCloudType_1183_TypeValue.Points->printSelf(outFile);
+      PointCloudType_1183_TypeValue->Points->printSelf(outFile);
       fprintf(outFile, "</Points>\n");
     }
   else if (PointCloudType_1183_TypeType == PointsBinaryE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<PointsBinary");
-      PointCloudType_1183_TypeValue.PointsBinary->printSelf(outFile);
+      PointCloudType_1183_TypeValue->PointsBinary->printSelf(outFile);
       fprintf(outFile, "</PointsBinary>\n");
     }
 }
@@ -8270,7 +8274,7 @@ PointCloudType_1184_TypeChoicePair::PointCloudType_1184_TypeChoicePair() {}
 
 PointCloudType_1184_TypeChoicePair::PointCloudType_1184_TypeChoicePair(
  whichOne PointCloudType_1184_TypeTypeIn,
- PointCloudType_1184_TypeVal PointCloudType_1184_TypeValueIn)
+ PointCloudType_1184_TypeVal * PointCloudType_1184_TypeValueIn)
 {
   PointCloudType_1184_TypeType = PointCloudType_1184_TypeTypeIn;
   PointCloudType_1184_TypeValue = PointCloudType_1184_TypeValueIn;
@@ -8280,9 +8284,10 @@ PointCloudType_1184_TypeChoicePair::~PointCloudType_1184_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (PointCloudType_1184_TypeType == NormalsE)
-    delete PointCloudType_1184_TypeValue.Normals;
+    delete PointCloudType_1184_TypeValue->Normals;
   else if (PointCloudType_1184_TypeType == NormalsBinaryE)
-    delete PointCloudType_1184_TypeValue.NormalsBinary;
+    delete PointCloudType_1184_TypeValue->NormalsBinary;
+  delete PointCloudType_1184_TypeValue;
   #endif
 }
 
@@ -8292,14 +8297,14 @@ void PointCloudType_1184_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Normals");
-      PointCloudType_1184_TypeValue.Normals->printSelf(outFile);
+      PointCloudType_1184_TypeValue->Normals->printSelf(outFile);
       fprintf(outFile, "</Normals>\n");
     }
   else if (PointCloudType_1184_TypeType == NormalsBinaryE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<NormalsBinary");
-      PointCloudType_1184_TypeValue.NormalsBinary->printSelf(outFile);
+      PointCloudType_1184_TypeValue->NormalsBinary->printSelf(outFile);
       fprintf(outFile, "</NormalsBinary>\n");
     }
 }
@@ -8345,7 +8350,7 @@ PointCloudType_1185_TypeChoicePair::PointCloudType_1185_TypeChoicePair() {}
 
 PointCloudType_1185_TypeChoicePair::PointCloudType_1185_TypeChoicePair(
  whichOne PointCloudType_1185_TypeTypeIn,
- PointCloudType_1185_TypeVal PointCloudType_1185_TypeValueIn)
+ PointCloudType_1185_TypeVal * PointCloudType_1185_TypeValueIn)
 {
   PointCloudType_1185_TypeType = PointCloudType_1185_TypeTypeIn;
   PointCloudType_1185_TypeValue = PointCloudType_1185_TypeValueIn;
@@ -8355,13 +8360,14 @@ PointCloudType_1185_TypeChoicePair::~PointCloudType_1185_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (PointCloudType_1185_TypeType == PointsVisibleE)
-    delete PointCloudType_1185_TypeValue.PointsVisible;
+    delete PointCloudType_1185_TypeValue->PointsVisible;
   else if (PointCloudType_1185_TypeType == PointsVisibleBinaryE)
-    delete PointCloudType_1185_TypeValue.PointsVisibleBinary;
+    delete PointCloudType_1185_TypeValue->PointsVisibleBinary;
   else if (PointCloudType_1185_TypeType == PointsHiddenE)
-    delete PointCloudType_1185_TypeValue.PointsHidden;
+    delete PointCloudType_1185_TypeValue->PointsHidden;
   else if (PointCloudType_1185_TypeType == PointsHiddenBinaryE)
-    delete PointCloudType_1185_TypeValue.PointsHiddenBinary;
+    delete PointCloudType_1185_TypeValue->PointsHiddenBinary;
+  delete PointCloudType_1185_TypeValue;
   #endif
 }
 
@@ -8371,28 +8377,28 @@ void PointCloudType_1185_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<PointsVisible");
-      PointCloudType_1185_TypeValue.PointsVisible->printSelf(outFile);
+      PointCloudType_1185_TypeValue->PointsVisible->printSelf(outFile);
       fprintf(outFile, "</PointsVisible>\n");
     }
   else if (PointCloudType_1185_TypeType == PointsVisibleBinaryE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<PointsVisibleBinary");
-      PointCloudType_1185_TypeValue.PointsVisibleBinary->printSelf(outFile);
+      PointCloudType_1185_TypeValue->PointsVisibleBinary->printSelf(outFile);
       fprintf(outFile, "</PointsVisibleBinary>\n");
     }
   else if (PointCloudType_1185_TypeType == PointsHiddenE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<PointsHidden");
-      PointCloudType_1185_TypeValue.PointsHidden->printSelf(outFile);
+      PointCloudType_1185_TypeValue->PointsHidden->printSelf(outFile);
       fprintf(outFile, "</PointsHidden>\n");
     }
   else if (PointCloudType_1185_TypeType == PointsHiddenBinaryE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<PointsHiddenBinary");
-      PointCloudType_1185_TypeValue.PointsHiddenBinary->printSelf(outFile);
+      PointCloudType_1185_TypeValue->PointsHiddenBinary->printSelf(outFile);
       fprintf(outFile, "</PointsHiddenBinary>\n");
     }
 }
@@ -8438,7 +8444,7 @@ PointCloudType_1186_TypeChoicePair::PointCloudType_1186_TypeChoicePair() {}
 
 PointCloudType_1186_TypeChoicePair::PointCloudType_1186_TypeChoicePair(
  whichOne PointCloudType_1186_TypeTypeIn,
- PointCloudType_1186_TypeVal PointCloudType_1186_TypeValueIn)
+ PointCloudType_1186_TypeVal * PointCloudType_1186_TypeValueIn)
 {
   PointCloudType_1186_TypeType = PointCloudType_1186_TypeTypeIn;
   PointCloudType_1186_TypeValue = PointCloudType_1186_TypeValueIn;
@@ -8448,9 +8454,10 @@ PointCloudType_1186_TypeChoicePair::~PointCloudType_1186_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (PointCloudType_1186_TypeType == PointsColorE)
-    delete PointCloudType_1186_TypeValue.PointsColor;
+    delete PointCloudType_1186_TypeValue->PointsColor;
   else if (PointCloudType_1186_TypeType == PointsColorBinaryE)
-    delete PointCloudType_1186_TypeValue.PointsColorBinary;
+    delete PointCloudType_1186_TypeValue->PointsColorBinary;
+  delete PointCloudType_1186_TypeValue;
   #endif
 }
 
@@ -8460,14 +8467,14 @@ void PointCloudType_1186_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<PointsColor");
-      PointCloudType_1186_TypeValue.PointsColor->printSelf(outFile);
+      PointCloudType_1186_TypeValue->PointsColor->printSelf(outFile);
       fprintf(outFile, "</PointsColor>\n");
     }
   else if (PointCloudType_1186_TypeType == PointsColorBinaryE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<PointsColorBinary");
-      PointCloudType_1186_TypeValue.PointsColorBinary->printSelf(outFile);
+      PointCloudType_1186_TypeValue->PointsColorBinary->printSelf(outFile);
       fprintf(outFile, "</PointsColorBinary>\n");
     }
 }

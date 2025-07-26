@@ -723,7 +723,7 @@ public:
     QIFIdType * idIn,
     AttributesType * AttributesIn,
     XmlString * DescriptionIn);
-  ~CharacteristicBaseType();
+  virtual ~CharacteristicBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
@@ -777,7 +777,7 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn);
-  ~CharacteristicDefinitionBaseType();
+  virtual ~CharacteristicDefinitionBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
@@ -1084,7 +1084,7 @@ public:
     QIFReferenceFullType * CharacteristicNominalIdIn,
     LocationOnDrawingType * LocationOnDrawingIn,
     VirtualMeasurementType * VirtualMeasurementIn);
-  ~CharacteristicItemBaseType();
+  virtual ~CharacteristicItemBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
@@ -1231,7 +1231,7 @@ public:
     QIFReferenceType * ManufacturingProcessIdIn,
     ArrayReferenceType * NotedEventIdsIn,
     XmlToken * NonConformanceDesignatorIn);
-  ~CharacteristicMeasurementBaseType();
+  virtual ~CharacteristicMeasurementBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
@@ -1340,7 +1340,7 @@ public:
     ArrayReferenceFullType * EntityExternalIdsIn,
     XmlToken * NameIn,
     CharacteristicDesignatorType * CharacteristicDesignatorIn);
-  ~CharacteristicNominalBaseType();
+  virtual ~CharacteristicNominalBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
@@ -1468,12 +1468,12 @@ public:
   CharacteristicStatusTypeChoicePair();
   CharacteristicStatusTypeChoicePair(
     whichOne CharacteristicStatusTypeTypeIn,
-    CharacteristicStatusTypeVal CharacteristicStatusTypeValueIn);
+    CharacteristicStatusTypeVal * CharacteristicStatusTypeValueIn);
   ~CharacteristicStatusTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne CharacteristicStatusTypeType;
-  CharacteristicStatusTypeVal CharacteristicStatusTypeValue;
+  CharacteristicStatusTypeVal * CharacteristicStatusTypeValue;
 };
 
 /* ***************************************************************** */
@@ -1537,12 +1537,12 @@ public:
   CoaxialityZoneShapeTypeChoicePair();
   CoaxialityZoneShapeTypeChoicePair(
     whichOne CoaxialityZoneShapeTypeTypeIn,
-    CoaxialityZoneShapeTypeVal CoaxialityZoneShapeTypeValueIn);
+    CoaxialityZoneShapeTypeVal * CoaxialityZoneShapeTypeValueIn);
   ~CoaxialityZoneShapeTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne CoaxialityZoneShapeTypeType;
-  CoaxialityZoneShapeTypeVal CoaxialityZoneShapeTypeValue;
+  CoaxialityZoneShapeTypeVal * CoaxialityZoneShapeTypeValue;
 };
 
 /* ***************************************************************** */
@@ -1557,7 +1557,7 @@ public:
     LinearValueType * ToleranceValueIn,
     LinearDualValueType * ToleranceDualValueIn,
     CharacteristicDesignatorType * CharacteristicDesignatorIn);
-  ~CompositeSegmentDefinitionBaseType();
+  virtual ~CompositeSegmentDefinitionBaseType();
   void printSelf(FILE * outFile);
 
   QIFReferenceFullType * getDatumReferenceFrameId();
@@ -1606,7 +1606,7 @@ public:
     CharacteristicStatusType * StatusIn,
     QIFReferenceType * DRFTransformActualIdIn,
     ZoneDataSetType * ZoneDataSetIn);
-  ~CompositeSegmentMeasurementBaseType();
+  virtual ~CompositeSegmentMeasurementBaseType();
   void printSelf(FILE * outFile);
 
   MeasuredLinearValueType * getValue();
@@ -1833,12 +1833,12 @@ public:
   ConcentricityZoneShapeTypeChoicePair();
   ConcentricityZoneShapeTypeChoicePair(
     whichOne ConcentricityZoneShapeTypeTypeIn,
-    ConcentricityZoneShapeTypeVal ConcentricityZoneShapeTypeValueIn);
+    ConcentricityZoneShapeTypeVal * ConcentricityZoneShapeTypeValueIn);
   ~ConcentricityZoneShapeTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne ConcentricityZoneShapeTypeType;
-  ConcentricityZoneShapeTypeVal ConcentricityZoneShapeTypeValue;
+  ConcentricityZoneShapeTypeVal * ConcentricityZoneShapeTypeValue;
 };
 
 /* ***************************************************************** */
@@ -1936,7 +1936,7 @@ public:
     XmlBoolean * SeparateZoneIn,
     DimensionModifierEnumType * DimensionTypeIn,
     DimensionModifiersType * DimensionModifiersIn);
-  ~DimensionalCharacteristicDefinitionBaseType();
+  virtual ~DimensionalCharacteristicDefinitionBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
@@ -1982,7 +1982,7 @@ public:
     QIFReferenceFullType * CharacteristicNominalIdIn,
     LocationOnDrawingType * LocationOnDrawingIn,
     VirtualMeasurementType * VirtualMeasurementIn);
-  ~DimensionalCharacteristicItemBaseType();
+  virtual ~DimensionalCharacteristicItemBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 };
@@ -2021,7 +2021,7 @@ public:
     QIFReferenceType * ManufacturingProcessIdIn,
     ArrayReferenceType * NotedEventIdsIn,
     XmlToken * NonConformanceDesignatorIn);
-  ~DimensionalCharacteristicMeasurementBaseType();
+  virtual ~DimensionalCharacteristicMeasurementBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 };
@@ -2056,7 +2056,7 @@ public:
     ArrayReferenceFullType * EntityExternalIdsIn,
     XmlToken * NameIn,
     CharacteristicDesignatorType * CharacteristicDesignatorIn);
-  ~DimensionalCharacteristicNominalBaseType();
+  virtual ~DimensionalCharacteristicNominalBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 };
@@ -2167,12 +2167,12 @@ public:
   ExtentTypeChoicePair();
   ExtentTypeChoicePair(
     whichOne ExtentTypeTypeIn,
-    ExtentTypeVal ExtentTypeValueIn);
+    ExtentTypeVal * ExtentTypeValueIn);
   ~ExtentTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne ExtentTypeType;
-  ExtentTypeVal ExtentTypeValue;
+  ExtentTypeVal * ExtentTypeValue;
 };
 
 /* ***************************************************************** */
@@ -2214,12 +2214,12 @@ public:
   FilterTypeChoicePair();
   FilterTypeChoicePair(
     whichOne FilterTypeTypeIn,
-    FilterTypeVal FilterTypeValueIn);
+    FilterTypeVal * FilterTypeValueIn);
   ~FilterTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne FilterTypeType;
-  FilterTypeVal FilterTypeValue;
+  FilterTypeVal * FilterTypeValue;
 };
 
 /* ***************************************************************** */
@@ -2260,7 +2260,7 @@ public:
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
     ForceCharacteristicDefinitionBaseTypeChoicePair * ForceCharacteristicDefinitionBaseTypePairIn);
-  ~ForceCharacteristicDefinitionBaseType();
+  virtual ~ForceCharacteristicDefinitionBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
   ForceCharacteristicDefinitionBaseTypeChoicePair * getForceCharacteristicDefinitionBaseTypeChoicePair();
@@ -2290,12 +2290,12 @@ public:
   ForceCharacteristicDefinitionBaseTypeChoicePair();
   ForceCharacteristicDefinitionBaseTypeChoicePair(
     whichOne ForceCharacteristicDefinitionBaseTypeTypeIn,
-    ForceCharacteristicDefinitionBaseTypeVal ForceCharacteristicDefinitionBaseTypeValueIn);
+    ForceCharacteristicDefinitionBaseTypeVal * ForceCharacteristicDefinitionBaseTypeValueIn);
   ~ForceCharacteristicDefinitionBaseTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne ForceCharacteristicDefinitionBaseTypeType;
-  ForceCharacteristicDefinitionBaseTypeVal ForceCharacteristicDefinitionBaseTypeValue;
+  ForceCharacteristicDefinitionBaseTypeVal * ForceCharacteristicDefinitionBaseTypeValue;
 };
 
 /* ***************************************************************** */
@@ -2330,7 +2330,7 @@ public:
     QIFReferenceFullType * CharacteristicNominalIdIn,
     LocationOnDrawingType * LocationOnDrawingIn,
     VirtualMeasurementType * VirtualMeasurementIn);
-  ~ForceCharacteristicItemBaseType();
+  virtual ~ForceCharacteristicItemBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 };
@@ -2375,7 +2375,7 @@ public:
     MeasuredForceValueType * ValueIn,
     MeasuredForceValueType * MaxValueIn,
     MeasuredForceValueType * MinValueIn);
-  ~ForceCharacteristicMeasurementBaseType();
+  virtual ~ForceCharacteristicMeasurementBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
@@ -2424,7 +2424,7 @@ public:
     XmlToken * NameIn,
     CharacteristicDesignatorType * CharacteristicDesignatorIn,
     ForceValueType * TargetValueIn);
-  ~ForceCharacteristicNominalBaseType();
+  virtual ~ForceCharacteristicNominalBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
@@ -2481,7 +2481,7 @@ public:
     CollectionPlaneType * CollectionPlaneIn,
     IntersectionPlaneType * IntersectionPlaneIn,
     OrientationPlaneType * OrientationPlaneIn);
-  ~GeometricCharacteristicDefinitionBaseType();
+  virtual ~GeometricCharacteristicDefinitionBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
@@ -2536,7 +2536,7 @@ public:
     QIFReferenceFullType * CharacteristicNominalIdIn,
     LocationOnDrawingType * LocationOnDrawingIn,
     VirtualMeasurementType * VirtualMeasurementIn);
-  ~GeometricCharacteristicItemBaseType();
+  virtual ~GeometricCharacteristicItemBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 };
@@ -2581,7 +2581,7 @@ public:
     MeasuredLinearValueType * ValueIn,
     MeasuredLinearValueType * MaxValueIn,
     MeasuredLinearValueType * MinValueIn);
-  ~GeometricCharacteristicMeasurementBaseType();
+  virtual ~GeometricCharacteristicMeasurementBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
@@ -2628,7 +2628,7 @@ public:
     ArrayReferenceFullType * EntityExternalIdsIn,
     XmlToken * NameIn,
     CharacteristicDesignatorType * CharacteristicDesignatorIn);
-  ~GeometricCharacteristicNominalBaseType();
+  virtual ~GeometricCharacteristicNominalBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 };
@@ -2675,7 +2675,7 @@ public:
     DimensionModifierEnumType * DimensionTypeIn,
     DimensionModifiersType * DimensionModifiersIn,
     LinearCharacteristicDefinitionBaseTypeChoicePair * LinearCharacteristicDefinitionBaseTypePairIn);
-  ~LinearCharacteristicDefinitionBaseType();
+  virtual ~LinearCharacteristicDefinitionBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
   LinearCharacteristicDefinitionBaseTypeChoicePair * getLinearCharacteristicDefinitionBaseTypeChoicePair();
@@ -2705,12 +2705,12 @@ public:
   LinearCharacteristicDefinitionBaseTypeChoicePair();
   LinearCharacteristicDefinitionBaseTypeChoicePair(
     whichOne LinearCharacteristicDefinitionBaseTypeTypeIn,
-    LinearCharacteristicDefinitionBaseTypeVal LinearCharacteristicDefinitionBaseTypeValueIn);
+    LinearCharacteristicDefinitionBaseTypeVal * LinearCharacteristicDefinitionBaseTypeValueIn);
   ~LinearCharacteristicDefinitionBaseTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne LinearCharacteristicDefinitionBaseTypeType;
-  LinearCharacteristicDefinitionBaseTypeVal LinearCharacteristicDefinitionBaseTypeValue;
+  LinearCharacteristicDefinitionBaseTypeVal * LinearCharacteristicDefinitionBaseTypeValue;
 };
 
 /* ***************************************************************** */
@@ -2745,7 +2745,7 @@ public:
     QIFReferenceFullType * CharacteristicNominalIdIn,
     LocationOnDrawingType * LocationOnDrawingIn,
     VirtualMeasurementType * VirtualMeasurementIn);
-  ~LinearCharacteristicItemBaseType();
+  virtual ~LinearCharacteristicItemBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 };
@@ -2790,7 +2790,7 @@ public:
     MeasuredLinearValueType * ValueIn,
     MeasuredLinearValueType * MaxValueIn,
     MeasuredLinearValueType * MinValueIn);
-  ~LinearCharacteristicMeasurementBaseType();
+  virtual ~LinearCharacteristicMeasurementBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
@@ -2841,7 +2841,7 @@ public:
     CharacteristicDesignatorType * CharacteristicDesignatorIn,
     LinearValueType * TargetValueIn,
     LinearDualValueType * TargetDualValueIn);
-  ~LinearCharacteristicNominalBaseType();
+  virtual ~LinearCharacteristicNominalBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
@@ -2907,7 +2907,7 @@ public:
     LinearValueType * ToleranceValueIn,
     LinearDualValueType * ToleranceDualValueIn,
     QIFReferenceFullType * DatumReferenceFrameIdIn);
-  ~LocationCharacteristicDefinitionBaseType();
+  virtual ~LocationCharacteristicDefinitionBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
@@ -2956,7 +2956,7 @@ public:
     QIFReferenceFullType * CharacteristicNominalIdIn,
     LocationOnDrawingType * LocationOnDrawingIn,
     VirtualMeasurementType * VirtualMeasurementIn);
-  ~LocationCharacteristicItemBaseType();
+  virtual ~LocationCharacteristicItemBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 };
@@ -3005,7 +3005,7 @@ public:
     MeasuredLinearValueType * MinValueIn,
     ZoneDataSetType * ZoneDataSetIn,
     XmlBoolean * DatumsOkIn);
-  ~LocationCharacteristicMeasurementBaseType();
+  virtual ~LocationCharacteristicMeasurementBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
@@ -3049,7 +3049,7 @@ public:
     ArrayReferenceFullType * EntityExternalIdsIn,
     XmlToken * NameIn,
     CharacteristicDesignatorType * CharacteristicDesignatorIn);
-  ~LocationCharacteristicNominalBaseType();
+  virtual ~LocationCharacteristicNominalBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 };
@@ -3095,12 +3095,12 @@ public:
   LocationOnDrawingTypeChoicePair();
   LocationOnDrawingTypeChoicePair(
     whichOne LocationOnDrawingTypeTypeIn,
-    LocationOnDrawingTypeVal LocationOnDrawingTypeValueIn);
+    LocationOnDrawingTypeVal * LocationOnDrawingTypeValueIn);
   ~LocationOnDrawingTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne LocationOnDrawingTypeType;
-  LocationOnDrawingTypeVal LocationOnDrawingTypeValue;
+  LocationOnDrawingTypeVal * LocationOnDrawingTypeValue;
 };
 
 /* ***************************************************************** */
@@ -3189,7 +3189,7 @@ public:
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
     MassCharacteristicDefinitionBaseTypeChoicePair * MassCharacteristicDefinitionBaseTypePairIn);
-  ~MassCharacteristicDefinitionBaseType();
+  virtual ~MassCharacteristicDefinitionBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
   MassCharacteristicDefinitionBaseTypeChoicePair * getMassCharacteristicDefinitionBaseTypeChoicePair();
@@ -3219,12 +3219,12 @@ public:
   MassCharacteristicDefinitionBaseTypeChoicePair();
   MassCharacteristicDefinitionBaseTypeChoicePair(
     whichOne MassCharacteristicDefinitionBaseTypeTypeIn,
-    MassCharacteristicDefinitionBaseTypeVal MassCharacteristicDefinitionBaseTypeValueIn);
+    MassCharacteristicDefinitionBaseTypeVal * MassCharacteristicDefinitionBaseTypeValueIn);
   ~MassCharacteristicDefinitionBaseTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne MassCharacteristicDefinitionBaseTypeType;
-  MassCharacteristicDefinitionBaseTypeVal MassCharacteristicDefinitionBaseTypeValue;
+  MassCharacteristicDefinitionBaseTypeVal * MassCharacteristicDefinitionBaseTypeValue;
 };
 
 /* ***************************************************************** */
@@ -3259,7 +3259,7 @@ public:
     QIFReferenceFullType * CharacteristicNominalIdIn,
     LocationOnDrawingType * LocationOnDrawingIn,
     VirtualMeasurementType * VirtualMeasurementIn);
-  ~MassCharacteristicItemBaseType();
+  virtual ~MassCharacteristicItemBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 };
@@ -3304,7 +3304,7 @@ public:
     MeasuredMassValueType * ValueIn,
     MeasuredMassValueType * MaxValueIn,
     MeasuredMassValueType * MinValueIn);
-  ~MassCharacteristicMeasurementBaseType();
+  virtual ~MassCharacteristicMeasurementBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
@@ -3353,7 +3353,7 @@ public:
     XmlToken * NameIn,
     CharacteristicDesignatorType * CharacteristicDesignatorIn,
     MassValueType * TargetValueIn);
-  ~MassCharacteristicNominalBaseType();
+  virtual ~MassCharacteristicNominalBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
@@ -3508,7 +3508,7 @@ public:
     LinearValueType * MaximumToleranceValueIn,
     LinearValueType * ProjectedToleranceZoneValueIn,
     OrientationChar_1054_Type * OrientationChar_1054In);
-  ~OrientationCharacteristicDefinitionBaseType();
+  virtual ~OrientationCharacteristicDefinitionBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
@@ -3578,7 +3578,7 @@ public:
     QIFReferenceFullType * CharacteristicNominalIdIn,
     LocationOnDrawingType * LocationOnDrawingIn,
     VirtualMeasurementType * VirtualMeasurementIn);
-  ~OrientationCharacteristicItemBaseType();
+  virtual ~OrientationCharacteristicItemBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 };
@@ -3631,7 +3631,7 @@ public:
     MeasuredLinearValueType * BonusIn,
     LinearValueType * ReferenceLengthIn,
     QIFReferenceType * DRFTransformActualIdIn);
-  ~OrientationCharacteristicMeasurementBaseType();
+  virtual ~OrientationCharacteristicMeasurementBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
@@ -3681,7 +3681,7 @@ public:
     ArrayReferenceFullType * EntityExternalIdsIn,
     XmlToken * NameIn,
     CharacteristicDesignatorType * CharacteristicDesignatorIn);
-  ~OrientationCharacteristicNominalBaseType();
+  virtual ~OrientationCharacteristicNominalBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 };
@@ -3763,12 +3763,12 @@ public:
   OrientationZoneShapeTypeChoicePair();
   OrientationZoneShapeTypeChoicePair(
     whichOne OrientationZoneShapeTypeTypeIn,
-    OrientationZoneShapeTypeVal OrientationZoneShapeTypeValueIn);
+    OrientationZoneShapeTypeVal * OrientationZoneShapeTypeValueIn);
   ~OrientationZoneShapeTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne OrientationZoneShapeTypeType;
-  OrientationZoneShapeTypeVal OrientationZoneShapeTypeValue;
+  OrientationZoneShapeTypeVal * OrientationZoneShapeTypeValue;
 };
 
 /* ***************************************************************** */
@@ -3810,12 +3810,12 @@ public:
   OriginReferenceTypeChoicePair();
   OriginReferenceTypeChoicePair(
     whichOne OriginReferenceTypeTypeIn,
-    OriginReferenceTypeVal OriginReferenceTypeValueIn);
+    OriginReferenceTypeVal * OriginReferenceTypeValueIn);
   ~OriginReferenceTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne OriginReferenceTypeType;
-  OriginReferenceTypeVal OriginReferenceTypeValue;
+  OriginReferenceTypeVal * OriginReferenceTypeValue;
 };
 
 /* ***************************************************************** */
@@ -4702,12 +4702,12 @@ public:
   PositionZoneShapeTypeChoicePair();
   PositionZoneShapeTypeChoicePair(
     whichOne PositionZoneShapeTypeTypeIn,
-    PositionZoneShapeTypeVal PositionZoneShapeTypeValueIn);
+    PositionZoneShapeTypeVal * PositionZoneShapeTypeValueIn);
   ~PositionZoneShapeTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne PositionZoneShapeTypeType;
-  PositionZoneShapeTypeVal PositionZoneShapeTypeValue;
+  PositionZoneShapeTypeVal * PositionZoneShapeTypeValue;
 };
 
 /* ***************************************************************** */
@@ -4748,7 +4748,7 @@ public:
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
     PressureCharacteristicDefinitionBaseTypeChoicePair * PressureCharacteristicDefinitionBaseTypePairIn);
-  ~PressureCharacteristicDefinitionBaseType();
+  virtual ~PressureCharacteristicDefinitionBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
   PressureCharacteristicDefinitionBaseTypeChoicePair * getPressureCharacteristicDefinitionBaseTypeChoicePair();
@@ -4778,12 +4778,12 @@ public:
   PressureCharacteristicDefinitionBaseTypeChoicePair();
   PressureCharacteristicDefinitionBaseTypeChoicePair(
     whichOne PressureCharacteristicDefinitionBaseTypeTypeIn,
-    PressureCharacteristicDefinitionBaseTypeVal PressureCharacteristicDefinitionBaseTypeValueIn);
+    PressureCharacteristicDefinitionBaseTypeVal * PressureCharacteristicDefinitionBaseTypeValueIn);
   ~PressureCharacteristicDefinitionBaseTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne PressureCharacteristicDefinitionBaseTypeType;
-  PressureCharacteristicDefinitionBaseTypeVal PressureCharacteristicDefinitionBaseTypeValue;
+  PressureCharacteristicDefinitionBaseTypeVal * PressureCharacteristicDefinitionBaseTypeValue;
 };
 
 /* ***************************************************************** */
@@ -4818,7 +4818,7 @@ public:
     QIFReferenceFullType * CharacteristicNominalIdIn,
     LocationOnDrawingType * LocationOnDrawingIn,
     VirtualMeasurementType * VirtualMeasurementIn);
-  ~PressureCharacteristicItemBaseType();
+  virtual ~PressureCharacteristicItemBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 };
@@ -4863,7 +4863,7 @@ public:
     MeasuredPressureValueType * ValueIn,
     MeasuredPressureValueType * MaxValueIn,
     MeasuredPressureValueType * MinValueIn);
-  ~PressureCharacteristicMeasurementBaseType();
+  virtual ~PressureCharacteristicMeasurementBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
@@ -4912,7 +4912,7 @@ public:
     XmlToken * NameIn,
     CharacteristicDesignatorType * CharacteristicDesignatorIn,
     PressureValueType * TargetValueIn);
-  ~PressureCharacteristicNominalBaseType();
+  virtual ~PressureCharacteristicNominalBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
@@ -4989,7 +4989,7 @@ public:
     CompositeSegmentProfileDefinitionType * FourthCompositeSegmentProfileDefinitionIn,
     QIFReferenceFullType * DatumReferenceFrameIdIn,
     XmlBoolean * OrientationOnlyIn);
-  ~ProfileCharacteristicDefinitionBaseType();
+  virtual ~ProfileCharacteristicDefinitionBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
@@ -5059,7 +5059,7 @@ public:
     QIFReferenceFullType * CharacteristicNominalIdIn,
     LocationOnDrawingType * LocationOnDrawingIn,
     VirtualMeasurementType * VirtualMeasurementIn);
-  ~ProfileCharacteristicItemBaseType();
+  virtual ~ProfileCharacteristicItemBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 };
@@ -5120,7 +5120,7 @@ public:
     CompositeSegmentProfileMeasurementType * SecondCompositeSegmentProfileMeasurementIn,
     CompositeSegmentProfileMeasurementType * ThirdCompositeSegmentProfileMeasurementIn,
     CompositeSegmentProfileMeasurementType * FourthCompositeSegmentProfileMeasurementIn);
-  ~ProfileCharacteristicMeasurementBaseType();
+  virtual ~ProfileCharacteristicMeasurementBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
@@ -5184,7 +5184,7 @@ public:
     XmlToken * NameIn,
     CharacteristicDesignatorType * CharacteristicDesignatorIn,
     LinearValueType * TargetValueIn);
-  ~ProfileCharacteristicNominalBaseType();
+  virtual ~ProfileCharacteristicNominalBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
@@ -5530,7 +5530,7 @@ public:
     LinearValueType * ToleranceValueIn,
     LinearDualValueType * ToleranceDualValueIn,
     QIFReferenceFullType * DatumReferenceFrameIdIn);
-  ~RunoutCharacteristicDefinitionBaseType();
+  virtual ~RunoutCharacteristicDefinitionBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
@@ -5579,7 +5579,7 @@ public:
     QIFReferenceFullType * CharacteristicNominalIdIn,
     LocationOnDrawingType * LocationOnDrawingIn,
     VirtualMeasurementType * VirtualMeasurementIn);
-  ~RunoutCharacteristicItemBaseType();
+  virtual ~RunoutCharacteristicItemBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 };
@@ -5626,7 +5626,7 @@ public:
     MeasuredLinearValueType * MaxValueIn,
     MeasuredLinearValueType * MinValueIn,
     XmlBoolean * DatumsOkIn);
-  ~RunoutCharacteristicMeasurementBaseType();
+  virtual ~RunoutCharacteristicMeasurementBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
@@ -5667,7 +5667,7 @@ public:
     ArrayReferenceFullType * EntityExternalIdsIn,
     XmlToken * NameIn,
     CharacteristicDesignatorType * CharacteristicDesignatorIn);
-  ~RunoutCharacteristicNominalBaseType();
+  virtual ~RunoutCharacteristicNominalBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 };
@@ -5837,7 +5837,7 @@ public:
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
     SpeedCharacteristicDefinitionBaseTypeChoicePair * SpeedCharacteristicDefinitionBaseTypePairIn);
-  ~SpeedCharacteristicDefinitionBaseType();
+  virtual ~SpeedCharacteristicDefinitionBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
   SpeedCharacteristicDefinitionBaseTypeChoicePair * getSpeedCharacteristicDefinitionBaseTypeChoicePair();
@@ -5867,12 +5867,12 @@ public:
   SpeedCharacteristicDefinitionBaseTypeChoicePair();
   SpeedCharacteristicDefinitionBaseTypeChoicePair(
     whichOne SpeedCharacteristicDefinitionBaseTypeTypeIn,
-    SpeedCharacteristicDefinitionBaseTypeVal SpeedCharacteristicDefinitionBaseTypeValueIn);
+    SpeedCharacteristicDefinitionBaseTypeVal * SpeedCharacteristicDefinitionBaseTypeValueIn);
   ~SpeedCharacteristicDefinitionBaseTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne SpeedCharacteristicDefinitionBaseTypeType;
-  SpeedCharacteristicDefinitionBaseTypeVal SpeedCharacteristicDefinitionBaseTypeValue;
+  SpeedCharacteristicDefinitionBaseTypeVal * SpeedCharacteristicDefinitionBaseTypeValue;
 };
 
 /* ***************************************************************** */
@@ -5907,7 +5907,7 @@ public:
     QIFReferenceFullType * CharacteristicNominalIdIn,
     LocationOnDrawingType * LocationOnDrawingIn,
     VirtualMeasurementType * VirtualMeasurementIn);
-  ~SpeedCharacteristicItemBaseType();
+  virtual ~SpeedCharacteristicItemBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 };
@@ -5952,7 +5952,7 @@ public:
     MeasuredSpeedValueType * ValueIn,
     MeasuredSpeedValueType * MaxValueIn,
     MeasuredSpeedValueType * MinValueIn);
-  ~SpeedCharacteristicMeasurementBaseType();
+  virtual ~SpeedCharacteristicMeasurementBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
@@ -6001,7 +6001,7 @@ public:
     XmlToken * NameIn,
     CharacteristicDesignatorType * CharacteristicDesignatorIn,
     SpeedValueType * TargetValueIn);
-  ~SpeedCharacteristicNominalBaseType();
+  virtual ~SpeedCharacteristicNominalBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
@@ -6585,12 +6585,12 @@ public:
   StraightnessZoneShapeTypeChoicePair();
   StraightnessZoneShapeTypeChoicePair(
     whichOne StraightnessZoneShapeTypeTypeIn,
-    StraightnessZoneShapeTypeVal StraightnessZoneShapeTypeValueIn);
+    StraightnessZoneShapeTypeVal * StraightnessZoneShapeTypeValueIn);
   ~StraightnessZoneShapeTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne StraightnessZoneShapeTypeType;
-  StraightnessZoneShapeTypeVal StraightnessZoneShapeTypeValue;
+  StraightnessZoneShapeTypeVal * StraightnessZoneShapeTypeValue;
 };
 
 /* ***************************************************************** */
@@ -7506,7 +7506,7 @@ public:
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
     TemperatureCharacteristicDefinitionBaseTypeChoicePair * TemperatureCharacteristicDefinitionBaseTypePairIn);
-  ~TemperatureCharacteristicDefinitionBaseType();
+  virtual ~TemperatureCharacteristicDefinitionBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
   TemperatureCharacteristicDefinitionBaseTypeChoicePair * getTemperatureCharacteristicDefinitionBaseTypeChoicePair();
@@ -7536,12 +7536,12 @@ public:
   TemperatureCharacteristicDefinitionBaseTypeChoicePair();
   TemperatureCharacteristicDefinitionBaseTypeChoicePair(
     whichOne TemperatureCharacteristicDefinitionBaseTypeTypeIn,
-    TemperatureCharacteristicDefinitionBaseTypeVal TemperatureCharacteristicDefinitionBaseTypeValueIn);
+    TemperatureCharacteristicDefinitionBaseTypeVal * TemperatureCharacteristicDefinitionBaseTypeValueIn);
   ~TemperatureCharacteristicDefinitionBaseTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne TemperatureCharacteristicDefinitionBaseTypeType;
-  TemperatureCharacteristicDefinitionBaseTypeVal TemperatureCharacteristicDefinitionBaseTypeValue;
+  TemperatureCharacteristicDefinitionBaseTypeVal * TemperatureCharacteristicDefinitionBaseTypeValue;
 };
 
 /* ***************************************************************** */
@@ -7576,7 +7576,7 @@ public:
     QIFReferenceFullType * CharacteristicNominalIdIn,
     LocationOnDrawingType * LocationOnDrawingIn,
     VirtualMeasurementType * VirtualMeasurementIn);
-  ~TemperatureCharacteristicItemBaseType();
+  virtual ~TemperatureCharacteristicItemBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 };
@@ -7621,7 +7621,7 @@ public:
     MeasuredTemperatureValueType * ValueIn,
     MeasuredTemperatureValueType * MaxValueIn,
     MeasuredTemperatureValueType * MinValueIn);
-  ~TemperatureCharacteristicMeasurementBaseType();
+  virtual ~TemperatureCharacteristicMeasurementBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
@@ -7670,7 +7670,7 @@ public:
     XmlToken * NameIn,
     CharacteristicDesignatorType * CharacteristicDesignatorIn,
     TemperatureValueType * TargetValueIn);
-  ~TemperatureCharacteristicNominalBaseType();
+  virtual ~TemperatureCharacteristicNominalBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
@@ -8060,7 +8060,7 @@ public:
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
     TimeCharacteristicDefinitionBaseTypeChoicePair * TimeCharacteristicDefinitionBaseTypePairIn);
-  ~TimeCharacteristicDefinitionBaseType();
+  virtual ~TimeCharacteristicDefinitionBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
   TimeCharacteristicDefinitionBaseTypeChoicePair * getTimeCharacteristicDefinitionBaseTypeChoicePair();
@@ -8090,12 +8090,12 @@ public:
   TimeCharacteristicDefinitionBaseTypeChoicePair();
   TimeCharacteristicDefinitionBaseTypeChoicePair(
     whichOne TimeCharacteristicDefinitionBaseTypeTypeIn,
-    TimeCharacteristicDefinitionBaseTypeVal TimeCharacteristicDefinitionBaseTypeValueIn);
+    TimeCharacteristicDefinitionBaseTypeVal * TimeCharacteristicDefinitionBaseTypeValueIn);
   ~TimeCharacteristicDefinitionBaseTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne TimeCharacteristicDefinitionBaseTypeType;
-  TimeCharacteristicDefinitionBaseTypeVal TimeCharacteristicDefinitionBaseTypeValue;
+  TimeCharacteristicDefinitionBaseTypeVal * TimeCharacteristicDefinitionBaseTypeValue;
 };
 
 /* ***************************************************************** */
@@ -8130,7 +8130,7 @@ public:
     QIFReferenceFullType * CharacteristicNominalIdIn,
     LocationOnDrawingType * LocationOnDrawingIn,
     VirtualMeasurementType * VirtualMeasurementIn);
-  ~TimeCharacteristicItemBaseType();
+  virtual ~TimeCharacteristicItemBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 };
@@ -8175,7 +8175,7 @@ public:
     MeasuredTimeValueType * ValueIn,
     MeasuredTimeValueType * MaxValueIn,
     MeasuredTimeValueType * MinValueIn);
-  ~TimeCharacteristicMeasurementBaseType();
+  virtual ~TimeCharacteristicMeasurementBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
@@ -8224,7 +8224,7 @@ public:
     XmlToken * NameIn,
     CharacteristicDesignatorType * CharacteristicDesignatorIn,
     TimeValueType * TargetValueIn);
-  ~TimeCharacteristicNominalBaseType();
+  virtual ~TimeCharacteristicNominalBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
@@ -8282,12 +8282,12 @@ public:
   ToleranceDefinitionsTypeChoicePair();
   ToleranceDefinitionsTypeChoicePair(
     whichOne ToleranceDefinitionsTypeTypeIn,
-    ToleranceDefinitionsTypeVal ToleranceDefinitionsTypeValueIn);
+    ToleranceDefinitionsTypeVal * ToleranceDefinitionsTypeValueIn);
   ~ToleranceDefinitionsTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne ToleranceDefinitionsTypeType;
-  ToleranceDefinitionsTypeVal ToleranceDefinitionsTypeValue;
+  ToleranceDefinitionsTypeVal * ToleranceDefinitionsTypeValue;
 };
 
 /* ***************************************************************** */
@@ -10081,7 +10081,7 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn);
-  ~WeldCharacteristicDefinitionBaseType();
+  virtual ~WeldCharacteristicDefinitionBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 };
@@ -10118,7 +10118,7 @@ public:
     QIFReferenceFullType * CharacteristicNominalIdIn,
     LocationOnDrawingType * LocationOnDrawingIn,
     VirtualMeasurementType * VirtualMeasurementIn);
-  ~WeldCharacteristicItemBaseType();
+  virtual ~WeldCharacteristicItemBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 };
@@ -10157,7 +10157,7 @@ public:
     QIFReferenceType * ManufacturingProcessIdIn,
     ArrayReferenceType * NotedEventIdsIn,
     XmlToken * NonConformanceDesignatorIn);
-  ~WeldCharacteristicMeasurementBaseType();
+  virtual ~WeldCharacteristicMeasurementBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 };
@@ -10202,7 +10202,7 @@ public:
     XmlToken * SpecificationIn,
     WeldingProcessType * WeldingProcessIn,
     ArrayNonDestructiveTestingType * NonDestructiveTestingIn);
-  ~WeldCharacteristicNominalBaseType();
+  virtual ~WeldCharacteristicNominalBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
@@ -11193,12 +11193,12 @@ public:
   WeldGrooveCharacteristicMeasurementTypeChoicePair();
   WeldGrooveCharacteristicMeasurementTypeChoicePair(
     whichOne WeldGrooveCharacteristicMeasurementTypeTypeIn,
-    WeldGrooveCharacteristicMeasurementTypeVal WeldGrooveCharacteristicMeasurementTypeValueIn);
+    WeldGrooveCharacteristicMeasurementTypeVal * WeldGrooveCharacteristicMeasurementTypeValueIn);
   ~WeldGrooveCharacteristicMeasurementTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne WeldGrooveCharacteristicMeasurementTypeType;
-  WeldGrooveCharacteristicMeasurementTypeVal WeldGrooveCharacteristicMeasurementTypeValue;
+  WeldGrooveCharacteristicMeasurementTypeVal * WeldGrooveCharacteristicMeasurementTypeValue;
 };
 
 /* ***************************************************************** */
@@ -11273,12 +11273,12 @@ public:
   WeldGrooveCharacteristicNominalTypeChoicePair();
   WeldGrooveCharacteristicNominalTypeChoicePair(
     whichOne WeldGrooveCharacteristicNominalTypeTypeIn,
-    WeldGrooveCharacteristicNominalTypeVal WeldGrooveCharacteristicNominalTypeValueIn);
+    WeldGrooveCharacteristicNominalTypeVal * WeldGrooveCharacteristicNominalTypeValueIn);
   ~WeldGrooveCharacteristicNominalTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne WeldGrooveCharacteristicNominalTypeType;
-  WeldGrooveCharacteristicNominalTypeVal WeldGrooveCharacteristicNominalTypeValue;
+  WeldGrooveCharacteristicNominalTypeVal * WeldGrooveCharacteristicNominalTypeValue;
 };
 
 /* ***************************************************************** */
@@ -13678,12 +13678,12 @@ public:
   CircularityChar_1042_TypeChoicePair();
   CircularityChar_1042_TypeChoicePair(
     whichOne CircularityChar_1042_TypeTypeIn,
-    CircularityChar_1042_TypeVal CircularityChar_1042_TypeValueIn);
+    CircularityChar_1042_TypeVal * CircularityChar_1042_TypeValueIn);
   ~CircularityChar_1042_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne CircularityChar_1042_TypeType;
-  CircularityChar_1042_TypeVal CircularityChar_1042_TypeValue;
+  CircularityChar_1042_TypeVal * CircularityChar_1042_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -13748,12 +13748,12 @@ public:
   CriticalityType_1044_TypeChoicePair();
   CriticalityType_1044_TypeChoicePair(
     whichOne CriticalityType_1044_TypeTypeIn,
-    CriticalityType_1044_TypeVal CriticalityType_1044_TypeValueIn);
+    CriticalityType_1044_TypeVal * CriticalityType_1044_TypeValueIn);
   ~CriticalityType_1044_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne CriticalityType_1044_TypeType;
-  CriticalityType_1044_TypeVal CriticalityType_1044_TypeValue;
+  CriticalityType_1044_TypeVal * CriticalityType_1044_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -13795,12 +13795,12 @@ public:
   CriticalityType_1045_TypeChoicePair();
   CriticalityType_1045_TypeChoicePair(
     whichOne CriticalityType_1045_TypeTypeIn,
-    CriticalityType_1045_TypeVal CriticalityType_1045_TypeValueIn);
+    CriticalityType_1045_TypeVal * CriticalityType_1045_TypeValueIn);
   ~CriticalityType_1045_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne CriticalityType_1045_TypeType;
-  CriticalityType_1045_TypeVal CriticalityType_1045_TypeValue;
+  CriticalityType_1045_TypeVal * CriticalityType_1045_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -13875,12 +13875,12 @@ public:
   CylindricityCha_1047_TypeChoicePair();
   CylindricityCha_1047_TypeChoicePair(
     whichOne CylindricityCha_1047_TypeTypeIn,
-    CylindricityCha_1047_TypeVal CylindricityCha_1047_TypeValueIn);
+    CylindricityCha_1047_TypeVal * CylindricityCha_1047_TypeValueIn);
   ~CylindricityCha_1047_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne CylindricityCha_1047_TypeType;
-  CylindricityCha_1047_TypeVal CylindricityCha_1047_TypeValue;
+  CylindricityCha_1047_TypeVal * CylindricityCha_1047_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -13945,12 +13945,12 @@ public:
   FlatnessCharact_1049_TypeChoicePair();
   FlatnessCharact_1049_TypeChoicePair(
     whichOne FlatnessCharact_1049_TypeTypeIn,
-    FlatnessCharact_1049_TypeVal FlatnessCharact_1049_TypeValueIn);
+    FlatnessCharact_1049_TypeVal * FlatnessCharact_1049_TypeValueIn);
   ~FlatnessCharact_1049_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne FlatnessCharact_1049_TypeType;
-  FlatnessCharact_1049_TypeVal FlatnessCharact_1049_TypeValue;
+  FlatnessCharact_1049_TypeVal * FlatnessCharact_1049_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -13992,12 +13992,12 @@ public:
   GeometricCharac_1050_TypeChoicePair();
   GeometricCharac_1050_TypeChoicePair(
     whichOne GeometricCharac_1050_TypeTypeIn,
-    GeometricCharac_1050_TypeVal GeometricCharac_1050_TypeValueIn);
+    GeometricCharac_1050_TypeVal * GeometricCharac_1050_TypeValueIn);
   ~GeometricCharac_1050_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne GeometricCharac_1050_TypeType;
-  GeometricCharac_1050_TypeVal GeometricCharac_1050_TypeValue;
+  GeometricCharac_1050_TypeVal * GeometricCharac_1050_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -14108,12 +14108,12 @@ public:
   OrientationChar_1054_TypeChoicePair();
   OrientationChar_1054_TypeChoicePair(
     whichOne OrientationChar_1054_TypeTypeIn,
-    OrientationChar_1054_TypeVal OrientationChar_1054_TypeValueIn);
+    OrientationChar_1054_TypeVal * OrientationChar_1054_TypeValueIn);
   ~OrientationChar_1054_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne OrientationChar_1054_TypeType;
-  OrientationChar_1054_TypeVal OrientationChar_1054_TypeValue;
+  OrientationChar_1054_TypeVal * OrientationChar_1054_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -14178,12 +14178,12 @@ public:
   ProfileCharacte_1056_TypeChoicePair();
   ProfileCharacte_1056_TypeChoicePair(
     whichOne ProfileCharacte_1056_TypeTypeIn,
-    ProfileCharacte_1056_TypeVal ProfileCharacte_1056_TypeValueIn);
+    ProfileCharacte_1056_TypeVal * ProfileCharacte_1056_TypeValueIn);
   ~ProfileCharacte_1056_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne ProfileCharacte_1056_TypeType;
-  ProfileCharacte_1056_TypeVal ProfileCharacte_1056_TypeValue;
+  ProfileCharacte_1056_TypeVal * ProfileCharacte_1056_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -14248,12 +14248,12 @@ public:
   StraightnessCha_1058_TypeChoicePair();
   StraightnessCha_1058_TypeChoicePair(
     whichOne StraightnessCha_1058_TypeTypeIn,
-    StraightnessCha_1058_TypeVal StraightnessCha_1058_TypeValueIn);
+    StraightnessCha_1058_TypeVal * StraightnessCha_1058_TypeValueIn);
   ~StraightnessCha_1058_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne StraightnessCha_1058_TypeType;
-  StraightnessCha_1058_TypeVal StraightnessCha_1058_TypeValue;
+  StraightnessCha_1058_TypeVal * StraightnessCha_1058_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -14295,12 +14295,12 @@ public:
   SurfaceProfileN_1059_TypeChoicePair();
   SurfaceProfileN_1059_TypeChoicePair(
     whichOne SurfaceProfileN_1059_TypeTypeIn,
-    SurfaceProfileN_1059_TypeVal SurfaceProfileN_1059_TypeValueIn);
+    SurfaceProfileN_1059_TypeVal * SurfaceProfileN_1059_TypeValueIn);
   ~SurfaceProfileN_1059_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne SurfaceProfileN_1059_TypeType;
-  SurfaceProfileN_1059_TypeVal SurfaceProfileN_1059_TypeValue;
+  SurfaceProfileN_1059_TypeVal * SurfaceProfileN_1059_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -14342,12 +14342,12 @@ public:
   UserDefinedUnit_1060_TypeChoicePair();
   UserDefinedUnit_1060_TypeChoicePair(
     whichOne UserDefinedUnit_1060_TypeTypeIn,
-    UserDefinedUnit_1060_TypeVal UserDefinedUnit_1060_TypeValueIn);
+    UserDefinedUnit_1060_TypeVal * UserDefinedUnit_1060_TypeValueIn);
   ~UserDefinedUnit_1060_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne UserDefinedUnit_1060_TypeType;
-  UserDefinedUnit_1060_TypeVal UserDefinedUnit_1060_TypeValue;
+  UserDefinedUnit_1060_TypeVal * UserDefinedUnit_1060_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -14389,12 +14389,12 @@ public:
   WeldFilletChara_1061_TypeChoicePair();
   WeldFilletChara_1061_TypeChoicePair(
     whichOne WeldFilletChara_1061_TypeTypeIn,
-    WeldFilletChara_1061_TypeVal WeldFilletChara_1061_TypeValueIn);
+    WeldFilletChara_1061_TypeVal * WeldFilletChara_1061_TypeValueIn);
   ~WeldFilletChara_1061_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne WeldFilletChara_1061_TypeType;
-  WeldFilletChara_1061_TypeVal WeldFilletChara_1061_TypeValue;
+  WeldFilletChara_1061_TypeVal * WeldFilletChara_1061_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -14436,12 +14436,12 @@ public:
   WeldFilletChara_1062_TypeChoicePair();
   WeldFilletChara_1062_TypeChoicePair(
     whichOne WeldFilletChara_1062_TypeTypeIn,
-    WeldFilletChara_1062_TypeVal WeldFilletChara_1062_TypeValueIn);
+    WeldFilletChara_1062_TypeVal * WeldFilletChara_1062_TypeValueIn);
   ~WeldFilletChara_1062_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne WeldFilletChara_1062_TypeType;
-  WeldFilletChara_1062_TypeVal WeldFilletChara_1062_TypeValue;
+  WeldFilletChara_1062_TypeVal * WeldFilletChara_1062_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -14506,12 +14506,12 @@ public:
   CircularityChar_1064_TypeChoicePair();
   CircularityChar_1064_TypeChoicePair(
     whichOne CircularityChar_1064_TypeTypeIn,
-    CircularityChar_1064_TypeVal CircularityChar_1064_TypeValueIn);
+    CircularityChar_1064_TypeVal * CircularityChar_1064_TypeValueIn);
   ~CircularityChar_1064_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne CircularityChar_1064_TypeType;
-  CircularityChar_1064_TypeVal CircularityChar_1064_TypeValue;
+  CircularityChar_1064_TypeVal * CircularityChar_1064_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -14559,12 +14559,12 @@ public:
   CylindricityCha_1065_TypeChoicePair();
   CylindricityCha_1065_TypeChoicePair(
     whichOne CylindricityCha_1065_TypeTypeIn,
-    CylindricityCha_1065_TypeVal CylindricityCha_1065_TypeValueIn);
+    CylindricityCha_1065_TypeVal * CylindricityCha_1065_TypeValueIn);
   ~CylindricityCha_1065_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne CylindricityCha_1065_TypeType;
-  CylindricityCha_1065_TypeVal CylindricityCha_1065_TypeValue;
+  CylindricityCha_1065_TypeVal * CylindricityCha_1065_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -14724,7 +14724,7 @@ public:
     DimensionModifierEnumType * DimensionTypeIn,
     DimensionModifiersType * DimensionModifiersIn,
     AngularCharacteristicDefinitionBaseTypeChoicePair * AngularCharacteristicDefinitionBaseTypePairIn);
-  ~AngularCharacteristicDefinitionBaseType();
+  virtual ~AngularCharacteristicDefinitionBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
   AngularCharacteristicDefinitionBaseTypeChoicePair * getAngularCharacteristicDefinitionBaseTypeChoicePair();
@@ -14754,12 +14754,12 @@ public:
   AngularCharacteristicDefinitionBaseTypeChoicePair();
   AngularCharacteristicDefinitionBaseTypeChoicePair(
     whichOne AngularCharacteristicDefinitionBaseTypeTypeIn,
-    AngularCharacteristicDefinitionBaseTypeVal AngularCharacteristicDefinitionBaseTypeValueIn);
+    AngularCharacteristicDefinitionBaseTypeVal * AngularCharacteristicDefinitionBaseTypeValueIn);
   ~AngularCharacteristicDefinitionBaseTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne AngularCharacteristicDefinitionBaseTypeType;
-  AngularCharacteristicDefinitionBaseTypeVal AngularCharacteristicDefinitionBaseTypeValue;
+  AngularCharacteristicDefinitionBaseTypeVal * AngularCharacteristicDefinitionBaseTypeValue;
 };
 
 /* ***************************************************************** */
@@ -14794,7 +14794,7 @@ public:
     QIFReferenceFullType * CharacteristicNominalIdIn,
     LocationOnDrawingType * LocationOnDrawingIn,
     VirtualMeasurementType * VirtualMeasurementIn);
-  ~AngularCharacteristicItemBaseType();
+  virtual ~AngularCharacteristicItemBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 };
@@ -14839,7 +14839,7 @@ public:
     MeasuredAngularValueType * ValueIn,
     MeasuredAngularValueType * MaxValueIn,
     MeasuredAngularValueType * MinValueIn);
-  ~AngularCharacteristicMeasurementBaseType();
+  virtual ~AngularCharacteristicMeasurementBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
@@ -14888,7 +14888,7 @@ public:
     XmlToken * NameIn,
     CharacteristicDesignatorType * CharacteristicDesignatorIn,
     AngularValueType * TargetValueIn);
-  ~AngularCharacteristicNominalBaseType();
+  virtual ~AngularCharacteristicNominalBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
@@ -15141,7 +15141,7 @@ public:
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
     AreaCharacteristicDefinitionBaseTypeChoicePair * AreaCharacteristicDefinitionBaseTypePairIn);
-  ~AreaCharacteristicDefinitionBaseType();
+  virtual ~AreaCharacteristicDefinitionBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
   AreaCharacteristicDefinitionBaseTypeChoicePair * getAreaCharacteristicDefinitionBaseTypeChoicePair();
@@ -15171,12 +15171,12 @@ public:
   AreaCharacteristicDefinitionBaseTypeChoicePair();
   AreaCharacteristicDefinitionBaseTypeChoicePair(
     whichOne AreaCharacteristicDefinitionBaseTypeTypeIn,
-    AreaCharacteristicDefinitionBaseTypeVal AreaCharacteristicDefinitionBaseTypeValueIn);
+    AreaCharacteristicDefinitionBaseTypeVal * AreaCharacteristicDefinitionBaseTypeValueIn);
   ~AreaCharacteristicDefinitionBaseTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne AreaCharacteristicDefinitionBaseTypeType;
-  AreaCharacteristicDefinitionBaseTypeVal AreaCharacteristicDefinitionBaseTypeValue;
+  AreaCharacteristicDefinitionBaseTypeVal * AreaCharacteristicDefinitionBaseTypeValue;
 };
 
 /* ***************************************************************** */
@@ -15211,7 +15211,7 @@ public:
     QIFReferenceFullType * CharacteristicNominalIdIn,
     LocationOnDrawingType * LocationOnDrawingIn,
     VirtualMeasurementType * VirtualMeasurementIn);
-  ~AreaCharacteristicItemBaseType();
+  virtual ~AreaCharacteristicItemBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 };
@@ -15256,7 +15256,7 @@ public:
     MeasuredAreaValueType * ValueIn,
     MeasuredAreaValueType * MaxValueIn,
     MeasuredAreaValueType * MinValueIn);
-  ~AreaCharacteristicMeasurementBaseType();
+  virtual ~AreaCharacteristicMeasurementBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
@@ -15305,7 +15305,7 @@ public:
     XmlToken * NameIn,
     CharacteristicDesignatorType * CharacteristicDesignatorIn,
     AreaValueType * TargetValueIn);
-  ~AreaCharacteristicNominalBaseType();
+  virtual ~AreaCharacteristicNominalBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
@@ -16269,7 +16269,7 @@ public:
     XmlBoolean * SeparateZoneIn,
     DimensionModifierEnumType * DimensionTypeIn,
     DimensionModifiersType * DimensionModifiersIn);
-  ~CoordinateCharacteristicDefinitionBaseType();
+  virtual ~CoordinateCharacteristicDefinitionBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 };
@@ -16306,7 +16306,7 @@ public:
     QIFReferenceFullType * CharacteristicNominalIdIn,
     LocationOnDrawingType * LocationOnDrawingIn,
     VirtualMeasurementType * VirtualMeasurementIn);
-  ~CoordinateCharacteristicItemBaseType();
+  virtual ~CoordinateCharacteristicItemBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 };
@@ -16347,7 +16347,7 @@ public:
     ArrayReferenceType * NotedEventIdsIn,
     XmlToken * NonConformanceDesignatorIn,
     TypeOfCoordinatesType * TypeOfCoordinatesIn);
-  ~CoordinateCharacteristicMeasurementBaseType();
+  virtual ~CoordinateCharacteristicMeasurementBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
@@ -16388,7 +16388,7 @@ public:
     ArrayReferenceFullType * EntityExternalIdsIn,
     XmlToken * NameIn,
     CharacteristicDesignatorType * CharacteristicDesignatorIn);
-  ~CoordinateCharacteristicNominalBaseType();
+  virtual ~CoordinateCharacteristicNominalBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 };
@@ -16803,12 +16803,12 @@ public:
   DiameterCharacteristicDefinitionTypeChoicePair();
   DiameterCharacteristicDefinitionTypeChoicePair(
     whichOne DiameterCharacteristicDefinitionTypeTypeIn,
-    DiameterCharacteristicDefinitionTypeVal DiameterCharacteristicDefinitionTypeValueIn);
+    DiameterCharacteristicDefinitionTypeVal * DiameterCharacteristicDefinitionTypeValueIn);
   ~DiameterCharacteristicDefinitionTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne DiameterCharacteristicDefinitionTypeType;
-  DiameterCharacteristicDefinitionTypeVal DiameterCharacteristicDefinitionTypeValue;
+  DiameterCharacteristicDefinitionTypeVal * DiameterCharacteristicDefinitionTypeValue;
 };
 
 /* ***************************************************************** */
@@ -17570,7 +17570,7 @@ public:
     CollectionPlaneType * CollectionPlaneIn,
     IntersectionPlaneType * IntersectionPlaneIn,
     OrientationPlaneType * OrientationPlaneIn);
-  ~FormCharacteristicDefinitionBaseType();
+  virtual ~FormCharacteristicDefinitionBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 };
@@ -17607,7 +17607,7 @@ public:
     QIFReferenceFullType * CharacteristicNominalIdIn,
     LocationOnDrawingType * LocationOnDrawingIn,
     VirtualMeasurementType * VirtualMeasurementIn);
-  ~FormCharacteristicItemBaseType();
+  virtual ~FormCharacteristicItemBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 };
@@ -17652,7 +17652,7 @@ public:
     MeasuredLinearValueType * ValueIn,
     MeasuredLinearValueType * MaxValueIn,
     MeasuredLinearValueType * MinValueIn);
-  ~FormCharacteristicMeasurementBaseType();
+  virtual ~FormCharacteristicMeasurementBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 };
@@ -17687,7 +17687,7 @@ public:
     ArrayReferenceFullType * EntityExternalIdsIn,
     XmlToken * NameIn,
     CharacteristicDesignatorType * CharacteristicDesignatorIn);
-  ~FormCharacteristicNominalBaseType();
+  virtual ~FormCharacteristicNominalBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 };
@@ -18327,12 +18327,12 @@ public:
   LinearCoordinateCharacteristicDefinitionTypeChoicePair();
   LinearCoordinateCharacteristicDefinitionTypeChoicePair(
     whichOne LinearCoordinateCharacteristicDefinitionTypeTypeIn,
-    LinearCoordinateCharacteristicDefinitionTypeVal LinearCoordinateCharacteristicDefinitionTypeValueIn);
+    LinearCoordinateCharacteristicDefinitionTypeVal * LinearCoordinateCharacteristicDefinitionTypeValueIn);
   ~LinearCoordinateCharacteristicDefinitionTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne LinearCoordinateCharacteristicDefinitionTypeType;
-  LinearCoordinateCharacteristicDefinitionTypeVal LinearCoordinateCharacteristicDefinitionTypeValue;
+  LinearCoordinateCharacteristicDefinitionTypeVal * LinearCoordinateCharacteristicDefinitionTypeValue;
 };
 
 /* ***************************************************************** */
@@ -20042,12 +20042,12 @@ public:
   WeldFilletOneSideTypeChoicePair();
   WeldFilletOneSideTypeChoicePair(
     whichOne WeldFilletOneSideTypeTypeIn,
-    WeldFilletOneSideTypeVal WeldFilletOneSideTypeValueIn);
+    WeldFilletOneSideTypeVal * WeldFilletOneSideTypeValueIn);
   ~WeldFilletOneSideTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne WeldFilletOneSideTypeType;
-  WeldFilletOneSideTypeVal WeldFilletOneSideTypeValue;
+  WeldFilletOneSideTypeVal * WeldFilletOneSideTypeValue;
 };
 
 /* ***************************************************************** */
@@ -20925,12 +20925,12 @@ public:
   AngularCoordinateCharacteristicDefinitionTypeChoicePair();
   AngularCoordinateCharacteristicDefinitionTypeChoicePair(
     whichOne AngularCoordinateCharacteristicDefinitionTypeTypeIn,
-    AngularCoordinateCharacteristicDefinitionTypeVal AngularCoordinateCharacteristicDefinitionTypeValueIn);
+    AngularCoordinateCharacteristicDefinitionTypeVal * AngularCoordinateCharacteristicDefinitionTypeValueIn);
   ~AngularCoordinateCharacteristicDefinitionTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne AngularCoordinateCharacteristicDefinitionTypeType;
-  AngularCoordinateCharacteristicDefinitionTypeVal AngularCoordinateCharacteristicDefinitionTypeValue;
+  AngularCoordinateCharacteristicDefinitionTypeVal * AngularCoordinateCharacteristicDefinitionTypeValue;
 };
 
 /* ***************************************************************** */
@@ -21160,12 +21160,12 @@ public:
   CircularityCharacteristicDefinitionTypeChoicePair();
   CircularityCharacteristicDefinitionTypeChoicePair(
     whichOne CircularityCharacteristicDefinitionTypeTypeIn,
-    CircularityCharacteristicDefinitionTypeVal CircularityCharacteristicDefinitionTypeValueIn);
+    CircularityCharacteristicDefinitionTypeVal * CircularityCharacteristicDefinitionTypeValueIn);
   ~CircularityCharacteristicDefinitionTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne CircularityCharacteristicDefinitionTypeType;
-  CircularityCharacteristicDefinitionTypeVal CircularityCharacteristicDefinitionTypeValue;
+  CircularityCharacteristicDefinitionTypeVal * CircularityCharacteristicDefinitionTypeValue;
 };
 
 /* ***************************************************************** */
@@ -21565,12 +21565,12 @@ public:
   CylindricityCharacteristicDefinitionTypeChoicePair();
   CylindricityCharacteristicDefinitionTypeChoicePair(
     whichOne CylindricityCharacteristicDefinitionTypeTypeIn,
-    CylindricityCharacteristicDefinitionTypeVal CylindricityCharacteristicDefinitionTypeValueIn);
+    CylindricityCharacteristicDefinitionTypeVal * CylindricityCharacteristicDefinitionTypeValueIn);
   ~CylindricityCharacteristicDefinitionTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne CylindricityCharacteristicDefinitionTypeType;
-  CylindricityCharacteristicDefinitionTypeVal CylindricityCharacteristicDefinitionTypeValue;
+  CylindricityCharacteristicDefinitionTypeVal * CylindricityCharacteristicDefinitionTypeValue;
 };
 
 /* ***************************************************************** */

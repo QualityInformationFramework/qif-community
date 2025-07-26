@@ -65,8 +65,8 @@ For STRINGIN, the lex file must also be compiled with STRINGIN defined.
 #include <stdio.h>   // fprintf
 #include <string.h>  // strlen
 #include <stdlib.h>  // exit
-#include "QIFDocumentClasses.hh"
 #include <map>       // idMap
+#include "QIFDocumentClasses.hh"
 #if defined(STRINGIN) || defined(STRINGOUT)
 #define MAX_SIZE 10000000
 #endif

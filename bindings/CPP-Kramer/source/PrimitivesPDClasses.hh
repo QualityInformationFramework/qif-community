@@ -182,7 +182,7 @@ public:
   NodeBaseType();
   NodeBaseType(
     XmlString * labelIn);
-  ~NodeBaseType();
+  virtual ~NodeBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
@@ -206,7 +206,7 @@ public:
     XmlString * labelIn,
     QIFIdType * idIn,
     AttributesType * AttributesIn);
-  ~NodeWithIdBaseType();
+  virtual ~NodeWithIdBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
@@ -273,7 +273,7 @@ public:
     XmlBoolean * hiddenIn,
     DoublePositiveType * sizeIn,
     TransparencyType * transparencyIn);
-  ~DrawableBaseType();
+  virtual ~DrawableBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 

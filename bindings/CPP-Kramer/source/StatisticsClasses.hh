@@ -496,7 +496,7 @@ public:
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn);
-  ~CharacteristicStatsEvalBaseType();
+  virtual ~CharacteristicStatsEvalBaseType();
   void printSelf(FILE * outFile);
 
   AttributesType * getAttributes();
@@ -573,7 +573,7 @@ public:
     StatsWithTolLinearType * ValueStatsIn,
     StatsLinearType * MaxValueStatsIn,
     StatsLinearType * MinValueStatsIn);
-  ~CompositeSegmentStatsEvalBaseType();
+  virtual ~CompositeSegmentStatsEvalBaseType();
   void printSelf(FILE * outFile);
 
   StatsWithTolLinearType * getValueStats();
@@ -818,12 +818,12 @@ public:
   ControlIssueTypeChoicePair();
   ControlIssueTypeChoicePair(
     whichOne ControlIssueTypeTypeIn,
-    ControlIssueTypeVal ControlIssueTypeValueIn);
+    ControlIssueTypeVal * ControlIssueTypeValueIn);
   ~ControlIssueTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne ControlIssueTypeType;
-  ControlIssueTypeVal ControlIssueTypeValue;
+  ControlIssueTypeVal * ControlIssueTypeValue;
 };
 
 /* ***************************************************************** */
@@ -1243,12 +1243,12 @@ public:
   DistributionTransformationTypeChoicePair();
   DistributionTransformationTypeChoicePair(
     whichOne DistributionTransformationTypeTypeIn,
-    DistributionTransformationTypeVal DistributionTransformationTypeValueIn);
+    DistributionTransformationTypeVal * DistributionTransformationTypeValueIn);
   ~DistributionTransformationTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne DistributionTransformationTypeType;
-  DistributionTransformationTypeVal DistributionTransformationTypeValue;
+  DistributionTransformationTypeVal * DistributionTransformationTypeValue;
 };
 
 /* ***************************************************************** */
@@ -1380,12 +1380,12 @@ public:
   ExclusionReasonTypeChoicePair();
   ExclusionReasonTypeChoicePair(
     whichOne ExclusionReasonTypeTypeIn,
-    ExclusionReasonTypeVal ExclusionReasonTypeValueIn);
+    ExclusionReasonTypeVal * ExclusionReasonTypeValueIn);
   ~ExclusionReasonTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne ExclusionReasonTypeType;
-  ExclusionReasonTypeVal ExclusionReasonTypeValue;
+  ExclusionReasonTypeVal * ExclusionReasonTypeValue;
 };
 
 /* ***************************************************************** */
@@ -1514,12 +1514,12 @@ public:
   LimitingNumberTypeChoicePair();
   LimitingNumberTypeChoicePair(
     whichOne LimitingNumberTypeTypeIn,
-    LimitingNumberTypeVal LimitingNumberTypeValueIn);
+    LimitingNumberTypeVal * LimitingNumberTypeValueIn);
   ~LimitingNumberTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne LimitingNumberTypeType;
-  LimitingNumberTypeVal LimitingNumberTypeValue;
+  LimitingNumberTypeVal * LimitingNumberTypeValue;
 };
 
 /* ***************************************************************** */
@@ -1574,12 +1574,12 @@ public:
   LinearCharacteristicStatsEvalTypeChoicePair();
   LinearCharacteristicStatsEvalTypeChoicePair(
     whichOne LinearCharacteristicStatsEvalTypeTypeIn,
-    LinearCharacteristicStatsEvalTypeVal LinearCharacteristicStatsEvalTypeValueIn);
+    LinearCharacteristicStatsEvalTypeVal * LinearCharacteristicStatsEvalTypeValueIn);
   ~LinearCharacteristicStatsEvalTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne LinearCharacteristicStatsEvalTypeType;
-  LinearCharacteristicStatsEvalTypeVal LinearCharacteristicStatsEvalTypeValue;
+  LinearCharacteristicStatsEvalTypeVal * LinearCharacteristicStatsEvalTypeValue;
 };
 
 /* ***************************************************************** */
@@ -1875,7 +1875,7 @@ public:
     PointDeviationsStatsEvalType * PointDeviationsStatsIn,
     StatsPassFailType * DatumsOkStatsIn,
     CompositeSegmentsProfileStatsEvalType * CompositeSegmentsStatsIn);
-  ~ProfileCharacteristicStatsEvalBaseType();
+  virtual ~ProfileCharacteristicStatsEvalBaseType();
   void printSelf(FILE * outFile);
 
   OneSidedCapabilityCalculationEnumType * getCapabilityCalculationMethod();
@@ -1938,7 +1938,7 @@ public:
     StatsLinearType * MinValueStatsIn,
     OneSidedCapabilityCalculationEnumType * CapabilityCalculationMethodIn,
     StatsPassFailType * DatumsOkStatsIn);
-  ~RunoutCharacteristicStatsEvalBaseType();
+  virtual ~RunoutCharacteristicStatsEvalBaseType();
   void printSelf(FILE * outFile);
 
   OneSidedCapabilityCalculationEnumType * getCapabilityCalculationMethod();
@@ -2006,12 +2006,12 @@ public:
   SamplingIntervalTypeChoicePair();
   SamplingIntervalTypeChoicePair(
     whichOne SamplingIntervalTypeTypeIn,
-    SamplingIntervalTypeVal SamplingIntervalTypeValueIn);
+    SamplingIntervalTypeVal * SamplingIntervalTypeValueIn);
   ~SamplingIntervalTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne SamplingIntervalTypeType;
-  SamplingIntervalTypeVal SamplingIntervalTypeValue;
+  SamplingIntervalTypeVal * SamplingIntervalTypeValue;
 };
 
 /* ***************************************************************** */
@@ -2127,7 +2127,7 @@ public:
   StatsBaseType(
     AttributesType * AttributesIn,
     StatsWithReferenceBaseTypeLisd * CommonStatsValueIn);
-  ~StatsBaseType();
+  virtual ~StatsBaseType();
   void printSelf(FILE * outFile);
 
   AttributesType * getAttributes();
@@ -2195,12 +2195,12 @@ public:
   StatsEvalStatusTypeChoicePair();
   StatsEvalStatusTypeChoicePair(
     whichOne StatsEvalStatusTypeTypeIn,
-    StatsEvalStatusTypeVal StatsEvalStatusTypeValueIn);
+    StatsEvalStatusTypeVal * StatsEvalStatusTypeValueIn);
   ~StatsEvalStatusTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne StatsEvalStatusTypeType;
-  StatsEvalStatusTypeVal StatsEvalStatusTypeValue;
+  StatsEvalStatusTypeVal * StatsEvalStatusTypeValue;
 };
 
 /* ***************************************************************** */
@@ -2213,7 +2213,7 @@ public:
   StatsNumericalBaseType(
     AttributesType * AttributesIn,
     StatsWithReferenceBaseTypeLisd * NumericCharacteristicStatsValueIn);
-  ~StatsNumericalBaseType();
+  virtual ~StatsNumericalBaseType();
   void printSelf(FILE * outFile);
 
   AttributesType * getAttributes();
@@ -2419,7 +2419,7 @@ public:
   StatsWithTolNumericalBaseType(
     AttributesType * AttributesIn,
     StatsWithReferenceBaseTypeLisd * NumericCharacteristicWithTolStatsValueIn);
-  ~StatsWithTolNumericalBaseType();
+  virtual ~StatsWithTolNumericalBaseType();
   void printSelf(FILE * outFile);
 
   AttributesType * getAttributes();
@@ -3358,12 +3358,12 @@ public:
   UserDefinedAngularCharacteristicStatsEvalTypeChoicePair();
   UserDefinedAngularCharacteristicStatsEvalTypeChoicePair(
     whichOne UserDefinedAngularCharacteristicStatsEvalTypeTypeIn,
-    UserDefinedAngularCharacteristicStatsEvalTypeVal UserDefinedAngularCharacteristicStatsEvalTypeValueIn);
+    UserDefinedAngularCharacteristicStatsEvalTypeVal * UserDefinedAngularCharacteristicStatsEvalTypeValueIn);
   ~UserDefinedAngularCharacteristicStatsEvalTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne UserDefinedAngularCharacteristicStatsEvalTypeType;
-  UserDefinedAngularCharacteristicStatsEvalTypeVal UserDefinedAngularCharacteristicStatsEvalTypeValue;
+  UserDefinedAngularCharacteristicStatsEvalTypeVal * UserDefinedAngularCharacteristicStatsEvalTypeValue;
 };
 
 /* ***************************************************************** */
@@ -3418,12 +3418,12 @@ public:
   UserDefinedAreaCharacteristicStatsEvalTypeChoicePair();
   UserDefinedAreaCharacteristicStatsEvalTypeChoicePair(
     whichOne UserDefinedAreaCharacteristicStatsEvalTypeTypeIn,
-    UserDefinedAreaCharacteristicStatsEvalTypeVal UserDefinedAreaCharacteristicStatsEvalTypeValueIn);
+    UserDefinedAreaCharacteristicStatsEvalTypeVal * UserDefinedAreaCharacteristicStatsEvalTypeValueIn);
   ~UserDefinedAreaCharacteristicStatsEvalTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne UserDefinedAreaCharacteristicStatsEvalTypeType;
-  UserDefinedAreaCharacteristicStatsEvalTypeVal UserDefinedAreaCharacteristicStatsEvalTypeValue;
+  UserDefinedAreaCharacteristicStatsEvalTypeVal * UserDefinedAreaCharacteristicStatsEvalTypeValue;
 };
 
 /* ***************************************************************** */
@@ -3503,12 +3503,12 @@ public:
   UserDefinedForceCharacteristicStatsEvalTypeChoicePair();
   UserDefinedForceCharacteristicStatsEvalTypeChoicePair(
     whichOne UserDefinedForceCharacteristicStatsEvalTypeTypeIn,
-    UserDefinedForceCharacteristicStatsEvalTypeVal UserDefinedForceCharacteristicStatsEvalTypeValueIn);
+    UserDefinedForceCharacteristicStatsEvalTypeVal * UserDefinedForceCharacteristicStatsEvalTypeValueIn);
   ~UserDefinedForceCharacteristicStatsEvalTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne UserDefinedForceCharacteristicStatsEvalTypeType;
-  UserDefinedForceCharacteristicStatsEvalTypeVal UserDefinedForceCharacteristicStatsEvalTypeValue;
+  UserDefinedForceCharacteristicStatsEvalTypeVal * UserDefinedForceCharacteristicStatsEvalTypeValue;
 };
 
 /* ***************************************************************** */
@@ -3563,12 +3563,12 @@ public:
   UserDefinedLinearCharacteristicStatsEvalTypeChoicePair();
   UserDefinedLinearCharacteristicStatsEvalTypeChoicePair(
     whichOne UserDefinedLinearCharacteristicStatsEvalTypeTypeIn,
-    UserDefinedLinearCharacteristicStatsEvalTypeVal UserDefinedLinearCharacteristicStatsEvalTypeValueIn);
+    UserDefinedLinearCharacteristicStatsEvalTypeVal * UserDefinedLinearCharacteristicStatsEvalTypeValueIn);
   ~UserDefinedLinearCharacteristicStatsEvalTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne UserDefinedLinearCharacteristicStatsEvalTypeType;
-  UserDefinedLinearCharacteristicStatsEvalTypeVal UserDefinedLinearCharacteristicStatsEvalTypeValue;
+  UserDefinedLinearCharacteristicStatsEvalTypeVal * UserDefinedLinearCharacteristicStatsEvalTypeValue;
 };
 
 /* ***************************************************************** */
@@ -3623,12 +3623,12 @@ public:
   UserDefinedMassCharacteristicStatsEvalTypeChoicePair();
   UserDefinedMassCharacteristicStatsEvalTypeChoicePair(
     whichOne UserDefinedMassCharacteristicStatsEvalTypeTypeIn,
-    UserDefinedMassCharacteristicStatsEvalTypeVal UserDefinedMassCharacteristicStatsEvalTypeValueIn);
+    UserDefinedMassCharacteristicStatsEvalTypeVal * UserDefinedMassCharacteristicStatsEvalTypeValueIn);
   ~UserDefinedMassCharacteristicStatsEvalTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne UserDefinedMassCharacteristicStatsEvalTypeType;
-  UserDefinedMassCharacteristicStatsEvalTypeVal UserDefinedMassCharacteristicStatsEvalTypeValue;
+  UserDefinedMassCharacteristicStatsEvalTypeVal * UserDefinedMassCharacteristicStatsEvalTypeValue;
 };
 
 /* ***************************************************************** */
@@ -3683,12 +3683,12 @@ public:
   UserDefinedPressureCharacteristicStatsEvalTypeChoicePair();
   UserDefinedPressureCharacteristicStatsEvalTypeChoicePair(
     whichOne UserDefinedPressureCharacteristicStatsEvalTypeTypeIn,
-    UserDefinedPressureCharacteristicStatsEvalTypeVal UserDefinedPressureCharacteristicStatsEvalTypeValueIn);
+    UserDefinedPressureCharacteristicStatsEvalTypeVal * UserDefinedPressureCharacteristicStatsEvalTypeValueIn);
   ~UserDefinedPressureCharacteristicStatsEvalTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne UserDefinedPressureCharacteristicStatsEvalTypeType;
-  UserDefinedPressureCharacteristicStatsEvalTypeVal UserDefinedPressureCharacteristicStatsEvalTypeValue;
+  UserDefinedPressureCharacteristicStatsEvalTypeVal * UserDefinedPressureCharacteristicStatsEvalTypeValue;
 };
 
 /* ***************************************************************** */
@@ -3743,12 +3743,12 @@ public:
   UserDefinedSpeedCharacteristicStatsEvalTypeChoicePair();
   UserDefinedSpeedCharacteristicStatsEvalTypeChoicePair(
     whichOne UserDefinedSpeedCharacteristicStatsEvalTypeTypeIn,
-    UserDefinedSpeedCharacteristicStatsEvalTypeVal UserDefinedSpeedCharacteristicStatsEvalTypeValueIn);
+    UserDefinedSpeedCharacteristicStatsEvalTypeVal * UserDefinedSpeedCharacteristicStatsEvalTypeValueIn);
   ~UserDefinedSpeedCharacteristicStatsEvalTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne UserDefinedSpeedCharacteristicStatsEvalTypeType;
-  UserDefinedSpeedCharacteristicStatsEvalTypeVal UserDefinedSpeedCharacteristicStatsEvalTypeValue;
+  UserDefinedSpeedCharacteristicStatsEvalTypeVal * UserDefinedSpeedCharacteristicStatsEvalTypeValue;
 };
 
 /* ***************************************************************** */
@@ -3803,12 +3803,12 @@ public:
   UserDefinedTemperatureCharacteristicStatsEvalTypeChoicePair();
   UserDefinedTemperatureCharacteristicStatsEvalTypeChoicePair(
     whichOne UserDefinedTemperatureCharacteristicStatsEvalTypeTypeIn,
-    UserDefinedTemperatureCharacteristicStatsEvalTypeVal UserDefinedTemperatureCharacteristicStatsEvalTypeValueIn);
+    UserDefinedTemperatureCharacteristicStatsEvalTypeVal * UserDefinedTemperatureCharacteristicStatsEvalTypeValueIn);
   ~UserDefinedTemperatureCharacteristicStatsEvalTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne UserDefinedTemperatureCharacteristicStatsEvalTypeType;
-  UserDefinedTemperatureCharacteristicStatsEvalTypeVal UserDefinedTemperatureCharacteristicStatsEvalTypeValue;
+  UserDefinedTemperatureCharacteristicStatsEvalTypeVal * UserDefinedTemperatureCharacteristicStatsEvalTypeValue;
 };
 
 /* ***************************************************************** */
@@ -3863,12 +3863,12 @@ public:
   UserDefinedTimeCharacteristicStatsEvalTypeChoicePair();
   UserDefinedTimeCharacteristicStatsEvalTypeChoicePair(
     whichOne UserDefinedTimeCharacteristicStatsEvalTypeTypeIn,
-    UserDefinedTimeCharacteristicStatsEvalTypeVal UserDefinedTimeCharacteristicStatsEvalTypeValueIn);
+    UserDefinedTimeCharacteristicStatsEvalTypeVal * UserDefinedTimeCharacteristicStatsEvalTypeValueIn);
   ~UserDefinedTimeCharacteristicStatsEvalTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne UserDefinedTimeCharacteristicStatsEvalTypeType;
-  UserDefinedTimeCharacteristicStatsEvalTypeVal UserDefinedTimeCharacteristicStatsEvalTypeValue;
+  UserDefinedTimeCharacteristicStatsEvalTypeVal * UserDefinedTimeCharacteristicStatsEvalTypeValue;
 };
 
 /* ***************************************************************** */
@@ -3923,12 +3923,12 @@ public:
   UserDefinedUnitCharacteristicStatsEvalTypeChoicePair();
   UserDefinedUnitCharacteristicStatsEvalTypeChoicePair(
     whichOne UserDefinedUnitCharacteristicStatsEvalTypeTypeIn,
-    UserDefinedUnitCharacteristicStatsEvalTypeVal UserDefinedUnitCharacteristicStatsEvalTypeValueIn);
+    UserDefinedUnitCharacteristicStatsEvalTypeVal * UserDefinedUnitCharacteristicStatsEvalTypeValueIn);
   ~UserDefinedUnitCharacteristicStatsEvalTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne UserDefinedUnitCharacteristicStatsEvalTypeType;
-  UserDefinedUnitCharacteristicStatsEvalTypeVal UserDefinedUnitCharacteristicStatsEvalTypeValue;
+  UserDefinedUnitCharacteristicStatsEvalTypeVal * UserDefinedUnitCharacteristicStatsEvalTypeValue;
 };
 
 /* ***************************************************************** */
@@ -3946,7 +3946,7 @@ public:
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
     StatsPassFailType * WeldStatsIn);
-  ~WeldCharacteristicStatsEvalBaseType();
+  virtual ~WeldCharacteristicStatsEvalBaseType();
   void printSelf(FILE * outFile);
 
   StatsPassFailType * getWeldStats();
@@ -4418,12 +4418,12 @@ public:
   AssignableCause_1104_TypeChoicePair();
   AssignableCause_1104_TypeChoicePair(
     whichOne AssignableCause_1104_TypeTypeIn,
-    AssignableCause_1104_TypeVal AssignableCause_1104_TypeValueIn);
+    AssignableCause_1104_TypeVal * AssignableCause_1104_TypeValueIn);
   ~AssignableCause_1104_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne AssignableCause_1104_TypeType;
-  AssignableCause_1104_TypeVal AssignableCause_1104_TypeValue;
+  AssignableCause_1104_TypeVal * AssignableCause_1104_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -4467,12 +4467,12 @@ public:
   CharacteristicS_1105_TypeChoicePair();
   CharacteristicS_1105_TypeChoicePair(
     whichOne CharacteristicS_1105_TypeTypeIn,
-    CharacteristicS_1105_TypeVal CharacteristicS_1105_TypeValueIn);
+    CharacteristicS_1105_TypeVal * CharacteristicS_1105_TypeValueIn);
   ~CharacteristicS_1105_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne CharacteristicS_1105_TypeType;
-  CharacteristicS_1105_TypeVal CharacteristicS_1105_TypeValue;
+  CharacteristicS_1105_TypeVal * CharacteristicS_1105_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -4514,12 +4514,12 @@ public:
   CharacteristicS_1106_TypeChoicePair();
   CharacteristicS_1106_TypeChoicePair(
     whichOne CharacteristicS_1106_TypeTypeIn,
-    CharacteristicS_1106_TypeVal CharacteristicS_1106_TypeValueIn);
+    CharacteristicS_1106_TypeVal * CharacteristicS_1106_TypeValueIn);
   ~CharacteristicS_1106_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne CharacteristicS_1106_TypeType;
-  CharacteristicS_1106_TypeVal CharacteristicS_1106_TypeValue;
+  CharacteristicS_1106_TypeVal * CharacteristicS_1106_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -4561,12 +4561,12 @@ public:
   CorrectiveActio_1107_TypeChoicePair();
   CorrectiveActio_1107_TypeChoicePair(
     whichOne CorrectiveActio_1107_TypeTypeIn,
-    CorrectiveActio_1107_TypeVal CorrectiveActio_1107_TypeValueIn);
+    CorrectiveActio_1107_TypeVal * CorrectiveActio_1107_TypeValueIn);
   ~CorrectiveActio_1107_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne CorrectiveActio_1107_TypeType;
-  CorrectiveActio_1107_TypeVal CorrectiveActio_1107_TypeValue;
+  CorrectiveActio_1107_TypeVal * CorrectiveActio_1107_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -4754,12 +4754,12 @@ public:
   SamplingMethodT_1114_TypeChoicePair();
   SamplingMethodT_1114_TypeChoicePair(
     whichOne SamplingMethodT_1114_TypeTypeIn,
-    SamplingMethodT_1114_TypeVal SamplingMethodT_1114_TypeValueIn);
+    SamplingMethodT_1114_TypeVal * SamplingMethodT_1114_TypeValueIn);
   ~SamplingMethodT_1114_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne SamplingMethodT_1114_TypeType;
-  SamplingMethodT_1114_TypeVal SamplingMethodT_1114_TypeValue;
+  SamplingMethodT_1114_TypeVal * SamplingMethodT_1114_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -4801,12 +4801,12 @@ public:
   StudyIssueType_1115_TypeChoicePair();
   StudyIssueType_1115_TypeChoicePair(
     whichOne StudyIssueType_1115_TypeTypeIn,
-    StudyIssueType_1115_TypeVal StudyIssueType_1115_TypeValueIn);
+    StudyIssueType_1115_TypeVal * StudyIssueType_1115_TypeValueIn);
   ~StudyIssueType_1115_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne StudyIssueType_1115_TypeType;
-  StudyIssueType_1115_TypeVal StudyIssueType_1115_TypeValue;
+  StudyIssueType_1115_TypeVal * StudyIssueType_1115_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -5848,12 +5848,12 @@ public:
   CharacteristicS_1156_TypeChoicePair();
   CharacteristicS_1156_TypeChoicePair(
     whichOne CharacteristicS_1156_TypeTypeIn,
-    CharacteristicS_1156_TypeVal CharacteristicS_1156_TypeValueIn);
+    CharacteristicS_1156_TypeVal * CharacteristicS_1156_TypeValueIn);
   ~CharacteristicS_1156_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne CharacteristicS_1156_TypeType;
-  CharacteristicS_1156_TypeVal CharacteristicS_1156_TypeValue;
+  CharacteristicS_1156_TypeVal * CharacteristicS_1156_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -5895,12 +5895,12 @@ public:
   CharacteristicS_1157_TypeChoicePair();
   CharacteristicS_1157_TypeChoicePair(
     whichOne CharacteristicS_1157_TypeTypeIn,
-    CharacteristicS_1157_TypeVal CharacteristicS_1157_TypeValueIn);
+    CharacteristicS_1157_TypeVal * CharacteristicS_1157_TypeValueIn);
   ~CharacteristicS_1157_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne CharacteristicS_1157_TypeType;
-  CharacteristicS_1157_TypeVal CharacteristicS_1157_TypeValue;
+  CharacteristicS_1157_TypeVal * CharacteristicS_1157_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -5978,12 +5978,12 @@ public:
   AngularCharacteristicStatsEvalTypeChoicePair();
   AngularCharacteristicStatsEvalTypeChoicePair(
     whichOne AngularCharacteristicStatsEvalTypeTypeIn,
-    AngularCharacteristicStatsEvalTypeVal AngularCharacteristicStatsEvalTypeValueIn);
+    AngularCharacteristicStatsEvalTypeVal * AngularCharacteristicStatsEvalTypeValueIn);
   ~AngularCharacteristicStatsEvalTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne AngularCharacteristicStatsEvalTypeType;
-  AngularCharacteristicStatsEvalTypeVal AngularCharacteristicStatsEvalTypeValue;
+  AngularCharacteristicStatsEvalTypeVal * AngularCharacteristicStatsEvalTypeValue;
 };
 
 /* ***************************************************************** */
@@ -6361,7 +6361,7 @@ public:
     StatsLinearType * MaxValueStatsIn,
     StatsLinearType * MinValueStatsIn,
     OneSidedCapabilityCalculationEnumType * CapabilityCalculationMethodIn);
-  ~FormCharacteristicStatsEvalBaseType();
+  virtual ~FormCharacteristicStatsEvalBaseType();
   void printSelf(FILE * outFile);
 
   OneSidedCapabilityCalculationEnumType * getCapabilityCalculationMethod();

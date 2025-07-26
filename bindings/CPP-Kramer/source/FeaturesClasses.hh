@@ -824,12 +824,12 @@ public:
   CircleCheckedTypeChoicePair();
   CircleCheckedTypeChoicePair(
     whichOne CircleCheckedTypeTypeIn,
-    CircleCheckedTypeVal CircleCheckedTypeValueIn);
+    CircleCheckedTypeVal * CircleCheckedTypeValueIn);
   ~CircleCheckedTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne CircleCheckedTypeType;
-  CircleCheckedTypeVal CircleCheckedTypeValue;
+  CircleCheckedTypeVal * CircleCheckedTypeValue;
 };
 
 /* ***************************************************************** */
@@ -889,12 +889,12 @@ public:
   CircleConstructionMethodTypeChoicePair();
   CircleConstructionMethodTypeChoicePair(
     whichOne CircleConstructionMethodTypeTypeIn,
-    CircleConstructionMethodTypeVal CircleConstructionMethodTypeValueIn);
+    CircleConstructionMethodTypeVal * CircleConstructionMethodTypeValueIn);
   ~CircleConstructionMethodTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne CircleConstructionMethodTypeType;
-  CircleConstructionMethodTypeVal CircleConstructionMethodTypeValue;
+  CircleConstructionMethodTypeVal * CircleConstructionMethodTypeValue;
 };
 
 /* ***************************************************************** */
@@ -936,12 +936,12 @@ public:
   CircleMeasurementDeterminationTypeChoicePair();
   CircleMeasurementDeterminationTypeChoicePair(
     whichOne CircleMeasurementDeterminationTypeTypeIn,
-    CircleMeasurementDeterminationTypeVal CircleMeasurementDeterminationTypeValueIn);
+    CircleMeasurementDeterminationTypeVal * CircleMeasurementDeterminationTypeValueIn);
   ~CircleMeasurementDeterminationTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne CircleMeasurementDeterminationTypeType;
-  CircleMeasurementDeterminationTypeVal CircleMeasurementDeterminationTypeValue;
+  CircleMeasurementDeterminationTypeVal * CircleMeasurementDeterminationTypeValue;
 };
 
 /* ***************************************************************** */
@@ -1002,12 +1002,12 @@ public:
   CircularArcCheckedTypeChoicePair();
   CircularArcCheckedTypeChoicePair(
     whichOne CircularArcCheckedTypeTypeIn,
-    CircularArcCheckedTypeVal CircularArcCheckedTypeValueIn);
+    CircularArcCheckedTypeVal * CircularArcCheckedTypeValueIn);
   ~CircularArcCheckedTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne CircularArcCheckedTypeType;
-  CircularArcCheckedTypeVal CircularArcCheckedTypeValue;
+  CircularArcCheckedTypeVal * CircularArcCheckedTypeValue;
 };
 
 /* ***************************************************************** */
@@ -1063,12 +1063,12 @@ public:
   CircularArcConstructionMethodTypeChoicePair();
   CircularArcConstructionMethodTypeChoicePair(
     whichOne CircularArcConstructionMethodTypeTypeIn,
-    CircularArcConstructionMethodTypeVal CircularArcConstructionMethodTypeValueIn);
+    CircularArcConstructionMethodTypeVal * CircularArcConstructionMethodTypeValueIn);
   ~CircularArcConstructionMethodTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne CircularArcConstructionMethodTypeType;
-  CircularArcConstructionMethodTypeVal CircularArcConstructionMethodTypeValue;
+  CircularArcConstructionMethodTypeVal * CircularArcConstructionMethodTypeValue;
 };
 
 /* ***************************************************************** */
@@ -1110,12 +1110,12 @@ public:
   CircularArcMeasurementDeterminationTypeChoicePair();
   CircularArcMeasurementDeterminationTypeChoicePair(
     whichOne CircularArcMeasurementDeterminationTypeTypeIn,
-    CircularArcMeasurementDeterminationTypeVal CircularArcMeasurementDeterminationTypeValueIn);
+    CircularArcMeasurementDeterminationTypeVal * CircularArcMeasurementDeterminationTypeValueIn);
   ~CircularArcMeasurementDeterminationTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne CircularArcMeasurementDeterminationTypeType;
-  CircularArcMeasurementDeterminationTypeVal CircularArcMeasurementDeterminationTypeValue;
+  CircularArcMeasurementDeterminationTypeVal * CircularArcMeasurementDeterminationTypeValue;
 };
 
 /* ***************************************************************** */
@@ -1176,12 +1176,12 @@ public:
   ConeCheckedTypeChoicePair();
   ConeCheckedTypeChoicePair(
     whichOne ConeCheckedTypeTypeIn,
-    ConeCheckedTypeVal ConeCheckedTypeValueIn);
+    ConeCheckedTypeVal * ConeCheckedTypeValueIn);
   ~ConeCheckedTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne ConeCheckedTypeType;
-  ConeCheckedTypeVal ConeCheckedTypeValue;
+  ConeCheckedTypeVal * ConeCheckedTypeValue;
 };
 
 /* ***************************************************************** */
@@ -1231,12 +1231,12 @@ public:
   ConeConstructionMethodTypeChoicePair();
   ConeConstructionMethodTypeChoicePair(
     whichOne ConeConstructionMethodTypeTypeIn,
-    ConeConstructionMethodTypeVal ConeConstructionMethodTypeValueIn);
+    ConeConstructionMethodTypeVal * ConeConstructionMethodTypeValueIn);
   ~ConeConstructionMethodTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne ConeConstructionMethodTypeType;
-  ConeConstructionMethodTypeVal ConeConstructionMethodTypeValue;
+  ConeConstructionMethodTypeVal * ConeConstructionMethodTypeValue;
 };
 
 /* ***************************************************************** */
@@ -1278,12 +1278,12 @@ public:
   ConeMeasurementDeterminationTypeChoicePair();
   ConeMeasurementDeterminationTypeChoicePair(
     whichOne ConeMeasurementDeterminationTypeTypeIn,
-    ConeMeasurementDeterminationTypeVal ConeMeasurementDeterminationTypeValueIn);
+    ConeMeasurementDeterminationTypeVal * ConeMeasurementDeterminationTypeValueIn);
   ~ConeMeasurementDeterminationTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne ConeMeasurementDeterminationTypeType;
-  ConeMeasurementDeterminationTypeVal ConeMeasurementDeterminationTypeValue;
+  ConeMeasurementDeterminationTypeVal * ConeMeasurementDeterminationTypeValue;
 };
 
 /* ***************************************************************** */
@@ -1344,12 +1344,12 @@ public:
   ConicalSegmentCheckedTypeChoicePair();
   ConicalSegmentCheckedTypeChoicePair(
     whichOne ConicalSegmentCheckedTypeTypeIn,
-    ConicalSegmentCheckedTypeVal ConicalSegmentCheckedTypeValueIn);
+    ConicalSegmentCheckedTypeVal * ConicalSegmentCheckedTypeValueIn);
   ~ConicalSegmentCheckedTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne ConicalSegmentCheckedTypeType;
-  ConicalSegmentCheckedTypeVal ConicalSegmentCheckedTypeValue;
+  ConicalSegmentCheckedTypeVal * ConicalSegmentCheckedTypeValue;
 };
 
 /* ***************************************************************** */
@@ -1397,12 +1397,12 @@ public:
   ConicalSegmentConstructionMethodTypeChoicePair();
   ConicalSegmentConstructionMethodTypeChoicePair(
     whichOne ConicalSegmentConstructionMethodTypeTypeIn,
-    ConicalSegmentConstructionMethodTypeVal ConicalSegmentConstructionMethodTypeValueIn);
+    ConicalSegmentConstructionMethodTypeVal * ConicalSegmentConstructionMethodTypeValueIn);
   ~ConicalSegmentConstructionMethodTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne ConicalSegmentConstructionMethodTypeType;
-  ConicalSegmentConstructionMethodTypeVal ConicalSegmentConstructionMethodTypeValue;
+  ConicalSegmentConstructionMethodTypeVal * ConicalSegmentConstructionMethodTypeValue;
 };
 
 /* ***************************************************************** */
@@ -1444,12 +1444,12 @@ public:
   ConicalSegmentMeasurementDeterminationTypeChoicePair();
   ConicalSegmentMeasurementDeterminationTypeChoicePair(
     whichOne ConicalSegmentMeasurementDeterminationTypeTypeIn,
-    ConicalSegmentMeasurementDeterminationTypeVal ConicalSegmentMeasurementDeterminationTypeValueIn);
+    ConicalSegmentMeasurementDeterminationTypeVal * ConicalSegmentMeasurementDeterminationTypeValueIn);
   ~ConicalSegmentMeasurementDeterminationTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne ConicalSegmentMeasurementDeterminationTypeType;
-  ConicalSegmentMeasurementDeterminationTypeVal ConicalSegmentMeasurementDeterminationTypeValue;
+  ConicalSegmentMeasurementDeterminationTypeVal * ConicalSegmentMeasurementDeterminationTypeValue;
 };
 
 /* ***************************************************************** */
@@ -1461,7 +1461,7 @@ public:
   ConstructionMethodBaseType();
   ConstructionMethodBaseType(
     XmlBoolean * NominalsCalculatedIn);
-  ~ConstructionMethodBaseType();
+  virtual ~ConstructionMethodBaseType();
   void printSelf(FILE * outFile);
 
   XmlBoolean * getNominalsCalculated();
@@ -1578,12 +1578,12 @@ public:
   CylinderCheckedTypeChoicePair();
   CylinderCheckedTypeChoicePair(
     whichOne CylinderCheckedTypeTypeIn,
-    CylinderCheckedTypeVal CylinderCheckedTypeValueIn);
+    CylinderCheckedTypeVal * CylinderCheckedTypeValueIn);
   ~CylinderCheckedTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne CylinderCheckedTypeType;
-  CylinderCheckedTypeVal CylinderCheckedTypeValue;
+  CylinderCheckedTypeVal * CylinderCheckedTypeValue;
 };
 
 /* ***************************************************************** */
@@ -1633,12 +1633,12 @@ public:
   CylinderConstructionMethodTypeChoicePair();
   CylinderConstructionMethodTypeChoicePair(
     whichOne CylinderConstructionMethodTypeTypeIn,
-    CylinderConstructionMethodTypeVal CylinderConstructionMethodTypeValueIn);
+    CylinderConstructionMethodTypeVal * CylinderConstructionMethodTypeValueIn);
   ~CylinderConstructionMethodTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne CylinderConstructionMethodTypeType;
-  CylinderConstructionMethodTypeVal CylinderConstructionMethodTypeValue;
+  CylinderConstructionMethodTypeVal * CylinderConstructionMethodTypeValue;
 };
 
 /* ***************************************************************** */
@@ -1724,12 +1724,12 @@ public:
   CylinderMeasurementDeterminationTypeChoicePair();
   CylinderMeasurementDeterminationTypeChoicePair(
     whichOne CylinderMeasurementDeterminationTypeTypeIn,
-    CylinderMeasurementDeterminationTypeVal CylinderMeasurementDeterminationTypeValueIn);
+    CylinderMeasurementDeterminationTypeVal * CylinderMeasurementDeterminationTypeValueIn);
   ~CylinderMeasurementDeterminationTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne CylinderMeasurementDeterminationTypeType;
-  CylinderMeasurementDeterminationTypeVal CylinderMeasurementDeterminationTypeValue;
+  CylinderMeasurementDeterminationTypeVal * CylinderMeasurementDeterminationTypeValue;
 };
 
 /* ***************************************************************** */
@@ -1883,12 +1883,12 @@ public:
   CylindricalSegmentCheckedTypeChoicePair();
   CylindricalSegmentCheckedTypeChoicePair(
     whichOne CylindricalSegmentCheckedTypeTypeIn,
-    CylindricalSegmentCheckedTypeVal CylindricalSegmentCheckedTypeValueIn);
+    CylindricalSegmentCheckedTypeVal * CylindricalSegmentCheckedTypeValueIn);
   ~CylindricalSegmentCheckedTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne CylindricalSegmentCheckedTypeType;
-  CylindricalSegmentCheckedTypeVal CylindricalSegmentCheckedTypeValue;
+  CylindricalSegmentCheckedTypeVal * CylindricalSegmentCheckedTypeValue;
 };
 
 /* ***************************************************************** */
@@ -1936,12 +1936,12 @@ public:
   CylindricalSegmentConstructionMethodTypeChoicePair();
   CylindricalSegmentConstructionMethodTypeChoicePair(
     whichOne CylindricalSegmentConstructionMethodTypeTypeIn,
-    CylindricalSegmentConstructionMethodTypeVal CylindricalSegmentConstructionMethodTypeValueIn);
+    CylindricalSegmentConstructionMethodTypeVal * CylindricalSegmentConstructionMethodTypeValueIn);
   ~CylindricalSegmentConstructionMethodTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne CylindricalSegmentConstructionMethodTypeType;
-  CylindricalSegmentConstructionMethodTypeVal CylindricalSegmentConstructionMethodTypeValue;
+  CylindricalSegmentConstructionMethodTypeVal * CylindricalSegmentConstructionMethodTypeValue;
 };
 
 /* ***************************************************************** */
@@ -2003,12 +2003,12 @@ public:
   CylindricalSegmentMeasurementDeterminationTypeChoicePair();
   CylindricalSegmentMeasurementDeterminationTypeChoicePair(
     whichOne CylindricalSegmentMeasurementDeterminationTypeTypeIn,
-    CylindricalSegmentMeasurementDeterminationTypeVal CylindricalSegmentMeasurementDeterminationTypeValueIn);
+    CylindricalSegmentMeasurementDeterminationTypeVal * CylindricalSegmentMeasurementDeterminationTypeValueIn);
   ~CylindricalSegmentMeasurementDeterminationTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne CylindricalSegmentMeasurementDeterminationTypeType;
-  CylindricalSegmentMeasurementDeterminationTypeVal CylindricalSegmentMeasurementDeterminationTypeValue;
+  CylindricalSegmentMeasurementDeterminationTypeVal * CylindricalSegmentMeasurementDeterminationTypeValue;
 };
 
 /* ***************************************************************** */
@@ -2323,12 +2323,12 @@ public:
   EdgePointCheckedTypeChoicePair();
   EdgePointCheckedTypeChoicePair(
     whichOne EdgePointCheckedTypeTypeIn,
-    EdgePointCheckedTypeVal EdgePointCheckedTypeValueIn);
+    EdgePointCheckedTypeVal * EdgePointCheckedTypeValueIn);
   ~EdgePointCheckedTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne EdgePointCheckedTypeType;
-  EdgePointCheckedTypeVal EdgePointCheckedTypeValue;
+  EdgePointCheckedTypeVal * EdgePointCheckedTypeValue;
 };
 
 /* ***************************************************************** */
@@ -2374,12 +2374,12 @@ public:
   EdgePointConstructionMethodTypeChoicePair();
   EdgePointConstructionMethodTypeChoicePair(
     whichOne EdgePointConstructionMethodTypeTypeIn,
-    EdgePointConstructionMethodTypeVal EdgePointConstructionMethodTypeValueIn);
+    EdgePointConstructionMethodTypeVal * EdgePointConstructionMethodTypeValueIn);
   ~EdgePointConstructionMethodTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne EdgePointConstructionMethodTypeType;
-  EdgePointConstructionMethodTypeVal EdgePointConstructionMethodTypeValue;
+  EdgePointConstructionMethodTypeVal * EdgePointConstructionMethodTypeValue;
 };
 
 /* ***************************************************************** */
@@ -2481,12 +2481,12 @@ public:
   EdgePointMeasurementDeterminationTypeChoicePair();
   EdgePointMeasurementDeterminationTypeChoicePair(
     whichOne EdgePointMeasurementDeterminationTypeTypeIn,
-    EdgePointMeasurementDeterminationTypeVal EdgePointMeasurementDeterminationTypeValueIn);
+    EdgePointMeasurementDeterminationTypeVal * EdgePointMeasurementDeterminationTypeValueIn);
   ~EdgePointMeasurementDeterminationTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne EdgePointMeasurementDeterminationTypeType;
-  EdgePointMeasurementDeterminationTypeVal EdgePointMeasurementDeterminationTypeValue;
+  EdgePointMeasurementDeterminationTypeVal * EdgePointMeasurementDeterminationTypeValue;
 };
 
 /* ***************************************************************** */
@@ -2620,12 +2620,12 @@ public:
   EllipseCheckedTypeChoicePair();
   EllipseCheckedTypeChoicePair(
     whichOne EllipseCheckedTypeTypeIn,
-    EllipseCheckedTypeVal EllipseCheckedTypeValueIn);
+    EllipseCheckedTypeVal * EllipseCheckedTypeValueIn);
   ~EllipseCheckedTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne EllipseCheckedTypeType;
-  EllipseCheckedTypeVal EllipseCheckedTypeValue;
+  EllipseCheckedTypeVal * EllipseCheckedTypeValue;
 };
 
 /* ***************************************************************** */
@@ -2679,12 +2679,12 @@ public:
   EllipseConstructionMethodTypeChoicePair();
   EllipseConstructionMethodTypeChoicePair(
     whichOne EllipseConstructionMethodTypeTypeIn,
-    EllipseConstructionMethodTypeVal EllipseConstructionMethodTypeValueIn);
+    EllipseConstructionMethodTypeVal * EllipseConstructionMethodTypeValueIn);
   ~EllipseConstructionMethodTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne EllipseConstructionMethodTypeType;
-  EllipseConstructionMethodTypeVal EllipseConstructionMethodTypeValue;
+  EllipseConstructionMethodTypeVal * EllipseConstructionMethodTypeValue;
 };
 
 /* ***************************************************************** */
@@ -2798,12 +2798,12 @@ public:
   EllipseMeasurementDeterminationTypeChoicePair();
   EllipseMeasurementDeterminationTypeChoicePair(
     whichOne EllipseMeasurementDeterminationTypeTypeIn,
-    EllipseMeasurementDeterminationTypeVal EllipseMeasurementDeterminationTypeValueIn);
+    EllipseMeasurementDeterminationTypeVal * EllipseMeasurementDeterminationTypeValueIn);
   ~EllipseMeasurementDeterminationTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne EllipseMeasurementDeterminationTypeType;
-  EllipseMeasurementDeterminationTypeVal EllipseMeasurementDeterminationTypeValue;
+  EllipseMeasurementDeterminationTypeVal * EllipseMeasurementDeterminationTypeValue;
 };
 
 /* ***************************************************************** */
@@ -2981,12 +2981,12 @@ public:
   EllipticalArcCheckedTypeChoicePair();
   EllipticalArcCheckedTypeChoicePair(
     whichOne EllipticalArcCheckedTypeTypeIn,
-    EllipticalArcCheckedTypeVal EllipticalArcCheckedTypeValueIn);
+    EllipticalArcCheckedTypeVal * EllipticalArcCheckedTypeValueIn);
   ~EllipticalArcCheckedTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne EllipticalArcCheckedTypeType;
-  EllipticalArcCheckedTypeVal EllipticalArcCheckedTypeValue;
+  EllipticalArcCheckedTypeVal * EllipticalArcCheckedTypeValue;
 };
 
 /* ***************************************************************** */
@@ -3040,12 +3040,12 @@ public:
   EllipticalArcConstructionMethodTypeChoicePair();
   EllipticalArcConstructionMethodTypeChoicePair(
     whichOne EllipticalArcConstructionMethodTypeTypeIn,
-    EllipticalArcConstructionMethodTypeVal EllipticalArcConstructionMethodTypeValueIn);
+    EllipticalArcConstructionMethodTypeVal * EllipticalArcConstructionMethodTypeValueIn);
   ~EllipticalArcConstructionMethodTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne EllipticalArcConstructionMethodTypeType;
-  EllipticalArcConstructionMethodTypeVal EllipticalArcConstructionMethodTypeValue;
+  EllipticalArcConstructionMethodTypeVal * EllipticalArcConstructionMethodTypeValue;
 };
 
 /* ***************************************************************** */
@@ -3159,12 +3159,12 @@ public:
   EllipticalArcMeasurementDeterminationTypeChoicePair();
   EllipticalArcMeasurementDeterminationTypeChoicePair(
     whichOne EllipticalArcMeasurementDeterminationTypeTypeIn,
-    EllipticalArcMeasurementDeterminationTypeVal EllipticalArcMeasurementDeterminationTypeValueIn);
+    EllipticalArcMeasurementDeterminationTypeVal * EllipticalArcMeasurementDeterminationTypeValueIn);
   ~EllipticalArcMeasurementDeterminationTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne EllipticalArcMeasurementDeterminationTypeType;
-  EllipticalArcMeasurementDeterminationTypeVal EllipticalArcMeasurementDeterminationTypeValue;
+  EllipticalArcMeasurementDeterminationTypeVal * EllipticalArcMeasurementDeterminationTypeValue;
 };
 
 /* ***************************************************************** */
@@ -3342,12 +3342,12 @@ public:
   ElongatedCircleCheckedTypeChoicePair();
   ElongatedCircleCheckedTypeChoicePair(
     whichOne ElongatedCircleCheckedTypeTypeIn,
-    ElongatedCircleCheckedTypeVal ElongatedCircleCheckedTypeValueIn);
+    ElongatedCircleCheckedTypeVal * ElongatedCircleCheckedTypeValueIn);
   ~ElongatedCircleCheckedTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne ElongatedCircleCheckedTypeType;
-  ElongatedCircleCheckedTypeVal ElongatedCircleCheckedTypeValue;
+  ElongatedCircleCheckedTypeVal * ElongatedCircleCheckedTypeValue;
 };
 
 /* ***************************************************************** */
@@ -3395,12 +3395,12 @@ public:
   ElongatedCircleConstructionMethodTypeChoicePair();
   ElongatedCircleConstructionMethodTypeChoicePair(
     whichOne ElongatedCircleConstructionMethodTypeTypeIn,
-    ElongatedCircleConstructionMethodTypeVal ElongatedCircleConstructionMethodTypeValueIn);
+    ElongatedCircleConstructionMethodTypeVal * ElongatedCircleConstructionMethodTypeValueIn);
   ~ElongatedCircleConstructionMethodTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne ElongatedCircleConstructionMethodTypeType;
-  ElongatedCircleConstructionMethodTypeVal ElongatedCircleConstructionMethodTypeValue;
+  ElongatedCircleConstructionMethodTypeVal * ElongatedCircleConstructionMethodTypeValue;
 };
 
 /* ***************************************************************** */
@@ -3462,12 +3462,12 @@ public:
   ElongatedCircleMeasurementDeterminationTypeChoicePair();
   ElongatedCircleMeasurementDeterminationTypeChoicePair(
     whichOne ElongatedCircleMeasurementDeterminationTypeTypeIn,
-    ElongatedCircleMeasurementDeterminationTypeVal ElongatedCircleMeasurementDeterminationTypeValueIn);
+    ElongatedCircleMeasurementDeterminationTypeVal * ElongatedCircleMeasurementDeterminationTypeValueIn);
   ~ElongatedCircleMeasurementDeterminationTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne ElongatedCircleMeasurementDeterminationTypeType;
-  ElongatedCircleMeasurementDeterminationTypeVal ElongatedCircleMeasurementDeterminationTypeValue;
+  ElongatedCircleMeasurementDeterminationTypeVal * ElongatedCircleMeasurementDeterminationTypeValue;
 };
 
 /* ***************************************************************** */
@@ -3621,12 +3621,12 @@ public:
   ElongatedCylinderCheckedTypeChoicePair();
   ElongatedCylinderCheckedTypeChoicePair(
     whichOne ElongatedCylinderCheckedTypeTypeIn,
-    ElongatedCylinderCheckedTypeVal ElongatedCylinderCheckedTypeValueIn);
+    ElongatedCylinderCheckedTypeVal * ElongatedCylinderCheckedTypeValueIn);
   ~ElongatedCylinderCheckedTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne ElongatedCylinderCheckedTypeType;
-  ElongatedCylinderCheckedTypeVal ElongatedCylinderCheckedTypeValue;
+  ElongatedCylinderCheckedTypeVal * ElongatedCylinderCheckedTypeValue;
 };
 
 /* ***************************************************************** */
@@ -3674,12 +3674,12 @@ public:
   ElongatedCylinderConstructionMethodTypeChoicePair();
   ElongatedCylinderConstructionMethodTypeChoicePair(
     whichOne ElongatedCylinderConstructionMethodTypeTypeIn,
-    ElongatedCylinderConstructionMethodTypeVal ElongatedCylinderConstructionMethodTypeValueIn);
+    ElongatedCylinderConstructionMethodTypeVal * ElongatedCylinderConstructionMethodTypeValueIn);
   ~ElongatedCylinderConstructionMethodTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne ElongatedCylinderConstructionMethodTypeType;
-  ElongatedCylinderConstructionMethodTypeVal ElongatedCylinderConstructionMethodTypeValue;
+  ElongatedCylinderConstructionMethodTypeVal * ElongatedCylinderConstructionMethodTypeValue;
 };
 
 /* ***************************************************************** */
@@ -3741,12 +3741,12 @@ public:
   ElongatedCylinderMeasurementDeterminationTypeChoicePair();
   ElongatedCylinderMeasurementDeterminationTypeChoicePair(
     whichOne ElongatedCylinderMeasurementDeterminationTypeTypeIn,
-    ElongatedCylinderMeasurementDeterminationTypeVal ElongatedCylinderMeasurementDeterminationTypeValueIn);
+    ElongatedCylinderMeasurementDeterminationTypeVal * ElongatedCylinderMeasurementDeterminationTypeValueIn);
   ~ElongatedCylinderMeasurementDeterminationTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne ElongatedCylinderMeasurementDeterminationTypeType;
-  ElongatedCylinderMeasurementDeterminationTypeVal ElongatedCylinderMeasurementDeterminationTypeValue;
+  ElongatedCylinderMeasurementDeterminationTypeVal * ElongatedCylinderMeasurementDeterminationTypeValue;
 };
 
 /* ***************************************************************** */
@@ -3900,12 +3900,12 @@ public:
   ExtrudedCrossSectionCheckedTypeChoicePair();
   ExtrudedCrossSectionCheckedTypeChoicePair(
     whichOne ExtrudedCrossSectionCheckedTypeTypeIn,
-    ExtrudedCrossSectionCheckedTypeVal ExtrudedCrossSectionCheckedTypeValueIn);
+    ExtrudedCrossSectionCheckedTypeVal * ExtrudedCrossSectionCheckedTypeValueIn);
   ~ExtrudedCrossSectionCheckedTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne ExtrudedCrossSectionCheckedTypeType;
-  ExtrudedCrossSectionCheckedTypeVal ExtrudedCrossSectionCheckedTypeValue;
+  ExtrudedCrossSectionCheckedTypeVal * ExtrudedCrossSectionCheckedTypeValue;
 };
 
 /* ***************************************************************** */
@@ -3953,12 +3953,12 @@ public:
   ExtrudedCrossSectionConstructionMethodTypeChoicePair();
   ExtrudedCrossSectionConstructionMethodTypeChoicePair(
     whichOne ExtrudedCrossSectionConstructionMethodTypeTypeIn,
-    ExtrudedCrossSectionConstructionMethodTypeVal ExtrudedCrossSectionConstructionMethodTypeValueIn);
+    ExtrudedCrossSectionConstructionMethodTypeVal * ExtrudedCrossSectionConstructionMethodTypeValueIn);
   ~ExtrudedCrossSectionConstructionMethodTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne ExtrudedCrossSectionConstructionMethodTypeType;
-  ExtrudedCrossSectionConstructionMethodTypeVal ExtrudedCrossSectionConstructionMethodTypeValue;
+  ExtrudedCrossSectionConstructionMethodTypeVal * ExtrudedCrossSectionConstructionMethodTypeValue;
 };
 
 /* ***************************************************************** */
@@ -4020,12 +4020,12 @@ public:
   ExtrudedCrossSectionMeasurementDeterminationTypeChoicePair();
   ExtrudedCrossSectionMeasurementDeterminationTypeChoicePair(
     whichOne ExtrudedCrossSectionMeasurementDeterminationTypeTypeIn,
-    ExtrudedCrossSectionMeasurementDeterminationTypeVal ExtrudedCrossSectionMeasurementDeterminationTypeValueIn);
+    ExtrudedCrossSectionMeasurementDeterminationTypeVal * ExtrudedCrossSectionMeasurementDeterminationTypeValueIn);
   ~ExtrudedCrossSectionMeasurementDeterminationTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne ExtrudedCrossSectionMeasurementDeterminationTypeType;
-  ExtrudedCrossSectionMeasurementDeterminationTypeVal ExtrudedCrossSectionMeasurementDeterminationTypeValue;
+  ExtrudedCrossSectionMeasurementDeterminationTypeVal * ExtrudedCrossSectionMeasurementDeterminationTypeValue;
 };
 
 /* ***************************************************************** */
@@ -4115,7 +4115,7 @@ public:
   FeatureBaseType(
     QIFIdType * idIn,
     AttributesType * AttributesIn);
-  ~FeatureBaseType();
+  virtual ~FeatureBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
@@ -4142,7 +4142,7 @@ public:
   FeatureDefinitionBaseType(
     QIFIdType * idIn,
     AttributesType * AttributesIn);
-  ~FeatureDefinitionBaseType();
+  virtual ~FeatureDefinitionBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 };
@@ -4212,7 +4212,7 @@ public:
     QPIdType * UUIDIn,
     ArrayReferenceType * NotableEventIdsIn,
     QIFReferenceFullType * CoordinateSystemIdIn);
-  ~FeatureItemBaseType();
+  virtual ~FeatureItemBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
@@ -4307,7 +4307,7 @@ public:
     ArrayReferenceFullType * MeasurementDeviceIdsIn,
     QIFReferenceType * ActualTransformIdIn,
     ArrayReferenceFullType * NotedEventIdsIn);
-  ~FeatureMeasurementBaseType();
+  virtual ~FeatureMeasurementBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
@@ -4404,7 +4404,7 @@ public:
     QIFReferenceType * ParentFeatureNominalIdIn,
     ArrayReferenceFullType * EntityInternalIdsIn,
     ArrayReferenceFullType * EntityExternalIdsIn);
-  ~FeatureNominalBaseType();
+  virtual ~FeatureNominalBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
@@ -4487,7 +4487,7 @@ public:
     AttributesType * AttributesIn,
     XmlToken * LabelIn,
     QIFReferenceFullType * SurfaceFeatureNominalIdIn);
-  ~FeatureZoneBaseType();
+  virtual ~FeatureZoneBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
@@ -4540,7 +4540,7 @@ public:
     XmlToken * LabelIn,
     QIFReferenceFullType * SurfaceFeatureNominalIdIn,
     FeatureZoneCurveBaseTypeChoicePair * FeatureZoneCurveBaseTypePairIn);
-  ~FeatureZoneCurveBaseType();
+  virtual ~FeatureZoneCurveBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
   FeatureZoneCurveBaseTypeChoicePair * getFeatureZoneCurveBaseTypeChoicePair();
@@ -4570,12 +4570,12 @@ public:
   FeatureZoneCurveBaseTypeChoicePair();
   FeatureZoneCurveBaseTypeChoicePair(
     whichOne FeatureZoneCurveBaseTypeTypeIn,
-    FeatureZoneCurveBaseTypeVal FeatureZoneCurveBaseTypeValueIn);
+    FeatureZoneCurveBaseTypeVal * FeatureZoneCurveBaseTypeValueIn);
   ~FeatureZoneCurveBaseTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne FeatureZoneCurveBaseTypeType;
-  FeatureZoneCurveBaseTypeVal FeatureZoneCurveBaseTypeValue;
+  FeatureZoneCurveBaseTypeVal * FeatureZoneCurveBaseTypeValue;
 };
 
 /* ***************************************************************** */
@@ -4839,12 +4839,12 @@ public:
   LineCheckedTypeChoicePair();
   LineCheckedTypeChoicePair(
     whichOne LineCheckedTypeTypeIn,
-    LineCheckedTypeVal LineCheckedTypeValueIn);
+    LineCheckedTypeVal * LineCheckedTypeValueIn);
   ~LineCheckedTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne LineCheckedTypeType;
-  LineCheckedTypeVal LineCheckedTypeValue;
+  LineCheckedTypeVal * LineCheckedTypeValue;
 };
 
 /* ***************************************************************** */
@@ -4908,12 +4908,12 @@ public:
   LineConstructionMethodTypeChoicePair();
   LineConstructionMethodTypeChoicePair(
     whichOne LineConstructionMethodTypeTypeIn,
-    LineConstructionMethodTypeVal LineConstructionMethodTypeValueIn);
+    LineConstructionMethodTypeVal * LineConstructionMethodTypeValueIn);
   ~LineConstructionMethodTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne LineConstructionMethodTypeType;
-  LineConstructionMethodTypeVal LineConstructionMethodTypeValue;
+  LineConstructionMethodTypeVal * LineConstructionMethodTypeValue;
 };
 
 /* ***************************************************************** */
@@ -5039,12 +5039,12 @@ public:
   LineMeasurementDeterminationTypeChoicePair();
   LineMeasurementDeterminationTypeChoicePair(
     whichOne LineMeasurementDeterminationTypeTypeIn,
-    LineMeasurementDeterminationTypeVal LineMeasurementDeterminationTypeValueIn);
+    LineMeasurementDeterminationTypeVal * LineMeasurementDeterminationTypeValueIn);
   ~LineMeasurementDeterminationTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne LineMeasurementDeterminationTypeType;
-  LineMeasurementDeterminationTypeVal LineMeasurementDeterminationTypeValue;
+  LineMeasurementDeterminationTypeVal * LineMeasurementDeterminationTypeValue;
 };
 
 /* ***************************************************************** */
@@ -5262,12 +5262,12 @@ public:
   MarkingMethodTypeChoicePair();
   MarkingMethodTypeChoicePair(
     whichOne MarkingMethodTypeTypeIn,
-    MarkingMethodTypeVal MarkingMethodTypeValueIn);
+    MarkingMethodTypeVal * MarkingMethodTypeValueIn);
   ~MarkingMethodTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne MarkingMethodTypeType;
-  MarkingMethodTypeVal MarkingMethodTypeValue;
+  MarkingMethodTypeVal * MarkingMethodTypeValue;
 };
 
 /* ***************************************************************** */
@@ -5559,7 +5559,7 @@ public:
   NonShapeFeatureDefinitionBaseType(
     QIFIdType * idIn,
     AttributesType * AttributesIn);
-  ~NonShapeFeatureDefinitionBaseType();
+  virtual ~NonShapeFeatureDefinitionBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 };
@@ -5588,7 +5588,7 @@ public:
     QPIdType * UUIDIn,
     ArrayReferenceType * NotableEventIdsIn,
     QIFReferenceFullType * CoordinateSystemIdIn);
-  ~NonShapeFeatureItemBaseType();
+  virtual ~NonShapeFeatureItemBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 };
@@ -5621,7 +5621,7 @@ public:
     ArrayReferenceFullType * MeasurementDeviceIdsIn,
     QIFReferenceType * ActualTransformIdIn,
     ArrayReferenceFullType * NotedEventIdsIn);
-  ~NonShapeFeatureMeasurementBaseType();
+  virtual ~NonShapeFeatureMeasurementBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 };
@@ -5650,7 +5650,7 @@ public:
     QIFReferenceType * ParentFeatureNominalIdIn,
     ArrayReferenceFullType * EntityInternalIdsIn,
     ArrayReferenceFullType * EntityExternalIdsIn);
-  ~NonShapeFeatureNominalBaseType();
+  virtual ~NonShapeFeatureNominalBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 };
@@ -5762,12 +5762,12 @@ public:
   OppositeAngledLinesCheckedTypeChoicePair();
   OppositeAngledLinesCheckedTypeChoicePair(
     whichOne OppositeAngledLinesCheckedTypeTypeIn,
-    OppositeAngledLinesCheckedTypeVal OppositeAngledLinesCheckedTypeValueIn);
+    OppositeAngledLinesCheckedTypeVal * OppositeAngledLinesCheckedTypeValueIn);
   ~OppositeAngledLinesCheckedTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne OppositeAngledLinesCheckedTypeType;
-  OppositeAngledLinesCheckedTypeVal OppositeAngledLinesCheckedTypeValue;
+  OppositeAngledLinesCheckedTypeVal * OppositeAngledLinesCheckedTypeValue;
 };
 
 /* ***************************************************************** */
@@ -5821,12 +5821,12 @@ public:
   OppositeAngledLinesConstructionMethodTypeChoicePair();
   OppositeAngledLinesConstructionMethodTypeChoicePair(
     whichOne OppositeAngledLinesConstructionMethodTypeTypeIn,
-    OppositeAngledLinesConstructionMethodTypeVal OppositeAngledLinesConstructionMethodTypeValueIn);
+    OppositeAngledLinesConstructionMethodTypeVal * OppositeAngledLinesConstructionMethodTypeValueIn);
   ~OppositeAngledLinesConstructionMethodTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne OppositeAngledLinesConstructionMethodTypeType;
-  OppositeAngledLinesConstructionMethodTypeVal OppositeAngledLinesConstructionMethodTypeValue;
+  OppositeAngledLinesConstructionMethodTypeVal * OppositeAngledLinesConstructionMethodTypeValue;
 };
 
 /* ***************************************************************** */
@@ -5940,12 +5940,12 @@ public:
   OppositeAngledLinesMeasurementDeterminationTypeChoicePair();
   OppositeAngledLinesMeasurementDeterminationTypeChoicePair(
     whichOne OppositeAngledLinesMeasurementDeterminationTypeTypeIn,
-    OppositeAngledLinesMeasurementDeterminationTypeVal OppositeAngledLinesMeasurementDeterminationTypeValueIn);
+    OppositeAngledLinesMeasurementDeterminationTypeVal * OppositeAngledLinesMeasurementDeterminationTypeValueIn);
   ~OppositeAngledLinesMeasurementDeterminationTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne OppositeAngledLinesMeasurementDeterminationTypeType;
-  OppositeAngledLinesMeasurementDeterminationTypeVal OppositeAngledLinesMeasurementDeterminationTypeValue;
+  OppositeAngledLinesMeasurementDeterminationTypeVal * OppositeAngledLinesMeasurementDeterminationTypeValue;
 };
 
 /* ***************************************************************** */
@@ -6123,12 +6123,12 @@ public:
   OppositeAngledPlanesCheckedTypeChoicePair();
   OppositeAngledPlanesCheckedTypeChoicePair(
     whichOne OppositeAngledPlanesCheckedTypeTypeIn,
-    OppositeAngledPlanesCheckedTypeVal OppositeAngledPlanesCheckedTypeValueIn);
+    OppositeAngledPlanesCheckedTypeVal * OppositeAngledPlanesCheckedTypeValueIn);
   ~OppositeAngledPlanesCheckedTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne OppositeAngledPlanesCheckedTypeType;
-  OppositeAngledPlanesCheckedTypeVal OppositeAngledPlanesCheckedTypeValue;
+  OppositeAngledPlanesCheckedTypeVal * OppositeAngledPlanesCheckedTypeValue;
 };
 
 /* ***************************************************************** */
@@ -6178,12 +6178,12 @@ public:
   OppositeAngledPlanesConstructionMethodTypeChoicePair();
   OppositeAngledPlanesConstructionMethodTypeChoicePair(
     whichOne OppositeAngledPlanesConstructionMethodTypeTypeIn,
-    OppositeAngledPlanesConstructionMethodTypeVal OppositeAngledPlanesConstructionMethodTypeValueIn);
+    OppositeAngledPlanesConstructionMethodTypeVal * OppositeAngledPlanesConstructionMethodTypeValueIn);
   ~OppositeAngledPlanesConstructionMethodTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne OppositeAngledPlanesConstructionMethodTypeType;
-  OppositeAngledPlanesConstructionMethodTypeVal OppositeAngledPlanesConstructionMethodTypeValue;
+  OppositeAngledPlanesConstructionMethodTypeVal * OppositeAngledPlanesConstructionMethodTypeValue;
 };
 
 /* ***************************************************************** */
@@ -6269,12 +6269,12 @@ public:
   OppositeAngledPlanesMeasurementDeterminationTypeChoicePair();
   OppositeAngledPlanesMeasurementDeterminationTypeChoicePair(
     whichOne OppositeAngledPlanesMeasurementDeterminationTypeTypeIn,
-    OppositeAngledPlanesMeasurementDeterminationTypeVal OppositeAngledPlanesMeasurementDeterminationTypeValueIn);
+    OppositeAngledPlanesMeasurementDeterminationTypeVal * OppositeAngledPlanesMeasurementDeterminationTypeValueIn);
   ~OppositeAngledPlanesMeasurementDeterminationTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne OppositeAngledPlanesMeasurementDeterminationTypeType;
-  OppositeAngledPlanesMeasurementDeterminationTypeVal OppositeAngledPlanesMeasurementDeterminationTypeValue;
+  OppositeAngledPlanesMeasurementDeterminationTypeVal * OppositeAngledPlanesMeasurementDeterminationTypeValue;
 };
 
 /* ***************************************************************** */
@@ -6428,12 +6428,12 @@ public:
   OppositeParallelLinesCheckedTypeChoicePair();
   OppositeParallelLinesCheckedTypeChoicePair(
     whichOne OppositeParallelLinesCheckedTypeTypeIn,
-    OppositeParallelLinesCheckedTypeVal OppositeParallelLinesCheckedTypeValueIn);
+    OppositeParallelLinesCheckedTypeVal * OppositeParallelLinesCheckedTypeValueIn);
   ~OppositeParallelLinesCheckedTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne OppositeParallelLinesCheckedTypeType;
-  OppositeParallelLinesCheckedTypeVal OppositeParallelLinesCheckedTypeValue;
+  OppositeParallelLinesCheckedTypeVal * OppositeParallelLinesCheckedTypeValue;
 };
 
 /* ***************************************************************** */
@@ -6487,12 +6487,12 @@ public:
   OppositeParallelLinesConstructionMethodTypeChoicePair();
   OppositeParallelLinesConstructionMethodTypeChoicePair(
     whichOne OppositeParallelLinesConstructionMethodTypeTypeIn,
-    OppositeParallelLinesConstructionMethodTypeVal OppositeParallelLinesConstructionMethodTypeValueIn);
+    OppositeParallelLinesConstructionMethodTypeVal * OppositeParallelLinesConstructionMethodTypeValueIn);
   ~OppositeParallelLinesConstructionMethodTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne OppositeParallelLinesConstructionMethodTypeType;
-  OppositeParallelLinesConstructionMethodTypeVal OppositeParallelLinesConstructionMethodTypeValue;
+  OppositeParallelLinesConstructionMethodTypeVal * OppositeParallelLinesConstructionMethodTypeValue;
 };
 
 /* ***************************************************************** */
@@ -6606,12 +6606,12 @@ public:
   OppositeParallelLinesMeasurementDeterminationTypeChoicePair();
   OppositeParallelLinesMeasurementDeterminationTypeChoicePair(
     whichOne OppositeParallelLinesMeasurementDeterminationTypeTypeIn,
-    OppositeParallelLinesMeasurementDeterminationTypeVal OppositeParallelLinesMeasurementDeterminationTypeValueIn);
+    OppositeParallelLinesMeasurementDeterminationTypeVal * OppositeParallelLinesMeasurementDeterminationTypeValueIn);
   ~OppositeParallelLinesMeasurementDeterminationTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne OppositeParallelLinesMeasurementDeterminationTypeType;
-  OppositeParallelLinesMeasurementDeterminationTypeVal OppositeParallelLinesMeasurementDeterminationTypeValue;
+  OppositeParallelLinesMeasurementDeterminationTypeVal * OppositeParallelLinesMeasurementDeterminationTypeValue;
 };
 
 /* ***************************************************************** */
@@ -6789,12 +6789,12 @@ public:
   OppositeParallelPlanesCheckedTypeChoicePair();
   OppositeParallelPlanesCheckedTypeChoicePair(
     whichOne OppositeParallelPlanesCheckedTypeTypeIn,
-    OppositeParallelPlanesCheckedTypeVal OppositeParallelPlanesCheckedTypeValueIn);
+    OppositeParallelPlanesCheckedTypeVal * OppositeParallelPlanesCheckedTypeValueIn);
   ~OppositeParallelPlanesCheckedTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne OppositeParallelPlanesCheckedTypeType;
-  OppositeParallelPlanesCheckedTypeVal OppositeParallelPlanesCheckedTypeValue;
+  OppositeParallelPlanesCheckedTypeVal * OppositeParallelPlanesCheckedTypeValue;
 };
 
 /* ***************************************************************** */
@@ -6844,12 +6844,12 @@ public:
   OppositeParallelPlanesConstructionMethodTypeChoicePair();
   OppositeParallelPlanesConstructionMethodTypeChoicePair(
     whichOne OppositeParallelPlanesConstructionMethodTypeTypeIn,
-    OppositeParallelPlanesConstructionMethodTypeVal OppositeParallelPlanesConstructionMethodTypeValueIn);
+    OppositeParallelPlanesConstructionMethodTypeVal * OppositeParallelPlanesConstructionMethodTypeValueIn);
   ~OppositeParallelPlanesConstructionMethodTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne OppositeParallelPlanesConstructionMethodTypeType;
-  OppositeParallelPlanesConstructionMethodTypeVal OppositeParallelPlanesConstructionMethodTypeValue;
+  OppositeParallelPlanesConstructionMethodTypeVal * OppositeParallelPlanesConstructionMethodTypeValue;
 };
 
 /* ***************************************************************** */
@@ -6935,12 +6935,12 @@ public:
   OppositeParallelPlanesMeasurementDeterminationTypeChoicePair();
   OppositeParallelPlanesMeasurementDeterminationTypeChoicePair(
     whichOne OppositeParallelPlanesMeasurementDeterminationTypeTypeIn,
-    OppositeParallelPlanesMeasurementDeterminationTypeVal OppositeParallelPlanesMeasurementDeterminationTypeValueIn);
+    OppositeParallelPlanesMeasurementDeterminationTypeVal * OppositeParallelPlanesMeasurementDeterminationTypeValueIn);
   ~OppositeParallelPlanesMeasurementDeterminationTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne OppositeParallelPlanesMeasurementDeterminationTypeType;
-  OppositeParallelPlanesMeasurementDeterminationTypeVal OppositeParallelPlanesMeasurementDeterminationTypeValue;
+  OppositeParallelPlanesMeasurementDeterminationTypeVal * OppositeParallelPlanesMeasurementDeterminationTypeValue;
 };
 
 /* ***************************************************************** */
@@ -7045,12 +7045,12 @@ public:
   OtherCurveCheckedTypeChoicePair();
   OtherCurveCheckedTypeChoicePair(
     whichOne OtherCurveCheckedTypeTypeIn,
-    OtherCurveCheckedTypeVal OtherCurveCheckedTypeValueIn);
+    OtherCurveCheckedTypeVal * OtherCurveCheckedTypeValueIn);
   ~OtherCurveCheckedTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne OtherCurveCheckedTypeType;
-  OtherCurveCheckedTypeVal OtherCurveCheckedTypeValue;
+  OtherCurveCheckedTypeVal * OtherCurveCheckedTypeValue;
 };
 
 /* ***************************************************************** */
@@ -7090,12 +7090,12 @@ public:
   OtherCurveConstructionMethodTypeChoicePair();
   OtherCurveConstructionMethodTypeChoicePair(
     whichOne OtherCurveConstructionMethodTypeTypeIn,
-    OtherCurveConstructionMethodTypeVal OtherCurveConstructionMethodTypeValueIn);
+    OtherCurveConstructionMethodTypeVal * OtherCurveConstructionMethodTypeValueIn);
   ~OtherCurveConstructionMethodTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne OtherCurveConstructionMethodTypeType;
-  OtherCurveConstructionMethodTypeVal OtherCurveConstructionMethodTypeValue;
+  OtherCurveConstructionMethodTypeVal * OtherCurveConstructionMethodTypeValue;
 };
 
 /* ***************************************************************** */
@@ -7157,12 +7157,12 @@ public:
   OtherCurveMeasurementDeterminationTypeChoicePair();
   OtherCurveMeasurementDeterminationTypeChoicePair(
     whichOne OtherCurveMeasurementDeterminationTypeTypeIn,
-    OtherCurveMeasurementDeterminationTypeVal OtherCurveMeasurementDeterminationTypeValueIn);
+    OtherCurveMeasurementDeterminationTypeVal * OtherCurveMeasurementDeterminationTypeValueIn);
   ~OtherCurveMeasurementDeterminationTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne OtherCurveMeasurementDeterminationTypeType;
-  OtherCurveMeasurementDeterminationTypeVal OtherCurveMeasurementDeterminationTypeValue;
+  OtherCurveMeasurementDeterminationTypeVal * OtherCurveMeasurementDeterminationTypeValue;
 };
 
 /* ***************************************************************** */
@@ -7347,12 +7347,12 @@ public:
   OtherShapeCheckedTypeChoicePair();
   OtherShapeCheckedTypeChoicePair(
     whichOne OtherShapeCheckedTypeTypeIn,
-    OtherShapeCheckedTypeVal OtherShapeCheckedTypeValueIn);
+    OtherShapeCheckedTypeVal * OtherShapeCheckedTypeValueIn);
   ~OtherShapeCheckedTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne OtherShapeCheckedTypeType;
-  OtherShapeCheckedTypeVal OtherShapeCheckedTypeValue;
+  OtherShapeCheckedTypeVal * OtherShapeCheckedTypeValue;
 };
 
 /* ***************************************************************** */
@@ -7392,12 +7392,12 @@ public:
   OtherShapeConstructionMethodTypeChoicePair();
   OtherShapeConstructionMethodTypeChoicePair(
     whichOne OtherShapeConstructionMethodTypeTypeIn,
-    OtherShapeConstructionMethodTypeVal OtherShapeConstructionMethodTypeValueIn);
+    OtherShapeConstructionMethodTypeVal * OtherShapeConstructionMethodTypeValueIn);
   ~OtherShapeConstructionMethodTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne OtherShapeConstructionMethodTypeType;
-  OtherShapeConstructionMethodTypeVal OtherShapeConstructionMethodTypeValue;
+  OtherShapeConstructionMethodTypeVal * OtherShapeConstructionMethodTypeValue;
 };
 
 /* ***************************************************************** */
@@ -7459,12 +7459,12 @@ public:
   OtherShapeMeasurementDeterminationTypeChoicePair();
   OtherShapeMeasurementDeterminationTypeChoicePair(
     whichOne OtherShapeMeasurementDeterminationTypeTypeIn,
-    OtherShapeMeasurementDeterminationTypeVal OtherShapeMeasurementDeterminationTypeValueIn);
+    OtherShapeMeasurementDeterminationTypeVal * OtherShapeMeasurementDeterminationTypeValueIn);
   ~OtherShapeMeasurementDeterminationTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne OtherShapeMeasurementDeterminationTypeType;
-  OtherShapeMeasurementDeterminationTypeVal OtherShapeMeasurementDeterminationTypeValue;
+  OtherShapeMeasurementDeterminationTypeVal * OtherShapeMeasurementDeterminationTypeValue;
 };
 
 /* ***************************************************************** */
@@ -7525,12 +7525,12 @@ public:
   OtherSurfaceCheckedTypeChoicePair();
   OtherSurfaceCheckedTypeChoicePair(
     whichOne OtherSurfaceCheckedTypeTypeIn,
-    OtherSurfaceCheckedTypeVal OtherSurfaceCheckedTypeValueIn);
+    OtherSurfaceCheckedTypeVal * OtherSurfaceCheckedTypeValueIn);
   ~OtherSurfaceCheckedTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne OtherSurfaceCheckedTypeType;
-  OtherSurfaceCheckedTypeVal OtherSurfaceCheckedTypeValue;
+  OtherSurfaceCheckedTypeVal * OtherSurfaceCheckedTypeValue;
 };
 
 /* ***************************************************************** */
@@ -7570,12 +7570,12 @@ public:
   OtherSurfaceConstructionMethodTypeChoicePair();
   OtherSurfaceConstructionMethodTypeChoicePair(
     whichOne OtherSurfaceConstructionMethodTypeTypeIn,
-    OtherSurfaceConstructionMethodTypeVal OtherSurfaceConstructionMethodTypeValueIn);
+    OtherSurfaceConstructionMethodTypeVal * OtherSurfaceConstructionMethodTypeValueIn);
   ~OtherSurfaceConstructionMethodTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne OtherSurfaceConstructionMethodTypeType;
-  OtherSurfaceConstructionMethodTypeVal OtherSurfaceConstructionMethodTypeValue;
+  OtherSurfaceConstructionMethodTypeVal * OtherSurfaceConstructionMethodTypeValue;
 };
 
 /* ***************************************************************** */
@@ -7637,12 +7637,12 @@ public:
   OtherSurfaceMeasurementDeterminationTypeChoicePair();
   OtherSurfaceMeasurementDeterminationTypeChoicePair(
     whichOne OtherSurfaceMeasurementDeterminationTypeTypeIn,
-    OtherSurfaceMeasurementDeterminationTypeVal OtherSurfaceMeasurementDeterminationTypeValueIn);
+    OtherSurfaceMeasurementDeterminationTypeVal * OtherSurfaceMeasurementDeterminationTypeValueIn);
   ~OtherSurfaceMeasurementDeterminationTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne OtherSurfaceMeasurementDeterminationTypeType;
-  OtherSurfaceMeasurementDeterminationTypeVal OtherSurfaceMeasurementDeterminationTypeValue;
+  OtherSurfaceMeasurementDeterminationTypeVal * OtherSurfaceMeasurementDeterminationTypeValue;
 };
 
 /* ***************************************************************** */
@@ -7752,12 +7752,12 @@ public:
   PlaneCheckedTypeChoicePair();
   PlaneCheckedTypeChoicePair(
     whichOne PlaneCheckedTypeTypeIn,
-    PlaneCheckedTypeVal PlaneCheckedTypeValueIn);
+    PlaneCheckedTypeVal * PlaneCheckedTypeValueIn);
   ~PlaneCheckedTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne PlaneCheckedTypeType;
-  PlaneCheckedTypeVal PlaneCheckedTypeValue;
+  PlaneCheckedTypeVal * PlaneCheckedTypeValue;
 };
 
 /* ***************************************************************** */
@@ -7819,12 +7819,12 @@ public:
   PlaneConstructionMethodTypeChoicePair();
   PlaneConstructionMethodTypeChoicePair(
     whichOne PlaneConstructionMethodTypeTypeIn,
-    PlaneConstructionMethodTypeVal PlaneConstructionMethodTypeValueIn);
+    PlaneConstructionMethodTypeVal * PlaneConstructionMethodTypeValueIn);
   ~PlaneConstructionMethodTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne PlaneConstructionMethodTypeType;
-  PlaneConstructionMethodTypeVal PlaneConstructionMethodTypeValue;
+  PlaneConstructionMethodTypeVal * PlaneConstructionMethodTypeValue;
 };
 
 /* ***************************************************************** */
@@ -7906,12 +7906,12 @@ public:
   PlaneMeasurementDeterminationTypeChoicePair();
   PlaneMeasurementDeterminationTypeChoicePair(
     whichOne PlaneMeasurementDeterminationTypeTypeIn,
-    PlaneMeasurementDeterminationTypeVal PlaneMeasurementDeterminationTypeValueIn);
+    PlaneMeasurementDeterminationTypeVal * PlaneMeasurementDeterminationTypeValueIn);
   ~PlaneMeasurementDeterminationTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne PlaneMeasurementDeterminationTypeType;
-  PlaneMeasurementDeterminationTypeVal PlaneMeasurementDeterminationTypeValue;
+  PlaneMeasurementDeterminationTypeVal * PlaneMeasurementDeterminationTypeValue;
 };
 
 /* ***************************************************************** */
@@ -8152,12 +8152,12 @@ public:
   PointCheckedTypeChoicePair();
   PointCheckedTypeChoicePair(
     whichOne PointCheckedTypeTypeIn,
-    PointCheckedTypeVal PointCheckedTypeValueIn);
+    PointCheckedTypeVal * PointCheckedTypeValueIn);
   ~PointCheckedTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne PointCheckedTypeType;
-  PointCheckedTypeVal PointCheckedTypeValue;
+  PointCheckedTypeVal * PointCheckedTypeValue;
 };
 
 /* ***************************************************************** */
@@ -8223,12 +8223,12 @@ public:
   PointConstructionMethodTypeChoicePair();
   PointConstructionMethodTypeChoicePair(
     whichOne PointConstructionMethodTypeTypeIn,
-    PointConstructionMethodTypeVal PointConstructionMethodTypeValueIn);
+    PointConstructionMethodTypeVal * PointConstructionMethodTypeValueIn);
   ~PointConstructionMethodTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne PointConstructionMethodTypeType;
-  PointConstructionMethodTypeVal PointConstructionMethodTypeValue;
+  PointConstructionMethodTypeVal * PointConstructionMethodTypeValue;
 };
 
 /* ***************************************************************** */
@@ -8318,12 +8318,12 @@ public:
   PointDefinedCurveCheckedTypeChoicePair();
   PointDefinedCurveCheckedTypeChoicePair(
     whichOne PointDefinedCurveCheckedTypeTypeIn,
-    PointDefinedCurveCheckedTypeVal PointDefinedCurveCheckedTypeValueIn);
+    PointDefinedCurveCheckedTypeVal * PointDefinedCurveCheckedTypeValueIn);
   ~PointDefinedCurveCheckedTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne PointDefinedCurveCheckedTypeType;
-  PointDefinedCurveCheckedTypeVal PointDefinedCurveCheckedTypeValue;
+  PointDefinedCurveCheckedTypeVal * PointDefinedCurveCheckedTypeValue;
 };
 
 /* ***************************************************************** */
@@ -8373,12 +8373,12 @@ public:
   PointDefinedCurveConstructionMethodTypeChoicePair();
   PointDefinedCurveConstructionMethodTypeChoicePair(
     whichOne PointDefinedCurveConstructionMethodTypeTypeIn,
-    PointDefinedCurveConstructionMethodTypeVal PointDefinedCurveConstructionMethodTypeValueIn);
+    PointDefinedCurveConstructionMethodTypeVal * PointDefinedCurveConstructionMethodTypeValueIn);
   ~PointDefinedCurveConstructionMethodTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne PointDefinedCurveConstructionMethodTypeType;
-  PointDefinedCurveConstructionMethodTypeVal PointDefinedCurveConstructionMethodTypeValue;
+  PointDefinedCurveConstructionMethodTypeVal * PointDefinedCurveConstructionMethodTypeValue;
 };
 
 /* ***************************************************************** */
@@ -8484,12 +8484,12 @@ public:
   PointDefinedCurveMeasurementDeterminationTypeChoicePair();
   PointDefinedCurveMeasurementDeterminationTypeChoicePair(
     whichOne PointDefinedCurveMeasurementDeterminationTypeTypeIn,
-    PointDefinedCurveMeasurementDeterminationTypeVal PointDefinedCurveMeasurementDeterminationTypeValueIn);
+    PointDefinedCurveMeasurementDeterminationTypeVal * PointDefinedCurveMeasurementDeterminationTypeValueIn);
   ~PointDefinedCurveMeasurementDeterminationTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne PointDefinedCurveMeasurementDeterminationTypeType;
-  PointDefinedCurveMeasurementDeterminationTypeVal PointDefinedCurveMeasurementDeterminationTypeValue;
+  PointDefinedCurveMeasurementDeterminationTypeVal * PointDefinedCurveMeasurementDeterminationTypeValue;
 };
 
 /* ***************************************************************** */
@@ -8623,12 +8623,12 @@ public:
   PointDefinedSurfaceCheckedTypeChoicePair();
   PointDefinedSurfaceCheckedTypeChoicePair(
     whichOne PointDefinedSurfaceCheckedTypeTypeIn,
-    PointDefinedSurfaceCheckedTypeVal PointDefinedSurfaceCheckedTypeValueIn);
+    PointDefinedSurfaceCheckedTypeVal * PointDefinedSurfaceCheckedTypeValueIn);
   ~PointDefinedSurfaceCheckedTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne PointDefinedSurfaceCheckedTypeType;
-  PointDefinedSurfaceCheckedTypeVal PointDefinedSurfaceCheckedTypeValue;
+  PointDefinedSurfaceCheckedTypeVal * PointDefinedSurfaceCheckedTypeValue;
 };
 
 /* ***************************************************************** */
@@ -8676,12 +8676,12 @@ public:
   PointDefinedSurfaceConstructionMethodTypeChoicePair();
   PointDefinedSurfaceConstructionMethodTypeChoicePair(
     whichOne PointDefinedSurfaceConstructionMethodTypeTypeIn,
-    PointDefinedSurfaceConstructionMethodTypeVal PointDefinedSurfaceConstructionMethodTypeValueIn);
+    PointDefinedSurfaceConstructionMethodTypeVal * PointDefinedSurfaceConstructionMethodTypeValueIn);
   ~PointDefinedSurfaceConstructionMethodTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne PointDefinedSurfaceConstructionMethodTypeType;
-  PointDefinedSurfaceConstructionMethodTypeVal PointDefinedSurfaceConstructionMethodTypeValue;
+  PointDefinedSurfaceConstructionMethodTypeVal * PointDefinedSurfaceConstructionMethodTypeValue;
 };
 
 /* ***************************************************************** */
@@ -8763,12 +8763,12 @@ public:
   PointDefinedSurfaceMeasurementDeterminationTypeChoicePair();
   PointDefinedSurfaceMeasurementDeterminationTypeChoicePair(
     whichOne PointDefinedSurfaceMeasurementDeterminationTypeTypeIn,
-    PointDefinedSurfaceMeasurementDeterminationTypeVal PointDefinedSurfaceMeasurementDeterminationTypeValueIn);
+    PointDefinedSurfaceMeasurementDeterminationTypeVal * PointDefinedSurfaceMeasurementDeterminationTypeValueIn);
   ~PointDefinedSurfaceMeasurementDeterminationTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne PointDefinedSurfaceMeasurementDeterminationTypeType;
-  PointDefinedSurfaceMeasurementDeterminationTypeVal PointDefinedSurfaceMeasurementDeterminationTypeValue;
+  PointDefinedSurfaceMeasurementDeterminationTypeVal * PointDefinedSurfaceMeasurementDeterminationTypeValue;
 };
 
 /* ***************************************************************** */
@@ -9193,12 +9193,12 @@ public:
   PointIndexTypeChoicePair();
   PointIndexTypeChoicePair(
     whichOne PointIndexTypeTypeIn,
-    PointIndexTypeVal PointIndexTypeValueIn);
+    PointIndexTypeVal * PointIndexTypeValueIn);
   ~PointIndexTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne PointIndexTypeType;
-  PointIndexTypeVal PointIndexTypeValue;
+  PointIndexTypeVal * PointIndexTypeValue;
 };
 
 /* ***************************************************************** */
@@ -9267,12 +9267,12 @@ public:
   PointMeasurementDeterminationTypeChoicePair();
   PointMeasurementDeterminationTypeChoicePair(
     whichOne PointMeasurementDeterminationTypeTypeIn,
-    PointMeasurementDeterminationTypeVal PointMeasurementDeterminationTypeValueIn);
+    PointMeasurementDeterminationTypeVal * PointMeasurementDeterminationTypeValueIn);
   ~PointMeasurementDeterminationTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne PointMeasurementDeterminationTypeType;
-  PointMeasurementDeterminationTypeVal PointMeasurementDeterminationTypeValue;
+  PointMeasurementDeterminationTypeVal * PointMeasurementDeterminationTypeValue;
 };
 
 /* ***************************************************************** */
@@ -9418,7 +9418,7 @@ public:
   ShapeFeatureDefinitionBaseType(
     QIFIdType * idIn,
     AttributesType * AttributesIn);
-  ~ShapeFeatureDefinitionBaseType();
+  virtual ~ShapeFeatureDefinitionBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 };
@@ -9453,7 +9453,7 @@ public:
     PointListType * PointListIn,
     SubstituteFeatureAlgorithmType * SubstituteFeatureAlgorithmIn,
     VirtualMeasurementType * VirtualMeasurementIn);
-  ~ShapeFeatureItemBaseType();
+  virtual ~ShapeFeatureItemBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
@@ -9504,7 +9504,7 @@ public:
     PointListType * PointListIn,
     SubstituteFeatureAlgorithmType * SubstituteFeatureAlgorithmIn,
     QIFReferenceType * ProxyMeasurementIdIn);
-  ~ShapeFeatureMeasurementBaseType();
+  virtual ~ShapeFeatureMeasurementBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
@@ -9549,7 +9549,7 @@ public:
     ArrayReferenceFullType * EntityExternalIdsIn,
     PointListType * PointListIn,
     SubstituteFeatureAlgorithmType * SubstituteFeatureAlgorithmIn);
-  ~ShapeFeatureNominalBaseType();
+  virtual ~ShapeFeatureNominalBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
@@ -9575,7 +9575,7 @@ public:
   SpecifiedFeatureDefinitionBaseType(
     QIFIdType * idIn,
     AttributesType * AttributesIn);
-  ~SpecifiedFeatureDefinitionBaseType();
+  virtual ~SpecifiedFeatureDefinitionBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 };
@@ -9610,7 +9610,7 @@ public:
     PointListType * PointListIn,
     SubstituteFeatureAlgorithmType * SubstituteFeatureAlgorithmIn,
     VirtualMeasurementType * VirtualMeasurementIn);
-  ~SpecifiedFeatureItemBaseType();
+  virtual ~SpecifiedFeatureItemBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 };
@@ -9649,7 +9649,7 @@ public:
     PointListType * PointListIn,
     SubstituteFeatureAlgorithmType * SubstituteFeatureAlgorithmIn,
     QIFReferenceType * ProxyMeasurementIdIn);
-  ~SpecifiedFeatureMeasurementBaseType();
+  virtual ~SpecifiedFeatureMeasurementBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 };
@@ -9682,7 +9682,7 @@ public:
     ArrayReferenceFullType * EntityExternalIdsIn,
     PointListType * PointListIn,
     SubstituteFeatureAlgorithmType * SubstituteFeatureAlgorithmIn);
-  ~SpecifiedFeatureNominalBaseType();
+  virtual ~SpecifiedFeatureNominalBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 };
@@ -9794,12 +9794,12 @@ public:
   SphereCheckedTypeChoicePair();
   SphereCheckedTypeChoicePair(
     whichOne SphereCheckedTypeTypeIn,
-    SphereCheckedTypeVal SphereCheckedTypeValueIn);
+    SphereCheckedTypeVal * SphereCheckedTypeValueIn);
   ~SphereCheckedTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne SphereCheckedTypeType;
-  SphereCheckedTypeVal SphereCheckedTypeValue;
+  SphereCheckedTypeVal * SphereCheckedTypeValue;
 };
 
 /* ***************************************************************** */
@@ -9849,12 +9849,12 @@ public:
   SphereConstructionMethodTypeChoicePair();
   SphereConstructionMethodTypeChoicePair(
     whichOne SphereConstructionMethodTypeTypeIn,
-    SphereConstructionMethodTypeVal SphereConstructionMethodTypeValueIn);
+    SphereConstructionMethodTypeVal * SphereConstructionMethodTypeValueIn);
   ~SphereConstructionMethodTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne SphereConstructionMethodTypeType;
-  SphereConstructionMethodTypeVal SphereConstructionMethodTypeValue;
+  SphereConstructionMethodTypeVal * SphereConstructionMethodTypeValue;
 };
 
 /* ***************************************************************** */
@@ -9944,12 +9944,12 @@ public:
   SphereMeasurementDeterminationTypeChoicePair();
   SphereMeasurementDeterminationTypeChoicePair(
     whichOne SphereMeasurementDeterminationTypeTypeIn,
-    SphereMeasurementDeterminationTypeVal SphereMeasurementDeterminationTypeValueIn);
+    SphereMeasurementDeterminationTypeVal * SphereMeasurementDeterminationTypeValueIn);
   ~SphereMeasurementDeterminationTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne SphereMeasurementDeterminationTypeType;
-  SphereMeasurementDeterminationTypeVal SphereMeasurementDeterminationTypeValue;
+  SphereMeasurementDeterminationTypeVal * SphereMeasurementDeterminationTypeValue;
 };
 
 /* ***************************************************************** */
@@ -10103,12 +10103,12 @@ public:
   SphericalSegmentCheckedTypeChoicePair();
   SphericalSegmentCheckedTypeChoicePair(
     whichOne SphericalSegmentCheckedTypeTypeIn,
-    SphericalSegmentCheckedTypeVal SphericalSegmentCheckedTypeValueIn);
+    SphericalSegmentCheckedTypeVal * SphericalSegmentCheckedTypeValueIn);
   ~SphericalSegmentCheckedTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne SphericalSegmentCheckedTypeType;
-  SphericalSegmentCheckedTypeVal SphericalSegmentCheckedTypeValue;
+  SphericalSegmentCheckedTypeVal * SphericalSegmentCheckedTypeValue;
 };
 
 /* ***************************************************************** */
@@ -10156,12 +10156,12 @@ public:
   SphericalSegmentConstructionMethodTypeChoicePair();
   SphericalSegmentConstructionMethodTypeChoicePair(
     whichOne SphericalSegmentConstructionMethodTypeTypeIn,
-    SphericalSegmentConstructionMethodTypeVal SphericalSegmentConstructionMethodTypeValueIn);
+    SphericalSegmentConstructionMethodTypeVal * SphericalSegmentConstructionMethodTypeValueIn);
   ~SphericalSegmentConstructionMethodTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne SphericalSegmentConstructionMethodTypeType;
-  SphericalSegmentConstructionMethodTypeVal SphericalSegmentConstructionMethodTypeValue;
+  SphericalSegmentConstructionMethodTypeVal * SphericalSegmentConstructionMethodTypeValue;
 };
 
 /* ***************************************************************** */
@@ -10223,12 +10223,12 @@ public:
   SphericalSegmentMeasurementDeterminationTypeChoicePair();
   SphericalSegmentMeasurementDeterminationTypeChoicePair(
     whichOne SphericalSegmentMeasurementDeterminationTypeTypeIn,
-    SphericalSegmentMeasurementDeterminationTypeVal SphericalSegmentMeasurementDeterminationTypeValueIn);
+    SphericalSegmentMeasurementDeterminationTypeVal * SphericalSegmentMeasurementDeterminationTypeValueIn);
   ~SphericalSegmentMeasurementDeterminationTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne SphericalSegmentMeasurementDeterminationTypeType;
-  SphericalSegmentMeasurementDeterminationTypeVal SphericalSegmentMeasurementDeterminationTypeValue;
+  SphericalSegmentMeasurementDeterminationTypeVal * SphericalSegmentMeasurementDeterminationTypeValue;
 };
 
 /* ***************************************************************** */
@@ -10287,7 +10287,7 @@ public:
   SurfaceFeatureDefinitionBaseType(
     QIFIdType * idIn,
     AttributesType * AttributesIn);
-  ~SurfaceFeatureDefinitionBaseType();
+  virtual ~SurfaceFeatureDefinitionBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 };
@@ -10322,7 +10322,7 @@ public:
     PointListType * PointListIn,
     SubstituteFeatureAlgorithmType * SubstituteFeatureAlgorithmIn,
     VirtualMeasurementType * VirtualMeasurementIn);
-  ~SurfaceFeatureItemBaseType();
+  virtual ~SurfaceFeatureItemBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 };
@@ -10361,7 +10361,7 @@ public:
     PointListType * PointListIn,
     SubstituteFeatureAlgorithmType * SubstituteFeatureAlgorithmIn,
     QIFReferenceType * ProxyMeasurementIdIn);
-  ~SurfaceFeatureMeasurementBaseType();
+  virtual ~SurfaceFeatureMeasurementBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 };
@@ -10394,7 +10394,7 @@ public:
     ArrayReferenceFullType * EntityExternalIdsIn,
     PointListType * PointListIn,
     SubstituteFeatureAlgorithmType * SubstituteFeatureAlgorithmIn);
-  ~SurfaceFeatureNominalBaseType();
+  virtual ~SurfaceFeatureNominalBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 };
@@ -10506,12 +10506,12 @@ public:
   SurfaceOfRevolutionCheckedTypeChoicePair();
   SurfaceOfRevolutionCheckedTypeChoicePair(
     whichOne SurfaceOfRevolutionCheckedTypeTypeIn,
-    SurfaceOfRevolutionCheckedTypeVal SurfaceOfRevolutionCheckedTypeValueIn);
+    SurfaceOfRevolutionCheckedTypeVal * SurfaceOfRevolutionCheckedTypeValueIn);
   ~SurfaceOfRevolutionCheckedTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne SurfaceOfRevolutionCheckedTypeType;
-  SurfaceOfRevolutionCheckedTypeVal SurfaceOfRevolutionCheckedTypeValue;
+  SurfaceOfRevolutionCheckedTypeVal * SurfaceOfRevolutionCheckedTypeValue;
 };
 
 /* ***************************************************************** */
@@ -10559,12 +10559,12 @@ public:
   SurfaceOfRevolutionConstructionMethodTypeChoicePair();
   SurfaceOfRevolutionConstructionMethodTypeChoicePair(
     whichOne SurfaceOfRevolutionConstructionMethodTypeTypeIn,
-    SurfaceOfRevolutionConstructionMethodTypeVal SurfaceOfRevolutionConstructionMethodTypeValueIn);
+    SurfaceOfRevolutionConstructionMethodTypeVal * SurfaceOfRevolutionConstructionMethodTypeValueIn);
   ~SurfaceOfRevolutionConstructionMethodTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne SurfaceOfRevolutionConstructionMethodTypeType;
-  SurfaceOfRevolutionConstructionMethodTypeVal SurfaceOfRevolutionConstructionMethodTypeValue;
+  SurfaceOfRevolutionConstructionMethodTypeVal * SurfaceOfRevolutionConstructionMethodTypeValue;
 };
 
 /* ***************************************************************** */
@@ -10822,12 +10822,12 @@ public:
   SurfaceOfRevolutionMeasurementDeterminationTypeChoicePair();
   SurfaceOfRevolutionMeasurementDeterminationTypeChoicePair(
     whichOne SurfaceOfRevolutionMeasurementDeterminationTypeTypeIn,
-    SurfaceOfRevolutionMeasurementDeterminationTypeVal SurfaceOfRevolutionMeasurementDeterminationTypeValueIn);
+    SurfaceOfRevolutionMeasurementDeterminationTypeVal * SurfaceOfRevolutionMeasurementDeterminationTypeValueIn);
   ~SurfaceOfRevolutionMeasurementDeterminationTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne SurfaceOfRevolutionMeasurementDeterminationTypeType;
-  SurfaceOfRevolutionMeasurementDeterminationTypeVal SurfaceOfRevolutionMeasurementDeterminationTypeValue;
+  SurfaceOfRevolutionMeasurementDeterminationTypeVal * SurfaceOfRevolutionMeasurementDeterminationTypeValue;
 };
 
 /* ***************************************************************** */
@@ -10981,12 +10981,12 @@ public:
   ThreadedFeatureCheckedTypeChoicePair();
   ThreadedFeatureCheckedTypeChoicePair(
     whichOne ThreadedFeatureCheckedTypeTypeIn,
-    ThreadedFeatureCheckedTypeVal ThreadedFeatureCheckedTypeValueIn);
+    ThreadedFeatureCheckedTypeVal * ThreadedFeatureCheckedTypeValueIn);
   ~ThreadedFeatureCheckedTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne ThreadedFeatureCheckedTypeType;
-  ThreadedFeatureCheckedTypeVal ThreadedFeatureCheckedTypeValue;
+  ThreadedFeatureCheckedTypeVal * ThreadedFeatureCheckedTypeValue;
 };
 
 /* ***************************************************************** */
@@ -11036,12 +11036,12 @@ public:
   ThreadedFeatureConstructionMethodTypeChoicePair();
   ThreadedFeatureConstructionMethodTypeChoicePair(
     whichOne ThreadedFeatureConstructionMethodTypeTypeIn,
-    ThreadedFeatureConstructionMethodTypeVal ThreadedFeatureConstructionMethodTypeValueIn);
+    ThreadedFeatureConstructionMethodTypeVal * ThreadedFeatureConstructionMethodTypeValueIn);
   ~ThreadedFeatureConstructionMethodTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne ThreadedFeatureConstructionMethodTypeType;
-  ThreadedFeatureConstructionMethodTypeVal ThreadedFeatureConstructionMethodTypeValue;
+  ThreadedFeatureConstructionMethodTypeVal * ThreadedFeatureConstructionMethodTypeValue;
 };
 
 /* ***************************************************************** */
@@ -11210,12 +11210,12 @@ public:
   ThreadedFeatureMeasurementDeterminationTypeChoicePair();
   ThreadedFeatureMeasurementDeterminationTypeChoicePair(
     whichOne ThreadedFeatureMeasurementDeterminationTypeTypeIn,
-    ThreadedFeatureMeasurementDeterminationTypeVal ThreadedFeatureMeasurementDeterminationTypeValueIn);
+    ThreadedFeatureMeasurementDeterminationTypeVal * ThreadedFeatureMeasurementDeterminationTypeValueIn);
   ~ThreadedFeatureMeasurementDeterminationTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne ThreadedFeatureMeasurementDeterminationTypeType;
-  ThreadedFeatureMeasurementDeterminationTypeVal ThreadedFeatureMeasurementDeterminationTypeValue;
+  ThreadedFeatureMeasurementDeterminationTypeVal * ThreadedFeatureMeasurementDeterminationTypeValue;
 };
 
 /* ***************************************************************** */
@@ -11477,12 +11477,12 @@ public:
   ToroidalSegmentCheckedTypeChoicePair();
   ToroidalSegmentCheckedTypeChoicePair(
     whichOne ToroidalSegmentCheckedTypeTypeIn,
-    ToroidalSegmentCheckedTypeVal ToroidalSegmentCheckedTypeValueIn);
+    ToroidalSegmentCheckedTypeVal * ToroidalSegmentCheckedTypeValueIn);
   ~ToroidalSegmentCheckedTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne ToroidalSegmentCheckedTypeType;
-  ToroidalSegmentCheckedTypeVal ToroidalSegmentCheckedTypeValue;
+  ToroidalSegmentCheckedTypeVal * ToroidalSegmentCheckedTypeValue;
 };
 
 /* ***************************************************************** */
@@ -11530,12 +11530,12 @@ public:
   ToroidalSegmentConstructionMethodTypeChoicePair();
   ToroidalSegmentConstructionMethodTypeChoicePair(
     whichOne ToroidalSegmentConstructionMethodTypeTypeIn,
-    ToroidalSegmentConstructionMethodTypeVal ToroidalSegmentConstructionMethodTypeValueIn);
+    ToroidalSegmentConstructionMethodTypeVal * ToroidalSegmentConstructionMethodTypeValueIn);
   ~ToroidalSegmentConstructionMethodTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne ToroidalSegmentConstructionMethodTypeType;
-  ToroidalSegmentConstructionMethodTypeVal ToroidalSegmentConstructionMethodTypeValue;
+  ToroidalSegmentConstructionMethodTypeVal * ToroidalSegmentConstructionMethodTypeValue;
 };
 
 /* ***************************************************************** */
@@ -11808,12 +11808,12 @@ public:
   ToroidalSegmentMeasurementDeterminationTypeChoicePair();
   ToroidalSegmentMeasurementDeterminationTypeChoicePair(
     whichOne ToroidalSegmentMeasurementDeterminationTypeTypeIn,
-    ToroidalSegmentMeasurementDeterminationTypeVal ToroidalSegmentMeasurementDeterminationTypeValueIn);
+    ToroidalSegmentMeasurementDeterminationTypeVal * ToroidalSegmentMeasurementDeterminationTypeValueIn);
   ~ToroidalSegmentMeasurementDeterminationTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne ToroidalSegmentMeasurementDeterminationTypeType;
-  ToroidalSegmentMeasurementDeterminationTypeVal ToroidalSegmentMeasurementDeterminationTypeValue;
+  ToroidalSegmentMeasurementDeterminationTypeVal * ToroidalSegmentMeasurementDeterminationTypeValue;
 };
 
 /* ***************************************************************** */
@@ -11967,12 +11967,12 @@ public:
   TorusCheckedTypeChoicePair();
   TorusCheckedTypeChoicePair(
     whichOne TorusCheckedTypeTypeIn,
-    TorusCheckedTypeVal TorusCheckedTypeValueIn);
+    TorusCheckedTypeVal * TorusCheckedTypeValueIn);
   ~TorusCheckedTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne TorusCheckedTypeType;
-  TorusCheckedTypeVal TorusCheckedTypeValue;
+  TorusCheckedTypeVal * TorusCheckedTypeValue;
 };
 
 /* ***************************************************************** */
@@ -12022,12 +12022,12 @@ public:
   TorusConstructionMethodTypeChoicePair();
   TorusConstructionMethodTypeChoicePair(
     whichOne TorusConstructionMethodTypeTypeIn,
-    TorusConstructionMethodTypeVal TorusConstructionMethodTypeValueIn);
+    TorusConstructionMethodTypeVal * TorusConstructionMethodTypeValueIn);
   ~TorusConstructionMethodTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne TorusConstructionMethodTypeType;
-  TorusConstructionMethodTypeVal TorusConstructionMethodTypeValue;
+  TorusConstructionMethodTypeVal * TorusConstructionMethodTypeValue;
 };
 
 /* ***************************************************************** */
@@ -12324,12 +12324,12 @@ public:
   TorusMeasurementDeterminationTypeChoicePair();
   TorusMeasurementDeterminationTypeChoicePair(
     whichOne TorusMeasurementDeterminationTypeTypeIn,
-    TorusMeasurementDeterminationTypeVal TorusMeasurementDeterminationTypeValueIn);
+    TorusMeasurementDeterminationTypeVal * TorusMeasurementDeterminationTypeValueIn);
   ~TorusMeasurementDeterminationTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne TorusMeasurementDeterminationTypeType;
-  TorusMeasurementDeterminationTypeVal TorusMeasurementDeterminationTypeValue;
+  TorusMeasurementDeterminationTypeVal * TorusMeasurementDeterminationTypeValue;
 };
 
 /* ***************************************************************** */
@@ -12442,12 +12442,12 @@ public:
   ConeFeatureDefi_1071_TypeChoicePair();
   ConeFeatureDefi_1071_TypeChoicePair(
     whichOne ConeFeatureDefi_1071_TypeTypeIn,
-    ConeFeatureDefi_1071_TypeVal ConeFeatureDefi_1071_TypeValueIn);
+    ConeFeatureDefi_1071_TypeVal * ConeFeatureDefi_1071_TypeValueIn);
   ~ConeFeatureDefi_1071_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne ConeFeatureDefi_1071_TypeType;
-  ConeFeatureDefi_1071_TypeVal ConeFeatureDefi_1071_TypeValue;
+  ConeFeatureDefi_1071_TypeVal * ConeFeatureDefi_1071_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -12512,12 +12512,12 @@ public:
   ConeFeatureMeas_1073_TypeChoicePair();
   ConeFeatureMeas_1073_TypeChoicePair(
     whichOne ConeFeatureMeas_1073_TypeTypeIn,
-    ConeFeatureMeas_1073_TypeVal ConeFeatureMeas_1073_TypeValueIn);
+    ConeFeatureMeas_1073_TypeVal * ConeFeatureMeas_1073_TypeValueIn);
   ~ConeFeatureMeas_1073_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne ConeFeatureMeas_1073_TypeType;
-  ConeFeatureMeas_1073_TypeVal ConeFeatureMeas_1073_TypeValue;
+  ConeFeatureMeas_1073_TypeVal * ConeFeatureMeas_1073_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -12559,12 +12559,12 @@ public:
   ConicalSegmentF_1074_TypeChoicePair();
   ConicalSegmentF_1074_TypeChoicePair(
     whichOne ConicalSegmentF_1074_TypeTypeIn,
-    ConicalSegmentF_1074_TypeVal ConicalSegmentF_1074_TypeValueIn);
+    ConicalSegmentF_1074_TypeVal * ConicalSegmentF_1074_TypeValueIn);
   ~ConicalSegmentF_1074_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne ConicalSegmentF_1074_TypeType;
-  ConicalSegmentF_1074_TypeVal ConicalSegmentF_1074_TypeValue;
+  ConicalSegmentF_1074_TypeVal * ConicalSegmentF_1074_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -12629,12 +12629,12 @@ public:
   ConicalSegmentF_1076_TypeChoicePair();
   ConicalSegmentF_1076_TypeChoicePair(
     whichOne ConicalSegmentF_1076_TypeTypeIn,
-    ConicalSegmentF_1076_TypeVal ConicalSegmentF_1076_TypeValueIn);
+    ConicalSegmentF_1076_TypeVal * ConicalSegmentF_1076_TypeValueIn);
   ~ConicalSegmentF_1076_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne ConicalSegmentF_1076_TypeType;
-  ConicalSegmentF_1076_TypeVal ConicalSegmentF_1076_TypeValue;
+  ConicalSegmentF_1076_TypeVal * ConicalSegmentF_1076_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -12676,12 +12676,12 @@ public:
   FeatureZoneArea_1077_TypeChoicePair();
   FeatureZoneArea_1077_TypeChoicePair(
     whichOne FeatureZoneArea_1077_TypeTypeIn,
-    FeatureZoneArea_1077_TypeVal FeatureZoneArea_1077_TypeValueIn);
+    FeatureZoneArea_1077_TypeVal * FeatureZoneArea_1077_TypeValueIn);
   ~FeatureZoneArea_1077_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne FeatureZoneArea_1077_TypeType;
-  FeatureZoneArea_1077_TypeVal FeatureZoneArea_1077_TypeValue;
+  FeatureZoneArea_1077_TypeVal * FeatureZoneArea_1077_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -12723,12 +12723,12 @@ public:
   FeatureZoneArea_1078_TypeChoicePair();
   FeatureZoneArea_1078_TypeChoicePair(
     whichOne FeatureZoneArea_1078_TypeTypeIn,
-    FeatureZoneArea_1078_TypeVal FeatureZoneArea_1078_TypeValueIn);
+    FeatureZoneArea_1078_TypeVal * FeatureZoneArea_1078_TypeValueIn);
   ~FeatureZoneArea_1078_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne FeatureZoneArea_1078_TypeType;
-  FeatureZoneArea_1078_TypeVal FeatureZoneArea_1078_TypeValue;
+  FeatureZoneArea_1078_TypeVal * FeatureZoneArea_1078_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -12770,12 +12770,12 @@ public:
   FeatureZonePoin_1079_TypeChoicePair();
   FeatureZonePoin_1079_TypeChoicePair(
     whichOne FeatureZonePoin_1079_TypeTypeIn,
-    FeatureZonePoin_1079_TypeVal FeatureZonePoin_1079_TypeValueIn);
+    FeatureZonePoin_1079_TypeVal * FeatureZonePoin_1079_TypeValueIn);
   ~FeatureZonePoin_1079_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne FeatureZonePoin_1079_TypeType;
-  FeatureZonePoin_1079_TypeVal FeatureZonePoin_1079_TypeValue;
+  FeatureZonePoin_1079_TypeVal * FeatureZonePoin_1079_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -12819,12 +12819,12 @@ public:
   GroupFeatureDef_1080_TypeChoicePair();
   GroupFeatureDef_1080_TypeChoicePair(
     whichOne GroupFeatureDef_1080_TypeTypeIn,
-    GroupFeatureDef_1080_TypeVal GroupFeatureDef_1080_TypeValueIn);
+    GroupFeatureDef_1080_TypeVal * GroupFeatureDef_1080_TypeValueIn);
   ~GroupFeatureDef_1080_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne GroupFeatureDef_1080_TypeType;
-  GroupFeatureDef_1080_TypeVal GroupFeatureDef_1080_TypeValue;
+  GroupFeatureDef_1080_TypeVal * GroupFeatureDef_1080_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -12866,12 +12866,12 @@ public:
   MeasuredPointSe_1081_TypeChoicePair();
   MeasuredPointSe_1081_TypeChoicePair(
     whichOne MeasuredPointSe_1081_TypeTypeIn,
-    MeasuredPointSe_1081_TypeVal MeasuredPointSe_1081_TypeValueIn);
+    MeasuredPointSe_1081_TypeVal * MeasuredPointSe_1081_TypeValueIn);
   ~MeasuredPointSe_1081_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne MeasuredPointSe_1081_TypeType;
-  MeasuredPointSe_1081_TypeVal MeasuredPointSe_1081_TypeValue;
+  MeasuredPointSe_1081_TypeVal * MeasuredPointSe_1081_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -12913,12 +12913,12 @@ public:
   MeasuredPointSe_1082_TypeChoicePair();
   MeasuredPointSe_1082_TypeChoicePair(
     whichOne MeasuredPointSe_1082_TypeTypeIn,
-    MeasuredPointSe_1082_TypeVal MeasuredPointSe_1082_TypeValueIn);
+    MeasuredPointSe_1082_TypeVal * MeasuredPointSe_1082_TypeValueIn);
   ~MeasuredPointSe_1082_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne MeasuredPointSe_1082_TypeType;
-  MeasuredPointSe_1082_TypeVal MeasuredPointSe_1082_TypeValue;
+  MeasuredPointSe_1082_TypeVal * MeasuredPointSe_1082_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -12960,12 +12960,12 @@ public:
   MeasuredPointSe_1083_TypeChoicePair();
   MeasuredPointSe_1083_TypeChoicePair(
     whichOne MeasuredPointSe_1083_TypeTypeIn,
-    MeasuredPointSe_1083_TypeVal MeasuredPointSe_1083_TypeValueIn);
+    MeasuredPointSe_1083_TypeVal * MeasuredPointSe_1083_TypeValueIn);
   ~MeasuredPointSe_1083_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne MeasuredPointSe_1083_TypeType;
-  MeasuredPointSe_1083_TypeVal MeasuredPointSe_1083_TypeValue;
+  MeasuredPointSe_1083_TypeVal * MeasuredPointSe_1083_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -13009,12 +13009,12 @@ public:
   MeasuredPointSe_1084_TypeChoicePair();
   MeasuredPointSe_1084_TypeChoicePair(
     whichOne MeasuredPointSe_1084_TypeTypeIn,
-    MeasuredPointSe_1084_TypeVal MeasuredPointSe_1084_TypeValueIn);
+    MeasuredPointSe_1084_TypeVal * MeasuredPointSe_1084_TypeValueIn);
   ~MeasuredPointSe_1084_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne MeasuredPointSe_1084_TypeType;
-  MeasuredPointSe_1084_TypeVal MeasuredPointSe_1084_TypeValue;
+  MeasuredPointSe_1084_TypeVal * MeasuredPointSe_1084_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -13058,12 +13058,12 @@ public:
   MeasuredPointSe_1085_TypeChoicePair();
   MeasuredPointSe_1085_TypeChoicePair(
     whichOne MeasuredPointSe_1085_TypeTypeIn,
-    MeasuredPointSe_1085_TypeVal MeasuredPointSe_1085_TypeValueIn);
+    MeasuredPointSe_1085_TypeVal * MeasuredPointSe_1085_TypeValueIn);
   ~MeasuredPointSe_1085_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne MeasuredPointSe_1085_TypeType;
-  MeasuredPointSe_1085_TypeVal MeasuredPointSe_1085_TypeValue;
+  MeasuredPointSe_1085_TypeVal * MeasuredPointSe_1085_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -13107,12 +13107,12 @@ public:
   MeasuredPointSe_1086_TypeChoicePair();
   MeasuredPointSe_1086_TypeChoicePair(
     whichOne MeasuredPointSe_1086_TypeTypeIn,
-    MeasuredPointSe_1086_TypeVal MeasuredPointSe_1086_TypeValueIn);
+    MeasuredPointSe_1086_TypeVal * MeasuredPointSe_1086_TypeValueIn);
   ~MeasuredPointSe_1086_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne MeasuredPointSe_1086_TypeType;
-  MeasuredPointSe_1086_TypeVal MeasuredPointSe_1086_TypeValue;
+  MeasuredPointSe_1086_TypeVal * MeasuredPointSe_1086_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -13156,12 +13156,12 @@ public:
   MeasuredPointSe_1087_TypeChoicePair();
   MeasuredPointSe_1087_TypeChoicePair(
     whichOne MeasuredPointSe_1087_TypeTypeIn,
-    MeasuredPointSe_1087_TypeVal MeasuredPointSe_1087_TypeValueIn);
+    MeasuredPointSe_1087_TypeVal * MeasuredPointSe_1087_TypeValueIn);
   ~MeasuredPointSe_1087_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne MeasuredPointSe_1087_TypeType;
-  MeasuredPointSe_1087_TypeVal MeasuredPointSe_1087_TypeValue;
+  MeasuredPointSe_1087_TypeVal * MeasuredPointSe_1087_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -13203,12 +13203,12 @@ public:
   MeasuredPointSe_1088_TypeChoicePair();
   MeasuredPointSe_1088_TypeChoicePair(
     whichOne MeasuredPointSe_1088_TypeTypeIn,
-    MeasuredPointSe_1088_TypeVal MeasuredPointSe_1088_TypeValueIn);
+    MeasuredPointSe_1088_TypeVal * MeasuredPointSe_1088_TypeValueIn);
   ~MeasuredPointSe_1088_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne MeasuredPointSe_1088_TypeType;
-  MeasuredPointSe_1088_TypeVal MeasuredPointSe_1088_TypeValue;
+  MeasuredPointSe_1088_TypeVal * MeasuredPointSe_1088_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -13250,12 +13250,12 @@ public:
   MeasuredPointSe_1089_TypeChoicePair();
   MeasuredPointSe_1089_TypeChoicePair(
     whichOne MeasuredPointSe_1089_TypeTypeIn,
-    MeasuredPointSe_1089_TypeVal MeasuredPointSe_1089_TypeValueIn);
+    MeasuredPointSe_1089_TypeVal * MeasuredPointSe_1089_TypeValueIn);
   ~MeasuredPointSe_1089_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne MeasuredPointSe_1089_TypeType;
-  MeasuredPointSe_1089_TypeVal MeasuredPointSe_1089_TypeValue;
+  MeasuredPointSe_1089_TypeVal * MeasuredPointSe_1089_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -13297,12 +13297,12 @@ public:
   MeasuredPointSe_1090_TypeChoicePair();
   MeasuredPointSe_1090_TypeChoicePair(
     whichOne MeasuredPointSe_1090_TypeTypeIn,
-    MeasuredPointSe_1090_TypeVal MeasuredPointSe_1090_TypeValueIn);
+    MeasuredPointSe_1090_TypeVal * MeasuredPointSe_1090_TypeValueIn);
   ~MeasuredPointSe_1090_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne MeasuredPointSe_1090_TypeType;
-  MeasuredPointSe_1090_TypeVal MeasuredPointSe_1090_TypeValue;
+  MeasuredPointSe_1090_TypeVal * MeasuredPointSe_1090_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -13344,12 +13344,12 @@ public:
   MeasuredPointSe_1091_TypeChoicePair();
   MeasuredPointSe_1091_TypeChoicePair(
     whichOne MeasuredPointSe_1091_TypeTypeIn,
-    MeasuredPointSe_1091_TypeVal MeasuredPointSe_1091_TypeValueIn);
+    MeasuredPointSe_1091_TypeVal * MeasuredPointSe_1091_TypeValueIn);
   ~MeasuredPointSe_1091_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne MeasuredPointSe_1091_TypeType;
-  MeasuredPointSe_1091_TypeVal MeasuredPointSe_1091_TypeValue;
+  MeasuredPointSe_1091_TypeVal * MeasuredPointSe_1091_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -13391,12 +13391,12 @@ public:
   MeasuredPointSe_1092_TypeChoicePair();
   MeasuredPointSe_1092_TypeChoicePair(
     whichOne MeasuredPointSe_1092_TypeTypeIn,
-    MeasuredPointSe_1092_TypeVal MeasuredPointSe_1092_TypeValueIn);
+    MeasuredPointSe_1092_TypeVal * MeasuredPointSe_1092_TypeValueIn);
   ~MeasuredPointSe_1092_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne MeasuredPointSe_1092_TypeType;
-  MeasuredPointSe_1092_TypeVal MeasuredPointSe_1092_TypeValue;
+  MeasuredPointSe_1092_TypeVal * MeasuredPointSe_1092_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -13461,12 +13461,12 @@ public:
   OppositeAngledP_1094_TypeChoicePair();
   OppositeAngledP_1094_TypeChoicePair(
     whichOne OppositeAngledP_1094_TypeTypeIn,
-    OppositeAngledP_1094_TypeVal OppositeAngledP_1094_TypeValueIn);
+    OppositeAngledP_1094_TypeVal * OppositeAngledP_1094_TypeValueIn);
   ~OppositeAngledP_1094_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne OppositeAngledP_1094_TypeType;
-  OppositeAngledP_1094_TypeVal OppositeAngledP_1094_TypeValue;
+  OppositeAngledP_1094_TypeVal * OppositeAngledP_1094_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -13508,12 +13508,12 @@ public:
   OppositeAngledP_1095_TypeChoicePair();
   OppositeAngledP_1095_TypeChoicePair(
     whichOne OppositeAngledP_1095_TypeTypeIn,
-    OppositeAngledP_1095_TypeVal OppositeAngledP_1095_TypeValueIn);
+    OppositeAngledP_1095_TypeVal * OppositeAngledP_1095_TypeValueIn);
   ~OppositeAngledP_1095_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne OppositeAngledP_1095_TypeType;
-  OppositeAngledP_1095_TypeVal OppositeAngledP_1095_TypeValue;
+  OppositeAngledP_1095_TypeVal * OppositeAngledP_1095_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -13557,12 +13557,12 @@ public:
   PlaneFeatureNom_1096_TypeChoicePair();
   PlaneFeatureNom_1096_TypeChoicePair(
     whichOne PlaneFeatureNom_1096_TypeTypeIn,
-    PlaneFeatureNom_1096_TypeVal PlaneFeatureNom_1096_TypeValueIn);
+    PlaneFeatureNom_1096_TypeVal * PlaneFeatureNom_1096_TypeValueIn);
   ~PlaneFeatureNom_1096_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne PlaneFeatureNom_1096_TypeType;
-  PlaneFeatureNom_1096_TypeVal PlaneFeatureNom_1096_TypeValue;
+  PlaneFeatureNom_1096_TypeVal * PlaneFeatureNom_1096_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -13612,12 +13612,12 @@ public:
   PointFeatureExt_1097_TypeChoicePair();
   PointFeatureExt_1097_TypeChoicePair(
     whichOne PointFeatureExt_1097_TypeTypeIn,
-    PointFeatureExt_1097_TypeVal PointFeatureExt_1097_TypeValueIn);
+    PointFeatureExt_1097_TypeVal * PointFeatureExt_1097_TypeValueIn);
   ~PointFeatureExt_1097_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne PointFeatureExt_1097_TypeType;
-  PointFeatureExt_1097_TypeVal PointFeatureExt_1097_TypeValue;
+  PointFeatureExt_1097_TypeVal * PointFeatureExt_1097_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -13659,12 +13659,12 @@ public:
   PointFeatureMov_1098_TypeChoicePair();
   PointFeatureMov_1098_TypeChoicePair(
     whichOne PointFeatureMov_1098_TypeTypeIn,
-    PointFeatureMov_1098_TypeVal PointFeatureMov_1098_TypeValueIn);
+    PointFeatureMov_1098_TypeVal * PointFeatureMov_1098_TypeValueIn);
   ~PointFeatureMov_1098_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne PointFeatureMov_1098_TypeType;
-  PointFeatureMov_1098_TypeVal PointFeatureMov_1098_TypeValue;
+  PointFeatureMov_1098_TypeVal * PointFeatureMov_1098_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -13706,12 +13706,12 @@ public:
   MeasuredPointSe_1099_TypeChoicePair();
   MeasuredPointSe_1099_TypeChoicePair(
     whichOne MeasuredPointSe_1099_TypeTypeIn,
-    MeasuredPointSe_1099_TypeVal MeasuredPointSe_1099_TypeValueIn);
+    MeasuredPointSe_1099_TypeVal * MeasuredPointSe_1099_TypeValueIn);
   ~MeasuredPointSe_1099_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne MeasuredPointSe_1099_TypeType;
-  MeasuredPointSe_1099_TypeVal MeasuredPointSe_1099_TypeValue;
+  MeasuredPointSe_1099_TypeVal * MeasuredPointSe_1099_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -13822,12 +13822,12 @@ public:
   CircleFromConeTypeChoicePair();
   CircleFromConeTypeChoicePair(
     whichOne CircleFromConeTypeTypeIn,
-    CircleFromConeTypeVal CircleFromConeTypeValueIn);
+    CircleFromConeTypeVal * CircleFromConeTypeValueIn);
   ~CircleFromConeTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne CircleFromConeTypeType;
-  CircleFromConeTypeVal CircleFromConeTypeValue;
+  CircleFromConeTypeVal * CircleFromConeTypeValue;
 };
 
 /* ***************************************************************** */
@@ -14909,7 +14909,7 @@ public:
   CurveFeatureDefinitionBaseType(
     QIFIdType * idIn,
     AttributesType * AttributesIn);
-  ~CurveFeatureDefinitionBaseType();
+  virtual ~CurveFeatureDefinitionBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 };
@@ -14944,7 +14944,7 @@ public:
     PointListType * PointListIn,
     SubstituteFeatureAlgorithmType * SubstituteFeatureAlgorithmIn,
     VirtualMeasurementType * VirtualMeasurementIn);
-  ~CurveFeatureItemBaseType();
+  virtual ~CurveFeatureItemBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 };
@@ -14983,7 +14983,7 @@ public:
     PointListType * PointListIn,
     SubstituteFeatureAlgorithmType * SubstituteFeatureAlgorithmIn,
     QIFReferenceType * ProxyMeasurementIdIn);
-  ~CurveFeatureMeasurementBaseType();
+  virtual ~CurveFeatureMeasurementBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 };
@@ -15018,7 +15018,7 @@ public:
     PointListType * PointListIn,
     SubstituteFeatureAlgorithmType * SubstituteFeatureAlgorithmIn,
     QIFReferenceFullType * SurfaceFeatureNominalIdIn);
-  ~CurveFeatureNominalBaseType();
+  virtual ~CurveFeatureNominalBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
@@ -16540,7 +16540,7 @@ public:
     XmlToken * LabelIn,
     QIFReferenceFullType * SurfaceFeatureNominalIdIn,
     FeatureZoneAreaBaseTypeChoicePair * FeatureZoneAreaBaseTypePairIn);
-  ~FeatureZoneAreaBaseType();
+  virtual ~FeatureZoneAreaBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
   FeatureZoneAreaBaseTypeChoicePair * getFeatureZoneAreaBaseTypeChoicePair();
@@ -16570,12 +16570,12 @@ public:
   FeatureZoneAreaBaseTypeChoicePair();
   FeatureZoneAreaBaseTypeChoicePair(
     whichOne FeatureZoneAreaBaseTypeTypeIn,
-    FeatureZoneAreaBaseTypeVal FeatureZoneAreaBaseTypeValueIn);
+    FeatureZoneAreaBaseTypeVal * FeatureZoneAreaBaseTypeValueIn);
   ~FeatureZoneAreaBaseTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne FeatureZoneAreaBaseTypeType;
-  FeatureZoneAreaBaseTypeVal FeatureZoneAreaBaseTypeValue;
+  FeatureZoneAreaBaseTypeVal * FeatureZoneAreaBaseTypeValue;
 };
 
 /* ***************************************************************** */
@@ -18775,12 +18775,12 @@ public:
   OtherSurfaceFeatureNominalTypeChoicePair();
   OtherSurfaceFeatureNominalTypeChoicePair(
     whichOne OtherSurfaceFeatureNominalTypeTypeIn,
-    OtherSurfaceFeatureNominalTypeVal OtherSurfaceFeatureNominalTypeValueIn);
+    OtherSurfaceFeatureNominalTypeVal * OtherSurfaceFeatureNominalTypeValueIn);
   ~OtherSurfaceFeatureNominalTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne OtherSurfaceFeatureNominalTypeType;
-  OtherSurfaceFeatureNominalTypeVal OtherSurfaceFeatureNominalTypeValue;
+  OtherSurfaceFeatureNominalTypeVal * OtherSurfaceFeatureNominalTypeValue;
 };
 
 /* ***************************************************************** */
@@ -18801,7 +18801,7 @@ public:
     XmlBoolean * IsProfileGroupIn,
     XmlBoolean * IsRunoutGroupIn,
     GroupFeatureDef_1080_Type * GroupFeatureDef_1080In);
-  ~PatternFeatureDefinitionBaseType();
+  virtual ~PatternFeatureDefinitionBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 };
@@ -18836,7 +18836,7 @@ public:
     PointListType * PointListIn,
     SubstituteFeatureAlgorithmType * SubstituteFeatureAlgorithmIn,
     VirtualMeasurementType * VirtualMeasurementIn);
-  ~PatternFeatureItemBaseType();
+  virtual ~PatternFeatureItemBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 };
@@ -18952,7 +18952,7 @@ public:
     PointListType * PointListIn,
     SubstituteFeatureAlgorithmType * SubstituteFeatureAlgorithmIn,
     ArrayReferenceFullType * FeatureNominalIdsIn);
-  ~PatternFeatureNominalBaseType();
+  virtual ~PatternFeatureNominalBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 };
@@ -19614,7 +19614,7 @@ public:
   PointFeatureDefinitionBaseType(
     QIFIdType * idIn,
     AttributesType * AttributesIn);
-  ~PointFeatureDefinitionBaseType();
+  virtual ~PointFeatureDefinitionBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 };
@@ -19666,7 +19666,7 @@ public:
     PointListType * PointListIn,
     SubstituteFeatureAlgorithmType * SubstituteFeatureAlgorithmIn,
     VirtualMeasurementType * VirtualMeasurementIn);
-  ~PointFeatureItemBaseType();
+  virtual ~PointFeatureItemBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 };
@@ -19748,7 +19748,7 @@ public:
     PointListType * PointListIn,
     SubstituteFeatureAlgorithmType * SubstituteFeatureAlgorithmIn,
     QIFReferenceType * ProxyMeasurementIdIn);
-  ~PointFeatureMeasurementBaseType();
+  virtual ~PointFeatureMeasurementBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 };
@@ -19835,7 +19835,7 @@ public:
     PointListType * PointListIn,
     SubstituteFeatureAlgorithmType * SubstituteFeatureAlgorithmIn,
     PointFeatureNominalBaseTypeChoicePair * PointFeatureNominalBaseTypePairIn);
-  ~PointFeatureNominalBaseType();
+  virtual ~PointFeatureNominalBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
   PointFeatureNominalBaseTypeChoicePair * getPointFeatureNominalBaseTypeChoicePair();
@@ -19865,12 +19865,12 @@ public:
   PointFeatureNominalBaseTypeChoicePair();
   PointFeatureNominalBaseTypeChoicePair(
     whichOne PointFeatureNominalBaseTypeTypeIn,
-    PointFeatureNominalBaseTypeVal PointFeatureNominalBaseTypeValueIn);
+    PointFeatureNominalBaseTypeVal * PointFeatureNominalBaseTypeValueIn);
   ~PointFeatureNominalBaseTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne PointFeatureNominalBaseTypeType;
-  PointFeatureNominalBaseTypeVal PointFeatureNominalBaseTypeValue;
+  PointFeatureNominalBaseTypeVal * PointFeatureNominalBaseTypeValue;
 };
 
 /* ***************************************************************** */

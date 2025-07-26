@@ -3786,7 +3786,7 @@ AngularCharacteristicDefinitionBaseTypeChoicePair::AngularCharacteristicDefiniti
 
 AngularCharacteristicDefinitionBaseTypeChoicePair::AngularCharacteristicDefinitionBaseTypeChoicePair(
  whichOne AngularCharacteristicDefinitionBaseTypeTypeIn,
- AngularCharacteristicDefinitionBaseTypeVal AngularCharacteristicDefinitionBaseTypeValueIn)
+ AngularCharacteristicDefinitionBaseTypeVal * AngularCharacteristicDefinitionBaseTypeValueIn)
 {
   AngularCharacteristicDefinitionBaseTypeType = AngularCharacteristicDefinitionBaseTypeTypeIn;
   AngularCharacteristicDefinitionBaseTypeValue = AngularCharacteristicDefinitionBaseTypeValueIn;
@@ -3796,9 +3796,10 @@ AngularCharacteristicDefinitionBaseTypeChoicePair::~AngularCharacteristicDefinit
 {
   #ifndef NODESTRUCT
   if (AngularCharacteristicDefinitionBaseTypeType == ToleranceE)
-    delete AngularCharacteristicDefinitionBaseTypeValue.Tolerance;
+    delete AngularCharacteristicDefinitionBaseTypeValue->Tolerance;
   else if (AngularCharacteristicDefinitionBaseTypeType == NonToleranceE)
-    delete AngularCharacteristicDefinitionBaseTypeValue.NonTolerance;
+    delete AngularCharacteristicDefinitionBaseTypeValue->NonTolerance;
+  delete AngularCharacteristicDefinitionBaseTypeValue;
   #endif
 }
 
@@ -3808,7 +3809,7 @@ void AngularCharacteristicDefinitionBaseTypeChoicePair::printSelf(FILE * outFile
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Tolerance");
-      AngularCharacteristicDefinitionBaseTypeValue.Tolerance->printSelf(outFile);
+      AngularCharacteristicDefinitionBaseTypeValue->Tolerance->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Tolerance>\n");
     }
@@ -3816,7 +3817,7 @@ void AngularCharacteristicDefinitionBaseTypeChoicePair::printSelf(FILE * outFile
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<NonTolerance");
-      AngularCharacteristicDefinitionBaseTypeValue.NonTolerance->printSelf(outFile);
+      AngularCharacteristicDefinitionBaseTypeValue->NonTolerance->printSelf(outFile);
       fprintf(outFile, "</NonTolerance>\n");
     }
 }
@@ -4941,7 +4942,7 @@ AngularCoordinateCharacteristicDefinitionTypeChoicePair::AngularCoordinateCharac
 
 AngularCoordinateCharacteristicDefinitionTypeChoicePair::AngularCoordinateCharacteristicDefinitionTypeChoicePair(
  whichOne AngularCoordinateCharacteristicDefinitionTypeTypeIn,
- AngularCoordinateCharacteristicDefinitionTypeVal AngularCoordinateCharacteristicDefinitionTypeValueIn)
+ AngularCoordinateCharacteristicDefinitionTypeVal * AngularCoordinateCharacteristicDefinitionTypeValueIn)
 {
   AngularCoordinateCharacteristicDefinitionTypeType = AngularCoordinateCharacteristicDefinitionTypeTypeIn;
   AngularCoordinateCharacteristicDefinitionTypeValue = AngularCoordinateCharacteristicDefinitionTypeValueIn;
@@ -4951,9 +4952,10 @@ AngularCoordinateCharacteristicDefinitionTypeChoicePair::~AngularCoordinateChara
 {
   #ifndef NODESTRUCT
   if (AngularCoordinateCharacteristicDefinitionTypeType == ToleranceE)
-    delete AngularCoordinateCharacteristicDefinitionTypeValue.Tolerance;
+    delete AngularCoordinateCharacteristicDefinitionTypeValue->Tolerance;
   else if (AngularCoordinateCharacteristicDefinitionTypeType == NonToleranceE)
-    delete AngularCoordinateCharacteristicDefinitionTypeValue.NonTolerance;
+    delete AngularCoordinateCharacteristicDefinitionTypeValue->NonTolerance;
+  delete AngularCoordinateCharacteristicDefinitionTypeValue;
   #endif
 }
 
@@ -4963,7 +4965,7 @@ void AngularCoordinateCharacteristicDefinitionTypeChoicePair::printSelf(FILE * o
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Tolerance");
-      AngularCoordinateCharacteristicDefinitionTypeValue.Tolerance->printSelf(outFile);
+      AngularCoordinateCharacteristicDefinitionTypeValue->Tolerance->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Tolerance>\n");
     }
@@ -4971,7 +4973,7 @@ void AngularCoordinateCharacteristicDefinitionTypeChoicePair::printSelf(FILE * o
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<NonTolerance");
-      AngularCoordinateCharacteristicDefinitionTypeValue.NonTolerance->printSelf(outFile);
+      AngularCoordinateCharacteristicDefinitionTypeValue->NonTolerance->printSelf(outFile);
       fprintf(outFile, "</NonTolerance>\n");
     }
 }
@@ -7371,7 +7373,7 @@ AreaCharacteristicDefinitionBaseTypeChoicePair::AreaCharacteristicDefinitionBase
 
 AreaCharacteristicDefinitionBaseTypeChoicePair::AreaCharacteristicDefinitionBaseTypeChoicePair(
  whichOne AreaCharacteristicDefinitionBaseTypeTypeIn,
- AreaCharacteristicDefinitionBaseTypeVal AreaCharacteristicDefinitionBaseTypeValueIn)
+ AreaCharacteristicDefinitionBaseTypeVal * AreaCharacteristicDefinitionBaseTypeValueIn)
 {
   AreaCharacteristicDefinitionBaseTypeType = AreaCharacteristicDefinitionBaseTypeTypeIn;
   AreaCharacteristicDefinitionBaseTypeValue = AreaCharacteristicDefinitionBaseTypeValueIn;
@@ -7381,9 +7383,10 @@ AreaCharacteristicDefinitionBaseTypeChoicePair::~AreaCharacteristicDefinitionBas
 {
   #ifndef NODESTRUCT
   if (AreaCharacteristicDefinitionBaseTypeType == ToleranceE)
-    delete AreaCharacteristicDefinitionBaseTypeValue.Tolerance;
+    delete AreaCharacteristicDefinitionBaseTypeValue->Tolerance;
   else if (AreaCharacteristicDefinitionBaseTypeType == NonToleranceE)
-    delete AreaCharacteristicDefinitionBaseTypeValue.NonTolerance;
+    delete AreaCharacteristicDefinitionBaseTypeValue->NonTolerance;
+  delete AreaCharacteristicDefinitionBaseTypeValue;
   #endif
 }
 
@@ -7393,7 +7396,7 @@ void AreaCharacteristicDefinitionBaseTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Tolerance");
-      AreaCharacteristicDefinitionBaseTypeValue.Tolerance->printSelf(outFile);
+      AreaCharacteristicDefinitionBaseTypeValue->Tolerance->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Tolerance>\n");
     }
@@ -7401,7 +7404,7 @@ void AreaCharacteristicDefinitionBaseTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<NonTolerance");
-      AreaCharacteristicDefinitionBaseTypeValue.NonTolerance->printSelf(outFile);
+      AreaCharacteristicDefinitionBaseTypeValue->NonTolerance->printSelf(outFile);
       fprintf(outFile, "</NonTolerance>\n");
     }
 }
@@ -17036,7 +17039,7 @@ CharacteristicStatusTypeChoicePair::CharacteristicStatusTypeChoicePair() {}
 
 CharacteristicStatusTypeChoicePair::CharacteristicStatusTypeChoicePair(
  whichOne CharacteristicStatusTypeTypeIn,
- CharacteristicStatusTypeVal CharacteristicStatusTypeValueIn)
+ CharacteristicStatusTypeVal * CharacteristicStatusTypeValueIn)
 {
   CharacteristicStatusTypeType = CharacteristicStatusTypeTypeIn;
   CharacteristicStatusTypeValue = CharacteristicStatusTypeValueIn;
@@ -17046,9 +17049,10 @@ CharacteristicStatusTypeChoicePair::~CharacteristicStatusTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (CharacteristicStatusTypeType == CharacteristicStatusEnumE)
-    delete CharacteristicStatusTypeValue.CharacteristicStatusEnum;
+    delete CharacteristicStatusTypeValue->CharacteristicStatusEnum;
   else if (CharacteristicStatusTypeType == OtherCharacteristicStatusE)
-    delete CharacteristicStatusTypeValue.OtherCharacteristicStatus;
+    delete CharacteristicStatusTypeValue->OtherCharacteristicStatus;
+  delete CharacteristicStatusTypeValue;
   #endif
 }
 
@@ -17058,14 +17062,14 @@ void CharacteristicStatusTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<CharacteristicStatusEnum");
-      CharacteristicStatusTypeValue.CharacteristicStatusEnum->printSelf(outFile);
+      CharacteristicStatusTypeValue->CharacteristicStatusEnum->printSelf(outFile);
       fprintf(outFile, "</CharacteristicStatusEnum>\n");
     }
   else if (CharacteristicStatusTypeType == OtherCharacteristicStatusE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<OtherCharacteristicStatus");
-      CharacteristicStatusTypeValue.OtherCharacteristicStatus->printSelf(outFile);
+      CharacteristicStatusTypeValue->OtherCharacteristicStatus->printSelf(outFile);
       fprintf(outFile, "</OtherCharacteristicStatus>\n");
     }
 }
@@ -19607,7 +19611,7 @@ CircularityCharacteristicDefinitionTypeChoicePair::CircularityCharacteristicDefi
 
 CircularityCharacteristicDefinitionTypeChoicePair::CircularityCharacteristicDefinitionTypeChoicePair(
  whichOne CircularityCharacteristicDefinitionTypeTypeIn,
- CircularityCharacteristicDefinitionTypeVal CircularityCharacteristicDefinitionTypeValueIn)
+ CircularityCharacteristicDefinitionTypeVal * CircularityCharacteristicDefinitionTypeValueIn)
 {
   CircularityCharacteristicDefinitionTypeType = CircularityCharacteristicDefinitionTypeTypeIn;
   CircularityCharacteristicDefinitionTypeValue = CircularityCharacteristicDefinitionTypeValueIn;
@@ -19617,9 +19621,10 @@ CircularityCharacteristicDefinitionTypeChoicePair::~CircularityCharacteristicDef
 {
   #ifndef NODESTRUCT
   if (CircularityCharacteristicDefinitionTypeType == CircularityChar_1041E)
-    delete CircularityCharacteristicDefinitionTypeValue.CircularityChar_1041;
+    delete CircularityCharacteristicDefinitionTypeValue->CircularityChar_1041;
   else if (CircularityCharacteristicDefinitionTypeType == CircularityChar_1042E)
-    delete CircularityCharacteristicDefinitionTypeValue.CircularityChar_1042;
+    delete CircularityCharacteristicDefinitionTypeValue->CircularityChar_1042;
+  delete CircularityCharacteristicDefinitionTypeValue;
   #endif
 }
 
@@ -19627,11 +19632,11 @@ void CircularityCharacteristicDefinitionTypeChoicePair::printSelf(FILE * outFile
 {
   if (CircularityCharacteristicDefinitionTypeType == CircularityChar_1041E)
     {
-      CircularityCharacteristicDefinitionTypeValue.CircularityChar_1041->printSelf(outFile);
+      CircularityCharacteristicDefinitionTypeValue->CircularityChar_1041->printSelf(outFile);
     }
   else if (CircularityCharacteristicDefinitionTypeType == CircularityChar_1042E)
     {
-      CircularityCharacteristicDefinitionTypeValue.CircularityChar_1042->printSelf(outFile);
+      CircularityCharacteristicDefinitionTypeValue->CircularityChar_1042->printSelf(outFile);
     }
 }
 
@@ -21754,7 +21759,7 @@ CoaxialityZoneShapeTypeChoicePair::CoaxialityZoneShapeTypeChoicePair() {}
 
 CoaxialityZoneShapeTypeChoicePair::CoaxialityZoneShapeTypeChoicePair(
  whichOne CoaxialityZoneShapeTypeTypeIn,
- CoaxialityZoneShapeTypeVal CoaxialityZoneShapeTypeValueIn)
+ CoaxialityZoneShapeTypeVal * CoaxialityZoneShapeTypeValueIn)
 {
   CoaxialityZoneShapeTypeType = CoaxialityZoneShapeTypeTypeIn;
   CoaxialityZoneShapeTypeValue = CoaxialityZoneShapeTypeValueIn;
@@ -21764,9 +21769,10 @@ CoaxialityZoneShapeTypeChoicePair::~CoaxialityZoneShapeTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (CoaxialityZoneShapeTypeType == DiametricalZoneE)
-    delete CoaxialityZoneShapeTypeValue.DiametricalZone;
+    delete CoaxialityZoneShapeTypeValue->DiametricalZone;
   else if (CoaxialityZoneShapeTypeType == NonDiametricalZoneE)
-    delete CoaxialityZoneShapeTypeValue.NonDiametricalZone;
+    delete CoaxialityZoneShapeTypeValue->NonDiametricalZone;
+  delete CoaxialityZoneShapeTypeValue;
   #endif
 }
 
@@ -21776,13 +21782,13 @@ void CoaxialityZoneShapeTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<DiametricalZone");
-      CoaxialityZoneShapeTypeValue.DiametricalZone->printSelf(outFile);
+      CoaxialityZoneShapeTypeValue->DiametricalZone->printSelf(outFile);
     }
   else if (CoaxialityZoneShapeTypeType == NonDiametricalZoneE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<NonDiametricalZone");
-      CoaxialityZoneShapeTypeValue.NonDiametricalZone->printSelf(outFile);
+      CoaxialityZoneShapeTypeValue->NonDiametricalZone->printSelf(outFile);
     }
 }
 
@@ -23807,7 +23813,7 @@ ConcentricityZoneShapeTypeChoicePair::ConcentricityZoneShapeTypeChoicePair() {}
 
 ConcentricityZoneShapeTypeChoicePair::ConcentricityZoneShapeTypeChoicePair(
  whichOne ConcentricityZoneShapeTypeTypeIn,
- ConcentricityZoneShapeTypeVal ConcentricityZoneShapeTypeValueIn)
+ ConcentricityZoneShapeTypeVal * ConcentricityZoneShapeTypeValueIn)
 {
   ConcentricityZoneShapeTypeType = ConcentricityZoneShapeTypeTypeIn;
   ConcentricityZoneShapeTypeValue = ConcentricityZoneShapeTypeValueIn;
@@ -23817,11 +23823,12 @@ ConcentricityZoneShapeTypeChoicePair::~ConcentricityZoneShapeTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (ConcentricityZoneShapeTypeType == SphericalZoneE)
-    delete ConcentricityZoneShapeTypeValue.SphericalZone;
+    delete ConcentricityZoneShapeTypeValue->SphericalZone;
   else if (ConcentricityZoneShapeTypeType == DiametricalZoneE)
-    delete ConcentricityZoneShapeTypeValue.DiametricalZone;
+    delete ConcentricityZoneShapeTypeValue->DiametricalZone;
   else if (ConcentricityZoneShapeTypeType == NonDiametricalZoneE)
-    delete ConcentricityZoneShapeTypeValue.NonDiametricalZone;
+    delete ConcentricityZoneShapeTypeValue->NonDiametricalZone;
+  delete ConcentricityZoneShapeTypeValue;
   #endif
 }
 
@@ -23831,19 +23838,19 @@ void ConcentricityZoneShapeTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<SphericalZone");
-      ConcentricityZoneShapeTypeValue.SphericalZone->printSelf(outFile);
+      ConcentricityZoneShapeTypeValue->SphericalZone->printSelf(outFile);
     }
   else if (ConcentricityZoneShapeTypeType == DiametricalZoneE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<DiametricalZone");
-      ConcentricityZoneShapeTypeValue.DiametricalZone->printSelf(outFile);
+      ConcentricityZoneShapeTypeValue->DiametricalZone->printSelf(outFile);
     }
   else if (ConcentricityZoneShapeTypeType == NonDiametricalZoneE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<NonDiametricalZone");
-      ConcentricityZoneShapeTypeValue.NonDiametricalZone->printSelf(outFile);
+      ConcentricityZoneShapeTypeValue->NonDiametricalZone->printSelf(outFile);
     }
 }
 
@@ -28686,7 +28693,7 @@ CylindricityCharacteristicDefinitionTypeChoicePair::CylindricityCharacteristicDe
 
 CylindricityCharacteristicDefinitionTypeChoicePair::CylindricityCharacteristicDefinitionTypeChoicePair(
  whichOne CylindricityCharacteristicDefinitionTypeTypeIn,
- CylindricityCharacteristicDefinitionTypeVal CylindricityCharacteristicDefinitionTypeValueIn)
+ CylindricityCharacteristicDefinitionTypeVal * CylindricityCharacteristicDefinitionTypeValueIn)
 {
   CylindricityCharacteristicDefinitionTypeType = CylindricityCharacteristicDefinitionTypeTypeIn;
   CylindricityCharacteristicDefinitionTypeValue = CylindricityCharacteristicDefinitionTypeValueIn;
@@ -28696,9 +28703,10 @@ CylindricityCharacteristicDefinitionTypeChoicePair::~CylindricityCharacteristicD
 {
   #ifndef NODESTRUCT
   if (CylindricityCharacteristicDefinitionTypeType == CylindricityCha_1046E)
-    delete CylindricityCharacteristicDefinitionTypeValue.CylindricityCha_1046;
+    delete CylindricityCharacteristicDefinitionTypeValue->CylindricityCha_1046;
   else if (CylindricityCharacteristicDefinitionTypeType == CylindricityCha_1047E)
-    delete CylindricityCharacteristicDefinitionTypeValue.CylindricityCha_1047;
+    delete CylindricityCharacteristicDefinitionTypeValue->CylindricityCha_1047;
+  delete CylindricityCharacteristicDefinitionTypeValue;
   #endif
 }
 
@@ -28706,11 +28714,11 @@ void CylindricityCharacteristicDefinitionTypeChoicePair::printSelf(FILE * outFil
 {
   if (CylindricityCharacteristicDefinitionTypeType == CylindricityCha_1046E)
     {
-      CylindricityCharacteristicDefinitionTypeValue.CylindricityCha_1046->printSelf(outFile);
+      CylindricityCharacteristicDefinitionTypeValue->CylindricityCha_1046->printSelf(outFile);
     }
   else if (CylindricityCharacteristicDefinitionTypeType == CylindricityCha_1047E)
     {
-      CylindricityCharacteristicDefinitionTypeValue.CylindricityCha_1047->printSelf(outFile);
+      CylindricityCharacteristicDefinitionTypeValue->CylindricityCha_1047->printSelf(outFile);
     }
 }
 
@@ -30912,7 +30920,7 @@ DiameterCharacteristicDefinitionTypeChoicePair::DiameterCharacteristicDefinition
 
 DiameterCharacteristicDefinitionTypeChoicePair::DiameterCharacteristicDefinitionTypeChoicePair(
  whichOne DiameterCharacteristicDefinitionTypeTypeIn,
- DiameterCharacteristicDefinitionTypeVal DiameterCharacteristicDefinitionTypeValueIn)
+ DiameterCharacteristicDefinitionTypeVal * DiameterCharacteristicDefinitionTypeValueIn)
 {
   DiameterCharacteristicDefinitionTypeType = DiameterCharacteristicDefinitionTypeTypeIn;
   DiameterCharacteristicDefinitionTypeValue = DiameterCharacteristicDefinitionTypeValueIn;
@@ -30922,11 +30930,12 @@ DiameterCharacteristicDefinitionTypeChoicePair::~DiameterCharacteristicDefinitio
 {
   #ifndef NODESTRUCT
   if (DiameterCharacteristicDefinitionTypeType == ToleranceE)
-    delete DiameterCharacteristicDefinitionTypeValue.Tolerance;
+    delete DiameterCharacteristicDefinitionTypeValue->Tolerance;
   else if (DiameterCharacteristicDefinitionTypeType == LimitsAndFitsSpecificationE)
-    delete DiameterCharacteristicDefinitionTypeValue.LimitsAndFitsSpecification;
+    delete DiameterCharacteristicDefinitionTypeValue->LimitsAndFitsSpecification;
   else if (DiameterCharacteristicDefinitionTypeType == NonToleranceE)
-    delete DiameterCharacteristicDefinitionTypeValue.NonTolerance;
+    delete DiameterCharacteristicDefinitionTypeValue->NonTolerance;
+  delete DiameterCharacteristicDefinitionTypeValue;
   #endif
 }
 
@@ -30936,7 +30945,7 @@ void DiameterCharacteristicDefinitionTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Tolerance");
-      DiameterCharacteristicDefinitionTypeValue.Tolerance->printSelf(outFile);
+      DiameterCharacteristicDefinitionTypeValue->Tolerance->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Tolerance>\n");
     }
@@ -30944,7 +30953,7 @@ void DiameterCharacteristicDefinitionTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<LimitsAndFitsSpecification");
-      DiameterCharacteristicDefinitionTypeValue.LimitsAndFitsSpecification->printSelf(outFile);
+      DiameterCharacteristicDefinitionTypeValue->LimitsAndFitsSpecification->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</LimitsAndFitsSpecification>\n");
     }
@@ -30952,7 +30961,7 @@ void DiameterCharacteristicDefinitionTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<NonTolerance");
-      DiameterCharacteristicDefinitionTypeValue.NonTolerance->printSelf(outFile);
+      DiameterCharacteristicDefinitionTypeValue->NonTolerance->printSelf(outFile);
       fprintf(outFile, "</NonTolerance>\n");
     }
 }
@@ -36658,7 +36667,7 @@ ExtentTypeChoicePair::ExtentTypeChoicePair() {}
 
 ExtentTypeChoicePair::ExtentTypeChoicePair(
  whichOne ExtentTypeTypeIn,
- ExtentTypeVal ExtentTypeValueIn)
+ ExtentTypeVal * ExtentTypeValueIn)
 {
   ExtentTypeType = ExtentTypeTypeIn;
   ExtentTypeValue = ExtentTypeValueIn;
@@ -36668,9 +36677,10 @@ ExtentTypeChoicePair::~ExtentTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (ExtentTypeType == ExtentEnumE)
-    delete ExtentTypeValue.ExtentEnum;
+    delete ExtentTypeValue->ExtentEnum;
   else if (ExtentTypeType == OtherExtentE)
-    delete ExtentTypeValue.OtherExtent;
+    delete ExtentTypeValue->OtherExtent;
+  delete ExtentTypeValue;
   #endif
 }
 
@@ -36680,14 +36690,14 @@ void ExtentTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ExtentEnum");
-      ExtentTypeValue.ExtentEnum->printSelf(outFile);
+      ExtentTypeValue->ExtentEnum->printSelf(outFile);
       fprintf(outFile, "</ExtentEnum>\n");
     }
   else if (ExtentTypeType == OtherExtentE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<OtherExtent");
-      ExtentTypeValue.OtherExtent->printSelf(outFile);
+      ExtentTypeValue->OtherExtent->printSelf(outFile);
       fprintf(outFile, "</OtherExtent>\n");
     }
 }
@@ -36733,7 +36743,7 @@ FilterTypeChoicePair::FilterTypeChoicePair() {}
 
 FilterTypeChoicePair::FilterTypeChoicePair(
  whichOne FilterTypeTypeIn,
- FilterTypeVal FilterTypeValueIn)
+ FilterTypeVal * FilterTypeValueIn)
 {
   FilterTypeType = FilterTypeTypeIn;
   FilterTypeValue = FilterTypeValueIn;
@@ -36743,9 +36753,10 @@ FilterTypeChoicePair::~FilterTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (FilterTypeType == SingleNestingIndexFilterE)
-    delete FilterTypeValue.SingleNestingIndexFilter;
+    delete FilterTypeValue->SingleNestingIndexFilter;
   else if (FilterTypeType == DualNestingIndexFilterE)
-    delete FilterTypeValue.DualNestingIndexFilter;
+    delete FilterTypeValue->DualNestingIndexFilter;
+  delete FilterTypeValue;
   #endif
 }
 
@@ -36755,7 +36766,7 @@ void FilterTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<SingleNestingIndexFilter");
-      FilterTypeValue.SingleNestingIndexFilter->printSelf(outFile);
+      FilterTypeValue->SingleNestingIndexFilter->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</SingleNestingIndexFilter>\n");
     }
@@ -36763,7 +36774,7 @@ void FilterTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<DualNestingIndexFilter");
-      FilterTypeValue.DualNestingIndexFilter->printSelf(outFile);
+      FilterTypeValue->DualNestingIndexFilter->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</DualNestingIndexFilter>\n");
     }
@@ -39353,7 +39364,7 @@ ForceCharacteristicDefinitionBaseTypeChoicePair::ForceCharacteristicDefinitionBa
 
 ForceCharacteristicDefinitionBaseTypeChoicePair::ForceCharacteristicDefinitionBaseTypeChoicePair(
  whichOne ForceCharacteristicDefinitionBaseTypeTypeIn,
- ForceCharacteristicDefinitionBaseTypeVal ForceCharacteristicDefinitionBaseTypeValueIn)
+ ForceCharacteristicDefinitionBaseTypeVal * ForceCharacteristicDefinitionBaseTypeValueIn)
 {
   ForceCharacteristicDefinitionBaseTypeType = ForceCharacteristicDefinitionBaseTypeTypeIn;
   ForceCharacteristicDefinitionBaseTypeValue = ForceCharacteristicDefinitionBaseTypeValueIn;
@@ -39363,9 +39374,10 @@ ForceCharacteristicDefinitionBaseTypeChoicePair::~ForceCharacteristicDefinitionB
 {
   #ifndef NODESTRUCT
   if (ForceCharacteristicDefinitionBaseTypeType == ToleranceE)
-    delete ForceCharacteristicDefinitionBaseTypeValue.Tolerance;
+    delete ForceCharacteristicDefinitionBaseTypeValue->Tolerance;
   else if (ForceCharacteristicDefinitionBaseTypeType == NonToleranceE)
-    delete ForceCharacteristicDefinitionBaseTypeValue.NonTolerance;
+    delete ForceCharacteristicDefinitionBaseTypeValue->NonTolerance;
+  delete ForceCharacteristicDefinitionBaseTypeValue;
   #endif
 }
 
@@ -39375,7 +39387,7 @@ void ForceCharacteristicDefinitionBaseTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Tolerance");
-      ForceCharacteristicDefinitionBaseTypeValue.Tolerance->printSelf(outFile);
+      ForceCharacteristicDefinitionBaseTypeValue->Tolerance->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Tolerance>\n");
     }
@@ -39383,7 +39395,7 @@ void ForceCharacteristicDefinitionBaseTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<NonTolerance");
-      ForceCharacteristicDefinitionBaseTypeValue.NonTolerance->printSelf(outFile);
+      ForceCharacteristicDefinitionBaseTypeValue->NonTolerance->printSelf(outFile);
       fprintf(outFile, "</NonTolerance>\n");
     }
 }
@@ -46285,7 +46297,7 @@ LinearCharacteristicDefinitionBaseTypeChoicePair::LinearCharacteristicDefinition
 
 LinearCharacteristicDefinitionBaseTypeChoicePair::LinearCharacteristicDefinitionBaseTypeChoicePair(
  whichOne LinearCharacteristicDefinitionBaseTypeTypeIn,
- LinearCharacteristicDefinitionBaseTypeVal LinearCharacteristicDefinitionBaseTypeValueIn)
+ LinearCharacteristicDefinitionBaseTypeVal * LinearCharacteristicDefinitionBaseTypeValueIn)
 {
   LinearCharacteristicDefinitionBaseTypeType = LinearCharacteristicDefinitionBaseTypeTypeIn;
   LinearCharacteristicDefinitionBaseTypeValue = LinearCharacteristicDefinitionBaseTypeValueIn;
@@ -46295,9 +46307,10 @@ LinearCharacteristicDefinitionBaseTypeChoicePair::~LinearCharacteristicDefinitio
 {
   #ifndef NODESTRUCT
   if (LinearCharacteristicDefinitionBaseTypeType == ToleranceE)
-    delete LinearCharacteristicDefinitionBaseTypeValue.Tolerance;
+    delete LinearCharacteristicDefinitionBaseTypeValue->Tolerance;
   else if (LinearCharacteristicDefinitionBaseTypeType == NonToleranceE)
-    delete LinearCharacteristicDefinitionBaseTypeValue.NonTolerance;
+    delete LinearCharacteristicDefinitionBaseTypeValue->NonTolerance;
+  delete LinearCharacteristicDefinitionBaseTypeValue;
   #endif
 }
 
@@ -46307,7 +46320,7 @@ void LinearCharacteristicDefinitionBaseTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Tolerance");
-      LinearCharacteristicDefinitionBaseTypeValue.Tolerance->printSelf(outFile);
+      LinearCharacteristicDefinitionBaseTypeValue->Tolerance->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Tolerance>\n");
     }
@@ -46315,7 +46328,7 @@ void LinearCharacteristicDefinitionBaseTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<NonTolerance");
-      LinearCharacteristicDefinitionBaseTypeValue.NonTolerance->printSelf(outFile);
+      LinearCharacteristicDefinitionBaseTypeValue->NonTolerance->printSelf(outFile);
       fprintf(outFile, "</NonTolerance>\n");
     }
 }
@@ -47459,7 +47472,7 @@ LinearCoordinateCharacteristicDefinitionTypeChoicePair::LinearCoordinateCharacte
 
 LinearCoordinateCharacteristicDefinitionTypeChoicePair::LinearCoordinateCharacteristicDefinitionTypeChoicePair(
  whichOne LinearCoordinateCharacteristicDefinitionTypeTypeIn,
- LinearCoordinateCharacteristicDefinitionTypeVal LinearCoordinateCharacteristicDefinitionTypeValueIn)
+ LinearCoordinateCharacteristicDefinitionTypeVal * LinearCoordinateCharacteristicDefinitionTypeValueIn)
 {
   LinearCoordinateCharacteristicDefinitionTypeType = LinearCoordinateCharacteristicDefinitionTypeTypeIn;
   LinearCoordinateCharacteristicDefinitionTypeValue = LinearCoordinateCharacteristicDefinitionTypeValueIn;
@@ -47469,9 +47482,10 @@ LinearCoordinateCharacteristicDefinitionTypeChoicePair::~LinearCoordinateCharact
 {
   #ifndef NODESTRUCT
   if (LinearCoordinateCharacteristicDefinitionTypeType == ToleranceE)
-    delete LinearCoordinateCharacteristicDefinitionTypeValue.Tolerance;
+    delete LinearCoordinateCharacteristicDefinitionTypeValue->Tolerance;
   else if (LinearCoordinateCharacteristicDefinitionTypeType == NonToleranceE)
-    delete LinearCoordinateCharacteristicDefinitionTypeValue.NonTolerance;
+    delete LinearCoordinateCharacteristicDefinitionTypeValue->NonTolerance;
+  delete LinearCoordinateCharacteristicDefinitionTypeValue;
   #endif
 }
 
@@ -47481,7 +47495,7 @@ void LinearCoordinateCharacteristicDefinitionTypeChoicePair::printSelf(FILE * ou
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Tolerance");
-      LinearCoordinateCharacteristicDefinitionTypeValue.Tolerance->printSelf(outFile);
+      LinearCoordinateCharacteristicDefinitionTypeValue->Tolerance->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Tolerance>\n");
     }
@@ -47489,7 +47503,7 @@ void LinearCoordinateCharacteristicDefinitionTypeChoicePair::printSelf(FILE * ou
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<NonTolerance");
-      LinearCoordinateCharacteristicDefinitionTypeValue.NonTolerance->printSelf(outFile);
+      LinearCoordinateCharacteristicDefinitionTypeValue->NonTolerance->printSelf(outFile);
       fprintf(outFile, "</NonTolerance>\n");
     }
 }
@@ -49637,7 +49651,7 @@ LocationOnDrawingTypeChoicePair::LocationOnDrawingTypeChoicePair() {}
 
 LocationOnDrawingTypeChoicePair::LocationOnDrawingTypeChoicePair(
  whichOne LocationOnDrawingTypeTypeIn,
- LocationOnDrawingTypeVal LocationOnDrawingTypeValueIn)
+ LocationOnDrawingTypeVal * LocationOnDrawingTypeValueIn)
 {
   LocationOnDrawingTypeType = LocationOnDrawingTypeTypeIn;
   LocationOnDrawingTypeValue = LocationOnDrawingTypeValueIn;
@@ -49647,11 +49661,12 @@ LocationOnDrawingTypeChoicePair::~LocationOnDrawingTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (LocationOnDrawingTypeType == LocationOnDrawi_1051E)
-    delete LocationOnDrawingTypeValue.LocationOnDrawi_1051;
+    delete LocationOnDrawingTypeValue->LocationOnDrawi_1051;
   else if (LocationOnDrawingTypeType == LocationOnDrawi_1052E)
-    delete LocationOnDrawingTypeValue.LocationOnDrawi_1052;
+    delete LocationOnDrawingTypeValue->LocationOnDrawi_1052;
   else if (LocationOnDrawingTypeType == LocationOnDrawi_1053E)
-    delete LocationOnDrawingTypeValue.LocationOnDrawi_1053;
+    delete LocationOnDrawingTypeValue->LocationOnDrawi_1053;
+  delete LocationOnDrawingTypeValue;
   #endif
 }
 
@@ -49659,15 +49674,15 @@ void LocationOnDrawingTypeChoicePair::printSelf(FILE * outFile)
 {
   if (LocationOnDrawingTypeType == LocationOnDrawi_1051E)
     {
-      LocationOnDrawingTypeValue.LocationOnDrawi_1051->printSelf(outFile);
+      LocationOnDrawingTypeValue->LocationOnDrawi_1051->printSelf(outFile);
     }
   else if (LocationOnDrawingTypeType == LocationOnDrawi_1052E)
     {
-      LocationOnDrawingTypeValue.LocationOnDrawi_1052->printSelf(outFile);
+      LocationOnDrawingTypeValue->LocationOnDrawi_1052->printSelf(outFile);
     }
   else if (LocationOnDrawingTypeType == LocationOnDrawi_1053E)
     {
-      LocationOnDrawingTypeValue.LocationOnDrawi_1053->printSelf(outFile);
+      LocationOnDrawingTypeValue->LocationOnDrawi_1053->printSelf(outFile);
     }
 }
 
@@ -50073,7 +50088,7 @@ MassCharacteristicDefinitionBaseTypeChoicePair::MassCharacteristicDefinitionBase
 
 MassCharacteristicDefinitionBaseTypeChoicePair::MassCharacteristicDefinitionBaseTypeChoicePair(
  whichOne MassCharacteristicDefinitionBaseTypeTypeIn,
- MassCharacteristicDefinitionBaseTypeVal MassCharacteristicDefinitionBaseTypeValueIn)
+ MassCharacteristicDefinitionBaseTypeVal * MassCharacteristicDefinitionBaseTypeValueIn)
 {
   MassCharacteristicDefinitionBaseTypeType = MassCharacteristicDefinitionBaseTypeTypeIn;
   MassCharacteristicDefinitionBaseTypeValue = MassCharacteristicDefinitionBaseTypeValueIn;
@@ -50083,9 +50098,10 @@ MassCharacteristicDefinitionBaseTypeChoicePair::~MassCharacteristicDefinitionBas
 {
   #ifndef NODESTRUCT
   if (MassCharacteristicDefinitionBaseTypeType == ToleranceE)
-    delete MassCharacteristicDefinitionBaseTypeValue.Tolerance;
+    delete MassCharacteristicDefinitionBaseTypeValue->Tolerance;
   else if (MassCharacteristicDefinitionBaseTypeType == NonToleranceE)
-    delete MassCharacteristicDefinitionBaseTypeValue.NonTolerance;
+    delete MassCharacteristicDefinitionBaseTypeValue->NonTolerance;
+  delete MassCharacteristicDefinitionBaseTypeValue;
   #endif
 }
 
@@ -50095,7 +50111,7 @@ void MassCharacteristicDefinitionBaseTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Tolerance");
-      MassCharacteristicDefinitionBaseTypeValue.Tolerance->printSelf(outFile);
+      MassCharacteristicDefinitionBaseTypeValue->Tolerance->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Tolerance>\n");
     }
@@ -50103,7 +50119,7 @@ void MassCharacteristicDefinitionBaseTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<NonTolerance");
-      MassCharacteristicDefinitionBaseTypeValue.NonTolerance->printSelf(outFile);
+      MassCharacteristicDefinitionBaseTypeValue->NonTolerance->printSelf(outFile);
       fprintf(outFile, "</NonTolerance>\n");
     }
 }
@@ -52691,7 +52707,7 @@ OrientationZoneShapeTypeChoicePair::OrientationZoneShapeTypeChoicePair() {}
 
 OrientationZoneShapeTypeChoicePair::OrientationZoneShapeTypeChoicePair(
  whichOne OrientationZoneShapeTypeTypeIn,
- OrientationZoneShapeTypeVal OrientationZoneShapeTypeValueIn)
+ OrientationZoneShapeTypeVal * OrientationZoneShapeTypeValueIn)
 {
   OrientationZoneShapeTypeType = OrientationZoneShapeTypeTypeIn;
   OrientationZoneShapeTypeValue = OrientationZoneShapeTypeValueIn;
@@ -52701,9 +52717,10 @@ OrientationZoneShapeTypeChoicePair::~OrientationZoneShapeTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (OrientationZoneShapeTypeType == DiametricalZoneE)
-    delete OrientationZoneShapeTypeValue.DiametricalZone;
+    delete OrientationZoneShapeTypeValue->DiametricalZone;
   else if (OrientationZoneShapeTypeType == PlanarZoneE)
-    delete OrientationZoneShapeTypeValue.PlanarZone;
+    delete OrientationZoneShapeTypeValue->PlanarZone;
+  delete OrientationZoneShapeTypeValue;
   #endif
 }
 
@@ -52713,7 +52730,7 @@ void OrientationZoneShapeTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<DiametricalZone");
-      OrientationZoneShapeTypeValue.DiametricalZone->printSelf(outFile);
+      OrientationZoneShapeTypeValue->DiametricalZone->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</DiametricalZone>\n");
     }
@@ -52721,7 +52738,7 @@ void OrientationZoneShapeTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<PlanarZone");
-      OrientationZoneShapeTypeValue.PlanarZone->printSelf(outFile);
+      OrientationZoneShapeTypeValue->PlanarZone->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</PlanarZone>\n");
     }
@@ -52768,7 +52785,7 @@ OriginReferenceTypeChoicePair::OriginReferenceTypeChoicePair() {}
 
 OriginReferenceTypeChoicePair::OriginReferenceTypeChoicePair(
  whichOne OriginReferenceTypeTypeIn,
- OriginReferenceTypeVal OriginReferenceTypeValueIn)
+ OriginReferenceTypeVal * OriginReferenceTypeValueIn)
 {
   OriginReferenceTypeType = OriginReferenceTypeTypeIn;
   OriginReferenceTypeValue = OriginReferenceTypeValueIn;
@@ -52778,9 +52795,10 @@ OriginReferenceTypeChoicePair::~OriginReferenceTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (OriginReferenceTypeType == OriginReference_1055E)
-    delete OriginReferenceTypeValue.OriginReference_1055;
+    delete OriginReferenceTypeValue->OriginReference_1055;
   else if (OriginReferenceTypeType == DatumDefinitionIdE)
-    delete OriginReferenceTypeValue.DatumDefinitionId;
+    delete OriginReferenceTypeValue->DatumDefinitionId;
+  delete OriginReferenceTypeValue;
   #endif
 }
 
@@ -52788,13 +52806,13 @@ void OriginReferenceTypeChoicePair::printSelf(FILE * outFile)
 {
   if (OriginReferenceTypeType == OriginReference_1055E)
     {
-      OriginReferenceTypeValue.OriginReference_1055->printSelf(outFile);
+      OriginReferenceTypeValue->OriginReference_1055->printSelf(outFile);
     }
   else if (OriginReferenceTypeType == DatumDefinitionIdE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<DatumDefinitionId");
-      OriginReferenceTypeValue.DatumDefinitionId->printSelf(outFile);
+      OriginReferenceTypeValue->DatumDefinitionId->printSelf(outFile);
       fprintf(outFile, "</DatumDefinitionId>\n");
     }
 }
@@ -59796,7 +59814,7 @@ PositionZoneShapeTypeChoicePair::PositionZoneShapeTypeChoicePair() {}
 
 PositionZoneShapeTypeChoicePair::PositionZoneShapeTypeChoicePair(
  whichOne PositionZoneShapeTypeTypeIn,
- PositionZoneShapeTypeVal PositionZoneShapeTypeValueIn)
+ PositionZoneShapeTypeVal * PositionZoneShapeTypeValueIn)
 {
   PositionZoneShapeTypeType = PositionZoneShapeTypeTypeIn;
   PositionZoneShapeTypeValue = PositionZoneShapeTypeValueIn;
@@ -59806,11 +59824,12 @@ PositionZoneShapeTypeChoicePair::~PositionZoneShapeTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (PositionZoneShapeTypeType == SphericalZoneE)
-    delete PositionZoneShapeTypeValue.SphericalZone;
+    delete PositionZoneShapeTypeValue->SphericalZone;
   else if (PositionZoneShapeTypeType == DiametricalZoneE)
-    delete PositionZoneShapeTypeValue.DiametricalZone;
+    delete PositionZoneShapeTypeValue->DiametricalZone;
   else if (PositionZoneShapeTypeType == NonDiametricalZoneE)
-    delete PositionZoneShapeTypeValue.NonDiametricalZone;
+    delete PositionZoneShapeTypeValue->NonDiametricalZone;
+  delete PositionZoneShapeTypeValue;
   #endif
 }
 
@@ -59820,7 +59839,7 @@ void PositionZoneShapeTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<SphericalZone");
-      PositionZoneShapeTypeValue.SphericalZone->printSelf(outFile);
+      PositionZoneShapeTypeValue->SphericalZone->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</SphericalZone>\n");
     }
@@ -59828,7 +59847,7 @@ void PositionZoneShapeTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<DiametricalZone");
-      PositionZoneShapeTypeValue.DiametricalZone->printSelf(outFile);
+      PositionZoneShapeTypeValue->DiametricalZone->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</DiametricalZone>\n");
     }
@@ -59836,7 +59855,7 @@ void PositionZoneShapeTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<NonDiametricalZone");
-      PositionZoneShapeTypeValue.NonDiametricalZone->printSelf(outFile);
+      PositionZoneShapeTypeValue->NonDiametricalZone->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</NonDiametricalZone>\n");
     }
@@ -60066,7 +60085,7 @@ PressureCharacteristicDefinitionBaseTypeChoicePair::PressureCharacteristicDefini
 
 PressureCharacteristicDefinitionBaseTypeChoicePair::PressureCharacteristicDefinitionBaseTypeChoicePair(
  whichOne PressureCharacteristicDefinitionBaseTypeTypeIn,
- PressureCharacteristicDefinitionBaseTypeVal PressureCharacteristicDefinitionBaseTypeValueIn)
+ PressureCharacteristicDefinitionBaseTypeVal * PressureCharacteristicDefinitionBaseTypeValueIn)
 {
   PressureCharacteristicDefinitionBaseTypeType = PressureCharacteristicDefinitionBaseTypeTypeIn;
   PressureCharacteristicDefinitionBaseTypeValue = PressureCharacteristicDefinitionBaseTypeValueIn;
@@ -60076,9 +60095,10 @@ PressureCharacteristicDefinitionBaseTypeChoicePair::~PressureCharacteristicDefin
 {
   #ifndef NODESTRUCT
   if (PressureCharacteristicDefinitionBaseTypeType == ToleranceE)
-    delete PressureCharacteristicDefinitionBaseTypeValue.Tolerance;
+    delete PressureCharacteristicDefinitionBaseTypeValue->Tolerance;
   else if (PressureCharacteristicDefinitionBaseTypeType == NonToleranceE)
-    delete PressureCharacteristicDefinitionBaseTypeValue.NonTolerance;
+    delete PressureCharacteristicDefinitionBaseTypeValue->NonTolerance;
+  delete PressureCharacteristicDefinitionBaseTypeValue;
   #endif
 }
 
@@ -60088,7 +60108,7 @@ void PressureCharacteristicDefinitionBaseTypeChoicePair::printSelf(FILE * outFil
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Tolerance");
-      PressureCharacteristicDefinitionBaseTypeValue.Tolerance->printSelf(outFile);
+      PressureCharacteristicDefinitionBaseTypeValue->Tolerance->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Tolerance>\n");
     }
@@ -60096,7 +60116,7 @@ void PressureCharacteristicDefinitionBaseTypeChoicePair::printSelf(FILE * outFil
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<NonTolerance");
-      PressureCharacteristicDefinitionBaseTypeValue.NonTolerance->printSelf(outFile);
+      PressureCharacteristicDefinitionBaseTypeValue->NonTolerance->printSelf(outFile);
       fprintf(outFile, "</NonTolerance>\n");
     }
 }
@@ -65796,7 +65816,7 @@ SpeedCharacteristicDefinitionBaseTypeChoicePair::SpeedCharacteristicDefinitionBa
 
 SpeedCharacteristicDefinitionBaseTypeChoicePair::SpeedCharacteristicDefinitionBaseTypeChoicePair(
  whichOne SpeedCharacteristicDefinitionBaseTypeTypeIn,
- SpeedCharacteristicDefinitionBaseTypeVal SpeedCharacteristicDefinitionBaseTypeValueIn)
+ SpeedCharacteristicDefinitionBaseTypeVal * SpeedCharacteristicDefinitionBaseTypeValueIn)
 {
   SpeedCharacteristicDefinitionBaseTypeType = SpeedCharacteristicDefinitionBaseTypeTypeIn;
   SpeedCharacteristicDefinitionBaseTypeValue = SpeedCharacteristicDefinitionBaseTypeValueIn;
@@ -65806,9 +65826,10 @@ SpeedCharacteristicDefinitionBaseTypeChoicePair::~SpeedCharacteristicDefinitionB
 {
   #ifndef NODESTRUCT
   if (SpeedCharacteristicDefinitionBaseTypeType == ToleranceE)
-    delete SpeedCharacteristicDefinitionBaseTypeValue.Tolerance;
+    delete SpeedCharacteristicDefinitionBaseTypeValue->Tolerance;
   else if (SpeedCharacteristicDefinitionBaseTypeType == NonToleranceE)
-    delete SpeedCharacteristicDefinitionBaseTypeValue.NonTolerance;
+    delete SpeedCharacteristicDefinitionBaseTypeValue->NonTolerance;
+  delete SpeedCharacteristicDefinitionBaseTypeValue;
   #endif
 }
 
@@ -65818,7 +65839,7 @@ void SpeedCharacteristicDefinitionBaseTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Tolerance");
-      SpeedCharacteristicDefinitionBaseTypeValue.Tolerance->printSelf(outFile);
+      SpeedCharacteristicDefinitionBaseTypeValue->Tolerance->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Tolerance>\n");
     }
@@ -65826,7 +65847,7 @@ void SpeedCharacteristicDefinitionBaseTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<NonTolerance");
-      SpeedCharacteristicDefinitionBaseTypeValue.NonTolerance->printSelf(outFile);
+      SpeedCharacteristicDefinitionBaseTypeValue->NonTolerance->printSelf(outFile);
       fprintf(outFile, "</NonTolerance>\n");
     }
 }
@@ -72481,7 +72502,7 @@ StraightnessZoneShapeTypeChoicePair::StraightnessZoneShapeTypeChoicePair() {}
 
 StraightnessZoneShapeTypeChoicePair::StraightnessZoneShapeTypeChoicePair(
  whichOne StraightnessZoneShapeTypeTypeIn,
- StraightnessZoneShapeTypeVal StraightnessZoneShapeTypeValueIn)
+ StraightnessZoneShapeTypeVal * StraightnessZoneShapeTypeValueIn)
 {
   StraightnessZoneShapeTypeType = StraightnessZoneShapeTypeTypeIn;
   StraightnessZoneShapeTypeValue = StraightnessZoneShapeTypeValueIn;
@@ -72491,9 +72512,10 @@ StraightnessZoneShapeTypeChoicePair::~StraightnessZoneShapeTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (StraightnessZoneShapeTypeType == DiametricalZoneE)
-    delete StraightnessZoneShapeTypeValue.DiametricalZone;
+    delete StraightnessZoneShapeTypeValue->DiametricalZone;
   else if (StraightnessZoneShapeTypeType == NonDiametricalZoneE)
-    delete StraightnessZoneShapeTypeValue.NonDiametricalZone;
+    delete StraightnessZoneShapeTypeValue->NonDiametricalZone;
+  delete StraightnessZoneShapeTypeValue;
   #endif
 }
 
@@ -72503,13 +72525,13 @@ void StraightnessZoneShapeTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<DiametricalZone");
-      StraightnessZoneShapeTypeValue.DiametricalZone->printSelf(outFile);
+      StraightnessZoneShapeTypeValue->DiametricalZone->printSelf(outFile);
     }
   else if (StraightnessZoneShapeTypeType == NonDiametricalZoneE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<NonDiametricalZone");
-      StraightnessZoneShapeTypeValue.NonDiametricalZone->printSelf(outFile);
+      StraightnessZoneShapeTypeValue->NonDiametricalZone->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</NonDiametricalZone>\n");
     }
@@ -77974,7 +77996,7 @@ TemperatureCharacteristicDefinitionBaseTypeChoicePair::TemperatureCharacteristic
 
 TemperatureCharacteristicDefinitionBaseTypeChoicePair::TemperatureCharacteristicDefinitionBaseTypeChoicePair(
  whichOne TemperatureCharacteristicDefinitionBaseTypeTypeIn,
- TemperatureCharacteristicDefinitionBaseTypeVal TemperatureCharacteristicDefinitionBaseTypeValueIn)
+ TemperatureCharacteristicDefinitionBaseTypeVal * TemperatureCharacteristicDefinitionBaseTypeValueIn)
 {
   TemperatureCharacteristicDefinitionBaseTypeType = TemperatureCharacteristicDefinitionBaseTypeTypeIn;
   TemperatureCharacteristicDefinitionBaseTypeValue = TemperatureCharacteristicDefinitionBaseTypeValueIn;
@@ -77984,9 +78006,10 @@ TemperatureCharacteristicDefinitionBaseTypeChoicePair::~TemperatureCharacteristi
 {
   #ifndef NODESTRUCT
   if (TemperatureCharacteristicDefinitionBaseTypeType == ToleranceE)
-    delete TemperatureCharacteristicDefinitionBaseTypeValue.Tolerance;
+    delete TemperatureCharacteristicDefinitionBaseTypeValue->Tolerance;
   else if (TemperatureCharacteristicDefinitionBaseTypeType == NonToleranceE)
-    delete TemperatureCharacteristicDefinitionBaseTypeValue.NonTolerance;
+    delete TemperatureCharacteristicDefinitionBaseTypeValue->NonTolerance;
+  delete TemperatureCharacteristicDefinitionBaseTypeValue;
   #endif
 }
 
@@ -77996,7 +78019,7 @@ void TemperatureCharacteristicDefinitionBaseTypeChoicePair::printSelf(FILE * out
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Tolerance");
-      TemperatureCharacteristicDefinitionBaseTypeValue.Tolerance->printSelf(outFile);
+      TemperatureCharacteristicDefinitionBaseTypeValue->Tolerance->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Tolerance>\n");
     }
@@ -78004,7 +78027,7 @@ void TemperatureCharacteristicDefinitionBaseTypeChoicePair::printSelf(FILE * out
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<NonTolerance");
-      TemperatureCharacteristicDefinitionBaseTypeValue.NonTolerance->printSelf(outFile);
+      TemperatureCharacteristicDefinitionBaseTypeValue->NonTolerance->printSelf(outFile);
       fprintf(outFile, "</NonTolerance>\n");
     }
 }
@@ -81249,7 +81272,7 @@ TimeCharacteristicDefinitionBaseTypeChoicePair::TimeCharacteristicDefinitionBase
 
 TimeCharacteristicDefinitionBaseTypeChoicePair::TimeCharacteristicDefinitionBaseTypeChoicePair(
  whichOne TimeCharacteristicDefinitionBaseTypeTypeIn,
- TimeCharacteristicDefinitionBaseTypeVal TimeCharacteristicDefinitionBaseTypeValueIn)
+ TimeCharacteristicDefinitionBaseTypeVal * TimeCharacteristicDefinitionBaseTypeValueIn)
 {
   TimeCharacteristicDefinitionBaseTypeType = TimeCharacteristicDefinitionBaseTypeTypeIn;
   TimeCharacteristicDefinitionBaseTypeValue = TimeCharacteristicDefinitionBaseTypeValueIn;
@@ -81259,9 +81282,10 @@ TimeCharacteristicDefinitionBaseTypeChoicePair::~TimeCharacteristicDefinitionBas
 {
   #ifndef NODESTRUCT
   if (TimeCharacteristicDefinitionBaseTypeType == ToleranceE)
-    delete TimeCharacteristicDefinitionBaseTypeValue.Tolerance;
+    delete TimeCharacteristicDefinitionBaseTypeValue->Tolerance;
   else if (TimeCharacteristicDefinitionBaseTypeType == NonToleranceE)
-    delete TimeCharacteristicDefinitionBaseTypeValue.NonTolerance;
+    delete TimeCharacteristicDefinitionBaseTypeValue->NonTolerance;
+  delete TimeCharacteristicDefinitionBaseTypeValue;
   #endif
 }
 
@@ -81271,7 +81295,7 @@ void TimeCharacteristicDefinitionBaseTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Tolerance");
-      TimeCharacteristicDefinitionBaseTypeValue.Tolerance->printSelf(outFile);
+      TimeCharacteristicDefinitionBaseTypeValue->Tolerance->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Tolerance>\n");
     }
@@ -81279,7 +81303,7 @@ void TimeCharacteristicDefinitionBaseTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<NonTolerance");
-      TimeCharacteristicDefinitionBaseTypeValue.NonTolerance->printSelf(outFile);
+      TimeCharacteristicDefinitionBaseTypeValue->NonTolerance->printSelf(outFile);
       fprintf(outFile, "</NonTolerance>\n");
     }
 }
@@ -82239,7 +82263,7 @@ ToleranceDefinitionsTypeChoicePair::ToleranceDefinitionsTypeChoicePair() {}
 
 ToleranceDefinitionsTypeChoicePair::ToleranceDefinitionsTypeChoicePair(
  whichOne ToleranceDefinitionsTypeTypeIn,
- ToleranceDefinitionsTypeVal ToleranceDefinitionsTypeValueIn)
+ ToleranceDefinitionsTypeVal * ToleranceDefinitionsTypeValueIn)
 {
   ToleranceDefinitionsTypeType = ToleranceDefinitionsTypeTypeIn;
   ToleranceDefinitionsTypeValue = ToleranceDefinitionsTypeValueIn;
@@ -82249,9 +82273,10 @@ ToleranceDefinitionsTypeChoicePair::~ToleranceDefinitionsTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (ToleranceDefinitionsTypeType == LinearToleranceE)
-    delete ToleranceDefinitionsTypeValue.LinearTolerance;
+    delete ToleranceDefinitionsTypeValue->LinearTolerance;
   else if (ToleranceDefinitionsTypeType == AngularToleranceE)
-    delete ToleranceDefinitionsTypeValue.AngularTolerance;
+    delete ToleranceDefinitionsTypeValue->AngularTolerance;
+  delete ToleranceDefinitionsTypeValue;
   #endif
 }
 
@@ -82261,7 +82286,7 @@ void ToleranceDefinitionsTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<LinearTolerance");
-      ToleranceDefinitionsTypeValue.LinearTolerance->printSelf(outFile);
+      ToleranceDefinitionsTypeValue->LinearTolerance->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</LinearTolerance>\n");
     }
@@ -82269,7 +82294,7 @@ void ToleranceDefinitionsTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<AngularTolerance");
-      ToleranceDefinitionsTypeValue.AngularTolerance->printSelf(outFile);
+      ToleranceDefinitionsTypeValue->AngularTolerance->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</AngularTolerance>\n");
     }
@@ -102411,7 +102436,7 @@ WeldFilletOneSideTypeChoicePair::WeldFilletOneSideTypeChoicePair() {}
 
 WeldFilletOneSideTypeChoicePair::WeldFilletOneSideTypeChoicePair(
  whichOne WeldFilletOneSideTypeTypeIn,
- WeldFilletOneSideTypeVal WeldFilletOneSideTypeValueIn)
+ WeldFilletOneSideTypeVal * WeldFilletOneSideTypeValueIn)
 {
   WeldFilletOneSideTypeType = WeldFilletOneSideTypeTypeIn;
   WeldFilletOneSideTypeValue = WeldFilletOneSideTypeValueIn;
@@ -102421,9 +102446,10 @@ WeldFilletOneSideTypeChoicePair::~WeldFilletOneSideTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (WeldFilletOneSideTypeType == EqualLegLengthE)
-    delete WeldFilletOneSideTypeValue.EqualLegLength;
+    delete WeldFilletOneSideTypeValue->EqualLegLength;
   else if (WeldFilletOneSideTypeType == UnEqualLegLengthE)
-    delete WeldFilletOneSideTypeValue.UnEqualLegLength;
+    delete WeldFilletOneSideTypeValue->UnEqualLegLength;
+  delete WeldFilletOneSideTypeValue;
   #endif
 }
 
@@ -102433,7 +102459,7 @@ void WeldFilletOneSideTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<EqualLegLength");
-      WeldFilletOneSideTypeValue.EqualLegLength->printSelf(outFile);
+      WeldFilletOneSideTypeValue->EqualLegLength->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</EqualLegLength>\n");
     }
@@ -102441,7 +102467,7 @@ void WeldFilletOneSideTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<UnEqualLegLength");
-      WeldFilletOneSideTypeValue.UnEqualLegLength->printSelf(outFile);
+      WeldFilletOneSideTypeValue->UnEqualLegLength->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</UnEqualLegLength>\n");
     }
@@ -105123,7 +105149,7 @@ WeldGrooveCharacteristicMeasurementTypeChoicePair::WeldGrooveCharacteristicMeasu
 
 WeldGrooveCharacteristicMeasurementTypeChoicePair::WeldGrooveCharacteristicMeasurementTypeChoicePair(
  whichOne WeldGrooveCharacteristicMeasurementTypeTypeIn,
- WeldGrooveCharacteristicMeasurementTypeVal WeldGrooveCharacteristicMeasurementTypeValueIn)
+ WeldGrooveCharacteristicMeasurementTypeVal * WeldGrooveCharacteristicMeasurementTypeValueIn)
 {
   WeldGrooveCharacteristicMeasurementTypeType = WeldGrooveCharacteristicMeasurementTypeTypeIn;
   WeldGrooveCharacteristicMeasurementTypeValue = WeldGrooveCharacteristicMeasurementTypeValueIn;
@@ -105133,9 +105159,10 @@ WeldGrooveCharacteristicMeasurementTypeChoicePair::~WeldGrooveCharacteristicMeas
 {
   #ifndef NODESTRUCT
   if (WeldGrooveCharacteristicMeasurementTypeType == OneSideE)
-    delete WeldGrooveCharacteristicMeasurementTypeValue.OneSide;
+    delete WeldGrooveCharacteristicMeasurementTypeValue->OneSide;
   else if (WeldGrooveCharacteristicMeasurementTypeType == BothSidesE)
-    delete WeldGrooveCharacteristicMeasurementTypeValue.BothSides;
+    delete WeldGrooveCharacteristicMeasurementTypeValue->BothSides;
+  delete WeldGrooveCharacteristicMeasurementTypeValue;
   #endif
 }
 
@@ -105145,7 +105172,7 @@ void WeldGrooveCharacteristicMeasurementTypeChoicePair::printSelf(FILE * outFile
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<OneSide");
-      WeldGrooveCharacteristicMeasurementTypeValue.OneSide->printSelf(outFile);
+      WeldGrooveCharacteristicMeasurementTypeValue->OneSide->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</OneSide>\n");
     }
@@ -105153,7 +105180,7 @@ void WeldGrooveCharacteristicMeasurementTypeChoicePair::printSelf(FILE * outFile
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<BothSides");
-      WeldGrooveCharacteristicMeasurementTypeValue.BothSides->printSelf(outFile);
+      WeldGrooveCharacteristicMeasurementTypeValue->BothSides->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</BothSides>\n");
     }
@@ -105473,7 +105500,7 @@ WeldGrooveCharacteristicNominalTypeChoicePair::WeldGrooveCharacteristicNominalTy
 
 WeldGrooveCharacteristicNominalTypeChoicePair::WeldGrooveCharacteristicNominalTypeChoicePair(
  whichOne WeldGrooveCharacteristicNominalTypeTypeIn,
- WeldGrooveCharacteristicNominalTypeVal WeldGrooveCharacteristicNominalTypeValueIn)
+ WeldGrooveCharacteristicNominalTypeVal * WeldGrooveCharacteristicNominalTypeValueIn)
 {
   WeldGrooveCharacteristicNominalTypeType = WeldGrooveCharacteristicNominalTypeTypeIn;
   WeldGrooveCharacteristicNominalTypeValue = WeldGrooveCharacteristicNominalTypeValueIn;
@@ -105483,9 +105510,10 @@ WeldGrooveCharacteristicNominalTypeChoicePair::~WeldGrooveCharacteristicNominalT
 {
   #ifndef NODESTRUCT
   if (WeldGrooveCharacteristicNominalTypeType == OneSideE)
-    delete WeldGrooveCharacteristicNominalTypeValue.OneSide;
+    delete WeldGrooveCharacteristicNominalTypeValue->OneSide;
   else if (WeldGrooveCharacteristicNominalTypeType == BothSidesE)
-    delete WeldGrooveCharacteristicNominalTypeValue.BothSides;
+    delete WeldGrooveCharacteristicNominalTypeValue->BothSides;
+  delete WeldGrooveCharacteristicNominalTypeValue;
   #endif
 }
 
@@ -105495,7 +105523,7 @@ void WeldGrooveCharacteristicNominalTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<OneSide");
-      WeldGrooveCharacteristicNominalTypeValue.OneSide->printSelf(outFile);
+      WeldGrooveCharacteristicNominalTypeValue->OneSide->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</OneSide>\n");
     }
@@ -105503,7 +105531,7 @@ void WeldGrooveCharacteristicNominalTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<BothSides");
-      WeldGrooveCharacteristicNominalTypeValue.BothSides->printSelf(outFile);
+      WeldGrooveCharacteristicNominalTypeValue->BothSides->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</BothSides>\n");
     }
@@ -119771,7 +119799,7 @@ CircularityChar_1042_TypeChoicePair::CircularityChar_1042_TypeChoicePair() {}
 
 CircularityChar_1042_TypeChoicePair::CircularityChar_1042_TypeChoicePair(
  whichOne CircularityChar_1042_TypeTypeIn,
- CircularityChar_1042_TypeVal CircularityChar_1042_TypeValueIn)
+ CircularityChar_1042_TypeVal * CircularityChar_1042_TypeValueIn)
 {
   CircularityChar_1042_TypeType = CircularityChar_1042_TypeTypeIn;
   CircularityChar_1042_TypeValue = CircularityChar_1042_TypeValueIn;
@@ -119781,9 +119809,10 @@ CircularityChar_1042_TypeChoicePair::~CircularityChar_1042_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (CircularityChar_1042_TypeType == ToleranceZonePerUnitAngleE)
-    delete CircularityChar_1042_TypeValue.ToleranceZonePerUnitAngle;
+    delete CircularityChar_1042_TypeValue->ToleranceZonePerUnitAngle;
   else if (CircularityChar_1042_TypeType == ToleranceZonePerUnitArcLengthE)
-    delete CircularityChar_1042_TypeValue.ToleranceZonePerUnitArcLength;
+    delete CircularityChar_1042_TypeValue->ToleranceZonePerUnitArcLength;
+  delete CircularityChar_1042_TypeValue;
   #endif
 }
 
@@ -119793,7 +119822,7 @@ void CircularityChar_1042_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ToleranceZonePerUnitAngle");
-      CircularityChar_1042_TypeValue.ToleranceZonePerUnitAngle->printSelf(outFile);
+      CircularityChar_1042_TypeValue->ToleranceZonePerUnitAngle->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</ToleranceZonePerUnitAngle>\n");
     }
@@ -119801,7 +119830,7 @@ void CircularityChar_1042_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ToleranceZonePerUnitArcLength");
-      CircularityChar_1042_TypeValue.ToleranceZonePerUnitArcLength->printSelf(outFile);
+      CircularityChar_1042_TypeValue->ToleranceZonePerUnitArcLength->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</ToleranceZonePerUnitArcLength>\n");
     }
@@ -119899,7 +119928,7 @@ CriticalityType_1044_TypeChoicePair::CriticalityType_1044_TypeChoicePair() {}
 
 CriticalityType_1044_TypeChoicePair::CriticalityType_1044_TypeChoicePair(
  whichOne CriticalityType_1044_TypeTypeIn,
- CriticalityType_1044_TypeVal CriticalityType_1044_TypeValueIn)
+ CriticalityType_1044_TypeVal * CriticalityType_1044_TypeValueIn)
 {
   CriticalityType_1044_TypeType = CriticalityType_1044_TypeTypeIn;
   CriticalityType_1044_TypeValue = CriticalityType_1044_TypeValueIn;
@@ -119909,9 +119938,10 @@ CriticalityType_1044_TypeChoicePair::~CriticalityType_1044_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (CriticalityType_1044_TypeType == LevelEnumE)
-    delete CriticalityType_1044_TypeValue.LevelEnum;
+    delete CriticalityType_1044_TypeValue->LevelEnum;
   else if (CriticalityType_1044_TypeType == OtherLevelE)
-    delete CriticalityType_1044_TypeValue.OtherLevel;
+    delete CriticalityType_1044_TypeValue->OtherLevel;
+  delete CriticalityType_1044_TypeValue;
   #endif
 }
 
@@ -119921,14 +119951,14 @@ void CriticalityType_1044_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<LevelEnum");
-      CriticalityType_1044_TypeValue.LevelEnum->printSelf(outFile);
+      CriticalityType_1044_TypeValue->LevelEnum->printSelf(outFile);
       fprintf(outFile, "</LevelEnum>\n");
     }
   else if (CriticalityType_1044_TypeType == OtherLevelE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<OtherLevel");
-      CriticalityType_1044_TypeValue.OtherLevel->printSelf(outFile);
+      CriticalityType_1044_TypeValue->OtherLevel->printSelf(outFile);
       fprintf(outFile, "</OtherLevel>\n");
     }
 }
@@ -119974,7 +120004,7 @@ CriticalityType_1045_TypeChoicePair::CriticalityType_1045_TypeChoicePair() {}
 
 CriticalityType_1045_TypeChoicePair::CriticalityType_1045_TypeChoicePair(
  whichOne CriticalityType_1045_TypeTypeIn,
- CriticalityType_1045_TypeVal CriticalityType_1045_TypeValueIn)
+ CriticalityType_1045_TypeVal * CriticalityType_1045_TypeValueIn)
 {
   CriticalityType_1045_TypeType = CriticalityType_1045_TypeTypeIn;
   CriticalityType_1045_TypeValue = CriticalityType_1045_TypeValueIn;
@@ -119984,9 +120014,10 @@ CriticalityType_1045_TypeChoicePair::~CriticalityType_1045_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (CriticalityType_1045_TypeType == AreaEnumE)
-    delete CriticalityType_1045_TypeValue.AreaEnum;
+    delete CriticalityType_1045_TypeValue->AreaEnum;
   else if (CriticalityType_1045_TypeType == OtherAreaE)
-    delete CriticalityType_1045_TypeValue.OtherArea;
+    delete CriticalityType_1045_TypeValue->OtherArea;
+  delete CriticalityType_1045_TypeValue;
   #endif
 }
 
@@ -119996,14 +120027,14 @@ void CriticalityType_1045_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<AreaEnum");
-      CriticalityType_1045_TypeValue.AreaEnum->printSelf(outFile);
+      CriticalityType_1045_TypeValue->AreaEnum->printSelf(outFile);
       fprintf(outFile, "</AreaEnum>\n");
     }
   else if (CriticalityType_1045_TypeType == OtherAreaE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<OtherArea");
-      CriticalityType_1045_TypeValue.OtherArea->printSelf(outFile);
+      CriticalityType_1045_TypeValue->OtherArea->printSelf(outFile);
       fprintf(outFile, "</OtherArea>\n");
     }
 }
@@ -120115,7 +120146,7 @@ CylindricityCha_1047_TypeChoicePair::CylindricityCha_1047_TypeChoicePair() {}
 
 CylindricityCha_1047_TypeChoicePair::CylindricityCha_1047_TypeChoicePair(
  whichOne CylindricityCha_1047_TypeTypeIn,
- CylindricityCha_1047_TypeVal CylindricityCha_1047_TypeValueIn)
+ CylindricityCha_1047_TypeVal * CylindricityCha_1047_TypeValueIn)
 {
   CylindricityCha_1047_TypeType = CylindricityCha_1047_TypeTypeIn;
   CylindricityCha_1047_TypeValue = CylindricityCha_1047_TypeValueIn;
@@ -120125,15 +120156,16 @@ CylindricityCha_1047_TypeChoicePair::~CylindricityCha_1047_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (CylindricityCha_1047_TypeType == ToleranceZonePerUnitAngleE)
-    delete CylindricityCha_1047_TypeValue.ToleranceZonePerUnitAngle;
+    delete CylindricityCha_1047_TypeValue->ToleranceZonePerUnitAngle;
   else if (CylindricityCha_1047_TypeType == ToleranceZonePerUnitArcLengthE)
-    delete CylindricityCha_1047_TypeValue.ToleranceZonePerUnitArcLength;
+    delete CylindricityCha_1047_TypeValue->ToleranceZonePerUnitArcLength;
   else if (CylindricityCha_1047_TypeType == ToleranceZonePerUnitPolarAreaE)
-    delete CylindricityCha_1047_TypeValue.ToleranceZonePerUnitPolarArea;
+    delete CylindricityCha_1047_TypeValue->ToleranceZonePerUnitPolarArea;
   else if (CylindricityCha_1047_TypeType == ToleranceZonePerUnitAreaE)
-    delete CylindricityCha_1047_TypeValue.ToleranceZonePerUnitArea;
+    delete CylindricityCha_1047_TypeValue->ToleranceZonePerUnitArea;
   else if (CylindricityCha_1047_TypeType == ToleranceZonePerUnitLengthE)
-    delete CylindricityCha_1047_TypeValue.ToleranceZonePerUnitLength;
+    delete CylindricityCha_1047_TypeValue->ToleranceZonePerUnitLength;
+  delete CylindricityCha_1047_TypeValue;
   #endif
 }
 
@@ -120143,7 +120175,7 @@ void CylindricityCha_1047_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ToleranceZonePerUnitAngle");
-      CylindricityCha_1047_TypeValue.ToleranceZonePerUnitAngle->printSelf(outFile);
+      CylindricityCha_1047_TypeValue->ToleranceZonePerUnitAngle->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</ToleranceZonePerUnitAngle>\n");
     }
@@ -120151,7 +120183,7 @@ void CylindricityCha_1047_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ToleranceZonePerUnitArcLength");
-      CylindricityCha_1047_TypeValue.ToleranceZonePerUnitArcLength->printSelf(outFile);
+      CylindricityCha_1047_TypeValue->ToleranceZonePerUnitArcLength->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</ToleranceZonePerUnitArcLength>\n");
     }
@@ -120159,7 +120191,7 @@ void CylindricityCha_1047_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ToleranceZonePerUnitPolarArea");
-      CylindricityCha_1047_TypeValue.ToleranceZonePerUnitPolarArea->printSelf(outFile);
+      CylindricityCha_1047_TypeValue->ToleranceZonePerUnitPolarArea->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</ToleranceZonePerUnitPolarArea>\n");
     }
@@ -120167,7 +120199,7 @@ void CylindricityCha_1047_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ToleranceZonePerUnitArea");
-      CylindricityCha_1047_TypeValue.ToleranceZonePerUnitArea->printSelf(outFile);
+      CylindricityCha_1047_TypeValue->ToleranceZonePerUnitArea->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</ToleranceZonePerUnitArea>\n");
     }
@@ -120175,7 +120207,7 @@ void CylindricityCha_1047_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ToleranceZonePerUnitLength");
-      CylindricityCha_1047_TypeValue.ToleranceZonePerUnitLength->printSelf(outFile);
+      CylindricityCha_1047_TypeValue->ToleranceZonePerUnitLength->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</ToleranceZonePerUnitLength>\n");
     }
@@ -120273,7 +120305,7 @@ FlatnessCharact_1049_TypeChoicePair::FlatnessCharact_1049_TypeChoicePair() {}
 
 FlatnessCharact_1049_TypeChoicePair::FlatnessCharact_1049_TypeChoicePair(
  whichOne FlatnessCharact_1049_TypeTypeIn,
- FlatnessCharact_1049_TypeVal FlatnessCharact_1049_TypeValueIn)
+ FlatnessCharact_1049_TypeVal * FlatnessCharact_1049_TypeValueIn)
 {
   FlatnessCharact_1049_TypeType = FlatnessCharact_1049_TypeTypeIn;
   FlatnessCharact_1049_TypeValue = FlatnessCharact_1049_TypeValueIn;
@@ -120283,9 +120315,10 @@ FlatnessCharact_1049_TypeChoicePair::~FlatnessCharact_1049_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (FlatnessCharact_1049_TypeType == FlatnessCharact_1066E)
-    delete FlatnessCharact_1049_TypeValue.FlatnessCharact_1066;
+    delete FlatnessCharact_1049_TypeValue->FlatnessCharact_1066;
   else if (FlatnessCharact_1049_TypeType == FlatnessCharact_1067E)
-    delete FlatnessCharact_1049_TypeValue.FlatnessCharact_1067;
+    delete FlatnessCharact_1049_TypeValue->FlatnessCharact_1067;
+  delete FlatnessCharact_1049_TypeValue;
   #endif
 }
 
@@ -120293,11 +120326,11 @@ void FlatnessCharact_1049_TypeChoicePair::printSelf(FILE * outFile)
 {
   if (FlatnessCharact_1049_TypeType == FlatnessCharact_1066E)
     {
-      FlatnessCharact_1049_TypeValue.FlatnessCharact_1066->printSelf(outFile);
+      FlatnessCharact_1049_TypeValue->FlatnessCharact_1066->printSelf(outFile);
     }
   else if (FlatnessCharact_1049_TypeType == FlatnessCharact_1067E)
     {
-      FlatnessCharact_1049_TypeValue.FlatnessCharact_1067->printSelf(outFile);
+      FlatnessCharact_1049_TypeValue->FlatnessCharact_1067->printSelf(outFile);
     }
 }
 
@@ -120342,7 +120375,7 @@ GeometricCharac_1050_TypeChoicePair::GeometricCharac_1050_TypeChoicePair() {}
 
 GeometricCharac_1050_TypeChoicePair::GeometricCharac_1050_TypeChoicePair(
  whichOne GeometricCharac_1050_TypeTypeIn,
- GeometricCharac_1050_TypeVal GeometricCharac_1050_TypeValueIn)
+ GeometricCharac_1050_TypeVal * GeometricCharac_1050_TypeValueIn)
 {
   GeometricCharac_1050_TypeType = GeometricCharac_1050_TypeTypeIn;
   GeometricCharac_1050_TypeValue = GeometricCharac_1050_TypeValueIn;
@@ -120352,9 +120385,10 @@ GeometricCharac_1050_TypeChoicePair::~GeometricCharac_1050_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (GeometricCharac_1050_TypeType == AssociatedTolerancedFeatureSpecificationElementE)
-    delete GeometricCharac_1050_TypeValue.AssociatedTolerancedFeatureSpecificationElement;
+    delete GeometricCharac_1050_TypeValue->AssociatedTolerancedFeatureSpecificationElement;
   else if (GeometricCharac_1050_TypeType == ReferenceFeatureAssociationSpecificationElementE)
-    delete GeometricCharac_1050_TypeValue.ReferenceFeatureAssociationSpecificationElement;
+    delete GeometricCharac_1050_TypeValue->ReferenceFeatureAssociationSpecificationElement;
+  delete GeometricCharac_1050_TypeValue;
   #endif
 }
 
@@ -120364,14 +120398,14 @@ void GeometricCharac_1050_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<AssociatedTolerancedFeatureSpecificationElement");
-      GeometricCharac_1050_TypeValue.AssociatedTolerancedFeatureSpecificationElement->printSelf(outFile);
+      GeometricCharac_1050_TypeValue->AssociatedTolerancedFeatureSpecificationElement->printSelf(outFile);
       fprintf(outFile, "</AssociatedTolerancedFeatureSpecificationElement>\n");
     }
   else if (GeometricCharac_1050_TypeType == ReferenceFeatureAssociationSpecificationElementE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ReferenceFeatureAssociationSpecificationElement");
-      GeometricCharac_1050_TypeValue.ReferenceFeatureAssociationSpecificationElement->printSelf(outFile);
+      GeometricCharac_1050_TypeValue->ReferenceFeatureAssociationSpecificationElement->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</ReferenceFeatureAssociationSpecificationElement>\n");
     }
@@ -120580,7 +120614,7 @@ OrientationChar_1054_TypeChoicePair::OrientationChar_1054_TypeChoicePair() {}
 
 OrientationChar_1054_TypeChoicePair::OrientationChar_1054_TypeChoicePair(
  whichOne OrientationChar_1054_TypeTypeIn,
- OrientationChar_1054_TypeVal OrientationChar_1054_TypeValueIn)
+ OrientationChar_1054_TypeVal * OrientationChar_1054_TypeValueIn)
 {
   OrientationChar_1054_TypeType = OrientationChar_1054_TypeTypeIn;
   OrientationChar_1054_TypeValue = OrientationChar_1054_TypeValueIn;
@@ -120590,9 +120624,10 @@ OrientationChar_1054_TypeChoicePair::~OrientationChar_1054_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (OrientationChar_1054_TypeType == EachRadialElementE)
-    delete OrientationChar_1054_TypeValue.EachRadialElement;
+    delete OrientationChar_1054_TypeValue->EachRadialElement;
   else if (OrientationChar_1054_TypeType == EachElementE)
-    delete OrientationChar_1054_TypeValue.EachElement;
+    delete OrientationChar_1054_TypeValue->EachElement;
+  delete OrientationChar_1054_TypeValue;
   #endif
 }
 
@@ -120602,14 +120637,14 @@ void OrientationChar_1054_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<EachRadialElement");
-      OrientationChar_1054_TypeValue.EachRadialElement->printSelf(outFile);
+      OrientationChar_1054_TypeValue->EachRadialElement->printSelf(outFile);
       fprintf(outFile, "</EachRadialElement>\n");
     }
   else if (OrientationChar_1054_TypeType == EachElementE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<EachElement");
-      OrientationChar_1054_TypeValue.EachElement->printSelf(outFile);
+      OrientationChar_1054_TypeValue->EachElement->printSelf(outFile);
       fprintf(outFile, "</EachElement>\n");
     }
 }
@@ -120707,7 +120742,7 @@ ProfileCharacte_1056_TypeChoicePair::ProfileCharacte_1056_TypeChoicePair() {}
 
 ProfileCharacte_1056_TypeChoicePair::ProfileCharacte_1056_TypeChoicePair(
  whichOne ProfileCharacte_1056_TypeTypeIn,
- ProfileCharacte_1056_TypeVal ProfileCharacte_1056_TypeValueIn)
+ ProfileCharacte_1056_TypeVal * ProfileCharacte_1056_TypeValueIn)
 {
   ProfileCharacte_1056_TypeType = ProfileCharacte_1056_TypeTypeIn;
   ProfileCharacte_1056_TypeValue = ProfileCharacte_1056_TypeValueIn;
@@ -120717,9 +120752,10 @@ ProfileCharacte_1056_TypeChoicePair::~ProfileCharacte_1056_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (ProfileCharacte_1056_TypeType == OuterDispositionE)
-    delete ProfileCharacte_1056_TypeValue.OuterDisposition;
+    delete ProfileCharacte_1056_TypeValue->OuterDisposition;
   else if (ProfileCharacte_1056_TypeType == UnequallyDisposedZoneE)
-    delete ProfileCharacte_1056_TypeValue.UnequallyDisposedZone;
+    delete ProfileCharacte_1056_TypeValue->UnequallyDisposedZone;
+  delete ProfileCharacte_1056_TypeValue;
   #endif
 }
 
@@ -120729,14 +120765,14 @@ void ProfileCharacte_1056_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<OuterDisposition");
-      ProfileCharacte_1056_TypeValue.OuterDisposition->printSelf(outFile);
+      ProfileCharacte_1056_TypeValue->OuterDisposition->printSelf(outFile);
       fprintf(outFile, "</OuterDisposition>\n");
     }
   else if (ProfileCharacte_1056_TypeType == UnequallyDisposedZoneE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<UnequallyDisposedZone");
-      ProfileCharacte_1056_TypeValue.UnequallyDisposedZone->printSelf(outFile);
+      ProfileCharacte_1056_TypeValue->UnequallyDisposedZone->printSelf(outFile);
       fprintf(outFile, "</UnequallyDisposedZone>\n");
     }
 }
@@ -120832,7 +120868,7 @@ StraightnessCha_1058_TypeChoicePair::StraightnessCha_1058_TypeChoicePair() {}
 
 StraightnessCha_1058_TypeChoicePair::StraightnessCha_1058_TypeChoicePair(
  whichOne StraightnessCha_1058_TypeTypeIn,
- StraightnessCha_1058_TypeVal StraightnessCha_1058_TypeValueIn)
+ StraightnessCha_1058_TypeVal * StraightnessCha_1058_TypeValueIn)
 {
   StraightnessCha_1058_TypeType = StraightnessCha_1058_TypeTypeIn;
   StraightnessCha_1058_TypeValue = StraightnessCha_1058_TypeValueIn;
@@ -120842,9 +120878,10 @@ StraightnessCha_1058_TypeChoicePair::~StraightnessCha_1058_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (StraightnessCha_1058_TypeType == StraightnessCha_1068E)
-    delete StraightnessCha_1058_TypeValue.StraightnessCha_1068;
+    delete StraightnessCha_1058_TypeValue->StraightnessCha_1068;
   else if (StraightnessCha_1058_TypeType == StraightnessCha_1069E)
-    delete StraightnessCha_1058_TypeValue.StraightnessCha_1069;
+    delete StraightnessCha_1058_TypeValue->StraightnessCha_1069;
+  delete StraightnessCha_1058_TypeValue;
   #endif
 }
 
@@ -120852,11 +120889,11 @@ void StraightnessCha_1058_TypeChoicePair::printSelf(FILE * outFile)
 {
   if (StraightnessCha_1058_TypeType == StraightnessCha_1068E)
     {
-      StraightnessCha_1058_TypeValue.StraightnessCha_1068->printSelf(outFile);
+      StraightnessCha_1058_TypeValue->StraightnessCha_1068->printSelf(outFile);
     }
   else if (StraightnessCha_1058_TypeType == StraightnessCha_1069E)
     {
-      StraightnessCha_1058_TypeValue.StraightnessCha_1069->printSelf(outFile);
+      StraightnessCha_1058_TypeValue->StraightnessCha_1069->printSelf(outFile);
     }
 }
 
@@ -120901,7 +120938,7 @@ SurfaceProfileN_1059_TypeChoicePair::SurfaceProfileN_1059_TypeChoicePair() {}
 
 SurfaceProfileN_1059_TypeChoicePair::SurfaceProfileN_1059_TypeChoicePair(
  whichOne SurfaceProfileN_1059_TypeTypeIn,
- SurfaceProfileN_1059_TypeVal SurfaceProfileN_1059_TypeValueIn)
+ SurfaceProfileN_1059_TypeVal * SurfaceProfileN_1059_TypeValueIn)
 {
   SurfaceProfileN_1059_TypeType = SurfaceProfileN_1059_TypeTypeIn;
   SurfaceProfileN_1059_TypeValue = SurfaceProfileN_1059_TypeValueIn;
@@ -120911,9 +120948,10 @@ SurfaceProfileN_1059_TypeChoicePair::~SurfaceProfileN_1059_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (SurfaceProfileN_1059_TypeType == ToPointOuterDispositionE)
-    delete SurfaceProfileN_1059_TypeValue.ToPointOuterDisposition;
+    delete SurfaceProfileN_1059_TypeValue->ToPointOuterDisposition;
   else if (SurfaceProfileN_1059_TypeType == ToPointUnequallyDisposedZoneE)
-    delete SurfaceProfileN_1059_TypeValue.ToPointUnequallyDisposedZone;
+    delete SurfaceProfileN_1059_TypeValue->ToPointUnequallyDisposedZone;
+  delete SurfaceProfileN_1059_TypeValue;
   #endif
 }
 
@@ -120923,14 +120961,14 @@ void SurfaceProfileN_1059_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ToPointOuterDisposition");
-      SurfaceProfileN_1059_TypeValue.ToPointOuterDisposition->printSelf(outFile);
+      SurfaceProfileN_1059_TypeValue->ToPointOuterDisposition->printSelf(outFile);
       fprintf(outFile, "</ToPointOuterDisposition>\n");
     }
   else if (SurfaceProfileN_1059_TypeType == ToPointUnequallyDisposedZoneE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ToPointUnequallyDisposedZone");
-      SurfaceProfileN_1059_TypeValue.ToPointUnequallyDisposedZone->printSelf(outFile);
+      SurfaceProfileN_1059_TypeValue->ToPointUnequallyDisposedZone->printSelf(outFile);
       fprintf(outFile, "</ToPointUnequallyDisposedZone>\n");
     }
 }
@@ -120973,7 +121011,7 @@ UserDefinedUnit_1060_TypeChoicePair::UserDefinedUnit_1060_TypeChoicePair() {}
 
 UserDefinedUnit_1060_TypeChoicePair::UserDefinedUnit_1060_TypeChoicePair(
  whichOne UserDefinedUnit_1060_TypeTypeIn,
- UserDefinedUnit_1060_TypeVal UserDefinedUnit_1060_TypeValueIn)
+ UserDefinedUnit_1060_TypeVal * UserDefinedUnit_1060_TypeValueIn)
 {
   UserDefinedUnit_1060_TypeType = UserDefinedUnit_1060_TypeTypeIn;
   UserDefinedUnit_1060_TypeValue = UserDefinedUnit_1060_TypeValueIn;
@@ -120983,9 +121021,10 @@ UserDefinedUnit_1060_TypeChoicePair::~UserDefinedUnit_1060_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (UserDefinedUnit_1060_TypeType == UserDefinedUnit_1070E)
-    delete UserDefinedUnit_1060_TypeValue.UserDefinedUnit_1070;
+    delete UserDefinedUnit_1060_TypeValue->UserDefinedUnit_1070;
   else if (UserDefinedUnit_1060_TypeType == MinValueE)
-    delete UserDefinedUnit_1060_TypeValue.MinValue;
+    delete UserDefinedUnit_1060_TypeValue->MinValue;
+  delete UserDefinedUnit_1060_TypeValue;
   #endif
 }
 
@@ -120993,13 +121032,13 @@ void UserDefinedUnit_1060_TypeChoicePair::printSelf(FILE * outFile)
 {
   if (UserDefinedUnit_1060_TypeType == UserDefinedUnit_1070E)
     {
-      UserDefinedUnit_1060_TypeValue.UserDefinedUnit_1070->printSelf(outFile);
+      UserDefinedUnit_1060_TypeValue->UserDefinedUnit_1070->printSelf(outFile);
     }
   else if (UserDefinedUnit_1060_TypeType == MinValueE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinValue");
-      UserDefinedUnit_1060_TypeValue.MinValue->printSelf(outFile);
+      UserDefinedUnit_1060_TypeValue->MinValue->printSelf(outFile);
       fprintf(outFile, "</MinValue>\n");
     }
 }
@@ -121045,7 +121084,7 @@ WeldFilletChara_1061_TypeChoicePair::WeldFilletChara_1061_TypeChoicePair() {}
 
 WeldFilletChara_1061_TypeChoicePair::WeldFilletChara_1061_TypeChoicePair(
  whichOne WeldFilletChara_1061_TypeTypeIn,
- WeldFilletChara_1061_TypeVal WeldFilletChara_1061_TypeValueIn)
+ WeldFilletChara_1061_TypeVal * WeldFilletChara_1061_TypeValueIn)
 {
   WeldFilletChara_1061_TypeType = WeldFilletChara_1061_TypeTypeIn;
   WeldFilletChara_1061_TypeValue = WeldFilletChara_1061_TypeValueIn;
@@ -121055,9 +121094,10 @@ WeldFilletChara_1061_TypeChoicePair::~WeldFilletChara_1061_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (WeldFilletChara_1061_TypeType == BothSidesE)
-    delete WeldFilletChara_1061_TypeValue.BothSides;
+    delete WeldFilletChara_1061_TypeValue->BothSides;
   else if (WeldFilletChara_1061_TypeType == OneSideE)
-    delete WeldFilletChara_1061_TypeValue.OneSide;
+    delete WeldFilletChara_1061_TypeValue->OneSide;
+  delete WeldFilletChara_1061_TypeValue;
   #endif
 }
 
@@ -121067,7 +121107,7 @@ void WeldFilletChara_1061_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<BothSides");
-      WeldFilletChara_1061_TypeValue.BothSides->printSelf(outFile);
+      WeldFilletChara_1061_TypeValue->BothSides->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</BothSides>\n");
     }
@@ -121075,7 +121115,7 @@ void WeldFilletChara_1061_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<OneSide");
-      WeldFilletChara_1061_TypeValue.OneSide->printSelf(outFile);
+      WeldFilletChara_1061_TypeValue->OneSide->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</OneSide>\n");
     }
@@ -121122,7 +121162,7 @@ WeldFilletChara_1062_TypeChoicePair::WeldFilletChara_1062_TypeChoicePair() {}
 
 WeldFilletChara_1062_TypeChoicePair::WeldFilletChara_1062_TypeChoicePair(
  whichOne WeldFilletChara_1062_TypeTypeIn,
- WeldFilletChara_1062_TypeVal WeldFilletChara_1062_TypeValueIn)
+ WeldFilletChara_1062_TypeVal * WeldFilletChara_1062_TypeValueIn)
 {
   WeldFilletChara_1062_TypeType = WeldFilletChara_1062_TypeTypeIn;
   WeldFilletChara_1062_TypeValue = WeldFilletChara_1062_TypeValueIn;
@@ -121132,9 +121172,10 @@ WeldFilletChara_1062_TypeChoicePair::~WeldFilletChara_1062_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (WeldFilletChara_1062_TypeType == BothSidesE)
-    delete WeldFilletChara_1062_TypeValue.BothSides;
+    delete WeldFilletChara_1062_TypeValue->BothSides;
   else if (WeldFilletChara_1062_TypeType == OneSideE)
-    delete WeldFilletChara_1062_TypeValue.OneSide;
+    delete WeldFilletChara_1062_TypeValue->OneSide;
+  delete WeldFilletChara_1062_TypeValue;
   #endif
 }
 
@@ -121144,7 +121185,7 @@ void WeldFilletChara_1062_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<BothSides");
-      WeldFilletChara_1062_TypeValue.BothSides->printSelf(outFile);
+      WeldFilletChara_1062_TypeValue->BothSides->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</BothSides>\n");
     }
@@ -121152,7 +121193,7 @@ void WeldFilletChara_1062_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<OneSide");
-      WeldFilletChara_1062_TypeValue.OneSide->printSelf(outFile);
+      WeldFilletChara_1062_TypeValue->OneSide->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</OneSide>\n");
     }
@@ -121258,7 +121299,7 @@ CircularityChar_1064_TypeChoicePair::CircularityChar_1064_TypeChoicePair() {}
 
 CircularityChar_1064_TypeChoicePair::CircularityChar_1064_TypeChoicePair(
  whichOne CircularityChar_1064_TypeTypeIn,
- CircularityChar_1064_TypeVal CircularityChar_1064_TypeValueIn)
+ CircularityChar_1064_TypeVal * CircularityChar_1064_TypeValueIn)
 {
   CircularityChar_1064_TypeType = CircularityChar_1064_TypeTypeIn;
   CircularityChar_1064_TypeValue = CircularityChar_1064_TypeValueIn;
@@ -121268,9 +121309,10 @@ CircularityChar_1064_TypeChoicePair::~CircularityChar_1064_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (CircularityChar_1064_TypeType == ToleranceZonePerUnitAngleE)
-    delete CircularityChar_1064_TypeValue.ToleranceZonePerUnitAngle;
+    delete CircularityChar_1064_TypeValue->ToleranceZonePerUnitAngle;
   else if (CircularityChar_1064_TypeType == ToleranceZonePerUnitArcLengthE)
-    delete CircularityChar_1064_TypeValue.ToleranceZonePerUnitArcLength;
+    delete CircularityChar_1064_TypeValue->ToleranceZonePerUnitArcLength;
+  delete CircularityChar_1064_TypeValue;
   #endif
 }
 
@@ -121280,7 +121322,7 @@ void CircularityChar_1064_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ToleranceZonePerUnitAngle");
-      CircularityChar_1064_TypeValue.ToleranceZonePerUnitAngle->printSelf(outFile);
+      CircularityChar_1064_TypeValue->ToleranceZonePerUnitAngle->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</ToleranceZonePerUnitAngle>\n");
     }
@@ -121288,7 +121330,7 @@ void CircularityChar_1064_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ToleranceZonePerUnitArcLength");
-      CircularityChar_1064_TypeValue.ToleranceZonePerUnitArcLength->printSelf(outFile);
+      CircularityChar_1064_TypeValue->ToleranceZonePerUnitArcLength->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</ToleranceZonePerUnitArcLength>\n");
     }
@@ -121335,7 +121377,7 @@ CylindricityCha_1065_TypeChoicePair::CylindricityCha_1065_TypeChoicePair() {}
 
 CylindricityCha_1065_TypeChoicePair::CylindricityCha_1065_TypeChoicePair(
  whichOne CylindricityCha_1065_TypeTypeIn,
- CylindricityCha_1065_TypeVal CylindricityCha_1065_TypeValueIn)
+ CylindricityCha_1065_TypeVal * CylindricityCha_1065_TypeValueIn)
 {
   CylindricityCha_1065_TypeType = CylindricityCha_1065_TypeTypeIn;
   CylindricityCha_1065_TypeValue = CylindricityCha_1065_TypeValueIn;
@@ -121345,15 +121387,16 @@ CylindricityCha_1065_TypeChoicePair::~CylindricityCha_1065_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (CylindricityCha_1065_TypeType == ToleranceZonePerUnitAngleE)
-    delete CylindricityCha_1065_TypeValue.ToleranceZonePerUnitAngle;
+    delete CylindricityCha_1065_TypeValue->ToleranceZonePerUnitAngle;
   else if (CylindricityCha_1065_TypeType == ToleranceZonePerUnitArcLengthE)
-    delete CylindricityCha_1065_TypeValue.ToleranceZonePerUnitArcLength;
+    delete CylindricityCha_1065_TypeValue->ToleranceZonePerUnitArcLength;
   else if (CylindricityCha_1065_TypeType == ToleranceZonePerUnitPolarAreaE)
-    delete CylindricityCha_1065_TypeValue.ToleranceZonePerUnitPolarArea;
+    delete CylindricityCha_1065_TypeValue->ToleranceZonePerUnitPolarArea;
   else if (CylindricityCha_1065_TypeType == ToleranceZonePerUnitAreaE)
-    delete CylindricityCha_1065_TypeValue.ToleranceZonePerUnitArea;
+    delete CylindricityCha_1065_TypeValue->ToleranceZonePerUnitArea;
   else if (CylindricityCha_1065_TypeType == ToleranceZonePerUnitLengthE)
-    delete CylindricityCha_1065_TypeValue.ToleranceZonePerUnitLength;
+    delete CylindricityCha_1065_TypeValue->ToleranceZonePerUnitLength;
+  delete CylindricityCha_1065_TypeValue;
   #endif
 }
 
@@ -121363,7 +121406,7 @@ void CylindricityCha_1065_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ToleranceZonePerUnitAngle");
-      CylindricityCha_1065_TypeValue.ToleranceZonePerUnitAngle->printSelf(outFile);
+      CylindricityCha_1065_TypeValue->ToleranceZonePerUnitAngle->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</ToleranceZonePerUnitAngle>\n");
     }
@@ -121371,7 +121414,7 @@ void CylindricityCha_1065_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ToleranceZonePerUnitArcLength");
-      CylindricityCha_1065_TypeValue.ToleranceZonePerUnitArcLength->printSelf(outFile);
+      CylindricityCha_1065_TypeValue->ToleranceZonePerUnitArcLength->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</ToleranceZonePerUnitArcLength>\n");
     }
@@ -121379,7 +121422,7 @@ void CylindricityCha_1065_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ToleranceZonePerUnitPolarArea");
-      CylindricityCha_1065_TypeValue.ToleranceZonePerUnitPolarArea->printSelf(outFile);
+      CylindricityCha_1065_TypeValue->ToleranceZonePerUnitPolarArea->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</ToleranceZonePerUnitPolarArea>\n");
     }
@@ -121387,7 +121430,7 @@ void CylindricityCha_1065_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ToleranceZonePerUnitArea");
-      CylindricityCha_1065_TypeValue.ToleranceZonePerUnitArea->printSelf(outFile);
+      CylindricityCha_1065_TypeValue->ToleranceZonePerUnitArea->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</ToleranceZonePerUnitArea>\n");
     }
@@ -121395,7 +121438,7 @@ void CylindricityCha_1065_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ToleranceZonePerUnitLength");
-      CylindricityCha_1065_TypeValue.ToleranceZonePerUnitLength->printSelf(outFile);
+      CylindricityCha_1065_TypeValue->ToleranceZonePerUnitLength->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</ToleranceZonePerUnitLength>\n");
     }

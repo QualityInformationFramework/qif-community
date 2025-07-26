@@ -521,7 +521,7 @@ Area2dTypeChoicePair::Area2dTypeChoicePair() {}
 
 Area2dTypeChoicePair::Area2dTypeChoicePair(
  whichOne Area2dTypeTypeIn,
- Area2dTypeVal Area2dTypeValueIn)
+ Area2dTypeVal * Area2dTypeValueIn)
 {
   Area2dTypeType = Area2dTypeTypeIn;
   Area2dTypeValue = Area2dTypeValueIn;
@@ -531,9 +531,10 @@ Area2dTypeChoicePair::~Area2dTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (Area2dTypeType == LoopsE)
-    delete Area2dTypeValue.Loops;
+    delete Area2dTypeValue->Loops;
   else if (Area2dTypeType == TriangulationE)
-    delete Area2dTypeValue.Triangulation;
+    delete Area2dTypeValue->Triangulation;
+  delete Area2dTypeValue;
   #endif
 }
 
@@ -543,7 +544,7 @@ void Area2dTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Loops");
-      Area2dTypeValue.Loops->printSelf(outFile);
+      Area2dTypeValue->Loops->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Loops>\n");
     }
@@ -551,7 +552,7 @@ void Area2dTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Triangulation");
-      Area2dTypeValue.Triangulation->printSelf(outFile);
+      Area2dTypeValue->Triangulation->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Triangulation>\n");
     }
@@ -7680,7 +7681,7 @@ Polyline2dTypeChoicePair::Polyline2dTypeChoicePair() {}
 
 Polyline2dTypeChoicePair::Polyline2dTypeChoicePair(
  whichOne Polyline2dTypeTypeIn,
- Polyline2dTypeVal Polyline2dTypeValueIn)
+ Polyline2dTypeVal * Polyline2dTypeValueIn)
 {
   Polyline2dTypeType = Polyline2dTypeTypeIn;
   Polyline2dTypeValue = Polyline2dTypeValueIn;
@@ -7690,9 +7691,10 @@ Polyline2dTypeChoicePair::~Polyline2dTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (Polyline2dTypeType == PointsE)
-    delete Polyline2dTypeValue.Points;
+    delete Polyline2dTypeValue->Points;
   else if (Polyline2dTypeType == PointsBinaryE)
-    delete Polyline2dTypeValue.PointsBinary;
+    delete Polyline2dTypeValue->PointsBinary;
+  delete Polyline2dTypeValue;
   #endif
 }
 
@@ -7702,14 +7704,14 @@ void Polyline2dTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Points");
-      Polyline2dTypeValue.Points->printSelf(outFile);
+      Polyline2dTypeValue->Points->printSelf(outFile);
       fprintf(outFile, "</Points>\n");
     }
   else if (Polyline2dTypeType == PointsBinaryE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<PointsBinary");
-      Polyline2dTypeValue.PointsBinary->printSelf(outFile);
+      Polyline2dTypeValue->PointsBinary->printSelf(outFile);
       fprintf(outFile, "</PointsBinary>\n");
     }
 }
@@ -12101,7 +12103,7 @@ WitnessLinesTypeChoicePair::WitnessLinesTypeChoicePair() {}
 
 WitnessLinesTypeChoicePair::WitnessLinesTypeChoicePair(
  whichOne WitnessLinesTypeTypeIn,
- WitnessLinesTypeVal WitnessLinesTypeValueIn)
+ WitnessLinesTypeVal * WitnessLinesTypeValueIn)
 {
   WitnessLinesTypeType = WitnessLinesTypeTypeIn;
   WitnessLinesTypeValue = WitnessLinesTypeValueIn;
@@ -12111,9 +12113,10 @@ WitnessLinesTypeChoicePair::~WitnessLinesTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (WitnessLinesTypeType == WitnessLinesTyp_1191E)
-    delete WitnessLinesTypeValue.WitnessLinesTyp_1191;
+    delete WitnessLinesTypeValue->WitnessLinesTyp_1191;
   else if (WitnessLinesTypeType == WitnessLinesTyp_1192E)
-    delete WitnessLinesTypeValue.WitnessLinesTyp_1192;
+    delete WitnessLinesTypeValue->WitnessLinesTyp_1192;
+  delete WitnessLinesTypeValue;
   #endif
 }
 
@@ -12121,11 +12124,11 @@ void WitnessLinesTypeChoicePair::printSelf(FILE * outFile)
 {
   if (WitnessLinesTypeType == WitnessLinesTyp_1191E)
     {
-      WitnessLinesTypeValue.WitnessLinesTyp_1191->printSelf(outFile);
+      WitnessLinesTypeValue->WitnessLinesTyp_1191->printSelf(outFile);
     }
   else if (WitnessLinesTypeType == WitnessLinesTyp_1192E)
     {
-      WitnessLinesTypeValue.WitnessLinesTyp_1192->printSelf(outFile);
+      WitnessLinesTypeValue->WitnessLinesTyp_1192->printSelf(outFile);
     }
 }
 
@@ -13055,7 +13058,7 @@ ExplodedViewMov_1187_TypeChoicePair::ExplodedViewMov_1187_TypeChoicePair() {}
 
 ExplodedViewMov_1187_TypeChoicePair::ExplodedViewMov_1187_TypeChoicePair(
  whichOne ExplodedViewMov_1187_TypeTypeIn,
- ExplodedViewMov_1187_TypeVal ExplodedViewMov_1187_TypeValueIn)
+ ExplodedViewMov_1187_TypeVal * ExplodedViewMov_1187_TypeValueIn)
 {
   ExplodedViewMov_1187_TypeType = ExplodedViewMov_1187_TypeTypeIn;
   ExplodedViewMov_1187_TypeValue = ExplodedViewMov_1187_TypeValueIn;
@@ -13065,9 +13068,10 @@ ExplodedViewMov_1187_TypeChoicePair::~ExplodedViewMov_1187_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (ExplodedViewMov_1187_TypeType == TranslateE)
-    delete ExplodedViewMov_1187_TypeValue.Translate;
+    delete ExplodedViewMov_1187_TypeValue->Translate;
   else if (ExplodedViewMov_1187_TypeType == RotateE)
-    delete ExplodedViewMov_1187_TypeValue.Rotate;
+    delete ExplodedViewMov_1187_TypeValue->Rotate;
+  delete ExplodedViewMov_1187_TypeValue;
   #endif
 }
 
@@ -13077,7 +13081,7 @@ void ExplodedViewMov_1187_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Translate");
-      ExplodedViewMov_1187_TypeValue.Translate->printSelf(outFile);
+      ExplodedViewMov_1187_TypeValue->Translate->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Translate>\n");
     }
@@ -13085,7 +13089,7 @@ void ExplodedViewMov_1187_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Rotate");
-      ExplodedViewMov_1187_TypeValue.Rotate->printSelf(outFile);
+      ExplodedViewMov_1187_TypeValue->Rotate->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Rotate>\n");
     }
@@ -13135,7 +13139,7 @@ LogicalOperatio_1188_TypeChoicePair::LogicalOperatio_1188_TypeChoicePair() {}
 
 LogicalOperatio_1188_TypeChoicePair::LogicalOperatio_1188_TypeChoicePair(
  whichOne LogicalOperatio_1188_TypeTypeIn,
- LogicalOperatio_1188_TypeVal LogicalOperatio_1188_TypeValueIn)
+ LogicalOperatio_1188_TypeVal * LogicalOperatio_1188_TypeValueIn)
 {
   LogicalOperatio_1188_TypeType = LogicalOperatio_1188_TypeTypeIn;
   LogicalOperatio_1188_TypeValue = LogicalOperatio_1188_TypeValueIn;
@@ -13145,9 +13149,10 @@ LogicalOperatio_1188_TypeChoicePair::~LogicalOperatio_1188_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (LogicalOperatio_1188_TypeType == SectionPlaneE)
-    delete LogicalOperatio_1188_TypeValue.SectionPlane;
+    delete LogicalOperatio_1188_TypeValue->SectionPlane;
   else if (LogicalOperatio_1188_TypeType == LogicalOperationResultE)
-    delete LogicalOperatio_1188_TypeValue.LogicalOperationResult;
+    delete LogicalOperatio_1188_TypeValue->LogicalOperationResult;
+  delete LogicalOperatio_1188_TypeValue;
   #endif
 }
 
@@ -13157,14 +13162,14 @@ void LogicalOperatio_1188_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<SectionPlane");
-      LogicalOperatio_1188_TypeValue.SectionPlane->printSelf(outFile);
+      LogicalOperatio_1188_TypeValue->SectionPlane->printSelf(outFile);
       fprintf(outFile, "</SectionPlane>\n");
     }
   else if (LogicalOperatio_1188_TypeType == LogicalOperationResultE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<LogicalOperationResult");
-      LogicalOperatio_1188_TypeValue.LogicalOperationResult->printSelf(outFile);
+      LogicalOperatio_1188_TypeValue->LogicalOperationResult->printSelf(outFile);
       fprintf(outFile, "</LogicalOperationResult>\n");
     }
 }
@@ -13242,7 +13247,7 @@ Triangulation2d_1189_TypeChoicePair::Triangulation2d_1189_TypeChoicePair() {}
 
 Triangulation2d_1189_TypeChoicePair::Triangulation2d_1189_TypeChoicePair(
  whichOne Triangulation2d_1189_TypeTypeIn,
- Triangulation2d_1189_TypeVal Triangulation2d_1189_TypeValueIn)
+ Triangulation2d_1189_TypeVal * Triangulation2d_1189_TypeValueIn)
 {
   Triangulation2d_1189_TypeType = Triangulation2d_1189_TypeTypeIn;
   Triangulation2d_1189_TypeValue = Triangulation2d_1189_TypeValueIn;
@@ -13252,9 +13257,10 @@ Triangulation2d_1189_TypeChoicePair::~Triangulation2d_1189_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (Triangulation2d_1189_TypeType == VerticesE)
-    delete Triangulation2d_1189_TypeValue.Vertices;
+    delete Triangulation2d_1189_TypeValue->Vertices;
   else if (Triangulation2d_1189_TypeType == VerticesBinaryE)
-    delete Triangulation2d_1189_TypeValue.VerticesBinary;
+    delete Triangulation2d_1189_TypeValue->VerticesBinary;
+  delete Triangulation2d_1189_TypeValue;
   #endif
 }
 
@@ -13264,14 +13270,14 @@ void Triangulation2d_1189_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Vertices");
-      Triangulation2d_1189_TypeValue.Vertices->printSelf(outFile);
+      Triangulation2d_1189_TypeValue->Vertices->printSelf(outFile);
       fprintf(outFile, "</Vertices>\n");
     }
   else if (Triangulation2d_1189_TypeType == VerticesBinaryE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<VerticesBinary");
-      Triangulation2d_1189_TypeValue.VerticesBinary->printSelf(outFile);
+      Triangulation2d_1189_TypeValue->VerticesBinary->printSelf(outFile);
       fprintf(outFile, "</VerticesBinary>\n");
     }
 }
@@ -13314,7 +13320,7 @@ Triangulation2d_1190_TypeChoicePair::Triangulation2d_1190_TypeChoicePair() {}
 
 Triangulation2d_1190_TypeChoicePair::Triangulation2d_1190_TypeChoicePair(
  whichOne Triangulation2d_1190_TypeTypeIn,
- Triangulation2d_1190_TypeVal Triangulation2d_1190_TypeValueIn)
+ Triangulation2d_1190_TypeVal * Triangulation2d_1190_TypeValueIn)
 {
   Triangulation2d_1190_TypeType = Triangulation2d_1190_TypeTypeIn;
   Triangulation2d_1190_TypeValue = Triangulation2d_1190_TypeValueIn;
@@ -13324,13 +13330,14 @@ Triangulation2d_1190_TypeChoicePair::~Triangulation2d_1190_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (Triangulation2d_1190_TypeType == TrianglesE)
-    delete Triangulation2d_1190_TypeValue.Triangles;
+    delete Triangulation2d_1190_TypeValue->Triangles;
   else if (Triangulation2d_1190_TypeType == TrianglesBinaryE)
-    delete Triangulation2d_1190_TypeValue.TrianglesBinary;
+    delete Triangulation2d_1190_TypeValue->TrianglesBinary;
   else if (Triangulation2d_1190_TypeType == TrianglesColorE)
-    delete Triangulation2d_1190_TypeValue.TrianglesColor;
+    delete Triangulation2d_1190_TypeValue->TrianglesColor;
   else if (Triangulation2d_1190_TypeType == TrianglesColorBinaryE)
-    delete Triangulation2d_1190_TypeValue.TrianglesColorBinary;
+    delete Triangulation2d_1190_TypeValue->TrianglesColorBinary;
+  delete Triangulation2d_1190_TypeValue;
   #endif
 }
 
@@ -13340,28 +13347,28 @@ void Triangulation2d_1190_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Triangles");
-      Triangulation2d_1190_TypeValue.Triangles->printSelf(outFile);
+      Triangulation2d_1190_TypeValue->Triangles->printSelf(outFile);
       fprintf(outFile, "</Triangles>\n");
     }
   else if (Triangulation2d_1190_TypeType == TrianglesBinaryE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<TrianglesBinary");
-      Triangulation2d_1190_TypeValue.TrianglesBinary->printSelf(outFile);
+      Triangulation2d_1190_TypeValue->TrianglesBinary->printSelf(outFile);
       fprintf(outFile, "</TrianglesBinary>\n");
     }
   else if (Triangulation2d_1190_TypeType == TrianglesColorE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<TrianglesColor");
-      Triangulation2d_1190_TypeValue.TrianglesColor->printSelf(outFile);
+      Triangulation2d_1190_TypeValue->TrianglesColor->printSelf(outFile);
       fprintf(outFile, "</TrianglesColor>\n");
     }
   else if (Triangulation2d_1190_TypeType == TrianglesColorBinaryE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<TrianglesColorBinary");
-      Triangulation2d_1190_TypeValue.TrianglesColorBinary->printSelf(outFile);
+      Triangulation2d_1190_TypeValue->TrianglesColorBinary->printSelf(outFile);
       fprintf(outFile, "</TrianglesColorBinary>\n");
     }
 }

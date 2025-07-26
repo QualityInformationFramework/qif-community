@@ -191,6 +191,84 @@ void BottomEnumType::oPrintSelf(FILE * outFile)
 
 BottomType::BottomType()
 {
+  BottomTypeType = BottomType::BottomEnumE;
+  Bottom = 0;
+}
+
+BottomType::BottomType(
+  whichOne BottomTypeTypeIn,
+  XmlSchemaInstanceBase * BottomIn)
+{
+  BottomTypeType = BottomTypeTypeIn;
+  Bottom = BottomIn;
+}
+
+BottomType::~BottomType()
+{
+  #ifndef NODESTRUCT
+  if (BottomTypeType == BottomEnumE)
+    delete dynamic_cast<BottomEnumType *>(Bottom);
+  else if (BottomTypeType == OtherBottomE)
+    delete dynamic_cast<XmlString *>(Bottom);
+  #endif
+}
+
+void BottomType::printSelf(FILE * outFile)
+{
+  fprintf(outFile, ">\n");
+  doSpaces(+INDENT, outFile);
+  if (BottomTypeType == BottomEnumE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<BottomEnum");
+      dynamic_cast<BottomEnumType *>(Bottom)->printSelf(outFile);
+      fprintf(outFile, "</BottomEnum>\n");
+    }
+  else if (BottomTypeType == OtherBottomE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<OtherBottom");
+      dynamic_cast<XmlString *>(Bottom)->printSelf(outFile);
+      fprintf(outFile, "</OtherBottom>\n");
+    }
+  doSpaces(-INDENT, outFile);
+}
+
+XmlSchemaInstanceBase * BottomType::getBottom()
+{return Bottom;}
+  
+void BottomType::setBottom(
+ whichOne BottomTypeTypeIn,
+ XmlSchemaInstanceBase * BottomIn)
+{
+  if ((BottomTypeTypeIn == BottomType::BottomEnumE) &&
+      (dynamic_cast<BottomEnumType *>(BottomIn)))
+    {
+      BottomTypeType = BottomType::BottomEnumE;
+      Bottom = dynamic_cast<BottomEnumType *>(BottomIn);
+    }
+  else if ((BottomTypeTypeIn == BottomType::OtherBottomE) &&
+      (dynamic_cast<XmlString *>(BottomIn)))
+    {
+      BottomTypeType = BottomType::OtherBottomE;
+      Bottom = dynamic_cast<XmlString *>(BottomIn);
+    }
+  else
+    {
+      BottomTypeType = UnknownE;
+      Bottom = 0;
+    }
+}
+ 
+BottomType::whichOne BottomType::getBottomTypeType()
+{return BottomTypeType;}
+ 
+//void BottomType::setBottomTypeType(whichOne BottomTypeTypeIn)
+//{BottomTypeType = BottomTypeTypeIn;}
+
+/*
+BottomType::BottomType()
+{
   BottomTypePair = 0;
 }
 
@@ -224,7 +302,7 @@ BottomTypeChoicePair::BottomTypeChoicePair() {}
 
 BottomTypeChoicePair::BottomTypeChoicePair(
  whichOne BottomTypeTypeIn,
- BottomTypeVal BottomTypeValueIn)
+ BottomTypeVal * BottomTypeValueIn)
 {
   BottomTypeType = BottomTypeTypeIn;
   BottomTypeValue = BottomTypeValueIn;
@@ -234,9 +312,10 @@ BottomTypeChoicePair::~BottomTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (BottomTypeType == BottomEnumE)
-    delete BottomTypeValue.BottomEnum;
+    delete BottomTypeValue->BottomEnum;
   else if (BottomTypeType == OtherBottomE)
-    delete BottomTypeValue.OtherBottom;
+    delete BottomTypeValue->OtherBottom;
+  delete BottomTypeValue;
   #endif
 }
 
@@ -246,18 +325,18 @@ void BottomTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<BottomEnum");
-      BottomTypeValue.BottomEnum->printSelf(outFile);
+      BottomTypeValue->BottomEnum->printSelf(outFile);
       fprintf(outFile, "</BottomEnum>\n");
     }
   else if (BottomTypeType == OtherBottomE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<OtherBottom");
-      BottomTypeValue.OtherBottom->printSelf(outFile);
+      BottomTypeValue->OtherBottom->printSelf(outFile);
       fprintf(outFile, "</OtherBottom>\n");
     }
 }
-
+*/
 /* ***************************************************************** */
 
 /* class BoundingBoxType
@@ -711,7 +790,7 @@ DigitalModelFormatTypeChoicePair::DigitalModelFormatTypeChoicePair() {}
 
 DigitalModelFormatTypeChoicePair::DigitalModelFormatTypeChoicePair(
  whichOne DigitalModelFormatTypeTypeIn,
- DigitalModelFormatTypeVal DigitalModelFormatTypeValueIn)
+ DigitalModelFormatTypeVal * DigitalModelFormatTypeValueIn)
 {
   DigitalModelFormatTypeType = DigitalModelFormatTypeTypeIn;
   DigitalModelFormatTypeValue = DigitalModelFormatTypeValueIn;
@@ -721,9 +800,10 @@ DigitalModelFormatTypeChoicePair::~DigitalModelFormatTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (DigitalModelFormatTypeType == DigitalModelFormatEnumE)
-    delete DigitalModelFormatTypeValue.DigitalModelFormatEnum;
+    delete DigitalModelFormatTypeValue->DigitalModelFormatEnum;
   else if (DigitalModelFormatTypeType == OtherDigitalModelFormatE)
-    delete DigitalModelFormatTypeValue.OtherDigitalModelFormat;
+    delete DigitalModelFormatTypeValue->OtherDigitalModelFormat;
+  delete DigitalModelFormatTypeValue;
   #endif
 }
 
@@ -733,14 +813,14 @@ void DigitalModelFormatTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<DigitalModelFormatEnum");
-      DigitalModelFormatTypeValue.DigitalModelFormatEnum->printSelf(outFile);
+      DigitalModelFormatTypeValue->DigitalModelFormatEnum->printSelf(outFile);
       fprintf(outFile, "</DigitalModelFormatEnum>\n");
     }
   else if (DigitalModelFormatTypeType == OtherDigitalModelFormatE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<OtherDigitalModelFormat");
-      DigitalModelFormatTypeValue.OtherDigitalModelFormat->printSelf(outFile);
+      DigitalModelFormatTypeValue->OtherDigitalModelFormat->printSelf(outFile);
       fprintf(outFile, "</OtherDigitalModelFormat>\n");
     }
 }
@@ -1549,7 +1629,7 @@ ManufacturingMethodTypeChoicePair::ManufacturingMethodTypeChoicePair() {}
 
 ManufacturingMethodTypeChoicePair::ManufacturingMethodTypeChoicePair(
  whichOne ManufacturingMethodTypeTypeIn,
- ManufacturingMethodTypeVal ManufacturingMethodTypeValueIn)
+ ManufacturingMethodTypeVal * ManufacturingMethodTypeValueIn)
 {
   ManufacturingMethodTypeType = ManufacturingMethodTypeTypeIn;
   ManufacturingMethodTypeValue = ManufacturingMethodTypeValueIn;
@@ -1559,9 +1639,10 @@ ManufacturingMethodTypeChoicePair::~ManufacturingMethodTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (ManufacturingMethodTypeType == ManufacturingMethodEnumE)
-    delete ManufacturingMethodTypeValue.ManufacturingMethodEnum;
+    delete ManufacturingMethodTypeValue->ManufacturingMethodEnum;
   else if (ManufacturingMethodTypeType == OtherManufacturingMethodE)
-    delete ManufacturingMethodTypeValue.OtherManufacturingMethod;
+    delete ManufacturingMethodTypeValue->OtherManufacturingMethod;
+  delete ManufacturingMethodTypeValue;
   #endif
 }
 
@@ -1571,14 +1652,14 @@ void ManufacturingMethodTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ManufacturingMethodEnum");
-      ManufacturingMethodTypeValue.ManufacturingMethodEnum->printSelf(outFile);
+      ManufacturingMethodTypeValue->ManufacturingMethodEnum->printSelf(outFile);
       fprintf(outFile, "</ManufacturingMethodEnum>\n");
     }
   else if (ManufacturingMethodTypeType == OtherManufacturingMethodE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<OtherManufacturingMethod");
-      ManufacturingMethodTypeValue.OtherManufacturingMethod->printSelf(outFile);
+      ManufacturingMethodTypeValue->OtherManufacturingMethod->printSelf(outFile);
       fprintf(outFile, "</OtherManufacturingMethod>\n");
     }
 }
@@ -4437,7 +4518,7 @@ SecurityClassificationTypeChoicePair::SecurityClassificationTypeChoicePair() {}
 
 SecurityClassificationTypeChoicePair::SecurityClassificationTypeChoicePair(
  whichOne SecurityClassificationTypeTypeIn,
- SecurityClassificationTypeVal SecurityClassificationTypeValueIn)
+ SecurityClassificationTypeVal * SecurityClassificationTypeValueIn)
 {
   SecurityClassificationTypeType = SecurityClassificationTypeTypeIn;
   SecurityClassificationTypeValue = SecurityClassificationTypeValueIn;
@@ -4447,9 +4528,10 @@ SecurityClassificationTypeChoicePair::~SecurityClassificationTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (SecurityClassificationTypeType == SecurityClassificationEnumE)
-    delete SecurityClassificationTypeValue.SecurityClassificationEnum;
+    delete SecurityClassificationTypeValue->SecurityClassificationEnum;
   else if (SecurityClassificationTypeType == OtherSecurityClassificationE)
-    delete SecurityClassificationTypeValue.OtherSecurityClassification;
+    delete SecurityClassificationTypeValue->OtherSecurityClassification;
+  delete SecurityClassificationTypeValue;
   #endif
 }
 
@@ -4459,14 +4541,14 @@ void SecurityClassificationTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<SecurityClassificationEnum");
-      SecurityClassificationTypeValue.SecurityClassificationEnum->printSelf(outFile);
+      SecurityClassificationTypeValue->SecurityClassificationEnum->printSelf(outFile);
       fprintf(outFile, "</SecurityClassificationEnum>\n");
     }
   else if (SecurityClassificationTypeType == OtherSecurityClassificationE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<OtherSecurityClassification");
-      SecurityClassificationTypeValue.OtherSecurityClassification->printSelf(outFile);
+      SecurityClassificationTypeValue->OtherSecurityClassification->printSelf(outFile);
       fprintf(outFile, "</OtherSecurityClassification>\n");
     }
 }
@@ -4576,7 +4658,7 @@ ShapeClassTypeChoicePair::ShapeClassTypeChoicePair() {}
 
 ShapeClassTypeChoicePair::ShapeClassTypeChoicePair(
  whichOne ShapeClassTypeTypeIn,
- ShapeClassTypeVal ShapeClassTypeValueIn)
+ ShapeClassTypeVal * ShapeClassTypeValueIn)
 {
   ShapeClassTypeType = ShapeClassTypeTypeIn;
   ShapeClassTypeValue = ShapeClassTypeValueIn;
@@ -4586,9 +4668,10 @@ ShapeClassTypeChoicePair::~ShapeClassTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (ShapeClassTypeType == ShapeClassEnumE)
-    delete ShapeClassTypeValue.ShapeClassEnum;
+    delete ShapeClassTypeValue->ShapeClassEnum;
   else if (ShapeClassTypeType == OtherShapeClassE)
-    delete ShapeClassTypeValue.OtherShapeClass;
+    delete ShapeClassTypeValue->OtherShapeClass;
+  delete ShapeClassTypeValue;
   #endif
 }
 
@@ -4598,14 +4681,14 @@ void ShapeClassTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ShapeClassEnum");
-      ShapeClassTypeValue.ShapeClassEnum->printSelf(outFile);
+      ShapeClassTypeValue->ShapeClassEnum->printSelf(outFile);
       fprintf(outFile, "</ShapeClassEnum>\n");
     }
   else if (ShapeClassTypeType == OtherShapeClassE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<OtherShapeClass");
-      ShapeClassTypeValue.OtherShapeClass->printSelf(outFile);
+      ShapeClassTypeValue->OtherShapeClass->printSelf(outFile);
       fprintf(outFile, "</OtherShapeClass>\n");
     }
 }
@@ -4713,7 +4796,7 @@ SlotEndTypeChoicePair::SlotEndTypeChoicePair() {}
 
 SlotEndTypeChoicePair::SlotEndTypeChoicePair(
  whichOne SlotEndTypeTypeIn,
- SlotEndTypeVal SlotEndTypeValueIn)
+ SlotEndTypeVal * SlotEndTypeValueIn)
 {
   SlotEndTypeType = SlotEndTypeTypeIn;
   SlotEndTypeValue = SlotEndTypeValueIn;
@@ -4723,9 +4806,10 @@ SlotEndTypeChoicePair::~SlotEndTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (SlotEndTypeType == SlotEndEnumE)
-    delete SlotEndTypeValue.SlotEndEnum;
+    delete SlotEndTypeValue->SlotEndEnum;
   else if (SlotEndTypeType == OtherSlotEndE)
-    delete SlotEndTypeValue.OtherSlotEnd;
+    delete SlotEndTypeValue->OtherSlotEnd;
+  delete SlotEndTypeValue;
   #endif
 }
 
@@ -4735,14 +4819,14 @@ void SlotEndTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<SlotEndEnum");
-      SlotEndTypeValue.SlotEndEnum->printSelf(outFile);
+      SlotEndTypeValue->SlotEndEnum->printSelf(outFile);
       fprintf(outFile, "</SlotEndEnum>\n");
     }
   else if (SlotEndTypeType == OtherSlotEndE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<OtherSlotEnd");
-      SlotEndTypeValue.OtherSlotEnd->printSelf(outFile);
+      SlotEndTypeValue->OtherSlotEnd->printSelf(outFile);
       fprintf(outFile, "</OtherSlotEnd>\n");
     }
 }
@@ -5221,7 +5305,7 @@ StatsWithReferenceBaseTypeChoicePair::StatsWithReferenceBaseTypeChoicePair() {}
 
 StatsWithReferenceBaseTypeChoicePair::StatsWithReferenceBaseTypeChoicePair(
  whichOne StatsWithReferenceBaseTypeTypeIn,
- StatsWithReferenceBaseTypeVal StatsWithReferenceBaseTypeValueIn)
+ StatsWithReferenceBaseTypeVal * StatsWithReferenceBaseTypeValueIn)
 {
   StatsWithReferenceBaseTypeType = StatsWithReferenceBaseTypeTypeIn;
   StatsWithReferenceBaseTypeValue = StatsWithReferenceBaseTypeValueIn;
@@ -5231,11 +5315,12 @@ StatsWithReferenceBaseTypeChoicePair::~StatsWithReferenceBaseTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (StatsWithReferenceBaseTypeType == SoftwareIdE)
-    delete StatsWithReferenceBaseTypeValue.SoftwareId;
+    delete StatsWithReferenceBaseTypeValue->SoftwareId;
   else if (StatsWithReferenceBaseTypeType == StandardIdE)
-    delete StatsWithReferenceBaseTypeValue.StandardId;
+    delete StatsWithReferenceBaseTypeValue->StandardId;
   else if (StatsWithReferenceBaseTypeType == AlgorithmIdE)
-    delete StatsWithReferenceBaseTypeValue.AlgorithmId;
+    delete StatsWithReferenceBaseTypeValue->AlgorithmId;
+  delete StatsWithReferenceBaseTypeValue;
   #endif
 }
 
@@ -5245,21 +5330,21 @@ void StatsWithReferenceBaseTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<SoftwareId");
-      StatsWithReferenceBaseTypeValue.SoftwareId->printSelf(outFile);
+      StatsWithReferenceBaseTypeValue->SoftwareId->printSelf(outFile);
       fprintf(outFile, "</SoftwareId>\n");
     }
   else if (StatsWithReferenceBaseTypeType == StandardIdE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<StandardId");
-      StatsWithReferenceBaseTypeValue.StandardId->printSelf(outFile);
+      StatsWithReferenceBaseTypeValue->StandardId->printSelf(outFile);
       fprintf(outFile, "</StandardId>\n");
     }
   else if (StatsWithReferenceBaseTypeType == AlgorithmIdE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<AlgorithmId");
-      StatsWithReferenceBaseTypeValue.AlgorithmId->printSelf(outFile);
+      StatsWithReferenceBaseTypeValue->AlgorithmId->printSelf(outFile);
       fprintf(outFile, "</AlgorithmId>\n");
     }
 }
@@ -6854,7 +6939,7 @@ ThreadClassTypeChoicePair::ThreadClassTypeChoicePair() {}
 
 ThreadClassTypeChoicePair::ThreadClassTypeChoicePair(
  whichOne ThreadClassTypeTypeIn,
- ThreadClassTypeVal ThreadClassTypeValueIn)
+ ThreadClassTypeVal * ThreadClassTypeValueIn)
 {
   ThreadClassTypeType = ThreadClassTypeTypeIn;
   ThreadClassTypeValue = ThreadClassTypeValueIn;
@@ -6864,9 +6949,10 @@ ThreadClassTypeChoicePair::~ThreadClassTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (ThreadClassTypeType == ThreadClassEnumE)
-    delete ThreadClassTypeValue.ThreadClassEnum;
+    delete ThreadClassTypeValue->ThreadClassEnum;
   else if (ThreadClassTypeType == OtherThreadClassE)
-    delete ThreadClassTypeValue.OtherThreadClass;
+    delete ThreadClassTypeValue->OtherThreadClass;
+  delete ThreadClassTypeValue;
   #endif
 }
 
@@ -6876,14 +6962,14 @@ void ThreadClassTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ThreadClassEnum");
-      ThreadClassTypeValue.ThreadClassEnum->printSelf(outFile);
+      ThreadClassTypeValue->ThreadClassEnum->printSelf(outFile);
       fprintf(outFile, "</ThreadClassEnum>\n");
     }
   else if (ThreadClassTypeType == OtherThreadClassE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<OtherThreadClass");
-      ThreadClassTypeValue.OtherThreadClass->printSelf(outFile);
+      ThreadClassTypeValue->OtherThreadClass->printSelf(outFile);
       fprintf(outFile, "</OtherThreadClass>\n");
     }
 }
@@ -7095,7 +7181,7 @@ ThreadSeriesTypeChoicePair::ThreadSeriesTypeChoicePair() {}
 
 ThreadSeriesTypeChoicePair::ThreadSeriesTypeChoicePair(
  whichOne ThreadSeriesTypeTypeIn,
- ThreadSeriesTypeVal ThreadSeriesTypeValueIn)
+ ThreadSeriesTypeVal * ThreadSeriesTypeValueIn)
 {
   ThreadSeriesTypeType = ThreadSeriesTypeTypeIn;
   ThreadSeriesTypeValue = ThreadSeriesTypeValueIn;
@@ -7105,9 +7191,10 @@ ThreadSeriesTypeChoicePair::~ThreadSeriesTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (ThreadSeriesTypeType == ThreadSeriesEnumE)
-    delete ThreadSeriesTypeValue.ThreadSeriesEnum;
+    delete ThreadSeriesTypeValue->ThreadSeriesEnum;
   else if (ThreadSeriesTypeType == OtherThreadSeriesE)
-    delete ThreadSeriesTypeValue.OtherThreadSeries;
+    delete ThreadSeriesTypeValue->OtherThreadSeries;
+  delete ThreadSeriesTypeValue;
   #endif
 }
 
@@ -7117,14 +7204,14 @@ void ThreadSeriesTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ThreadSeriesEnum");
-      ThreadSeriesTypeValue.ThreadSeriesEnum->printSelf(outFile);
+      ThreadSeriesTypeValue->ThreadSeriesEnum->printSelf(outFile);
       fprintf(outFile, "</ThreadSeriesEnum>\n");
     }
   else if (ThreadSeriesTypeType == OtherThreadSeriesE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<OtherThreadSeries");
-      ThreadSeriesTypeValue.OtherThreadSeries->printSelf(outFile);
+      ThreadSeriesTypeValue->OtherThreadSeries->printSelf(outFile);
       fprintf(outFile, "</OtherThreadSeries>\n");
     }
 }
@@ -7170,7 +7257,7 @@ TypeOfCoordinatesTypeChoicePair::TypeOfCoordinatesTypeChoicePair() {}
 
 TypeOfCoordinatesTypeChoicePair::TypeOfCoordinatesTypeChoicePair(
  whichOne TypeOfCoordinatesTypeTypeIn,
- TypeOfCoordinatesTypeVal TypeOfCoordinatesTypeValueIn)
+ TypeOfCoordinatesTypeVal * TypeOfCoordinatesTypeValueIn)
 {
   TypeOfCoordinatesTypeType = TypeOfCoordinatesTypeTypeIn;
   TypeOfCoordinatesTypeValue = TypeOfCoordinatesTypeValueIn;
@@ -7180,9 +7267,10 @@ TypeOfCoordinatesTypeChoicePair::~TypeOfCoordinatesTypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (TypeOfCoordinatesTypeType == CoordinateEnumE)
-    delete TypeOfCoordinatesTypeValue.CoordinateEnum;
+    delete TypeOfCoordinatesTypeValue->CoordinateEnum;
   else if (TypeOfCoordinatesTypeType == OtherCoordinateE)
-    delete TypeOfCoordinatesTypeValue.OtherCoordinate;
+    delete TypeOfCoordinatesTypeValue->OtherCoordinate;
+  delete TypeOfCoordinatesTypeValue;
   #endif
 }
 
@@ -7192,14 +7280,14 @@ void TypeOfCoordinatesTypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<CoordinateEnum");
-      TypeOfCoordinatesTypeValue.CoordinateEnum->printSelf(outFile);
+      TypeOfCoordinatesTypeValue->CoordinateEnum->printSelf(outFile);
       fprintf(outFile, "</CoordinateEnum>\n");
     }
   else if (TypeOfCoordinatesTypeType == OtherCoordinateE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<OtherCoordinate");
-      TypeOfCoordinatesTypeValue.OtherCoordinate->printSelf(outFile);
+      TypeOfCoordinatesTypeValue->OtherCoordinate->printSelf(outFile);
       fprintf(outFile, "</OtherCoordinate>\n");
     }
 }
@@ -7345,7 +7433,7 @@ ScaleType_1005_TypeChoicePair::ScaleType_1005_TypeChoicePair() {}
 
 ScaleType_1005_TypeChoicePair::ScaleType_1005_TypeChoicePair(
  whichOne ScaleType_1005_TypeTypeIn,
- ScaleType_1005_TypeVal ScaleType_1005_TypeValueIn)
+ ScaleType_1005_TypeVal * ScaleType_1005_TypeValueIn)
 {
   ScaleType_1005_TypeType = ScaleType_1005_TypeTypeIn;
   ScaleType_1005_TypeValue = ScaleType_1005_TypeValueIn;
@@ -7355,11 +7443,12 @@ ScaleType_1005_TypeChoicePair::~ScaleType_1005_TypeChoicePair()
 {
   #ifndef NODESTRUCT
   if (ScaleType_1005_TypeType == UniformScaleE)
-    delete ScaleType_1005_TypeValue.UniformScale;
+    delete ScaleType_1005_TypeValue->UniformScale;
   else if (ScaleType_1005_TypeType == RadialDifferentialScaleE)
-    delete ScaleType_1005_TypeValue.RadialDifferentialScale;
+    delete ScaleType_1005_TypeValue->RadialDifferentialScale;
   else if (ScaleType_1005_TypeType == AxialDifferentialScaleE)
-    delete ScaleType_1005_TypeValue.AxialDifferentialScale;
+    delete ScaleType_1005_TypeValue->AxialDifferentialScale;
+  delete ScaleType_1005_TypeValue;
   #endif
 }
 
@@ -7369,7 +7458,7 @@ void ScaleType_1005_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<UniformScale");
-      ScaleType_1005_TypeValue.UniformScale->printSelf(outFile);
+      ScaleType_1005_TypeValue->UniformScale->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</UniformScale>\n");
     }
@@ -7377,7 +7466,7 @@ void ScaleType_1005_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<RadialDifferentialScale");
-      ScaleType_1005_TypeValue.RadialDifferentialScale->printSelf(outFile);
+      ScaleType_1005_TypeValue->RadialDifferentialScale->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</RadialDifferentialScale>\n");
     }
@@ -7385,7 +7474,7 @@ void ScaleType_1005_TypeChoicePair::printSelf(FILE * outFile)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<AxialDifferentialScale");
-      ScaleType_1005_TypeValue.AxialDifferentialScale->printSelf(outFile);
+      ScaleType_1005_TypeValue->AxialDifferentialScale->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</AxialDifferentialScale>\n");
     }

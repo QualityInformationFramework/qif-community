@@ -306,12 +306,12 @@ public:
   DefinitionExternalTypeChoicePair();
   DefinitionExternalTypeChoicePair(
     whichOne DefinitionExternalTypeTypeIn,
-    DefinitionExternalTypeVal DefinitionExternalTypeValueIn);
+    DefinitionExternalTypeVal * DefinitionExternalTypeValueIn);
   ~DefinitionExternalTypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne DefinitionExternalTypeType;
-  DefinitionExternalTypeVal DefinitionExternalTypeValue;
+  DefinitionExternalTypeVal * DefinitionExternalTypeValue;
 };
 
 /* ***************************************************************** */
@@ -525,7 +525,7 @@ public:
     ArrayReferenceType * AuxiliaryIdsIn,
     ArrayReferenceType * ViewIdsIn,
     ArrayReferenceType * PointCloudIdsIn);
-  ~FolderPartAssemblyBaseType();
+  virtual ~FolderPartAssemblyBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
@@ -977,7 +977,7 @@ public:
     ArrayReferenceType * AuxiliaryIdsIn,
     ArrayReferenceType * ViewIdsIn,
     ArrayReferenceType * PointCloudIdsIn);
-  ~PartAssemblyBaseType();
+  virtual ~PartAssemblyBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
@@ -1712,12 +1712,12 @@ public:
   ComponentType_1193_TypeChoicePair();
   ComponentType_1193_TypeChoicePair(
     whichOne ComponentType_1193_TypeTypeIn,
-    ComponentType_1193_TypeVal ComponentType_1193_TypeValueIn);
+    ComponentType_1193_TypeVal * ComponentType_1193_TypeValueIn);
   ~ComponentType_1193_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne ComponentType_1193_TypeType;
-  ComponentType_1193_TypeVal ComponentType_1193_TypeValue;
+  ComponentType_1193_TypeVal * ComponentType_1193_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -1761,12 +1761,12 @@ public:
   ProductType_1194_TypeChoicePair();
   ProductType_1194_TypeChoicePair(
     whichOne ProductType_1194_TypeTypeIn,
-    ProductType_1194_TypeVal ProductType_1194_TypeValueIn);
+    ProductType_1194_TypeVal * ProductType_1194_TypeValueIn);
   ~ProductType_1194_TypeChoicePair();
   void printSelf(FILE * outFile);
 
   whichOne ProductType_1194_TypeType;
-  ProductType_1194_TypeVal ProductType_1194_TypeValue;
+  ProductType_1194_TypeVal * ProductType_1194_TypeValue;
 };
 
 /* ***************************************************************** */
