@@ -5978,7 +5978,6 @@ union YYSTYPE
   BooleanExpressionBaseTypeLisd *     LiztBooleanExpressionBaseTypeVal;
   BottomEnumType *                    BottomEnumTypeVal;
   BottomType *                        BottomTypeVal;
-  BottomTypeChoicePair *              BottomTypeChoicePairVal;
   BoundingBoxAxisAlignedType *        BoundingBoxAxisAlignedTypeVal;
   BoundingBoxType *                   BoundingBoxTypeVal;
   CADCoordinateSystemType *           CADCoordinateSystemTypeVal;
@@ -7192,11 +7191,9 @@ union YYSTYPE
   NumericalLengthAccuracyType *       NumericalLengthAccuracyTypeVal;
   Nurbs12CoreType *                   Nurbs12CoreTypeVal;
   Nurbs12CoreType_1177_Type *         Nurbs12CoreType_1177_TypeVal;
-  Nurbs12CoreType_1177_TypeChoicePair * Nurbs12CoreType_1177_TypeChoicePairVal;
   Nurbs12Type *                       Nurbs12TypeVal;
   Nurbs13CoreType *                   Nurbs13CoreTypeVal;
   Nurbs13CoreType_1178_Type *         Nurbs13CoreType_1178_TypeVal;
-  Nurbs13CoreType_1178_TypeChoicePair * Nurbs13CoreType_1178_TypeChoicePairVal;
   Nurbs13Type *                       Nurbs13TypeVal;
   Nurbs23CoreType *                   Nurbs23CoreTypeVal;
   Nurbs23CoreType_1179_Type *         Nurbs23CoreType_1179_TypeVal;
@@ -8526,7 +8523,7 @@ union YYSTYPE
   ZoneSectionType *                   ZoneSectionTypeVal;
   ZoneSectionTypeLisd *               LiztZoneSectionTypeVal;
 
-#line 8530 "source/QIFDocumentYACC.hh" /* yacc.c:1909  */
+#line 8527 "source/QIFDocumentYACC.hh" /* yacc.c:1909  */
 };
 
 typedef union YYSTYPE YYSTYPE;

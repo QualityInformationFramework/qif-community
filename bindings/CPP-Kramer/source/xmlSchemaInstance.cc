@@ -11,7 +11,9 @@ License: Boost Software License - Version 1.0 - August 17th, 2003
 
 #ifdef _WIN32
 #define strdup _strdup
+#define isatty _isatty
 #endif
+
 /* 
 
 The handling of the various types of strings should be improved to deal
