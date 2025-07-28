@@ -1,0 +1,191 @@
+README - Last edited 2021Nov9
+
+WHERE THE CODE CAME FROM
+------------------------
+
+This describes the code in the "source" directory.
+
+1. Code Specific to QIF
+
+1A. Code created by the xmlInstanceParserGenerator
+
+The xmlInstanceParserGenerator is an automatic code generator built by
+Tom Kramer. It consumes XML schema files and produces C++, YACC, and
+Lex files.
+
+The following files are automatically generated C++ code representing
+the XSD files in the schema directory. One manual change has been made.
+In  GenericExpressionsClasses.cc "#include GenericExpressionsClasses.hh"
+is changed to "#include ExpressionsClasses.hh".
+
+  AuxiliaryClasses.cc
+  AuxiliaryClasses.hh
+  CharacteristicsClasses.cc
+  CharacteristicsClasses.hh
+  ExpressionsClasses.cc
+  ExpressionsClasses.hh
+  FeaturesClasses.cc
+  FeaturesClasses.hh
+  GenericExpressionsClasses.cc
+  GenericExpressionsClasses.hh
+  GeometryClasses.cc
+  GeometryClasses.hh
+  IntermediatesPMIClasses.cc
+  IntermediatesPMIClasses.hh
+  PrimitivesClasses.cc
+  PrimitivesClasses.hh
+  PrimitivesPDClasses.cc
+  PrimitivesPDClasses.hh
+  PrimitivesPMIClasses.cc
+  PrimitivesPMIClasses.hh
+  QIFDocumentClasses.cc
+  QIFDocumentClasses.hh
+  QIFMeasurementResourcesClasses.cc
+  QIFMeasurementResourcesClasses.hh
+  QIFPlanClasses.cc
+  QIFPlanClasses.hh
+  QIFProductClasses.cc
+  QIFProductClasses.hh
+  QIFResultsClasses.cc
+  QIFResultsClasses.hh
+  QIFRulesClasses.cc
+  QIFRulesClasses.hh
+  QIFStatisticsClasses.cc
+  QIFStatisticsClasses.hh
+  StatisticsClasses.cc
+  StatisticsClasses.hh
+  TopologyClasses.cc
+  TopologyClasses.hh
+  TraceabilityClasses.cc
+  TraceabilityClasses.hh
+  UnitsClasses.cc
+  UnitsClasses.hh
+  VisualizationClasses.cc
+  VisualizationClasses.hh
+
+The following automatically generated files are for the parser
+
+  QIFDocument.lex
+  QIFDocument.y
+  QIFDocumentParser.cc
+
+So that UserDataXML (which contains non-QIF XML data) can be handled,
+changes in QIFDocument.lex and QIFDocument.y were made manually.
+Also, the definition of UserDataXMLType in Primitives.xsd (in the
+schema directory) has been modified.
+
+1B. Code created automatically from automatically generated code.
+
+The QIFDocumentYACC.cc and QIFDocumentYACC.hh files were created by bison
+from QIFDocument.y.
+
+The QIFDocumentLex.cc file was created by flex from QIFDocument.lex.
+
+1C. Hand-written code
+
+  QIF_CPlusPlusDlgAuto.cc
+  QIF_CPlusPlusDlg.cc
+  QIF_CPlusPlusDlgNoDup.cc
+
+2. Code Not Specific to QIF
+
+The xmlSchemaInstance.hh and xmlSchemaInstance.cc files are not specific
+to QIF. They define C++ classes for XML primitive data types. They were
+hand-written.
+
+All code was contributed by Tom Kramer. The generator that created most of
+the code is open source code available at
+https://sourceforge.net/projects/xml-parsers-and-utilities/
+
+APPROACHES TO USING THE CODE
+----------------------------
+
+The QIF C++ code in this directory may be used effectively via two
+different approaches. There are separate ofiles and separate libraries
+for the two approaches. In both approaches, connections between
+objects are made using pointers.
+
+In the first approach, all objects are made using "new". This is
+illustrated in QIF_CPlusPlusDlg.cc and QIF_CPlusPlusDlgNoDup.cc. Here
+are some typical lines:
+
+    DatumReferenceFrameType * drfAB = new DatumReferenceFrameType();
+    drfAB->setid(new QIFIdType(idString(qifid++)));
+ 
+In the second approach, all objects are made using automatic variables.
+This is illustrated in QIF_CPlusPlusDlgAuto.cc. Here are some typical lines:
+
+    DatumReferenceFrameType drfAB;
+    QIFIdType drfABid(idString(qifid++));
+    drfAB.setid(&drfABid);
+
+The second approach has more lines, but they are shorter.
+
+FIRST APPROACH
+
+In the first approach, to free memory after you are finished with objects,
+it is necessary either (1) to keep track of objects that are multiply
+connected or (2) not to make any such objects.
+
+  Keep Track of Multiply Connected Objects
+  ----------------------------------------
+  
+Keeping track of objects that are multiply connected is illustrated by
+the code at the end of QIF_CPlusPlusDlg.cc. That file has built a tree
+with qifdocFile at the root. There are a lot of cross connections in
+the tree because many references to ids have been reused. The
+destructor for every type of object calls the destructors for each
+other object it points to. The result is that calling delete on the
+root deletes the entire tree.  However, if cross connections are not
+eliminated before that, the process will try to delete the same object
+more than once, causing the process to crash. The QIF_CPlusPlusDlg.cc
+has 35 lines at the end removing cross connections before delete is
+called, like so:
+
+    cylBNom->setFeatureDefinitionId(0);
+    ... (33 lines)...
+    posMeasFeatIds->getId()->remove(circMeasRef);
+    delete qifdocFile;
+
+  Make no Multiply Connected Objects
+  ----------------------------------
+  
+Not making any multiply connected objects is illustrated by
+QIF_CPlusPlusDlgNoDup.cc. Rather than reusing references to ids, copies of
+the references are made and used. If the job of a program is to produce an
+XML file, this approach will always work since an XML file is a tree with
+no cross-connections. The (automatically generated) QIFDocumentParser uses
+this approach automatically. It builds no cross connections.
+QIF_CPlusPlusDlgNoDup.cc makes copies where needed with code like the
+following:
+
+  QIFReferenceFullType * cmm1Ref1 = new QIFReferenceFullType();
+  cmm1Ref1->setval(cmm1->getid()->getval());
+  cmm1Ref1->setbad(false);
+  
+  QIFReferenceFullType * cmm1Ref2 = new QIFReferenceFullType();
+  *cmm1Ref2 = *cmm1Ref1;
+
+By calling "delete qifdocFile;" at the end, QIF_CPlusPlusDlgNoDup.cc
+deletes the entire tree.
+
+SECOND APPROACH
+
+In the second approach, which uses automatic variables exclusively, memory
+is freed automatically; no code is needed. However, with automatic
+variables, the compiled process calls an object's destructor automatically
+when the object goes out of scope. If the destructor of an object calls the
+destructors for objects it points to, there will be multiple calls to the
+same destructor, and the process will crash. Hence, in the second approach
+the destructors of objects pointed to are not called. This is implemented
+very simply by having the innards of every destructor be compiled only if
+NODESTRUCT is not defined when the code is compiled.  Thus, in the
+Makefile, code for the second approach is compiled with -DNODESTRUCT.
+
+RECOMMENDATION
+
+For generating QIF files programmatically, the first approach with no cross
+connections but with copies of references where needed will probably be
+easiest to use.
+
+Attempting to mix the two approaches would be frustrating.
