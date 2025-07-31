@@ -37,6 +37,9 @@ value is less than 3, then if a number had a format when it was read
 (necessarily e or E), that format should be used. If the number is 3
 then e must be used. If the number is 4 then E must be used.
 
+This version of xmlSchemaInstance.cc includes copy constructors that
+were not included in earlier versions.
+
 */
 
 /*********************************************************************/
