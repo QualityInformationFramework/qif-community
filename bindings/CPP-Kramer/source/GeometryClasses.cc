@@ -16854,10 +16854,10 @@ void Nurbs12CoreType_1177_Type::setCPs(
   XmlSchemaInstanceBase * CPsIn)
 {
   if ((CPsTypeIn == Nurbs12CoreType_1177_Type::CPsE) &&
-      (dynamic_cast<ArrayPointType *>(CPsIn)))
+      (dynamic_cast<ArrayPoint2dType *>(CPsIn)))
     {
       CPsType = Nurbs12CoreType_1177_Type::CPsE;
-      CPs = dynamic_cast<ArrayPointType *>(CPsIn);
+      CPs = dynamic_cast<ArrayPoint2dType *>(CPsIn);
     }
   else if ((CPsTypeIn == Nurbs12CoreType_1177_Type::CPsBinaryE) &&
       (dynamic_cast<ArrayBinaryType *>(CPsIn)))
