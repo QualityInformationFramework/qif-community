@@ -8,13 +8,7 @@ int XmlSchemaInstanceBase::format = 0;
 int XmlSchemaInstanceBase::places = 6;
 int yyStartAnew = 0;
 std::map<unsigned int, XmlSchemaInstanceBase *> idMap;
-
-char * idString(unsigned int id)
-{
-  char idStr[50];
-  sprintf(idStr, "%u", id);
-  return strdup(idStr);
-}
+char idStr[20];
 
 int main()
 {
@@ -68,16 +62,19 @@ int main()
   // define datums ABC as simple datum letters,
   // we'll create hooks to datum features later
   DatumDefinitionType * datA = new DatumDefinitionType();
-  datA->setid(new QIFIdType(idString(qifid++))); // required id 1
+  snprintf(idStr, 19, "%u", qifid++);
+  datA->setid(new QIFIdType(idStr)); // required id 1
   datA->setDatumLabel(new XmlNMTOKEN("A"));
   datumDefs->getDatumDefinition()->push_back(datA); // datumDefs.n is already 1
   DatumDefinitionType * datB = new DatumDefinitionType();
-  datB->setid(new QIFIdType(idString(qifid++))); // required id 2
+  snprintf(idStr, 19, "%u", qifid++);
+  datB->setid(new QIFIdType(idStr)); // required id 2
   datB->setDatumLabel(new XmlNMTOKEN("B"));
   datumDefs->getDatumDefinition()->push_back(datB);
   datumDefs->getn()->setval(1 + datumDefs->getn()->getval()); // set n counter 
   DatumDefinitionType * datC = new DatumDefinitionType();
-  datC->setid(new QIFIdType(idString(qifid++))); // required id 3
+  snprintf(idStr, 19, "%u", qifid++);
+  datC->setid(new QIFIdType(idStr)); // required id 3
   datC->setDatumLabel(new XmlNMTOKEN("C"));
   datumDefs->getDatumDefinition()->push_back(datC);
   datumDefs->getn()->setval(1 + datumDefs->getn()->getval()); // set n counter 
@@ -89,7 +86,8 @@ int main()
 // region Datum reference frames
   // make datum reference frame A
   DatumReferenceFrameType * drfA = new DatumReferenceFrameType();
-  drfA->setid(new QIFIdType(idString(qifid++))); // required id 4
+  snprintf(idStr, 19, "%u", qifid++);
+  drfA->setid(new QIFIdType(idStr)); // required id 4
   // datums list
   DatumsType * drfAdats = new DatumsType();
   drfAdats->setn(new NaturalType("1"));
@@ -112,14 +110,14 @@ int main()
   dwpA_Aval->SimpleDatum = dtA_A;
   DatumWithPreced_1010_TypeChoicePair * DwpA_Achoice =
     new DatumWithPreced_1010_TypeChoicePair
-    (DatumWithPreced_1010_TypeChoicePair::SimpleDatumE, *dwpA_Aval);
+    (DatumWithPreced_1010_TypeChoicePair::SimpleDatumE, dwpA_Aval);
 
   PrecedenceType * prcA_A = new PrecedenceType();
   PrecedenceTypeVal * prcA_Aval = new PrecedenceTypeVal();
   prcA_Aval->PrecedenceEnum = new PrecedenceEnumType("PRIMARY");
   prcA_A->setPrecedenceTypePair
     (new PrecedenceTypeChoicePair(PrecedenceTypeChoicePair::PrecedenceEnumE,
-				  *prcA_Aval));
+				  prcA_Aval));
   dwpA_A->setPrecedence(prcA_A);
   dwpA_A->setDatumWithPreced_1010
     (new DatumWithPreced_1010_Type(DwpA_Achoice));
@@ -139,7 +137,8 @@ int main()
 // region A|B
   // make a datum reference frame A|B(m)
   DatumReferenceFrameType * drfAB = new DatumReferenceFrameType();
-  drfAB->setid(new QIFIdType(idString(qifid++))); // required id 5
+  snprintf(idStr, 19, "%u", qifid++);
+  drfAB->setid(new QIFIdType(idStr)); // required id 5
   // datums list
   DatumsType * drfABdats = new DatumsType();
   drfABdats->setn(new NaturalType("1"));
@@ -163,14 +162,14 @@ int main()
   dwpA_ABval->SimpleDatum = dtA_AB;
   DatumWithPreced_1010_TypeChoicePair * DwpA_ABchoice =
     new DatumWithPreced_1010_TypeChoicePair
-    (DatumWithPreced_1010_TypeChoicePair::SimpleDatumE, *dwpA_ABval);
+    (DatumWithPreced_1010_TypeChoicePair::SimpleDatumE, dwpA_ABval);
 
   PrecedenceType * prcA_AB = new PrecedenceType();
   PrecedenceTypeVal * prcA_ABval = new PrecedenceTypeVal();
   prcA_ABval->PrecedenceEnum = new PrecedenceEnumType("PRIMARY");
   prcA_AB->setPrecedenceTypePair
     (new PrecedenceTypeChoicePair(PrecedenceTypeChoicePair::PrecedenceEnumE,
-				  *prcA_ABval));
+				  prcA_ABval));
   dwpA_AB->setPrecedence(prcA_AB);
   dwpA_AB->setDatumWithPreced_1010
     (new DatumWithPreced_1010_Type(DwpA_ABchoice));
@@ -198,14 +197,14 @@ int main()
   dwpB_ABval->SimpleDatum = dtB_AB;
   DatumWithPreced_1010_TypeChoicePair * DwpB_ABchoice =
     new DatumWithPreced_1010_TypeChoicePair
-    (DatumWithPreced_1010_TypeChoicePair::SimpleDatumE, *dwpB_ABval);
+    (DatumWithPreced_1010_TypeChoicePair::SimpleDatumE, dwpB_ABval);
 
   PrecedenceType * prcB_AB = new PrecedenceType();
   PrecedenceTypeVal * prcB_ABval = new PrecedenceTypeVal();
   prcB_ABval->PrecedenceEnum = new PrecedenceEnumType("SECONDARY");
   prcB_AB->setPrecedenceTypePair
     (new PrecedenceTypeChoicePair(PrecedenceTypeChoicePair::PrecedenceEnumE,
-				  *prcB_ABval));
+				  prcB_ABval));
   dwpB_AB->setPrecedence(prcB_AB);
   dwpB_AB->setDatumWithPreced_1010
     (new DatumWithPreced_1010_Type(DwpB_ABchoice));
@@ -223,7 +222,8 @@ int main()
 // region A|B|C
   // make a datum reference frame A|B(m)|C(m)
   DatumReferenceFrameType * drfABC = new DatumReferenceFrameType();
-  drfABC->setid(new QIFIdType(idString(qifid++))); // required id 6
+  snprintf(idStr, 19, "%u", qifid++);
+  drfABC->setid(new QIFIdType(idStr)); // required id 6
   // datums list
   DatumsType * drfABCdats = new DatumsType();
   drfABCdats->setn(new NaturalType("1"));
@@ -247,14 +247,14 @@ int main()
   dwpA_ABCval->SimpleDatum = dtA_ABC;
   DatumWithPreced_1010_TypeChoicePair * DwpA_ABCchoice =
     new DatumWithPreced_1010_TypeChoicePair
-    (DatumWithPreced_1010_TypeChoicePair::SimpleDatumE, *dwpA_ABCval);
+    (DatumWithPreced_1010_TypeChoicePair::SimpleDatumE, dwpA_ABCval);
 
   PrecedenceType * prcA_ABC = new PrecedenceType();
   PrecedenceTypeVal * prcA_ABCval = new PrecedenceTypeVal();
   prcA_ABCval->PrecedenceEnum = new PrecedenceEnumType("PRIMARY");
   prcA_ABC->setPrecedenceTypePair
     (new PrecedenceTypeChoicePair(PrecedenceTypeChoicePair::PrecedenceEnumE,
-				  *prcA_ABCval));
+				  prcA_ABCval));
   dwpA_ABC->setPrecedence(prcA_ABC);
   dwpA_ABC->setDatumWithPreced_1010
     (new DatumWithPreced_1010_Type(DwpA_ABCchoice));
@@ -282,14 +282,14 @@ int main()
   dwpB_ABCval->SimpleDatum = dtB_ABC;
   DatumWithPreced_1010_TypeChoicePair * DwpB_ABCchoice =
     new DatumWithPreced_1010_TypeChoicePair
-    (DatumWithPreced_1010_TypeChoicePair::SimpleDatumE, *dwpB_ABCval);
+    (DatumWithPreced_1010_TypeChoicePair::SimpleDatumE, dwpB_ABCval);
 
   PrecedenceType * prcB_ABC = new PrecedenceType();
   PrecedenceTypeVal * prcB_ABCval = new PrecedenceTypeVal();
   prcB_ABCval->PrecedenceEnum = new PrecedenceEnumType("SECONDARY");
   prcB_ABC->setPrecedenceTypePair
     (new PrecedenceTypeChoicePair(PrecedenceTypeChoicePair::PrecedenceEnumE,
-				  *prcB_ABCval));
+				  prcB_ABCval));
   dwpB_ABC->setPrecedence(prcB_ABC);
   dwpB_ABC->setDatumWithPreced_1010
     (new DatumWithPreced_1010_Type(DwpB_ABCchoice));
@@ -315,14 +315,14 @@ int main()
   dwpC_ABCval->SimpleDatum = dtC_ABC;
   DatumWithPreced_1010_TypeChoicePair * DwpC_ABCchoice =
     new DatumWithPreced_1010_TypeChoicePair
-    (DatumWithPreced_1010_TypeChoicePair::SimpleDatumE, *dwpC_ABCval);
+    (DatumWithPreced_1010_TypeChoicePair::SimpleDatumE, dwpC_ABCval);
 
   PrecedenceType * prcC_ABC = new PrecedenceType();
   PrecedenceTypeVal * prcC_ABCval = new PrecedenceTypeVal();
   prcC_ABCval->PrecedenceEnum = new PrecedenceEnumType("TERTIARY");
   prcC_ABC->setPrecedenceTypePair
     (new PrecedenceTypeChoicePair(PrecedenceTypeChoicePair::PrecedenceEnumE,
-				  *prcC_ABCval));
+				  prcC_ABCval));
   dwpC_ABC->setPrecedence(prcC_ABC);
   dwpC_ABC->setDatumWithPreced_1010
     (new DatumWithPreced_1010_Type(DwpC_ABCchoice));
@@ -343,8 +343,9 @@ int main()
   // define 2 CMM measurement devices and assign them ids
   MeasurementDeviceType * cmm1 = new MeasurementDeviceType();
   cmm1->setName(new XmlToken("CMM1"));
-  cmm1->setprintElement(strdup("MeasurementDevice"));
-  cmm1->setid(new QIFIdType(idString(qifid++))); // required id 7
+  cmm1->setprintElement("MeasurementDevice");
+  snprintf(idStr, 19, "%u", qifid++);
+  cmm1->setid(new QIFIdType(idStr)); // required id 7
   // add this device to our list
   measDevices->getMeasurementDevice()->push_back(cmm1);
   //measDevices->getn()->setval(1 + measDevices->getn()->getval());
@@ -368,8 +369,9 @@ int main()
 
   MeasurementDeviceType * cmm2 = new MeasurementDeviceType();
   cmm2->setName(new XmlToken("CMM2"));
-  cmm2->setprintElement(strdup("MeasurementDevice"));
-  cmm2->setid(new QIFIdType(idString(qifid++))); // required id 8
+  cmm2->setprintElement("MeasurementDevice");
+  snprintf(idStr, 19, "%u", qifid++);
+  cmm2->setid(new QIFIdType(idStr)); // required id 8
   // add this device to our list
   measDevices->getMeasurementDevice()->push_back(cmm2);
   measDevices->getn()->setval(1 + measDevices->getn()->getval()); // increment n
@@ -411,8 +413,9 @@ int main()
 
   // make a plane feature definition
   PlaneFeatureDefinitionType * planADef = new PlaneFeatureDefinitionType();
-  planADef->setprintElement(strdup("PlaneFeatureDefinition"));
-  planADef->setid(new QIFIdType(idString(qifid++)));  // required id 9
+  planADef->setprintElement("PlaneFeatureDefinition");
+  snprintf(idStr, 19, "%u", qifid++);
+  planADef->setid(new QIFIdType(idStr));  // required id 9
 
   // add to list
   featDefs->getFeatureDefinition()->push_back(planADef);
@@ -421,8 +424,9 @@ int main()
 
   // make a plane feature nominal
   PlaneFeatureNominalType * planANom = new PlaneFeatureNominalType();
-  planANom->setprintElement(strdup("PlaneFeatureNominal"));
-  planANom->setid(new QIFIdType(idString(qifid++)));  // required id 10
+  planANom->setprintElement("PlaneFeatureNominal");
+  snprintf(idStr, 19, "%u", qifid++);
+  planANom->setid(new QIFIdType(idStr));  // required id 10
 
   // reference to definition
   QIFReferenceType * planADefRef = new QIFReferenceType();
@@ -450,8 +454,9 @@ int main()
 
   // make a plane feature item
   PlaneFeatureItemType * planAItem = new PlaneFeatureItemType();
-  planAItem->setprintElement(strdup("PlaneFeatureItem"));
-  planAItem->setid(new QIFIdType(idString(qifid++))); // required id 11
+  planAItem->setprintElement("PlaneFeatureItem");
+  snprintf(idStr, 19, "%u", qifid++);
+  planAItem->setid(new QIFIdType(idStr)); // required id 11
 
   // reference to nominal
   QIFReferenceFullType * planANomRef1 = new QIFReferenceFullType();
@@ -475,7 +480,7 @@ int main()
   planACheckVal->Checked = planACheck;
   PlaneMeasurementDeterminationTypeChoicePair * planACheckChoice =
     new PlaneMeasurementDeterminationTypeChoicePair
-    (PlaneMeasurementDeterminationTypeChoicePair::CheckedE, *planACheckVal);
+    (PlaneMeasurementDeterminationTypeChoicePair::CheckedE, planACheckVal);
   planAMeasDet->setPlaneMeasurementDeterminationTypePair(planACheckChoice);
   planAItem->setDeterminationMode(planAMeasDet);
 
@@ -493,8 +498,9 @@ int main()
 
   // make a plane feature measurement
   PlaneFeatureMeasurementType * planAMeas = new PlaneFeatureMeasurementType();
-  planAMeas->setprintElement(strdup("PlaneFeatureMeasurement"));
-  planAMeas->setid(new QIFIdType(idString(qifid++))); // required id 12
+  planAMeas->setprintElement("PlaneFeatureMeasurement");
+  snprintf(idStr, 19, "%u", qifid++);
+  planAMeas->setid(new QIFIdType(idStr)); // required id 12
 
   // reference to item
   planAMeas->setFeatureItemId(planAItemRef1);
@@ -530,8 +536,9 @@ int main()
   // make a flatness characteristic definition
   FlatnessCharacteristicDefinitionType * flatDef =
     new FlatnessCharacteristicDefinitionType();
-  flatDef->setprintElement(strdup("FlatnessCharacteristicDefinition"));
-  flatDef->setid(new QIFIdType(idString(qifid++))); // required id 13
+  flatDef->setprintElement("FlatnessCharacteristicDefinition");
+  snprintf(idStr, 19, "%u", qifid++);
+  flatDef->setid(new QIFIdType(idStr)); // required id 13
 	
   // define the tolerance zone
   LinearValueType * flatZone = new LinearValueType("0.1");
@@ -544,7 +551,7 @@ int main()
   flatDefVal->FlatnessCharact_1066 = flatDefLinear; 
   FlatnessCharact_1049_TypeChoicePair * flatDefChoice =
     new FlatnessCharact_1049_TypeChoicePair
-    (FlatnessCharact_1049_TypeChoicePair::FlatnessCharact_1066E, *flatDefVal);
+    (FlatnessCharact_1049_TypeChoicePair::FlatnessCharact_1066E, flatDefVal);
   FlatnessCharact_1049_Type * flatDef1049 = new FlatnessCharact_1049_Type();
   flatDef1049->setFlatnessCharact_1049_TypePair(flatDefChoice);
   flatDef->setFlatnessCharact_1049(flatDef1049);
@@ -561,8 +568,9 @@ int main()
   // make a flatness characteristic nominal
   FlatnessCharacteristicNominalType * flatNom =
     new FlatnessCharacteristicNominalType();
-  flatNom->setprintElement(strdup("FlatnessCharacteristicNominal"));
-  flatNom->setid(new QIFIdType(idString(qifid++))); // required id 14
+  flatNom->setprintElement("FlatnessCharacteristicNominal");
+  snprintf(idStr, 19, "%u", qifid++);
+  flatNom->setid(new QIFIdType(idStr)); // required id 14
 
   // required reference to definition
   QIFReferenceType * flatDefRef = new QIFReferenceType();
@@ -578,8 +586,9 @@ int main()
   // make a flatness characteristic item
   FlatnessCharacteristicItemType * flatItem =
     new FlatnessCharacteristicItemType();
-  flatItem->setprintElement(strdup("FlatnessCharacteristicItem"));
-  flatItem->setid(new QIFIdType(idString(qifid++))); // required id 15
+  flatItem->setprintElement("FlatnessCharacteristicItem");
+  snprintf(idStr, 19, "%u", qifid++);
+  flatItem->setid(new QIFIdType(idStr)); // required id 15
 
   // required reference to nominal
   QIFReferenceFullType * flatNomRef = new QIFReferenceFullType();
@@ -614,8 +623,9 @@ int main()
   // make a flatness characteristic measurement
   FlatnessCharacteristicMeasurementType * flatMeas =
     new FlatnessCharacteristicMeasurementType;
-  flatMeas->setprintElement(strdup("FlatnessCharacteristicMeasurement"));
-  flatMeas->setid(new QIFIdType(idString(qifid++))); // required id 16
+  flatMeas->setprintElement("FlatnessCharacteristicMeasurement");
+  snprintf(idStr, 19, "%u", qifid++);
+  flatMeas->setid(new QIFIdType(idStr)); // required id 16
 
   // required reference to item
   QIFReferenceFullType * flatItemRef = new QIFReferenceFullType();
@@ -633,7 +643,7 @@ int main()
   CharacteristicStatusTypeChoicePair * flatStatChoice =
     new CharacteristicStatusTypeChoicePair
     (CharacteristicStatusTypeChoicePair::CharacteristicStatusEnumE,
-     *flatStatVal);
+     flatStatVal);
   flatStat->setCharacteristicStatusTypePair(flatStatChoice);
   flatMeas->setStatus(flatStat);
   
@@ -670,8 +680,9 @@ int main()
   // make a cylinder feature definition * SHARED BETWEEN DATUMS B AND C *
   CylinderFeatureDefinitionType * cylBCDef =
     new CylinderFeatureDefinitionType();
-  cylBCDef->setprintElement(strdup("CylinderFeatureDefinition"));
-  cylBCDef->setid(new QIFIdType(idString(qifid++))); // required id 17
+  cylBCDef->setprintElement("CylinderFeatureDefinition");
+  snprintf(idStr, 19, "%u", qifid++);
+  cylBCDef->setid(new QIFIdType(idStr)); // required id 17
 
   // feature size
   LinearValueType * diaBCSize1 = new LinearValueType("12.7");
@@ -686,8 +697,9 @@ int main()
 
   // make a cylinder feature nominal (not sharable)
   CylinderFeatureNominalType * cylBNom = new CylinderFeatureNominalType();
-  cylBNom->setprintElement(strdup("CylinderFeatureNominal"));
-  cylBNom->setid(new QIFIdType(idString(qifid++))); // required id 18
+  cylBNom->setprintElement("CylinderFeatureNominal");
+  snprintf(idStr, 19, "%u", qifid++);
+  cylBNom->setid(new QIFIdType(idStr)); // required id 18
 
   // reference to shared definition
   QIFReferenceType * cylBCDefRef1 = new QIFReferenceType();
@@ -722,8 +734,9 @@ int main()
 
   // make a cylinder feature item
   CylinderFeatureItemType * cylBItem = new CylinderFeatureItemType();
-  cylBItem->setprintElement(strdup("CylinderFeatureItem"));
-  cylBItem->setid(new QIFIdType(idString(qifid++))); // required id 19
+  cylBItem->setprintElement("CylinderFeatureItem");
+  snprintf(idStr, 19, "%u", qifid++);
+  cylBItem->setid(new QIFIdType(idStr)); // required id 19
   
   // reference to nominal
   QIFReferenceFullType * cylBNomRef1 = new QIFReferenceFullType();
@@ -746,7 +759,7 @@ int main()
   cylBCheckVal->Checked = cylBCheck;
   CylinderMeasurementDeterminationTypeChoicePair * cylBCheckChoice =
     new CylinderMeasurementDeterminationTypeChoicePair
-    (CylinderMeasurementDeterminationTypeChoicePair::CheckedE, *cylBCheckVal);
+    (CylinderMeasurementDeterminationTypeChoicePair::CheckedE, cylBCheckVal);
   cylBMeasDet->setCylinderMeasurementDeterminationTypePair(cylBCheckChoice);
   cylBItem->setDeterminationMode(cylBMeasDet);
 
@@ -757,8 +770,9 @@ int main()
   // make a cylinder feature measurement
   CylinderFeatureMeasurementType * cylBMeas =
     new CylinderFeatureMeasurementType();
-  cylBMeas->setprintElement(strdup("CylinderFeatureMeasurement"));
-  cylBMeas->setid(new QIFIdType(idString(qifid++))); // required id 20
+  cylBMeas->setprintElement("CylinderFeatureMeasurement");
+  snprintf(idStr, 19, "%u", qifid++);
+  cylBMeas->setid(new QIFIdType(idStr)); // required id 20
   
   // reference to item
   QIFReferenceFullType * cylBItemRef1 = new QIFReferenceFullType();
@@ -809,8 +823,9 @@ int main()
   // make a diameter characteristic definition to be shared
   DiameterCharacteristicDefinitionType * diaBCDef =
     new DiameterCharacteristicDefinitionType();
-  diaBCDef->setprintElement(strdup("DiameterCharacteristicDefinition"));
-  diaBCDef->setid(new QIFIdType(idString(qifid++))); // required id 21
+  diaBCDef->setprintElement("DiameterCharacteristicDefinition");
+  snprintf(idStr, 19, "%u", qifid++);
+  diaBCDef->setid(new QIFIdType(idStr)); // required id 21
 
   // tolerance (as opposed to limits and fits, or non-tolerance
   LinearValueType * plusTolBC = new LinearValueType("0.3");
@@ -828,7 +843,7 @@ int main()
   LinearTolerance_1014_TypeChoicePair * diaBCTolChoice =
     new LinearTolerance_1014_TypeChoicePair
     (LinearTolerance_1014_TypeChoicePair::LinearTolerance_1031E,
-     *diaBCTolVal);
+     diaBCTolVal);
   LinearTolerance_1014_Type * diaBCTol1014 = new LinearTolerance_1014_Type();
   diaBCTol1014->setLinearTolerance_1014_TypePair(diaBCTolChoice);
   diaBCTol->setLinearTolerance_1014(diaBCTol1014);
@@ -838,7 +853,7 @@ int main()
   DiameterCharacteristicDefinitionTypeChoicePair * diaBCTolSelChoice =
     new DiameterCharacteristicDefinitionTypeChoicePair
     (DiameterCharacteristicDefinitionTypeChoicePair::ToleranceE,
-     *diaBCTolSelVal);
+     diaBCTolSelVal);
   diaBCDef->setDiameterCharacteristicDefinitionTypeChoicePair(diaBCTolSelChoice);
 
   // add to list
@@ -848,8 +863,9 @@ int main()
   // make a diameter characteristic nominal
   DiameterCharacteristicNominalType * diaBCNom =
     new DiameterCharacteristicNominalType();
-  diaBCNom->setprintElement(strdup("DiameterCharacteristicNominal"));
-  diaBCNom->setid(new QIFIdType(idString(qifid++))); // required id 22
+  diaBCNom->setprintElement("DiameterCharacteristicNominal");
+  snprintf(idStr, 19, "%u", qifid++);
+  diaBCNom->setid(new QIFIdType(idStr)); // required id 22
 
   // required reference to definition
   QIFReferenceType * diaBCDefRef = new QIFReferenceType();
@@ -871,8 +887,9 @@ int main()
   // make a diameter characteristic item (this is not sharable)
   DiameterCharacteristicItemType * diaBItem =
     new DiameterCharacteristicItemType();
-  diaBItem->setprintElement(strdup("DiameterCharacteristicItem"));
-  diaBItem->setid(new QIFIdType(idString(qifid++))); // required id 23
+  diaBItem->setprintElement("DiameterCharacteristicItem");
+  snprintf(idStr, 19, "%u", qifid++);
+  diaBItem->setid(new QIFIdType(idStr)); // required id 23
 
   // required reference to nominal
   QIFReferenceFullType * diaBCNomRef1 = new QIFReferenceFullType();
@@ -908,8 +925,9 @@ int main()
   // make a diameter characteristic measurement
   DiameterCharacteristicMeasurementType * diaBMeas =
     new DiameterCharacteristicMeasurementType();
-  diaBMeas->setprintElement(strdup("DiameterCharacteristicMeasurement"));
-  diaBMeas->setid(new QIFIdType(idString(qifid++))); // required id 24
+  diaBMeas->setprintElement("DiameterCharacteristicMeasurement");
+  snprintf(idStr, 19, "%u", qifid++);
+  diaBMeas->setid(new QIFIdType(idStr)); // required id 24
 
   // required reference to item
   QIFReferenceFullType * diaBItemRef = new QIFReferenceFullType();
@@ -926,7 +944,7 @@ int main()
   CharacteristicStatusTypeChoicePair * diaBStatChoice =
     new CharacteristicStatusTypeChoicePair
     (CharacteristicStatusTypeChoicePair::CharacteristicStatusEnumE,
-     *diaBStatVal);
+     diaBStatVal);
   diaBStat->setCharacteristicStatusTypePair(diaBStatChoice);
   diaBMeas->setStatus(diaBStat);
 
@@ -963,8 +981,9 @@ int main()
   // make a perpendicularity characteristic definition
   PerpendicularityCharacteristicDefinitionType * perpDef =
     new PerpendicularityCharacteristicDefinitionType();
-  perpDef->setprintElement(strdup("PerpendicularityCharacteristicDefinition"));
-  perpDef->setid(new QIFIdType(idString(qifid++))); // required id 25
+  perpDef->setprintElement("PerpendicularityCharacteristicDefinition");
+  snprintf(idStr, 19, "%u", qifid++);
+  perpDef->setid(new QIFIdType(idStr)); // required id 25
 
   // define the tolerance zone
   LinearValueType * perpZone = new LinearValueType("0.2");
@@ -977,7 +996,7 @@ int main()
   perpZoneShapeVal->DiametricalZone = new OrientationDiametricalZoneType();
   OrientationZoneShapeTypeChoicePair * perpZoneShapeChoice =
     new OrientationZoneShapeTypeChoicePair
-    (OrientationZoneShapeTypeChoicePair::DiametricalZoneE, *perpZoneShapeVal);
+    (OrientationZoneShapeTypeChoicePair::DiametricalZoneE, perpZoneShapeVal);
   perpZoneShape->setOrientationZoneShapeTypePair(perpZoneShapeChoice);
   perpDef->setZoneShape(perpZoneShape);
   // define the material condition
@@ -995,8 +1014,9 @@ int main()
   // make a perpendicularity characteristic nominal
   PerpendicularityCharacteristicNominalType * perpNom =
     new PerpendicularityCharacteristicNominalType();
-  perpNom->setprintElement(strdup("PerpendicularityCharacteristicNominal"));
-  perpNom->setid(new QIFIdType(idString(qifid++))); // required id 26
+  perpNom->setprintElement("PerpendicularityCharacteristicNominal");
+  snprintf(idStr, 19, "%u", qifid++);
+  perpNom->setid(new QIFIdType(idStr)); // required id 26
 
   // required reference to definition
   QIFReferenceType * perpDefRef = new QIFReferenceType();
@@ -1011,8 +1031,9 @@ int main()
   // make a perpendicularity characteristic item
   PerpendicularityCharacteristicItemType * perpItem =
     new PerpendicularityCharacteristicItemType();
-  perpItem->setprintElement(strdup("PerpendicularityCharacteristicItem"));
-  perpItem->setid(new QIFIdType(idString(qifid++))); // required id 27
+  perpItem->setprintElement("PerpendicularityCharacteristicItem");
+  snprintf(idStr, 19, "%u", qifid++);
+  perpItem->setid(new QIFIdType(idStr)); // required id 27
 
   // required reference to nominal
   QIFReferenceFullType * perpNomRef = new QIFReferenceFullType();
@@ -1046,9 +1067,9 @@ int main()
   // make a perpendicularity characteristic actual
   PerpendicularityCharacteristicMeasurementType * perpMeas =
     new PerpendicularityCharacteristicMeasurementType();
-  perpMeas->setprintElement(strdup
-			    ("PerpendicularityCharacteristicMeasurement"));
-  perpMeas->setid(new QIFIdType(idString(qifid++))); // required id 28
+  perpMeas->setprintElement("PerpendicularityCharacteristicMeasurement");
+  snprintf(idStr, 19, "%u", qifid++);
+  perpMeas->setid(new QIFIdType(idStr)); // required id 28
 
   // required reference to item
   QIFReferenceFullType * perpItemRef = new QIFReferenceFullType();
@@ -1065,7 +1086,7 @@ int main()
   CharacteristicStatusTypeChoicePair * perpStatChoice =
     new CharacteristicStatusTypeChoicePair
     (CharacteristicStatusTypeChoicePair::CharacteristicStatusEnumE,
-     *perpStatVal);
+     perpStatVal);
   perpStat->setCharacteristicStatusTypePair(perpStatChoice);
   perpMeas->setStatus(perpStat);
 
@@ -1098,8 +1119,9 @@ int main()
 
   // make a cylinder feature nominal
   CylinderFeatureNominalType * cylCNom = new CylinderFeatureNominalType;
-  cylCNom->setprintElement(strdup("CylinderFeatureNominal"));
-  cylCNom->setid(new QIFIdType(idString(qifid++))); // required id 29
+  cylCNom->setprintElement("CylinderFeatureNominal");
+  snprintf(idStr, 19, "%u", qifid++);
+  cylCNom->setid(new QIFIdType(idStr)); // required id 29
 
   // reference to shared definition
   cylCNom->setFeatureDefinitionId(cylBCDefRef2);
@@ -1128,8 +1150,9 @@ int main()
 
   // make a cylinder feature item
   CylinderFeatureItemType * cylCItem = new CylinderFeatureItemType();
-  cylCItem->setprintElement(strdup("CylinderFeatureItem"));
-  cylCItem->setid(new QIFIdType(idString(qifid++))); // required id 30
+  cylCItem->setprintElement("CylinderFeatureItem");
+  snprintf(idStr, 19, "%u", qifid++);
+  cylCItem->setid(new QIFIdType(idStr)); // required id 30
 
   // reference to nominal
   QIFReferenceFullType * cylCNomRef1 = new QIFReferenceFullType();
@@ -1153,7 +1176,7 @@ int main()
   cylCCheckVal->Checked = cylCCheck;
   CylinderMeasurementDeterminationTypeChoicePair * cylCCheckChoice =
     new CylinderMeasurementDeterminationTypeChoicePair
-    (CylinderMeasurementDeterminationTypeChoicePair::CheckedE, *cylCCheckVal);
+    (CylinderMeasurementDeterminationTypeChoicePair::CheckedE, cylCCheckVal);
   cylCMeasDet->setCylinderMeasurementDeterminationTypePair(cylCCheckChoice);
   cylCItem->setDeterminationMode(cylCMeasDet);
 
@@ -1164,8 +1187,9 @@ int main()
   // make a cylinder feature actual
   CylinderFeatureMeasurementType * cylCMeas =
     new CylinderFeatureMeasurementType();
-  cylCMeas->setprintElement(strdup("CylinderFeatureMeasurement"));
-  cylCMeas->setid(new QIFIdType(idString(qifid++)));  // required id 31
+  cylCMeas->setprintElement("CylinderFeatureMeasurement");
+  snprintf(idStr, 19, "%u", qifid++);
+  cylCMeas->setid(new QIFIdType(idStr));  // required id 31
 
   // reference to item
   QIFReferenceFullType * cylCItemRef1 = new QIFReferenceFullType();
@@ -1216,8 +1240,9 @@ int main()
   // make a diameter characteristic item (this is not sharable)
   DiameterCharacteristicItemType * diaCItem =
     new DiameterCharacteristicItemType();
-  diaCItem->setprintElement(strdup("DiameterCharacteristicItem"));
-  diaCItem->setid(new QIFIdType(idString(qifid++))); // required id 32
+  diaCItem->setprintElement("DiameterCharacteristicItem");
+  snprintf(idStr, 19, "%u", qifid++);
+  diaCItem->setid(new QIFIdType(idStr)); // required id 32
 
   // required reference to nominal
   diaCItem->setCharacteristicNominalId(diaBCNomRef2); // shared nominal
@@ -1248,8 +1273,9 @@ int main()
   // make a diameter characteristic measurement
   DiameterCharacteristicMeasurementType * diaCMeas =
     new DiameterCharacteristicMeasurementType();
-  diaCMeas->setprintElement(strdup("DiameterCharacteristicMeasurement"));
-  diaCMeas->setid(new QIFIdType(idString(qifid++))); // required id 33
+  diaCMeas->setprintElement("DiameterCharacteristicMeasurement");
+  snprintf(idStr, 19, "%u", qifid++);
+  diaCMeas->setid(new QIFIdType(idStr)); // required id 33
 
   // required reference to item
   QIFReferenceFullType * diaCItemRef = new QIFReferenceFullType();
@@ -1266,7 +1292,7 @@ int main()
   CharacteristicStatusTypeChoicePair * diaCStatChoice =
     new CharacteristicStatusTypeChoicePair
     (CharacteristicStatusTypeChoicePair::CharacteristicStatusEnumE,
-     *diaCStatVal);
+     diaCStatVal);
   diaCStat->setCharacteristicStatusTypePair(diaCStatChoice);
   diaCMeas->setStatus(diaCStat);
 
@@ -1303,8 +1329,9 @@ int main()
   // make a position characteristic definition
   PositionCharacteristicDefinitionType * posCDef =
     new PositionCharacteristicDefinitionType();
-  posCDef->setprintElement(strdup("PositionCharacteristicDefinition"));
-  posCDef->setid(new QIFIdType(idString(qifid++))); // required id 34
+  posCDef->setprintElement("PositionCharacteristicDefinition");
+  snprintf(idStr, 19, "%u", qifid++);
+  posCDef->setid(new QIFIdType(idStr)); // required id 34
 
   // define the tolerance zone shape (diametrical)
   PositionZoneShapeType * zoneCShape = new PositionZoneShapeType();
@@ -1313,7 +1340,7 @@ int main()
   zoneCShapeVal->DiametricalZone = new PositionDiametricalZoneType();
   PositionZoneShapeTypeChoicePair * zoneCShapeChoice =
     new PositionZoneShapeTypeChoicePair
-    (PositionZoneShapeTypeChoicePair::DiametricalZoneE, *zoneCShapeVal);
+    (PositionZoneShapeTypeChoicePair::DiametricalZoneE, zoneCShapeVal);
   zoneCShape->setPositionZoneShapeTypePair(zoneCShapeChoice);
   posCDef->setZoneShape(zoneCShape);
 
@@ -1337,8 +1364,9 @@ int main()
   // make a position characteristic nominal
   PositionCharacteristicNominalType * posCNom =
     new PositionCharacteristicNominalType();
-  posCNom->setprintElement(strdup("PositionCharacteristicNominal"));
-  posCNom->setid(new QIFIdType(idString(qifid++))); // required id 35
+  posCNom->setprintElement("PositionCharacteristicNominal");
+  snprintf(idStr, 19, "%u", qifid++);
+  posCNom->setid(new QIFIdType(idStr)); // required id 35
   
   // required reference to definition
   QIFReferenceType * posCDefRef =  new QIFReferenceType();
@@ -1353,8 +1381,9 @@ int main()
   // make a position characteristic item
   PositionCharacteristicItemType * posCItem =
     new PositionCharacteristicItemType();
-  posCItem->setprintElement(strdup("PositionCharacteristicItem"));
-  posCItem->setid(new QIFIdType(idString(qifid++))); // required id 36
+  posCItem->setprintElement("PositionCharacteristicItem");
+  snprintf(idStr, 19, "%u", qifid++);
+  posCItem->setid(new QIFIdType(idStr)); // required id 36
 
   // required reference to nominal
   QIFReferenceFullType * posCNomRef = new QIFReferenceFullType();
@@ -1388,8 +1417,9 @@ int main()
   // make a position characteristic measurement
   PositionCharacteristicMeasurementType *  posCMeas =
     new PositionCharacteristicMeasurementType();
-  posCMeas->setprintElement(strdup("PositionCharacteristicMeasurement"));
-  posCMeas->setid(new QIFIdType(idString(qifid++))); // required id 37
+  posCMeas->setprintElement("PositionCharacteristicMeasurement");
+  snprintf(idStr, 19, "%u", qifid++);
+  posCMeas->setid(new QIFIdType(idStr)); // required id 37
 
   // required reference to item
   QIFReferenceFullType * posCItemRef = new QIFReferenceFullType();
@@ -1406,7 +1436,7 @@ int main()
   CharacteristicStatusTypeChoicePair * posCStatChoice =
     new CharacteristicStatusTypeChoicePair
     (CharacteristicStatusTypeChoicePair::CharacteristicStatusEnumE,
-     *posCStatVal);
+     posCStatVal);
   posCStat->setCharacteristicStatusTypePair(posCStatChoice);
   posCMeas->setStatus(posCStat);
 
@@ -1438,8 +1468,9 @@ int main()
 // region circle back to ABC
   // make a circle feature definition
   CircleFeatureDefinitionType * circDef = new CircleFeatureDefinitionType();
-  circDef->setprintElement(strdup("CircleFeatureDefinition"));
-  circDef->setid(new QIFIdType(idString(qifid++))); // required id 38
+  circDef->setprintElement("CircleFeatureDefinition");
+  snprintf(idStr, 19, "%u", qifid++);
+  circDef->setid(new QIFIdType(idStr)); // required id 38
 
   // feature size
   LinearValueType * diaSize = new LinearValueType("6.35");
@@ -1454,8 +1485,9 @@ int main()
 
   // make a circle feature nominal
   CircleFeatureNominalType * circNom = new CircleFeatureNominalType();
-  circNom->setprintElement(strdup("CircleFeatureNominal"));
-  circNom->setid(new QIFIdType(idString(qifid++))); // required id 39
+  circNom->setprintElement("CircleFeatureNominal");
+  snprintf(idStr, 19, "%u", qifid++);
+  circNom->setid(new QIFIdType(idStr)); // required id 39
 
   // reference to definition
   QIFReferenceType * circDefRef = new QIFReferenceType();
@@ -1483,8 +1515,9 @@ int main()
 
   // make a circle feature item
   CircleFeatureItemType * circItem = new CircleFeatureItemType();
-  circItem->setprintElement(strdup("CircleFeatureItem"));
-  circItem->setid(new QIFIdType(idString(qifid++))); // required id 40
+  circItem->setprintElement("CircleFeatureItem");
+  snprintf(idStr, 19, "%u", qifid++);
+  circItem->setid(new QIFIdType(idStr)); // required id 40
 
   // reference to definition
   QIFReferenceFullType * circNomRef = new QIFReferenceFullType();
@@ -1505,7 +1538,7 @@ int main()
   circCheckVal->Checked = circCheck;
   CircleMeasurementDeterminationTypeChoicePair * circCheckChoice =
     new CircleMeasurementDeterminationTypeChoicePair
-    (CircleMeasurementDeterminationTypeChoicePair::CheckedE, *circCheckVal);
+    (CircleMeasurementDeterminationTypeChoicePair::CheckedE, circCheckVal);
   circMeasDet->setCircleMeasurementDeterminationTypePair(circCheckChoice);
   circItem->setDeterminationMode(circMeasDet);
 
@@ -1515,8 +1548,9 @@ int main()
 
   // make a circle feature actual
   CircleFeatureMeasurementType * circMeas = new CircleFeatureMeasurementType();
-  circMeas->setprintElement(strdup("CircleFeatureMeasurement"));
-  circMeas->setid(new QIFIdType(idString(qifid++))); // required id 41
+  circMeas->setprintElement("CircleFeatureMeasurement");
+  snprintf(idStr, 19, "%u", qifid++);
+  circMeas->setid(new QIFIdType(idStr)); // required id 41
 
   // reference to item
   QIFReferenceFullType * circItemRef1 = new QIFReferenceFullType();
@@ -1555,8 +1589,9 @@ int main()
   // make a diameter characteristic definition
   DiameterCharacteristicDefinitionType * diaDef =
     new DiameterCharacteristicDefinitionType();
-  diaDef->setprintElement(strdup("DiameterCharacteristicDefinition"));
-  diaDef->setid(new QIFIdType(idString(qifid++))); // required id 42
+  diaDef->setprintElement("DiameterCharacteristicDefinition");
+  snprintf(idStr, 19, "%u", qifid++);
+  diaDef->setid(new QIFIdType(idStr)); // required id 42
 
   // tolerance (as opposed to limits and fits, or non-tolerance)
   LinearValueType * highSize = new LinearValueType("6.5");
@@ -1575,7 +1610,7 @@ int main()
   LinearTolerance_1014_TypeChoicePair * diaDiaTolChoice =
     new LinearTolerance_1014_TypeChoicePair
     (LinearTolerance_1014_TypeChoicePair::LinearTolerance_1031E,
-     *diaDiaTolVal);
+     diaDiaTolVal);
   LinearTolerance_1014_Type * diaDiaTol1014 = new LinearTolerance_1014_Type();
   diaDiaTol1014->setLinearTolerance_1014_TypePair(diaDiaTolChoice);
   diaDiaTol->setLinearTolerance_1014(diaDiaTol1014);
@@ -1585,7 +1620,7 @@ int main()
   DiameterCharacteristicDefinitionTypeChoicePair * diaDiaTolSelChoice =
     new DiameterCharacteristicDefinitionTypeChoicePair
     (DiameterCharacteristicDefinitionTypeChoicePair::ToleranceE,
-     *diaDiaTolSelVal);
+     diaDiaTolSelVal);
   diaDef->setDiameterCharacteristicDefinitionTypeChoicePair(diaDiaTolSelChoice);
 
   // add to list
@@ -1595,8 +1630,9 @@ int main()
   // make a diameter characteristic nominal
   DiameterCharacteristicNominalType * diaNom =
     new DiameterCharacteristicNominalType();
-  diaNom->setprintElement(strdup("DiameterCharacteristicNominal"));
-  diaNom->setid(new QIFIdType(idString(qifid++))); // required id 43
+  diaNom->setprintElement("DiameterCharacteristicNominal");
+  snprintf(idStr, 19, "%u", qifid++);
+  diaNom->setid(new QIFIdType(idStr)); // required id 43
 
   // required reference to definition
   QIFReferenceType * diaDefRef = new QIFReferenceType();
@@ -1614,8 +1650,9 @@ int main()
   // make a diameter characteristic item
   DiameterCharacteristicItemType * diaItem =
     new DiameterCharacteristicItemType();
-  diaItem->setprintElement(strdup("DiameterCharacteristicItem"));
-  diaItem->setid(new QIFIdType(idString(qifid++))); // required id 44
+  diaItem->setprintElement("DiameterCharacteristicItem");
+  snprintf(idStr, 19, "%u", qifid++);
+  diaItem->setid(new QIFIdType(idStr)); // required id 44
 
   // required reference to nominal
   QIFReferenceFullType * diaNomRef = new QIFReferenceFullType();
@@ -1649,8 +1686,9 @@ int main()
   // make a diameter characteristic measurement
   DiameterCharacteristicMeasurementType * diaMeas =
     new DiameterCharacteristicMeasurementType();
-  diaMeas->setprintElement(strdup("DiameterCharacteristicMeasurement"));
-  diaMeas->setid(new QIFIdType(idString(qifid++))); // required id 45
+  diaMeas->setprintElement("DiameterCharacteristicMeasurement");
+  snprintf(idStr, 19, "%u", qifid++);
+  diaMeas->setid(new QIFIdType(idStr)); // required id 45
 
   // required reference to item
   QIFReferenceFullType * diaItemRef = new QIFReferenceFullType();
@@ -1667,7 +1705,7 @@ int main()
   CharacteristicStatusTypeChoicePair * diaStatChoice =
     new CharacteristicStatusTypeChoicePair
     (CharacteristicStatusTypeChoicePair::CharacteristicStatusEnumE,
-     *diaStatVal);
+     diaStatVal);
   diaStat->setCharacteristicStatusTypePair(diaStatChoice);
   diaMeas->setStatus(diaStat);
 
@@ -1704,8 +1742,9 @@ int main()
   // make a position characteristic definition
   PositionCharacteristicDefinitionType * posDef =
     new PositionCharacteristicDefinitionType();
-  posDef->setprintElement(strdup("PositionCharacteristicDefinition"));
-  posDef->setid(new QIFIdType(idString(qifid++))); // required id 46
+  posDef->setprintElement("PositionCharacteristicDefinition");
+  snprintf(idStr, 19, "%u", qifid++);
+  posDef->setid(new QIFIdType(idStr)); // required id 46
 
   // define the tolerance zone shape (diametrical)
   PositionZoneShapeType * zoneShape = new PositionZoneShapeType();
@@ -1714,7 +1753,7 @@ int main()
   zoneShapeVal->DiametricalZone = new PositionDiametricalZoneType();
   PositionZoneShapeTypeChoicePair * zoneShapeChoice =
     new PositionZoneShapeTypeChoicePair
-    (PositionZoneShapeTypeChoicePair::DiametricalZoneE, *zoneShapeVal);
+    (PositionZoneShapeTypeChoicePair::DiametricalZoneE, zoneShapeVal);
   zoneShape->setPositionZoneShapeTypePair(zoneShapeChoice);
   posDef->setZoneShape(zoneShape);
 
@@ -1738,8 +1777,9 @@ int main()
   // make a position characteristic nominal
   PositionCharacteristicNominalType * posNom  =
     new PositionCharacteristicNominalType();
-  posNom->setprintElement(strdup("PositionCharacteristicNominal"));
-  posNom->setid(new QIFIdType(idString(qifid++))); // required id 47
+  posNom->setprintElement("PositionCharacteristicNominal");
+  snprintf(idStr, 19, "%u", qifid++);
+  posNom->setid(new QIFIdType(idStr)); // required id 47
 
   // required reference to definition
   QIFReferenceType * posDefRef =  new QIFReferenceType();
@@ -1754,8 +1794,9 @@ int main()
   // make a position characteristic item
   PositionCharacteristicItemType * posItem =
     new PositionCharacteristicItemType();
-  posItem->setprintElement(strdup("PositionCharacteristicItem"));
-  posItem->setid(new QIFIdType(idString(qifid++))); // required id 48
+  posItem->setprintElement("PositionCharacteristicItem");
+  snprintf(idStr, 19, "%u", qifid++);
+  posItem->setid(new QIFIdType(idStr)); // required id 48
 
   // required reference to nominal
   QIFReferenceFullType * posNomRef = new QIFReferenceFullType();
@@ -1789,8 +1830,9 @@ int main()
   // make a position characteristic measurement
   PositionCharacteristicMeasurementType * posMeas =
     new PositionCharacteristicMeasurementType();
-  posMeas->setprintElement(strdup("PositionCharacteristicMeasurement"));
-  posMeas->setid(new QIFIdType(idString(qifid++))); // required id 49
+  posMeas->setprintElement("PositionCharacteristicMeasurement");
+  snprintf(idStr, 19, "%u", qifid++);
+  posMeas->setid(new QIFIdType(idStr)); // required id 49
 
   // required reference to item
   QIFReferenceFullType * posItemRef = new QIFReferenceFullType();
@@ -1807,7 +1849,7 @@ int main()
   CharacteristicStatusTypeChoicePair * posStatChoice =
     new CharacteristicStatusTypeChoicePair
     (CharacteristicStatusTypeChoicePair::CharacteristicStatusEnumE,
-     *posStatVal);
+     posStatVal);
   posStat->setCharacteristicStatusTypePair(posStatChoice);
   posMeas->setStatus(posStat);
 
@@ -1900,7 +1942,7 @@ int main()
   StandardsOrganizationTypeChoicePair * organizationChoice =
     new StandardsOrganizationTypeChoicePair
     (StandardsOrganizationTypeChoicePair::StandardsOrganizationEnumE,
-     *organizationVal);
+     organizationVal);
   organization->setStandardsOrganizationTypePair(organizationChoice);
 
   // standard
@@ -1908,7 +1950,8 @@ int main()
   formalStandard->setOrganization(organization);
   formalStandard->setDesignator(new XmlToken("Y14.5"));
   formalStandard->setYear(new XmlString("2009"));
-  formalStandard->setid(new QIFIdType(idString(qifid++))); // required id 50
+  snprintf(idStr, 19, "%u", qifid++);
+  formalStandard->setid(new QIFIdType(idStr)); // required id 50
 
   // add standards to document
   StandardsType * standards = new StandardsType();
@@ -1937,7 +1980,8 @@ int main()
   
   // create the measurement results
   MeasurementResultsType * measResults = new MeasurementResultsType();
-  measResults->setid(new QIFIdType(idString(qifid++)));  // required id 51
+  snprintf(idStr, 19, "%u", qifid++);
+  measResults->setid(new QIFIdType(idStr));  // required id 51
 
   // overall inspection status
   InspectionStatusType * overallStat = new InspectionStatusType();
@@ -1947,7 +1991,7 @@ int main()
     new InspectionStatusEnumType("FAIL");
   InspectionStatusTypeChoicePair * overallStatChoice =
     new InspectionStatusTypeChoicePair
-    (InspectionStatusTypeChoicePair::InspectionStatusEnumE, *overallStatVal);
+    (InspectionStatusTypeChoicePair::InspectionStatusEnumE, overallStatVal);
   overallStat->setInspectionStatusTypePair(overallStatChoice);
   measResults->setInspectionStatus(overallStat);
 
@@ -1972,23 +2016,23 @@ int main()
   // add measured results to document
   qifdoc->setResults(measurementsResults);
 
-
   // add a (trivial) plan
   MeasureEvaluateAllActionType * measAll = new MeasureEvaluateAllActionType();
-  measAll->setprintElement(strdup("MeasureEvaluateAll"));
+  measAll->setprintElement("MeasureEvaluateAll");
   UnnumberedPlanElementsType * steps = new UnnumberedPlanElementsType();
   steps->setPlanElement(new PlanElementBaseTypeLisd());
   steps->getPlanElement()->push_back(measAll);
   steps->setn(new NaturalType("1"));
   UnorderedActionGroupType * planRoot = new UnorderedActionGroupType();
   planRoot->setSteps(steps);
-  planRoot->setprintElement(strdup("UnorderedPlanRoot"));
+  planRoot->setprintElement("UnorderedPlanRoot");
   PlanType * measurementPlan = new PlanType();
   measurementPlan->setPlanRoot(planRoot);
   qifdoc->setPlan(measurementPlan);
 
   // set idMax
-  qifdoc->setidMax(new XmlUnsignedInt(idString(qifid - 1)));
+  snprintf(idStr, 19, "%u", (qifid - 1));
+  qifdoc->setidMax(new XmlUnsignedInt(idStr));
 
   // make a new QIFDocumentFile
   QIFDocumentFile * qifdocFile = new QIFDocumentFile();

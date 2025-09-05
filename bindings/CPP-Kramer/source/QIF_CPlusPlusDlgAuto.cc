@@ -9,13 +9,7 @@ int XmlSchemaInstanceBase::format = 0;
 int XmlSchemaInstanceBase::places = 6;
 int yyStartAnew = 0;
 std::map<unsigned int, XmlSchemaInstanceBase *> idMap;
-
-char * idString(unsigned int id)
-{
-  char idStr[50];
-  sprintf(idStr, "%u", id);
-  return strdup(idStr);
-}
+char idStr[20];
 
 int main()
 {
@@ -86,20 +80,23 @@ int main()
   // define datums ABC as simple datum letters,
   // we'll create hooks to datum features later
   DatumDefinitionType datA;
-  QIFIdType datAid(idString(qifid++)); // required id 1
+  snprintf(idStr, 19, "%u", qifid++);
+  QIFIdType datAid(idStr); // required id 1
   datA.setid(&datAid);
   XmlNMTOKEN datALabel("A");
   datA.setDatumLabel(&datALabel);
   datumDefsList.push_back(&datA); // datumDefsN is already 1
   DatumDefinitionType datB;
-  QIFIdType datBid(idString(qifid++)); // required id 2
+  snprintf(idStr, 19, "%u", qifid++);
+  QIFIdType datBid(idStr); // required id 2
   datB.setid(&datBid);
   XmlNMTOKEN datBLabel("B");
   datB.setDatumLabel(&datBLabel);
   datumDefsList.push_back(&datB);
   datumDefsN.setval(1 + datumDefsN.getval()); // set n counter 
   DatumDefinitionType datC;
-  QIFIdType datCid(idString(qifid++)); // required id 3
+  snprintf(idStr, 19, "%u", qifid++);
+  QIFIdType datCid(idStr); // required id 3
   datC.setid(&datCid);
   XmlNMTOKEN datCLabel("C");
   datC.setDatumLabel(&datCLabel);
@@ -113,7 +110,8 @@ int main()
 // region Datum reference frames
   // make datum reference frame A
   DatumReferenceFrameType drfA;
-  QIFIdType drfAid(idString(qifid++)); // required id 4
+  snprintf(idStr, 19, "%u", qifid++);
+  QIFIdType drfAid(idStr); // required id 4
   drfA.setid(&drfAid);
   // datums list
   DatumsType drfAdats;
@@ -139,14 +137,14 @@ int main()
   DatumWithPreced_1010_TypeVal dwpA_Aval;
   dwpA_Aval.SimpleDatum = &dtA_A;
   DatumWithPreced_1010_TypeChoicePair DwpA_Achoice
-    (DatumWithPreced_1010_TypeChoicePair::SimpleDatumE, dwpA_Aval);
+    (DatumWithPreced_1010_TypeChoicePair::SimpleDatumE, &dwpA_Aval);
 
   PrecedenceType prcA_A;
   PrecedenceTypeVal prcA_Aval;
   PrecedenceEnumType prcA_APrec("PRIMARY");
   prcA_Aval.PrecedenceEnum = &prcA_APrec;
   PrecedenceTypeChoicePair prcA_AChoicePair
-    (PrecedenceTypeChoicePair::PrecedenceEnumE, prcA_Aval);
+    (PrecedenceTypeChoicePair::PrecedenceEnumE, &prcA_Aval);
   prcA_A.setPrecedenceTypePair(&prcA_AChoicePair);
   dwpA_A.setPrecedence(&prcA_A);
   DatumWithPreced_1010_Type dwpA_ADatWithPrec(&DwpA_Achoice);
@@ -168,7 +166,8 @@ int main()
 // region A|B
   // make a datum reference frame A|B(m)
   DatumReferenceFrameType drfAB;
-  QIFIdType drfABid (idString(qifid++)); // required id 5
+  snprintf(idStr, 19, "%u", qifid++);
+  QIFIdType drfABid (idStr); // required id 5
   drfAB.setid(&drfABid);
   // datums list
   DatumsType drfABdats;
@@ -194,14 +193,14 @@ int main()
   DatumWithPreced_1010_TypeVal dwpA_ABval;
   dwpA_ABval.SimpleDatum = &dtA_AB;
   DatumWithPreced_1010_TypeChoicePair DwpA_ABchoice
-    (DatumWithPreced_1010_TypeChoicePair::SimpleDatumE, dwpA_ABval);
+    (DatumWithPreced_1010_TypeChoicePair::SimpleDatumE, &dwpA_ABval);
 
   PrecedenceType prcA_AB;
   PrecedenceTypeVal prcA_ABval;
   PrecedenceEnumType prcA_ABPrec("PRIMARY");
   prcA_ABval.PrecedenceEnum = &prcA_ABPrec;
   PrecedenceTypeChoicePair prcA_ABChoicePair
-    (PrecedenceTypeChoicePair::PrecedenceEnumE, prcA_ABval);
+    (PrecedenceTypeChoicePair::PrecedenceEnumE, &prcA_ABval);
   prcA_AB.setPrecedenceTypePair(&prcA_ABChoicePair);
   dwpA_AB.setPrecedence(&prcA_AB);
   DatumWithPreced_1010_Type dwpA_ABDatWithPrec(&DwpA_ABchoice);
@@ -231,14 +230,14 @@ int main()
   DatumWithPreced_1010_TypeVal dwpB_ABval;
   dwpB_ABval.SimpleDatum = &dtB_AB;
   DatumWithPreced_1010_TypeChoicePair DwpB_ABchoice
-    (DatumWithPreced_1010_TypeChoicePair::SimpleDatumE, dwpB_ABval);
+    (DatumWithPreced_1010_TypeChoicePair::SimpleDatumE, &dwpB_ABval);
 
   PrecedenceType prcB_AB;
   PrecedenceTypeVal prcB_ABval;
   PrecedenceEnumType prcB_ABPrec("SECONDARY");
   prcB_ABval.PrecedenceEnum = &prcB_ABPrec;
   PrecedenceTypeChoicePair prcB_ABChoicePair
-    (PrecedenceTypeChoicePair::PrecedenceEnumE, prcB_ABval);
+    (PrecedenceTypeChoicePair::PrecedenceEnumE, &prcB_ABval);
   prcB_AB.setPrecedenceTypePair(&prcB_ABChoicePair);
 
   dwpB_AB.setPrecedence(&prcB_AB);
@@ -258,7 +257,8 @@ int main()
 // region A|B|C
   // make a datum reference frame A|B(m)|C(m)
   DatumReferenceFrameType drfABC;
-  QIFIdType drfABCid(idString(qifid++));
+  snprintf(idStr, 19, "%u", qifid++);
+  QIFIdType drfABCid(idStr);
   drfABC.setid(&drfABCid); // required id 6
   // datums list
   DatumsType drfABCdats;
@@ -284,14 +284,14 @@ int main()
   DatumWithPreced_1010_TypeVal dwpA_ABCval;
   dwpA_ABCval.SimpleDatum = &dtA_ABC;
   DatumWithPreced_1010_TypeChoicePair DwpA_ABCchoice
-    (DatumWithPreced_1010_TypeChoicePair::SimpleDatumE, dwpA_ABCval);
+    (DatumWithPreced_1010_TypeChoicePair::SimpleDatumE, &dwpA_ABCval);
 
   PrecedenceType prcA_ABC;
   PrecedenceTypeVal prcA_ABCval;
   PrecedenceEnumType prcA_ABCPrec("PRIMARY");
   prcA_ABCval.PrecedenceEnum = &prcA_ABCPrec;
   PrecedenceTypeChoicePair prcA_ABCChoicePair
-    (PrecedenceTypeChoicePair::PrecedenceEnumE, prcA_ABCval);
+    (PrecedenceTypeChoicePair::PrecedenceEnumE, &prcA_ABCval);
   prcA_ABC.setPrecedenceTypePair(&prcA_ABCChoicePair);
   dwpA_ABC.setPrecedence(&prcA_ABC);
   DatumWithPreced_1010_Type prcA_ABCDatWithPrec(&DwpA_ABCchoice);
@@ -321,14 +321,14 @@ int main()
   DatumWithPreced_1010_TypeVal dwpB_ABCval;
   dwpB_ABCval.SimpleDatum = &dtB_ABC;
   DatumWithPreced_1010_TypeChoicePair DwpB_ABCchoice
-    (DatumWithPreced_1010_TypeChoicePair::SimpleDatumE, dwpB_ABCval);
+    (DatumWithPreced_1010_TypeChoicePair::SimpleDatumE, &dwpB_ABCval);
 
   PrecedenceType prcB_ABC;
   PrecedenceTypeVal prcB_ABCval;
   PrecedenceEnumType prcB_ABCprec("SECONDARY");
   prcB_ABCval.PrecedenceEnum = &prcB_ABCprec;
   PrecedenceTypeChoicePair prcB_ABCChoicePair
-    (PrecedenceTypeChoicePair::PrecedenceEnumE, prcB_ABCval);
+    (PrecedenceTypeChoicePair::PrecedenceEnumE, &prcB_ABCval);
   prcB_ABC.setPrecedenceTypePair(&prcB_ABCChoicePair);
   dwpB_ABC.setPrecedence(&prcB_ABC);
   DatumWithPreced_1010_Type prcB_ABCDatumWithPrec(&DwpB_ABCchoice);
@@ -355,14 +355,14 @@ int main()
   DatumWithPreced_1010_TypeVal dwpC_ABCval;
   dwpC_ABCval.SimpleDatum = &dtC_ABC;
   DatumWithPreced_1010_TypeChoicePair DwpC_ABCchoice
-    (DatumWithPreced_1010_TypeChoicePair::SimpleDatumE, dwpC_ABCval);
+    (DatumWithPreced_1010_TypeChoicePair::SimpleDatumE, &dwpC_ABCval);
 
   PrecedenceType prcC_ABC;
   PrecedenceTypeVal prcC_ABCval;
   PrecedenceEnumType prcC_ABCprec("TERTIARY");
   prcC_ABCval.PrecedenceEnum = &prcC_ABCprec;
   PrecedenceTypeChoicePair prcC_ABCChoicePair
-    (PrecedenceTypeChoicePair::PrecedenceEnumE, prcC_ABCval);
+    (PrecedenceTypeChoicePair::PrecedenceEnumE, &prcC_ABCval);
   prcC_ABC.setPrecedenceTypePair(&prcC_ABCChoicePair);
   dwpC_ABC.setPrecedence(&prcC_ABC);
   DatumWithPreced_1010_Type prcC_ABCDatumWithPrec(&DwpC_ABCchoice);
@@ -385,8 +385,9 @@ int main()
   MeasurementDeviceType cmm1;
   XmlToken cmm1Name("CMM1");
   cmm1.setName(&cmm1Name);
-  cmm1.setprintElement(strdup("MeasurementDevice"));
-  QIFIdType cmm1id(idString(qifid++)); // required id 7
+  cmm1.setprintElement("MeasurementDevice");
+  snprintf(idStr, 19, "%u", qifid++);
+  QIFIdType cmm1id(idStr); // required id 7
   cmm1.setid(&cmm1id);
   // add this device to our list
   measDevicesList.push_back(&cmm1);
@@ -399,8 +400,9 @@ int main()
   MeasurementDeviceType cmm2;
   XmlToken cmm2Name("CMM2");
   cmm2.setName(&cmm2Name);
-  cmm2.setprintElement(strdup("MeasurementDevice"));
-  QIFIdType cmm2id(idString(qifid++)); // required id 8
+  cmm2.setprintElement("MeasurementDevice");
+  snprintf(idStr, 19, "%u", qifid++);
+  QIFIdType cmm2id(idStr); // required id 8
   cmm2.setid(&cmm2id);
   // add this device to our list
   measDevicesList.push_back(&cmm2);
@@ -416,8 +418,9 @@ int main()
 
   // make a plane feature definition
   PlaneFeatureDefinitionType planADef;
-  planADef.setprintElement(strdup("PlaneFeatureDefinition"));
-  QIFIdType planADefid(idString(qifid++));  // required id 9
+  planADef.setprintElement("PlaneFeatureDefinition");
+  snprintf(idStr, 19, "%u", qifid++);
+  QIFIdType planADefid(idStr);  // required id 9
   planADef.setid(&planADefid);
 
   // add to list
@@ -427,8 +430,9 @@ int main()
 
   // make a plane feature nominal
   PlaneFeatureNominalType planANom;
-  planANom.setprintElement(strdup("PlaneFeatureNominal"));
-  QIFIdType planANomid(idString(qifid++));  // required id 10
+  planANom.setprintElement("PlaneFeatureNominal");
+  snprintf(idStr, 19, "%u", qifid++);
+  QIFIdType planANomid(idStr);  // required id 10
   planANom.setid(&planANomid);
 
   // reference to definition
@@ -463,8 +467,9 @@ int main()
 
   // make a plane feature item
   PlaneFeatureItemType planAItem;
-  planAItem.setprintElement(strdup("PlaneFeatureItem"));
-  QIFIdType planAItemid(idString(qifid++)); // required id 11
+  planAItem.setprintElement("PlaneFeatureItem");
+  snprintf(idStr, 19, "%u", qifid++);
+  QIFIdType planAItemid(idStr); // required id 11
   planAItem.setid(&planAItemid);
 
   // reference to nominal
@@ -484,7 +489,7 @@ int main()
   PlaneMeasurementDeterminationTypeVal planACheckVal;
   planACheckVal.Checked = &planACheck;
   PlaneMeasurementDeterminationTypeChoicePair planACheckChoice
-    (PlaneMeasurementDeterminationTypeChoicePair::CheckedE, planACheckVal);
+    (PlaneMeasurementDeterminationTypeChoicePair::CheckedE, &planACheckVal);
   planAMeasDet.setPlaneMeasurementDeterminationTypePair(&planACheckChoice);
   planAItem.setDeterminationMode(&planAMeasDet);
 
@@ -500,8 +505,9 @@ int main()
 
   // make a plane feature measurement
   PlaneFeatureMeasurementType planAMeas;
-  planAMeas.setprintElement(strdup("PlaneFeatureMeasurement"));
-  QIFIdType planAMeasid(idString(qifid++)); // required id 12
+  planAMeas.setprintElement("PlaneFeatureMeasurement");
+  snprintf(idStr, 19, "%u", qifid++);
+  QIFIdType planAMeasid(idStr); // required id 12
   planAMeas.setid(&planAMeasid);
 
   // reference to item
@@ -545,8 +551,9 @@ int main()
 
   // make a flatness characteristic definition
   FlatnessCharacteristicDefinitionType flatDef;
-  flatDef.setprintElement(strdup("FlatnessCharacteristicDefinition"));
-  QIFIdType flatDefid(idString(qifid++)); // required id 13
+  flatDef.setprintElement("FlatnessCharacteristicDefinition");
+  snprintf(idStr, 19, "%u", qifid++);
+  QIFIdType flatDefid(idStr); // required id 13
   flatDef.setid(&flatDefid);
 	
   // define the tolerance zone
@@ -558,7 +565,7 @@ int main()
   FlatnessCharact_1049_TypeVal flatDefVal;
   flatDefVal.FlatnessCharact_1066 = &flatDefLinear; 
   FlatnessCharact_1049_TypeChoicePair flatDefChoice
-    (FlatnessCharact_1049_TypeChoicePair::FlatnessCharact_1066E, flatDefVal);
+    (FlatnessCharact_1049_TypeChoicePair::FlatnessCharact_1066E, &flatDefVal);
   FlatnessCharact_1049_Type flatDef1049;
   flatDef1049.setFlatnessCharact_1049_TypePair(&flatDefChoice);
   flatDef.setFlatnessCharact_1049(&flatDef1049);
@@ -575,8 +582,9 @@ int main()
 
   // make a flatness characteristic nominal
   FlatnessCharacteristicNominalType flatNom;
-  flatNom.setprintElement(strdup("FlatnessCharacteristicNominal"));
-  QIFIdType flatNomid(idString(qifid++)); // required id 14
+  flatNom.setprintElement("FlatnessCharacteristicNominal");
+  snprintf(idStr, 19, "%u", qifid++);
+  QIFIdType flatNomid(idStr); // required id 14
   flatNom.setid(&flatNomid);
 
   // required reference to definition
@@ -592,8 +600,9 @@ int main()
 
   // make a flatness characteristic item
   FlatnessCharacteristicItemType flatItem;
-  flatItem.setprintElement(strdup("FlatnessCharacteristicItem"));
-  QIFIdType flatItemid(idString(qifid++)); // required id 15
+  flatItem.setprintElement("FlatnessCharacteristicItem");
+  snprintf(idStr, 19, "%u", qifid++);
+  QIFIdType flatItemid(idStr); // required id 15
   flatItem.setid(&flatItemid);
 
   // required reference to nominal
@@ -633,8 +642,9 @@ int main()
 
   // make a flatness characteristic measurement
   FlatnessCharacteristicMeasurementType flatMeas;
-  flatMeas.setprintElement(strdup("FlatnessCharacteristicMeasurement"));
-  QIFIdType flatMeasid(idString(qifid++)); // required id 16
+  flatMeas.setprintElement("FlatnessCharacteristicMeasurement");
+  snprintf(idStr, 19, "%u", qifid++);
+  QIFIdType flatMeasid(idStr); // required id 16
   flatMeas.setid(&flatMeasid);
 
   // required reference to item
@@ -651,7 +661,7 @@ int main()
   flatStatVal.CharacteristicStatusEnum = &flatStatEnum;
   CharacteristicStatusTypeChoicePair flatStatChoice
     (CharacteristicStatusTypeChoicePair::CharacteristicStatusEnumE,
-     flatStatVal);
+     &flatStatVal);
   flatStat.setCharacteristicStatusTypePair(&flatStatChoice);
   flatMeas.setStatus(&flatStat);
   
@@ -690,8 +700,9 @@ int main()
 // region datum B cylinder	
   // make a cylinder feature definition * SHARED BETWEEN DATUMS B AND C *
   CylinderFeatureDefinitionType cylBCDef;
-  cylBCDef.setprintElement(strdup("CylinderFeatureDefinition"));
-  QIFIdType cylBCDefid(idString(qifid++)); // required id 17
+  cylBCDef.setprintElement("CylinderFeatureDefinition");
+  snprintf(idStr, 19, "%u", qifid++);
+  QIFIdType cylBCDefid(idStr); // required id 17
   cylBCDef.setid(&cylBCDefid);
 
   // feature size
@@ -708,8 +719,9 @@ int main()
 
   // make a cylinder feature nominal (not sharable)
   CylinderFeatureNominalType cylBNom;
-  cylBNom.setprintElement(strdup("CylinderFeatureNominal"));
-  QIFIdType cylBNomid(idString(qifid++)); // required id 18
+  cylBNom.setprintElement("CylinderFeatureNominal");
+  snprintf(idStr, 19, "%u", qifid++);
+  QIFIdType cylBNomid(idStr); // required id 18
   cylBNom.setid(&cylBNomid);
 
   // reference to shared definition
@@ -748,8 +760,9 @@ int main()
 
   // make a cylinder feature item
   CylinderFeatureItemType cylBItem;
-  cylBItem.setprintElement(strdup("CylinderFeatureItem"));
-  QIFIdType cylBItemid(idString(qifid++)); // required id 19
+  cylBItem.setprintElement("CylinderFeatureItem");
+  snprintf(idStr, 19, "%u", qifid++);
+  QIFIdType cylBItemid(idStr); // required id 19
   cylBItem.setid(&cylBItemid);
   
   // reference to nominal
@@ -769,7 +782,7 @@ int main()
   CylinderMeasurementDeterminationTypeVal cylBCheckVal;
   cylBCheckVal.Checked = &cylBCheck;
   CylinderMeasurementDeterminationTypeChoicePair cylBCheckChoice
-    (CylinderMeasurementDeterminationTypeChoicePair::CheckedE, cylBCheckVal);
+    (CylinderMeasurementDeterminationTypeChoicePair::CheckedE, &cylBCheckVal);
   cylBMeasDet.setCylinderMeasurementDeterminationTypePair(&cylBCheckChoice);
   cylBItem.setDeterminationMode(&cylBMeasDet);
 
@@ -779,8 +792,9 @@ int main()
 
   // make a cylinder feature measurement
   CylinderFeatureMeasurementType cylBMeas;
-  cylBMeas.setprintElement(strdup("CylinderFeatureMeasurement"));
-  QIFIdType cylBMeasid(idString(qifid++)); // required id 20
+  cylBMeas.setprintElement("CylinderFeatureMeasurement");
+  snprintf(idStr, 19, "%u", qifid++);
+  QIFIdType cylBMeasid(idStr); // required id 20
   cylBMeas.setid(&cylBMeasid);
   
   // reference to item
@@ -833,8 +847,9 @@ int main()
   
   // make a diameter characteristic definition to be shared
   DiameterCharacteristicDefinitionType diaBCDef;
-  diaBCDef.setprintElement(strdup("DiameterCharacteristicDefinition"));
-  QIFIdType diaBCDefid(idString(qifid++)); // required id 21
+  diaBCDef.setprintElement("DiameterCharacteristicDefinition");
+  snprintf(idStr, 19, "%u", qifid++);
+  QIFIdType diaBCDefid(idStr); // required id 21
   diaBCDef.setid(&diaBCDefid);
 
   // tolerance (as opposed to limits and fits, or non-tolerance
@@ -851,14 +866,14 @@ int main()
   LinearTolerance_1014_TypeVal diaBCTolVal;
   diaBCTolVal.LinearTolerance_1031 = &maxMinBCTol; 
   LinearTolerance_1014_TypeChoicePair diaBCTolChoice
-    (LinearTolerance_1014_TypeChoicePair::LinearTolerance_1031E, diaBCTolVal);
+    (LinearTolerance_1014_TypeChoicePair::LinearTolerance_1031E, &diaBCTolVal);
   LinearTolerance_1014_Type diaBCTol1014;
   diaBCTol1014.setLinearTolerance_1014_TypePair(&diaBCTolChoice);
   diaBCTol.setLinearTolerance_1014(&diaBCTol1014);
   DiameterCharacteristicDefinitionTypeVal diaBCTolSelVal;
   diaBCTolSelVal.Tolerance = &diaBCTol;
   DiameterCharacteristicDefinitionTypeChoicePair diaBCTolSelChoice
-    (DiameterCharacteristicDefinitionTypeChoicePair::ToleranceE, diaBCTolSelVal);
+    (DiameterCharacteristicDefinitionTypeChoicePair::ToleranceE, &diaBCTolSelVal);
   diaBCDef.setDiameterCharacteristicDefinitionTypeChoicePair(&diaBCTolSelChoice);
 
   // add to list
@@ -867,8 +882,9 @@ int main()
 
   // make a diameter characteristic nominal
   DiameterCharacteristicNominalType diaBCNom;
-  diaBCNom.setprintElement(strdup("DiameterCharacteristicNominal"));
-  QIFIdType diaBCNomid(idString(qifid++)); // required id 22
+  diaBCNom.setprintElement("DiameterCharacteristicNominal");
+  snprintf(idStr, 19, "%u", qifid++);
+  QIFIdType diaBCNomid(idStr); // required id 22
   diaBCNom.setid(&diaBCNomid);
 
   // required reference to definition
@@ -890,8 +906,9 @@ int main()
 
   // make a diameter characteristic item (this is not sharable)
   DiameterCharacteristicItemType diaBItem;
-  diaBItem.setprintElement(strdup("DiameterCharacteristicItem"));
-  QIFIdType diaBItemid(idString(qifid++)); // required id 23
+  diaBItem.setprintElement("DiameterCharacteristicItem");
+  snprintf(idStr, 19, "%u", qifid++);
+  QIFIdType diaBItemid(idStr); // required id 23
   diaBItem.setid(&diaBItemid);
 
   // required reference to nominal
@@ -930,8 +947,9 @@ int main()
 
   // make a diameter characteristic measurement
   DiameterCharacteristicMeasurementType diaBMeas;
-  diaBMeas.setprintElement(strdup("DiameterCharacteristicMeasurement"));
-  QIFIdType diaBMeasid(idString(qifid++)); // required id 24
+  diaBMeas.setprintElement("DiameterCharacteristicMeasurement");
+  snprintf(idStr, 19, "%u", qifid++);
+  QIFIdType diaBMeasid(idStr); // required id 24
   diaBMeas.setid(&diaBMeasid);
 
   // required reference to item
@@ -947,7 +965,7 @@ int main()
   diaBStatVal.CharacteristicStatusEnum = &diaBStatEnum;
   CharacteristicStatusTypeChoicePair diaBStatChoice
     (CharacteristicStatusTypeChoicePair::CharacteristicStatusEnumE,
-     diaBStatVal);
+     &diaBStatVal);
   diaBStat.setCharacteristicStatusTypePair(&diaBStatChoice);
   diaBMeas.setStatus(&diaBStat);
 
@@ -983,8 +1001,9 @@ int main()
 
   // make a perpendicularity characteristic definition
   PerpendicularityCharacteristicDefinitionType perpDef;
-  perpDef.setprintElement(strdup("PerpendicularityCharacteristicDefinition"));
-  QIFIdType perpDefid(idString(qifid++)); // required id 25
+  perpDef.setprintElement("PerpendicularityCharacteristicDefinition");
+  snprintf(idStr, 19, "%u", qifid++);
+  QIFIdType perpDefid(idStr); // required id 25
   perpDef.setid(&perpDefid);
 
   // define the tolerance zone
@@ -997,7 +1016,7 @@ int main()
   OrientationDiametricalZoneType perpZoneShapeDia;
   perpZoneShapeVal.DiametricalZone = &perpZoneShapeDia;
   OrientationZoneShapeTypeChoicePair perpZoneShapeChoice
-    (OrientationZoneShapeTypeChoicePair::DiametricalZoneE, perpZoneShapeVal);
+    (OrientationZoneShapeTypeChoicePair::DiametricalZoneE, &perpZoneShapeVal);
   perpZoneShape.setOrientationZoneShapeTypePair(&perpZoneShapeChoice);
   perpDef.setZoneShape(&perpZoneShape);
   // define the material condition
@@ -1015,8 +1034,9 @@ int main()
 
   // make a perpendicularity characteristic nominal
   PerpendicularityCharacteristicNominalType perpNom;
-  perpNom.setprintElement(strdup("PerpendicularityCharacteristicNominal"));
-  QIFIdType perpNomid(idString(qifid++)); // required id 26
+  perpNom.setprintElement("PerpendicularityCharacteristicNominal");
+  snprintf(idStr, 19, "%u", qifid++);
+  QIFIdType perpNomid(idStr); // required id 26
   perpNom.setid(&perpNomid);
 
   // required reference to definition
@@ -1031,8 +1051,9 @@ int main()
 
   // make a perpendicularity characteristic item
   PerpendicularityCharacteristicItemType perpItem;
-  perpItem.setprintElement(strdup("PerpendicularityCharacteristicItem"));
-  QIFIdType perpItemid(idString(qifid++)); // required id 27
+  perpItem.setprintElement("PerpendicularityCharacteristicItem");
+  snprintf(idStr, 19, "%u", qifid++);
+  QIFIdType perpItemid(idStr); // required id 27
   perpItem.setid(&perpItemid);
 
   // required reference to nominal
@@ -1071,9 +1092,10 @@ int main()
 
   // make a perpendicularity characteristic actual
   PerpendicularityCharacteristicMeasurementType perpMeas;
-  perpMeas.setprintElement(strdup
-			   ("PerpendicularityCharacteristicMeasurement"));
-  QIFIdType perpMeasid(idString(qifid++)); // required id 28
+  perpMeas.setprintElement(
+			   "PerpendicularityCharacteristicMeasurement");
+  snprintf(idStr, 19, "%u", qifid++);
+  QIFIdType perpMeasid(idStr); // required id 28
   perpMeas.setid(&perpMeasid);
 
   // required reference to item
@@ -1089,7 +1111,7 @@ int main()
   perpStatVal.CharacteristicStatusEnum = &perpStatEnum;
   CharacteristicStatusTypeChoicePair perpStatChoice
     (CharacteristicStatusTypeChoicePair::CharacteristicStatusEnumE,
-     perpStatVal);
+     &perpStatVal);
   perpStat.setCharacteristicStatusTypePair(&perpStatChoice);
   perpMeas.setStatus(&perpStat);
 
@@ -1125,8 +1147,9 @@ int main()
 
   // make a cylinder feature nominal
   CylinderFeatureNominalType cylCNom;
-  cylCNom.setprintElement(strdup("CylinderFeatureNominal"));
-  QIFIdType cylCNomid(idString(qifid++)); // required id 29
+  cylCNom.setprintElement("CylinderFeatureNominal");
+  snprintf(idStr, 19, "%u", qifid++);
+  QIFIdType cylCNomid(idStr); // required id 29
   cylCNom.setid(&cylCNomid);
 
   // reference to shared definition
@@ -1162,8 +1185,9 @@ int main()
 
   // make a cylinder feature item
   CylinderFeatureItemType cylCItem;
-  cylCItem.setprintElement(strdup("CylinderFeatureItem"));
-  QIFIdType cylCItemid(idString(qifid++)); // required id 30
+  cylCItem.setprintElement("CylinderFeatureItem");
+  snprintf(idStr, 19, "%u", qifid++);
+  QIFIdType cylCItemid(idStr); // required id 30
   cylCItem.setid(&cylCItemid);
 
   // reference to nominal
@@ -1183,7 +1207,7 @@ int main()
   CylinderMeasurementDeterminationTypeVal cylCCheckVal;
   cylCCheckVal.Checked = &cylCCheck;
   CylinderMeasurementDeterminationTypeChoicePair cylCCheckChoice
-    (CylinderMeasurementDeterminationTypeChoicePair::CheckedE, cylCCheckVal);
+    (CylinderMeasurementDeterminationTypeChoicePair::CheckedE, &cylCCheckVal);
   cylCMeasDet.setCylinderMeasurementDeterminationTypePair(&cylCCheckChoice);
   cylCItem.setDeterminationMode(&cylCMeasDet);
 
@@ -1193,8 +1217,9 @@ int main()
 
   // make a cylinder feature actual
   CylinderFeatureMeasurementType cylCMeas;
-  cylCMeas.setprintElement(strdup("CylinderFeatureMeasurement"));
-  QIFIdType cylCMeasid(idString(qifid++));  // required id 31
+  cylCMeas.setprintElement("CylinderFeatureMeasurement");
+  snprintf(idStr, 19, "%u", qifid++);
+  QIFIdType cylCMeasid(idStr);  // required id 31
   cylCMeas.setid(&cylCMeasid);
 
   // reference to item
@@ -1247,8 +1272,9 @@ int main()
   
   // make a diameter characteristic item (this is not sharable)
   DiameterCharacteristicItemType diaCItem;
-  diaCItem.setprintElement(strdup("DiameterCharacteristicItem"));
-  QIFIdType diaCItemid(idString(qifid++)); // required id 32
+  diaCItem.setprintElement("DiameterCharacteristicItem");
+  snprintf(idStr, 19, "%u", qifid++);
+  QIFIdType diaCItemid(idStr); // required id 32
   diaCItem.setid(&diaCItemid);
 
   // required reference to nominal
@@ -1284,8 +1310,9 @@ int main()
 
   // make a diameter characteristic measurement
   DiameterCharacteristicMeasurementType diaCMeas;
-  diaCMeas.setprintElement(strdup("DiameterCharacteristicMeasurement"));
-  QIFIdType diaCMeasid(idString(qifid++)); // required id 33
+  diaCMeas.setprintElement("DiameterCharacteristicMeasurement");
+  snprintf(idStr, 19, "%u", qifid++);
+  QIFIdType diaCMeasid(idStr); // required id 33
   diaCMeas.setid(&diaCMeasid);
 
   // required reference to item
@@ -1301,7 +1328,7 @@ int main()
   diaCStatVal.CharacteristicStatusEnum = &diaCStatEnum;
   CharacteristicStatusTypeChoicePair diaCStatChoice
     (CharacteristicStatusTypeChoicePair::CharacteristicStatusEnumE,
-     diaCStatVal);
+     &diaCStatVal);
   diaCStat.setCharacteristicStatusTypePair(&diaCStatChoice);
   diaCMeas.setStatus(&diaCStat);
 
@@ -1337,8 +1364,9 @@ int main()
 
   // make a position characteristic definition
   PositionCharacteristicDefinitionType posCDef;
-  posCDef.setprintElement(strdup("PositionCharacteristicDefinition"));
-  QIFIdType posCDefid(idString(qifid++)); // required id 34
+  posCDef.setprintElement("PositionCharacteristicDefinition");
+  snprintf(idStr, 19, "%u", qifid++);
+  QIFIdType posCDefid(idStr); // required id 34
   posCDef.setid(&posCDefid);
 
   // define the tolerance zone shape (diametrical)
@@ -1347,7 +1375,7 @@ int main()
   PositionDiametricalZoneType zoneCShapeValDia;
   zoneCShapeVal.DiametricalZone = &zoneCShapeValDia;
   PositionZoneShapeTypeChoicePair zoneCShapeChoice
-    (PositionZoneShapeTypeChoicePair::DiametricalZoneE, zoneCShapeVal);
+    (PositionZoneShapeTypeChoicePair::DiametricalZoneE, &zoneCShapeVal);
   zoneCShape.setPositionZoneShapeTypePair(&zoneCShapeChoice);
   posCDef.setZoneShape(&zoneCShape);
 
@@ -1371,8 +1399,9 @@ int main()
 
   // make a position characteristic nominal
   PositionCharacteristicNominalType posCNom;
-  posCNom.setprintElement(strdup("PositionCharacteristicNominal"));
-  QIFIdType posCNomid(idString(qifid++)); // required id 35
+  posCNom.setprintElement("PositionCharacteristicNominal");
+  snprintf(idStr, 19, "%u", qifid++);
+  QIFIdType posCNomid(idStr); // required id 35
   posCNom.setid(&posCNomid);
   
   // required reference to definition
@@ -1387,8 +1416,9 @@ int main()
 
   // make a position characteristic item
   PositionCharacteristicItemType posCItem;
-  posCItem.setprintElement(strdup("PositionCharacteristicItem"));
-  QIFIdType posCItemid(idString(qifid++)); // required id 36
+  posCItem.setprintElement("PositionCharacteristicItem");
+  snprintf(idStr, 19, "%u", qifid++);
+  QIFIdType posCItemid(idStr); // required id 36
   posCItem.setid(&posCItemid);
 
   // required reference to nominal
@@ -1427,8 +1457,9 @@ int main()
 
   // make a position characteristic measurement
   PositionCharacteristicMeasurementType posCMeas;
-  posCMeas.setprintElement(strdup("PositionCharacteristicMeasurement"));
-  QIFIdType posCMeasid(idString(qifid++)); // required id 37
+  posCMeas.setprintElement("PositionCharacteristicMeasurement");
+  snprintf(idStr, 19, "%u", qifid++);
+  QIFIdType posCMeasid(idStr); // required id 37
   posCMeas.setid(&posCMeasid);
 
   // required reference to item
@@ -1444,7 +1475,7 @@ int main()
   posCStatVal.CharacteristicStatusEnum = &posCStatEnum;
   CharacteristicStatusTypeChoicePair posCStatChoice
     (CharacteristicStatusTypeChoicePair::CharacteristicStatusEnumE,
-     posCStatVal);
+     &posCStatVal);
   posCStat.setCharacteristicStatusTypePair(&posCStatChoice);
   posCMeas.setStatus(&posCStat);
 
@@ -1479,8 +1510,9 @@ int main()
 // region circle back to ABC
   // make a circle feature definition
   CircleFeatureDefinitionType circDef;
-  circDef.setprintElement(strdup("CircleFeatureDefinition"));
-  QIFIdType circDefid(idString(qifid++)); // required id 38
+  circDef.setprintElement("CircleFeatureDefinition");
+  snprintf(idStr, 19, "%u", qifid++);
+  QIFIdType circDefid(idStr); // required id 38
   circDef.setid(&circDefid);
 
   // feature size
@@ -1497,8 +1529,9 @@ int main()
 
   // make a circle feature nominal
   CircleFeatureNominalType circNom;
-  circNom.setprintElement(strdup("CircleFeatureNominal"));
-  QIFIdType circNomid(idString(qifid++)); // required id 39
+  circNom.setprintElement("CircleFeatureNominal");
+  snprintf(idStr, 19, "%u", qifid++);
+  QIFIdType circNomid(idStr); // required id 39
   circNom.setid(&circNomid);
 
   // reference to definition
@@ -1533,8 +1566,9 @@ int main()
 
   // make a circle feature item
   CircleFeatureItemType circItem;
-  circItem.setprintElement(strdup("CircleFeatureItem"));
-  QIFIdType circItemid(idString(qifid++)); // required id 40
+  circItem.setprintElement("CircleFeatureItem");
+  snprintf(idStr, 19, "%u", qifid++);
+  QIFIdType circItemid(idStr); // required id 40
   circItem.setid(&circItemid);
 
   // reference to definition
@@ -1554,7 +1588,7 @@ int main()
   CircleMeasurementDeterminationTypeVal circCheckVal;
   circCheckVal.Checked = &circCheck;
   CircleMeasurementDeterminationTypeChoicePair circCheckChoice
-     (CircleMeasurementDeterminationTypeChoicePair::CheckedE, circCheckVal);
+     (CircleMeasurementDeterminationTypeChoicePair::CheckedE, &circCheckVal);
   circMeasDet.setCircleMeasurementDeterminationTypePair(&circCheckChoice);
   circItem.setDeterminationMode(&circMeasDet);
 
@@ -1564,8 +1598,9 @@ int main()
 
   // make a circle feature actual
   CircleFeatureMeasurementType circMeas;
-  circMeas.setprintElement(strdup("CircleFeatureMeasurement"));
-  QIFIdType circMeasid(idString(qifid++)); // required id 41
+  circMeas.setprintElement("CircleFeatureMeasurement");
+  snprintf(idStr, 19, "%u", qifid++);
+  QIFIdType circMeasid(idStr); // required id 41
   circMeas.setid(&circMeasid);
 
   // reference to item
@@ -1604,8 +1639,9 @@ int main()
 
   // make a diameter characteristic definition
   DiameterCharacteristicDefinitionType diaDef;
-  diaDef.setprintElement(strdup("DiameterCharacteristicDefinition"));
-  QIFIdType diaDefid(idString(qifid++)); // required id 42
+  diaDef.setprintElement("DiameterCharacteristicDefinition");
+  snprintf(idStr, 19, "%u", qifid++);
+  QIFIdType diaDefid(idStr); // required id 42
   diaDef.setid(&diaDefid);
 
   // tolerance (as opposed to limits and fits, or non-tolerance)
@@ -1623,14 +1659,14 @@ int main()
   LinearTolerance_1014_TypeVal diaDiaTolVal;
   diaDiaTolVal.LinearTolerance_1031 = &maxMinDiaTol; 
   LinearTolerance_1014_TypeChoicePair diaDiaTolChoice
-    (LinearTolerance_1014_TypeChoicePair::LinearTolerance_1031E, diaDiaTolVal);
+    (LinearTolerance_1014_TypeChoicePair::LinearTolerance_1031E, &diaDiaTolVal);
   LinearTolerance_1014_Type diaDiaTol1014;
   diaDiaTol1014.setLinearTolerance_1014_TypePair(&diaDiaTolChoice);
   diaDiaTol.setLinearTolerance_1014(&diaDiaTol1014);
   DiameterCharacteristicDefinitionTypeVal diaDiaTolSelVal;
   diaDiaTolSelVal.Tolerance = &diaDiaTol;
   DiameterCharacteristicDefinitionTypeChoicePair diaDiaTolSelChoice
-    (DiameterCharacteristicDefinitionTypeChoicePair::ToleranceE,diaDiaTolSelVal);
+    (DiameterCharacteristicDefinitionTypeChoicePair::ToleranceE, &diaDiaTolSelVal);
   diaDef.setDiameterCharacteristicDefinitionTypeChoicePair(&diaDiaTolSelChoice);
 
   // add to list
@@ -1639,8 +1675,9 @@ int main()
 
   // make a diameter characteristic nominal
   DiameterCharacteristicNominalType diaNom;
-  diaNom.setprintElement(strdup("DiameterCharacteristicNominal"));
-  QIFIdType diaNomid(idString(qifid++)); // required id 43
+  diaNom.setprintElement("DiameterCharacteristicNominal");
+  snprintf(idStr, 19, "%u", qifid++);
+  QIFIdType diaNomid(idStr); // required id 43
   diaNom.setid(&diaNomid);
 
   // required reference to definition
@@ -1658,8 +1695,9 @@ int main()
 
   // make a diameter characteristic item
   DiameterCharacteristicItemType diaItem;
-  diaItem.setprintElement(strdup("DiameterCharacteristicItem"));
-  QIFIdType diaItemid(idString(qifid++)); // required id 44
+  diaItem.setprintElement("DiameterCharacteristicItem");
+  snprintf(idStr, 19, "%u", qifid++);
+  QIFIdType diaItemid(idStr); // required id 44
   diaItem.setid(&diaItemid);
 
   // required reference to nominal
@@ -1698,8 +1736,9 @@ int main()
 
   // make a diameter characteristic measurement
   DiameterCharacteristicMeasurementType diaMeas;
-  diaMeas.setprintElement(strdup("DiameterCharacteristicMeasurement"));
-  QIFIdType diaMeasid(idString(qifid++)); // required id 45
+  diaMeas.setprintElement("DiameterCharacteristicMeasurement");
+  snprintf(idStr, 19, "%u", qifid++);
+  QIFIdType diaMeasid(idStr); // required id 45
   diaMeas.setid(&diaMeasid);
 
   // required reference to item
@@ -1715,7 +1754,7 @@ int main()
   diaStatVal.CharacteristicStatusEnum = &diaStatEnum;
   CharacteristicStatusTypeChoicePair diaStatChoice
     (CharacteristicStatusTypeChoicePair::CharacteristicStatusEnumE,
-     diaStatVal);
+     &diaStatVal);
   diaStat.setCharacteristicStatusTypePair(&diaStatChoice);
   diaMeas.setStatus(&diaStat);
 
@@ -1751,8 +1790,9 @@ int main()
 
   // make a position characteristic definition
   PositionCharacteristicDefinitionType posDef;
-  posDef.setprintElement(strdup("PositionCharacteristicDefinition"));
-  QIFIdType posDefid(idString(qifid++)); // required id 46
+  posDef.setprintElement("PositionCharacteristicDefinition");
+  snprintf(idStr, 19, "%u", qifid++);
+  QIFIdType posDefid(idStr); // required id 46
   posDef.setid(&posDefid);
 
   // define the tolerance zone shape (diametrical)
@@ -1761,7 +1801,7 @@ int main()
   PositionDiametricalZoneType zoneShapeValDia;
   zoneShapeVal.DiametricalZone = &zoneShapeValDia;
   PositionZoneShapeTypeChoicePair zoneShapeChoice
-    (PositionZoneShapeTypeChoicePair::DiametricalZoneE, zoneShapeVal);
+    (PositionZoneShapeTypeChoicePair::DiametricalZoneE, &zoneShapeVal);
   zoneShape.setPositionZoneShapeTypePair(&zoneShapeChoice);
   posDef.setZoneShape(&zoneShape);
 
@@ -1785,8 +1825,9 @@ int main()
 
   // make a position characteristic nominal
   PositionCharacteristicNominalType posNom;
-  posNom.setprintElement(strdup("PositionCharacteristicNominal"));
-  QIFIdType posNomid(idString(qifid++)); // required id 47
+  posNom.setprintElement("PositionCharacteristicNominal");
+  snprintf(idStr, 19, "%u", qifid++);
+  QIFIdType posNomid(idStr); // required id 47
   posNom.setid(&posNomid);
 
   // required reference to definition
@@ -1801,8 +1842,9 @@ int main()
 
   // make a position characteristic item
   PositionCharacteristicItemType posItem;
-  posItem.setprintElement(strdup("PositionCharacteristicItem"));
-  QIFIdType posItemid(idString(qifid++)); // required id 48
+  posItem.setprintElement("PositionCharacteristicItem");
+  snprintf(idStr, 19, "%u", qifid++);
+  QIFIdType posItemid(idStr); // required id 48
   posItem.setid(&posItemid);
 
   // required reference to nominal
@@ -1841,8 +1883,9 @@ int main()
 
   // make a position characteristic measurement
   PositionCharacteristicMeasurementType posMeas;
-  posMeas.setprintElement(strdup("PositionCharacteristicMeasurement"));
-  QIFIdType posMeasid(idString(qifid++)); // required id 49
+  posMeas.setprintElement("PositionCharacteristicMeasurement");
+  snprintf(idStr, 19, "%u", qifid++);
+  QIFIdType posMeasid(idStr); // required id 49
   posMeas.setid(&posMeasid);
 
   // required reference to item
@@ -1857,7 +1900,7 @@ int main()
   CharacteristicStatusEnumType posStatEnum("PASS");
   posStatVal.CharacteristicStatusEnum = &posStatEnum;
   CharacteristicStatusTypeChoicePair posStatChoice
-    (CharacteristicStatusTypeChoicePair::CharacteristicStatusEnumE, posStatVal);
+    (CharacteristicStatusTypeChoicePair::CharacteristicStatusEnumE, &posStatVal);
   posStat.setCharacteristicStatusTypePair(&posStatChoice);
   posMeas.setStatus(&posStat);
 
@@ -1955,7 +1998,7 @@ int main()
   organizationVal.StandardsOrganizationEnum = &orgEnum;
   StandardsOrganizationTypeChoicePair organizationChoice
     (StandardsOrganizationTypeChoicePair::StandardsOrganizationEnumE,
-     organizationVal);
+     &organizationVal);
   organization.setStandardsOrganizationTypePair(&organizationChoice);
 
   // standard
@@ -1965,7 +2008,8 @@ int main()
   formalStandard.setDesignator(&orgDesig);
   XmlString orgYear("2009");
   formalStandard.setYear(&orgYear);
-  QIFIdType formalStandardid(idString(qifid++)); // required id 50
+  snprintf(idStr, 19, "%u", qifid++);
+  QIFIdType formalStandardid(idStr); // required id 50
   formalStandard.setid(&formalStandardid);
 
   // add standards to document
@@ -1997,7 +2041,8 @@ int main()
   
   // create the measurement results
   MeasurementResultsType measResults;
-  QIFIdType measResultsid(idString(qifid++));  // required id 51
+  snprintf(idStr, 19, "%u", qifid++);
+  QIFIdType measResultsid(idStr);  // required id 51
   measResults.setid(&measResultsid);
 
   // overall inspection status
@@ -2006,7 +2051,7 @@ int main()
   InspectionStatusEnumType overallStatEnum("FAIL");
   overallStatVal.InspectionStatusEnum = &overallStatEnum;
   InspectionStatusTypeChoicePair overallStatChoice
-    (InspectionStatusTypeChoicePair::InspectionStatusEnumE, overallStatVal);
+    (InspectionStatusTypeChoicePair::InspectionStatusEnumE, &overallStatVal);
   overallStat.setInspectionStatusTypePair(&overallStatChoice);
   measResults.setInspectionStatus(&overallStat);
 
@@ -2033,7 +2078,7 @@ int main()
 
   // add a (trivial) plan
   MeasureEvaluateAllActionType measAll;
-  measAll.setprintElement(strdup("MeasureEvaluateAll"));
+  measAll.setprintElement("MeasureEvaluateAll");
   UnnumberedPlanElementsType steps;
   PlanElementBaseTypeLisd stepsList;
   steps.setPlanElement(&stepsList);
@@ -2042,13 +2087,14 @@ int main()
   steps.setn(&stepsN);
   UnorderedActionGroupType planRoot;
   planRoot.setSteps(&steps);
-  planRoot.setprintElement(strdup("UnorderedPlanRoot"));
+  planRoot.setprintElement("UnorderedPlanRoot");
   PlanType measurementPlan;
   measurementPlan.setPlanRoot(&planRoot);
   qifdoc.setPlan(&measurementPlan);
 
   // set idMax
-  XmlUnsignedInt idMax(idString(qifid - 1));
+  snprintf(idStr, 19, "%u", (qifid - 1));
+  XmlUnsignedInt idMax(idStr);
   qifdoc.setidMax(&idMax);
 
   // make a new QIFDocumentFile
