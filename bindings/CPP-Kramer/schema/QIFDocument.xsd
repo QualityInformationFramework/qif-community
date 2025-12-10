@@ -6152,6 +6152,18 @@ memory.
              | t:Results/t:MeasurementResultsSet/t:MeasurementResults
               /t:MeasuredCharacteristics/t:CharacteristicMeasurements
               /t:FlatTaperCharacteristicMeasurement
+             | t:Results/t:MeasurementResultsSet/t:MeasurementResults
+              /t:MeasuredCharacteristics/t:CharacteristicMeasurements
+              /t:PositionCharacteristicMeasurement
+             | t:Results/t:MeasurementResultsSet/t:MeasurementResults
+              /t:MeasuredCharacteristics/t:CharacteristicMeasurements
+              /t:CoaxialityCharacteristicMeasurement
+             | t:Results/t:MeasurementResultsSet/t:MeasurementResults
+              /t:MeasuredCharacteristics/t:CharacteristicMeasurements
+              /t:ConcentricityCharacteristicMeasurement
+             | t:Results/t:MeasurementResultsSet/t:MeasurementResults
+              /t:MeasuredCharacteristics/t:CharacteristicMeasurements
+              /t:SymmetryCharacteristicMeasurement
              | t:ExternalQIFReferences/t:ExternalQIFDocument"/>
       <xs:field xpath="@id"/>
     </xs:key>
