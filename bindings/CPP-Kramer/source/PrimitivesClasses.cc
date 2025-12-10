@@ -11935,10 +11935,8 @@ QPIdReferenceType::QPIdReferenceType(
 {
   if (!bad)
     {
-      boost::regex pattern;
       const char * regexp = "^[A-Fa-f0-9]{8}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{12}$";
-      pattern = boost::regex(regexp,
-                         boost::regex::extended|boost::regex::no_except);
+      boost::regex pattern(regexp, boost::regex::no_except);
       if (pattern.empty())
         fprintf(stderr,
                 "cannot handle \"%s\", so not checking %s\n",
@@ -11952,13 +11950,11 @@ QPIdReferenceType::~QPIdReferenceType() {}
 
 bool QPIdReferenceType::QPIdReferenceTypeIsBad()
 {
-  boost::regex pattern;
   const char * regexp = "^[A-Fa-f0-9]{8}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{12}$";
 
   if (XmlTokenIsBad() == true)
     return true;
-  pattern = boost::regex(regexp,
-                         boost::regex::extended|boost::regex::no_except);
+  boost::regex pattern(regexp, boost::regex::no_except);
   if (pattern.empty())
     {
       fprintf(stderr, "cannot handle \"%s\", so not checking %s\n",
@@ -12060,10 +12056,8 @@ QPIdType::QPIdType(
 {
   if (!bad)
     {
-      boost::regex pattern;
       const char * regexp = "^[A-Fa-f0-9]{8}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{12}$";
-      pattern = boost::regex(regexp,
-                         boost::regex::extended|boost::regex::no_except);
+      boost::regex pattern(regexp, boost::regex::no_except);
       if (pattern.empty())
         fprintf(stderr,
                 "cannot handle \"%s\", so not checking %s\n",
@@ -12077,13 +12071,11 @@ QPIdType::~QPIdType() {}
 
 bool QPIdType::QPIdTypeIsBad()
 {
-  boost::regex pattern;
   const char * regexp = "^[A-Fa-f0-9]{8}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{12}$";
 
   if (XmlTokenIsBad() == true)
     return true;
-  pattern = boost::regex(regexp,
-                         boost::regex::extended|boost::regex::no_except);
+  boost::regex pattern(regexp, boost::regex::no_except);
   if (pattern.empty())
     {
       fprintf(stderr, "cannot handle \"%s\", so not checking %s\n",
